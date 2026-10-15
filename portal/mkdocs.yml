@@ -6,6 +6,11 @@ extra:
   portal_reader:
     project_id: expedition-73-sq0eezy-2026
     review_page: review/index.md
+    dependencies:
+      research/REGION_CANDIDATES.md:
+        - research/REGION_CATALOG_CHECK.json
+      evidence/REGION_RESEARCH.md:
+        - research/REGION_CATALOG_CHECK.json
 watch:
   - scripts/mkdocs_hooks.py
   - scripts/reader_hooks.py
@@ -71,6 +76,7 @@ nav:
       - Ekip doğrulaması: evidence/TEAM_SETUP.md
       - GitHub aktarımı: evidence/GITHUB_SHARE.md
       - Mac kurulum hazırlığı: evidence/MACOS_SETUP.md
+      - Bölge araştırması: evidence/REGION_RESEARCH.md
   - Proje:
       - Bağlam ve hedef: PROJECT_CONTEXT.md
       - Belge haritası: DOCUMENTATION_MAP.md
@@ -80,6 +86,7 @@ nav:
       - Emeç Yıldız: team/members/M1.md
       - sq0eezy: team/members/M2.md
       - Fikir alışverişi: team/IDEAS.md
+      - Bölge ve modül tartışması: team/ideas/IDEA-M1-001.md
       - Devir ve sorular: team/HANDOFFS.md
       - Birlikte çalışma: team/WORKFLOW.md
       - Paylaşım ve eşitleme: team/SYNC.md
@@ -92,9 +99,11 @@ nav:
       - Varsayımlar: discovery/ASSUMPTIONS.md
       - Araştırma kaydı: research/index.md
       - NASA veri kaynakları: research/DATA_SOURCES.md
+      - Bölge seçimi ve iki aday: research/REGION_CANDIDATES.md
       - Bilimsel kontrol noktaları: research/SCIENCE_NOTES.md
   - Mimari:
       - Genel bakış: architecture/index.md
+      - Bölge ve modül önerisi: architecture/REGIONAL_MODULE_PROPOSAL.md
       - Sistem haritası: architecture/SYSTEM_MAP.md
       - Veri ve akışlar: architecture/DATA_AND_FLOWS.md
       - Sınırlar: architecture/BOUNDARIES.md

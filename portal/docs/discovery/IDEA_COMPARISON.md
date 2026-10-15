@@ -1,10 +1,12 @@
 ---
 review_summary: "Hiçbiri seçilmiş değil: adayların sorusu, veri yolu ve karar öncesi sınaması."
-change_summary: "İlk konuşmadaki beş yön, doğrulanmamış bölgesel iddialar ayıklanarak kaydedildi."
+change_summary: "Türkiye'nin örnek olduğu açıklaması ve yeni bölge/modül tartışması bağlantıları eklendi."
 ---
 # Fikir karşılaştırması
 
 **Durum: Proposed.** Henüz seçim veya sayısal analiz yapılmadı. Aşağıdaki uygulanabilirlik yorumları çalışma önerisidir; jüri değerlendirmesi değildir.
+
+Güncel öneri [bölge + modüller](../architecture/REGIONAL_MODULE_PROPOSAL.md); [iki gerekçeli aday](../research/REGION_CANDIDATES.md) ayrı araştırmada. Bu sayfadaki geniş değişken listesi önceki keşif seçenekleridir. Kullanıcı Türkiye'nin yalnızca örnek olduğunu doğruladı.
 
 | Aday | Araştırma sorusu | İlk veri yolu | Görselleştirme fikri | Seçimden önce çözülmeli |
 |---|---|---|---|---|
@@ -12,7 +14,7 @@ change_summary: "İlk konuşmadaki beş yön, doğrulanmamış bölgesel iddiala
 | Su depoları | Karasal su depolaması bölgelerde nasıl değişiyor? | GRACE / GRACE-FO ürün seçimi | Su anomalisi haritası + havza karşılaştırması | Ölçülen büyüklük ve etkin çözünürlük; yeraltı suyu için ek bileşenler |
 | Sıcaklık | Isınma hızı bölgelere ve döneme göre nasıl değişiyor? | GISTEMP v4 adayı; başka sıcaklık ürünleri de değerlendirilebilir | Anomali haritası + eğim karşılaştırması | Yüzey/hava sıcaklığı ayrımı, referans dönem, ızgara ölçeği |
 | Buz ve deniz seviyesi | İki farklı ölçümün değişimini nasıl anlatabiliriz? | İlgili misyon ve ürünler henüz araştırılmadı | İlişkili iki gösterge | Birimler ve zaman uyumu; iki değişken daha geniş kapsam gerektirir |
-| Türkiye odaklı örnek | Yerel bir değişim bölgesel bağlamda nasıl görünür? | Önce değişken seçilmeli | Türkiye + karşılaştırma bölgesi | Yerel ölçeğe uygun çözünürlük ve yeterli veri |
+| Türkiye örneği · tarihsel konuşma | Kullanıcı bunun yalnızca örnek olduğunu açıkladı | Seçilmiş ürün yok | Bölgeye göre modül fikrini anlatmak için kullanıldı | Güncel öneri adayları ayrı araştırmada; Türkiye seçilmedi |
 
 ## Bir bölge mi seçmeliyiz?
 

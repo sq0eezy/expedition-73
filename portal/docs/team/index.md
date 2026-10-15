@@ -13,6 +13,10 @@ change_summary: "GitHub kayıtlarındaki iki üye eşleştirildi; görev, fikir 
 
 Araştırma ve uygulama rolleri henüz paylaşılmadı. Önce kendi notunuza ne yapmak istediğinizi yazın; ardından ortak panoda işi üstlenin. Kimliklerin dayanağı: [GitHub incelemesi](../evidence/TEAM_SETUP.md). sq0eezy için ayrıca gerçek ad varsayılmadı.
 
+## Güncel tartışma
+
+[Bölgeye göre NASA modülleri](ideas/IDEA-M1-001.md) ve [gerekçeli iki bölge adayı](../research/REGION_CANDIDATES.md) incelemeye açık. İki üyenin adaylar hakkındaki kabulü henüz yok. Görüşler fikir kartındaki ayrı alanlarda tutulur.
+
 | Alan | Nerede tutulur? |
 |---|---|
 | M1'in niyeti, önerdiği katkı ve son çalışma özeti | [M1 çalışma notu](members/M1.md) |

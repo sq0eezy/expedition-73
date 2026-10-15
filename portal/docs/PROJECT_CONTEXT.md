@@ -5,6 +5,8 @@ change_summary: "Kullanıcının amacı ve henüz açık olan proje sınırları
 
 ## Amaç
 
+**2026-10-15 tartışma güncellemesi:** Kullanıcı bir bölgeye NASA verisine göre modüller ekleyip ikinci bölgeyle karşılaştırmayı önerdi. Türkiye yalnızca örnekti. [Öneri taslağı](architecture/REGIONAL_MODULE_PROPOSAL.md) ve [iki bölge adayı](research/REGION_CANDIDATES.md) henüz kabul edilmiş kapsam değildir. Tek değişkenli önceki ilk demo önerisi daha küçük alternatif olarak durur.
+
 NASA görevlerinin ölçtüğü veya modellerinin ürettiği bir çevresel değişkeni zaman ve konum boyunca inceleyen, sonuçları anlaşılır görsellerle anlatan bir Space Apps projesi geliştirmek.
 
 Paylaşılan challenge dört soru soruyor: **Ne değişiyor? Nerede? Ne kadar? İstatistiksel olarak anlamlı mı?** Bölgelerin farklı davranması araştırma yönüdür; zıt trendleri baştan sonuç olarak kabul etmiyoruz.

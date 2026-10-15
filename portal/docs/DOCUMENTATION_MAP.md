@@ -12,6 +12,9 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | Cevap bekleyen sorular | [Keşif](discovery/index.md) |
 | Doğrulanmamış kabuller | [Varsayımlar](discovery/ASSUMPTIONS.md) |
 | Veri bağlantıları ve erişim durumu | [Kaynaklar](research/DATA_SOURCES.md) |
+| NASA'nın coğrafi düzeni ve gerekçeli iki bölge adayı | [Bölge araştırması](research/REGION_CANDIDATES.md) |
+| Katalog sorgularının ham metadata özeti | [CMR çıktı kaydı](research/REGION_CATALOG_CHECK.json) |
+| Bölgeye göre modül açma düşüncesinin taslağı | [Bölge + modül önerisi](architecture/REGIONAL_MODULE_PROPOSAL.md) |
 | Bilimsel yorumlama sınırları | [Bilimsel notlar](research/SCIENCE_NOTES.md) |
 | Bileşenler ve akışlar | [Mimari](architecture/index.md) |
 | Görev, aşama, risk | [Plan](planning/index.md) |

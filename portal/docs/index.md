@@ -1,6 +1,6 @@
 ---
 review_summary: "İki kişilik ekibin NASA Space Apps çalışması için ortak başlangıç noktası."
-change_summary: "Üye notları, fikir alışverişi ve devirler için ortak ekip alanı eklendi."
+change_summary: "Kaynaklı iki bölge adayı ve bölgeye göre modül açma düşüncesi tartışmaya açıldı."
 ---
 # {{ project_name }}
 
@@ -22,6 +22,7 @@ Değişken henüz seçilmedi. Bu alan, araştırdığımız fikirleri ve aldığ
 ## Nereden başlayalım?
 
 <div class="portal-grid">
+<a class="portal-card portal-card-featured" href="research/REGION_CANDIDATES/"><strong>İki bölge adayı · Tartışılıyor</strong><span>Colorado Platosu ve Kuzey Alaska neden aday? NASA'nın bölgelemesi, veri sorguları ve açık sorular.</span></a>
 <a class="portal-card portal-card-featured" href="team/"><strong>Ekipte kim ne düşünüyor?</strong><span>Emeç ve sq0eezy'nin çalışma notları, fikirleri ve birbirinden bekledikleri.</span></a>
 <a class="portal-card portal-card-featured" href="discovery/IDEA_COMPARISON/"><strong>Hangi fikir?</strong><span>NDVI, su depoları, sıcaklık ve diğer adayları aynı sorularla karşılaştır.</span></a>
 <a class="portal-card" href="research/DATA_SOURCES/"><strong>NASA verilerini keşfet</strong><span>Görsel katman ile sayısal analiz verisini ayır; erişimde neyin sınanacağını gör.</span></a>

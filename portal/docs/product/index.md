@@ -2,6 +2,8 @@
 
 **Durum: Proposed.** Kullanıcı animasyonlu, girilip incelenebilen bir web uygulamasına ilgi duyuyor. Aşağıdaki deneyim ve kapsam henüz onaylanmadı.
 
+Güncel tartışma: [Veriye göre bölge ve modül seçimi](../architecture/REGIONAL_MODULE_PROPOSAL.md). Kullanıcı bölgeye modüller ekleyip karşılaştırmayı önerdi; Türkiye yalnızca örnekti. Sıcaklık/bitki örtüsü için iki aday araştırıldı, henüz seçilmedi. Aşağıdaki tek değişkenli ilk demo daha küçük bir alternatif olarak korunuyor; yeni öneri otomatik olarak kabul edilmiş kapsam değildir.
+
 ## Önerilen ziyaretçi akışı
 
 1. Araştırma sorusunu ve ölçülen değişkeni gör.

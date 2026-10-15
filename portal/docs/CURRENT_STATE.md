@@ -1,9 +1,9 @@
 ---
 status: Proposed
 updated: "2026-10-15"
-phase: Fikir karşılaştırması ve veri keşfi
+phase: Bölge ve modül adaylarını değerlendirme
 review_summary: "Kesinleşenler, açık seçimler ve sıradaki küçük adım."
-change_summary: "M2'nin Mac kullandığı kaydedildi; ayrı macOS kurulum kılavuzu ve açılış adımları eklendi."
+change_summary: "Türkiye'nin örnek olduğu kaydedildi; kaynaklı iki bölge adayı ve modül önerisi tartışmaya açıldı."
 ---
 
 # Mevcut durum
@@ -19,6 +19,8 @@ Kullanıcı 2026-10-15 tarihinde **henüz değişken seçmediklerini, fikirleri 
 
 ## Hazırlananlar
 
+Kullanıcı **bölgeyi ve modülleri NASA verilerine göre seçme** fikrini tartışmaya açtı; Türkiye yalnızca örnekti. [Colorado Platosu çevresi ve Kuzey Alaska](research/REGION_CANDIDATES.md) gerekçeli iki aday olarak araştırıldı. NASA CMR'de ürün/bölge/tarih eşleşmeleri sorgulandı; bilimsel dosya ve piksel doğrulaması yapılmadı. [Bölge + modül taslağı](architecture/REGIONAL_MODULE_PROPOSAL.md) ve [IDEA-M1-001](team/ideas/IDEA-M1-001.md) **Proposed** durumunda; M1/M2'nin aday onayı yok. [M2 inceleme kaydı](team/HANDOFFS.md) yanıt bekliyor.
+
 M2'nin Mac kullandığı bilgisine göre [macOS kurulum kılavuzu](guide/MACOS_SETUP.md) eklendi. Kodun Mac ortam yolu zaten mevcut; gerçek Mac kurulum sonucu M2'den bekleniyor.
 
 Portal GitHub `main` üzerinden paylaşıldı; uzak commit eşleşmesi doğrulandı. Arkadaşın kendi bilgisayarında pull/kurulum sonucu henüz bildirilmedi.
@@ -31,8 +33,8 @@ Türkçe portal, fikir karşılaştırması, kaynak listesi, öneri mimarisi ve 
 
 Değişken, veri ürünü, iki bölge, tarih aralığı, istatistik yöntemi, teknoloji yığını, görev sahipleri, teslim tarihi ve nihai uygulama adı seçilmedi. “Expedition 73” çalışma alanının adıdır.
 
-NASA verisi indirilmedi; trend veya p-değeri hesaplanmadı. Portalın çalışması bilimsel uygulamanın tamamlandığını göstermez.
+NASA'nın bilimsel veri dosyaları indirilmedi; yalnızca açık katalog metaverisi sorgulanıp kaydedildi. Trend veya p-değeri hesaplanmadı. Portalın çalışması bilimsel uygulamanın tamamlandığını göstermez.
 
 ## Sıradaki küçük adım
 
-Arkadaşın [kurulum adımlarıyla](team/SYNC.md) main'i alıp yerel portalını açsın; ardından iki kişi üye notlarına niyetlerini yazıp ilk görevleri üstlensin. Bilimsel keşifte [fikir karşılaştırmasından](discovery/IDEA_COMPARISON.md) iki adayı küçük veri örnekleriyle değerlendirme adımı bekliyor. Yeni konuşmalar [işleme akışıyla](guide/AI_WORKFLOW.md) kaydedilir.
+İki üye [fikir kartındaki sorulara](team/ideas/IDEA-M1-001.md) görüşlerini eklesin. Pilot için ürün/alan kararı verilirse küçük sayısal alt kümelerde kalite, maske ve aylık kapsama bakılsın; adaylar bundan sonra kabul veya reddedilsin. M2 [Mac kurulumuyla](guide/MACOS_SETUP.md) güncel paneli açabilir. Yeni konuşmalar [işleme akışıyla](guide/AI_WORKFLOW.md) kaydedilir.

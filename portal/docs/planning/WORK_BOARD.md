@@ -11,7 +11,8 @@ Görevler eldeki kanıta göre güncellenir. Araştırma ve uygulama görevlerin
 | S-02 | Main'i alıp kendi Mac bilgisayarında portalı kur | Proposed | M2 | Önerildi | Atanmadı | [Mac kurulumu](../guide/MACOS_SETUP.md); M2'nin kendi ortamında açılış sonucu |
 | R-01 | İki adayı kısa listeye al | Proposed | Atanmadı | Atanmadı | Atanmadı | Her aday için seçim kartı |
 | R-02 | Sayısal veri erişimini sına | Proposed | Atanmadı | Atanmadı | Atanmadı | Gerçek küçük dosya, indirme yöntemi, sürüm ve birim |
-| R-03 | İki bölge ve ortak dönemi öner | Proposed | Atanmadı | Atanmadı | Atanmadı | Sınırlar, kapsam, seçim gerekçesi |
+| R-03 | İki bölge ve ortak dönem adayını araştır | Implemented | Bu yapay zekâ oturumu | Kullanıcı talebi | M1/M2 görüşü bekleniyor | [İki aday](../research/REGION_CANDIDATES.md); gerekçeler ve katalog kontrolü hazır, seçim yapılmadı |
+| R-04 | Adaylarda küçük bilimsel alt kümeyi ve kaliteyi incele | Proposed | Atanmadı | Atanmadı | Atanmadı | Veri erişimi, geçerli ay/piksel oranı ve maske; bölge/ürün pilot kararı bekliyor |
 | D-01 | Araştırma sorusu ve kapsamı seç | Proposed | Atanmadı | Atanmadı | İki üyenin görüşü gerekli | Kabul edilmiş ADR |
 | A-01 | İstatistik yöntemini belirle | Proposed | Atanmadı | Atanmadı | Atanmadı | Kaynak, varsayımlar ve örnek doğrulama planı |
 | U-01 | Etkileşim taslağını belirle | Proposed | Atanmadı | Atanmadı | Atanmadı | Harita/grafik/tarih akışı; kapsam seçimine bağlı |

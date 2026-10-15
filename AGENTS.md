@@ -15,6 +15,8 @@ Kullanıcı 2026-10-15 tarihinde hâlâ fikirleri karşılaştırdıklarını do
 
 Kullanıcının yeni konuşmalarını özetleyerek ilgili belgelere işle; öneriyi kabul edilmiş karar, konuşmayı bilimsel kanıt sayma. Ham konuşmaları, kişisel dosya yollarını ve erişim anahtarlarını yayımlanan `portal/docs/` içine kopyalama.
 
+Türkiye yalnızca örnekti. Güncel bölge/modül düşüncesi `portal/docs/team/ideas/IDEA-M1-001.md` içindedir. Colorado Platosu ve Kuzey Alaska araştırma adaylarıdır; kabul edilmiş bölge/ürün/dönem sayma. CMR granule eşleşmesini bilimsel piksel kalitesi veya trend kanıtı diye sunma.
+
 Anlamlı çalışma sonunda ilgili kaynakları, CURRENT_STATE ve WORK_LOG'u güncelle. Öneri, uygulama ve doğrulamayı ayır. Portal kontrolleri NASA analizinin çalıştığını kanıtlamaz. Portal değişikliklerinde `portal/.venv/Scripts/python.exe portal/scripts/portal.py check` ve `build` çalıştır.
 
 M2 (sq0eezy) macOS kullanıyor. Ona yönelik komutlar `python3` ve `portal/.venv/bin/python` üzerinden verilir; kılavuz `portal/docs/guide/MACOS_SETUP.md` içindedir. Windows ortamında çalıştırılan yol testini gerçek macOS kurulumu olarak raporlama.

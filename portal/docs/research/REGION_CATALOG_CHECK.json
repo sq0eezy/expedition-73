@@ -1,0 +1,250 @@
+{
+  "as_of": "2026-10-15",
+  "kind": "public_metadata_probe_not_scientific_analysis",
+  "regions": [
+    {
+      "id": "candidate-a",
+      "name": "Colorado Plateau study window",
+      "bbox_west_south_east_north": [
+        -113,
+        36,
+        -109,
+        39
+      ]
+    },
+    {
+      "id": "candidate-b",
+      "name": "Northern Alaska study window",
+      "bbox_west_south_east_north": [
+        -156,
+        68,
+        -150,
+        70
+      ]
+    }
+  ],
+  "limits": [
+    "Rectangles are proposed sampling windows, not official NASA region boundaries.",
+    "A spatial granule match does not establish valid pixels within the rectangle.",
+    "Full-period hit counts and two sampled months do not prove all-month coverage.",
+    "No science file, QA mask, authentication or trend was tested."
+  ],
+  "products": [
+    {
+      "short_name": "M2TMNXSLV",
+      "version": "5.12.4",
+      "provider": "GES_DISC",
+      "collection_id": "C1276812859-GES_DISC",
+      "title": "MERRA-2 tavgM_2d_slv_Nx: 2d,Monthly mean,Time-Averaged,Single-Level,Assimilation,Single-Level Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TMNXSLV)",
+      "time_start": "1980-01-01T00:00:00.000Z",
+      "time_end": null,
+      "collection_query": "https://cmr.earthdata.nasa.gov/search/collections.json?short_name=M2TMNXSLV&version=5.12.4&provider=GES_DISC&page_size=10",
+      "spatial_queries": [
+        {
+          "region_id": "candidate-a",
+          "period": "proposed_2001_2024",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C1276812859-GES_DISC&bounding_box=-113%2C36%2C-109%2C39&temporal=2001-01-01T00%3A00%3A00Z%2C2024-12-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 288,
+          "example_id": "G1278025850-GES_DISC",
+          "example_title": "M2TMNXSLV.5.12.4:MERRA2_300.tavgM_2d_slv_Nx.200101.nc4",
+          "example_time_start": "2001-01-01T00:00:00.000Z",
+          "example_time_end": "2001-01-31T23:59:59.000Z"
+        },
+        {
+          "region_id": "candidate-a",
+          "period": "sample_july_2001",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C1276812859-GES_DISC&bounding_box=-113%2C36%2C-109%2C39&temporal=2001-07-01T00%3A00%3A00Z%2C2001-07-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 1,
+          "example_id": "G1278025886-GES_DISC",
+          "example_title": "M2TMNXSLV.5.12.4:MERRA2_300.tavgM_2d_slv_Nx.200107.nc4",
+          "example_time_start": "2001-07-01T00:00:00.000Z",
+          "example_time_end": "2001-07-31T23:59:59.000Z"
+        },
+        {
+          "region_id": "candidate-a",
+          "period": "sample_july_2024",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C1276812859-GES_DISC&bounding_box=-113%2C36%2C-109%2C39&temporal=2024-07-01T00%3A00%3A00Z%2C2024-07-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 1,
+          "example_id": "G3205035911-GES_DISC",
+          "example_title": "M2TMNXSLV.5.12.4:MERRA2_400.tavgM_2d_slv_Nx.202407.nc4",
+          "example_time_start": "2024-07-01T00:00:00.000Z",
+          "example_time_end": "2024-07-31T23:59:59.000Z"
+        },
+        {
+          "region_id": "candidate-b",
+          "period": "proposed_2001_2024",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C1276812859-GES_DISC&bounding_box=-156%2C68%2C-150%2C70&temporal=2001-01-01T00%3A00%3A00Z%2C2024-12-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 288,
+          "example_id": "G1278025850-GES_DISC",
+          "example_title": "M2TMNXSLV.5.12.4:MERRA2_300.tavgM_2d_slv_Nx.200101.nc4",
+          "example_time_start": "2001-01-01T00:00:00.000Z",
+          "example_time_end": "2001-01-31T23:59:59.000Z"
+        },
+        {
+          "region_id": "candidate-b",
+          "period": "sample_july_2001",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C1276812859-GES_DISC&bounding_box=-156%2C68%2C-150%2C70&temporal=2001-07-01T00%3A00%3A00Z%2C2001-07-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 1,
+          "example_id": "G1278025886-GES_DISC",
+          "example_title": "M2TMNXSLV.5.12.4:MERRA2_300.tavgM_2d_slv_Nx.200107.nc4",
+          "example_time_start": "2001-07-01T00:00:00.000Z",
+          "example_time_end": "2001-07-31T23:59:59.000Z"
+        },
+        {
+          "region_id": "candidate-b",
+          "period": "sample_july_2024",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C1276812859-GES_DISC&bounding_box=-156%2C68%2C-150%2C70&temporal=2024-07-01T00%3A00%3A00Z%2C2024-07-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 1,
+          "example_id": "G3205035911-GES_DISC",
+          "example_title": "M2TMNXSLV.5.12.4:MERRA2_400.tavgM_2d_slv_Nx.202407.nc4",
+          "example_time_start": "2024-07-01T00:00:00.000Z",
+          "example_time_end": "2024-07-31T23:59:59.000Z"
+        }
+      ]
+    },
+    {
+      "short_name": "MOD13A3",
+      "version": "061",
+      "provider": "LPCLOUD",
+      "collection_id": "C2327962326-LPCLOUD",
+      "title": "MODIS/Terra Vegetation Indices Monthly L3 Global 1km SIN Grid V061",
+      "time_start": "2000-02-01T00:00:00.000Z",
+      "time_end": null,
+      "collection_query": "https://cmr.earthdata.nasa.gov/search/collections.json?short_name=MOD13A3&version=061&provider=LPCLOUD&page_size=10",
+      "spatial_queries": [
+        {
+          "region_id": "candidate-a",
+          "period": "proposed_2001_2024",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C2327962326-LPCLOUD&bounding_box=-113%2C36%2C-109%2C39&temporal=2001-01-01T00%3A00%3A00Z%2C2024-12-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 576,
+          "example_id": "G2331962258-LPCLOUD",
+          "example_title": "MOD13A3.A2001001.h09v05.061.2020061215407",
+          "example_time_start": "2001-01-01T00:00:00.000Z",
+          "example_time_end": "2001-01-31T23:59:59.000Z"
+        },
+        {
+          "region_id": "candidate-a",
+          "period": "sample_july_2001",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C2327962326-LPCLOUD&bounding_box=-113%2C36%2C-109%2C39&temporal=2001-07-01T00%3A00%3A00Z%2C2001-07-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 2,
+          "example_id": "G2331985382-LPCLOUD",
+          "example_title": "MOD13A3.A2001182.h09v05.061.2020064124224",
+          "example_time_start": "2001-07-01T00:00:00.000Z",
+          "example_time_end": "2001-07-31T23:59:59.000Z"
+        },
+        {
+          "region_id": "candidate-a",
+          "period": "sample_july_2024",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C2327962326-LPCLOUD&bounding_box=-113%2C36%2C-109%2C39&temporal=2024-07-01T00%3A00%3A00Z%2C2024-07-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 2,
+          "example_id": "G3197464286-LPCLOUD",
+          "example_title": "MOD13A3.A2024183.h09v05.061.2024228023359",
+          "example_time_start": "2024-07-01T00:00:00.000Z",
+          "example_time_end": "2024-07-31T23:59:59.000Z"
+        },
+        {
+          "region_id": "candidate-b",
+          "period": "proposed_2001_2024",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C2327962326-LPCLOUD&bounding_box=-156%2C68%2C-150%2C70&temporal=2001-01-01T00%3A00%3A00Z%2C2024-12-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 2258,
+          "example_id": "G2331961214-LPCLOUD",
+          "example_title": "MOD13A3.A2001001.h11v02.061.2020061215415",
+          "example_time_start": "2001-01-01T00:00:00.000Z",
+          "example_time_end": "2001-01-31T23:59:59.000Z"
+        },
+        {
+          "region_id": "candidate-b",
+          "period": "sample_july_2001",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C2327962326-LPCLOUD&bounding_box=-156%2C68%2C-150%2C70&temporal=2001-07-01T00%3A00%3A00Z%2C2001-07-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 8,
+          "example_id": "G2331985554-LPCLOUD",
+          "example_title": "MOD13A3.A2001182.h12v02.061.2020064124215",
+          "example_time_start": "2001-07-01T00:00:00.000Z",
+          "example_time_end": "2001-07-31T23:59:59.000Z"
+        },
+        {
+          "region_id": "candidate-b",
+          "period": "sample_july_2024",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C2327962326-LPCLOUD&bounding_box=-156%2C68%2C-150%2C70&temporal=2024-07-01T00%3A00%3A00Z%2C2024-07-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 8,
+          "example_id": "G3197477229-LPCLOUD",
+          "example_title": "MOD13A3.A2024183.h13v02.061.2024228030255",
+          "example_time_start": "2024-07-01T00:00:00.000Z",
+          "example_time_end": "2024-07-31T23:59:59.000Z"
+        }
+      ]
+    },
+    {
+      "short_name": "MOD10CM",
+      "version": "61",
+      "provider": "NSIDC_CPRD",
+      "collection_id": "C3050353608-NSIDC_CPRD",
+      "title": "MODIS/Terra Snow Cover Monthly L3 Global 0.05Deg CMG V061",
+      "time_start": "2000-03-01T00:00:00.000Z",
+      "time_end": null,
+      "collection_query": "https://cmr.earthdata.nasa.gov/search/collections.json?short_name=MOD10CM&version=61&provider=NSIDC_CPRD&page_size=10",
+      "spatial_queries": [
+        {
+          "region_id": "candidate-a",
+          "period": "proposed_2001_2024",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C3050353608-NSIDC_CPRD&bounding_box=-113%2C36%2C-109%2C39&temporal=2001-01-01T00%3A00%3A00Z%2C2024-12-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 284,
+          "example_id": "G3050474153-NSIDC_CPRD",
+          "example_title": "MOD10CM.A2001001.061.2020059105205.hdf",
+          "example_time_start": "2001-01-01T00:00:00.000Z",
+          "example_time_end": "2001-01-31T23:59:59.000Z"
+        },
+        {
+          "region_id": "candidate-a",
+          "period": "sample_july_2001",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C3050353608-NSIDC_CPRD&bounding_box=-113%2C36%2C-109%2C39&temporal=2001-07-01T00%3A00%3A00Z%2C2001-07-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 2,
+          "example_id": "G3050474486-NSIDC_CPRD",
+          "example_title": "MOD10CM.A2001182.061.2020084155601.hdf",
+          "example_time_start": "2001-07-03T00:00:00.000Z",
+          "example_time_end": "2001-07-31T23:59:59.000Z"
+        },
+        {
+          "region_id": "candidate-a",
+          "period": "sample_july_2024",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C3050353608-NSIDC_CPRD&bounding_box=-113%2C36%2C-109%2C39&temporal=2024-07-01T00%3A00%3A00Z%2C2024-07-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 1,
+          "example_id": "G3194914594-NSIDC_CPRD",
+          "example_title": "MOD10CM.A2024183.061.2024226150129.hdf",
+          "example_time_start": "2024-07-01T00:00:00.000Z",
+          "example_time_end": "2024-07-31T23:59:59.000Z"
+        },
+        {
+          "region_id": "candidate-b",
+          "period": "proposed_2001_2024",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C3050353608-NSIDC_CPRD&bounding_box=-156%2C68%2C-150%2C70&temporal=2001-01-01T00%3A00%3A00Z%2C2024-12-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 284,
+          "example_id": "G3050474153-NSIDC_CPRD",
+          "example_title": "MOD10CM.A2001001.061.2020059105205.hdf",
+          "example_time_start": "2001-01-01T00:00:00.000Z",
+          "example_time_end": "2001-01-31T23:59:59.000Z"
+        },
+        {
+          "region_id": "candidate-b",
+          "period": "sample_july_2001",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C3050353608-NSIDC_CPRD&bounding_box=-156%2C68%2C-150%2C70&temporal=2001-07-01T00%3A00%3A00Z%2C2001-07-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 2,
+          "example_id": "G3050474486-NSIDC_CPRD",
+          "example_title": "MOD10CM.A2001182.061.2020084155601.hdf",
+          "example_time_start": "2001-07-03T00:00:00.000Z",
+          "example_time_end": "2001-07-31T23:59:59.000Z"
+        },
+        {
+          "region_id": "candidate-b",
+          "period": "sample_july_2024",
+          "query_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C3050353608-NSIDC_CPRD&bounding_box=-156%2C68%2C-150%2C70&temporal=2024-07-01T00%3A00%3A00Z%2C2024-07-31T23%3A59%3A59Z&page_size=1",
+          "matching_granules": 1,
+          "example_id": "G3194914594-NSIDC_CPRD",
+          "example_title": "MOD10CM.A2024183.061.2024226150129.hdf",
+          "example_time_start": "2024-07-01T00:00:00.000Z",
+          "example_time_end": "2024-07-31T23:59:59.000Z"
+        }
+      ]
+    }
+  ]
+}

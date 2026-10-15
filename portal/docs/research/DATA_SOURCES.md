@@ -4,6 +4,10 @@ change_summary: "Resmî kaynaklara dayanan ilk araştırma listesi eklendi."
 ---
 # NASA veri kaynakları
 
+## Yeni bölge araştırması
+
+NASA'nın coğrafi düzeni ve ülke/poligon alt kümesi [bölge seçimi araştırmasında](REGION_CANDIDATES.md) açıklanır. Bu oturumda `M2TMNXSLV` 5.12.4, `MOD13A3` 061 ve `MOD10CM` 61 için gerçek CMR alan/zaman sorguları yapıldı. [Kaydedilmiş sorgular](REGION_CATALOG_CHECK.json) metadata eşleşmeleridir; sayısal dosya, giriş veya kalite kontrolü değildir. Aşağıdaki MOD13C2/GISTEMP/GRACE seçenekleri önceki alternatifler olarak durur; ürün seçimi yapılmadı.
+
 **İnceleme tarihi: 2026-10-15.** Sayfa içeriğinin okunması, dosya indirmenin veya servis entegrasyonunun çalıştığını göstermez. Hiçbir ürün henüz seçilmedi.
 
 | Kaynak | Burada ne için kullanılır? | İnceleme ve sıradaki sınama |

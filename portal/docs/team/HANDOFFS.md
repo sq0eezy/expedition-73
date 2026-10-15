@@ -3,7 +3,17 @@ review_summary: "Bir üyeden diğerine aktarılan iş, soru, engel ve yanıtlar.
 ---
 # Devir ve yanıt bekleyenler
 
-Henüz bir üyeden diğerine iletilmiş kayıt yok. Buraya yazmak tek başına bildirim göndermez; alıcının kaydı görmesi paylaşım yöntemine bağlıdır.
+Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel kayıtları alır.
+
+## H-M1-001 · Bölge ve modül önerisini inceleme
+
+- **Gönderen → alıcı:** M1 → M2; kullanıcı “diğer arkadaş da baksın” dediği için bu oturumda kayda geçirildi.
+- **Tarih:** 2026-10-15.
+- **Durum:** Yanıt bekliyor; görüldü veya kabul edildi sayılmadı.
+- **Konu:** [IDEA-M1-001](ideas/IDEA-M1-001.md).
+- **Beklenen:** Colorado Platosu ve Kuzey Alaska adaylarını, ortak sıcaklık/bitki örtüsü pilotunu ve açık sınır/kalite sorularını inceleyip M2 görüşünü fikir kartına ekle.
+- **Eldeki çıktı:** [Araştırma ve katalog sorguları](../research/REGION_CANDIDATES.md), [mimari önerisi](../architecture/REGIONAL_MODULE_PROPOSAL.md).
+- **Yanıt:** Henüz yok. Dış mesaj veya otomatik bildirim gönderilmedi.
 
 ## Bir kayıt için gerekenler
 

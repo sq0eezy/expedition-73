@@ -1,5 +1,9 @@
 # Çalışma günlüğü
 
+## 2026-10-15 · Veriyle bölge ve modül adayları
+
+Kullanıcı Türkiye'nin örnek olduğunu açıkladı; iki bölgenin veriyle gerekçelendirilmesini ve fikrin aday olarak panele eklenmesini istedi. Resmî coğrafi veri düzeni araştırıldı; üç üründe iki alan/üç dönem için 18 CMR granule sorgusu başarıyla çalıştı. Bilimsel dosya indirilmedi. [İki adayın araştırması](../research/REGION_CANDIDATES.md), [öneri taslağı](../architecture/REGIONAL_MODULE_PROPOSAL.md) ve [IDEA-M1-001](../team/ideas/IDEA-M1-001.md) hazırlandı. Adayların kabulü veya yeni ADR yok; M2'nin görüşü [H-M1-001](../team/HANDOFFS.md) kaydında bekliyor. [Gerçek kontroller](../evidence/REGION_RESEARCH.md).
+
 ## 2026-10-15 · Mac kurulum kılavuzu
 
 Kullanıcı arkadaşının Mac kullandığını belirtti. README, paylaşım ve kullanım sayfaları ayrı macOS kılavuzuna yönlendirildi; M2'nin çalışma ortamı kaydedildi. Mevcut kod `darwin` için `.venv/bin/python` seçtiğinden motor değiştirilmedi. 19 mevcut CLI/içerik testi, içerik kontrolü ve strict derleme Windows'ta geçti. [Kılavuz](../guide/MACOS_SETUP.md), [kontroller ve sınırlar](../evidence/MACOS_SETUP.md). Mac'te gerçek kurulum sonucu henüz yok.

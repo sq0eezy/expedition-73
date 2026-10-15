@@ -1,10 +1,10 @@
 ---
 review_summary: "Fikir sahibini ve iki kişinin ayrı görüşlerini koruyan ortak fikir dizini."
-change_summary: "Fikir önerisi, karşı görüş ve ortak karar birbirinden ayrıldı."
+change_summary: "IDEA-M1-001: veriyle seçilen bölge ve modüller fikri, iki adaylı araştırmayla eklendi."
 ---
 # Fikir alışverişi
 
-Henüz kimliği belirlenmiş bir üyenin yeni fikir kartı yok. İlk konuşmadaki bilimsel adaylar [fikir karşılaştırmasında](../discovery/IDEA_COMPARISON.md) durur; iki üyeden birine aitmiş gibi yeniden yazılmadı.
+İlk güncel tartışma [IDEA-M1-001](ideas/IDEA-M1-001.md): veriyle seçilen bölgeler ve modüller. İlk konuşmadaki genel değişken adayları [fikir karşılaştırmasında](../discovery/IDEA_COMPARISON.md) tarihsel seçenekler olarak durur.
 
 ## Fikir kartı nasıl açılır?
 
@@ -22,4 +22,6 @@ Bir öneri, diğer kişinin susmasıyla kabul edilmiş sayılmaz. Diğer kişini
 
 ## Güncel fikir dizini
 
-Henüz yeni kart yok. Yeni satır biçimi: **kimlik · başlık · öneren · tartışma durumu · kimden ne bekleniyor · kart bağlantısı**.
+| Kimlik | Konu | Kaynak | Durum | Beklenen |
+|---|---|---|---|---|
+| [IDEA-M1-001](ideas/IDEA-M1-001.md) | Veriyle seçilen bölgeler ve modüller | M1'in fikri; iki aday araştırması yapay zekâ tarafından hazırlandı | Tartışılıyor / Proposed | M1 ve M2'nin adaylar, sınırlar ve ilk pilot hakkındaki görüşleri |
