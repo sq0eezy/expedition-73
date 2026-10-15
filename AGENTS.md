@@ -17,6 +17,8 @@ Kullanıcının yeni konuşmalarını özetleyerek ilgili belgelere işle; öner
 
 Anlamlı çalışma sonunda ilgili kaynakları, CURRENT_STATE ve WORK_LOG'u güncelle. Öneri, uygulama ve doğrulamayı ayır. Portal kontrolleri NASA analizinin çalıştığını kanıtlamaz. Portal değişikliklerinde `portal/.venv/Scripts/python.exe portal/scripts/portal.py check` ve `build` çalıştır.
 
+M2 (sq0eezy) macOS kullanıyor. Ona yönelik komutlar `python3` ve `portal/.venv/bin/python` üzerinden verilir; kılavuz `portal/docs/guide/MACOS_SETUP.md` içindedir. Windows ortamında çalıştırılan yol testini gerçek macOS kurulumu olarak raporlama.
+
 ## İki kişilik çalışma
 
 Üye eşleştirmesi `portal/docs/team/index.md` içindedir. Kullanıcının ve arkadaşının görüşlerini ayrı koru; yanıt yoksa kabul varsayma. Hangi üye adına çalışıldığı belirsizse kişisel niyet yazma. Görev sahibi ve inceleyen için esas kaynak iş panosudur; bir kişiye önerilen görev, kabul edilmiş görev sayılmaz.

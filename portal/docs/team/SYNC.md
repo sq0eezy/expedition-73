@@ -1,6 +1,6 @@
 ---
 review_summary: "GitHub main üzerinden paylaşım, arkadaşın ilk kurulumu ve sonraki güncellemeler."
-change_summary: "Kullanıcı main aktarımını istedi; uzak katkılar korundu ve kurulum adımları eklendi."
+change_summary: "Arkadaşın Mac kullandığı bilgisine göre kurulum ve sonraki açılış komutları netleştirildi."
 ---
 # Paylaşım ve kurulum
 
@@ -25,6 +25,8 @@ Portal tarayıcıdan okunur; kaynaklar GitHub dosya düzenleyicisinde, yerel edi
 
 ## Arkadaşın için ilk kurulum
 
+Arkadaşın **Mac kullanıyor**. Ayrıntılı [macOS kurulum kılavuzu](../guide/MACOS_SETUP.md); aşağıdaki adımlar Mac Terminal içindir.
+
 Python 3.11+ kurulu olmalı. Kendi depo klasöründe, korunmamış değişiklik yokken:
 
 ~~~sh
@@ -33,10 +35,10 @@ git pull --ff-only origin main
 cd portal
 python3 scripts/portal.py setup
 python3 scripts/portal.py check
-python3 scripts/portal.py serve
+python3 scripts/portal.py serve --open
 ~~~
 
-macOS/Linux'ta `python3`, Windows'ta `python` kullanılır. Windows'ta alternatif temel komut `py -3` olabilir. `setup` paketleri yerel `.venv` içine indirir; bir kez gerekir. Adres http://127.0.0.1:8000, kapatma terminalde Ctrl+C. Sonraki açılışta `portal/` içinde yalnızca `python3 scripts/portal.py serve` yeterlidir.
+Mac'te `python3` kullanılır. `setup` paketleri Mac üzerinde oluşturulan yerel `.venv` içine indirir; bir kez gerekir. Adres http://127.0.0.1:8000, kapatma terminalde Ctrl+C. Sonraki açılışta `portal/` içinde `.venv/bin/python scripts/portal.py serve --open` yeterlidir.
 
 GitHub'da okuduğun bu sürümü almak ile kendi bilgisayarında başarıyla kurmak ayrı adımlardır; arkadaşın kurulum sonucu henüz bildirilmedi.
 

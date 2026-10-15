@@ -5,6 +5,7 @@
 | [Portal kurulumu ve doğrulama](PORTAL_SETUP.md) | Bu oturumdaki belge portalı kontrolleri |
 | [Ekip alanı doğrulaması](TEAM_SETUP.md) | İki üyeli belge yapısı, GitHub kimlik incelemesi ve paylaşım sınırı |
 | [GitHub main aktarımı](GITHUB_SHARE.md) | Uzak katkıların korunması, gönderim ve kurulum takibi |
+| [Mac kurulum hazırlığı](MACOS_SETUP.md) | macOS kılavuzu, ortam yolu kontrolü ve gerçek Mac doğrulama sınırı |
 | [Araştırma kaydı](../research/index.md) | İncelenen sayfalar ve erişim sınırları |
 
 NASA verisi indirme, trend hesabı, anlamlılık testi, performans ölçümü veya kullanıcı denemesi için henüz kanıt yok.

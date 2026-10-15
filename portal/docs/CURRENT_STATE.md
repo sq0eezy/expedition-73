@@ -3,7 +3,7 @@ status: Proposed
 updated: "2026-10-15"
 phase: Fikir karşılaştırması ve veri keşfi
 review_summary: "Kesinleşenler, açık seçimler ve sıradaki küçük adım."
-change_summary: "GitHub main üzerinden paylaşım istendi; uzak katkılar birleştirildi ve ilk kurulum kılavuzu eklendi."
+change_summary: "M2'nin Mac kullandığı kaydedildi; ayrı macOS kurulum kılavuzu ve açılış adımları eklendi."
 ---
 
 # Mevcut durum
@@ -18,6 +18,8 @@ Kullanıcı 2026-10-15 tarihinde **henüz değişken seçmediklerini, fikirleri 
 - Proje hafızası için Project Context Portal kullanılacak: [ADR-001](decisions/ADR-001-PORTAL.md).
 
 ## Hazırlananlar
+
+M2'nin Mac kullandığı bilgisine göre [macOS kurulum kılavuzu](guide/MACOS_SETUP.md) eklendi. Kodun Mac ortam yolu zaten mevcut; gerçek Mac kurulum sonucu M2'den bekleniyor.
 
 Portal GitHub `main` üzerinden paylaşıldı; uzak commit eşleşmesi doğrulandı. Arkadaşın kendi bilgisayarında pull/kurulum sonucu henüz bildirilmedi.
 

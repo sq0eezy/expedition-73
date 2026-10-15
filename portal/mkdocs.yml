@@ -70,6 +70,7 @@ nav:
       - Portal doğrulaması: evidence/PORTAL_SETUP.md
       - Ekip doğrulaması: evidence/TEAM_SETUP.md
       - GitHub aktarımı: evidence/GITHUB_SHARE.md
+      - Mac kurulum hazırlığı: evidence/MACOS_SETUP.md
   - Proje:
       - Bağlam ve hedef: PROJECT_CONTEXT.md
       - Belge haritası: DOCUMENTATION_MAP.md
@@ -107,6 +108,7 @@ nav:
       - GitHub paylaşımı: decisions/ADR-002-GITHUB-SHARING.md
   - Kullanım:
       - Başlangıç kılavuzu: guide/index.md
+      - Mac kurulumu: guide/MACOS_SETUP.md
       - Yeni konuşma işleme: guide/AI_WORKFLOW.md
       - Kişisel tercihler: guide/PERSONALIZATION.md
       - Temsili örnek: guide/EXAMPLE.md

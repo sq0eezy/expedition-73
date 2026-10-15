@@ -16,6 +16,20 @@ NASA Space Apps için fikir, veri, mimari, karar ve ekip takibi. [Project Contex
 
 ## Yerel çalıştırma
 
+### sq0eezy için macOS
+
+Terminal'de `python3 --version` ile Python 3.11+ olduğunu kontrol et. Depoyu güncelledikten sonra bu `portal/` klasöründe:
+
+~~~sh
+python3 scripts/portal.py setup
+python3 scripts/portal.py check
+python3 scripts/portal.py serve --open
+~~~
+
+Sonraki açılış: `.venv/bin/python scripts/portal.py serve --open`. [Mac kılavuzu ve sorun giderme](docs/guide/MACOS_SETUP.md).
+
+### Windows
+
 Python 3.11+ gerekir. Önce depo kökünde `main` dalına geçip `git pull --ff-only origin main` ile güncelle; yerel değişikliklerini önceden koru. İlk kurulumda bu klasörden:
 
 ~~~powershell
@@ -34,7 +48,7 @@ Windows'ta doğrudan yerel Python ile:
 
 Adres: http://127.0.0.1:8000 · Durdurma: terminalde Ctrl+C. Yeniden açmak için aynı serve komutunu çalıştır. Port doluysa `serve --port 8001` kullan.
 
-macOS/Linux'ta hızlı açılış: `python3 scripts/portal.py serve`.
+Mac için açılış ve ortam yolu yukarıdaki ayrı bölümde anlatılır.
 
 `docs/` değişiklikleri açık geliştirme sunucusunda yenilenir. Arkadaşın depoyu kendi bilgisayarına aldığında yerel kurulumu yapmalı; `.venv/`, `site/` ve `.portal/` Git'e girmez. Okuma işaretleri tarayıcıya özeldir. Ortak kayıtlar GitHub `main` üzerinden paylaşılır; herkese açık bir web sitesi barındırması kurulmadı.
 

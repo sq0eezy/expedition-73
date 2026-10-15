@@ -4,6 +4,8 @@
 
 ## Yerel açma
 
+**sq0eezy Mac kullanıyor:** [Mac için ilk kurulum ve açılış](MACOS_SETUP.md). Mac Terminal'de `python3` ve `.venv/bin/python` komutları kullanılır.
+
 Çalışma alanının kökünden PowerShell:
 
 ~~~powershell

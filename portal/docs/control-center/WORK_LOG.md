@@ -1,5 +1,9 @@
 # Çalışma günlüğü
 
+## 2026-10-15 · Mac kurulum kılavuzu
+
+Kullanıcı arkadaşının Mac kullandığını belirtti. README, paylaşım ve kullanım sayfaları ayrı macOS kılavuzuna yönlendirildi; M2'nin çalışma ortamı kaydedildi. Mevcut kod `darwin` için `.venv/bin/python` seçtiğinden motor değiştirilmedi. 19 mevcut CLI/içerik testi, içerik kontrolü ve strict derleme Windows'ta geçti. [Kılavuz](../guide/MACOS_SETUP.md), [kontroller ve sınırlar](../evidence/MACOS_SETUP.md). Mac'te gerçek kurulum sonucu henüz yok.
+
 ## 2026-10-15 · Main aktarımı
 
 Kullanıcı doğrudan main'e gönderimi istedi. Origin güncel depo adresine düzeltildi ve uzak değişiklikler alındı. Portal `3725b30` ile korundu; arkadaşın üç commit'i `b75ef9b` birleştirme commit'iyle çakışmasız alındı. `ege.txt` ve `.DS_Store` korundu. İlk kurulum için Windows ve macOS/Linux komutları eklendi. İçerik kontrolü/strict derleme geçti. Push başarılı; ilk paylaşım `6f99b5f` GitHub main'de aynı kimlikle doğrulandı. Arkadaşın kendi kurulumu bekliyor. [Karar](../decisions/ADR-002-GITHUB-SHARING.md), [aktarım kaydı](../evidence/GITHUB_SHARE.md).

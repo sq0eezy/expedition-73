@@ -10,19 +10,19 @@ varlık
 
 Başlangıç: [mevcut durum](portal/docs/CURRENT_STATE.md), [fikir karşılaştırması](portal/docs/discovery/IDEA_COMPARISON.md), [NASA kaynakları](portal/docs/research/DATA_SOURCES.md).
 
-## Arkadaşın için ilk kurulum
+## Arkadaşın için Mac kurulumu
 
-Python 3.11+ gerekir. Depo kökünden, korunmamış yerel değişiklik yokken:
+Mac Terminal içinde `python3 --version` ile Python 3.11+ olduğunu kontrol et. Depo kökünden, korunmamış yerel değişiklik yokken:
 
 ~~~sh
 git switch main
 git pull --ff-only origin main
 cd portal
 python3 scripts/portal.py setup
-python3 scripts/portal.py serve
+python3 scripts/portal.py serve --open
 ~~~
 
-macOS/Linux'ta `python3`, Windows'ta `python` kullan. Kurulum yalnızca `portal/.venv` içine yapılır. Setup bir kez gerekir; sonraki açılışlarda `serve` yeterlidir.
+Kurulum Mac üzerinde `portal/.venv` içine yapılır. Sonraki açılışta `portal/` içinde `.venv/bin/python scripts/portal.py serve --open` yeterlidir. [Mac kurulum kılavuzu](portal/docs/guide/MACOS_SETUP.md).
 
 Kurulumu yapılmış Windows ortamında PowerShell ile portalı açma:
 
