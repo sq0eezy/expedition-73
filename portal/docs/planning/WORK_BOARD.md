@@ -7,7 +7,7 @@ Görevler eldeki kanıta göre güncellenir. Araştırma ve uygulama görevlerin
 | P-01 | Portalı projeye uyarla | Verified | Önceki yapay zekâ oturumu | Tamamlandı | Üye incelemesi kaydı yok | [Portal doğrulaması](../evidence/PORTAL_SETUP.md) |
 | P-02 | İlk konuşmayı özetle | Implemented | Önceki yapay zekâ oturumu | Tamamlandı | Üye incelemesi kaydı yok | [Bağlam](../PROJECT_CONTEXT.md), [fikirler](../discovery/IDEA_COMPARISON.md) |
 | P-03 | İki kişilik ekip alanını hazırla | Verified | Bu yapay zekâ oturumu | Kullanıcı talebi | Üye incelemesi bekliyor | [Ekip alanı](../team/index.md), [teknik kontrol](../evidence/TEAM_SETUP.md) |
-| S-01 | Yerel portalı uzak değişiklikleri koruyarak main'e gönder | Validating | Bu yapay zekâ oturumu | Kullanıcı talebi | Üye incelemesi bekliyor | [Aktarım kaydı](../evidence/GITHUB_SHARE.md); dosyaların uzak main'de bulunması |
+| S-01 | Yerel portalı uzak değişiklikleri koruyarak main'e gönder | Verified | Bu yapay zekâ oturumu | Kullanıcı talebi | Uzak commit eşleşmesi doğrulandı | [Aktarım kaydı](../evidence/GITHUB_SHARE.md); GitHub main'de paylaşıldı |
 | S-02 | Main'i alıp kendi bilgisayarında portalı kur | Proposed | M2 | Önerildi | Atanmadı | [Kurulum](../team/SYNC.md); M2'nin kendi ortamında açılış sonucu |
 | R-01 | İki adayı kısa listeye al | Proposed | Atanmadı | Atanmadı | Atanmadı | Her aday için seçim kartı |
 | R-02 | Sayısal veri erişimini sına | Proposed | Atanmadı | Atanmadı | Atanmadı | Gerçek küçük dosya, indirme yöntemi, sürüm ve birim |

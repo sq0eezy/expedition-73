@@ -16,7 +16,11 @@ Kullanıcı portalı GitHub `main` dalına gönderip arkadaşının `pull` ile k
 
 ## Doğrulama ve uzak sonuç
 
-Yeni kurulum belgeleri için içerik kontrolü/strict build ve main gönderimi bu kayıt tamamlanırken yapılacak. Push başarıyla sonuçlanmış sayılmadı.
+Yeni kurulum belgeleriyle `.venv/Scripts/python.exe scripts/portal.py check` ve `build` çalıştırıldı; içerik kontrolü ve strict derleme başarılı. Motor değişmediği için önceki 29 Python / 12 JavaScript araç testi yeniden çalıştırılmadı.
+
+`git push origin main` başarılı: uzak dal `cab8fcc` → `6f99b5f` ilerledi. GitHub Git Reference API'si ve yerel `git rev-parse HEAD` aynı tam kimliği döndürdü: `6f99b5fb3abea961b90997256e2341fb194912a4`. Gönderim sonrasında çalışma ağacı temizdi; `git merge-base --is-ancestor cab8fcc HEAD` başarılı, arkadaşın katkıları geçmişte korunuyor.
+
+Bu doğrulama notu, ilk aktarımın ardından main'e eklenen takip kaydıdır. Tamamlanan iş, dosyaların GitHub main üzerinden paylaşılmasıdır; web barındırması kurulmadı.
 
 ## Sınırlar
 

@@ -19,6 +19,8 @@ Kullanıcı 2026-10-15 tarihinde **henüz değişken seçmediklerini, fikirleri 
 
 ## Hazırlananlar
 
+Portal GitHub `main` üzerinden paylaşıldı; uzak commit eşleşmesi doğrulandı. Arkadaşın kendi bilgisayarında pull/kurulum sonucu henüz bildirilmedi.
+
 [İki kişilik ekip alanı](team/index.md) hazır. Emeç Yıldız (`emecyildiz`) ve depo sahibi `sq0eezy` için ayrı çalışma notları; fikir alışverişi, devir listesi ve sorumlu/inceleyen alanlı iş panosu var. Bilimsel görevler henüz kişilere atanmadı. Kullanıcı GitHub `main` aktarımını istedi: [ADR-002](decisions/ADR-002-GITHUB-SHARING.md). Arkadaşın üç uzak commit'i çakışmasız birleştirildi; kurulum adımları [paylaşım kılavuzunda](team/SYNC.md), aktarımın gerçek sonucu [kanıt kaydında](evidence/GITHUB_SHARE.md).
 
 Türkçe portal, fikir karşılaştırması, kaynak listesi, öneri mimarisi ve iş panosu hazırlandı. Portal içerik/derleme kontrolleri ve kaynak aracın testleri geçti; yerel erişim doğrulandı. Gerçek sonuçlar ve sınırlar [portal kanıt kaydında](evidence/PORTAL_SETUP.md) tutulur. Projenin genel aşaması hâlâ fikir karşılaştırmasıdır.
