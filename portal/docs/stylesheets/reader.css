@@ -1,0 +1,26 @@
+/* Reader controls are scoped; never override Material's global [hidden]. */
+.reader-toolbar { display:flex; flex-wrap:wrap; align-items:center; gap:.6rem 1rem; padding:.65rem .8rem; border:1px solid var(--md-default-fg-color--lightest); border-radius:.4rem; margin:0 0 1.2rem; font-size:.7rem; }
+.reader-toolbar label { display:flex; flex-direction:column; gap:.2rem; }
+.reader-toolbar p { flex-basis:100%; margin:0; font-size:.65rem; }
+.reader-center { margin:1rem 0; }
+.reader-actions { display:flex; flex-wrap:wrap; gap:.5rem; margin:.8rem 0; }
+.reader-center button, .reader-toolbar select, .reader-center select, .reader-center input { border:1px solid var(--md-default-fg-color--lighter); border-radius:.3rem; padding:.4rem .6rem; font:inherit; font-size:.72rem; background:var(--md-default-bg-color); color:var(--md-typeset-color); max-width:100%; }
+.reader-center button { cursor:pointer; min-height:44px; }
+.reader-center button:disabled { opacity:.5; cursor:default; }
+.reader-center :focus-visible, .reader-toolbar :focus-visible { outline:2px solid var(--md-accent-fg-color); outline-offset:2px; }
+.reader-controls { display:grid; grid-template-columns:1fr 1fr 2fr; gap:.7rem; margin:1rem 0; }
+.reader-controls label { display:flex; flex-direction:column; gap:.3rem; font-size:.72rem; }
+.reader-warning { border-left:3px solid var(--md-accent-fg-color); padding:.65rem .8rem; font-size:.75rem; }
+.reader-cards { list-style:none !important; padding:0 !important; margin:1rem 0 !important; }
+.reader-card { border:1px solid var(--md-default-fg-color--lightest); border-radius:.4rem; padding:.85rem; margin:.6rem 0 !important; }
+.reader-card h3 { margin:.1rem 0 !important; font-size:.9rem; }
+.reader-card p { margin:.4rem 0; font-size:.72rem; overflow-wrap:anywhere; }
+.reader-card label { font-size:.68rem; display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; }
+.reader-tag { display:inline-block; border:1px solid var(--md-default-fg-color--lightest); border-radius:2rem; font-size:.6rem; padding:.1rem .45rem; margin:.3rem .3rem .2rem 0; }
+.reader-center [role=alert] { border-left:3px solid #c56d23; padding-left:.6rem; }
+.reader-center [hidden], .reader-toolbar [hidden] { display:none !important; }
+@media(max-width:44.9844em) {
+  .reader-controls { grid-template-columns:1fr; }
+  .reader-toolbar { align-items:flex-start; }
+  .reader-toolbar select, .reader-center select, .reader-center input { font-size:16px; }
+}

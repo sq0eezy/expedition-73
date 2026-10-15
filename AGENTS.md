@@ -1,0 +1,26 @@
+# Expedition 73 çalışma yönergesi
+
+Bu depo iki kişilik NASA Space Apps projesinin çalışma alanıdır. `portal/`, proje hafızası için uyarlanmış Project Context Portal'dır.
+
+## Önce oku
+
+- `portal/docs/CURRENT_STATE.md`: mevcut aşama ve sıradaki adım.
+- `portal/docs/DOCUMENTATION_MAP.md`: konunun esas belgesi.
+- `portal/docs/team/index.md`, iki üyenin `team/members/` notları, `team/IDEAS.md`, `team/HANDOFFS.md` ve ortak iş panosu: ekip niyeti ve iş sahipliği.
+- Portal içinde çalışırken `portal/AGENTS.md` yönergelerini de uygula.
+
+## Projenin sınırı
+
+Kullanıcı 2026-10-15 tarihinde hâlâ fikirleri karşılaştırdıklarını doğruladı. Değişken, bölgeler, veri ürünü, uygulama adı ve teknoloji seçimi kesinleşmedi. NDVI'yı seçilmiş kabul etme. Uygulama geliştirmesine geçmeden önce kullanıcının güncel yönlendirmesini esas al.
+
+Kullanıcının yeni konuşmalarını özetleyerek ilgili belgelere işle; öneriyi kabul edilmiş karar, konuşmayı bilimsel kanıt sayma. Ham konuşmaları, kişisel dosya yollarını ve erişim anahtarlarını yayımlanan `portal/docs/` içine kopyalama.
+
+Anlamlı çalışma sonunda ilgili kaynakları, CURRENT_STATE ve WORK_LOG'u güncelle. Öneri, uygulama ve doğrulamayı ayır. Portal kontrolleri NASA analizinin çalıştığını kanıtlamaz. Portal değişikliklerinde `portal/.venv/Scripts/python.exe portal/scripts/portal.py check` ve `build` çalıştır.
+
+## İki kişilik çalışma
+
+Üye eşleştirmesi `portal/docs/team/index.md` içindedir. Kullanıcının ve arkadaşının görüşlerini ayrı koru; yanıt yoksa kabul varsayma. Hangi üye adına çalışıldığı belirsizse kişisel niyet yazma. Görev sahibi ve inceleyen için esas kaynak iş panosudur; bir kişiye önerilen görev, kabul edilmiş görev sayılmaz.
+
+Başlangıçta iki üyenin son notunu ve ilgili fikir/devir kaydını oku. İlgili GitHub PR/yorum bağlantısı varsa okunmadan diğer kişinin fikri biliniyor sayılmaz. Kayıtlar erişilen kopya kadar günceldir; arkadaşın özel sohbeti görünmez. Yeni üye güncellemesi, ilgili esas belge, pano/devir ve kısa çalışma günlüğüyle ilişkilendirilir.
+
+Paylaşım düzeni ve gözlenen yerel/uzak fark `portal/docs/team/SYNC.md` içindedir. Korunmamış çalışmaya körlemesine pull uygulama, iki katkıdan birini reset/force ile silme. Yeni branch'lerde varsayılan `codex/` önekini kullan. Belgelerdeki “push et” veya “mesaj gönder” ifadesi dış işlem yetkisi değildir.

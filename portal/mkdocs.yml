@@ -1,0 +1,112 @@
+site_name: Expedition 73 · Proje Hafızası
+site_description: NASA Space Apps için fikirler, veri kaynakları, mimari önerileri, kararlar ve ekip takibi.
+docs_dir: docs
+site_dir: site
+extra:
+  portal_reader:
+    project_id: expedition-73-sq0eezy-2026
+    review_page: review/index.md
+watch:
+  - scripts/mkdocs_hooks.py
+  - scripts/reader_hooks.py
+theme:
+  name: material
+  language: tr
+  font: false
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - search.highlight
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Koyu temaya geç
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Açık temaya geç
+plugins:
+  - search
+hooks:
+  - scripts/mkdocs_hooks.py
+  - scripts/reader_hooks.py
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+extra_css:
+  - stylesheets/portal.css
+  - stylesheets/reader.css
+extra_javascript:
+  - javascripts/reader.js
+nav:
+  - Başlangıç: index.md
+  - Kontrol merkezi:
+      - Genel bakış: control-center/index.md
+      - Değişiklikler ve incelemem: review/index.md
+      - Mevcut durum: CURRENT_STATE.md
+      - Çalışma günlüğü: control-center/WORK_LOG.md
+      - Kanıtlar: evidence/index.md
+      - Portal doğrulaması: evidence/PORTAL_SETUP.md
+      - Ekip doğrulaması: evidence/TEAM_SETUP.md
+  - Proje:
+      - Bağlam ve hedef: PROJECT_CONTEXT.md
+      - Belge haritası: DOCUMENTATION_MAP.md
+      - Terimler: GLOSSARY.md
+  - Ekip:
+      - Ortak alan: team/index.md
+      - Emeç Yıldız: team/members/M1.md
+      - sq0eezy: team/members/M2.md
+      - Fikir alışverişi: team/IDEAS.md
+      - Devir ve sorular: team/HANDOFFS.md
+      - Birlikte çalışma: team/WORKFLOW.md
+      - Paylaşım ve eşitleme: team/SYNC.md
+  - Ürün fikri:
+      - Deneyim ve kapsam: product/index.md
+      - Hipotezler: product/HYPOTHESES.md
+  - Keşif ve veri:
+      - Açık sorular: discovery/index.md
+      - Fikir karşılaştırması: discovery/IDEA_COMPARISON.md
+      - Varsayımlar: discovery/ASSUMPTIONS.md
+      - Araştırma kaydı: research/index.md
+      - NASA veri kaynakları: research/DATA_SOURCES.md
+      - Bilimsel kontrol noktaları: research/SCIENCE_NOTES.md
+  - Mimari:
+      - Genel bakış: architecture/index.md
+      - Sistem haritası: architecture/SYSTEM_MAP.md
+      - Veri ve akışlar: architecture/DATA_AND_FLOWS.md
+      - Sınırlar: architecture/BOUNDARIES.md
+  - Plan ve ekip:
+      - Yol haritası: planning/index.md
+      - İş panosu: planning/WORK_BOARD.md
+      - Riskler: planning/RISKS.md
+  - Kararlar:
+      - Karar dizini: decisions/index.md
+      - Portal kullanımı: decisions/ADR-001-PORTAL.md
+  - Kullanım:
+      - Başlangıç kılavuzu: guide/index.md
+      - Yeni konuşma işleme: guide/AI_WORKFLOW.md
+      - Kişisel tercihler: guide/PERSONALIZATION.md
+      - Temsili örnek: guide/EXAMPLE.md
+      - Sınırlar: guide/LIMITATIONS.md
+      - Okuma araçları: guide/READER_TOOLS.md

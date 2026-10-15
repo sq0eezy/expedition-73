@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "artifact_kind": "portal_toolkit_verification",
+  "version": "0.2.0",
+  "date": "2026-10-10",
+  "host": "Windows",
+  "python": "3.12.14",
+  "node": "26.4.0",
+  "python_tests": {
+    "run": 29,
+    "passed": 29
+  },
+  "frontend_logic_tests": {
+    "run": 12,
+    "passed": 12
+  },
+  "content_check": true,
+  "strict_build": true,
+  "local_setup": true,
+  "application_tests_rerun": false,
+  "browser_observations": [
+    "English first use and explicit baseline",
+    "Manual architecture review mark persists on reload",
+    "Status filter and 375 px no document-level overflow",
+    "Shared component: Turkish read/reload, empty search, rebuild comparison",
+    "Isolated missing catalog, unsupported saved state and blocked storage fixtures"
+  ],
+  "limitations": [
+    "Manual selected browser cases, not comprehensive cross-browser/accessibility/usability.",
+    "No macOS/Linux/physical-phone/provider-onboarding execution claimed.",
+    "No trained model or application verification.",
+    "No import or account synchronization.",
+    "Publication is a separate Git operation; no hosted deployment/tag implied."
+  ]
+}

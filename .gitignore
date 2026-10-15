@@ -1,0 +1,7 @@
+.env
+.env.*
+!.env.example
+data/raw/
+private-notes/
+__pycache__/
+*.py[cod]

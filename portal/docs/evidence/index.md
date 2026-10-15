@@ -1,0 +1,11 @@
+# Kanıtlar
+
+| Kayıt | Kapsam |
+|---|---|
+| [Portal kurulumu ve doğrulama](PORTAL_SETUP.md) | Bu oturumdaki belge portalı kontrolleri |
+| [Ekip alanı doğrulaması](TEAM_SETUP.md) | İki üyeli belge yapısı, GitHub kimlik incelemesi ve paylaşım sınırı |
+| [Araştırma kaydı](../research/index.md) | İncelenen sayfalar ve erişim sınırları |
+
+NASA verisi indirme, trend hesabı, anlamlılık testi, performans ölçümü veya kullanıcı denemesi için henüz kanıt yok.
+
+Yeni kanıtta tarih/ortam, gerçek komut veya gözlem yöntemi, girdi, sonuç, çıktı dosyası ve sınırlama bulunmalı. Portal testleri uygulama analizi yerine sayılmaz. Kaynak aracın eski `verification/` kayıtları bu projenin sonuçları değildir.

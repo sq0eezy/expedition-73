@@ -1,0 +1,10 @@
+.venv/
+site/
+__pycache__/
+*.py[cod]
+.portal/
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
