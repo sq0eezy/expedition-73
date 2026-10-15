@@ -19,7 +19,7 @@ Kullanıcı 2026-10-15 tarihinde **henüz değişken seçmediklerini, fikirleri 
 
 ## Hazırlananlar
 
-Okumak için her iki bilgisayarda pull/kurulum yapma ihtiyacını kaldırmak üzere **GitHub Pages yayın akışı** hazırlandı: [ADR-003](decisions/ADR-003-WEB-PORTAL.md). Her `main` güncellemesi kontrol ve derlemeden sonra yayımlanacak. Bağlı hesapta depo yönetim yetkisi yok; depo sahibinin [bir kerelik etkinleştirmesi](guide/WEB_PORTAL.md) gerekiyor. Canlı yayın henüz doğrulanmadı; [gerçek kontroller](evidence/PAGES_SETUP.md). Belge düzenleme GitHub/dosyalar üzerinden sürer.
+Okumak için her iki bilgisayarda pull/kurulum yapma ihtiyacını kaldırmak üzere **GitHub Pages yayın akışı** hazırlandı ve `main` dalına gönderildi: [ADR-003](decisions/ADR-003-WEB-PORTAL.md). İlk GitHub/Ubuntu kontrolü ve derlemesi geçti; yayın işi Pages etkinleştirilmediğinden durdu. Bağlı hesapta depo yönetim yetkisi yok; depo sahibinin [bir kerelik etkinleştirmesi](guide/WEB_PORTAL.md) gerekiyor. Canlı yayın henüz yok; [gerçek kontroller](evidence/PAGES_SETUP.md). Açıldıktan sonra her `main` güncellemesi başarılı derlemeyle yayımlanacak. Belge düzenleme GitHub/dosyalar üzerinden sürer.
 
 Kullanıcı **bölgeyi ve modülleri NASA verilerine göre seçme** fikrini tartışmaya açtı; Türkiye yalnızca örnekti. [Colorado Platosu çevresi ve Kuzey Alaska](research/REGION_CANDIDATES.md) gerekçeli iki aday olarak araştırıldı. NASA CMR'de ürün/bölge/tarih eşleşmeleri sorgulandı; bilimsel dosya ve piksel doğrulaması yapılmadı. [Bölge + modül taslağı](architecture/REGIONAL_MODULE_PROPOSAL.md) ve [IDEA-M1-001](team/ideas/IDEA-M1-001.md) **Proposed** durumunda; M1/M2'nin aday onayı yok. [M2 inceleme kaydı](team/HANDOFFS.md) yanıt bekliyor.
 

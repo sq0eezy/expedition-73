@@ -4,6 +4,8 @@
 
 Kullanıcı, her değişikliği okumak için iki bilgisayarda pull/kurulum gerektirmeyen web yayını istedi. Mevcut statik portal için GitHub Pages seçildi: [ADR-003](../decisions/ADR-003-WEB-PORTAL.md). `main` push sonrası kontrol/strict derleme ve yalnızca site çıktısını yayımlayan iş akışı eklendi. Sayfalara GitHub düzenleme bağlantısı ve [web kılavuzu](../guide/WEB_PORTAL.md) eklendi. Bağlı hesapta push yetkisi var, yönetim/bakım yetkisi yok; depo sahibinin bir kerelik etkinleştirmesi gerekiyor. [Kontrol sonuçları ve yayın sınırı](../evidence/PAGES_SETUP.md). Bilimsel adaylar tartışma durumunda kaldı.
 
+Yerel içerik/strict derleme ve `/expedition-73/` altında 63 HTTP yolu geçti. Hazırlık `f0ae5d9` ile main'e gönderildi. GitHub'ın ilk Ubuntu derlemesi ve artifact yüklemesi başarılı; yayın Pages henüz açık olmadığından `Not Found` ile durdu. İlk ayar ve yeniden çalıştırma depo sahibinden bekleniyor; site yayında sayılmadı.
+
 ## 2026-10-15 · Veriyle bölge ve modül adayları
 
 Kullanıcı Türkiye'nin örnek olduğunu açıkladı; iki bölgenin veriyle gerekçelendirilmesini ve fikrin aday olarak panele eklenmesini istedi. Resmî coğrafi veri düzeni araştırıldı; üç üründe iki alan/üç dönem için 18 CMR granule sorgusu başarıyla çalıştı. Bilimsel dosya indirilmedi. [İki adayın araştırması](../research/REGION_CANDIDATES.md), [öneri taslağı](../architecture/REGIONAL_MODULE_PROPOSAL.md) ve [IDEA-M1-001](../team/ideas/IDEA-M1-001.md) hazırlandı. Adayların kabulü veya yeni ADR yok; M2'nin görüşü [H-M1-001](../team/HANDOFFS.md) kaydında bekliyor. [Gerçek kontroller](../evidence/REGION_RESEARCH.md).

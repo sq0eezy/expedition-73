@@ -20,4 +20,18 @@ MkDocs'a `/expedition-73/` yayın adresi, depo bağlantısı ve GitHub dosya dü
 - Okuma kataloğu geçerli JSON olarak okundu. M2 sayfasının kalem bağlantısının `edit/main/portal/docs/team/members/M2.md` adresine gittiği HTML çıktısından doğrulandı. Tarayıcıdaki kişisel işaretler değiştirilmedi.
 - `git diff --check`: boşluk hatası yok.
 
-Bu kontroller Windows'ta oluşturulan statik çıktıyı doğrular; GitHub'ın Ubuntu derlemesi veya canlı yayının kanıtı değildir. Uzak workflow çalışması ve canlı site şu anda doğrulanmış değildir. Depo sahibinin bir kerelik [Pages etkinleştirmesi](../guide/WEB_PORTAL.md) gerekiyor.
+Bu yerel kontroller Windows'ta oluşturulan statik çıktıyı doğrular. Canlı yayın sonucu aşağıda ayrı tutulur.
+
+## GitHub üzerindeki gerçek çalışma
+
+Yayın hazırlığı `f0ae5d90325b6405081cddab2cf13258b68d5dc6` commit'iyle `main` dalına gönderildi; `git rev-parse HEAD` ile `git ls-remote origin refs/heads/main` aynı kimliği döndürdü. Arkadaşın mevcut commit'leri korundu.
+
+[İlk otomatik çalışma](https://github.com/sq0eezy/expedition-73/actions/runs/38796594420) GitHub API üzerinden izlendi:
+
+| İş | Gerçek sonuç |
+|---|---|
+| Portalı kontrol et ve derle · iş 116634487354 | **success**; Ubuntu 24.04 üzerinde ortam kurulumu, içerik kontrolü, strict derleme ve site artifact yüklemesi geçti |
+| Ortak paneli yayımla · iş 116634684254 | **failure**; `Pages ayarını oku` adımı “Get Pages site failed… Pages enabled and configured to build using GitHub Actions… Not Found” döndürdü |
+| GitHub Pages'e yayımla adımı | Önceki ayar adımı başarısız olduğundan **skipped** |
+
+İş durumları ve yayın işi günlüğü okundu. Kod/derleme hatası gözlenmedi; ilk Pages etkinleştirmesi eksik. Canlı site henüz yayımlanmadı. Depo sahibinin [bir kerelik ayarı](../guide/WEB_PORTAL.md) tamamlayıp iş akışını yeniden çalıştırması gerekiyor. Bu kayıt hazırlanırken yönetim yetkisi alınmadı veya kişisel anahtar eklenmedi.
