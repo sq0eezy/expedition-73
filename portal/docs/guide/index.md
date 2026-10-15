@@ -13,12 +13,12 @@ cd portal
 
 Adres: http://127.0.0.1:8000 · Durdurma: terminalde Ctrl+C. Sunucu kapandığında aynı komutla yeniden açılır. Port doluysa `serve --port 8001` kullan; bu durumda adres 8001 olur ve tarayıcı okuma işaretleri ayrı origin altında tutulur.
 
-Başka bilgisayarda Python 3.11+ gerekir. İlk kez `python scripts/portal.py setup` çalıştırılır; bu komut bağımlılıkları yerel `.venv` içine indirir. Sonrasında yerel Python ile `check`, `build`, `serve` kullanılır.
+Başka bilgisayarda Python 3.11+ gerekir. İlk kez `python scripts/portal.py setup` çalıştırılır; bu komut bağımlılıkları yerel `.venv` içine indirir. macOS/Linux'ta `python3` kullanılır. Sonrasında aynı temel Python komutuyla `scripts/portal.py check`, `build`, `serve` kullanılır; araç yerel ortamı kendisi seçer.
 
 ## İki kişi çalışırken
 
-[Ekip alanında](../team/index.md) her üyenin kendi çalışma notu, fikir kartları ve yanıt bekleyen kayıtlar bulunur. Görev sahibi/inceleyen ortak iş panosunda tutulur. Önerilen GitHub düzeni ve henüz tamamlanmamış ilk aktarım [paylaşım kılavuzundadır](../team/SYNC.md).
+[Ekip alanında](../team/index.md) her üyenin kendi çalışma notu, fikir kartları ve yanıt bekleyen kayıtlar bulunur. Görev sahibi/inceleyen ortak iş panosunda tutulur. GitHub düzeni ve ilk kurulum [paylaşım kılavuzundadır](../team/SYNC.md).
 
-Belgeleri Git üzerinden paylaşın; `.venv/`, `site/`, `.portal/`, ham konuşmalar ve kimlik bilgileri paylaşılmaz. Her kişi yerel kurulumunu yapar. Bu oturum uzak depoya push veya yayımlama yapmadı.
+Belgeleri Git üzerinden paylaşın; `.venv/`, `site/`, `.portal/`, ham konuşmalar ve kimlik bilgileri paylaşılmaz. Her kişi yerel kurulumunu yapar. Main aktarımının sonucu [kanıt kaydındadır](../evidence/GITHUB_SHARE.md); herkese açık web barındırması kurulmadı.
 
 Görev durumları Markdown kaynaklarında güncellenir. Tarayıcıdaki [inceleme araçları](READER_TOOLS.md) kişiseldir; arkadaşının görev panosunu değiştirmez.

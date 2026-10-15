@@ -3,8 +3,11 @@
 | ID | Karar | Durum | Kaynak |
 |---|---|---|---|
 | ADR-001 | Project Context Portal ile proje hafızası tutmak | Accepted | Kullanıcının 2026-10-15 isteği |
+| ADR-002 | GitHub üzerinden paylaşım ve ilk main aktarımı | Accepted | Kullanıcının açık main'e gönderme isteği |
 
 [ADR-001 ayrıntısı](ADR-001-PORTAL.md).
+
+[ADR-002 ayrıntısı](ADR-002-GITHUB-SHARING.md).
 
 ## Karar bekleyenler
 

@@ -1,5 +1,9 @@
 # Çalışma günlüğü
 
+## 2026-10-15 · Main aktarımı hazırlığı
+
+Kullanıcı doğrudan main'e gönderimi istedi. Origin güncel depo adresine düzeltildi ve uzak değişiklikler alındı. Portal `3725b30` ile korundu; arkadaşın üç commit'i `b75ef9b` birleştirme commit'iyle çakışmasız alındı. `ege.txt` ve `.DS_Store` korundu. İlk kurulum için Windows ve macOS/Linux komutları eklendi. [Karar](../decisions/ADR-002-GITHUB-SHARING.md), [aktarım kaydı](../evidence/GITHUB_SHARE.md).
+
 ## 2026-10-15 · İki kişilik ekip düzeni
 
 Kullanıcı görev paylaşımı, fikir alışverişi ve yapay zekâların iki kişinin niyetinden haberdar olmasını istedi. GitHub hesabı, depo ve commit kayıtları okundu; [ekip kimlikleri](../team/index.md) eşleştirildi. Üye notları, fikir kartı/devir şablonları, sorumlu/üstlenme/inceleyen alanları ve PR şablonu eklendi. İki üyenin kayıtlarını okuma kuralı çalışma yönergelerine işlendi.

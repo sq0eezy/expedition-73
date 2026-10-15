@@ -27,9 +27,9 @@ Görev önerisi ile görev kabulü farklıdır: bir kişiye iş önerilmiş olma
 4. Etkilenen esas belgeleri, mevcut durumu ve çalışma günlüğünü güncelle; portalı kontrol edip derle.
 5. Seçilen paylaşım yöntemiyle kaydı diğer kişiye ulaştır. Paylaşılmamış kayıt ortak güncelleme sayılmaz.
 
-## Önerilen paylaşım yöntemi
+## Paylaşım yöntemi
 
-Kullanıcı iki seçenek arasında öneri istedi. Önerimiz **GitHub deposu + kısa pull request'ler**: belge ve kod aynı geçmişte tutulur; yorumlar değişikliğe bağlıdır; ayrı kullanıcı girişi ve kayıt sunucusu kurmak gerekmez. GitHub'ın [pull request açıklaması](https://docs.github.com/en/pull-requests/reference/pull-requests) bu ortak depo modelini anlatır. Öneri henüz kabul edilmiş ADR değildir.
+Kullanıcı **GitHub main üzerinden ilk paylaşımı** istedi: [ADR-002](../decisions/ADR-002-GITHUB-SHARING.md). Belge ve kod aynı geçmişte tutulur; ayrı kullanıcı girişi ve kayıt sunucusu kurulmaz. Sonraki işler için kısa pull request'ler önerilir. GitHub'ın [pull request açıklaması](https://docs.github.com/en/pull-requests/reference/pull-requests) ortak depo modelini anlatır.
 
 Üye notları ve fikir kartları ayrı dosyalardır. Ortak iş panosu, kararlar ve mevcut durum değişiyorsa diğer kişinin son kaydını da okuyun. Aynı dosyada çakışma çıkarsa bir tarafı bütünüyle seçmek yerine iki katkıyı da inceleyip birleştirin. İşleri ayrı branch'lerde tutmak, eşzamanlı çalışmayı kolaylaştıran önerilen akıştır.
 

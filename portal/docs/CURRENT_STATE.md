@@ -3,7 +3,7 @@ status: Proposed
 updated: "2026-10-15"
 phase: Fikir karşılaştırması ve veri keşfi
 review_summary: "Kesinleşenler, açık seçimler ve sıradaki küçük adım."
-change_summary: "İki üye GitHub kayıtlarından eşleştirildi; görev sahipliği, fikir ve devir alanları hazırlandı."
+change_summary: "GitHub main üzerinden paylaşım istendi; uzak katkılar birleştirildi ve ilk kurulum kılavuzu eklendi."
 ---
 
 # Mevcut durum
@@ -19,7 +19,7 @@ Kullanıcı 2026-10-15 tarihinde **henüz değişken seçmediklerini, fikirleri 
 
 ## Hazırlananlar
 
-[İki kişilik ekip alanı](team/index.md) eklendi. Emeç Yıldız (`emecyildiz`) ve depo sahibi `sq0eezy` için ayrı çalışma notları; fikir alışverişi, devir listesi ve sorumlu/inceleyen alanlı iş panosu var. Bilimsel görevler henüz kişilere atanmadı. Paylaşım için GitHub akışı önerildi; kabul edilmiş karar sayılmadı. Yerel portal henüz paylaşılmadı, uzakta yerelde olmayan üç commit görüldü: [ilk eşitleme](team/SYNC.md).
+[İki kişilik ekip alanı](team/index.md) hazır. Emeç Yıldız (`emecyildiz`) ve depo sahibi `sq0eezy` için ayrı çalışma notları; fikir alışverişi, devir listesi ve sorumlu/inceleyen alanlı iş panosu var. Bilimsel görevler henüz kişilere atanmadı. Kullanıcı GitHub `main` aktarımını istedi: [ADR-002](decisions/ADR-002-GITHUB-SHARING.md). Arkadaşın üç uzak commit'i çakışmasız birleştirildi; kurulum adımları [paylaşım kılavuzunda](team/SYNC.md), aktarımın gerçek sonucu [kanıt kaydında](evidence/GITHUB_SHARE.md).
 
 Türkçe portal, fikir karşılaştırması, kaynak listesi, öneri mimarisi ve iş panosu hazırlandı. Portal içerik/derleme kontrolleri ve kaynak aracın testleri geçti; yerel erişim doğrulandı. Gerçek sonuçlar ve sınırlar [portal kanıt kaydında](evidence/PORTAL_SETUP.md) tutulur. Projenin genel aşaması hâlâ fikir karşılaştırmasıdır.
 
@@ -31,4 +31,4 @@ NASA verisi indirilmedi; trend veya p-değeri hesaplanmadı. Portalın çalışm
 
 ## Sıradaki küçük adım
 
-Önce [paylaşım akışını](team/SYNC.md) netleştirip iki kişinin aynı ekip kayıtlarına erişmesini sağlayın; üye notlarına ne yapmak istediğinizi yazın ve ilk görevleri üstlenin. Bilimsel keşifte [fikir karşılaştırmasından](discovery/IDEA_COMPARISON.md) iki adayı küçük veri örnekleriyle değerlendirme adımı bekliyor. Yeni konuşmalar [işleme akışıyla](guide/AI_WORKFLOW.md) kaydedilir.
+Arkadaşın [kurulum adımlarıyla](team/SYNC.md) main'i alıp yerel portalını açsın; ardından iki kişi üye notlarına niyetlerini yazıp ilk görevleri üstlensin. Bilimsel keşifte [fikir karşılaştırmasından](discovery/IDEA_COMPARISON.md) iki adayı küçük veri örnekleriyle değerlendirme adımı bekliyor. Yeni konuşmalar [işleme akışıyla](guide/AI_WORKFLOW.md) kaydedilir.

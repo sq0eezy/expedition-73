@@ -31,4 +31,4 @@ Her çalışma başında iki üyenin son notu, fikir kayıtları, devir listesi 
 
 ## Paylaşım durumu
 
-**Önerilen yöntem:** [ortak GitHub deposu](https://github.com/sq0eezy/expedition-73) üzerinden dosya ve pull request paylaşımı. Ekip alanı şu an yerelde hazırlanmıştır; uzak depoya gönderilmedi. [Paylaşım ve ilk eşitleme](SYNC.md).
+**Ortak kaynak:** [GitHub deposunun main dalı](https://github.com/sq0eezy/expedition-73/tree/main). Kullanıcı ilk main aktarımını istedi: [ADR-002](../decisions/ADR-002-GITHUB-SHARING.md). Arkadaşın güncel kayıtları `pull` ile alıp kendi bilgisayarında kurar. [Paylaşım ve kurulum](SYNC.md).

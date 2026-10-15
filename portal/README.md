@@ -16,13 +16,15 @@ NASA Space Apps için fikir, veri, mimari, karar ve ekip takibi. [Project Contex
 
 ## Yerel çalıştırma
 
-Python 3.11+ gerekir. İlk kurulumda bu klasörden:
+Python 3.11+ gerekir. Önce depo kökünde `main` dalına geçip `git pull --ff-only origin main` ile güncelle; yerel değişikliklerini önceden koru. İlk kurulumda bu klasörden:
 
 ~~~powershell
 python scripts/portal.py setup
 ~~~
 
-Kurulum sistem geneline değil `.venv` içine yapılır. Ardından:
+macOS/Linux'ta bu komutta `python3` kullan. Kurulum sistem geneline değil `.venv` içine yapılır. Her platformda aynı temel Python komutuyla `scripts/portal.py check`, `build`, `serve` çalıştırılabilir; araç yerel ortamı kendisi seçer.
+
+Windows'ta doğrudan yerel Python ile:
 
 ~~~powershell
 .\.venv\Scripts\python.exe scripts\portal.py check
@@ -32,7 +34,9 @@ Kurulum sistem geneline değil `.venv` içine yapılır. Ardından:
 
 Adres: http://127.0.0.1:8000 · Durdurma: terminalde Ctrl+C. Yeniden açmak için aynı serve komutunu çalıştır. Port doluysa `serve --port 8001` kullan.
 
-`docs/` değişiklikleri açık geliştirme sunucusunda yenilenir. Arkadaşın depoyu kendi bilgisayarına aldığında yerel kurulumu yapmalı; `.venv/`, `site/` ve `.portal/` Git'e girmez. Okuma işaretleri tarayıcıya özeldir. Bu uyarlama uzak depoya gönderilmedi veya yayımlanmadı.
+macOS/Linux'ta hızlı açılış: `python3 scripts/portal.py serve`.
+
+`docs/` değişiklikleri açık geliştirme sunucusunda yenilenir. Arkadaşın depoyu kendi bilgisayarına aldığında yerel kurulumu yapmalı; `.venv/`, `site/` ve `.portal/` Git'e girmez. Okuma işaretleri tarayıcıya özeldir. Ortak kayıtlar GitHub `main` üzerinden paylaşılır; herkese açık bir web sitesi barındırması kurulmadı.
 
 ## Doğrulama
 
