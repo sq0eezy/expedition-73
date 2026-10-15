@@ -1,12 +1,12 @@
 ---
 review_summary: "İki kişilik ekibin NASA Space Apps çalışması için ortak başlangıç noktası."
-change_summary: "Ortak web paneli ve GitHub üzerinden düzenleme kılavuzu eklendi; ilk yayın ayarı bekleniyor."
+change_summary: "Dar T2M pilotu ve modül bağlantıları kabul edildi; ortak portal yayında."
 ---
 # {{ project_name }}
 
 <div class="portal-hero" markdown>
 
-## Önce soruyu seçelim. Sonra verinin ne söylediğine bakalım.
+## Tek göstergeyle başlayalım. Hesabı görünür kılalım.
 
 {{ project_description }}
 
@@ -15,13 +15,15 @@ change_summary: "Ortak web paneli ve GitHub üzerinden düzenleme kılavuzu ekle
 
 **Şu an:** {{ current_phase }}
 
-Değişken henüz seçilmedi. Bu alan, araştırdığımız fikirleri ve aldığımız kararları bir arada tutar.
+İlk pilot: **2 metre hava sıcaklığı**. Modüle özel hesaplar ortak sonuç diliyle bağlanacak. Bölge, ürün, dönem ve yöntem henüz açık; bilimsel uygulama geliştirilmedi.
 
 </div>
 
 ## Nereden başlayalım?
 
 <div class="portal-grid">
+<a class="portal-card portal-card-featured" href="planning/PILOT/"><strong>İlk pilot · Hava sıcaklığı</strong><span>Tek göstergede veri, hesap, adaptör ve web deneyiminin küçük denemesi.</span></a>
+<a class="portal-card portal-card-featured" href="architecture/MODULE_SYSTEM/"><strong>Modüller nasıl bağlanacak?</strong><span>Üst/alt başlıklar, özel hesaplar, ortak çıktı ve veri bağlantıları.</span></a>
 <a class="portal-card portal-card-featured" href="research/REGION_CANDIDATES/"><strong>İki bölge adayı · Tartışılıyor</strong><span>Colorado Platosu ve Kuzey Alaska neden aday? NASA'nın bölgelemesi, veri sorguları ve açık sorular.</span></a>
 <a class="portal-card portal-card-featured" href="team/"><strong>Ekipte kim ne düşünüyor?</strong><span>Emeç ve sq0eezy'nin çalışma notları, fikirleri ve birbirinden bekledikleri.</span></a>
 <a class="portal-card portal-card-featured" href="discovery/IDEA_COMPARISON/"><strong>Hangi fikir?</strong><span>NDVI, su depoları, sıcaklık ve diğer adayları aynı sorularla karşılaştır.</span></a>
@@ -34,7 +36,7 @@ Değişken henüz seçilmedi. Bu alan, araştırdığımız fikirleri ve aldığ
 
 ## Yeni konuşmalar kaybolmasın
 
-[Ortak web paneli](guide/WEB_PORTAL.md) ilk yayın ayarını ve sayfalardaki kalemle GitHub üzerinden not düzenlemeyi açıklar. Web yayını açıldıktan sonra kayıtları okumak için yerel kurulum veya pull gerekmez.
+[Ortak web paneli](guide/WEB_PORTAL.md) ilk yayın ayarını ve sayfalardaki kalemle GitHub üzerinden not düzenlemeyi açıklar. Web yayını açık; kayıtları okumak için yerel kurulum veya pull gerekmez.
 
 [Konuşma işleme kılavuzu](guide/AI_WORKFLOW.md), gelen fikirlerin kayda nasıl geçeceğini açıklar. [İnceleme listem](review/index.md) ise okuduğun sayfaları ve sorularını bu tarayıcıda tutar.
 

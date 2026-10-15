@@ -28,3 +28,15 @@ Yalnızca `p < 0,05` etiketi üretmek kabul ölçütü yapılmadı. Yöntemin bi
 ## Taslak analiz çıktısı
 
 Her sonuçta ürün/sürüm, bölge sınırı, dönem, birim, kullanılan örnek sayısı, eksiklik, ön işleme ve yöntem bilgisi bulunması öneriliyor. Eğim, belirsizlik ve varsa p-değeri bu bağlamla sunulmalı. Üretilecek gerçek sayılar [kanıt kaydına](../evidence/index.md) dayanmalı.
+
+## T2M pilotu için konuşulan yöntem adayları
+
+İlk gösterge T2M olarak seçildi; yöntem henüz seçilmedi. Her modül kendi bilimsel yöntemini yönetir; ortak sözleşme tek test zorunluluğu değildir.
+
+- Aylık sıcaklıkta zaman eğilimi + takvim ayı etkileri; belirsizlik için zaman bağımlılığını dikkate alan HAC/Newey–West yaklaşımı adaydır. [Statsmodels koşulları](https://www.statsmodels.org/stable/generated/statsmodels.stats.sandwich_covariance.cov_hac.html) ardışık/eşit aralıklı zaman varsayar; eksik ayları silip ardışık saymak doğru değildir.
+- Theil–Sen ve uygun Mann–Kendall yaklaşımı alternatif/duyarlılık incelemesidir. Standart test mevsimsellik ve zaman bağımlılığını kendiliğinden çözmez. [USGS yöntem araştırması](https://www.usgs.gov/publications/techniques-trend-analysis-monthly-water-quality-data-0).
+- A'da anlamlı, B'de anlamsız sonuç çıkması A/B eğilimlerinin farklılığını kanıtlamaz. Ortak tarihlerde fark serisi veya uygun ortak modelle fark ayrıca sınanır.
+- Çok sayıda modül/piksel testinde soru ailesi ve bağımlılık yapısına uygun çoklu test kontrolü gerekir; [FDR yöntemleri](https://www.statsmodels.org/stable/generated/statsmodels.stats.multitest.fdrcorrection.html) adaydır.
+- Eğim, aralık, kalite ve kapsam birlikte gösterilir; p-değeri değişimin doğru olma olasılığı değildir. Anlamsız sonuç kesin değişim yokluğu sayılmaz. İstatistiksel aralık bütün ürün/model belirsizliklerini kapsamaz.
+
+Girdi/çıktı türü, analiz profili, varsayımlar ve özel tanılar [sonuç sözleşmesinde](../architecture/DATA_AND_FLOWS.md) korunacak. Bunlar tasarım tartışmasıdır; çalıştırılmış analiz değildir.

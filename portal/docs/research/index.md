@@ -1,5 +1,11 @@
 # Araştırma kaydı
 
+## 2026-10-15 · İstatistik ve benzer araçlar
+
+Önceki tartışmada birincil kaynaklar incelendi: [NASA Giovanni](https://giovanni.gsfc.nasa.gov/giovanni/doc/UsersManualworkingdocument.docx.html), [Worldview karşılaştırması](https://www.earthdata.nasa.gov/learn/blog/introducing-worldviews-comparison-feature?page=18), [Climate Engine](https://climateengine.org/get_started/dive-in-make-a-graph/) ve [CCKP trend/anlamlılık görünümü](https://climateknowledgeportal.worldbank.org/watershed/wca002057/trends-variability-historical). Bölge serileri, görsel karşılaştırma ve trend sunumu için mevcut örnekler var; projenin özgün katkısı henüz kanıtlanmış değildir.
+
+[Earth Engine topluluk örneği](https://developers.google.com/earth-engine/tutorials/community/nonparametric-trends) MODIS EVI üzerinde Mann–Kendall/Sen eğimi kodu gösterir; örneğin mevsimsellik varsayımı ve eski ürün sürümü pilotta körlemesine kopyalanmaz. Araçlarda gerçek proje analizi çalıştırılmadı. [Yöntem adayları ve sınırlar](SCIENCE_NOTES.md), [dar T2M pilotu](../planning/PILOT.md).
+
 ## 2026-10-15 · Veriye göre bölge seçimi
 
 Türkiye'nin örnek olduğu kullanıcı tarafından açıklandı. Coğrafi veri düzeni resmî Earthdata/CMR/MODIS/AppEEARS kaynaklarından araştırıldı. Aynı üç ürün için iki alanda tam aralık ve iki örnek ayı kapsayan 18 granule sorgusu çalıştırıldı. [Araştırma](REGION_CANDIDATES.md), [çıktı](REGION_CATALOG_CHECK.json), [yöntem ve sınırlar](../evidence/REGION_RESEARCH.md).

@@ -1,42 +1,28 @@
 ---
 status: Proposed
 updated: "2026-10-15"
-phase: Bölge ve modül adaylarını değerlendirme
-review_summary: "Kesinleşenler, açık seçimler ve sıradaki küçük adım."
-change_summary: "Pull gerektirmeyen ortak web paneli için Pages akışı hazırlandı; depo sahibinin ilk etkinleştirmesi gerekiyor."
+phase: Tek göstergeli T2M pilotunu hazırlama
+review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
+change_summary: "Modüle özel hesap ve ortak çıktı kabul edildi; T2M pilotu seçildi. Portalın canlı yayını doğrulandı."
 ---
-
 # Mevcut durum
 
-Kullanıcı 2026-10-15 tarihinde **henüz değişken seçmediklerini, fikirleri karşılaştırdıklarını** doğruladı.
+**İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
-## Bilinenler
+## Hazır olanlar
 
-- İki kişilik ekip NASA Space Apps için çalışıyor.
-- Paylaşılan challenge metni NASA ölçümlerinde veya model çıktılarında zaman içindeki değişimi, yerini, miktarını ve istatistiksel anlamlılığını incelemeyi istiyor.
-- Etkileşimli web uygulaması ve animasyonlu görselleştirme düşünülüyor.
-- Proje hafızası için Project Context Portal kullanılacak: [ADR-001](decisions/ADR-001-PORTAL.md).
+- [Modül sistemi](architecture/MODULE_SYSTEM.md), [sistem haritası](architecture/SYSTEM_MAP.md), [ortak sonuç taslağı](architecture/DATA_AND_FLOWS.md), [dar pilot planı](planning/PILOT.md) ve [web deneyimi](product/index.md) güncellendi. Yön kabul edildi; teknik şema ve uygulama henüz yok.
+- Yönetim portalı **[GitHub Pages'te açık](https://sq0eezy.github.io/expedition-73/)**. Yayın işi başarılı; başlangıç sayfası ve okuma kataloğu HTTP 200 ile doğrulandı. [Yayın kaydı](evidence/PAGES_SETUP.md), [kullanım](guide/WEB_PORTAL.md).
+- [İki kişilik ekip alanı](team/index.md), üye notları, fikir/devir kayıtları ve [iş panosu](planning/WORK_BOARD.md) mevcut. A/B sorumluluğu düşünülüyor; kişi/bölge eşleştirmesi ve bilimsel görev üstlenmeleri henüz yok. M2'nin kendi görüş kaydı gelmedi.
+- [İki aday alan](research/REGION_CANDIDATES.md) için NASA CMR metaverisi sorgulandı. Katalog eşleşmesi gerçek piksel, kalite veya analiz doğrulaması değildir. Türkiye yalnızca örnekti.
+- M2 macOS kullanıyor; yerel geliştirme için [Mac kılavuzu](guide/MACOS_SETUP.md) var. Webden okumak için kurulum/pull gerekmez. Yerel kaynaklarla çalışan kişinin/yapay zekânın güncel kaydı alması gerekir.
 
-## Hazırlananlar
+## Açık kalanlar
 
-Okumak için her iki bilgisayarda pull/kurulum yapma ihtiyacını kaldırmak üzere **GitHub Pages yayın akışı** hazırlandı ve `main` dalına gönderildi: [ADR-003](decisions/ADR-003-WEB-PORTAL.md). İlk GitHub/Ubuntu kontrolü ve derlemesi geçti; yayın işi Pages etkinleştirilmediğinden durdu. Bağlı hesapta depo yönetim yetkisi yok; depo sahibinin [bir kerelik etkinleştirmesi](guide/WEB_PORTAL.md) gerekiyor. Canlı yayın henüz yok; [gerçek kontroller](evidence/PAGES_SETUP.md). Açıldıktan sonra her `main` güncellemesi başarılı derlemeyle yayımlanacak. Belge düzenleme GitHub/dosyalar üzerinden sürer.
+Kesin iki bölge/sınır, ürün/sürüm/erişim yolu, dönem, istatistik yöntemi, teknoloji yığını, görev sahipleri, teslim tarihi ve nihai uygulama adı seçilmedi. MERRA-2 aylık T2M, Colorado Platosu çevresi/Kuzey Alaska ve 2001–2024 adaydır; seçilmiş sayılmaz.
 
-Kullanıcı **bölgeyi ve modülleri NASA verilerine göre seçme** fikrini tartışmaya açtı; Türkiye yalnızca örnekti. [Colorado Platosu çevresi ve Kuzey Alaska](research/REGION_CANDIDATES.md) gerekçeli iki aday olarak araştırıldı. NASA CMR'de ürün/bölge/tarih eşleşmeleri sorgulandı; bilimsel dosya ve piksel doğrulaması yapılmadı. [Bölge + modül taslağı](architecture/REGIONAL_MODULE_PROPOSAL.md) ve [IDEA-M1-001](team/ideas/IDEA-M1-001.md) **Proposed** durumunda; M1/M2'nin aday onayı yok. [M2 inceleme kaydı](team/HANDOFFS.md) yanıt bekliyor.
-
-M2'nin Mac kullandığı bilgisine göre [macOS kurulum kılavuzu](guide/MACOS_SETUP.md) eklendi. Kodun Mac ortam yolu zaten mevcut; gerçek Mac kurulum sonucu M2'den bekleniyor.
-
-Portal GitHub `main` üzerinden paylaşıldı; uzak commit eşleşmesi doğrulandı. Arkadaşın kendi bilgisayarında pull/kurulum sonucu henüz bildirilmedi.
-
-[İki kişilik ekip alanı](team/index.md) hazır. Emeç Yıldız (`emecyildiz`) ve depo sahibi `sq0eezy` için ayrı çalışma notları; fikir alışverişi, devir listesi ve sorumlu/inceleyen alanlı iş panosu var. Bilimsel görevler henüz kişilere atanmadı. Kullanıcı GitHub `main` aktarımını istedi: [ADR-002](decisions/ADR-002-GITHUB-SHARING.md). Arkadaşın üç uzak commit'i çakışmasız birleştirildi; kurulum adımları [paylaşım kılavuzunda](team/SYNC.md), aktarımın gerçek sonucu [kanıt kaydında](evidence/GITHUB_SHARE.md).
-
-Türkçe portal, fikir karşılaştırması, kaynak listesi, öneri mimarisi ve iş panosu hazırlandı. Portal içerik/derleme kontrolleri ve kaynak aracın testleri geçti; yerel erişim doğrulandı. Gerçek sonuçlar ve sınırlar [portal kanıt kaydında](evidence/PORTAL_SETUP.md) tutulur. Projenin genel aşaması hâlâ fikir karşılaştırmasıdır.
-
-## Açık kararlar
-
-Değişken, veri ürünü, iki bölge, tarih aralığı, istatistik yöntemi, teknoloji yığını, görev sahipleri, teslim tarihi ve nihai uygulama adı seçilmedi. “Expedition 73” çalışma alanının adıdır.
-
-NASA'nın bilimsel veri dosyaları indirilmedi; yalnızca açık katalog metaverisi sorgulanıp kaydedildi. Trend veya p-değeri hesaplanmadı. Portalın çalışması bilimsel uygulamanın tamamlandığını göstermez.
+NASA bilimsel dosyası indirilmedi. Trend/p-değeri, çalışan adaptör, modüller arası gerçek veri aktarımı ve sunulacak uygulama henüz yok. Portalın yayında olması bilimsel ürünün tamamlandığını göstermez.
 
 ## Sıradaki küçük adım
 
-Depo sahibi [web yayınını](guide/WEB_PORTAL.md) bir kez açabilir; bundan sonra iki üye aynı siteden okuyabilir. İki üye [fikir kartındaki sorulara](team/ideas/IDEA-M1-001.md) görüşlerini eklesin. Pilot için ürün/alan kararı verilirse küçük sayısal alt kümelerde kalite, maske ve aylık kapsama bakılsın; adaylar bundan sonra kabul veya reddedilsin. M2 yerel düzenleme isterse [Mac kurulumu](guide/MACOS_SETUP.md) geçerlidir. Yeni konuşmalar [işleme akışıyla](guide/AI_WORKFLOW.md) kaydedilir.
+[Pilot planındaki](planning/PILOT.md) küçük gerçek T2M örneğine erişip birim, zaman, kalite ve alan kapsamını incele. Sınır/dönem uygunluğu sonrasında küçük bağımsız hesapla seri üretimini doğrula; ardından istatistik ve web görünümüne geç. Yeni konuşmalar [işleme akışıyla](guide/AI_WORKFLOW.md) kaydedilir.

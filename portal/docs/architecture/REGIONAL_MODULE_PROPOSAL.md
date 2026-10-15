@@ -4,7 +4,7 @@ change_summary: "Kullanıcının bölge→modül→karşılaştırma fikri; veri
 ---
 # Bölge + veriyle açılan modüller
 
-**Durum: Proposed / Tartışılıyor.** Kaynak: Kullanıcının 2026-10-15 tarihli fikri ve bölge araştırması talebi. Uygulama kodu veya kabul edilmiş mimari kararı değildir. Türkiye yalnızca örnekti; hiçbir bölge veya modül seçilmedi.
+**Güncel durum:** Modüle özel hesap + ortak çıktı yaklaşımı ve tek göstergeli T2M pilotu [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md) ile kabul edildi. Bu sayfa ilk bölge/modül gerekçesini korur; kesin alanlar, ürünler ve dönem hâlâ öneridir. Güncel teknik kaynak [modül sistemi](MODULE_SYSTEM.md), uygulama sırası [pilot planıdır](../planning/PILOT.md). Türkiye yalnızca örnekti.
 
 ## Kullanıcının düşüncesi
 
@@ -50,7 +50,7 @@ Son iki satır tasarım önerisidir; portalın mevcut otomatik durum mekanizmas�
 
 ## Başlangıç kapsamı önerisi
 
-[İki aday alanda](../research/REGION_CANDIDATES.md) sıcaklık ve bitki örtüsünü önce inceleyelim. Kar örtüsü kapsam/kalite kontrolüne bağlı ek aday olsun. İki bölge, ürünler ve 2001–2024 dönemi henüz onaylanmadı. Önceki tek değişkenli ilk demo önerisi daha küçük alternatif olarak korunuyor.
+Önceki iki göstergeli sıcaklık/bitki örtüsü önerisi daraltıldı: ilk pilot **yalnızca 2 metre hava sıcaklığı**. NDVI ve kar daha sonraki adaylar. İki bölge, ürünler ve 2001–2024 dönemi henüz onaylanmadı. [Güncel pilot](../planning/PILOT.md).
 
 **Yeni modül ekleme koşulu:** Yeni bir soruya katkı, NASA sayısal kaynağı, erişilebilir örnek ve yeterli kalite. Modül sayısı başarı ölçütü olarak seçilmedi.
 
@@ -58,4 +58,4 @@ Son iki satır tasarım önerisidir; portalın mevcut otomatik durum mekanizmas�
 
 Farklı eğilimler beklenebilir ama vaat edilmez. İki yerde de artış, belirsiz sonuç veya veri yetersizliği kabul edilir. Birlikte değişen iki seri tek başına neden göstermez; “iklim değişikliği sonucunda” açıklaması ayrıca bilimsel kanıt gerektirir. İlk sürüm gözlenen değişimi ve ilişkiyi kaynaklarıyla sunabilir.
 
-[Tartışma ve iki üyenin görüşleri](../team/ideas/IDEA-M1-001.md). Kapsam kabul edilmeden mevcut sistem haritası uygulama planı olarak değiştirilmedi; bu sayfa ayrı bir öneridir.
+[Tartışma ve iki üyenin görüşleri](../team/ideas/IDEA-M1-001.md). Güncel sistem haritası kabul edilen mimari yönü gösterir; bu sayfadaki bölge/veri adaylarını kabul edilmiş saymaz.

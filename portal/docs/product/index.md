@@ -1,23 +1,29 @@
-# Ürün fikri ve kapsam
+---
+review_summary: "Sunulacak web uygulaması ve tek göstergeli pilot ekranları."
+change_summary: "Web uygulaması teslimi ve T2M pilotu kabul edildi; ilk ekranların kapsamı taslaklaştırıldı."
+---
+# Ürün deneyimi ve kapsam
 
-**Durum: Proposed.** Kullanıcı animasyonlu, girilip incelenebilen bir web uygulamasına ilgi duyuyor. Aşağıdaki deneyim ve kapsam henüz onaylanmadı.
+**Kabul edilen:** Sunulacak çıktı bir web uygulaması; başlangıç tek göstergeli deneme: 2 metre hava sıcaklığı. [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md). Ekran düzeni/görsel tasarım/teknoloji taslak; çalışan ürün henüz yok.
 
-Güncel tartışma: [Veriye göre bölge ve modül seçimi](../architecture/REGIONAL_MODULE_PROPOSAL.md). Kullanıcı bölgeye modüller ekleyip karşılaştırmayı önerdi; Türkiye yalnızca örnekti. Sıcaklık/bitki örtüsü için iki aday araştırıldı, henüz seçilmedi. Aşağıdaki tek değişkenli ilk demo daha küçük bir alternatif olarak korunuyor; yeni öneri otomatik olarak kabul edilmiş kapsam değildir.
+## İlk deneyim taslağı
 
-## Önerilen ziyaretçi akışı
+1. **Keşif:** Haritada hazır alanları ve veri uygunluğunu gör; konu ağacından sıcaklık modülüne gir. Seçilmemiş alanlar aday etiketi taşır.
+2. **Modül ayrıntısı:** Zaman serisi, kalite/kapsama, eğilim ve belirsizlik; ürün, gösterge tanımı, birim ve yöntem aynı seçim bağlamında görünür.
+3. **A/B karşılaştırması:** Uyumlu gösterge/dönemle iki alanı incele; eğilim farkını ve belirsizliğini gör. Bölge içi anlamlılık ve eğilimler arası farkın testi ayrı anlatılır.
 
-1. Araştırma sorusunu ve ölçülen değişkeni gör.
-2. Aynı dönemde iki hazır bölgeyi karşılaştır.
-3. Harita ve zaman serisinde zaman seçimini değiştir; istersen animasyonu oynat.
-4. Eğim, miktar, belirsizlik ve yöntem açıklamasını incele.
-5. Kullanılan NASA ürününe ve analiz kaydına ulaş.
+Ortak zaman seçicisi, duraklatılabilen oynatma ve hareketi azaltma desteği görsel taslakta yer alır. Animasyon gerçek zaman dilimlerini göstermeli; veri olmayan tarih için ara değer üretilirse bu görsel yöntem açıklanmalı. Gerçek çıktı gelmeden grafik/harita sunum sonucu sayılmaz.
 
-## İlk demo için kapsam önerisi
+## Arayüz ilkeleri
 
-Tek değişken, tek ürün/sürüm, ortak tarih aralığı, iki önceden belirlenmiş bölge, eşleşen harita/grafik ve kaynak kartı. Duraklatılabilen animasyon ve hareketi azaltma tercihi düşünülmeli. Eksik veri, bekleyen yükleme ve analiz yapılamaması görünür olmalı.
+- Konu ağacı gezinmeyi kolaylaştırır; hesaplamanın hangi girdiden beslendiği ayrıca incelenebilir.
+- Ortak kartlar karşılaştırmayı, özel ayrıntı alanı bilimsel derinliği korur.
+- Veri yetersiz, uyumsuz karşılaştırma, hesaplanmadı ve güncel değil durumları görünürdür.
+- Eğim, güven aralığı, geçerli gözlem ve kaynak birlikte gösterilir; yalnızca p-değeri etiketi kullanılmaz.
+- Yeni bölge/modül veri ve hesap hazır olmadan etkin sonuç gibi açılmaz.
 
-Serbest poligon çizme, tüm dünyada anlık hesap, hesap sistemi, yapay zekâ sohbeti ve canlı veri güncelleme ilk demodan sonraya bırakılabilir. Bu bir öneridir; kabul edilmiş kapsam dışı listesi değildir.
+## Pilot sınırı
 
-Portal, bu uygulamanın geliştirme hafızasıdır. Jüriye gösterilecek veri uygulamasının yerine geçmez.
+Tek gösterge, seçilecek tek ürün/sürüm ve ortak dönem, uygunluğu sınanacak iki alan. Önce veri erişimi ve bağımsız küçük hesap, sonra web: [pilot planı](../planning/PILOT.md). Serbest poligon, dünya genelinde anlık hesap, hesap sistemi ve genel modül editörü pilot sonrası değerlendirilecek önerilerdir.
 
-[Hipotezler](HYPOTHESES.md) · [Mimari önerisi](../architecture/index.md)
+Mevcut portal fikirleri, kararları ve işi tutar. Ürün barındırma kararı portalın Pages kararından ayrıdır.

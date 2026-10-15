@@ -1,18 +1,27 @@
+---
+review_summary: "Modüle özel hesaplamadan ortak çıktıya ve sunulacak web uygulamasına akış."
+change_summary: "Kabul edilen adaptör yaklaşımı ve tek göstergeli pilot sistem haritasına işlendi."
+---
 # Sistem haritası
 
-Tüm uygulama bileşenleri **öneridir**; oklar çalışan entegrasyon göstermez.
+Mimari yön [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md) ile kabul edildi. Şema uygulanacak tasarımdır; oklar çalışan entegrasyon göstermez.
 
 ~~~mermaid
 flowchart TB
-    N[Seçilecek NASA sayısal ürünü] --> Q[Kalite ve birim kontrolü]
-    Q --> R[Ortak dönem ve bölge serileri]
-    R --> T[Trend ve belirsizlik analizi]
-    T --> A[Sürümlü sonuç dosyaları]
-    A --> W[Web arayüzü]
-    W --> M[Harita ve zaman animasyonu]
-    W --> C[İki bölge zaman serisi]
-    W --> E[Kaynak ve yöntem kartı]
-    G[İsteğe bağlı GIBS görüntüleri] -. Görsel bağlam .-> M
+    B[Sürümlü bölge tanımı] --> M[Modüle özel hazırlık ve hesap]
+    N[Seçilecek NASA sayısal ürünü] --> M
+    I[Varsa başka modülün çıktısı] --> U[Girdi uygunluk kontrolü]
+    U --> M
+    M --> A[Sonuç adaptörü]
+    A --> O[Ortak sonuç ve özel ayrıntılar]
+    O --> V[Karşılaştırma uygunluk kontrolü]
+    V --> C[A ve B karşılaştırması]
+    O --> W[Sunulacak web uygulaması]
+    C --> W
+    H[Konu ve alt modül ağacı] -. gezinme .-> W
+    W --> T[Harita - zaman serisi - istatistik - kaynak]
 ~~~
 
-Portal bu veri akışının dışında proje belgelerini tutar. İlk sürümde sonuç dosyalarıyla çalışma veya API kullanma seçimi henüz yapılmadı.
+İlk pilot **2 metre hava sıcaklığı modülü**; başka bilimsel modülden girdi alma sonraki genişlemedir. İki alanın çıktıları karşılaştırma bileşenine verilir. Konu ağacı ve veri bağımlılığı [modül sistemindedir](MODULE_SYSTEM.md).
+
+Portal bu akışın dışında proje hafızasını tutar. Sonuç dosyalarıyla başlangıç/API seçimi ve web teknolojisi açık. [Pilot planı](../planning/PILOT.md).

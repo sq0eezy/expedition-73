@@ -11,7 +11,7 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 - **Tarih:** 2026-10-15.
 - **Durum:** Yanıt bekliyor; görüldü veya kabul edildi sayılmadı.
 - **Konu:** [IDEA-M1-001](ideas/IDEA-M1-001.md).
-- **Beklenen:** Colorado Platosu ve Kuzey Alaska adaylarını, ortak sıcaklık/bitki örtüsü pilotunu ve açık sınır/kalite sorularını inceleyip M2 görüşünü fikir kartına ekle.
+- **Beklenen:** Colorado Platosu/Kuzey Alaska adaylarını ve güncel [tek göstergeli T2M pilotunu](../planning/PILOT.md), açık sınır/kalite sorularını inceleyip M2 görüşünü fikir kartına ekle. Önceki iki göstergeli pilot daraltıldı.
 - **Eldeki çıktı:** [Araştırma ve katalog sorguları](../research/REGION_CANDIDATES.md), [mimari önerisi](../architecture/REGIONAL_MODULE_PROPOSAL.md).
 - **Yanıt:** Henüz yok. Dış mesaj veya otomatik bildirim gönderilmedi.
 

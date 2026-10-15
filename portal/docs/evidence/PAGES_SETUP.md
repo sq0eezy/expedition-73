@@ -35,3 +35,7 @@ Yayın hazırlığı `f0ae5d90325b6405081cddab2cf13258b68d5dc6` commit'iyle `mai
 | GitHub Pages'e yayımla adımı | Önceki ayar adımı başarısız olduğundan **skipped** |
 
 İş durumları ve yayın işi günlüğü okundu. Kod/derleme hatası gözlenmedi; ilk Pages etkinleştirmesi eksik. Canlı site henüz yayımlanmadı. Depo sahibinin [bir kerelik ayarı](../guide/WEB_PORTAL.md) tamamlayıp iş akışını yeniden çalıştırması gerekiyor. Bu kayıt hazırlanırken yönetim yetkisi alınmadı veya kişisel anahtar eklenmedi.
+
+## Güncelleme · Canlı yayın doğrulandı
+
+2026-10-15 tarihinde kullanıcı Pages kaynağını GitHub Actions yaptıklarını bildirdi. [Başarılı yayın çalışması](https://github.com/sq0eezy/expedition-73/actions/runs/38798369000) GitHub API üzerinden `completed/success` olarak görüldü; kaynak commit `6fbb3b908cf6d0d53eeb3ea7d0aa8bbe20dc5e63`. Python urllib ile başlangıç adresi `https://sq0eezy.github.io/expedition-73/` ve `assets/reader/catalog.json` HTTP 200 döndü. İlk ayarın tamamlandığı ve portalın açık olduğu doğrulandı; üstteki başarısızlıklar tarihsel ilk denemelerdir. Bu kontrol bilimsel web uygulamasının veya NASA analizinin doğrulaması değildir.

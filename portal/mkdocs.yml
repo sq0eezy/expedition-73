@@ -83,6 +83,7 @@ nav:
       - Mac kurulum hazırlığı: evidence/MACOS_SETUP.md
       - Bölge araştırması: evidence/REGION_RESEARCH.md
       - Web yayını hazırlığı: evidence/PAGES_SETUP.md
+      - Modül tasarım kaydı: evidence/MODULE_DESIGN.md
   - Proje:
       - Bağlam ve hedef: PROJECT_CONTEXT.md
       - Belge haritası: DOCUMENTATION_MAP.md
@@ -109,12 +110,14 @@ nav:
       - Bilimsel kontrol noktaları: research/SCIENCE_NOTES.md
   - Mimari:
       - Genel bakış: architecture/index.md
+      - Modüller ve bağlantılar: architecture/MODULE_SYSTEM.md
       - Bölge ve modül önerisi: architecture/REGIONAL_MODULE_PROPOSAL.md
       - Sistem haritası: architecture/SYSTEM_MAP.md
       - Veri ve akışlar: architecture/DATA_AND_FLOWS.md
       - Sınırlar: architecture/BOUNDARIES.md
   - Plan ve ekip:
       - Yol haritası: planning/index.md
+      - İlk pilot · Hava sıcaklığı: planning/PILOT.md
       - İş panosu: planning/WORK_BOARD.md
       - Riskler: planning/RISKS.md
   - Kararlar:
@@ -122,6 +125,7 @@ nav:
       - Portal kullanımı: decisions/ADR-001-PORTAL.md
       - GitHub paylaşımı: decisions/ADR-002-GITHUB-SHARING.md
       - Ortak web paneli: decisions/ADR-003-WEB-PORTAL.md
+      - Modül ve pilot kararı: decisions/ADR-004-MODULES-AND-PILOT.md
   - Kullanım:
       - Başlangıç kılavuzu: guide/index.md
       - Ortak web paneli: guide/WEB_PORTAL.md

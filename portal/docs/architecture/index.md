@@ -1,17 +1,20 @@
-# Mimari önerisi
+---
+review_summary: "Kabul edilen modüler yön ve açık teknik seçimler."
+change_summary: "Özel hesap + ortak adaptör, konu ağacı/veri bağımlılığı ve T2M pilotu mimarinin temeli oldu."
+---
+# Mimari
 
-**Durum: Proposed.** Uygulama kodu yok; bileşenler ve araçlar seçilmedi.
+**Kabul edilen yön:** Modüle özel bilimsel hesap, ayrıntıları koruyan ortak sonuç sözleşmesi, türü tanımlı modül bağlantıları ve sonuçları inceleten web uygulaması. İlk pilot tek gösterge: **2 metre hava sıcaklığı**. [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md).
 
-## Yeni tartışma önerisi
+Konu/alt modül ağacı ile veri bağımlılığı ayrı tutulur. Yeni bölge mevcut modülün bölge tanımı ve uygunluk kontrolüyle eklenir; yeni gösterge kendi hesabını/adaptörünü getirir. Ortak sözleşme farklı bilimsel büyüklükleri eşitlemez.
 
-Kullanıcının **bölge → veriye göre modüller → karşılaştırma** fikri [ayrı bir taslakta](REGIONAL_MODULE_PROPOSAL.md) işlendi. Kaynaklı [iki bölge adayı](../research/REGION_CANDIDATES.md) ve [ekip tartışması](../team/ideas/IDEA-M1-001.md) bağlantılıdır. Bu öneri kabul edilmiş mimari kararı değildir; aşağıdaki önceki temel yaklaşım ve sistem haritası uygulanmış sayılmaz.
+- [Modül sistemi](MODULE_SYSTEM.md): hiyerarşi, giriş/çıkış ve bağımlılıklar.
+- [Sistem haritası](SYSTEM_MAP.md): NASA verisinden web uygulamasına akış.
+- [Veri ve akışlar](DATA_AND_FLOWS.md): ortak zarf ve özel ayrıntılar.
+- [Pilot planı](../planning/PILOT.md): ilk denemenin çıkış koşulları.
+- [Sınırlar](BOUNDARIES.md): portal, modüller ve ürün arayüzü.
+- [Önceki bölge taslağı](REGIONAL_MODULE_PROPOSAL.md): veriyle bölge/modül açma gerekçesi; alan adayları hâlâ açık.
 
-İlk demo için değerlendirilecek yaklaşım: NASA sayısal verisini bir hazırlık adımında işleyip küçük, sürümlü sonuç dosyaları üretmek; web arayüzünde bunları harita ve grafikle göstermek. Böylece ürün seçimi ile etkileşim tasarımı ayrı ayrı sınanabilir. Canlı analiz API'sine ihtiyaç olup olmadığı veri boyutu ve deneyim üzerinden kararlaştırılacak.
+## Açık teknik seçimler
 
-- [Sistem haritası](SYSTEM_MAP.md): önerilen bileşenler.
-- [Veri ve akışlar](DATA_AND_FLOWS.md): izlenebilirlik ve çıktı sözleşmesi.
-- [Sınırlar](BOUNDARIES.md): portal, analiz ve uygulamanın sorumlulukları.
-
-## Teknoloji kararı bekliyor
-
-Python tabanlı veri hazırlığı, web tabanlı bir arayüz, harita ve grafik kütüphaneleri değerlendirilebilir. Framework, backend, veritabanı veya barındırma seçilmedi. Önce küçük sayısal veri örneğini ve çıktı boyutunu görmek gerekiyor.
+Uygulama kodu, gerçek T2M dosyası ve hesaplanmış eğilim yok. Ürün, sınırlar, dönem ve yöntem pilotla doğrulanacak. Framework, backend, veritabanı ve ürün barındırması seçilmedi. Sonuç dosyalarıyla başlangıç bir aday; canlı API ihtiyacı veri boyutu ve deneyim üzerinden belirlenecek. Mevcut Pages yayını proje yönetim portalına aittir.

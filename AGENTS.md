@@ -11,7 +11,7 @@ Bu depo iki kişilik NASA Space Apps projesinin çalışma alanıdır. `portal/`
 
 ## Projenin sınırı
 
-Kullanıcı 2026-10-15 tarihinde hâlâ fikirleri karşılaştırdıklarını doğruladı. Değişken, bölgeler, veri ürünü, uygulama adı ve teknoloji seçimi kesinleşmedi. NDVI'yı seçilmiş kabul etme. Uygulama geliştirmesine geçmeden önce kullanıcının güncel yönlendirmesini esas al.
+Güncel karar ADR-004: modüle özel bilimsel hesap + ortak sonuç adaptörü, ayrı konu hiyerarşisi/veri bağımlılığı ve dar pilot kabul edildi. İlk pilot göstergesi 2 metre hava sıcaklığıdır. Bölge, ürün, dönem, yöntem ve teknoloji seçilmedi; NDVI ilk pilot değildir. Teknik sözleşme/arayüz taslağını çalışan uygulama sayma. Ayrıntılar portal/docs/architecture/MODULE_SYSTEM.md ve portal/docs/planning/PILOT.md içindedir.
 
 Kullanıcının yeni konuşmalarını özetleyerek ilgili belgelere işle; öneriyi kabul edilmiş karar, konuşmayı bilimsel kanıt sayma. Ham konuşmaları, kişisel dosya yollarını ve erişim anahtarlarını yayımlanan `portal/docs/` içine kopyalama.
 

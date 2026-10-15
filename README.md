@@ -6,15 +6,15 @@ varlık
 
 [Ekip alanı](portal/docs/team/index.md): Emeç Yıldız ve sq0eezy için ayrı çalışma notları, fikir alışverişi, görev sahipliği ve devir kayıtları. Ortak kayıtlar bu deponun `main` dalından paylaşılır; [paylaşım kılavuzu](portal/docs/team/SYNC.md).
 
-**Mevcut aşama:** fikir karşılaştırması. Değişken ve bölgeler henüz seçilmedi; NASA analiz uygulaması geliştirilmedi.
+**Mevcut aşama:** tek göstergeli **2 metre hava sıcaklığı** pilotunu hazırlama. Modüle özel hesap + ortak sonuç adaptörü kabul edildi; bölgeler/ürün/dönem/yöntem açık. [Pilot planı](portal/docs/planning/PILOT.md), [modül sistemi](portal/docs/architecture/MODULE_SYSTEM.md). Bilimsel uygulama henüz geliştirilmedi.
 
 Başlangıç: [mevcut durum](portal/docs/CURRENT_STATE.md), [fikir karşılaştırması](portal/docs/discovery/IDEA_COMPARISON.md), [NASA kaynakları](portal/docs/research/DATA_SOURCES.md).
 
 ## Ortak web paneli
 
-GitHub Pages otomatik yayını hazırlandı. Depo sahibi bir kez [Settings → Pages](https://github.com/sq0eezy/expedition-73/settings/pages) altında **Source: GitHub Actions** seçip [Portal · GitHub Pages](https://github.com/sq0eezy/expedition-73/actions/workflows/portal-pages.yml) akışını `main` için çalıştırmalı. İlk yayın henüz doğrulanmadı.
+Yönetim portalı **[GitHub Pages üzerinde açık](https://sq0eezy.github.io/expedition-73/)**. Başarılı yayın ve HTTP erişimi doğrulandı: [yayın kaydı](portal/docs/evidence/PAGES_SETUP.md).
 
-Yayın açıldığında ortak adres: **https://sq0eezy.github.io/expedition-73/**. Sonraki `main` güncellemeleri başarılı derlemeden sonra otomatik yayımlanır. Okumak için pull veya yerel kurulum gerekmez; sayfayı yenilemek yeterli. Kalem simgesiyle GitHub üzerinden belge düzenlenebilir. [Web kullanımı ve ilk açılış](portal/docs/guide/WEB_PORTAL.md).
+Ortak adres: **https://sq0eezy.github.io/expedition-73/**. Sonraki `main` güncellemeleri başarılı derlemeden sonra otomatik yayımlanır. Okumak için pull veya yerel kurulum gerekmez; sayfayı yenilemek yeterli. Kalem simgesiyle GitHub üzerinden belge düzenlenebilir. [Web kullanımı ve ilk açılış](portal/docs/guide/WEB_PORTAL.md).
 
 ## Arkadaşın için Mac kurulumu
 

@@ -8,6 +8,7 @@
 | [Mac kurulum hazırlığı](MACOS_SETUP.md) | macOS kılavuzu, ortam yolu kontrolü ve gerçek Mac doğrulama sınırı |
 | [Bölge adayları araştırması](REGION_RESEARCH.md) | Resmî kaynaklar, 21 CMR metadata isteği ve sınırlar |
 | [GitHub Pages hazırlığı](PAGES_SETUP.md) | Otomatik yayın akışı, erişim yetkisi ve ilk etkinleştirme sınırı |
+| [Modül ve pilot tasarımı](MODULE_DESIGN.md) | Kullanıcı kararı, konu/veri ilişkileri ve tek göstergeli pilot belgelerinin kontrolü |
 | [Araştırma kaydı](../research/index.md) | İncelenen sayfalar ve erişim sınırları |
 
 NASA verisi indirme, trend hesabı, anlamlılık testi, performans ölçümü veya kullanıcı denemesi için henüz kanıt yok.

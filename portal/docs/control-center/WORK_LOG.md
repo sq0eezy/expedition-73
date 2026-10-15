@@ -1,5 +1,11 @@
 # Çalışma günlüğü
 
+## 2026-10-15 · Modül bağlantıları ve dar T2M pilotu
+
+M1 özel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; üst/alt modüller, bir modül çıktısının girdi olması ve web uygulaması teslimini istedi. İlk gösterge olarak **2 metre hava sıcaklığı** seçildi: [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md). Konu hiyerarşisi ile veri bağımlılığı ayrı modellendi; sistem haritası, çıktı sözleşmesi, pilot koşulları ve ürün ekranları güncellendi. Bölge/ürün/dönem/yöntem ve kişi/bölge ataması açık; M2 görüşü varsayılmadı. Gerçek bilimsel veri ve uygulama kodu henüz yok. [Tasarım ve doğrulama kaydı](../evidence/MODULE_DESIGN.md).
+
+Kullanıcının Pages ayarı sonrasında başarılı GitHub çalışması ve başlangıç/katalog HTTP 200 doğrulandı; portalın yayın durumu güncellendi. [Yayın kanıtı](../evidence/PAGES_SETUP.md). Önceki girişlerdeki başarısız yayın/aday kapsam ifadeleri tarihsel kayıtlardır.
+
 ## 2026-10-15 · Pull gerektirmeyen ortak web paneli
 
 Kullanıcı, her değişikliği okumak için iki bilgisayarda pull/kurulum gerektirmeyen web yayını istedi. Mevcut statik portal için GitHub Pages seçildi: [ADR-003](../decisions/ADR-003-WEB-PORTAL.md). `main` push sonrası kontrol/strict derleme ve yalnızca site çıktısını yayımlayan iş akışı eklendi. Sayfalara GitHub düzenleme bağlantısı ve [web kılavuzu](../guide/WEB_PORTAL.md) eklendi. Bağlı hesapta push yetkisi var, yönetim/bakım yetkisi yok; depo sahibinin bir kerelik etkinleştirmesi gerekiyor. [Kontrol sonuçları ve yayın sınırı](../evidence/PAGES_SETUP.md). Bilimsel adaylar tartışma durumunda kaldı.

@@ -15,7 +15,7 @@ Araştırma ve uygulama rolleri henüz paylaşılmadı. Önce kendi notunuza ne 
 
 ## Güncel tartışma
 
-[Bölgeye göre NASA modülleri](ideas/IDEA-M1-001.md) ve [gerekçeli iki bölge adayı](../research/REGION_CANDIDATES.md) incelemeye açık. İki üyenin adaylar hakkındaki kabulü henüz yok. Görüşler fikir kartındaki ayrı alanlarda tutulur.
+M1 [modüler yaklaşımı ve dar T2M pilotunu](../decisions/ADR-004-MODULES-AND-PILOT.md) kabul etti. [İki bölge adayı](../research/REGION_CANDIDATES.md), ürün/dönem/yöntem ve kişi/bölge paylaşımı açık. M2 görüşü bekleniyor; [fikir kartında](ideas/IDEA-M1-001.md) ayrı korunur.
 
 | Alan | Nerede tutulur? |
 |---|---|
@@ -35,4 +35,4 @@ Her çalışma başında iki üyenin son notu, fikir kayıtları, devir listesi 
 
 ## Paylaşım durumu
 
-**Ortak kaynak:** [GitHub deposunun main dalı](https://github.com/sq0eezy/expedition-73/tree/main). İlk aktarım: [ADR-002](../decisions/ADR-002-GITHUB-SHARING.md). Her değişikliği okumak için pull gerekmemesi amacıyla [ortak web paneli](../guide/WEB_PORTAL.md) hazırlandı; depo sahibinin bir kerelik Pages etkinleştirmesi gerekiyor. Sonrasında webden okumak için Mac kurulumu gerekmez. Yerel düzenleme ve Git eşitlemesi: [paylaşım kılavuzu](SYNC.md).
+**Ortak kaynak:** [GitHub deposunun main dalı](https://github.com/sq0eezy/expedition-73/tree/main). İlk aktarım: [ADR-002](../decisions/ADR-002-GITHUB-SHARING.md). Her değişikliği okumak için pull gerekmemesi amacıyla [ortak web paneli](../guide/WEB_PORTAL.md) açıldı ve erişim doğrulandı. Webden okumak için Mac kurulumu gerekmez. Yerel düzenleme ve Git eşitlemesi: [paylaşım kılavuzu](SYNC.md).

@@ -6,7 +6,7 @@ change_summary: "Webden okuma için pull ihtiyacını kaldıracak Pages akışı
 
 ## Okumak için ortak web paneli
 
-Kullanıcının son talebiyle [GitHub Pages web yayını](../guide/WEB_PORTAL.md) hazırlandı: [ADR-003](../decisions/ADR-003-WEB-PORTAL.md). Depo sahibi ilk ayarı yaptıktan sonra `main` güncellemeleri otomatik yayımlanır; iki kişi sadece siteyi açıp yenileyerek okuyabilir. Henüz canlı yayın doğrulanmadı. İlk açılış ve çevrim içi düzenleme için esas kaynak [web kılavuzudur](../guide/WEB_PORTAL.md).
+Kullanıcının son talebiyle [GitHub Pages web yayını](../guide/WEB_PORTAL.md) hazırlandı: [ADR-003](../decisions/ADR-003-WEB-PORTAL.md). İlk ayar tamamlandı; başarılı yayın ve HTTP erişimi doğrulandı. `main` güncellemeleri başarılı derlemeden sonra otomatik yayımlanır; iki kişi siteyi açıp yenileyerek okuyabilir. İlk açılış ve çevrim içi düzenleme için esas kaynak [web kılavuzudur](../guide/WEB_PORTAL.md).
 
 Aşağıdaki kurulum adımları yerel düzenleme/önizleme içindir. Web yayını yerel Git kopyalarını veya yerel dosyalarla çalışan yapay zekâyı otomatik güncellemez.
 

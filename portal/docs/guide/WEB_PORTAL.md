@@ -4,9 +4,9 @@ change_summary: "GitHub Pages otomatik yayın akışı ve depo sahibinin bir ker
 ---
 # Ortak web paneli
 
-**Hedef adres:** [Expedition 73 paneli](https://sq0eezy.github.io/expedition-73/). İlk yayın için aşağıdaki depo ayarı gerekiyor; bu bağlantının henüz çalıştığı doğrulanmadı. Güncel kontrol sonucu [yayın kanıtında](../evidence/PAGES_SETUP.md).
+**Ortak adres:** [Expedition 73 paneli](https://sq0eezy.github.io/expedition-73/). Yayın açıldı; başarılı GitHub çalışması ve HTTP 200 ile doğrulandı. [Yayın kanıtı](../evidence/PAGES_SETUP.md). Okumak için aşağıdaki ilk ayarları yeniden yapmak gerekmez.
 
-## Depo sahibi bir kez açar
+## Tamamlanan ilk kurulumun başvuru adımları
 
 sq0eezy hesabıyla:
 

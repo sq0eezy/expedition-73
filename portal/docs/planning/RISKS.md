@@ -2,7 +2,9 @@
 
 | Risk | Etki | Önerilen önlem | Durum |
 |---|---|---|---|
-| Konu seçilmeden kapsam büyümesi | İki kişilik ekibin odağı dağılabilir | Bir değişken ve küçük demo önerisini değerlendirmek | Açık |
+| Modül sayısı/hiyerarşiyle kapsam büyümesi | İki kişilik ekibin odağı dağılabilir | Önce kabul edilen tek göstergeli T2M pilotunu tamamlamak | Açık |
+| Konu ağacıyla veri bağımlılığını karıştırmak | Döngü, yanlış bağlantı veya gereksiz hesap | Ayrı contains/consumes ilişkileri ve girdi uygunluğu | Açık |
+| Kaynak değişince eski bağımlı sonucu göstermek | Güncel olmayan analiz | Sürümlü çıktı izi ve güncel değil durumu | Açık |
 | Görsel katmanı analiz verisi sanmak | Yanlış veya tekrarlanamayan hesap | Sayısal ürün ve görsel katmanı ayrı sınamak | Açık |
 | Veri erişiminin geç denenmesi | Planlanan analiz yapılamayabilir | Tasarımdan önce küçük indirme | Açık |
 | Mevsim/eksiklik/kalite etkisini göz ardı etmek | Eğim yanlış yorumlanabilir | Yöntem seçimini veri incelemesine bağlamak | Açık |

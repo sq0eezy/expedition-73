@@ -24,4 +24,4 @@ Bir öneri, diğer kişinin susmasıyla kabul edilmiş sayılmaz. Diğer kişini
 
 | Kimlik | Konu | Kaynak | Durum | Beklenen |
 |---|---|---|---|---|
-| [IDEA-M1-001](ideas/IDEA-M1-001.md) | Veriyle seçilen bölgeler ve modüller | M1'in fikri; iki aday araştırması yapay zekâ tarafından hazırlandı | Tartışılıyor / Proposed | M1 ve M2'nin adaylar, sınırlar ve ilk pilot hakkındaki görüşleri |
+| [IDEA-M1-001](ideas/IDEA-M1-001.md) | Veriyle seçilen bölgeler ve modüller | M1’in fikri; aday araştırması yapay zekâ tarafından hazırlandı | M1 modüler yön/T2M pilotunu kabul etti; bölge/veri ayrıntıları tartışılıyor | M2 görüşü, kesin sınır/ürün/dönem |

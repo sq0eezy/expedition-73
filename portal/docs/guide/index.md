@@ -4,7 +4,7 @@
 
 ## Yerel açma
 
-Yalnızca güncel kayıtları okumak için [ortak web paneli](WEB_PORTAL.md) yolu hazırlandı; depo sahibinin bir kez Pages'i açması gerekiyor. Yayın açılınca Mac/Windows kurulumu ve pull gerekmez. Aşağıdaki komutlar yerel önizleme ve düzenleme içindir.
+Güncel kayıtlar [ortak web panelinden](WEB_PORTAL.md) okunabilir; yayın açık. Okumak için Mac/Windows kurulumu ve pull gerekmez. Aşağıdaki komutlar yerel önizleme ve düzenleme içindir.
 
 **sq0eezy Mac kullanıyor:** [Mac için ilk kurulum ve açılış](MACOS_SETUP.md). Mac Terminal'de `python3` ve `.venv/bin/python` komutları kullanılır.
 

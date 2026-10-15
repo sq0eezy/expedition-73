@@ -16,7 +16,7 @@ Düz Markdown notları veya haricî görev araçları kullanılabilirdi. Kullan�
 
 ## Sonuçlar ve sınırlar
 
-Markdown belgeleri Git ile paylaşılabilir; kişiler/yapay zekâ belgeleri günceller. Portal tarayıcıdan görev yazma, sohbetleri otomatik içe alma veya iki kişinin okuma işaretlerini eşitleme özelliği sunmaz. Her kişinin portalı kendi bilgisayarında çalıştırması gerekir; ekip barındırması seçilmedi.
+Markdown belgeleri Git ile paylaşılabilir; kişiler/yapay zekâ belgeleri günceller. Portal tarayıcıdan görev yazma, sohbetleri otomatik içe alma veya iki kişinin okuma işaretlerini eşitleme özelliği sunmaz. İlk kararda yerel çalışma düşünülmüştü; [ADR-003](ADR-003-WEB-PORTAL.md) webden okuma yolunu ekledi. Güncel yayın [kılavuzdadır](../guide/WEB_PORTAL.md).
 
 ## Takip
 

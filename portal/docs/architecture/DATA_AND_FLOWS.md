@@ -1,26 +1,40 @@
+---
+review_summary: "Modül sonuçlarının ortak dili, özel ayrıntıları ve bağlantı uygunluğu."
+change_summary: "Modüle özel hesap ve adaptör için sürümlü sonuç sözleşmesi taslağı tanımlandı."
+---
 # Veri ve akışlar
 
-**Durum: Proposed.** Dosya veya şema henüz uygulanmadı.
+Ortak sözleşme yaklaşımı [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md) ile kabul edildi. Alanlar **sözleşme taslağıdır**; JSON Schema, API ve doğrulanmış uygulama henüz yok.
 
-## Önerilen hazırlık akışı
+## Ortak zarf ve özel içerik
 
-1. Ürün kimliği/sürümü ve erişim yolunu [kaynak kaydından](../research/DATA_SOURCES.md) seç.
-2. Küçük örnekte birim, ölçek, dolgu ve kalite alanlarını incele.
-3. Bölge sınırları ve ortak dönemi kaydet; zaman eşleştirmesini açıkça tanımla.
-4. Kararlaştırılan ön işleme ve yöntemle serileri/analizleri üret.
-5. Sonuçları kaynak ve yöntem metaverisiyle arayüze ver.
-6. Harita/grafik tarih uyumunu ve örnek bir sonucu bağımsız hesapla doğrula.
-
-## Taslak çıktı sözleşmesi
-
-| Bilgi | Neden gerekli? |
+| Bölüm | Bilgi |
 |---|---|
-| Ürün kimliği, sürümü, kaynak URL'si, erişim tarihi | Tekrar bulunabilirlik |
-| Bölge kimliği ve coğrafi sınırları | Bölge/piksel karışıklığını önlemek |
-| Değişken, birim, ölçek ve kalite politikası | Değerleri doğru yorumlamak |
-| Zaman damgası, frekans, ortak dönem, varsa referans dönem | Harita ve seriyi eşlemek |
-| Değerler, geçerli örnek sayısı, eksik veri göstergesi | Kapsama ve eksikliği göstermek |
-| Yöntem, eğim birimi, belirsizlik, varsa p-değeri | Sonucun sınırlarını anlatmak |
-| Üretim komutu, sürüm ve girdi dosyası özeti | Hesabı tekrarlamak |
+| Kimlik | Sözleşme sürümü, modül/sürüm, çıktı kimliği/türü ve üretim çalışması |
+| Bölge | Kimlik, sınır sürümü, maske ve uzaysal destek |
+| Gösterge | Kesin büyüklük, birim, gerekiyorsa yükseklik/derinlik |
+| Zaman | Frekans, tarihler, analiz/referans dönemi ve mevsim tanımı |
+| Kaynak | NASA ürün/sürüm, değişken, erişim yolu/tarihi, girdi özeti ve üst modül çıktı izleri |
+| Kalite | Geçerli alan/zaman kapsamı, eksiklik, filtreler ve uyarılar |
+| Yöntem | Analiz profili/sürümü, parametreler, varsayımlar ve belirsizlik kapsamı |
+| Ortak içerik | Türüne göre seri, harita referansı, özet istatistik veya kalite raporu |
+| Özel içerik | Modülün ayrıntılı tanıları, ek göstergeleri ve haritaları |
 
-Eksik değer sıfıra çevrilmemeli; geçersiz/hesaplanamadı durumu ayrıca taşınmalı. Tarih değiştiğinde harita ve grafik aynı seçim durumunu kullanmalı. Bunlar uygulama tasarımı için önerilen kurallardır; test edilmiş davranış değildir.
+Her çıktıda eğim/p-değeri zorunlu değildir. Seri ve analiz özeti farklı çıktı türleridir; p-değeri varsa test ve sıfır hipotezi belirtilir. Eksik/girdi yetersiz değeri sıfıra çevrilmez. Ortak zarf bütün sonuçların bilimsel olarak karşılaştırılabilir olduğunu göstermez.
+
+## Bağlantı ve karşılaştırma kontrolü
+
+Alıcı modül istediği çıktı türünü/göstergeyi; kabul ettiği birimleri, zaman/alan desteğini, kalite koşullarını ve sözleşme sürümünü bildirir. Sonuç **uygun**, **açık dönüşüm/yeniden hesaplama gerekli** veya **uyumsuz** olur; gerekçe saklanır. Farklı yöntemlerin p-değerleri etki büyüklüğü gibi karşılaştırılmaz.
+
+Kaynak çıktı değişince bağımlı sonuç güncel değil sayılır. Zorunlu girdi eksikse alıcı çalışmaz; kısmi hesap destekleniyorsa koşulu yöntem kartında açıklanır. [Modül bağlantıları](MODULE_SYSTEM.md).
+
+## Pilot akışı
+
+1. Gerçek T2M örneğinde birim, ölçek, kalite ve zamanı incele.
+2. Seçilecek sınır/alan ağırlığıyla seri üret; gözlenen alanın zamanla değişimini raporla.
+3. Modüle uygun yöntemle eğilim/belirsizlik ve alanların farkı için ayrı analiz yap.
+4. Adaptörde ortak zarfı, özel ayrıntıları ve kaynak izlerini üret.
+5. Uygun çıktıları aynı bölge/tarih seçimleriyle webde göster.
+6. Ara hesabı ve sonuç aktarımını bağımsız örnekle doğrula.
+
+Kimlik bilgileri sonuç dosyasına veya tarayıcı paketine eklenmez. Saklama biçimi/API ihtiyacı gerçek örnekten sonra seçilir. [Pilot koşulları](../planning/PILOT.md).

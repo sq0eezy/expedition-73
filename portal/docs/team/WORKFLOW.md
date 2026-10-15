@@ -6,7 +6,7 @@ change_summary: "Görev sahipliği, ayrı görüşler, devir ve paylaşım sın�
 
 ## Oturuma başlarken
 
-1. Paylaşılan kayıtların güncel sürümünü alın. Yöntem henüz seçilmedi; yerel kopyayı kendiliğinden güncel saymayın.
+1. Paylaşılan kayıtların güncel sürümünü alın. Ortak web yayını açık; yerel kaynakla çalışıyorsanız kopyayı kendiliğinden güncel saymayın. [Paylaşım düzeni](SYNC.md).
 2. [Mevcut durumu](../CURRENT_STATE.md), [M1 notunu](members/M1.md), [M2 notunu](members/M2.md), [fikirleri](IDEAS.md) ve [devirleri](HANDOFFS.md) okuyun.
 3. Hangi üye adına çalışıldığını belirleyin. Belirsizse görüşleri bir üyeye atfetmeyin.
 4. [İş panosunda](../planning/WORK_BOARD.md) seçilen işin sahibini ve beklenen çıktısını netleştirin. Bir iş zaten diğer kişideyse kapsamını konuşmadan devralmayın.

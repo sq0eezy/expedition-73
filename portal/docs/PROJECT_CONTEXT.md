@@ -5,7 +5,7 @@ change_summary: "Kullanıcının amacı ve henüz açık olan proje sınırları
 
 ## Amaç
 
-**2026-10-15 tartışma güncellemesi:** Kullanıcı bir bölgeye NASA verisine göre modüller ekleyip ikinci bölgeyle karşılaştırmayı önerdi. Türkiye yalnızca örnekti. [Öneri taslağı](architecture/REGIONAL_MODULE_PROPOSAL.md) ve [iki bölge adayı](research/REGION_CANDIDATES.md) henüz kabul edilmiş kapsam değildir. Tek değişkenli önceki ilk demo önerisi daha küçük alternatif olarak durur.
+**2026-10-15 güncellemesi:** Kullanıcı modüle özel hesap + ortak sonuç sözleşmesini, alt modülleri, modüller arası veri bağlantılarını ve dar başlangıcı kabul etti. İlk pilot 2 metre hava sıcaklığı; sunulacak çıktı web uygulaması: [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md). Türkiye örnekti; [iki bölge adayı](research/REGION_CANDIDATES.md), ürün, dönem ve yöntem hâlâ açık. [Pilot planı](planning/PILOT.md).
 
 NASA görevlerinin ölçtüğü veya modellerinin ürettiği bir çevresel değişkeni zaman ve konum boyunca inceleyen, sonuçları anlaşılır görsellerle anlatan bir Space Apps projesi geliştirmek.
 
@@ -16,10 +16,10 @@ Paylaşılan challenge dört soru soruyor: **Ne değişiyor? Nerede? Ne kadar? �
 | Konu | Durum |
 |---|---|
 | Ekip | İki kişi; GitHub kimlikleri [ekip dizininde](team/index.md), bilimsel roller henüz seçilmedi |
-| Sunum biçimi | Etkileşimli web uygulaması düşünülüyor |
+| Sunum biçimi | Web uygulaması teslimi kullanıcı tarafından istendi; tasarım/teknoloji açık |
 | Görsellik | Animasyonlara ilgi var |
 | Teknik yetkinlik | Kullanıcı teknik tarafın sorun olmayacağını belirtti; araçlar seçilmedi |
-| Aşama | Fikir karşılaştırması |
+| Aşama | Tek göstergeli T2M pilotunu hazırlama |
 | Portal | Bağlam, mimari, karar ve ilerleme kaydı için kullanılacak |
 
 ## Önerilen başarı ölçütleri

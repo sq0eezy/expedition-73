@@ -17,6 +17,9 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | Bölgeye göre modül açma düşüncesinin taslağı | [Bölge + modül önerisi](architecture/REGIONAL_MODULE_PROPOSAL.md) |
 | Bilimsel yorumlama sınırları | [Bilimsel notlar](research/SCIENCE_NOTES.md) |
 | Bileşenler ve akışlar | [Mimari](architecture/index.md) |
+| Konu ağacı, modül giriş/çıkışı ve bağımlılıklar | [Modül sistemi](architecture/MODULE_SYSTEM.md) |
+| Ortak sonuç sözleşmesi ve uygunluk | [Veri ve akışlar](architecture/DATA_AND_FLOWS.md) |
+| Tek göstergeli T2M denemesinin kapsamı/çıkış koşulları | [Pilot](planning/PILOT.md) |
 | Görev, aşama, risk | [Plan](planning/index.md) |
 | Üye kimlikleri ve ekip giriş noktası | [Ekip alanı](team/index.md) |
 | M1'in niyeti ve kendi çalışma özeti | [Emeç Yıldız](team/members/M1.md) |
