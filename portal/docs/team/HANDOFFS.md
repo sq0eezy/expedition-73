@@ -15,6 +15,15 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 - **Eldeki çıktı:** [Araştırma ve katalog sorguları](../research/REGION_CANDIDATES.md), [mimari önerisi](../architecture/REGIONAL_MODULE_PROPOSAL.md).
 - **Yanıt:** Henüz yok. Dış mesaj veya otomatik bildirim gönderilmedi.
 
+## H-M1-002 · Bölge B görevlerine başlangıç
+
+- **Gönderen → alıcı:** M1 → M2; kullanıcı panele eklenmesini ve arkadaşının buradan bakmasını istedi.
+- **Tarih:** 2026-10-16.
+- **Durum:** Yanıt bekliyor; B ataması M1 tarafından bildirildi, M2 başlangıcı yok.
+- **Beklenen ilk çıktı:** [B görevlerinden](../planning/REGION_B.md) R-B01/R-B02: kaynaklı sınır önerisi ve gerçek küçük T2M API yanıtı/erişim engeli özeti. [B fişine](../research/regions/REGION_B_PROFILE.md) yaz.
+- **M1’in teslim edeceği:** Sürümlü modül girdi/çıktısı, örnek çağrı ve uygunluk koşulları; MOD-01/03.
+- **Yanıt:** Henüz yok. Yeni yanıtta görev kimliği, fiş/çıktı bağlantısı, gerçek durum ve M1’den beklenen girdi yazılacak. Dış mesaj veya bildirim gönderilmedi.
+
 ## Bir kayıt için gerekenler
 
 | Alan | İçerik |

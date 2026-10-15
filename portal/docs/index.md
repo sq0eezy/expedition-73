@@ -1,6 +1,6 @@
 ---
 review_summary: "İki kişilik ekibin NASA Space Apps çalışması için ortak başlangıç noktası."
-change_summary: "Dar T2M pilotu ve modül bağlantıları kabul edildi; ortak portal yayında."
+change_summary: "M1 modüller/A, M2 B olarak iş bölümü yapıldı; iki bölge için görevler ve çalışma fişleri eklendi."
 ---
 # {{ project_name }}
 
@@ -22,6 +22,8 @@ change_summary: "Dar T2M pilotu ve modül bağlantıları kabul edildi; ortak po
 ## Nereden başlayalım?
 
 <div class="portal-grid">
+<a class="portal-card portal-card-featured" href="planning/REGION_B/"><strong>sq0eezy · Bölge B'de ne yapacağım?</strong><span>İlk iki iş, API denemesi, modül entegrasyonu ve beklenen çıktılar.</span></a>
+<a class="portal-card portal-card-featured" href="planning/REGION_A/"><strong>Emeç · Modüller ve Bölge A</strong><span>Ortak modül teslimleri, A görevleri ve arkadaşına bırakılacak girdiler.</span></a>
 <a class="portal-card portal-card-featured" href="planning/PILOT/"><strong>İlk pilot · Hava sıcaklığı</strong><span>Tek göstergede veri, hesap, adaptör ve web deneyiminin küçük denemesi.</span></a>
 <a class="portal-card portal-card-featured" href="architecture/MODULE_SYSTEM/"><strong>Modüller nasıl bağlanacak?</strong><span>Üst/alt başlıklar, özel hesaplar, ortak çıktı ve veri bağlantıları.</span></a>
 <a class="portal-card portal-card-featured" href="research/REGION_CANDIDATES/"><strong>İki bölge adayı · Tartışılıyor</strong><span>Colorado Platosu ve Kuzey Alaska neden aday? NASA'nın bölgelemesi, veri sorguları ve açık sorular.</span></a>

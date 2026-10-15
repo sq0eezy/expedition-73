@@ -1,5 +1,11 @@
 # Çalışma günlüğü
 
+## 2026-10-16 · Bölge görevleri ve iş bölümü
+
+M1 modülleri/A'yı yapacağını ve arkadaşının B'yi yapacağını bildirdi; arkadaşının panelden takip edebilmesi için yapılacaklar istedi. [ADR-005](../decisions/ADR-005-TEAM-OWNERSHIP.md), [A/modül listesi](../planning/REGION_A.md), [B listesi](../planning/REGION_B.md) ve [ortak profil](../planning/REGION_WORKFLOW.md) eklendi. Panoda MOD-01/03 ve R-A01/06, R-B01/06 görevleri sorumlu, bağımlılık, çıktı ve inceleme planıyla ayrıldı. Boş bölge çalışma fişleri oluşturuldu; sayısal veri/hesap/ilerleme uydurulmadı. M2 ataması M1'den geldi; M2'nin kendi başlama/kabul kaydı yok. Alan/ürün/dönem seçimi bu atamayla kesinleşmedi.
+
+İlk bağımsız işler: bölge tanımı ve küçük T2M API erişimi. Ortak modül teslimi sonrası küçük bağımsız hesap, tam dönem kalite/analiz ve web kontrolü planlandı. Genel web arayüzü geliştirme sorumlusu açık kaldı. Windows/Python 3.12 ortamında depo kökünden `portal/.venv/Scripts/python.exe portal/scripts/portal.py check` ve `build` geçti; strict MkDocs derlemesi başarılı. `git diff --check` boşluk hatası vermedi. Geçici 127.0.0.1 statik sunucuda yeni görev/fiş/karar sayfaları, ana sayfa, pano, iki üye notu ve katalog dahil 11 yol HTTP 200 döndü; katalog JSON ve B görev kimlikleri/bağımlılık bağlantıları doğrulandı. Sunucu kapatıldı. Bu kontroller görev belgelerini doğrular; NASA API erişimi, bilimsel hesap, M2 başlangıcı veya gerçek Mac kurulumu kanıtı değildir.
+
 ## 2026-10-15 · Modül bağlantıları ve dar T2M pilotu
 
 M1 özel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; üst/alt modüller, bir modül çıktısının girdi olması ve web uygulaması teslimini istedi. İlk gösterge olarak **2 metre hava sıcaklığı** seçildi: [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md). Konu hiyerarşisi ile veri bağımlılığı ayrı modellendi; sistem haritası, çıktı sözleşmesi, pilot koşulları ve ürün ekranları güncellendi. Bölge/ürün/dönem/yöntem ve kişi/bölge ataması açık; M2 görüşü varsayılmadı. Gerçek bilimsel veri ve uygulama kodu henüz yok. [Tasarım ve doğrulama kaydı](../evidence/MODULE_DESIGN.md).

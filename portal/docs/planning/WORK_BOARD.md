@@ -1,6 +1,6 @@
 # İş panosu
 
-Görevler eldeki kanıta göre güncellenir. Araştırma ve uygulama görevlerinin sahipleri, inceleyenleri ve teslim tarihleri henüz atanmadı. Üye kimlikleri [ekip dizinindedir](../team/index.md). `Verified` portal işleri uygulamanın doğrulandığını göstermez.
+Görevler eldeki kanıta göre güncellenir. **2026-10-16 iş bölümü:** M1 modüller + A, M2 B. M1 kendi işini üstlendi; M2 ataması M1 tarafından bildirildi, M2 adına başlama/kabul kaydı üretilmedi. İnceleyenler aşağıdaki yeni görevlerde planlanan kişilerdir; inceleme yapılmış sayılmaz. Teslim tarihleri açık. Üye kimlikleri [ekip dizinindedir](../team/index.md). `Verified` portal işleri uygulamanın doğrulandığını göstermez.
 
 | ID | İş | Durum | Sorumlu | Üstlenme | İnceleyen | Tamamlanma ölçütü / kanıt |
 |---|---|---|---|---|---|---|
@@ -11,16 +11,38 @@ Görevler eldeki kanıta göre güncellenir. Araştırma ve uygulama görevlerin
 | S-02 | Main'i alıp kendi Mac bilgisayarında portalı kur | Proposed | M2 | Önerildi | Atanmadı | [Mac kurulumu](../guide/MACOS_SETUP.md); M2'nin kendi ortamında açılış sonucu |
 | S-03 | Pull gerektirmeyen ortak web yayını hazırla | Verified | Bu yapay zekâ oturumu | Kullanıcı talebi | Başarılı yayın ve HTTP doğrulaması | [Pages kaydı](../evidence/PAGES_SETUP.md); portal açık |
 | S-04 | Pages kaynağını GitHub Actions seç ve ilk yayını aç | Verified | Depo hesabı | Kullanıcı ayarı yaptığını bildirdi | Bu oturum: yayın/HTTP kontrolü | [Başarılı çalışma](../evidence/PAGES_SETUP.md), canlı site HTTP 200 |
-| R-01 | İki adayı kısa listeye al | Proposed | Atanmadı | Atanmadı | Atanmadı | Her aday için seçim kartı |
-| R-02 | Sayısal veri erişimini sına | Proposed | Atanmadı | Atanmadı | Atanmadı | Gerçek küçük dosya, indirme yöntemi, sürüm ve birim |
+| R-01 | İki adayı kısa listeye al | Proposed | M1: A; M2: B | Alt görevler aşağıda | Karşı üye (planlanan) | R-A01/R-B01 fişleri ve gerekçeli alan önerileri |
+| R-02 | Sayısal veri erişimini sına | Proposed | M1: A; M2: B | Alt görevler aşağıda | Karşı üye (planlanan) | R-A02/R-B02: küçük API yanıtı, kaynak/sürüm/birim ve erişim özeti |
 | R-03 | İki bölge ve ortak dönem adayını araştır | Implemented | Bu yapay zekâ oturumu | Kullanıcı talebi | M1/M2 görüşü bekleniyor | [İki aday](../research/REGION_CANDIDATES.md); gerekçeler ve katalog kontrolü hazır, seçim yapılmadı |
-| R-04 | Adaylarda küçük bilimsel alt kümeyi ve kaliteyi incele | Proposed | Atanmadı | Atanmadı | Atanmadı | Veri erişimi, geçerli ay/piksel oranı ve maske; bölge/ürün pilot kararı bekliyor |
+| R-04 | Küçük örneği ve kaliteyi incele | Proposed | M1: A; M2: B | Alt görevler aşağıda | Karşı üye (planlanan) | R-A04/R-B04: bağımsız ara hesap ve kapsam kontrolü |
 | D-01 | Araştırma sorusu ve kapsamı seç | Kısmen kararlaştırıldı | M1 yönlendirmesi | Tek gösterge seçildi; alan/ürün/dönem açık | M2 görüşü bekleniyor | [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md) ve [pilot](PILOT.md) |
 | A-02 | Modül ilişkileri ve sonuç sözleşmesini taslaklaştır | Implemented | Bu yapay zekâ oturumu | Kullanıcı talebi | Teknik uygulama/üye incelemesi bekleniyor | [Modül sistemi](../architecture/MODULE_SYSTEM.md); hiyerarşi ve veri bağımlılığı ayrı |
-| P-04 | Dar T2M pilotunu uçtan uca gerçekleştir | Proposed | Atanmadı | Dar kapsam kullanıcı tarafından kabul edildi | Atanmadı | [Pilotun veri, hesap, adaptör ve web çıkış koşulları](PILOT.md) |
-| A-01 | İstatistik yöntemini belirle | Proposed | Atanmadı | Atanmadı | Atanmadı | Kaynak, varsayımlar ve örnek doğrulama planı |
+| P-04 | Dar T2M pilotunu uçtan uca gerçekleştir | Proposed | M1: modül/A; M2: B | [İş bölümü](REGION_WORKFLOW.md); genel web geliştirmesi açık | Karşılıklı inceleme planı | [Pilot çıkış koşulları](PILOT.md); alt görevler aşağıda |
+| A-01 | Modülün istatistik yöntemini belirle | Proposed | M1 | Modül kapsamını üstlendi | M2 (planlanan) | MOD-02: kaynak, varsayımlar ve bağımsız örnek |
 | U-01 | Etkileşim taslağını belirle | Proposed | Atanmadı | Atanmadı | Atanmadı | Harita/grafik/tarih akışı; kapsam seçimine bağlı |
 | C-01 | Yeni konuşmaları özetleyerek işle | Proposed | Atanmadı | Atanmadı | Atanmadı | Yeni bilginin esas belgede yer alması |
+
+## Modül ve bölge görevleri
+
+Görevlerin ayrıntıları: [M1 · A ve modüller](REGION_A.md), [M2 · B](REGION_B.md), [ortak profil ve sıra](REGION_WORKFLOW.md). `Proposed` henüz çalıştırılmadığını gösterir; sorumluluk ataması ayrı sütundadır.
+
+| ID | İş | Durum | Sorumlu | Üstlenme / atama kaynağı | İnceleyen | Bitiş ölçütü / çıktı |
+|---|---|---|---|---|---|---|
+| MOD-01 | Girdi/çıktı sözleşmesi ve çağrı örneği | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Sürümlü şema taslağı ve A/B API örnekleriyle uyumlu girdi/çıktı |
+| MOD-02 | T2M modülü ve bilimsel hesap | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Ortak profilde seri/analiz; bağımsız küçük hesap ve yöntem kontrolleri |
+| MOD-03 | Adaptör, uygunluk ve sürümlü modül teslimi | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Örnek çalıştırma, sürüm, hata/eksiklik davranışı ve B yapılandırma girdileri |
+| R-A01 | A tanımı ve sınır önerisi | Proposed | M1 | M1 üstlendi | M2 (planlanan) | [A fişi](../research/regions/REGION_A_PROFILE.md): kaynaklı aday/poligon ve sınır sürümü |
+| R-A02 | A küçük API erişimi | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Tekrarlanabilir sayısal sorgu, birim/zaman/kapsam ve eksiklik özeti |
+| R-A03 | A/B ortak veri profilini kaydet | Proposed | M1 | M1 üstlendi | M2 (B uygunluk incelemesi) | İki erişim özetine dayanan sürümlü [ortak profil](REGION_WORKFLOW.md) |
+| R-A04 | A örnek hesap ve entegrasyon | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Küçük bağımsız alan hesabı modülle karşılaştırılmış; MOD-02/03 gerekir |
+| R-A05 | A tam dönem seri/kalite/analiz | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Gerçek dönem çıktıları ve geçerli alan/zaman kapsamı; R-A04 gerekir |
+| R-A06 | A bulgusu ve web kontrolü | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Kaynak/belirsizlikle yorum ve arayüz seçim eşleşmesi; R-A05 gerekir |
+| R-B01 | B tanımı ve sınır önerisi | Proposed | M2 | M1 atadı; M2 başlangıç kaydı yok | M1 (planlanan) | [B fişi](../research/regions/REGION_B_PROFILE.md): kaynaklı aday/poligon ve sınır sürümü |
+| R-B02 | B küçük API erişimi | Proposed | M2 | M1 atadı; M2 başlangıç kaydı yok | M1 (planlanan) | Tekrarlanabilir sayısal sorgu, birim/zaman/kapsam ve eksiklik özeti |
+| R-B03 | B'nin ortak veri profiline uygunluğu | Proposed | M2 | M1 atadı; M2 başlangıç kaydı yok | M1 (planlanan) | Ortak ürün/dönem/yöntemle B uyumu ve engeller; R-A03 ile eşleşir |
+| R-B04 | B örnek hesap ve entegrasyon | Proposed | M2 | M1 atadı; M2 başlangıç kaydı yok | M1 (planlanan) | Küçük bağımsız alan hesabı modülle karşılaştırılmış; MOD-02/03 gerekir |
+| R-B05 | B tam dönem seri/kalite/analiz | Proposed | M2 | M1 atadı; M2 başlangıç kaydı yok | M1 (planlanan) | Gerçek dönem çıktıları ve geçerli alan/zaman kapsamı; R-B04 gerekir |
+| R-B06 | B bulgusu ve web kontrolü | Proposed | M2 | M1 atadı; M2 başlangıç kaydı yok | M1 (planlanan) | Kaynak/belirsizlikle yorum ve arayüz seçim eşleşmesi; R-B05 gerekir |
 
 Bir görev önerildiğinde “Sorumlu: M1/M2, Üstlenme: Önerildi” yazılır. İlgili kişi üstlenince “Kabul edildi” olur. Kişi başlamadan işi `Validating` saymayın; bittiğinde gerçek sonucu ve inceleme ihtiyacını kaydedin. İnceleyen adı yazmak, incelemenin yapılmış olduğunu göstermez.
 

@@ -10,7 +10,7 @@ Sorular önem sırasındadır. Henüz yanıtı olmayan alanlar karar gibi yazıl
 | Q-04 | Veriyi hangi ürün/sürümden alacağız? | İndirme, kalite alanları ve birim kontrolü |
 | Q-05 | Trend ve belirsizlik nasıl hesaplanacak? | Mevsimsellik/otokorelasyon değerlendirmesi ve yöntem kaynağı |
 | Q-06 | İlk uygulama hangi araçlarla kurulacak? | Veri boyutu ve ilk demo ihtiyaçları |
-| Q-07 | Kim hangi işi üstlenecek; ne zaman teslim? | Ekibin rol ve takvim kararı |
+| Q-07 · Kısmen yanıtlandı | M1 modüller/A, M2 B; genel web arayüzü sorumlusu ve takvim açık | [ADR-005](../decisions/ADR-005-TEAM-OWNERSHIP.md), [görevler](../planning/REGION_WORKFLOW.md) |
 | Q-08 | Challenge'ın tam resmî sayfası ve değerlendirme şartları neler? | Etkinlik bağlantısının ekipçe doğrulanması |
 
 Yeni konuşmadaki yanıtı bu tabloya veya konunun esas belgesine işle; kabul edilen önemli seçim için [ADR](../decisions/index.md) aç.

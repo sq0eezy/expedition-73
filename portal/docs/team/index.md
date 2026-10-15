@@ -11,11 +11,11 @@ change_summary: "GitHub kayıtlarındaki iki üye eşleştirildi; görev, fikir 
 <a class="portal-card portal-card-featured" href="members/M2/"><strong>sq0eezy · M2</strong><span>Depo sahibi · Kendi niyetim, üstlenmek istediğim katkı ve çalışma notlarım.</span></a>
 </div>
 
-Araştırma ve uygulama rolleri henüz paylaşılmadı. Önce kendi notunuza ne yapmak istediğinizi yazın; ardından ortak panoda işi üstlenin. Kimliklerin dayanağı: [GitHub incelemesi](../evidence/TEAM_SETUP.md). sq0eezy için ayrıca gerçek ad varsayılmadı.
+2026-10-16 iş bölümü: **M1 modüller + Bölge A; M2 Bölge B.** M1’in açık yönlendirmesiyle kaydedildi; M2’nin başladığı varsayılmadı. [Arkadaşın için B yapılacakları](../planning/REGION_B.md), [A/modül görevleri](../planning/REGION_A.md) ve [ortak çalışma sırası](../planning/REGION_WORKFLOW.md). Kimliklerin dayanağı: [GitHub incelemesi](../evidence/TEAM_SETUP.md). sq0eezy için ayrıca gerçek ad varsayılmadı.
 
 ## Güncel tartışma
 
-M1 [modüler yaklaşımı ve dar T2M pilotunu](../decisions/ADR-004-MODULES-AND-PILOT.md) kabul etti. [İki bölge adayı](../research/REGION_CANDIDATES.md), ürün/dönem/yöntem ve kişi/bölge paylaşımı açık. M2 görüşü bekleniyor; [fikir kartında](ideas/IDEA-M1-001.md) ayrı korunur.
+M1 [modüler yaklaşımı ve dar T2M pilotunu](../decisions/ADR-004-MODULES-AND-PILOT.md) kabul etti. [İki bölge adayı](../research/REGION_CANDIDATES.md), ürün/dönem/yöntem açık; modül/A/B sorumluluğu [ADR-005](../decisions/ADR-005-TEAM-OWNERSHIP.md) ile kaydedildi. M2 görüşü bekleniyor; [fikir kartında](ideas/IDEA-M1-001.md) ayrı korunur.
 
 | Alan | Nerede tutulur? |
 |---|---|

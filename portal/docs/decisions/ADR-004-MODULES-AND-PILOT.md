@@ -23,3 +23,5 @@ Kullanıcı her modülün kendi bilimsel hesabını yapmasını, ayrıntıları 
 Colorado Platosu ve Kuzey Alaska, ürünler ve 2001–2024 dönemi aday olmaya devam eder. A/B bölge sahipliği düşünülen iş bölümüdür; kişi/bölge ataması yok. Framework, uygulama barındırması ve canlı analiz API'si seçilmedi. Karar çalışan uygulama veya NASA analiz sonucu değildir.
 
 [Modül sistemi](../architecture/MODULE_SYSTEM.md) · [Veri sözleşmesi](../architecture/DATA_AND_FLOWS.md) · [Pilot](../planning/PILOT.md) · [Web deneyimi](../product/index.md)
+
+**2026-10-16 takip kararı:** İş sorumluluğu sonradan [ADR-005](ADR-005-TEAM-OWNERSHIP.md) ile M1: modüller/A, M2: B olarak kaydedildi. Üstteki kişi/bölge ataması yok ifadesi bu kararın ilk tarihindeki durumu anlatır.

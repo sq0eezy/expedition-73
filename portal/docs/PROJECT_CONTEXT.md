@@ -15,7 +15,7 @@ Paylaşılan challenge dört soru soruyor: **Ne değişiyor? Nerede? Ne kadar? �
 
 | Konu | Durum |
 |---|---|
-| Ekip | İki kişi; GitHub kimlikleri [ekip dizininde](team/index.md), bilimsel roller henüz seçilmedi |
+| Ekip | İki kişi; GitHub kimlikleri [ekip dizininde](team/index.md), modüller/A M1, B M2 olarak [atandı](decisions/ADR-005-TEAM-OWNERSHIP.md) |
 | Sunum biçimi | Web uygulaması teslimi kullanıcı tarafından istendi; tasarım/teknoloji açık |
 | Görsellik | Animasyonlara ilgi var |
 | Teknik yetkinlik | Kullanıcı teknik tarafın sorun olmayacağını belirtti; araçlar seçilmedi |

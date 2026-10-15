@@ -107,6 +107,8 @@ nav:
       - Araştırma kaydı: research/index.md
       - NASA veri kaynakları: research/DATA_SOURCES.md
       - Bölge seçimi ve iki aday: research/REGION_CANDIDATES.md
+      - Bölge A çalışma fişi: research/regions/REGION_A_PROFILE.md
+      - Bölge B çalışma fişi: research/regions/REGION_B_PROFILE.md
       - Bilimsel kontrol noktaları: research/SCIENCE_NOTES.md
   - Mimari:
       - Genel bakış: architecture/index.md
@@ -118,6 +120,9 @@ nav:
   - Plan ve ekip:
       - Yol haritası: planning/index.md
       - İlk pilot · Hava sıcaklığı: planning/PILOT.md
+      - İş bölümü ve ortak profil: planning/REGION_WORKFLOW.md
+      - Bölge A ve modül görevleri: planning/REGION_A.md
+      - Bölge B yapılacaklar: planning/REGION_B.md
       - İş panosu: planning/WORK_BOARD.md
       - Riskler: planning/RISKS.md
   - Kararlar:
@@ -126,6 +131,7 @@ nav:
       - GitHub paylaşımı: decisions/ADR-002-GITHUB-SHARING.md
       - Ortak web paneli: decisions/ADR-003-WEB-PORTAL.md
       - Modül ve pilot kararı: decisions/ADR-004-MODULES-AND-PILOT.md
+      - Modül ve bölge sorumluları: decisions/ADR-005-TEAM-OWNERSHIP.md
   - Kullanım:
       - Başlangıç kılavuzu: guide/index.md
       - Ortak web paneli: guide/WEB_PORTAL.md

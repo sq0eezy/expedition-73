@@ -33,6 +33,6 @@ Aylık seride zaman eğilimi + takvim ayı etkileri ve zaman bağımlılığın�
 
 Doğrulama: bilinen eğimli/eğimsiz kontrollü seriler, mevsim döngüsü, ardışık bağımlılık, eksik ay, iki bölgede aynı serinin kullanılması ve uyumsuz birim/dönem/alan. Sentetik sonuçlar NASA bulgusu sayılmaz. Gerçek örnekte ara hesap bağımsız araçla karşılaştırılır; aralığın kapsamadığı ürün/model belirsizlikleri açıklanır.
 
-A/B sorumluluğu düşünülen düzendir; kişi/bölge eşleştirmesi yok. İki kişi aynı modül/sözleşme sürümünü kullanır ve bölgesel hesapları çapraz inceler. Yöntem değişirse iki alanın sonucu aynı analiz sürümüne getirilir.
+2026-10-16 iş bölümü: M1 modüller ve A, M2 B; [ADR-005](../decisions/ADR-005-TEAM-OWNERSHIP.md). [A](REGION_A.md)/[B](REGION_B.md) görevleri ve [ortak profil](REGION_WORKFLOW.md) hazır. M2 ataması M1 tarafından bildirildi; başlama kaydı yok. İki kişi aynı modül/sözleşme sürümünü kullanır ve bölgesel hesapları çapraz inceler. Yöntem değişirse iki alanın sonucu aynı analiz sürümüne getirilir.
 
 Teslim: tekrarlanabilir çalışma, sürümlü sonuçlar ve bunları gösteren küçük web deneyimi. [Ekran kapsamı](../product/index.md) · [Görevler](WORK_BOARD.md).

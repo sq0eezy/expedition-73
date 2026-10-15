@@ -20,6 +20,10 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | Konu ağacı, modül giriş/çıkışı ve bağımlılıklar | [Modül sistemi](architecture/MODULE_SYSTEM.md) |
 | Ortak sonuç sözleşmesi ve uygunluk | [Veri ve akışlar](architecture/DATA_AND_FLOWS.md) |
 | Tek göstergeli T2M denemesinin kapsamı/çıkış koşulları | [Pilot](planning/PILOT.md) |
+| İş bölümü, paralel adımlar ve ortak veri profili | [Bölge çalışma akışı](planning/REGION_WORKFLOW.md) |
+| M1'in A ve modül görevlerinin ayrıntısı | [A görevleri](planning/REGION_A.md) |
+| M2'nin sıralı B görevleri ve ilk adımları | [B görevleri](planning/REGION_B.md) |
+| A/B alan, API denemesi ve gerçek sonuç kayıtları | [A fişi](research/regions/REGION_A_PROFILE.md), [B fişi](research/regions/REGION_B_PROFILE.md) |
 | Görev, aşama, risk | [Plan](planning/index.md) |
 | Üye kimlikleri ve ekip giriş noktası | [Ekip alanı](team/index.md) |
 | M1'in niyeti ve kendi çalışma özeti | [Emeç Yıldız](team/members/M1.md) |
