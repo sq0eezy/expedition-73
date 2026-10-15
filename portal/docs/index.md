@@ -1,6 +1,6 @@
 ---
 review_summary: "İki kişilik ekibin NASA Space Apps çalışması için ortak başlangıç noktası."
-change_summary: "Kaynaklı iki bölge adayı ve bölgeye göre modül açma düşüncesi tartışmaya açıldı."
+change_summary: "Ortak web paneli ve GitHub üzerinden düzenleme kılavuzu eklendi; ilk yayın ayarı bekleniyor."
 ---
 # {{ project_name }}
 
@@ -33,6 +33,8 @@ Değişken henüz seçilmedi. Bu alan, araştırdığımız fikirleri ve aldığ
 </div>
 
 ## Yeni konuşmalar kaybolmasın
+
+[Ortak web paneli](guide/WEB_PORTAL.md) ilk yayın ayarını ve sayfalardaki kalemle GitHub üzerinden not düzenlemeyi açıklar. Web yayını açıldıktan sonra kayıtları okumak için yerel kurulum veya pull gerekmez.
 
 [Konuşma işleme kılavuzu](guide/AI_WORKFLOW.md), gelen fikirlerin kayda nasıl geçeceğini açıklar. [İnceleme listem](review/index.md) ise okuduğun sayfaları ve sorularını bu tarayıcıda tutar.
 

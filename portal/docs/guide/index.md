@@ -4,6 +4,8 @@
 
 ## Yerel açma
 
+Yalnızca güncel kayıtları okumak için [ortak web paneli](WEB_PORTAL.md) yolu hazırlandı; depo sahibinin bir kez Pages'i açması gerekiyor. Yayın açılınca Mac/Windows kurulumu ve pull gerekmez. Aşağıdaki komutlar yerel önizleme ve düzenleme içindir.
+
 **sq0eezy Mac kullanıyor:** [Mac için ilk kurulum ve açılış](MACOS_SETUP.md). Mac Terminal'de `python3` ve `.venv/bin/python` komutları kullanılır.
 
 Çalışma alanının kökünden PowerShell:
@@ -21,6 +23,6 @@ Başka bilgisayarda Python 3.11+ gerekir. İlk kez `python scripts/portal.py set
 
 [Ekip alanında](../team/index.md) her üyenin kendi çalışma notu, fikir kartları ve yanıt bekleyen kayıtlar bulunur. Görev sahibi/inceleyen ortak iş panosunda tutulur. GitHub düzeni ve ilk kurulum [paylaşım kılavuzundadır](../team/SYNC.md).
 
-Belgeleri Git üzerinden paylaşın; `.venv/`, `site/`, `.portal/`, ham konuşmalar ve kimlik bilgileri paylaşılmaz. Her kişi yerel kurulumunu yapar. Main aktarımının sonucu [kanıt kaydındadır](../evidence/GITHUB_SHARE.md); herkese açık web barındırması kurulmadı.
+Belgeleri Git üzerinden paylaşın; `.venv/`, `site/`, `.portal/`, ham konuşmalar ve kimlik bilgileri commit edilmez. Yerel önizleme isteyen kişi kendi kurulumunu yapar. Main aktarımının sonucu [aktarım kaydında](../evidence/GITHUB_SHARE.md), web hazırlığının sonucu [Pages kaydındadır](../evidence/PAGES_SETUP.md).
 
 Görev durumları Markdown kaynaklarında güncellenir. Tarayıcıdaki [inceleme araçları](READER_TOOLS.md) kişiseldir; arkadaşının görev panosunu değiştirmez.

@@ -23,7 +23,8 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | M2'nin niyeti ve kendi çalışma özeti | [sq0eezy](team/members/M2.md) |
 | Yeni fikirler ve iki üyenin ayrı görüşleri | [Fikir alışverişi](team/IDEAS.md) |
 | Kişiler arası devirler ve yanıtlar | [Devir listesi](team/HANDOFFS.md) |
-| Paylaşım yöntemi önerisi ve ilk eşitleme durumu | [Paylaşım](team/SYNC.md) |
+| Git üzerinden birlikte çalışma ve ilk eşitleme | [Paylaşım](team/SYNC.md) |
+| Ortak web paneli, ilk etkinleştirme ve çevrim içi düzenleme | [Web paneli](guide/WEB_PORTAL.md) |
 | Seçimler ve gerekçeler | [Kararlar](decisions/index.md) |
 | Gerçek kontrol sonuçları | [Kanıtlar](evidence/index.md) |
 | Kısa değişiklik geçmişi | [Günlük](control-center/WORK_LOG.md) |

@@ -10,6 +10,12 @@ varlık
 
 Başlangıç: [mevcut durum](portal/docs/CURRENT_STATE.md), [fikir karşılaştırması](portal/docs/discovery/IDEA_COMPARISON.md), [NASA kaynakları](portal/docs/research/DATA_SOURCES.md).
 
+## Ortak web paneli
+
+GitHub Pages otomatik yayını hazırlandı. Depo sahibi bir kez [Settings → Pages](https://github.com/sq0eezy/expedition-73/settings/pages) altında **Source: GitHub Actions** seçip [Portal · GitHub Pages](https://github.com/sq0eezy/expedition-73/actions/workflows/portal-pages.yml) akışını `main` için çalıştırmalı. İlk yayın henüz doğrulanmadı.
+
+Yayın açıldığında ortak adres: **https://sq0eezy.github.io/expedition-73/**. Sonraki `main` güncellemeleri başarılı derlemeden sonra otomatik yayımlanır. Okumak için pull veya yerel kurulum gerekmez; sayfayı yenilemek yeterli. Kalem simgesiyle GitHub üzerinden belge düzenlenebilir. [Web kullanımı ve ilk açılış](portal/docs/guide/WEB_PORTAL.md).
+
 ## Arkadaşın için Mac kurulumu
 
 Mac Terminal içinde `python3 --version` ile Python 3.11+ olduğunu kontrol et. Depo kökünden, korunmamış yerel değişiklik yokken:

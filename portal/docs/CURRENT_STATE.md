@@ -3,7 +3,7 @@ status: Proposed
 updated: "2026-10-15"
 phase: Bölge ve modül adaylarını değerlendirme
 review_summary: "Kesinleşenler, açık seçimler ve sıradaki küçük adım."
-change_summary: "Türkiye'nin örnek olduğu kaydedildi; kaynaklı iki bölge adayı ve modül önerisi tartışmaya açıldı."
+change_summary: "Pull gerektirmeyen ortak web paneli için Pages akışı hazırlandı; depo sahibinin ilk etkinleştirmesi gerekiyor."
 ---
 
 # Mevcut durum
@@ -18,6 +18,8 @@ Kullanıcı 2026-10-15 tarihinde **henüz değişken seçmediklerini, fikirleri 
 - Proje hafızası için Project Context Portal kullanılacak: [ADR-001](decisions/ADR-001-PORTAL.md).
 
 ## Hazırlananlar
+
+Okumak için her iki bilgisayarda pull/kurulum yapma ihtiyacını kaldırmak üzere **GitHub Pages yayın akışı** hazırlandı: [ADR-003](decisions/ADR-003-WEB-PORTAL.md). Her `main` güncellemesi kontrol ve derlemeden sonra yayımlanacak. Bağlı hesapta depo yönetim yetkisi yok; depo sahibinin [bir kerelik etkinleştirmesi](guide/WEB_PORTAL.md) gerekiyor. Canlı yayın henüz doğrulanmadı; [gerçek kontroller](evidence/PAGES_SETUP.md). Belge düzenleme GitHub/dosyalar üzerinden sürer.
 
 Kullanıcı **bölgeyi ve modülleri NASA verilerine göre seçme** fikrini tartışmaya açtı; Türkiye yalnızca örnekti. [Colorado Platosu çevresi ve Kuzey Alaska](research/REGION_CANDIDATES.md) gerekçeli iki aday olarak araştırıldı. NASA CMR'de ürün/bölge/tarih eşleşmeleri sorgulandı; bilimsel dosya ve piksel doğrulaması yapılmadı. [Bölge + modül taslağı](architecture/REGIONAL_MODULE_PROPOSAL.md) ve [IDEA-M1-001](team/ideas/IDEA-M1-001.md) **Proposed** durumunda; M1/M2'nin aday onayı yok. [M2 inceleme kaydı](team/HANDOFFS.md) yanıt bekliyor.
 
@@ -37,4 +39,4 @@ NASA'nın bilimsel veri dosyaları indirilmedi; yalnızca açık katalog metaver
 
 ## Sıradaki küçük adım
 
-İki üye [fikir kartındaki sorulara](team/ideas/IDEA-M1-001.md) görüşlerini eklesin. Pilot için ürün/alan kararı verilirse küçük sayısal alt kümelerde kalite, maske ve aylık kapsama bakılsın; adaylar bundan sonra kabul veya reddedilsin. M2 [Mac kurulumuyla](guide/MACOS_SETUP.md) güncel paneli açabilir. Yeni konuşmalar [işleme akışıyla](guide/AI_WORKFLOW.md) kaydedilir.
+Depo sahibi [web yayınını](guide/WEB_PORTAL.md) bir kez açabilir; bundan sonra iki üye aynı siteden okuyabilir. İki üye [fikir kartındaki sorulara](team/ideas/IDEA-M1-001.md) görüşlerini eklesin. Pilot için ürün/alan kararı verilirse küçük sayısal alt kümelerde kalite, maske ve aylık kapsama bakılsın; adaylar bundan sonra kabul veya reddedilsin. M2 yerel düzenleme isterse [Mac kurulumu](guide/MACOS_SETUP.md) geçerlidir. Yeni konuşmalar [işleme akışıyla](guide/AI_WORKFLOW.md) kaydedilir.

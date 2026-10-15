@@ -35,4 +35,4 @@ Her çalışma başında iki üyenin son notu, fikir kayıtları, devir listesi 
 
 ## Paylaşım durumu
 
-**Ortak kaynak:** [GitHub deposunun main dalı](https://github.com/sq0eezy/expedition-73/tree/main). Kullanıcı ilk main aktarımını istedi: [ADR-002](../decisions/ADR-002-GITHUB-SHARING.md). Arkadaşın güncel kayıtları `pull` ile alıp kendi bilgisayarında kurar. [Paylaşım ve kurulum](SYNC.md).
+**Ortak kaynak:** [GitHub deposunun main dalı](https://github.com/sq0eezy/expedition-73/tree/main). İlk aktarım: [ADR-002](../decisions/ADR-002-GITHUB-SHARING.md). Her değişikliği okumak için pull gerekmemesi amacıyla [ortak web paneli](../guide/WEB_PORTAL.md) hazırlandı; depo sahibinin bir kerelik Pages etkinleştirmesi gerekiyor. Sonrasında webden okumak için Mac kurulumu gerekmez. Yerel düzenleme ve Git eşitlemesi: [paylaşım kılavuzu](SYNC.md).

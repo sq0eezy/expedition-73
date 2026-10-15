@@ -1,8 +1,14 @@
 ---
-review_summary: "GitHub main üzerinden paylaşım, arkadaşın ilk kurulumu ve sonraki güncellemeler."
-change_summary: "Arkadaşın Mac kullandığı bilgisine göre kurulum ve sonraki açılış komutları netleştirildi."
+review_summary: "Ortak webden okuma, GitHub üzerinden düzenleme ve yerel kaynakları eşitleme."
+change_summary: "Webden okuma için pull ihtiyacını kaldıracak Pages akışı ve ilk etkinleştirme kılavuzu eklendi."
 ---
 # Paylaşım ve kurulum
+
+## Okumak için ortak web paneli
+
+Kullanıcının son talebiyle [GitHub Pages web yayını](../guide/WEB_PORTAL.md) hazırlandı: [ADR-003](../decisions/ADR-003-WEB-PORTAL.md). Depo sahibi ilk ayarı yaptıktan sonra `main` güncellemeleri otomatik yayımlanır; iki kişi sadece siteyi açıp yenileyerek okuyabilir. Henüz canlı yayın doğrulanmadı. İlk açılış ve çevrim içi düzenleme için esas kaynak [web kılavuzudur](../guide/WEB_PORTAL.md).
+
+Aşağıdaki kurulum adımları yerel düzenleme/önizleme içindir. Web yayını yerel Git kopyalarını veya yerel dosyalarla çalışan yapay zekâyı otomatik güncellemez.
 
 ## Ortak kaynak GitHub
 
@@ -51,4 +57,4 @@ GitHub'da okuduğun bu sürümü almak ile kendi bilgisayarında başarıyla kur
 5. Yetkili paylaşımda branch'i gönder ve kısa bir pull request aç: ne değişti, kimden hangi yanıt bekleniyor, nasıl kontrol edildi?
 6. Birleşen sonucu diğer kişi kendi kopyasına alır. Benim de aynı güncel kayıtları okumam gerekir.
 
-Bu sıra manuel bir çalışma düzenidir; otomatik Git işlemi veya bildirim kurulmadı. Güncellemenin henüz diğer kopyaya ulaşmamış olabileceği her oturumda açık tutulur.
+Bu sıra yerel Git çalışması içindir. Otomatik commit/pull veya bildirim kurulmadı. Web yayını `main` sonrasındaki okuma adımını kolaylaştırır; yerel kopyanın güncelliği ayrıca kontrol edilir.

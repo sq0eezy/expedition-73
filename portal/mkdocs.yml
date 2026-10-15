@@ -1,5 +1,9 @@
 site_name: Expedition 73 · Proje Hafızası
 site_description: NASA Space Apps için fikirler, veri kaynakları, mimari önerileri, kararlar ve ekip takibi.
+site_url: https://sq0eezy.github.io/expedition-73/
+repo_url: https://github.com/sq0eezy/expedition-73
+repo_name: sq0eezy/expedition-73
+edit_uri: edit/main/portal/docs/
 docs_dir: docs
 site_dir: site
 extra:
@@ -19,6 +23,7 @@ theme:
   language: tr
   font: false
   features:
+    - content.action.edit
     - navigation.tabs
     - navigation.sections
     - navigation.indexes
@@ -77,6 +82,7 @@ nav:
       - GitHub aktarımı: evidence/GITHUB_SHARE.md
       - Mac kurulum hazırlığı: evidence/MACOS_SETUP.md
       - Bölge araştırması: evidence/REGION_RESEARCH.md
+      - Web yayını hazırlığı: evidence/PAGES_SETUP.md
   - Proje:
       - Bağlam ve hedef: PROJECT_CONTEXT.md
       - Belge haritası: DOCUMENTATION_MAP.md
@@ -115,8 +121,10 @@ nav:
       - Karar dizini: decisions/index.md
       - Portal kullanımı: decisions/ADR-001-PORTAL.md
       - GitHub paylaşımı: decisions/ADR-002-GITHUB-SHARING.md
+      - Ortak web paneli: decisions/ADR-003-WEB-PORTAL.md
   - Kullanım:
       - Başlangıç kılavuzu: guide/index.md
+      - Ortak web paneli: guide/WEB_PORTAL.md
       - Mac kurulumu: guide/MACOS_SETUP.md
       - Yeni konuşma işleme: guide/AI_WORKFLOW.md
       - Kişisel tercihler: guide/PERSONALIZATION.md

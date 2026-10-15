@@ -4,10 +4,13 @@
 |---|---|---|---|
 | ADR-001 | Project Context Portal ile proje hafızası tutmak | Accepted | Kullanıcının 2026-10-15 isteği |
 | ADR-002 | GitHub üzerinden paylaşım ve ilk main aktarımı | Accepted | Kullanıcının açık main'e gönderme isteği |
+| ADR-003 | Ortak web paneli için GitHub Pages | Accepted | Kullanıcının pull gerektirmeyen web yayını talebi; teknik seçim bu oturumda yapıldı |
 
 [ADR-001 ayrıntısı](ADR-001-PORTAL.md).
 
 [ADR-002 ayrıntısı](ADR-002-GITHUB-SHARING.md).
+
+[ADR-003 ayrıntısı](ADR-003-WEB-PORTAL.md). Kabul edilmiş yayın tercihi, canlı yayının tamamlandığı anlamına gelmez.
 
 ## Karar bekleyenler
 
