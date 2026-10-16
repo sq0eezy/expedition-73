@@ -52,3 +52,9 @@ Windows'ta ilk tam koşuda **41 test geçti** (109,946 s). Platformlar arası so
 ## Açık sınırlar
 
 Kara/su maskesi yok; hücre kenarları yanıtta sunulmadığı için orta nokta varsayımı var. Sonuç maskesiz aday dikdörtgene aittir. Kesin alan, B uygunluğu, ortak dönem/ürün/yöntem, trend ve p-değeri kararı verilmedi. Bölgesel sonuçlar için karşılaştırma kapısı ve gerçek web uygulaması henüz yok. M2'nin başladığı veya Mac üzerinde doğrulandığı varsayılmadı.
+
+## Uzak doğrulama · 2026-10-16
+
+Kod `b6fa5d405990be7f841efec1a3b0d69652acd2b2` ile main'e gönderildi. [Ubuntu T2M adapter checks](https://github.com/sq0eezy/expedition-73/actions/runs/38874227150) başarılı: 42 test, eski nokta örneği doğrulaması ve yeni alan örneğinin yeniden hesabı. Bu uzak Linux kontrolüdür; gerçek Mac kurulumu değildir. [Canlı kanıt sayfası](https://sq0eezy.github.io/expedition-73/evidence/T2M_WINDOW_PROBE/) HTTP 200 ve yeni yanıt SHA-256'sını içeren içerikle doğrulandı. Yerel portal check/strict build ve yedi HTTP yol/içerik kontrolü de geçti; geçici sunucu kapatıldı.
+
+Kod commit'inin [GitHub Pages işi](https://github.com/sq0eezy/expedition-73/actions/runs/38874227002) de başarılı tamamlandı. Panelin yayımlanması yukarıdaki bilimsel sınırlamaları kaldırmaz.
