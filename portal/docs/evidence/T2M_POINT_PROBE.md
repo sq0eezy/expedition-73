@@ -46,3 +46,7 @@ change_summary: "İlk sayısal API erişimi ve çalışan nokta adaptörü kayde
 Deneme noktası aday pencere içindedir; pencere veya nokta kesin analiz alanı değildir. Nokta servisi grid tabanlı tahmin döndürür; istasyon ölçümü veya bütün alanın ortalaması sayılmaz. Alan/kesişim ağırlıkları, kara maskesi, uzun dönem seri, istatistik yöntemi, trend/p-değeri ve B verisi henüz yok. Genel modül grafiği ve nihai web uygulaması geliştirilmedi. [Sonraki görevler](../planning/REGION_A.md).
 
 Kaynaklar: [NASA POWER aylık API](https://power.larc.nasa.gov/docs/services/api/temporal/monthly/), [meteoroloji yöntemi](https://power.larc.nasa.gov/docs/methodology/meteorology/).
+
+## Uzak doğrulama · 2026-10-16
+
+Kod `092823ff9d1c236c6002ad64744b80c787b29441` ile main'e gönderildi; yerel/uzak commit eşleşmesi doğrulandı. [T2M adapter checks](https://github.com/sq0eezy/expedition-73/actions/runs/38871926753) Ubuntu üzerinde **completed/success** döndü; iş akışı çevrim dışı 26 testi ve kaydedilmiş gerçek örnek doğrulamasını çalıştırır. [Portal yayını](https://github.com/sq0eezy/expedition-73/actions/runs/38871926692) da **completed/success**. Canlı kılavuz, bu kanıt sayfası, A fişi ve CURRENT_STATE HTTP 200 ile ve beklenen yeni içerikle doğrulandı. Bu sonuçlar gerçek Mac kurulumu veya bölgesel istatistik onayı değildir.

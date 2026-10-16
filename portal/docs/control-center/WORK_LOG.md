@@ -2,6 +2,8 @@
 
 ## 2026-10-16 · İlk gerçek T2M API ve çalışan nokta adaptörü
 
+**Son kontrol:** Kod main'de `092823f`; Ubuntu adaptör CI ve portal yayını başarılı. Kılavuz/kanıt/A fişi/durum canlı HTTP 200 ve yeni içerikle doğrulandı. Ayrıntılar [T2M kanıtının uzak doğrulama bölümünde](../evidence/T2M_POINT_PROBE.md). Aşağıdaki uzak sonuç henüz yok ifadesi kayıt hazırlanırkenki durumu anlatır.
+
 M1 kendi modül/A görevlerine başlamamızı istedi. A adayının fişi ve sürümlü arama GeoJSON'u hazırlandı; 37,5°K/111°B noktasında 2024 T2M için gerçek POWER yanıtı alındı. `analysis/` içinde Python CLI, istek/sonuç JSON şemaları, kaynak/konum/dönem/birim doğrulaması, dolgu/eksik ayrımı ve yıllık özeti aylardan ayıran adaptör çalışıyor. Genel sözleşmenin yalnızca aylık T2M nokta profilini uygular; bölgesel hesap/istatistik/web ürünü değil. [ADR-006](../decisions/ADR-006-T2M-POINT-ADAPTER.md), [kanıt](../evidence/T2M_POINT_PROBE.md), [Mac/Windows çalıştırma](../guide/T2M_ADAPTER.md).
 
 Windows/Python 3.12.14'te 26 çevrim dışı test ve gerçek örnek şema/anlamsal doğrulaması geçti. Örnek kendi kopyasıyla zaman uyumlu; çıkarım izni false. Uzak Ubuntu CI için ayrı workflow eklendi; bu kayıt yazılırken uzak sonuç henüz yok. R-A02 nokta erişimi doğrulandı, MOD-01/02/03 dar dilimde ilerliyor. B kaydı, ortak ürün/dönem/yöntem ve gerçek alan maskesi açık. M2'ye panel içi H-M1-003 ara teslimi eklendi; dış mesaj gönderilmedi. Portal check ve strict build geçti; geçici 127.0.0.1 statik sunucuda 9 yeni/ilgili yol HTTP 200 döndü ve katalog JSON doğrulandı. Geçici sunucu kapatıldı. git diff --check boşluk hatası vermedi. Bu portal kontrolleri bilimsel yöntem/alan hesabı doğrulaması değildir.
