@@ -202,6 +202,16 @@ class PowerTests(unittest.TestCase):
                 result['provenance']['retrieved_at'] = stamp
                 with self.assertRaises(PilotError): validate_result(result)
 
+    def test_saved_real_b_example_replays_and_aligns(self):
+        config_b = loads((ROOT / "examples/b-point-2024.config.json").read_bytes())
+        raw_b = (ROOT / "examples/b-point-2024/response.json").read_bytes()
+        saved_b = loads((ROOT / "examples/b-point-2024/result.json").read_bytes())
+        self.assertEqual(normalize(raw_b, config_b, saved_b["provenance"]["retrieved_at"]), saved_b)
+        saved_a = loads((ROOT / "examples/a-point-2024/result.json").read_bytes())
+        report = compatibility(saved_a, saved_b)
+        self.assertEqual(report["status"], "aligned_point_series")
+        self.assertEqual(report["paired_valid_months"], 12)
+
 
 if __name__ == '__main__':
     unittest.main()

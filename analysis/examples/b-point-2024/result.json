@@ -1,0 +1,155 @@
+{
+  "schema_version": "0.1.0",
+  "output_type": "monthly_point_series",
+  "module": {
+    "id": "air_temperature_2m",
+    "version": "0.1.0"
+  },
+  "region": {
+    "id": "B",
+    "label": "Kuzey Alaska aday penceresi içindeki teknik deneme noktası",
+    "selection_status": "candidate",
+    "candidate_bbox": [
+      -156,
+      68,
+      -150,
+      70
+    ],
+    "candidate_window_version": "search-window-0.1.0"
+  },
+  "spatial_support": {
+    "kind": "point_sample",
+    "longitude": -153.0,
+    "latitude": 69.0
+  },
+  "variable": {
+    "id": "air_temperature_2m",
+    "unit": "degC",
+    "height_m": 2
+  },
+  "time": {
+    "frequency": "monthly",
+    "start": "2024-01",
+    "end": "2024-12",
+    "calendar": "gregorian",
+    "provider_time_standard": "LST"
+  },
+  "provenance": {
+    "provider": "NASA POWER",
+    "product": "POWER Monthly and Annual API",
+    "api_version": "v2.10.0",
+    "sources": [
+      "MERRA2"
+    ],
+    "request_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M&community=SB&longitude=-153.0&latitude=69.0&format=JSON&start=2024&end=2024",
+    "retrieved_at": "2026-10-16T09:12:49+00:00",
+    "response_sha256": "4ce99e71799d6f542a30a84965a754951abd097d49bb58b06c0e139e84533e47"
+  },
+  "method": {
+    "id": "power_t2m_point_normalization",
+    "version": "0.1.0",
+    "inference": "not_performed"
+  },
+  "quality": {
+    "expected_months": 12,
+    "valid_months": 12,
+    "missing_months": 0,
+    "status": "complete",
+    "warnings": [
+      "POINT_SAMPLE_NOT_REGION_AVERAGE",
+      "INFERENCE_NOT_PERFORMED",
+      "PROVIDER_PIXEL_QA_NOT_SUPPLIED"
+    ]
+  },
+  "series": [
+    {
+      "date": "2024-01",
+      "value": -22.89,
+      "status": "valid"
+    },
+    {
+      "date": "2024-02",
+      "value": -21.67,
+      "status": "valid"
+    },
+    {
+      "date": "2024-03",
+      "value": -21.49,
+      "status": "valid"
+    },
+    {
+      "date": "2024-04",
+      "value": -9.69,
+      "status": "valid"
+    },
+    {
+      "date": "2024-05",
+      "value": -2.88,
+      "status": "valid"
+    },
+    {
+      "date": "2024-06",
+      "value": 9.3,
+      "status": "valid"
+    },
+    {
+      "date": "2024-07",
+      "value": 10.92,
+      "status": "valid"
+    },
+    {
+      "date": "2024-08",
+      "value": 8.16,
+      "status": "valid"
+    },
+    {
+      "date": "2024-09",
+      "value": 2.48,
+      "status": "valid"
+    },
+    {
+      "date": "2024-10",
+      "value": -8.77,
+      "status": "valid"
+    },
+    {
+      "date": "2024-11",
+      "value": -19.71,
+      "status": "valid"
+    },
+    {
+      "date": "2024-12",
+      "value": -23.62,
+      "status": "valid"
+    }
+  ],
+  "module_details": {
+    "provider_header": {
+      "title": "NASA/POWER Source Native Resolution Monthly and Annual",
+      "api": {
+        "version": "v2.10.0",
+        "name": "POWER Monthly and Annual API"
+      },
+      "sources": [
+        "MERRA2"
+      ],
+      "fill_value": -999.0,
+      "time_standard": "LST",
+      "start": "20240101",
+      "end": "20241231"
+    },
+    "provider_parameter": {
+      "units": "C",
+      "longname": "Temperature at 2 Meters"
+    },
+    "provider_coordinates": [
+      -153.0,
+      69.0,
+      304.58
+    ],
+    "provider_annual_summary": {
+      "2024": -8.29
+    },
+    "provider_messages": []
+  }
+}

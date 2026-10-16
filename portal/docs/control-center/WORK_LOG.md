@@ -1,5 +1,9 @@
 # Çalışma günlüğü
 
+## 2026-10-16 · Bölge B ilk erişim ve nokta adaptörü (sq0eezy)
+
+M2 (sq0eezy) Bölge B görevlerine başladı (R-B01 ve R-B02). Kuzey Alaska aday penceresi geometrisi (`analysis/regions/b-candidate-window.geojson`), konfigürasyonu (`analysis/examples/b-point-2024.config.json`) ve gerçek 2024 NASA POWER T2M API yanıtı alındı. 69,0°K / 153,0°B noktasında 12/12 ay eksiksiz veri çekildi (yıllık ortalama -8,29 °C, Ocak -22,89 °C, Temmuz 10,92 °C). [B fişi](../research/regions/REGION_B_PROFILE.md) ve [M2 notu](../team/members/M2.md) dolduruldu; [H-M1-002](../team/HANDOFFS.md) yanıtlandı. macOS ortamında root sertifikaları tamamlandı; 43 çevrim dışı test ve A/B `check-alignment` başarıyla geçti.
+
 ## 2026-10-16 · İlk aday dikdörtgen alan hesabı
 
 **Uzak kontrol:** Kod main'de `b6fa5d4`; Ubuntu test işi başarılı, yeni canlı kanıt sayfası HTTP 200 ve kaynak hash'iyle doğrulandı. [Çalışma bağlantısı](../evidence/T2M_WINDOW_PROBE.md). Aşağıdaki uzak sonuç kontrol edilecek ifadesi ilk kayıt zamanına aittir.

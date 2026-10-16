@@ -19,10 +19,10 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 
 - **Gönderen → alıcı:** M1 → M2; kullanıcı panele eklenmesini ve arkadaşının buradan bakmasını istedi.
 - **Tarih:** 2026-10-16.
-- **Durum:** Yanıt bekliyor; B ataması M1 tarafından bildirildi, M2 başlangıcı yok.
+- **Durum:** Yanıtlandı · İnceleme bekliyor; M2 başlangıç ve ilk erişim denemesini tamamladı.
 - **Beklenen ilk çıktı:** [B görevlerinden](../planning/REGION_B.md) R-B01/R-B02: kaynaklı sınır önerisi ve gerçek küçük T2M API yanıtı/erişim engeli özeti. [B fişine](../research/regions/REGION_B_PROFILE.md) yaz.
 - **M1’in teslim edeceği:** Sürümlü modül girdi/çıktısı, örnek çağrı ve uygunluk koşulları; MOD-01/03.
-- **Yanıt:** Henüz yok. Yeni yanıtta görev kimliği, fiş/çıktı bağlantısı, gerçek durum ve M1’den beklenen girdi yazılacak. Dış mesaj veya bildirim gönderilmedi.
+- **Yanıt:** M2 (sq0eezy), 2026-10-16: R-B01 ve R-B02 tamamlandı. Aday pencere GeoJSON'u (`b-candidate-window.geojson`), konfigürasyonu (`b-point-2024.config.json`) ve gerçek 2024 POWER verisi (`analysis/examples/b-point-2024/`) üretildi. [B fişine](../research/regions/REGION_B_PROFILE.md) işlendi. `check-alignment` ile A ve B 12 ay eşleşti (`aligned_point_series`). M1'den beklenen: 6° genişlik için parçalı bölgesel adaptör desteği veya ortak sınır revizyonu. Dış mesaj gönderilmedi.
 
 ## H-M1-003 · İlk nokta adaptörü ve sözleşme ara teslimi
 

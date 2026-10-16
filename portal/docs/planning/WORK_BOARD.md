@@ -39,9 +39,9 @@ Görevlerin ayrıntıları: [M1 · A ve modüller](REGION_A.md), [M2 · B](REGIO
 | R-A04 | A örnek hesap ve entegrasyon | Validating | M1 | M1 üstlendi | M2 (planlanan) | [Maskesiz aday dikdörtgende bağımsız hesap geçti](../evidence/T2M_WINDOW_PROBE.md); ortak profil/kesin sınır/maske entegrasyonu açık; MOD-02/03 gerekir |
 | R-A05 | A tam dönem seri/kalite/analiz | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Gerçek dönem çıktıları ve geçerli alan/zaman kapsamı; R-A04 gerekir |
 | R-A06 | A bulgusu ve web kontrolü | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Kaynak/belirsizlikle yorum ve arayüz seçim eşleşmesi; R-A05 gerekir |
-| R-B01 | B tanımı ve sınır önerisi | Proposed | M2 | M1 atadı; M2 başlangıç kaydı yok | M1 (planlanan) | [B fişi](../research/regions/REGION_B_PROFILE.md): kaynaklı aday/poligon ve sınır sürümü |
-| R-B02 | B küçük API erişimi | Proposed | M2 | M1 atadı; M2 başlangıç kaydı yok | M1 (planlanan) | Tekrarlanabilir sayısal sorgu, birim/zaman/kapsam ve eksiklik özeti |
-| R-B03 | B'nin ortak veri profiline uygunluğu | Proposed | M2 | M1 atadı; M2 başlangıç kaydı yok | M1 (planlanan) | Ortak ürün/dönem/yöntemle B uyumu ve engeller; R-A03 ile eşleşir |
+| R-B01 | B tanımı ve sınır önerisi | Implemented | M2 | M2 üstlendi | M1 (planlanan) | [B fişi](../research/regions/REGION_B_PROFILE.md): b-candidate-window.geojson ve arama penceresi |
+| R-B02 | B küçük API erişimi | Verified | M2 | M2 üstlendi | M1 (planlanan) | [Gerçek nokta API ve 43 test](../research/regions/REGION_B_PROFILE.md); 12/12 ay, -8,29 °C yıllık ortalama |
+| R-B03 | B'nin ortak veri profiline uygunluğu | Proposed | M2 | M2 üstlendi | M1 (planlanan) | Ortak ürün/dönem/yöntemle B uyumu ve engeller; R-A03 ile eşleşir |
 | R-B04 | B örnek hesap ve entegrasyon | Proposed | M2 | M1 atadı; M2 başlangıç kaydı yok | M1 (planlanan) | Küçük bağımsız alan hesabı modülle karşılaştırılmış; MOD-02/03 gerekir |
 | R-B05 | B tam dönem seri/kalite/analiz | Proposed | M2 | M1 atadı; M2 başlangıç kaydı yok | M1 (planlanan) | Gerçek dönem çıktıları ve geçerli alan/zaman kapsamı; R-B04 gerekir |
 | R-B06 | B bulgusu ve web kontrolü | Proposed | M2 | M1 atadı; M2 başlangıç kaydı yok | M1 (planlanan) | Kaynak/belirsizlikle yorum ve arayüz seçim eşleşmesi; R-B05 gerekir |
