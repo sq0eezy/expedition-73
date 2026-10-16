@@ -1,6 +1,6 @@
 ---
 review_summary: "İki kişilik ekibin NASA Space Apps çalışması için ortak başlangıç noktası."
-change_summary: "M1 modüller/A, M2 B olarak iş bölümü yapıldı; iki bölge için görevler ve çalışma fişleri eklendi."
+change_summary: "İlk gerçek T2M API ve nokta adaptörü çalıştı; örnek ve çalıştırma kılavuzu eklendi."
 ---
 # {{ project_name }}
 
@@ -15,13 +15,14 @@ change_summary: "M1 modüller/A, M2 B olarak iş bölümü yapıldı; iki bölge
 
 **Şu an:** {{ current_phase }}
 
-İlk pilot: **2 metre hava sıcaklığı**. Modüle özel hesaplar ortak sonuç diliyle bağlanacak. Bölge, ürün, dönem ve yöntem henüz açık; bilimsel uygulama geliştirilmedi.
+İlk pilot: **2 metre hava sıcaklığı**. Modüle özel hesaplar ortak sonuç diliyle bağlanacak. İlk NASA POWER nokta API/adaptör dilimi çalışıyor. Bölgesel ürün/sınır/dönem/yöntem ve sunulacak web uygulaması henüz açık.
 
 </div>
 
 ## Nereden başlayalım?
 
 <div class="portal-grid">
+<a class="portal-card portal-card-featured" href="evidence/T2M_POINT_PROBE/"><strong>İlk gerçek veri · T2M API</strong><span>12 aylık nokta yanıtı, çalışan ilk adaptör ve doğrulama sınırları.</span></a>
 <a class="portal-card portal-card-featured" href="planning/REGION_B/"><strong>sq0eezy · Bölge B'de ne yapacağım?</strong><span>İlk iki iş, API denemesi, modül entegrasyonu ve beklenen çıktılar.</span></a>
 <a class="portal-card portal-card-featured" href="planning/REGION_A/"><strong>Emeç · Modüller ve Bölge A</strong><span>Ortak modül teslimleri, A görevleri ve arkadaşına bırakılacak girdiler.</span></a>
 <a class="portal-card portal-card-featured" href="planning/PILOT/"><strong>İlk pilot · Hava sıcaklığı</strong><span>Tek göstergede veri, hesap, adaptör ve web deneyiminin küçük denemesi.</span></a>

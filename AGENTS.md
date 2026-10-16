@@ -11,7 +11,7 @@ Bu depo iki kişilik NASA Space Apps projesinin çalışma alanıdır. `portal/`
 
 ## Projenin sınırı
 
-Güncel karar ADR-004: modüle özel bilimsel hesap + ortak sonuç adaptörü, ayrı konu hiyerarşisi/veri bağımlılığı ve dar pilot kabul edildi. İlk pilot göstergesi 2 metre hava sıcaklığıdır. Bölge, ürün, dönem, yöntem ve teknoloji seçilmedi; NDVI ilk pilot değildir. Teknik sözleşme/arayüz taslağını çalışan uygulama sayma. Ayrıntılar portal/docs/architecture/MODULE_SYSTEM.md ve portal/docs/planning/PILOT.md içindedir.
+Güncel karar ADR-004: modüle özel bilimsel hesap + ortak sonuç adaptörü, ayrı konu hiyerarşisi/veri bağımlılığı ve dar pilot kabul edildi. İlk pilot göstergesi 2 metre hava sıcaklığıdır. Bölge, ürün, dönem, yöntem ve teknoloji seçilmedi; NDVI ilk pilot değildir. İlk teknik dilim analysis/ içinde: NASA POWER T2M nokta API/CLI, 0.1.0 şemaları, normalleştirme ve 26 çevrim dışı test. Çalışma analysis/README.md ve evidence/T2M_POINT_PROBE.md içinde; nokta örneğini bölge ortalaması/trend veya nihai web uygulaması sayma. analysis/ değişikliklerinde kendi .venv Python ile unittest ve gerçek örnek validate komutunu çalıştır. Genel sözleşme/arayüz taslağını çalışan uygulama sayma. Ayrıntılar portal/docs/architecture/MODULE_SYSTEM.md ve portal/docs/planning/PILOT.md içindedir.
 
 Kullanıcının yeni konuşmalarını özetleyerek ilgili belgelere işle; öneriyi kabul edilmiş karar, konuşmayı bilimsel kanıt sayma. Ham konuşmaları, kişisel dosya yollarını ve erişim anahtarlarını yayımlanan `portal/docs/` içine kopyalama.
 

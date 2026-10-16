@@ -9,8 +9,9 @@
 | [Bölge adayları araştırması](REGION_RESEARCH.md) | Resmî kaynaklar, 21 CMR metadata isteği ve sınırlar |
 | [GitHub Pages hazırlığı](PAGES_SETUP.md) | Otomatik yayın akışı, erişim yetkisi ve ilk etkinleştirme sınırı |
 | [Modül ve pilot tasarımı](MODULE_DESIGN.md) | Kullanıcı kararı, konu/veri ilişkileri ve tek göstergeli pilot belgelerinin kontrolü |
+| [Gerçek T2M API ve adaptör](T2M_POINT_PROBE.md) | 2024 tek nokta yanıtı, 26 test ve bilimsel sınırlar |
 | [Araştırma kaydı](../research/index.md) | İncelenen sayfalar ve erişim sınırları |
 
-NASA verisi indirme, trend hesabı, anlamlılık testi, performans ölçümü veya kullanıcı denemesi için henüz kanıt yok.
+NASA POWER sayısal nokta erişimi ve adaptör için [ilk kanıt](T2M_POINT_PROBE.md) var. Bölgesel seri/trend/anlamlılık hesabı, performans ölçümü veya kullanıcı denemesi için henüz kanıt yok.
 
 Yeni kanıtta tarih/ortam, gerçek komut veya gözlem yöntemi, girdi, sonuç, çıktı dosyası ve sınırlama bulunmalı. Portal testleri uygulama analizi yerine sayılmaz. Kaynak aracın eski `verification/` kayıtları bu projenin sonuçları değildir.

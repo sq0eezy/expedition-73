@@ -19,6 +19,8 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | Bileşenler ve akışlar | [Mimari](architecture/index.md) |
 | Konu ağacı, modül giriş/çıkışı ve bağımlılıklar | [Modül sistemi](architecture/MODULE_SYSTEM.md) |
 | Ortak sonuç sözleşmesi ve uygunluk | [Veri ve akışlar](architecture/DATA_AND_FLOWS.md) |
+| İlk T2M nokta modülünün çalıştırılması ve sınırı | [Adaptör kılavuzu](guide/T2M_ADAPTER.md) |
+| Gerçek NASA nokta yanıtı ve modül testleri | [T2M kanıtı](evidence/T2M_POINT_PROBE.md) |
 | Tek göstergeli T2M denemesinin kapsamı/çıkış koşulları | [Pilot](planning/PILOT.md) |
 | İş bölümü, paralel adımlar ve ortak veri profili | [Bölge çalışma akışı](planning/REGION_WORKFLOW.md) |
 | M1'in A ve modül görevlerinin ayrıntısı | [A görevleri](planning/REGION_A.md) |

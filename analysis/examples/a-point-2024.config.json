@@ -1,0 +1,11 @@
+{
+  "schema_version": "0.1.0",
+  "region_id": "A",
+  "label": "Colorado çevresi aday penceresi içindeki teknik deneme noktası",
+  "selection_status": "candidate",
+  "candidate_bbox": [-113, 36, -109, 39],
+  "candidate_window_version": "search-window-0.1.0",
+  "point": {"longitude": -111.0, "latitude": 37.5},
+  "start_year": 2024,
+  "end_year": 2024
+}

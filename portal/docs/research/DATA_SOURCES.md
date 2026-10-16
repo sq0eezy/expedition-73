@@ -4,11 +4,15 @@ change_summary: "Resmî kaynaklara dayanan ilk araştırma listesi eklendi."
 ---
 # NASA veri kaynakları
 
+## İlk sayısal erişim · 2026-10-16
+
+NASA POWER Monthly point API ile A adayının içindeki deneme noktasında gerçek 2024 T2M verisi alındı. Bu ilk teknik dilimde POWER kullanıldı; iki bölgenin nihai ürünü hâlâ seçilmedi. [API/adaptör kanıtı](../evidence/T2M_POINT_PROBE.md). POWER yanıtı doğrudan M2TMNXSLV 5.12.4 dosyası sayılmaz; piksel kalite/alan/trend doğrulanmadı.
+
 ## Yeni bölge araştırması
 
 NASA'nın coğrafi düzeni ve ülke/poligon alt kümesi [bölge seçimi araştırmasında](REGION_CANDIDATES.md) açıklanır. Bu oturumda `M2TMNXSLV` 5.12.4, `MOD13A3` 061 ve `MOD10CM` 61 için gerçek CMR alan/zaman sorguları yapıldı. [Kaydedilmiş sorgular](REGION_CATALOG_CHECK.json) metadata eşleşmeleridir; sayısal dosya, giriş veya kalite kontrolü değildir. Aşağıdaki MOD13C2/GISTEMP/GRACE seçenekleri önceki alternatifler olarak durur; ürün seçimi yapılmadı.
 
-**İnceleme tarihi: 2026-10-15.** Sayfa içeriğinin okunması, dosya indirmenin veya servis entegrasyonunun çalıştığını göstermez. Hiçbir ürün henüz seçilmedi.
+**İnceleme tarihi: 2026-10-15.** Sayfa içeriğinin okunması, dosya indirmenin veya servis entegrasyonunun çalıştığını göstermez. O tarihte ürün seçilmemişti; sonraki teknik deneme yukarıda kaydedildi.
 
 | Kaynak | Burada ne için kullanılır? | İnceleme ve sıradaki sınama |
 |---|---|---|

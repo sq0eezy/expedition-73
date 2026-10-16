@@ -6,6 +6,10 @@ change_summary: "M1 modülleri ve Bölge A'yı üstlendi; alan işi ve modül te
 
 M1, 2026-10-16 tarihinde **modülleri ve Bölge A'yı** üstlendi. Görev durumları/sorumlular [panoda](WORK_BOARD.md), ortak çalışma profili [iş bölümünde](REGION_WORKFLOW.md). Mevcut A adayı [Colorado Platosu çevresi](../research/REGION_CANDIDATES.md); kesin alan seçimi hâlâ açık.
 
+## İlk ara teslim · 2026-10-16
+
+[A fişi](../research/regions/REGION_A_PROFILE.md), gerçek 2024 T2M nokta yanıtı ve `analysis/` altında ilk CLI/şema/adaptör hazır. [Kılavuz](../guide/T2M_ADAPTER.md), [kontroller ve sınırlar](../evidence/T2M_POINT_PROBE.md). Nokta erişimi bölgesel analiz tamamlandı anlamına gelmez; görev durumları panoda.
+
 ## Bölge işleri
 
 | Görev | İş ve somut teslim | Bitiş ölçütü / bağımlılık |

@@ -29,15 +29,15 @@ R-A03/R-B03 bu tabloda adayları kaynaklı biçimde kesinleştirir. Değişiklik
 |---|---|
 | Profil kimliği/sürümü | Henüz yok |
 | Gösterge | 2 metre hava sıcaklığı; pilot seçildi |
-| Sağlayıcı/ürün/sürüm ve API yolu | Seçilmedi; NASA POWER API ve doğrudan MERRA-2 erişimi değerlendirilebilir |
+| Sağlayıcı/ürün/sürüm ve API yolu | İki bölge için seçilmedi; A erişim denemesi NASA POWER Monthly v2.10.0 point API ile başarılı. [Kanıt](../evidence/T2M_POINT_PROBE.md). Doğrudan MERRA-2 ürünüyle eşit sayılmaz |
 | A ve B sınır kimliği/sürümü | Seçilmedi; [A fişi](../research/regions/REGION_A_PROFILE.md), [B fişi](../research/regions/REGION_B_PROFILE.md) |
 | Ortak dönem/sıklık | Seçilmedi; 2001–2024 ve aylık sıklık önceki adaylar |
 | Birim/ölçek/eksik değer kuralı | Ürüne göre doğrulanacak |
 | Kara/su maskesi ve alan/kesişim ağırlığı | Tanımlanmadı; coğrafyaya uygun ama karşılaştırılabilir kurallar gerek |
 | Referans dönem/mevsim tanımı | Gerekliyse açıkça seçilecek |
 | Analiz profili/sürümü ve varsayımlar | Seçilmedi |
-| Modül/sözleşme sürümü ve örnek çağrı | MOD-01/03 tesliminde yazılacak |
-| Gözlenen uyumluluk/engeller | Henüz sayısal deneme yok |
+| Modül/sözleşme sürümü ve örnek çağrı | İlk nokta profili/CLI 0.1.0 hazır: [çalıştırma](../guide/T2M_ADAPTER.md). Bölgesel profil henüz yok |
+| Gözlenen uyumluluk/engeller | A nokta API erişimi doğrulandı. B örneği, bölgesel kapsam ve ortak yöntem henüz yok; A/B uyumu doğrulanmadı |
 
 API kullanımı bütün arşivi elle indirmek zorunda olmak değildir. Öncelik gerekli küçük alt kümeye programla erişmek; sorgu, yanıt ve üretim izini korumaktır. [NASA POWER aylık API](https://power.larc.nasa.gov/docs/services/api/temporal/monthly/) bir seçenektir; nokta yanıtı bölge ortalaması sayılmaz. POWER yanıtı doğrudan MERRA-2 dosyasıyla aynı ürün/sürüm diye etiketlenmez. Sağlayıcı değişikliği önce uygunluk kontrolünden geçer.
 

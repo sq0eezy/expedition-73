@@ -1,5 +1,12 @@
 # Çalışma günlüğü
 
+## 2026-10-16 · İlk gerçek T2M API ve çalışan nokta adaptörü
+
+M1 kendi modül/A görevlerine başlamamızı istedi. A adayının fişi ve sürümlü arama GeoJSON'u hazırlandı; 37,5°K/111°B noktasında 2024 T2M için gerçek POWER yanıtı alındı. `analysis/` içinde Python CLI, istek/sonuç JSON şemaları, kaynak/konum/dönem/birim doğrulaması, dolgu/eksik ayrımı ve yıllık özeti aylardan ayıran adaptör çalışıyor. Genel sözleşmenin yalnızca aylık T2M nokta profilini uygular; bölgesel hesap/istatistik/web ürünü değil. [ADR-006](../decisions/ADR-006-T2M-POINT-ADAPTER.md), [kanıt](../evidence/T2M_POINT_PROBE.md), [Mac/Windows çalıştırma](../guide/T2M_ADAPTER.md).
+
+Windows/Python 3.12.14'te 26 çevrim dışı test ve gerçek örnek şema/anlamsal doğrulaması geçti. Örnek kendi kopyasıyla zaman uyumlu; çıkarım izni false. Uzak Ubuntu CI için ayrı workflow eklendi; bu kayıt yazılırken uzak sonuç henüz yok. R-A02 nokta erişimi doğrulandı, MOD-01/02/03 dar dilimde ilerliyor. B kaydı, ortak ürün/dönem/yöntem ve gerçek alan maskesi açık. M2'ye panel içi H-M1-003 ara teslimi eklendi; dış mesaj gönderilmedi. Portal check ve strict build geçti; geçici 127.0.0.1 statik sunucuda 9 yeni/ilgili yol HTTP 200 döndü ve katalog JSON doğrulandı. Geçici sunucu kapatıldı. git diff --check boşluk hatası vermedi. Bu portal kontrolleri bilimsel yöntem/alan hesabı doğrulaması değildir.
+
+
 ## 2026-10-16 · Bölge görevleri ve iş bölümü
 
 M1 modülleri/A'yı yapacağını ve arkadaşının B'yi yapacağını bildirdi; arkadaşının panelden takip edebilmesi için yapılacaklar istedi. [ADR-005](../decisions/ADR-005-TEAM-OWNERSHIP.md), [A/modül listesi](../planning/REGION_A.md), [B listesi](../planning/REGION_B.md) ve [ortak profil](../planning/REGION_WORKFLOW.md) eklendi. Panoda MOD-01/03 ve R-A01/06, R-B01/06 görevleri sorumlu, bağımlılık, çıktı ve inceleme planıyla ayrıldı. Boş bölge çalışma fişleri oluşturuldu; sayısal veri/hesap/ilerleme uydurulmadı. M2 ataması M1'den geldi; M2'nin kendi başlama/kabul kaydı yok. Alan/ürün/dönem seçimi bu atamayla kesinleşmedi.

@@ -6,7 +6,7 @@ varlık
 
 [Ekip alanı](portal/docs/team/index.md): Emeç Yıldız ve sq0eezy için ayrı çalışma notları, fikir alışverişi, görev sahipliği ve devir kayıtları. Ortak kayıtlar bu deponun `main` dalından paylaşılır; [paylaşım kılavuzu](portal/docs/team/SYNC.md).
 
-**Mevcut aşama:** tek göstergeli **2 metre hava sıcaklığı** pilotunu hazırlama. Modüle özel hesap + ortak sonuç adaptörü kabul edildi; bölgeler/ürün/dönem/yöntem açık. [Pilot planı](portal/docs/planning/PILOT.md), [modül sistemi](portal/docs/architecture/MODULE_SYSTEM.md). Bilimsel uygulama henüz geliştirilmedi.
+**Mevcut aşama:** tek göstergeli **2 metre hava sıcaklığı** pilotunu hazırlama. Modüle özel hesap + ortak sonuç adaptörü kabul edildi; bölgeler/ürün/dönem/yöntem açık. [Pilot planı](portal/docs/planning/PILOT.md), [modül sistemi](portal/docs/architecture/MODULE_SYSTEM.md). İlk [T2M API/nokta adaptörü](analysis/README.md) çalışıyor; bölgesel istatistik ve web ürünü henüz yok.
 
 Başlangıç: [mevcut durum](portal/docs/CURRENT_STATE.md), [fikir karşılaştırması](portal/docs/discovery/IDEA_COMPARISON.md), [NASA kaynakları](portal/docs/research/DATA_SOURCES.md).
 

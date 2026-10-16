@@ -4,7 +4,7 @@ change_summary: "Kullanıcı T2M pilotunu seçti; veri/analiz/arayüz için doğ
 ---
 # Pilot · 2 metre hava sıcaklığı
 
-**Kabul edilen:** Tek göstergeyle deneme; zaman serisi, eğilim ve sonuçları inceleten web uygulaması. [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md). Bilimsel veri indirilmedi; uygulama kodu henüz yok.
+**Kabul edilen:** Tek göstergeyle deneme; zaman serisi, eğilim ve sonuçları inceleten web uygulaması. [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md). İlk gerçek POWER nokta örneği ve API/JSON adaptörü var: [kanıt](../evidence/T2M_POINT_PROBE.md), [çalıştırma](../guide/T2M_ADAPTER.md). Bölgesel analiz ve web ürünü henüz yok.
 
 ## Soru ve aday girdiler
 

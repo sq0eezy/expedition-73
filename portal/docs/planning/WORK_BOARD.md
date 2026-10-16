@@ -17,22 +17,24 @@ Görevler eldeki kanıta göre güncellenir. **2026-10-16 iş bölümü:** M1 mo
 | R-04 | Küçük örneği ve kaliteyi incele | Proposed | M1: A; M2: B | Alt görevler aşağıda | Karşı üye (planlanan) | R-A04/R-B04: bağımsız ara hesap ve kapsam kontrolü |
 | D-01 | Araştırma sorusu ve kapsamı seç | Kısmen kararlaştırıldı | M1 yönlendirmesi | Tek gösterge seçildi; alan/ürün/dönem açık | M2 görüşü bekleniyor | [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md) ve [pilot](PILOT.md) |
 | A-02 | Modül ilişkileri ve sonuç sözleşmesini taslaklaştır | Implemented | Bu yapay zekâ oturumu | Kullanıcı talebi | Teknik uygulama/üye incelemesi bekleniyor | [Modül sistemi](../architecture/MODULE_SYSTEM.md); hiyerarşi ve veri bağımlılığı ayrı |
-| P-04 | Dar T2M pilotunu uçtan uca gerçekleştir | Proposed | M1: modül/A; M2: B | [İş bölümü](REGION_WORKFLOW.md); genel web geliştirmesi açık | Karşılıklı inceleme planı | [Pilot çıkış koşulları](PILOT.md); alt görevler aşağıda |
+| P-04 | Dar T2M pilotunu uçtan uca gerçekleştir | Validating | M1: modül/A; M2: B | [İş bölümü](REGION_WORKFLOW.md); genel web geliştirmesi açık | Karşılıklı inceleme planı | [Pilot çıkış koşulları](PILOT.md); alt görevler aşağıda |
 | A-01 | Modülün istatistik yöntemini belirle | Proposed | M1 | Modül kapsamını üstlendi | M2 (planlanan) | MOD-02: kaynak, varsayımlar ve bağımsız örnek |
 | U-01 | Etkileşim taslağını belirle | Proposed | Atanmadı | Atanmadı | Atanmadı | Harita/grafik/tarih akışı; kapsam seçimine bağlı |
 | C-01 | Yeni konuşmaları özetleyerek işle | Proposed | Atanmadı | Atanmadı | Atanmadı | Yeni bilginin esas belgede yer alması |
 
 ## Modül ve bölge görevleri
 
+**2026-10-16 ara teslim:** MOD-01/03 için ilk nokta-serisi şeması/CLI/adaptör, MOD-02 için kaynak/normalleştirme dilimi çalışıyor; bölgesel hesap/istatistik henüz yok. [Gerçek testler ve sınırlamalar](../evidence/T2M_POINT_PROBE.md). M2’nin başlama/görüş kaydı eklenmedi.
+
 Görevlerin ayrıntıları: [M1 · A ve modüller](REGION_A.md), [M2 · B](REGION_B.md), [ortak profil ve sıra](REGION_WORKFLOW.md). `Proposed` henüz çalıştırılmadığını gösterir; sorumluluk ataması ayrı sütundadır.
 
 | ID | İş | Durum | Sorumlu | Üstlenme / atama kaynağı | İnceleyen | Bitiş ölçütü / çıktı |
 |---|---|---|---|---|---|---|
-| MOD-01 | Girdi/çıktı sözleşmesi ve çağrı örneği | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Sürümlü şema taslağı ve A/B API örnekleriyle uyumlu girdi/çıktı |
-| MOD-02 | T2M modülü ve bilimsel hesap | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Ortak profilde seri/analiz; bağımsız küçük hesap ve yöntem kontrolleri |
-| MOD-03 | Adaptör, uygunluk ve sürümlü modül teslimi | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Örnek çalıştırma, sürüm, hata/eksiklik davranışı ve B yapılandırma girdileri |
-| R-A01 | A tanımı ve sınır önerisi | Proposed | M1 | M1 üstlendi | M2 (planlanan) | [A fişi](../research/regions/REGION_A_PROFILE.md): kaynaklı aday/poligon ve sınır sürümü |
-| R-A02 | A küçük API erişimi | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Tekrarlanabilir sayısal sorgu, birim/zaman/kapsam ve eksiklik özeti |
+| MOD-01 | Girdi/çıktı sözleşmesi ve çağrı örneği | Validating | M1 | M1 üstlendi | M2 (planlanan) | Sürümlü şema taslağı ve A/B API örnekleriyle uyumlu girdi/çıktı |
+| MOD-02 | T2M modülü ve bilimsel hesap | Validating | M1 | M1 üstlendi | M2 (planlanan) | Ortak profilde seri/analiz; bağımsız küçük hesap ve yöntem kontrolleri |
+| MOD-03 | Adaptör, uygunluk ve sürümlü modül teslimi | Validating | M1 | M1 üstlendi | M2 (planlanan) | Örnek çalıştırma, sürüm, hata/eksiklik davranışı ve B yapılandırma girdileri |
+| R-A01 | A tanımı ve sınır önerisi | Implemented | M1 | M1 üstlendi | M2 (planlanan) | [A fişi](../research/regions/REGION_A_PROFILE.md): kaynaklı aday/poligon ve sınır sürümü |
+| R-A02 | A küçük API erişimi | Verified | M1 | M1 üstlendi | M2 (planlanan) | [Gerçek nokta API ve 26 test](../evidence/T2M_POINT_PROBE.md); 12/12 ay, bölge ortalaması değil |
 | R-A03 | A/B ortak veri profilini kaydet | Proposed | M1 | M1 üstlendi | M2 (B uygunluk incelemesi) | İki erişim özetine dayanan sürümlü [ortak profil](REGION_WORKFLOW.md) |
 | R-A04 | A örnek hesap ve entegrasyon | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Küçük bağımsız alan hesabı modülle karşılaştırılmış; MOD-02/03 gerekir |
 | R-A05 | A tam dönem seri/kalite/analiz | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Gerçek dönem çıktıları ve geçerli alan/zaman kapsamı; R-A04 gerekir |
@@ -46,4 +48,4 @@ Görevlerin ayrıntıları: [M1 · A ve modüller](REGION_A.md), [M2 · B](REGIO
 
 Bir görev önerildiğinde “Sorumlu: M1/M2, Üstlenme: Önerildi” yazılır. İlgili kişi üstlenince “Kabul edildi” olur. Kişi başlamadan işi `Validating` saymayın; bittiğinde gerçek sonucu ve inceleme ihtiyacını kaydedin. İnceleyen adı yazmak, incelemenin yapılmış olduğunu göstermez.
 
-Henüz uygulama geliştirme görevi başlatılmadı. [Açık sorular](../discovery/index.md) yanıtlandıkça işler somutlaştırılacak.
+M1 modül geliştirmesine başladı; ilk teknik dilim nokta-serisi aktarımıdır. Bölgesel hesap ve web arayüzü henüz geliştirilmedi. [Açık sorular](../discovery/index.md) yanıtlandıkça işler somutlaştırılacak.

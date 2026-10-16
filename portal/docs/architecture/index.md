@@ -17,4 +17,4 @@ Konu/alt modül ağacı ile veri bağımlılığı ayrı tutulur. Yeni bölge me
 
 ## Açık teknik seçimler
 
-Uygulama kodu, gerçek T2M dosyası ve hesaplanmış eğilim yok. Ürün, sınırlar, dönem ve yöntem pilotla doğrulanacak. Framework, backend, veritabanı ve ürün barındırması seçilmedi. Sonuç dosyalarıyla başlangıç bir aday; canlı API ihtiyacı veri boyutu ve deneyim üzerinden belirlenecek. Mevcut Pages yayını proje yönetim portalına aittir.
+İlk Python API/nokta adaptörü, JSON şemaları ve gerçek POWER örneği var; [çalıştırma](../guide/T2M_ADAPTER.md). Bölgesel hesap ve eğilim yok. Ürün, sınırlar, dönem ve yöntem pilotla doğrulanacak. Python/jsonschema nokta prototipi için seçildi: [ADR-006](../decisions/ADR-006-T2M-POINT-ADAPTER.md). Nihai web framework/backend/veritabanı ve barındırma seçilmedi. Sonuç dosyalarıyla başlangıç bir aday; canlı API ihtiyacı veri boyutu ve deneyim üzerinden belirlenecek. Mevcut Pages yayını proje yönetim portalına aittir.

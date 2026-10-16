@@ -1,0 +1,14 @@
+{
+  "type": "Feature",
+  "properties": {
+    "region_id": "A",
+    "selection_status": "candidate",
+    "boundary_version": "search-window-0.1.0",
+    "purpose": "Reproducible preliminary search window, not an accepted analysis/ecological boundary",
+    "source": "Project research/REGION_CANDIDATES.md: analyst-defined search bbox"
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[-113, 36], [-109, 36], [-109, 39], [-113, 39], [-113, 36]]]
+  }
+}

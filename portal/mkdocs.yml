@@ -84,6 +84,7 @@ nav:
       - Bölge araştırması: evidence/REGION_RESEARCH.md
       - Web yayını hazırlığı: evidence/PAGES_SETUP.md
       - Modül tasarım kaydı: evidence/MODULE_DESIGN.md
+      - İlk T2M API ve adaptör: evidence/T2M_POINT_PROBE.md
   - Proje:
       - Bağlam ve hedef: PROJECT_CONTEXT.md
       - Belge haritası: DOCUMENTATION_MAP.md
@@ -132,8 +133,10 @@ nav:
       - Ortak web paneli: decisions/ADR-003-WEB-PORTAL.md
       - Modül ve pilot kararı: decisions/ADR-004-MODULES-AND-PILOT.md
       - Modül ve bölge sorumluları: decisions/ADR-005-TEAM-OWNERSHIP.md
+      - İlk T2M teknik dilimi: decisions/ADR-006-T2M-POINT-ADAPTER.md
   - Kullanım:
       - Başlangıç kılavuzu: guide/index.md
+      - T2M adaptörünü çalıştır: guide/T2M_ADAPTER.md
       - Ortak web paneli: guide/WEB_PORTAL.md
       - Mac kurulumu: guide/MACOS_SETUP.md
       - Yeni konuşma işleme: guide/AI_WORKFLOW.md

@@ -8,6 +8,10 @@ change_summary: "M1'in iş bölümü talebiyle Bölge B için sıralı görevler
 
 **İlk gösterge:** 2 metre hava sıcaklığı. Modülleri M1 geliştiriyor; sen Bölge B'nin sınırını, veri uygunluğunu, bölgesel girdilerini ve sonuç kontrolünü hazırlıyorsun. Mevcut B adayı [Kuzey Alaska](../research/REGION_CANDIDATES.md); alan seçimi henüz kesinleşmedi. “B” bir iş kimliği; ülke/bölge kararının yerine geçmez.
 
+## Kullanabileceğin ilk araç · 2026-10-16
+
+M1’in ilk T2M nokta adaptörü/şeması hazır: [Mac komutları ve B’ye uyarlama](../guide/T2M_ADAPTER.md). Önce kaydedilmiş A örneğini ağ isteği yapmadan doğrulayabilirsin; sonra kendi B yapılandırmanla R-B02 denemeni yap. Bölgesel entegrasyon/istatistik henüz teslim edilmedi; R-B04 bağımlılıkları hâlâ geçerli.
+
 ## Hemen başlayacağın iki iş
 
 1. **R-B01:** [Bölge B çalışma fişini](../research/regions/REGION_B_PROFILE.md) aç. Aday alanın neyi temsil ettiğini, önerilen sınırı ve kara/su durumunu kaynakla yaz. Ön arama dikdörtgenini kesin sınır sayma.

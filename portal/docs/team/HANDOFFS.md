@@ -24,6 +24,15 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 - **M1’in teslim edeceği:** Sürümlü modül girdi/çıktısı, örnek çağrı ve uygunluk koşulları; MOD-01/03.
 - **Yanıt:** Henüz yok. Yeni yanıtta görev kimliği, fiş/çıktı bağlantısı, gerçek durum ve M1’den beklenen girdi yazılacak. Dış mesaj veya bildirim gönderilmedi.
 
+## H-M1-003 · İlk nokta adaptörü ve sözleşme ara teslimi
+
+- **Gönderen → alıcı:** M1 → M2; mevcut ortak modül görevinin panel içi ara teslimi.
+- **Tarih:** 2026-10-16.
+- **Durum:** İnceleme bekliyor; M2’nin okuduğu/kabul ettiği varsayılmadı.
+- **Teslim:** `analysis/` içinde v0.1.0 nokta CLI, istek/sonuç JSON şemaları, gerçek A örneği ve çevrim dışı testler. [Mac çalıştırma ve B’ye uyarlama](../guide/T2M_ADAPTER.md).
+- **Beklenen:** Önce kaydedilmiş örneği doğrula; R-B01/02 kapsamında kendi B yapılandırman/denemenle gerçek sonucu fişine ekle. Bölgesel entegrasyon henüz desteklenmiyor.
+- **Sınır:** Aktarım/zaman uyumu istatistik onayı değil; B verisi, bölgesel ağırlıklar ve trend hesabı henüz yok. Dış mesaj/bildirim gönderilmedi.
+
 ## Bir kayıt için gerekenler
 
 | Alan | İçerik |
