@@ -4,6 +4,8 @@ change_summary: "Gerçek NASA örneği, v0.1.0 şema/CLI ve çevrim dışı doğ
 ---
 # İlk T2M adaptörünü çalıştırma
 
+**Yeni ayrı dilim:** Nokta profili korunuyor; maskesiz aday dikdörtgen için [alan hesabı kılavuzu](T2M_WINDOW.md) da var. Aşağıdaki komutlar nokta çıktısına aittir; alan sonucuyla karıştırmayın.
+
 `analysis/` içinde ilk çalışan teknik dilim var: NASA POWER T2M **nokta yanıtı → aylık seri → ortak JSON profili**. Kaynak kod ve ayrıntılı kullanım: [analysis README](https://github.com/sq0eezy/expedition-73/blob/main/analysis/README.md). [Gerçek örnek ve sınırlar](../evidence/T2M_POINT_PROBE.md).
 
 ## Mac'te kaydedilmiş örneği doğrula

@@ -1,5 +1,11 @@
 # Çalışma günlüğü
 
+## 2026-10-16 · İlk aday dikdörtgen alan hesabı
+
+M1'in devam talebiyle A aday penceresinde bölgesel POWER erişimi sınandı. İlk 42 merkezli yanıtın kenar kesişimlerini eksik bıraktığı görüldü; yarım hücre payıyla gerçek 56 hücre/12 ay alındı. `analysis/` içinde nokta profilinden ayrı `monthly_window_series` şeması, bölgesel CLI, MERRA2 ızgara/kapsam kontrolü, orta noktadan hücre kenarı, küresel dikdörtgen kesişim alanı ve ağırlıklı ortalama eklendi. Eksik ayda ortalama null, eksik coğrafi hücrede hata; yıllık özet ayrı. Ham yanıt ve tüm hücre tanıları saklandı. [Kanıt](../evidence/T2M_WINDOW_PROBE.md), [Mac/Windows kılavuzu](../guide/T2M_WINDOW.md).
+
+Windows'ta 41 testlik tam koşu geçti; dar sayısal tolerans değişimi sonrası dört ilgili test geçti, toplam 42 ayrı test doğrulandı. Ocak hesabı bağımsız satır/bant ağırlıklarıyla 12 ondalıkta eşleşti; eski nokta örneği ve yeni alan örneği çevrim dışı doğrulandı. Bu hesap kontrolüdür; kara maskesi, kesin bölge/yöntem veya uzun dönem iklim sonucu değildir. R-A04 Validating kaldı; ortak B profili ve nihai maske açık. Mevcut 6° B penceresi için parçalama gereği ve H-M1-004 panel içi ara teslim kaydedildi; B adına başlanmadı, dış mesaj gönderilmedi. Uzak main başlangıçta fetch ile denetlendi; yeni katkı yoktu. Portal check ve strict build geçti; geçici yerel HTTP sunucusunda yedi yol/içerik doğrulandı ve sunucu kapatıldı. Kaydedilmiş yanıtla CLI'nin yeni klasöre istek/yanıt/sonuç yazması ve yeniden hesabı da geçti. Uzak CI/yayın sonucu ayrıca kontrol edilecek.
+
 ## 2026-10-16 · İlk gerçek T2M API ve çalışan nokta adaptörü
 
 **Son kontrol:** Kod main'de `092823f`; Ubuntu adaptör CI ve portal yayını başarılı. Kılavuz/kanıt/A fişi/durum canlı HTTP 200 ve yeni içerikle doğrulandı. Ayrıntılar [T2M kanıtının uzak doğrulama bölümünde](../evidence/T2M_POINT_PROBE.md). Aşağıdaki uzak sonuç henüz yok ifadesi kayıt hazırlanırkenki durumu anlatır.

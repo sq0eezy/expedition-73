@@ -35,3 +35,5 @@ jobs:
         run: .venv/bin/python -m unittest discover -s tests -v
       - name: Validate committed real sample
         run: .venv/bin/python -m expedition73 validate examples/a-point-2024/result.json
+      - name: Replay regional geometry, weights and real response
+        run: .venv/bin/python -m expedition73 validate-window examples/a-window-2024

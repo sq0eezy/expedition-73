@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 
 from .power import PilotError, compatibility, fetch, loads, normalize, validate_result
+from . import regional
 
 
 def write_json(path: Path, value) -> None:
@@ -19,6 +20,11 @@ def main(argv=None) -> int:
     probe = commands.add_parser("fetch-power-point", help="Fetch and validate a small candidate point sample; no trend.")
     probe.add_argument("--config", type=Path, required=True)
     probe.add_argument("--output-dir", type=Path, required=True)
+    window = commands.add_parser("fetch-power-window", help="Experimental unmasked rectangle means; no trend.")
+    window.add_argument("--config", type=Path, required=True)
+    window.add_argument("--output-dir", type=Path, required=True)
+    replay = commands.add_parser("validate-window", help="Replay a complete window run offline, including geometry and weights.")
+    replay.add_argument("directory", type=Path)
     validate = commands.add_parser("validate", help="Validate schema and monthly consistency offline.")
     validate.add_argument("input", type=Path)
     compare = commands.add_parser("check-alignment", help="Check point-series transport alignment; no inference.")
@@ -26,17 +32,21 @@ def main(argv=None) -> int:
     compare.add_argument("right", type=Path)
     args = parser.parse_args(argv)
     try:
-        if args.command == "fetch-power-point":
+        if args.command in ("fetch-power-point", "fetch-power-window"):
             if args.output_dir.exists():
                 raise PilotError("Output directory already exists; choose a new run directory.")
             config = loads(args.config.read_bytes())
-            raw, retrieved_at = fetch(config)
-            result = normalize(raw, config, retrieved_at)
+            adapter_fetch, adapter_normalize = (regional.fetch, regional.normalize) if args.command == "fetch-power-window" else (fetch, normalize)
+            raw, retrieved_at = adapter_fetch(config)
+            result = adapter_normalize(raw, config, retrieved_at)
             args.output_dir.mkdir(parents=True, exist_ok=False)
             (args.output_dir / "response.json").write_bytes(raw)
             write_json(args.output_dir / "request.json", config)
             write_json(args.output_dir / "result.json", result)
             print(json.dumps({"output": str(args.output_dir), "quality": result["quality"]}, ensure_ascii=False))
+        elif args.command == "validate-window":
+            result = regional.validate_run(args.directory)
+            print(json.dumps({"status": "replay_passed", "quality": result["quality"]}, ensure_ascii=False))
         elif args.command == "validate":
             validate_result(loads(args.input.read_bytes()))
             print("Monthly point-series contract and consistency checks passed.")

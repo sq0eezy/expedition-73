@@ -24,7 +24,7 @@ Görevler eldeki kanıta göre güncellenir. **2026-10-16 iş bölümü:** M1 mo
 
 ## Modül ve bölge görevleri
 
-**2026-10-16 ara teslim:** MOD-01/03 için ilk nokta-serisi şeması/CLI/adaptör, MOD-02 için kaynak/normalleştirme dilimi çalışıyor; bölgesel hesap/istatistik henüz yok. [Gerçek testler ve sınırlamalar](../evidence/T2M_POINT_PROBE.md). M2’nin başlama/görüş kaydı eklenmedi.
+**2026-10-16 ikinci ara teslim:** MOD-01/03 için nokta profiline ayrı `monthly_window_series` şeması/CLI eklendi. MOD-02 ve R-A04 için maskesiz aday dikdörtgenin 56 hücre/12 aylık alan hesabı ve bağımsız Ocak kontrolü çalışıyor. Kesin sınır/maske, ortak B profili ve istatistik açık; R-A04 tamamlandı sayılmadı. [Kanıt ve sınırlar](../evidence/T2M_WINDOW_PROBE.md). M2’nin başlama/görüş kaydı eklenmedi.
 
 Görevlerin ayrıntıları: [M1 · A ve modüller](REGION_A.md), [M2 · B](REGION_B.md), [ortak profil ve sıra](REGION_WORKFLOW.md). `Proposed` henüz çalıştırılmadığını gösterir; sorumluluk ataması ayrı sütundadır.
 
@@ -36,7 +36,7 @@ Görevlerin ayrıntıları: [M1 · A ve modüller](REGION_A.md), [M2 · B](REGIO
 | R-A01 | A tanımı ve sınır önerisi | Implemented | M1 | M1 üstlendi | M2 (planlanan) | [A fişi](../research/regions/REGION_A_PROFILE.md): kaynaklı aday/poligon ve sınır sürümü |
 | R-A02 | A küçük API erişimi | Verified | M1 | M1 üstlendi | M2 (planlanan) | [Gerçek nokta API ve 26 test](../evidence/T2M_POINT_PROBE.md); 12/12 ay, bölge ortalaması değil |
 | R-A03 | A/B ortak veri profilini kaydet | Proposed | M1 | M1 üstlendi | M2 (B uygunluk incelemesi) | İki erişim özetine dayanan sürümlü [ortak profil](REGION_WORKFLOW.md) |
-| R-A04 | A örnek hesap ve entegrasyon | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Küçük bağımsız alan hesabı modülle karşılaştırılmış; MOD-02/03 gerekir |
+| R-A04 | A örnek hesap ve entegrasyon | Validating | M1 | M1 üstlendi | M2 (planlanan) | [Maskesiz aday dikdörtgende bağımsız hesap geçti](../evidence/T2M_WINDOW_PROBE.md); ortak profil/kesin sınır/maske entegrasyonu açık; MOD-02/03 gerekir |
 | R-A05 | A tam dönem seri/kalite/analiz | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Gerçek dönem çıktıları ve geçerli alan/zaman kapsamı; R-A04 gerekir |
 | R-A06 | A bulgusu ve web kontrolü | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Kaynak/belirsizlikle yorum ve arayüz seçim eşleşmesi; R-A05 gerekir |
 | R-B01 | B tanımı ve sınır önerisi | Proposed | M2 | M1 atadı; M2 başlangıç kaydı yok | M1 (planlanan) | [B fişi](../research/regions/REGION_B_PROFILE.md): kaynaklı aday/poligon ve sınır sürümü |

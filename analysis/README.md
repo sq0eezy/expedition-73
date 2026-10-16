@@ -2,7 +2,22 @@
 
 NASA POWER Monthly API'den **aday bir noktaya** ait aylık 2 metre hava sıcaklığını alır; doğrular ve sürümlü ortak JSON çıktısına çevirir. `examples/a-point-2024/` gerçek API yanıtı ve çıktısıdır. Bu sürüm **bölge ortalaması, trend, p-değeri veya nedensellik hesabı yapmaz**. POWER, MERRA-2 tabanlı bir servistir; yanıt doğrudan `M2TMNXSLV` 5.12.4 dosyası diye etiketlenmez.
 
-Kapsam: MOD-01/02/03'ün ilk aktarım/adaptör dilimi ve R-A02'nin noktalı erişim sınaması. B entegrasyonu, bölgesel ağırlıklar ve istatistikler sonraki işlerdir.
+Kapsam: MOD-01/02/03'ün ilk aktarım/adaptör dilimi ve R-A02'nin erişim sınaması. Nokta profiline ek olarak maskesiz aday dikdörtgen için deneysel alan ağırlıklı seri çalışıyor; B uygunluğu ve istatistikler sonraki işlerdir.
+
+## Yeni: maskesiz dikdörtgen denemesi
+
+Mac/Linux, `analysis` klasöründe kurulu ortamla:
+
+```sh
+.venv/bin/python -m expedition73 validate-window examples/a-window-2024
+.venv/bin/python -m expedition73 fetch-power-window --config examples/a-window-2024.config.json --output-dir artifacts/a-window-new-run
+```
+
+Windows'ta `.venv/bin/python` yerine `& .\.venv\Scripts\python.exe` kullanılır. İlk komut çevrim dışıdır; ikinci komut NASA API'ye bağlanır. [Yöntem, sınırlar ve kurulum](../portal/docs/guide/T2M_WINDOW.md), [gerçek kanıt](../portal/docs/evidence/T2M_WINDOW_PROBE.md).
+
+`monthly_window_series` nokta çıktısından ayrı türdür. Yarım hücre payı içeren istek, MERRA2 0,625°×0,5° ızgarası, orta noktadan kurulan hücre kenarları, dikdörtgen kesişimi ve küresel alan ağırlıkları kullanılır. Tek ayda eksik hücre değeri varsa ortalama null kalır; coğrafi hücre eksikse yanıt reddedilir. Ham yanıt, hücre tanıları ve yıllık sağlayıcı özetleri saklanır. `validate-window RUN_DIR` tüm hesabı yeniden yapar; `check-alignment` yalnızca eski nokta profilini kabul eder.
+
+Kara/su maskesi, kesin coğrafi bölge, keyfî poligon ve çıkarım yoktur. Pilot sınırı: yarım hücre payı dahil en fazla 5°/eksen ve iki yıl; tarih çizgisi/kutup aşımı veya parçalama yok. B'nin mevcut 6° arama penceresi bu komutun kapsamını aşar; B sessizce küçültülmez. Mevcut B nokta erişimi bu sınırlamadan etkilenmez. JSON şemaları `schemas/window-request.schema.json`, `schemas/monthly-window-series.schema.json`; gerçek A örneği `examples/a-window-2024/` altında.
 
 ## Mac / Linux
 

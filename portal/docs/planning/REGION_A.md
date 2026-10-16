@@ -12,6 +12,8 @@ M1, 2026-10-16 tarihinde **modülleri ve Bölge A'yı** üstlendi. Görev duruml
 
 ## Bölge işleri
 
+**İkinci ara teslim:** [Maskesiz aday dikdörtgen hesabı](../guide/T2M_WINDOW.md) gerçek 56 hücre/12 aylık yanıtta çalışıyor; Ocak bağımsız hesapla kontrol edildi. Bu R-A04'ün teknik denemesidir; R-A03 ortak profili veya nihai analiz maskesi yerine geçmez. [Kanıt](../evidence/T2M_WINDOW_PROBE.md).
+
 | Görev | İş ve somut teslim | Bitiş ölçütü / bağımlılık |
 |---|---|---|
 | R-A01 | [A fişine](../research/regions/REGION_A_PROFILE.md) soru, kaynak, sınır/poligon önerisi ve kara/su bilgisini yaz | Alan yeniden bulunabilir; aday/kabul ayrımı açık |

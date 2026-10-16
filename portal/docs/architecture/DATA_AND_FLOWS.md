@@ -4,7 +4,7 @@ change_summary: "Modüle özel hesap ve adaptör için sürümlü sonuç sözle�
 ---
 # Veri ve akışlar
 
-Ortak sözleşme yaklaşımı [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md) ile kabul edildi. Genel alanlar sözleşme taslağıdır. İlk **aylık T2M nokta-serisi profili v0.1.0** için JSON Schema ve anlamsal doğrulama `analysis/` içinde çalışıyor: [kılavuz](../guide/T2M_ADAPTER.md), [kanıt](../evidence/T2M_POINT_PROBE.md). Bu ilk profil harita, bölgesel ortalama veya istatistik özeti desteği değildir.
+Ortak sözleşme yaklaşımı [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md) ile kabul edildi. Genel alanlar sözleşme taslağıdır. İlk **aylık T2M nokta-serisi profili v0.1.0** için JSON Schema ve anlamsal doğrulama `analysis/` içinde çalışıyor: [kılavuz](../guide/T2M_ADAPTER.md), [kanıt](../evidence/T2M_POINT_PROBE.md). Buna ayrı çıktı türüyle deneysel `monthly_window_series` eklendi: maskesiz aday dikdörtgen, alan ağırlıkları, hücre tanıları ve ham yanıttan yeniden hesaplama. [Alan kılavuzu](../guide/T2M_WINDOW.md), [kanıt](../evidence/T2M_WINDOW_PROBE.md). İki tür birbirinin yerine geçmez; bölgesel bilimsel uygunluk karşılaştırması, harita ve istatistik özeti henüz uygulanmadı.
 
 ## Ortak zarf ve özel içerik
 

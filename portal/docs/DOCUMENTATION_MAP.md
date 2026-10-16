@@ -21,6 +21,8 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | Ortak sonuç sözleşmesi ve uygunluk | [Veri ve akışlar](architecture/DATA_AND_FLOWS.md) |
 | İlk T2M nokta modülünün çalıştırılması ve sınırı | [Adaptör kılavuzu](guide/T2M_ADAPTER.md) |
 | Gerçek NASA nokta yanıtı ve modül testleri | [T2M kanıtı](evidence/T2M_POINT_PROBE.md) |
+| Maskesiz aday dikdörtgen için alan hesabı ve komutlar | [T2M alan kılavuzu](guide/T2M_WINDOW.md) |
+| Gerçek bölgesel yanıt ve bağımsız alan hesabı kontrolü | [T2M alan kanıtı](evidence/T2M_WINDOW_PROBE.md) |
 | Tek göstergeli T2M denemesinin kapsamı/çıkış koşulları | [Pilot](planning/PILOT.md) |
 | İş bölümü, paralel adımlar ve ortak veri profili | [Bölge çalışma akışı](planning/REGION_WORKFLOW.md) |
 | M1'in A ve modül görevlerinin ayrıntısı | [A görevleri](planning/REGION_A.md) |

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Experimental unmasked rectangular POWER request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "region_id",
+    "label",
+    "selection_status",
+    "candidate_bbox",
+    "start_year",
+    "end_year",
+    "candidate_window_version",
+    "mask"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "region_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]+$"
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "selection_status": {
+      "const": "candidate"
+    },
+    "candidate_bbox": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "start_year": {
+      "type": "integer",
+      "minimum": 1981,
+      "maximum": 9999
+    },
+    "end_year": {
+      "type": "integer",
+      "minimum": 1981,
+      "maximum": 9999
+    },
+    "candidate_window_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mask": {
+      "const": "none"
+    }
+  }
+}
