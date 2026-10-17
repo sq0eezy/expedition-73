@@ -1,15 +1,17 @@
 ---
 status: Validating
 updated: "2026-10-17"
-phase: İlk T2M aday dikdörtgen alan hesabı
+phase: Parçalı T2M erişimi ve M2'ye ortak modül teslimi
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "M2'nin B nokta denemesi alındı; M1 çalışması ayrı geliştirme dalına geçirildi."
+change_summary: "B'nin 6° aday penceresi için parçalı istek desteği ve 55 hücreli gerçek API örneği hazırlandı; test sonrası main paylaşımı istendi."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **M2'nin 6° pencere için beklediği teknik destek hazır:** [parçalı T2M komutu](guide/T2M_TILED_WINDOW.md) iki gerçek isteği birleştirdi; 5 tekrar çıkarılıp 55 hücre/12 ay hesaplandı. B aday sınırı değişmedi. Yeni çıktı profili 0.2.0; eski 0.1.0 örnekler çalışıyor, bilimsel alan yöntemi değişmedi. [Kanıt](evidence/T2M_TILING.md). Kullanıcı bu teslimin test sonrası main'e gönderilmesini istedi; geliştirme ayrı M1 dalında yapılıyor.
 
 - M2'nin [B geometri/API katkısı](research/regions/REGION_B_PROFILE.md) `4ad9448` ile main'e geldi ve yerel kopyaya çakışmasız alındı. M2 başlangıç/üstlenme kaydı artık var: [M2 notu](team/members/M2.md), [H-M1-002 yanıtı](team/HANDOFFS.md). M1 çalışması `codex/m1-modules-region-a` dalında devam ediyor: [ADR-007](decisions/ADR-007-FEATURE-BRANCHES.md). Geliştirme dalı push'u canlı paneli güncellemez; Pages main'e birleştirme sonrası yayımlanır.
 
@@ -27,4 +29,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-M1 için sırada kendi geliştirme dalında, M2'nin de talep ettiği **6° B penceresini küçültmeden istek parçalama** ve gerçek sınır/kara-su maskesi araştırması var. Mevcut bölgesel pilot iki yıl ve pay dahil 5°/eksenle sınırlı. B nokta örneği artık mevcut; aktarım/zaman uyumu bilimsel bölgesel uygunluk değildir. Sınır/maske kapsamıyla [ortak profil](planning/REGION_WORKFLOW.md) kesinleştirildikten sonra uzun seri, istatistik ve web görünümüne geçilecek. Yeni konuşmalar [işleme akışıyla](guide/AI_WORKFLOW.md) kaydedilir.
+Parçalı desteği test/PR sonrasında main'de paylaş; M2 [kılavuzdaki](guide/T2M_TILED_WINDOW.md) kayıtlı örneği çevrim dışı doğrulayıp kendi B alan incelemesine devam edebilir. Bu teslim M2'nin işi bitirdiği anlamına gelmez. M1 için sırada gerçek sınır/kara-su maskesi ve ortak bilimsel profil var. Parçalı pilot iki yıl ve en fazla 16 istek; tek istek başına pay dahil 5° proje sınırı korunur. Sınır/maske kapsamıyla [ortak profil](planning/REGION_WORKFLOW.md) kesinleştirildikten sonra uzun seri, istatistik ve web görünümüne geçilecek. Yeni konuşmalar [işleme akışıyla](guide/AI_WORKFLOW.md) kaydedilir.

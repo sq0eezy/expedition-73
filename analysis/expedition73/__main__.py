@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 from .power import PilotError, compatibility, fetch, loads, normalize, validate_result
-from . import regional
+from . import regional, tiled
 
 
 def write_json(path: Path, value) -> None:
@@ -23,6 +23,11 @@ def main(argv=None) -> int:
     window = commands.add_parser("fetch-power-window", help="Experimental unmasked rectangle means; no trend.")
     window.add_argument("--config", type=Path, required=True)
     window.add_argument("--output-dir", type=Path, required=True)
+    tiled_probe = commands.add_parser("fetch-power-tiled-window", help="Fetch a candidate window in bounded tiles; no trend.")
+    tiled_probe.add_argument("--config", type=Path, required=True)
+    tiled_probe.add_argument("--output-dir", type=Path, required=True)
+    tiled_check = commands.add_parser("validate-tiled-window", help="Replay all raw tile responses offline.")
+    tiled_check.add_argument("directory", type=Path)
     replay = commands.add_parser("validate-window", help="Replay a complete window run offline, including geometry and weights.")
     replay.add_argument("directory", type=Path)
     validate = commands.add_parser("validate", help="Validate schema and monthly consistency offline.")
@@ -32,7 +37,23 @@ def main(argv=None) -> int:
     compare.add_argument("right", type=Path)
     args = parser.parse_args(argv)
     try:
-        if args.command in ("fetch-power-point", "fetch-power-window"):
+        if args.command == "fetch-power-tiled-window":
+            if args.output_dir.exists():
+                raise PilotError("Output directory already exists; choose a new run directory.")
+            config = loads(args.config.read_bytes())
+            parts, manifest = tiled.fetch(config)
+            result = tiled.normalize(parts, config, manifest)
+            args.output_dir.mkdir(parents=True, exist_ok=False)
+            for tile, raw in zip(tiled.plan(config), parts, strict=True):
+                (args.output_dir / (tile["id"] + ".json")).write_bytes(raw)
+            write_json(args.output_dir / "request.json", config)
+            write_json(args.output_dir / "manifest.json", manifest)
+            write_json(args.output_dir / "result.json", result)
+            print(json.dumps({"output": str(args.output_dir), "access": result["module_details"]["access"], "quality": result["quality"]}))
+        elif args.command == "validate-tiled-window":
+            result = tiled.validate_run(args.directory)
+            print(json.dumps({"status": "replay_passed", "access": result["module_details"]["access"], "quality": result["quality"]}))
+        elif args.command in ("fetch-power-point", "fetch-power-window"):
             if args.output_dir.exists():
                 raise PilotError("Output directory already exists; choose a new run directory.")
             config = loads(args.config.read_bytes())

@@ -44,6 +44,15 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 - **Beklenen:** Kaydedilmiş alan örneğini çevrim dışı incele; B fişindeki kendi sınır/API çalışmanı sürdür. Nokta adaptörü çalışmaya devam ediyor. B arama penceresi 6° olduğu için bu tek istekli alan pilotuna doğrudan sığmıyor; B'yi küçültmeden parçalama/veri yolu geliştirmesi gerekiyor.
 - **Açık:** Kara/su maskesi, kesin alanlar ve ortak bilimsel uygunluk; çıktı trend veya kara ortalaması değildir. Dış mesaj/bildirim gönderilmedi.
 
+## H-M1-005 · B genişliği için parçalı erişim desteği
+
+- **Gönderen → alıcı:** M1 → M2; kullanıcının ortak modülü main'de paylaşma talebi kapsamında panel içi teslim.
+- **Tarih:** 2026-10-17.
+- **Durum:** Teknik teslim hazır; M2 inceleme/çalıştırma sonucu bekleniyor. Main aktarımı kullanıcı tarafından istendi, test/PR sonucu kanıt kaydına eklenecek.
+- **Teslim:** `fetch-power-tiled-window` / `validate-tiled-window`, bölgeden bağımsız yapılandırma, 0.2.0 çıktı ve iki gerçek B ham yanıtı. B'nin mevcut 6° arama penceresi küçülmedi; ortak 5 hücre bir kez sayıldı. [Mac komutları](../guide/T2M_TILED_WINDOW.md), [kontroller ve sınırlar](../evidence/T2M_TILING.md).
+- **M2'nin yapabileceği:** Güncel main'i kendi değişikliklerini koruyarak al; kendi çalışma dalında kayıtlı `examples/b-window-2024` örneğini çevrim dışı doğrula. R-B03/04 kapsamında alan/maske/uygunluk incelemesini sürdür; yeni API çağrısı gerekirse yeni çıktı klasörü kullan.
+- **Sınır:** Kesin alan/maske seçimi ve bilimsel A/B uygunluk onayı yok; B adına yeni yorum veya başlangıç üretilmedi. Dış mesaj/bildirim gönderilmedi.
+
 ## Bir kayıt için gerekenler
 
 | Alan | İçerik |

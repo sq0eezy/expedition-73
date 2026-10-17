@@ -40,3 +40,5 @@ jobs:
           .venv/bin/python -m expedition73 check-alignment examples/a-point-2024/result.json examples/b-point-2024/result.json
       - name: Replay regional geometry, weights and real response
         run: .venv/bin/python -m expedition73 validate-window examples/a-window-2024
+      - name: Replay all B tiles and deduplicated window result
+        run: .venv/bin/python -m expedition73 validate-tiled-window examples/b-window-2024

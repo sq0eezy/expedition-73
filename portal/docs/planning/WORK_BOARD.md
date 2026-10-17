@@ -33,6 +33,7 @@ Görevlerin ayrıntıları: [M1 · A ve modüller](REGION_A.md), [M2 · B](REGIO
 | MOD-01 | Girdi/çıktı sözleşmesi ve çağrı örneği | Validating | M1 | M1 üstlendi | M2 (planlanan) | Sürümlü şema taslağı ve A/B API örnekleriyle uyumlu girdi/çıktı |
 | MOD-02 | T2M modülü ve bilimsel hesap | Validating | M1 | M1 üstlendi | M2 (planlanan) | Ortak profilde seri/analiz; bağımsız küçük hesap ve yöntem kontrolleri |
 | MOD-03 | Adaptör, uygunluk ve sürümlü modül teslimi | Validating | M1 | M1 üstlendi | M2 (planlanan) | Örnek çalıştırma, sürüm, hata/eksiklik davranışı ve B yapılandırma girdileri |
+| MOD-04 | Geniş pencere için parçalı API ve hücre birleştirme | Verified | M1 | M1'in 2026-10-17 geliştirme/main talebi | M2 (kullanım incelemesi bekleniyor) | [İki gerçek B isteği, 55 tekil hücre, bağımsız Ocak ve hata kontrolleri](../evidence/T2M_TILING.md); [Mac kılavuzu](../guide/T2M_TILED_WINDOW.md). Nihai bölgesel bilimsel uygunluk değildir. |
 | R-A01 | A tanımı ve sınır önerisi | Implemented | M1 | M1 üstlendi | M2 (planlanan) | [A fişi](../research/regions/REGION_A_PROFILE.md): kaynaklı aday/poligon ve sınır sürümü |
 | R-A02 | A küçük API erişimi | Verified | M1 | M1 üstlendi | M2 (planlanan) | [Gerçek nokta API ve 26 test](../evidence/T2M_POINT_PROBE.md); 12/12 ay, bölge ortalaması değil |
 | R-A03 | A/B ortak veri profilini kaydet | Proposed | M1 | M1 üstlendi | M2 (B uygunluk incelemesi) | İki erişim özetine dayanan sürümlü [ortak profil](REGION_WORKFLOW.md) |
@@ -49,3 +50,5 @@ Görevlerin ayrıntıları: [M1 · A ve modüller](REGION_A.md), [M2 · B](REGIO
 Bir görev önerildiğinde “Sorumlu: M1/M2, Üstlenme: Önerildi” yazılır. İlgili kişi üstlenince “Kabul edildi” olur. Kişi başlamadan işi `Validating` saymayın; bittiğinde gerçek sonucu ve inceleme ihtiyacını kaydedin. İnceleyen adı yazmak, incelemenin yapılmış olduğunu göstermez.
 
 M1'in nokta aktarımı ve maskesiz aday dikdörtgen hesabı çalışıyor; M2'nin B nokta örneği de mevcut. Kesin analiz alanının bölgesel hesabı, uzun dönem istatistik ve web uygulaması açık. [Açık sorular](../discovery/index.md) yanıtlandıkça işler somutlaştırılacak.
+
+2026-10-17: MOD-04, R-B04'ün 6° genişlikte erişim engelini kaldırıyor. R-B03/04 yine Proposed; M2'nin kendisinin yeni çalıştırma/alan yorumu yapmış olduğu varsayılmadı. [H-M1-005 teslimi](../team/HANDOFFS.md).

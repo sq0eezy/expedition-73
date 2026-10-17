@@ -86,6 +86,7 @@ nav:
       - Modül tasarım kaydı: evidence/MODULE_DESIGN.md
       - İlk T2M API ve adaptör: evidence/T2M_POINT_PROBE.md
       - İlk T2M alan hesabı: evidence/T2M_WINDOW_PROBE.md
+      - Parçalı T2M erişimi: evidence/T2M_TILING.md
   - Proje:
       - Bağlam ve hedef: PROJECT_CONTEXT.md
       - Belge haritası: DOCUMENTATION_MAP.md
@@ -140,6 +141,7 @@ nav:
       - Başlangıç kılavuzu: guide/index.md
       - T2M adaptörünü çalıştır: guide/T2M_ADAPTER.md
       - T2M alan denemesini çalıştır: guide/T2M_WINDOW.md
+      - Geniş alan için parçalı T2M: guide/T2M_TILED_WINDOW.md
       - Ortak web paneli: guide/WEB_PORTAL.md
       - Mac kurulumu: guide/MACOS_SETUP.md
       - Yeni konuşma işleme: guide/AI_WORKFLOW.md

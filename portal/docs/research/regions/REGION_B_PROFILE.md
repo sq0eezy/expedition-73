@@ -28,4 +28,6 @@ sq0eezy'nin ilk çalışma kaydı, **2026-10-16**. Görev durumu [panoda](../../
 
 ## 2026-10-16 · Bölge B ilk erişim ve nokta adaptörü
 
+**M1 modül teslimi · 2026-10-17:** Aşağıdaki M2 nokta kaydı korunuyor. M1, mevcut 6° B penceresini değiştirmeden parçalı erişim desteğini iki gerçek API isteğiyle sınadı; 55 benzersiz hücre/12 ay örneği hazır. Bu M2'nin bölgesel analizini tamamladığı anlamına gelmez. [Yeni kılavuz](../../guide/T2M_TILED_WINDOW.md), [modül kanıtı](../../evidence/T2M_TILING.md), [H-M1-005](../../team/HANDOFFS.md).
+
 M2 (sq0eezy) olarak ilk görev çalışması yapıldı. Aday pencere GeoJSON'u (`b-candidate-window.geojson`) ve yapılandırması (`b-point-2024.config.json`) oluşturuldu. 69,0°K / 153,0°B noktasından gerçek 2024 POWER T2M yanıtı çekildi. 12/12 ay geçerli değer elde edildi; `test_saved_real_b_example_replays_and_aligns` testi dahil tüm çevrim dışı testler (43 test) ve A/B `check-alignment` denetimi başarıyla geçti.

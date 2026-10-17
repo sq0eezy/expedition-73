@@ -1,0 +1,4413 @@
+{
+  "schema_version": "0.2.0",
+  "output_type": "monthly_window_series",
+  "module": {
+    "id": "air_temperature_2m",
+    "version": "0.2.0"
+  },
+  "region": {
+    "id": "B",
+    "label": "Kuzey Alaska aday dikdörtgeni: parçalı erişim teknik modül denemesi",
+    "selection_status": "candidate",
+    "candidate_bbox": [
+      -156,
+      68,
+      -150,
+      70
+    ],
+    "candidate_window_version": "search-window-0.1.0"
+  },
+  "variable": {
+    "id": "air_temperature_2m",
+    "unit": "degC",
+    "height_m": 2
+  },
+  "time": {
+    "frequency": "monthly",
+    "start": "2024-01",
+    "end": "2024-12",
+    "calendar": "gregorian",
+    "provider_time_standard": "LST"
+  },
+  "spatial_support": {
+    "kind": "unmasked_rectangular_window",
+    "mask": "none",
+    "cell_count": 55,
+    "window_area_m2": 53169123845.32998,
+    "grid_step_degrees": {
+      "longitude": 0.625,
+      "latitude": 0.5
+    },
+    "request_envelope_bbox": [
+      -156.3125,
+      67.75,
+      -149.6875,
+      70.25
+    ]
+  },
+  "method": {
+    "id": "spherical_midpoint_cell_intersection",
+    "version": "0.1.0",
+    "sphere_radius_m": 6371008.8,
+    "missing_policy": "require_all_intersecting_cells",
+    "inference": "not_performed"
+  },
+  "provenance": {
+    "provider": "NASA POWER",
+    "product": "POWER Monthly and Annual API",
+    "api_version": "v2.10.0",
+    "sources": [
+      "MERRA2"
+    ],
+    "retrieved_at": "2026-10-17T08:53:26+00:00",
+    "requests": [
+      {
+        "id": "tile-001",
+        "filename": "tile-001.json",
+        "request_url": "https://power.larc.nasa.gov/api/temporal/monthly/regional?parameters=T2M&community=SB&longitude-min=-156.3125&longitude-max=-152.6875&latitude-min=67.75&latitude-max=70.25&format=JSON&start=2024&end=2024",
+        "retrieved_at": "2026-10-17T08:53:25+00:00",
+        "response_sha256": "368c1795d022f7d26055474237f08f699e5acd1540dd4cece0208d4d64f92484",
+        "candidate_bbox": [
+          -156.0,
+          68.0,
+          -153.0,
+          70.0
+        ],
+        "request_bbox": [
+          -156.3125,
+          67.75,
+          -152.6875,
+          70.25
+        ],
+        "provider_messages": []
+      },
+      {
+        "id": "tile-002",
+        "filename": "tile-002.json",
+        "request_url": "https://power.larc.nasa.gov/api/temporal/monthly/regional?parameters=T2M&community=SB&longitude-min=-153.3125&longitude-max=-149.6875&latitude-min=67.75&latitude-max=70.25&format=JSON&start=2024&end=2024",
+        "retrieved_at": "2026-10-17T08:53:26+00:00",
+        "response_sha256": "0681c57fb4c68f774ae99e18115b14eeaad53f1f38f9161fbd185616105b7d1f",
+        "candidate_bbox": [
+          -153.0,
+          68.0,
+          -150.0,
+          70.0
+        ],
+        "request_bbox": [
+          -153.3125,
+          67.75,
+          -149.6875,
+          70.25
+        ],
+        "provider_messages": []
+      }
+    ]
+  },
+  "quality": {
+    "expected_months": 12,
+    "complete_months": 12,
+    "warnings": [
+      "CANDIDATE_WINDOW_NOT_ACCEPTED_REGION",
+      "NO_LAND_WATER_MASK",
+      "RECONSTRUCTED_CELL_BOUNDS_SPHERICAL_AREA",
+      "PROVIDER_PIXEL_QA_NOT_SUPPLIED",
+      "INFERENCE_NOT_PERFORMED"
+    ]
+  },
+  "series": [
+    {
+      "date": "2024-01",
+      "value": -24.127031413962634,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-02",
+      "value": -21.530455779177252,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-03",
+      "value": -21.457205489228084,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-04",
+      "value": -10.188009889407121,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-05",
+      "value": -3.186690796575963,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-06",
+      "value": 8.85020320370591,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-07",
+      "value": 9.697483506384906,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-08",
+      "value": 7.187454152840247,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-09",
+      "value": 1.6335909432726516,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-10",
+      "value": -9.436861157965717,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-11",
+      "value": -19.550053646550943,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-12",
+      "value": -22.609423037610377,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    }
+  ],
+  "module_details": {
+    "cells": [
+      {
+        "longitude": -156.25,
+        "latitude": 68.0,
+        "intersection_bbox": [
+          -156,
+          68,
+          -155.9375,
+          68.25
+        ],
+        "area_m2": 71980315.81646818,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -23.63,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -18.56,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -18.27,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -8.81,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -2.13,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.96,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 8.2,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 4.94,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 0.34,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -11.01,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -20.34,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -19.26,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.2
+        }
+      },
+      {
+        "longitude": -155.625,
+        "latitude": 68.0,
+        "intersection_bbox": [
+          -155.9375,
+          68,
+          -155.3125,
+          68.25
+        ],
+        "area_m2": 719803158.1646817,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.13,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -19.12,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -18.97,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.46,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.24,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.02,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 7.33,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 4.06,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": -0.76,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -12.28,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -21.02,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -19.96,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -9.03
+        }
+      },
+      {
+        "longitude": -155.0,
+        "latitude": 68.0,
+        "intersection_bbox": [
+          -155.3125,
+          68,
+          -154.6875,
+          68.25
+        ],
+        "area_m2": 719803158.1646817,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -25.07,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -19.62,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -19.59,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.77,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.53,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.72,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 7.17,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 3.85,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": -1.08,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -12.74,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -21.45,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -20.35,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -9.44
+        }
+      },
+      {
+        "longitude": -154.375,
+        "latitude": 68.0,
+        "intersection_bbox": [
+          -154.6875,
+          68,
+          -154.0625,
+          68.25
+        ],
+        "area_m2": 719803158.1646817,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -25.96,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.01,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -19.93,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.73,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.31,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.8,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 7.57,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 4.17,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": -0.82,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -12.57,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -21.56,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -20.47,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -9.47
+        }
+      },
+      {
+        "longitude": -153.75,
+        "latitude": 68.0,
+        "intersection_bbox": [
+          -154.0625,
+          68,
+          -153.4375,
+          68.25
+        ],
+        "area_m2": 719803158.1646817,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -26.81,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.26,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.26,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.89,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.67,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.3,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 7.6,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 4.16,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": -0.94,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -12.67,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -21.81,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -20.74,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -9.73
+        }
+      },
+      {
+        "longitude": -153.125,
+        "latitude": 68.0,
+        "intersection_bbox": [
+          -153.4375,
+          68,
+          -152.8125,
+          68.25
+        ],
+        "area_m2": 719803158.1646817,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -27.2,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.39,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.45,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.8,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.71,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.33,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 7.73,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 4.29,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": -0.91,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -12.71,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -22.17,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -20.91,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -9.81
+        }
+      },
+      {
+        "longitude": -152.5,
+        "latitude": 68.0,
+        "intersection_bbox": [
+          -152.8125,
+          68,
+          -152.1875,
+          68.25
+        ],
+        "area_m2": 719803158.1646817,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -27.83,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.68,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.67,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.6,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.45,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.63,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 7.92,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 4.47,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": -0.76,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -12.66,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -22.47,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -20.9,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -9.82
+        }
+      },
+      {
+        "longitude": -151.875,
+        "latitude": 68.0,
+        "intersection_bbox": [
+          -152.1875,
+          68,
+          -151.5625,
+          68.25
+        ],
+        "area_m2": 719803158.1646817,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -28.06,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.78,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.64,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.28,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -2.93,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.25,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 8.23,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 4.74,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": -0.51,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -12.47,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -22.6,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -20.71,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -9.63
+        }
+      },
+      {
+        "longitude": -151.25,
+        "latitude": 68.0,
+        "intersection_bbox": [
+          -151.5625,
+          68,
+          -150.9375,
+          68.25
+        ],
+        "area_m2": 719803158.1646817,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -27.48,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.48,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.04,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.16,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -2.96,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.55,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 8.31,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 4.77,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": -0.55,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -12.42,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -22.49,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -20.45,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -9.43
+        }
+      },
+      {
+        "longitude": -150.625,
+        "latitude": 68.0,
+        "intersection_bbox": [
+          -150.9375,
+          68,
+          -150.3125,
+          68.25
+        ],
+        "area_m2": 719803158.1646817,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -27.49,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.53,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -19.75,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.4,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.46,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.37,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 7.97,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 4.35,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": -0.92,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -12.69,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -22.6,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -20.28,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -9.6
+        }
+      },
+      {
+        "longitude": -150.0,
+        "latitude": 68.0,
+        "intersection_bbox": [
+          -150.3125,
+          68,
+          -150,
+          68.25
+        ],
+        "area_m2": 359901579.08234084,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -28.03,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.87,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -19.76,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.9,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -4.25,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.81,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 7.35,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 3.65,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": -1.51,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -13.18,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -22.82,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -20.27,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -10.05
+        }
+      },
+      {
+        "longitude": -156.25,
+        "latitude": 68.5,
+        "intersection_bbox": [
+          -156,
+          68.25,
+          -155.9375,
+          68.75
+        ],
+        "area_m2": 141610423.41515136,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -22.7,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -19.92,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.24,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.32,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -2.65,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.47,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 9.14,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 6.09,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 1.19,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -10.06,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -20.53,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -21.18,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.37
+        }
+      },
+      {
+        "longitude": -155.625,
+        "latitude": 68.5,
+        "intersection_bbox": [
+          -155.9375,
+          68.25,
+          -155.3125,
+          68.75
+        ],
+        "area_m2": 1416104234.1515133,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -22.84,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.08,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.3,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.47,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -2.9,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.24,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 9.0,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 5.95,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 0.77,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -10.52,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -20.64,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -21.47,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.58
+        }
+      },
+      {
+        "longitude": -155.0,
+        "latitude": 68.5,
+        "intersection_bbox": [
+          -155.3125,
+          68.25,
+          -154.6875,
+          68.75
+        ],
+        "area_m2": 1416104234.1515133,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -22.81,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.17,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.24,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.5,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -2.95,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.13,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 8.93,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 5.89,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 0.42,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -10.97,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -20.77,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -21.37,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.68
+        }
+      },
+      {
+        "longitude": -154.375,
+        "latitude": 68.5,
+        "intersection_bbox": [
+          -154.6875,
+          68.25,
+          -154.0625,
+          68.75
+        ],
+        "area_m2": 1416104234.1515133,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -22.53,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.1,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.0,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.36,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -2.72,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.18,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 8.99,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 5.99,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 0.23,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -11.31,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -20.91,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -20.8,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.59
+        }
+      },
+      {
+        "longitude": -153.75,
+        "latitude": 68.5,
+        "intersection_bbox": [
+          -154.0625,
+          68.25,
+          -153.4375,
+          68.75
+        ],
+        "area_m2": 1416104234.1515133,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -23.59,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.37,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.43,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.7,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.43,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.49,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 8.81,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 5.77,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 0.03,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -11.42,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -21.13,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -21.37,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -9.0
+        }
+      },
+      {
+        "longitude": -153.125,
+        "latitude": 68.5,
+        "intersection_bbox": [
+          -153.4375,
+          68.25,
+          -152.8125,
+          68.75
+        ],
+        "area_m2": 1416104234.1515133,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.07,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.38,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.52,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.79,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.67,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.2,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 8.92,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 5.84,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 0.0,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -11.38,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -21.15,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -21.41,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -9.09
+        }
+      },
+      {
+        "longitude": -152.5,
+        "latitude": 68.5,
+        "intersection_bbox": [
+          -152.8125,
+          68.25,
+          -152.1875,
+          68.75
+        ],
+        "area_m2": 1416104234.1515133,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -23.93,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.15,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.26,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.55,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.34,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.45,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 9.31,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 6.19,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 0.16,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -11.19,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -21.03,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -20.88,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.83
+        }
+      },
+      {
+        "longitude": -151.875,
+        "latitude": 68.5,
+        "intersection_bbox": [
+          -152.1875,
+          68.25,
+          -151.5625,
+          68.75
+        ],
+        "area_m2": 1416104234.1515133,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.06,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.13,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.26,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.34,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.05,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.89,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 9.36,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 6.22,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 0.16,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -11.18,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -21.3,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -20.79,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.77
+        }
+      },
+      {
+        "longitude": -151.25,
+        "latitude": 68.5,
+        "intersection_bbox": [
+          -151.5625,
+          68.25,
+          -150.9375,
+          68.75
+        ],
+        "area_m2": 1416104234.1515133,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.51,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.15,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.35,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.37,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.24,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.84,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 9.05,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 5.88,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": -0.12,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -11.44,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -21.63,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -20.88,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.97
+        }
+      },
+      {
+        "longitude": -150.625,
+        "latitude": 68.5,
+        "intersection_bbox": [
+          -150.9375,
+          68.25,
+          -150.3125,
+          68.75
+        ],
+        "area_m2": 1416104234.1515133,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.48,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.04,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.08,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.27,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.26,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.9,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 8.97,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 5.74,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": -0.27,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -11.6,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -21.61,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -20.51,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.94
+        }
+      },
+      {
+        "longitude": -150.0,
+        "latitude": 68.5,
+        "intersection_bbox": [
+          -150.3125,
+          68.25,
+          -150,
+          68.75
+        ],
+        "area_m2": 708052117.0757567,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.99,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.27,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.06,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.58,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.66,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.79,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 8.73,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 5.42,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": -0.59,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -12.02,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -21.59,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -20.38,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -9.16
+        }
+      },
+      {
+        "longitude": -156.25,
+        "latitude": 69.0,
+        "intersection_bbox": [
+          -156,
+          68.75,
+          -155.9375,
+          69.25
+        ],
+        "area_m2": 138467850.50929123,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -23.02,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -21.86,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -21.93,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -10.41,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.6,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.04,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.29,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 7.17,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 2.05,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -8.9,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -19.41,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -24.63,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.74
+        }
+      },
+      {
+        "longitude": -155.625,
+        "latitude": 69.0,
+        "intersection_bbox": [
+          -155.9375,
+          68.75,
+          -155.3125,
+          69.25
+        ],
+        "area_m2": 1384678505.0929122,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -22.95,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -21.72,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -21.85,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -10.1,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.24,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.22,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.41,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 7.45,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 2.19,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -8.78,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -19.42,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -24.4,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.57
+        }
+      },
+      {
+        "longitude": -155.0,
+        "latitude": 69.0,
+        "intersection_bbox": [
+          -155.3125,
+          68.75,
+          -154.6875,
+          69.25
+        ],
+        "area_m2": 1384678505.0929122,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -22.98,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -21.68,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -21.84,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.91,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.05,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.31,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.49,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 7.63,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 2.27,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -8.81,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -19.46,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -24.3,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.5
+        }
+      },
+      {
+        "longitude": -154.375,
+        "latitude": 69.0,
+        "intersection_bbox": [
+          -154.6875,
+          68.75,
+          -154.0625,
+          69.25
+        ],
+        "area_m2": 1384678505.0929122,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -22.95,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -21.7,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -21.72,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.83,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -2.97,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.34,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.58,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 7.74,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 2.31,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -8.87,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -19.52,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -24.04,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.44
+        }
+      },
+      {
+        "longitude": -153.75,
+        "latitude": 69.0,
+        "intersection_bbox": [
+          -154.0625,
+          68.75,
+          -153.4375,
+          69.25
+        ],
+        "area_m2": 1384678505.0929122,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -22.74,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -21.73,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -21.62,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.67,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -2.91,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.38,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.91,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.08,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 2.56,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -8.63,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -19.6,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -23.98,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.3
+        }
+      },
+      {
+        "longitude": -153.125,
+        "latitude": 69.0,
+        "intersection_bbox": [
+          -153.4375,
+          68.75,
+          -152.8125,
+          69.25
+        ],
+        "area_m2": 1384678505.0929122,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -22.89,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -21.67,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -21.49,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.69,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -2.88,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.3,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.92,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.16,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 2.48,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -8.77,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -19.71,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -23.62,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.29
+        }
+      },
+      {
+        "longitude": -152.5,
+        "latitude": 69.0,
+        "intersection_bbox": [
+          -152.8125,
+          68.75,
+          -152.1875,
+          69.25
+        ],
+        "area_m2": 1384678505.0929122,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -23.17,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -21.43,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -21.34,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.71,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -2.87,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.2,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.91,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.18,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 2.3,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -8.93,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -19.71,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -23.07,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.27
+        }
+      },
+      {
+        "longitude": -151.875,
+        "latitude": 69.0,
+        "intersection_bbox": [
+          -152.1875,
+          68.75,
+          -151.5625,
+          69.25
+        ],
+        "area_m2": 1384678505.0929122,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -23.25,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -21.14,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -21.21,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.61,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -2.89,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.11,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 11.09,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.37,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 2.31,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -8.83,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -19.7,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -22.67,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.17
+        }
+      },
+      {
+        "longitude": -151.25,
+        "latitude": 69.0,
+        "intersection_bbox": [
+          -151.5625,
+          68.75,
+          -150.9375,
+          69.25
+        ],
+        "area_m2": 1384678505.0929122,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -23.18,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.86,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -21.06,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.43,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -2.92,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.09,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 11.28,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.53,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 2.35,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -8.66,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -19.71,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -22.38,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.05
+        }
+      },
+      {
+        "longitude": -150.625,
+        "latitude": 69.0,
+        "intersection_bbox": [
+          -150.9375,
+          68.75,
+          -150.3125,
+          69.25
+        ],
+        "area_m2": 1384678505.0929122,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -23.15,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.7,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.69,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.33,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -2.81,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.04,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.96,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.22,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 1.99,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -9.11,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -19.78,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -21.71,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.06
+        }
+      },
+      {
+        "longitude": -150.0,
+        "latitude": 69.0,
+        "intersection_bbox": [
+          -150.3125,
+          68.75,
+          -150,
+          69.25
+        ],
+        "area_m2": 692339252.5464561,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -23.11,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -20.52,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -20.36,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -9.14,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -2.77,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.95,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.85,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.05,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 1.71,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -9.4,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -19.77,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -21.1,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.02
+        }
+      },
+      {
+        "longitude": -156.25,
+        "latitude": 69.5,
+        "intersection_bbox": [
+          -156,
+          69.25,
+          -155.9375,
+          69.75
+        ],
+        "area_m2": 135314732.74050564,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -23.85,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.05,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -22.7,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -11.24,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.36,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.29,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.33,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 7.75,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 2.93,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -7.61,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -17.77,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -25.25,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.68
+        }
+      },
+      {
+        "longitude": -155.625,
+        "latitude": 69.5,
+        "intersection_bbox": [
+          -155.9375,
+          69.25,
+          -155.3125,
+          69.75
+        ],
+        "area_m2": 1353147327.4050562,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -23.97,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.07,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -22.82,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -11.09,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.15,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.41,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.44,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 7.95,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.02,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -7.64,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -17.85,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -25.23,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.64
+        }
+      },
+      {
+        "longitude": -155.0,
+        "latitude": 69.5,
+        "intersection_bbox": [
+          -155.3125,
+          69.25,
+          -154.6875,
+          69.75
+        ],
+        "area_m2": 1353147327.4050562,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -23.96,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.03,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -22.87,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -10.99,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.11,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.34,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.38,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.08,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.02,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -7.64,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -17.82,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -24.95,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.6
+        }
+      },
+      {
+        "longitude": -154.375,
+        "latitude": 69.5,
+        "intersection_bbox": [
+          -154.6875,
+          69.25,
+          -154.0625,
+          69.75
+        ],
+        "area_m2": 1353147327.4050562,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -23.94,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.03,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -22.94,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -10.91,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.09,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.29,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.33,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.23,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.02,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -7.68,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -17.76,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -24.66,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.57
+        }
+      },
+      {
+        "longitude": -153.75,
+        "latitude": 69.5,
+        "intersection_bbox": [
+          -154.0625,
+          69.25,
+          -153.4375,
+          69.75
+        ],
+        "area_m2": 1353147327.4050562,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -23.97,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.07,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -22.93,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -10.88,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.07,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.23,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.35,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.37,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.02,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -7.76,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -17.82,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -24.42,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.55
+        }
+      },
+      {
+        "longitude": -153.125,
+        "latitude": 69.5,
+        "intersection_bbox": [
+          -153.4375,
+          69.25,
+          -152.8125,
+          69.75
+        ],
+        "area_m2": 1353147327.4050562,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.2,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.12,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -22.9,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -10.92,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.1,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.13,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.45,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.49,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.03,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -7.94,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -18.12,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -24.5,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.61
+        }
+      },
+      {
+        "longitude": -152.5,
+        "latitude": 69.5,
+        "intersection_bbox": [
+          -152.8125,
+          69.25,
+          -152.1875,
+          69.75
+        ],
+        "area_m2": 1353147327.4050562,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.34,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.08,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -22.81,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -10.91,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.17,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.92,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.54,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.63,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.06,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -8.08,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -18.28,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -24.43,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.63
+        }
+      },
+      {
+        "longitude": -151.875,
+        "latitude": 69.5,
+        "intersection_bbox": [
+          -152.1875,
+          69.25,
+          -151.5625,
+          69.75
+        ],
+        "area_m2": 1353147327.4050562,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.32,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -22.9,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -22.65,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -10.8,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.13,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.83,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.67,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.83,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.1,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -8.06,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -18.27,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -24.02,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.53
+        }
+      },
+      {
+        "longitude": -151.25,
+        "latitude": 69.5,
+        "intersection_bbox": [
+          -151.5625,
+          69.25,
+          -150.9375,
+          69.75
+        ],
+        "area_m2": 1353147327.4050562,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.24,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -22.6,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -22.43,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -10.68,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.08,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.7,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.76,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.99,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.1,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -7.99,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -18.37,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -23.59,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.42
+        }
+      },
+      {
+        "longitude": -150.625,
+        "latitude": 69.5,
+        "intersection_bbox": [
+          -150.9375,
+          69.25,
+          -150.3125,
+          69.75
+        ],
+        "area_m2": 1353147327.4050562,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.26,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -22.38,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -22.26,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -10.61,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.03,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.53,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.82,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 9.11,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.09,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -8.04,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -18.71,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -23.5,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.4
+        }
+      },
+      {
+        "longitude": -150.0,
+        "latitude": 69.5,
+        "intersection_bbox": [
+          -150.3125,
+          69.25,
+          -150,
+          69.75
+        ],
+        "area_m2": 676573663.7025281,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.33,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -22.13,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -22.05,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -10.51,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.15,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.09,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 10.58,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 9.03,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 2.92,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -8.18,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -18.68,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -23.06,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.42
+        }
+      },
+      {
+        "longitude": -156.25,
+        "latitude": 70.0,
+        "intersection_bbox": [
+          -156,
+          69.75,
+          -155.9375,
+          70
+        ],
+        "area_m2": 66471717.57410419,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.09,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.47,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -22.96,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -12.16,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.37,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.82,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 9.54,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 7.87,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.32,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -6.1,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -16.16,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -24.5,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.57
+        }
+      },
+      {
+        "longitude": -155.625,
+        "latitude": 70.0,
+        "intersection_bbox": [
+          -155.9375,
+          69.75,
+          -155.3125,
+          70
+        ],
+        "area_m2": 664717175.7410418,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.32,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.6,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -23.14,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -12.11,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.18,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.98,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 9.59,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.05,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.36,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -6.15,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -16.18,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -24.3,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.55
+        }
+      },
+      {
+        "longitude": -155.0,
+        "latitude": 70.0,
+        "intersection_bbox": [
+          -155.3125,
+          69.75,
+          -154.6875,
+          70
+        ],
+        "area_m2": 664717175.7410418,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.48,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.69,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -23.28,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -12.09,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.11,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 9.02,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 9.58,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.21,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.37,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -6.2,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -16.19,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -24.11,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.55
+        }
+      },
+      {
+        "longitude": -154.375,
+        "latitude": 70.0,
+        "intersection_bbox": [
+          -154.6875,
+          69.75,
+          -154.0625,
+          70
+        ],
+        "area_m2": 664717175.7410418,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.38,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.57,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -23.31,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -12.11,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.28,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.68,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 9.43,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.28,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.31,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -6.34,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -16.25,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -23.97,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.59
+        }
+      },
+      {
+        "longitude": -153.75,
+        "latitude": 70.0,
+        "intersection_bbox": [
+          -154.0625,
+          69.75,
+          -153.4375,
+          70
+        ],
+        "area_m2": 664717175.7410418,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.33,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.47,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -23.32,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -12.13,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.52,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 8.24,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 9.25,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.35,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.27,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -6.46,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -16.22,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -23.74,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.64
+        }
+      },
+      {
+        "longitude": -153.125,
+        "latitude": 70.0,
+        "intersection_bbox": [
+          -153.4375,
+          69.75,
+          -152.8125,
+          70
+        ],
+        "area_m2": 664717175.7410418,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.39,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.43,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -23.35,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -12.16,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.79,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 7.77,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 9.06,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.46,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.25,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -6.56,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -16.08,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -23.41,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.69
+        }
+      },
+      {
+        "longitude": -152.5,
+        "latitude": 70.0,
+        "intersection_bbox": [
+          -152.8125,
+          69.75,
+          -152.1875,
+          70
+        ],
+        "area_m2": 664717175.7410418,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.43,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.38,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -23.28,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -12.11,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.83,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 7.49,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 9.05,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.62,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.3,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -6.6,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -16.04,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -23.2,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.67
+        }
+      },
+      {
+        "longitude": -151.875,
+        "latitude": 70.0,
+        "intersection_bbox": [
+          -152.1875,
+          69.75,
+          -151.5625,
+          70
+        ],
+        "area_m2": 664717175.7410418,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.34,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.23,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -23.13,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -12.01,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.78,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 7.11,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 8.97,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.73,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.35,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -6.52,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -16.05,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -23.06,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.63
+        }
+      },
+      {
+        "longitude": -151.25,
+        "latitude": 70.0,
+        "intersection_bbox": [
+          -151.5625,
+          69.75,
+          -150.9375,
+          70
+        ],
+        "area_m2": 664717175.7410418,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.57,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.32,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -23.18,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -11.97,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.82,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 7.05,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 9.04,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.91,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.37,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -6.73,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -16.12,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -23.01,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.66
+        }
+      },
+      {
+        "longitude": -150.625,
+        "latitude": 70.0,
+        "intersection_bbox": [
+          -150.9375,
+          69.75,
+          -150.3125,
+          70
+        ],
+        "area_m2": 664717175.7410418,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.86,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.33,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -23.2,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -11.95,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -3.95,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 6.85,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 9.0,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.99,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.3,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -6.98,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -16.25,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -22.91,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.74
+        }
+      },
+      {
+        "longitude": -150.0,
+        "latitude": 70.0,
+        "intersection_bbox": [
+          -150.3125,
+          69.75,
+          -150,
+          70
+        ],
+        "area_m2": 332358587.8705209,
+        "series": [
+          {
+            "date": "2024-01",
+            "value": -24.95,
+            "status": "valid"
+          },
+          {
+            "date": "2024-02",
+            "value": -23.14,
+            "status": "valid"
+          },
+          {
+            "date": "2024-03",
+            "value": -23.07,
+            "status": "valid"
+          },
+          {
+            "date": "2024-04",
+            "value": -11.89,
+            "status": "valid"
+          },
+          {
+            "date": "2024-05",
+            "value": -4.05,
+            "status": "valid"
+          },
+          {
+            "date": "2024-06",
+            "value": 6.31,
+            "status": "valid"
+          },
+          {
+            "date": "2024-07",
+            "value": 8.71,
+            "status": "valid"
+          },
+          {
+            "date": "2024-08",
+            "value": 8.94,
+            "status": "valid"
+          },
+          {
+            "date": "2024-09",
+            "value": 3.2,
+            "status": "valid"
+          },
+          {
+            "date": "2024-10",
+            "value": -7.08,
+            "status": "valid"
+          },
+          {
+            "date": "2024-11",
+            "value": -16.26,
+            "status": "valid"
+          },
+          {
+            "date": "2024-12",
+            "value": -22.67,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2024": -8.8
+        }
+      }
+    ],
+    "provider_header": {
+      "title": "NASA/POWER Source Native Resolution Monthly and Annual",
+      "api": {
+        "version": "v2.10.0",
+        "name": "POWER Monthly and Annual API"
+      },
+      "sources": [
+        "MERRA2"
+      ],
+      "fill_value": -999.0,
+      "time_standard": "LST",
+      "start": "20240101",
+      "end": "20241231"
+    },
+    "provider_parameter": {
+      "units": "C",
+      "longname": "Temperature at 2 Meters"
+    },
+    "provider_messages": [],
+    "access": {
+      "strategy": "sequential_grid_cell_union",
+      "version": "0.1.0",
+      "tile_count": 2,
+      "duplicate_cells_removed": 5,
+      "unique_returned_cells": 55
+    }
+  }
+}

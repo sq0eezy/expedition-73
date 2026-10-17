@@ -1,6 +1,6 @@
 ---
 review_summary: "İki kişilik ekibin NASA Space Apps çalışması için ortak başlangıç noktası."
-change_summary: "Gerçek bölgesel T2M yanıtıyla maskesiz aday dikdörtgenin ilk alan hesabı ve bağımsız kontrolü eklendi."
+change_summary: "M2 için B'nin geniş penceresini küçültmeden çalıştıran parçalı T2M komutları ve gerçek örnek eklendi."
 ---
 # {{ project_name }}
 
@@ -24,6 +24,7 @@ change_summary: "Gerçek bölgesel T2M yanıtıyla maskesiz aday dikdörtgenin i
 <div class="portal-grid">
 <a class="portal-card portal-card-featured" href="evidence/T2M_POINT_PROBE/"><strong>İlk gerçek veri · T2M API</strong><span>12 aylık nokta yanıtı, çalışan ilk adaptör ve doğrulama sınırları.</span></a>
 <a class="portal-card portal-card-featured" href="evidence/T2M_WINDOW_PROBE/"><strong>Yeni · T2M alan hesabı</strong><span>56 hücre, 12 aylık aday dikdörtgen ortalaması ve bağımsız hesap kontrolü. Maske ve kesin bölge açık.</span></a>
+<a class="portal-card portal-card-featured" href="guide/T2M_TILED_WINDOW/"><strong>M2 için hazır · Parçalı T2M</strong><span>B'nin 6° penceresi, iki API isteği ve 55 tekil hücre. Mac komutları ve çevrim dışı örnek.</span></a>
 <a class="portal-card portal-card-featured" href="planning/REGION_B/"><strong>sq0eezy · Bölge B'de ne yapacağım?</strong><span>İlk iki iş, API denemesi, modül entegrasyonu ve beklenen çıktılar.</span></a>
 <a class="portal-card portal-card-featured" href="planning/REGION_A/"><strong>Emeç · Modüller ve Bölge A</strong><span>Ortak modül teslimleri, A görevleri ve arkadaşına bırakılacak girdiler.</span></a>
 <a class="portal-card portal-card-featured" href="planning/PILOT/"><strong>İlk pilot · Hava sıcaklığı</strong><span>Tek göstergede veri, hesap, adaptör ve web deneyiminin küçük denemesi.</span></a>

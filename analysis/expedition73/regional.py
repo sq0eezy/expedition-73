@@ -23,7 +23,7 @@ ENDPOINT = "https://power.larc.nasa.gov/api/temporal/monthly/regional"
 MAX_BYTES = 2_000_000
 
 
-def validate_config(config):
+def validate_config(config, *, tiled=False):
     validate_schema(config, "window-request.schema.json")
     west, south, east, north = config["candidate_bbox"]
     point_config = {k: v for k, v in config.items() if k != "mask"}
@@ -32,8 +32,8 @@ def validate_config(config):
     bounds = [west - DLON / 2, south - DLAT / 2, east + DLON / 2, north + DLAT / 2]
     if bounds[0] < -180 or bounds[2] > 180 or bounds[1] < -90 or bounds[3] > 90:
         raise PilotError("This window pilot does not support a halo crossing poles/dateline.")
-    if bounds[2] - bounds[0] > 5 or bounds[3] - bounds[1] > 5:
-        raise PilotError("Pilot limit: padded window must be at most 5 degrees per axis; tiling is not implemented.")
+    if not tiled and (bounds[2] - bounds[0] > 5 or bounds[3] - bounds[1] > 5):
+        raise PilotError("Single-request limit: padded window must be at most 5 degrees per axis; use fetch-power-tiled-window.")
     if config["end_year"] - config["start_year"] > 1:
         raise PilotError("Window access pilot supports at most two years per request.")
     return bounds
@@ -80,8 +80,10 @@ def expected_cells(bounds):
             for lat in lats for lon in lons}
 
 
-def normalize(raw, config, retrieved_at):
-    halo = validate_config(config)
+def normalize(raw, config, retrieved_at, *, _access=None):
+    # _access is supplied only by the tiled orchestrator after each API response
+    # and overlapping cell has been checked. Single-request 0.1 remains intact.
+    halo = validate_config(config, tiled=_access is not None)
     data = loads(raw)
     expected = expected_cells(config["candidate_bbox"])
     try:
@@ -146,7 +148,7 @@ def normalize(raw, config, retrieved_at):
             "method": {"id": "spherical_midpoint_cell_intersection", "version": VERSION,
                        "sphere_radius_m": RADIUS_M, "missing_policy": "require_all_intersecting_cells",
                        "inference": "not_performed"},
-            "provenance": {"provider": "NASA POWER", "product": "POWER Monthly and Annual API", "request_url": request_url(config),
+            "provenance": _access["provenance"] if _access is not None else {"provider": "NASA POWER", "product": "POWER Monthly and Annual API", "request_url": request_url(config),
                            "retrieved_at": retrieved_at, "response_sha256": hashlib.sha256(raw).hexdigest(),
                            "api_version": data["header"]["api"]["version"], "sources": data["header"]["sources"]},
             "quality": {"expected_months": len(series), "complete_months": complete_months,
@@ -159,7 +161,13 @@ def normalize(raw, config, retrieved_at):
         if isinstance(exc, PilotError):
             raise
         raise PilotError("Malformed POWER regional response.") from exc
-    validate_schema(result, "monthly-window-series.schema.json")
+    if _access is not None:
+        result["schema_version"] = "0.2.0"
+        result["module"]["version"] = "0.2.0"
+        result["provenance"] = _access["provenance"]
+        result["spatial_support"]["request_envelope_bbox"] = result["spatial_support"].pop("request_bbox")
+        result["module_details"]["access"] = _access["summary"]
+    validate_schema(result, "monthly-tiled-window-series.schema.json" if _access is not None else "monthly-window-series.schema.json")
     return result
 
 

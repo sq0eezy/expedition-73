@@ -1,5 +1,11 @@
 # Çalışma günlüğü
 
+## 2026-10-17 · M2 için parçalı bölgesel T2M desteği
+
+Kullanıcı M2'nin beklediği parçalı desteği geliştirip test sonrası main'de paylaşmamızı istedi. M1 dalında `tiled.py`, iki CLI komutu, ham parça manifesti ve v0.2.0 sonuç şeması eklendi. Kaynak hesap değişmedi: parça ortalamalarını kullanmadan tekil hücrelerin asıl dikdörtgenle kesişim alanı bir kez hesaplanıyor. Parçalar sırayla alınıyor; metaveri/ortak hücre uyumsuzluğu, kayıp hücre/yanıt, URL/hash/dosya adı bozulması hata veriyor. Eksik ayda ortalama null. Eski 0.1.0 örnekler korunuyor. Aynı JSON şemasını her hücrede tekrar derlememek için süreç içi doğrulayıcı önbelleği eklendi; hücre kontrolleri korunuyor.
+
+Gerçek B teknik örneği iki NASA API isteğiyle alındı: mevcut 6° aday pencere değişmeden 60 kayıttaki 5 tekrar tekilleştirildi, 55 hücre/12 ay hesaplandı. M2'nin nokta dosyalarına veya kendi üye notuna dokunulmadı. [Gerçek kaynak ve kontroller](../evidence/T2M_TILING.md), [Mac/Windows komutları](../guide/T2M_TILED_WINDOW.md), [H-M1-005 teslimi](../team/HANDOFFS.md). Kesin alan/maske/uzun dönem veya bilimsel uygunluk kararı verilmedi. M2'nin yeni sürümü Mac'te çalıştırdığı varsayılmadı. Windows/Python 3.12.14'te 58 testlik son tam koşu (31,590 s), eski A/B nokta doğrulamaları, 12 aylık nokta uyumu ve eski A/yeni B alan örneklerinin çevrim dışı yeniden hesabı geçti. Portal check/strict build ve git diff --check geçti. Uzak PR/test/yayın sonucu aşağıdaki kanıt sayfasına tamamlanınca eklenecek.
+
 ## 2026-10-17 · M2 katkısını alma ve M1'i ayrı dala taşıma
 
 M1, iki kişinin doğrudan main yerine ayrı dallarda devam etmesini ve GitHub'daki M2 değişikliklerinin kontrol edilip gerekirse alınmasını istedi. Yerel çalışma temizdi. Fetch sonrasında main bir commit gerideydi; M2'nin `4ad9448` commit'i, B fişi/üye notu/H-M1-002 yanıtı ve test/workflow değişiklikleri incelendi. Açık GitHub PR yoktu. `git pull --ff-only origin main` çakışmasız tamamlandı. Main'in eski `origin/master` izleme ayarı `origin/main` olarak düzeltildi; `codex/m1-modules-region-a` güncel main'den açıldı. Hiçbir katkı reset/force ile silinmedi. [ADR-007](../decisions/ADR-007-FEATURE-BRANCHES.md), [paylaşım kılavuzu](../team/SYNC.md).
