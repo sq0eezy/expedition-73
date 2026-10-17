@@ -45,4 +45,6 @@ Maske, kesin alan, ortak bilimsel profil ve uzun dönem yöntem seçilmedi. Hüc
 
 ## Paylaşım yolu
 
-Kod M1 dalına `0413622` ile gönderildi. Bağlı entegrasyonun PR açma isteği `403 Resource not accessible by integration` döndürdü; PR oluşmadı. Yerel inceleme ve 58 test sonrası, kullanıcının açık main paylaşım yetkisiyle Git merge yolu uygulanıyor; sonraki geliştirme ayrı dalda sürecek. Canlı yayın/uzak test sonuçları tamamlanınca kayda eklenecek. Yerel portal check/strict build, git diff --check ve altı HTTP yol/içerik kontrolü geçti; geçici sunucu kapatıldı.
+Kod M1 dalına `0413622` ile gönderildi. Bağlı entegrasyonun PR açma isteği `403 Resource not accessible by integration` döndürdü; PR oluşmadı. Yerel inceleme ve 58 test sonrası, kullanıcının açık main paylaşım yetkisiyle `cdcc6bd1ce0f91108712ed97f157925ee92710fc` merge commit'i main'e gönderildi. M1 dalı bu main sürümüne güncellendi; sonraki geliştirme ayrı dalda sürecek. Yerel portal check/strict build, git diff --check ve altı HTTP yol/içerik kontrolü geçti; geçici sunucu kapatıldı.
+
+**Uzak doğrulama:** Bu merge commit'inde [Ubuntu adaptör testleri](https://github.com/sq0eezy/expedition-73/actions/runs/39019567418) ve [GitHub Pages yayını](https://github.com/sq0eezy/expedition-73/actions/runs/39019567366) başarılı. CI 58 çevrim dışı testi ve eski/yeni örnek doğrulamalarını çalıştırdı. [Canlı Mac kılavuzu](https://sq0eezy.github.io/expedition-73/guide/T2M_TILED_WINDOW/), bu kanıt sayfası ve H-M1-005 devir kaydı HTTP 200 ve beklenen yeni içerikle doğrulandı. Gerçek Mac çalıştırma sonucu değildir.

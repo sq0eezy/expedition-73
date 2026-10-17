@@ -2,7 +2,7 @@
 
 ## 2026-10-17 · M2 için parçalı bölgesel T2M desteği
 
-**Paylaşım yolu:** `0413622` M1 dalında paylaşıldı. GitHub entegrasyonu PR oluşturmaya 403 yetki hatası verdi; PR oluşmadı. Kullanıcının açık main talimatıyla yerel inceleme/test sonrası Git merge yolu kullanılacak; ayrı dal geliştirme düzeni korunuyor. Bu hata otomatik onay incelemesi reddi değildir.
+**Sonuç ve paylaşım:** `0413622` M1 dalında paylaşıldı. GitHub entegrasyonu PR oluşturmaya 403 yetki hatası verdi; PR oluşmadı. Kullanıcının açık main talimatıyla yerel inceleme/test sonrası Git merge yapıldı; `cdcc6bd` main'e gönderildi ve ayrı M1 dalı da bu sürüme güncellendi. Ubuntu CI ve Pages yayını başarılı; canlı kılavuz/kanıt/devir kaydı HTTP 200 ve yeni içerikle doğrulandı. [Uzak çalışma bağlantıları](../evidence/T2M_TILING.md). Sonraki geliştirme ayrı dalda sürer.
 
 Kullanıcı M2'nin beklediği parçalı desteği geliştirip test sonrası main'de paylaşmamızı istedi. M1 dalında `tiled.py`, iki CLI komutu, ham parça manifesti ve v0.2.0 sonuç şeması eklendi. Kaynak hesap değişmedi: parça ortalamalarını kullanmadan tekil hücrelerin asıl dikdörtgenle kesişim alanı bir kez hesaplanıyor. Parçalar sırayla alınıyor; metaveri/ortak hücre uyumsuzluğu, kayıp hücre/yanıt, URL/hash/dosya adı bozulması hata veriyor. Eksik ayda ortalama null. Eski 0.1.0 örnekler korunuyor. Aynı JSON şemasını her hücrede tekrar derlememek için süreç içi doğrulayıcı önbelleği eklendi; hücre kontrolleri korunuyor.
 

@@ -3,7 +3,7 @@ status: Validating
 updated: "2026-10-17"
 phase: Parçalı T2M erişimi ve M2'ye ortak modül teslimi
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "B'nin 6° aday penceresi için parçalı istek desteği ve 55 hücreli gerçek API örneği hazırlandı; test sonrası main paylaşımı istendi."
+change_summary: "Parçalı T2M desteği main'de paylaşıldı; 58 test, Ubuntu CI ve canlı panel yayını doğrulandı."
 ---
 # Mevcut durum
 
@@ -11,7 +11,7 @@ change_summary: "B'nin 6° aday penceresi için parçalı istek desteği ve 55 h
 
 ## Hazır olanlar
 
-- **M2'nin 6° pencere için beklediği teknik destek hazır:** [parçalı T2M komutu](guide/T2M_TILED_WINDOW.md) iki gerçek isteği birleştirdi; 5 tekrar çıkarılıp 55 hücre/12 ay hesaplandı. B aday sınırı değişmedi. Yeni çıktı profili 0.2.0; eski 0.1.0 örnekler çalışıyor, bilimsel alan yöntemi değişmedi. [Kanıt](evidence/T2M_TILING.md). Kullanıcı bu teslimin test sonrası main'e gönderilmesini istedi; geliştirme ayrı M1 dalında yapılıyor.
+- **M2'nin 6° pencere için beklediği teknik destek main'de:** [parçalı T2M komutu](guide/T2M_TILED_WINDOW.md) iki gerçek isteği birleştirdi; 5 tekrar çıkarılıp 55 hücre/12 ay hesaplandı. B aday sınırı değişmedi. Yeni çıktı profili 0.2.0; eski 0.1.0 örnekler çalışıyor, bilimsel alan yöntemi değişmedi. `cdcc6bd` main birleştirmesinde 58 testlik Ubuntu CI ve Pages yayını başarılı; canlı kılavuz HTTP 200. [Kanıt](evidence/T2M_TILING.md). Sonraki geliştirme ayrı M1 dalında sürer.
 
 - M2'nin [B geometri/API katkısı](research/regions/REGION_B_PROFILE.md) `4ad9448` ile main'e geldi ve yerel kopyaya çakışmasız alındı. M2 başlangıç/üstlenme kaydı artık var: [M2 notu](team/members/M2.md), [H-M1-002 yanıtı](team/HANDOFFS.md). M1 çalışması `codex/m1-modules-region-a` dalında devam ediyor: [ADR-007](decisions/ADR-007-FEATURE-BRANCHES.md). Geliştirme dalı push'u canlı paneli güncellemez; Pages main'e birleştirme sonrası yayımlanır.
 
@@ -29,4 +29,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-Parçalı desteği test/PR sonrasında main'de paylaş; M2 [kılavuzdaki](guide/T2M_TILED_WINDOW.md) kayıtlı örneği çevrim dışı doğrulayıp kendi B alan incelemesine devam edebilir. Bu teslim M2'nin işi bitirdiği anlamına gelmez. M1 için sırada gerçek sınır/kara-su maskesi ve ortak bilimsel profil var. Parçalı pilot iki yıl ve en fazla 16 istek; tek istek başına pay dahil 5° proje sınırı korunur. Sınır/maske kapsamıyla [ortak profil](planning/REGION_WORKFLOW.md) kesinleştirildikten sonra uzun seri, istatistik ve web görünümüne geçilecek. Yeni konuşmalar [işleme akışıyla](guide/AI_WORKFLOW.md) kaydedilir.
+M2 güncel main'i kendi değişikliklerini koruyarak alıp [kılavuzdaki](guide/T2M_TILED_WINDOW.md) kayıtlı örneği çevrim dışı doğrulayabilir ve kendi B alan incelemesine devam edebilir. Bu teslim M2'nin işi bitirdiği anlamına gelmez. M1 için sırada gerçek sınır/kara-su maskesi ve ortak bilimsel profil var. Parçalı pilot iki yıl ve en fazla 16 istek; tek istek başına pay dahil 5° proje sınırı korunur. Sınır/maske kapsamıyla [ortak profil](planning/REGION_WORKFLOW.md) kesinleştirildikten sonra uzun seri, istatistik ve web görünümüne geçilecek. Yeni konuşmalar [işleme akışıyla](guide/AI_WORKFLOW.md) kaydedilir.

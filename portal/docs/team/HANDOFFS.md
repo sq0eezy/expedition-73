@@ -48,7 +48,7 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 
 - **Gönderen → alıcı:** M1 → M2; kullanıcının ortak modülü main'de paylaşma talebi kapsamında panel içi teslim.
 - **Tarih:** 2026-10-17.
-- **Durum:** Teknik teslim hazır; M2 inceleme/çalıştırma sonucu bekleniyor. Main aktarımı kullanıcı tarafından istendi, test/PR sonucu kanıt kaydına eklenecek.
+- **Durum:** `cdcc6bd` ile main'de paylaşıldı; Ubuntu testleri ve canlı panel yayını başarılı. M2 inceleme/çalıştırma sonucu bekleniyor: [kanıt](../evidence/T2M_TILING.md).
 - **Teslim:** `fetch-power-tiled-window` / `validate-tiled-window`, bölgeden bağımsız yapılandırma, 0.2.0 çıktı ve iki gerçek B ham yanıtı. B'nin mevcut 6° arama penceresi küçülmedi; ortak 5 hücre bir kez sayıldı. [Mac komutları](../guide/T2M_TILED_WINDOW.md), [kontroller ve sınırlar](../evidence/T2M_TILING.md).
 - **M2'nin yapabileceği:** Güncel main'i kendi değişikliklerini koruyarak al; kendi çalışma dalında kayıtlı `examples/b-window-2024` örneğini çevrim dışı doğrula. R-B03/04 kapsamında alan/maske/uygunluk incelemesini sürdür; yeni API çağrısı gerekirse yeni çıktı klasörü kullan.
 - **Sınır:** Kesin alan/maske seçimi ve bilimsel A/B uygunluk onayı yok; B adına yeni yorum veya başlangıç üretilmedi. Dış mesaj/bildirim gönderilmedi.
