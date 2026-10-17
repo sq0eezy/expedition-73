@@ -41,4 +41,8 @@ Test kapsamı: gerçek B ham parçalarını yeniden hesaplama, eksik/tekrar hüc
 
 ## Yorum ve paylaşım sınırı
 
-Maske, kesin alan, ortak bilimsel profil ve uzun dönem yöntem seçilmedi. Hücre kenarları orta noktadan kurulur, küresel alan yaklaşımı açıkça kaydedilir. Bu destek R-B04'ün teknik engelini kaldırır; M2'nin kendi nihai alan hesabı/yorumunu bitirdiği veya bu sürümü Mac'te çalıştırdığı varsayılmaz. Kullanıcı test sonrası main'e gönderilmesini istedi; PR/test/yayın bağlantıları tamamlanınca bu kayda eklenir.
+Maske, kesin alan, ortak bilimsel profil ve uzun dönem yöntem seçilmedi. Hücre kenarları orta noktadan kurulur, küresel alan yaklaşımı açıkça kaydedilir. Bu destek R-B04'ün teknik engelini kaldırır; M2'nin kendi nihai alan hesabı/yorumunu bitirdiği veya bu sürümü Mac'te çalıştırdığı varsayılmaz. Kullanıcı test sonrası main'e gönderilmesini istedi.
+
+## Paylaşım yolu
+
+Kod M1 dalına `0413622` ile gönderildi. Bağlı entegrasyonun PR açma isteği `403 Resource not accessible by integration` döndürdü; PR oluşmadı. Yerel inceleme ve 58 test sonrası, kullanıcının açık main paylaşım yetkisiyle Git merge yolu uygulanıyor; sonraki geliştirme ayrı dalda sürecek. Canlı yayın/uzak test sonuçları tamamlanınca kayda eklenecek. Yerel portal check/strict build, git diff --check ve altı HTTP yol/içerik kontrolü geçti; geçici sunucu kapatıldı.

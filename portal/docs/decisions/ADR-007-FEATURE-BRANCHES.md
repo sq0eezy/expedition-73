@@ -24,3 +24,7 @@ M2 için de kendisine ait `codex/` önekli bir dal kullanılması önerilir; ad�
 - Yerel main'in eski `origin/master` izleme ayarı bu geçişte `origin/main` olarak düzeltildi. Eski uzak master silinmedi.
 
 İşlem kaydı ve komutlar [paylaşım kılavuzunda](../team/SYNC.md), gerçek kontroller [çalışma günlüğünde](../control-center/WORK_LOG.md). Bilimsel kapsam, alan seçimi veya yöntem kararı değişmedi.
+
+## 2026-10-17 · Bu modül tesliminin birleştirme yolu
+
+M1, parçalı T2M desteğinin test sonrası main'de paylaşılmasını açıkça istedi. Bağlı GitHub entegrasyonunun PR oluşturma çağrısı `403 Resource not accessible by integration` döndürdü; PR oluşmadı. Bu teslim için ayrı dalda geliştirme, yerel kod incelemesi ve testlerden sonra yerel Git merge ile main'e aktarım uygulanır. Bu, sonraki geliştirmelerde ayrı dal veya mümkün olduğunda PR kullanımını kaldırmaz. [Gerçek sonuç kaydı](../evidence/T2M_TILING.md).
