@@ -13,6 +13,7 @@
 | [Gerçek T2M alan hesabı](T2M_WINDOW_PROBE.md) | 56 hücre/12 ay, kenar kesişimleri, bağımsız hesap ve kapsam sınırları |
 | [Parçalı T2M erişimi](T2M_TILING.md) | B'nin 6° penceresinde iki istek, 55 tekil hücre ve kaynak/hata kontrolleri |
 | [Maske hazırlığı](SURFACE_MASK_CHECK.md) | Gerçek 401 erişim sonucu, hücre planı ve yalnızca sentetik maske hesabı testleri |
+| [Earthdata metadata erişimi](EARTHDATA_METADATA.md) | Yerel kullanıcı isteğinde HTTP 200, dört değişken, boyut/birim ve dosya hash doğrulaması |
 | [Araştırma kaydı](../research/index.md) | İncelenen sayfalar ve erişim sınırları |
 
 NASA POWER sayısal nokta erişimi için [ilk kanıt](T2M_POINT_PROBE.md), maskesiz aday dikdörtgenin küçük alan hesabı için [yeni kanıt](T2M_WINDOW_PROBE.md) var. Kesin analiz bölgesinin uzun dönem serisi/trend/anlamlılık hesabı, performans ölçümü veya kullanıcı denemesi için henüz kanıt yok.

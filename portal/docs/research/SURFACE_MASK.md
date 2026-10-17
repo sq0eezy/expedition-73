@@ -8,6 +8,8 @@ change_summary: "M2C0NXASM bulundu; A/B hücre planları ve sentetik verilerle m
 
 ## Kaynak adayı ve gerçek erişim
 
+**Son durum · 2026-10-17:** İlk oturumsuz 401 denemesinden sonra kullanıcı yerel token kontrolünü çalıştırdı. [Gerçek metadata isteği HTTP 200](../evidence/EARTHDATA_METADATA.md); dört fraksiyon değişkeni ve 1×361×576 boyut sırası doğrulandı. Aşağıdaki 401 ifadeleri ilk denemeyi anlatır. Sayısal fraksiyonlar ve koordinat vektörleri henüz alınmadı.
+
 [NASA GMAO veri erişim tablosu](https://gmao.gsfc.nasa.gov/gmao-products/merra-2/wmo-data-access_merra-2/) MERRA-2 için kara maskesini sabit veri olarak listeliyor. [NASA ürün kaydı](https://data.nasa.gov/dataset/merra-2-const-2d-asm-nx-2d-constants-0-625-x-0-5-degree-v5-12-4-m2c0nxasm-at-ges-disc-f6cfc) `M2C0NXASM` 5.12.4'ü hücre içindeki kara/göl/okyanus oranları içeren sabit model koleksiyonu olarak tanımlıyor. [Dosya şartnamesi §6, PDF sayfa 21](https://ntrs.nasa.gov/api/citations/20150019760/downloads/20150019760.pdf#page=21) dört değişkeni ayırıyor: `FRLAND` kara, `FRLANDICE` kara buzu, `FRLAKE` göl, `FROCEAN` okyanus; birimleri `1`.
 
 2026-10-17'de [NASA CMR granule sorgusu](https://cmr.earthdata.nasa.gov/search/granules.json?short_name=M2C0NXASM&version=5.12.4&page_size=2) çalıştı; `G1277560809-GES_DISC`, koleksiyon `C1276812819-GES_DISC` ve güncel OPeNDAP bağlantısı bulundu. CMR sorgusunun UTC zamanı 09:08:22. Bu metadata bulgusudur; hücre kalitesi veya veri alımı kanıtı değildir.

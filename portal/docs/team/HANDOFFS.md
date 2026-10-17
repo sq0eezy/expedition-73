@@ -64,6 +64,8 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 
 **Erişim adımı güncellemesi · 2026-10-17:** Kayıt adımı tamamlandı bilgisi geldi; programatik erişim henüz doğrulanmadı. [Yerel metadata kontrolü](../guide/EARTHDATA_ACCESS.md) hazır; kullanıcı token'ı kendi terminalinde gizli girer. Başarılı gerçek yanıt gelene kadar fraksiyon veya maske doğrulaması yapılmış sayılmaz.
 
+**Gerçek kontrol sonucu · 2026-10-17:** Kullanıcı komutu çalıştırdı; HTTP 200 ve dört maske değişkeni/boyut metaverisi [doğrulandı](../evidence/EARTHDATA_METADATA.md). Önceki erişim bekleniyor notu tarihsel kaldı. Token okunmadı; fraksiyon/koordinat değerleri henüz alınmadı. M2 adına yeni çalışma beyanı yok.
+
 ## Bir kayıt için gerekenler
 
 | Alan | İçerik |

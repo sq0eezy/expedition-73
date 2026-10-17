@@ -88,6 +88,7 @@ nav:
       - İlk T2M alan hesabı: evidence/T2M_WINDOW_PROBE.md
       - Parçalı T2M erişimi: evidence/T2M_TILING.md
       - Maske hazırlığı ve kontroller: evidence/SURFACE_MASK_CHECK.md
+      - Gerçek Earthdata metadata erişimi: evidence/EARTHDATA_METADATA.md
   - Proje:
       - Bağlam ve hedef: PROJECT_CONTEXT.md
       - Belge haritası: DOCUMENTATION_MAP.md

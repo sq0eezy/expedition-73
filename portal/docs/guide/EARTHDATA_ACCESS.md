@@ -4,6 +4,8 @@ change_summary: "Parola/token kaydetmeyen sabit NASA uç nokta kontrolü hazırl
 ---
 # Earthdata · Kayıttan sonra erişimi kontrol et
 
+**2026-10-17 gerçek sonuç:** Kullanıcının bu komutu çalıştırmasıyla metadata isteği HTTP 200 verdi; dört maske değişkeni bulundu ve XML bütünlüğü kontrol edildi. [Kanıt](../evidence/EARTHDATA_METADATA.md). Bu başarı maske değerlerinin alındığı anlamına gelmez.
+
 Hesap açmak, tarayıcı oturumunu Python isteğine otomatik taşımaz. `analysis/scripts/check_earthdata_access.py` kullanıcı terminalinde token'ı gizli alıp yalnızca daha önce CMR'de bulunan MERRA-2 sabitleri metadata adresine tek istek yapar. Parola istemez; token için komut satırı argümanı, ortam değişkeni veya kalıcı dosya kullanmaz.
 
 ## Windows · M1 için
@@ -37,4 +39,4 @@ Script yönlendirmeleri izlemez ve token'ı başka adrese taşımaz. [OPeNDAP to
 
 ## Doğrulama sınırı
 
-Yapay token ve XML ile otomatik testler, başlığın doğru kurulmasını, yönlendirme reddini, token yansıması/HTML/bozuk XML/boyut sınırını, gizli girişi ve hata metinlerinin kimlik bilgisi içermemesini denetler. Canlı token kullanılmadı; gerçek giriş başarısı henüz doğrulanmadı. Bir HTTP 200 DMR yanıtı yalnızca metadata erişimini kanıtlar. Fraksiyon değerleri, kaynak ızgara/birim/dolgu doğrulaması, NetCDF dönüşümü ve bilimsel maske kararı sonraki adımlardır.
+Yapay token ve XML ile otomatik testler, başlığın doğru kurulmasını, yönlendirme reddini, token yansıması/HTML/bozuk XML/boyut sınırını, gizli girişi ve hata metinlerinin kimlik bilgisi içermemesini denetler; otomatik testler canlı token kullanmaz. Ayrıca kullanıcının yerel gerçek isteği HTTP 200 ile doğrulandı: [kanıt](../evidence/EARTHDATA_METADATA.md). Bu DMR yanıtı metadata erişimini kanıtlar; fraksiyon değerleri/koordinat vektörleri, NetCDF dönüşümü ve bilimsel maske kararı sonraki adımlardır.

@@ -1,5 +1,11 @@
 # Çalışma günlüğü
 
+## 2026-10-17 · Yerel Earthdata kontrolü başarılı
+
+Kullanıcı komutu çalıştırdığını ve gizli token girişinin başarılı olup olmadığını kontrol etmemizi istedi. Token okunmadan terminaldeki başarı mesajı, yerel rapor ve DMR XML denetlendi. Gerçek HTTP 200, UTC 09:29:33, 17.065 bayt; XML SHA-256 raporla eşleşti. Dört Float32 fraksiyon değişkeni ve `/time,/lat,/lon` 1×361×576 boyut sırası, birim 1 ve kaynak dolgu metaverisi doğrulandı. [Kanıt](../evidence/EARTHDATA_METADATA.md). Token kalıcı kaydedilmedi; yeni authenticated istek yapılmadı. Fraksiyon değerleri/koordinat vektörleri henüz alınmadı, maskeli seri üretilmedi. Durum, kaynak ve MOD-05/devir/M1 notu güncellendi; main'e aktarım yapılmadı.
+
+Portal check ve strict build, git diff --check geçti. Çalışan analiz kodu değiştirilmedi; mevcut rapor/metadata dosyaları okunarak denetlendi. Bilimsel fraksiyon veya gerçek Mac doğrulaması değildir.
+
 ## 2026-10-17 · Earthdata kaydı sonrası yerel erişim kontrolü
 
 Kayıt adımının tamamlandığı bildirildi. Tarayıcı oturumunu Python erişimi saymadan, OPeNDAP/NASA resmî token ve uygulama yetkisi belgeleri incelendi. Sabit NASA metadata URL'sine doğrudan Bearer isteği yapan `earthdata.py` ve kullanıcı terminalinde gizli token girişi isteyen `analysis/scripts/check_earthdata_access.py` hazırlandı. Token komut argümanına, ortam değişkenine veya dosyaya yazılmaz; yönlendirme izlenmez, hata gövde/header/cookie basılmaz, gizli giriş yoksa görünür girişe dönülmez. Metadata başarılıysa yalnızca XML ve erişim raporu ignored artifacts klasörüne kaydedilir. [Kılavuz](../guide/EARTHDATA_ACCESS.md).
