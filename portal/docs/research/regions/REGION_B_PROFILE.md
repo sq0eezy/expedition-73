@@ -19,12 +19,25 @@ sq0eezy'nin ilk çalışma kaydı, **2026-10-16**. Görev durumu [panoda](../../
 | Kaynak ve sürüm ayrımı | Yanıtta kaynak `MERRA2`; bu, doğrudan `M2TMNXSLV` 5.12.4 dosyası veya nihai iki-bölge ürünü diye etiketlenmedi |
 | Gerçek yanıt | 12 aylık kayıt; `C`, Temperature at 2 Meters; -999 dolgu; LST zaman standardı. `202413` yıllık özet (-8,29 °C) ayrı korundu. |
 | Kapsam/kalite | Deneme yılında 12/12 ay sayısal; piksel kalite bayrağı yok. Bu sayım bilimsel kalite veya tüm alan kapsamı değildir. |
-| Sözleşme/modül | Nokta-serisi profili v0.1.0 tam uyumlu (`check-alignment` ile A ve B 12/12 ay eşleşti). Bölgesel alan hesabı için istek parçalama planlanıyor. |
-| Bağımsız hesap | 12 ayın değerleri: Ocak -22,89 °C, Şubat -21,67 °C, Mart -21,49 °C, Nisan -9,69 °C, Mayıs -2,88 °C, Haziran 9,30 °C, Temmuz 10,92 °C, Ağustos 8,16 °C, Eylül 2,48 °C, Ekim -8,77 °C, Kasım -19,71 °C, Aralık -23,62 °C. |
-| Ortak profil/A uygunluğu | A ile aynı sağlayıcı (NASA POWER), aynı değişken (T2M, degC), aynı takvim (2024) ve LST standardı. `check-alignment` sonucu: `aligned_point_series`. |
-| Sonuç dosyaları | [İstek](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/b-point-2024/request.json), [API yanıtı](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/b-point-2024/response.json), [çıktı](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/b-point-2024/result.json) |
-| Bulgular | Gerçek API erişimi/aktarım başarılı. Nokta verisi Arktik soğuk kış (-23 °C bandı) ve kısa ılıman yaz (10 °C bandı) dinamiklerini beklenen şekilde yansıtıyor. Bölgesel trend, p-değeri ve iklim etkisi bulgusu yok. |
-| Sonraki adım | B fişi tamamlandı; R-B01/R-B02 doğrulandı. 6°'lik pencere için parçalı bölgesel istek ya da odaklanmış alt bölge sınırını Emeç ile netleştir. |
+| Sözleşme/modül | Nokta-serisi profili v0.1.0 ve parçalı alan profili v0.2.0 tam uyumlu (`validate-tiled-window` ile `replay_passed` alındı; 55 hücre tekilleştirildi). |
+| Bağımsız hesap | Nokta (12 ay): Ocak -22,89 °C, Temmuz 10,92 °C, Yıllık -8,29 °C. Parçalı alan (55 hücre): Ocak -24,13 °C, Temmuz 9,70 °C, Yıllık -8,73 °C. |
+| Ortak profil/A uygunluğu | R-B03 onaylandı: A ile aynı sağlayıcı (NASA POWER/MERRA-2), aynı gösterge (T2M, degC), aynı takvim (2024) ve LST standardı. Çevrim dışı testler (58 test) ve şema kontrolleri tam uyumlu. |
+| Sonuç dosyaları | [Nokta çıktısı](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/b-point-2024/result.json), [Parçalı alan çıktısı](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/b-window-2024/result.json) |
+| Bulgular | Gerçek API erişimi/aktarım başarılı. Geniş 6° aday penceresinde 55 hücre tekilleştirilerek -8,73 °C yıllık sıcaklık hesaplandı; nokta verisiyle (-8,29 °C) yüksek tutarlılık sağlandı. Bölgesel trend, p-değeri ve iklim etkisi bulgusu yok. |
+| Sonraki adım | R-B03 tamamlandı; R-B04 doğrulandı. Sırada kara/su maskesi araştırması ve 2001–2024 uzun dönem serisinin hazırlanması var. |
+
+## 2026-10-18 · Bölge B parçalı alan doğrulaması ve R-B03 uygunluğu
+
+M2 (sq0eezy) olarak Emeç'in `H-M1-005` ile sunduğu parçalı bölgesel alan çıktısı (`analysis/examples/b-window-2024`) macOS üzerinde `validate-tiled-window` komutuyla doğrulandı. 55 tekil MERRA-2 hücresi üzerinden hesaplanan 53.169,1 km²'lik aday arama penceresinde 12/12 ay eksiksiz alan ağırlıklı ortalamalar alındı.
+
+2024 yılı aylık alan ağırlıklı ortalamalar:
+- Ocak: -24,13 °C, Şubat: -21,53 °C, Mart: -21,46 °C
+- Nisan: -10,19 °C, Mayıs: -3,19 °C, Haziran: 8,85 °C
+- Temmuz: 9,70 °C, Ağustos: 7,19 °C, Eylül: 1,63 °C
+- Ekim: -9,44 °C, Kasım: -19,55 °C, Aralık: -22,61 °C
+- **Yıllık alan ortalaması:** -8,73 °C (Nokta örneğindeki -8,29 °C ile tutarlı ve geniş soğuk Arktik alanı yansıtıyor).
+
+R-B03 ortak veri profili uygunluğu onaylandı: İki bölge de aynı NASA POWER / MERRA-2 altyapısını, T2M parametresini, Celsius birimini ve LST standardını kullanmaktadır. Region B için açık kalan tek teknik gereksinim, Arktik Okyanusu kıyı hücrelerinin ayıklanması için Faz 2'de uygulanacak kara/su maskesidir.
 
 ## 2026-10-16 · Bölge B ilk erişim ve nokta adaptörü
 

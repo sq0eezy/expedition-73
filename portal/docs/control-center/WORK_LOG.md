@@ -1,5 +1,11 @@
 # Çalışma günlüğü
 
+## 2026-10-18 · H-M1-005 doğrulaması, R-B03 ortak profil ve M2 dalı (sq0eezy)
+
+M2 (sq0eezy), Emeç'in `H-M1-005` ile sunduğu parçalı T2M bölgesel alan çıktısını (`analysis/examples/b-window-2024`) macOS üzerinde `validate-tiled-window` ile çevrim dışı doğruladı (`replay_passed`). 2 parçanın birleştirilmesi, 5 mükerrer hücrenin ayıklanması ve 55 tekil hücre üzerinden 12/12 ay eksiksiz alan ortalaması (-8,73 °C) doğrulandı.
+
+R-B03 ortak veri profili uygunluğu onaylandı: İki bölgenin de NASA POWER / MERRA-2 tabanlı 2m hava sıcaklığı (T2M) verisi, küresel dikdörtgen kesişim integrali yöntemi ve LST standardı tam uyumludur. Karşılaştırmalı analizde Bölge A (+12,19 °C) ile Bölge B (-8,73 °C) arasında beklenen iklimsel zıtlık (+20,92 °C fark) doğrulandı. [B fişi](../research/regions/REGION_B_PROFILE.md), [ortak profil](../planning/REGION_WORKFLOW.md) ve [M2 notu](../team/members/M2.md) güncellendi. ADR-007 kararı doğrultusunda çalışmalar `codex/m2-region-b` dalına taşındı. 58 çevrim dışı test, portal check ve strict build başarıyla geçti.
+
 ## 2026-10-17 · M2 için parçalı bölgesel T2M desteği
 
 **Sonuç ve paylaşım:** `0413622` M1 dalında paylaşıldı. GitHub entegrasyonu PR oluşturmaya 403 yetki hatası verdi; PR oluşmadı. Kullanıcının açık main talimatıyla yerel inceleme/test sonrası Git merge yapıldı; `cdcc6bd` main'e gönderildi ve ayrı M1 dalı da bu sürüme güncellendi. Ubuntu CI ve Pages yayını başarılı; canlı kılavuz/kanıt/devir kaydı HTTP 200 ve yeni içerikle doğrulandı. [Uzak çalışma bağlantıları](../evidence/T2M_TILING.md). Sonraki geliştirme ayrı dalda sürer.

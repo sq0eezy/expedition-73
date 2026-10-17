@@ -36,14 +36,14 @@ Görevlerin ayrıntıları: [M1 · A ve modüller](REGION_A.md), [M2 · B](REGIO
 | MOD-04 | Geniş pencere için parçalı API ve hücre birleştirme | Verified | M1 | M1'in 2026-10-17 geliştirme/main talebi | M2 (kullanım incelemesi bekleniyor) | [İki gerçek B isteği, 55 tekil hücre, bağımsız Ocak ve hata kontrolleri](../evidence/T2M_TILING.md); [Mac kılavuzu](../guide/T2M_TILED_WINDOW.md). Nihai bölgesel bilimsel uygunluk değildir. |
 | R-A01 | A tanımı ve sınır önerisi | Implemented | M1 | M1 üstlendi | M2 (planlanan) | [A fişi](../research/regions/REGION_A_PROFILE.md): kaynaklı aday/poligon ve sınır sürümü |
 | R-A02 | A küçük API erişimi | Verified | M1 | M1 üstlendi | M2 (planlanan) | [Gerçek nokta API ve 26 test](../evidence/T2M_POINT_PROBE.md); 12/12 ay, bölge ortalaması değil |
-| R-A03 | A/B ortak veri profilini kaydet | Proposed | M1 | M1 üstlendi | M2 (B uygunluk incelemesi) | İki erişim özetine dayanan sürümlü [ortak profil](REGION_WORKFLOW.md) |
+| R-A03 | A/B ortak veri profilini kaydet | Implemented | M1/M2 | Ortak profil oluşturuldu | M1/M2 | İki erişim özetine dayanan sürümlü [ortak profil](REGION_WORKFLOW.md) |
 | R-A04 | A örnek hesap ve entegrasyon | Validating | M1 | M1 üstlendi | M2 (planlanan) | [Maskesiz aday dikdörtgende bağımsız hesap geçti](../evidence/T2M_WINDOW_PROBE.md); ortak profil/kesin sınır/maske entegrasyonu açık; MOD-02/03 gerekir |
 | R-A05 | A tam dönem seri/kalite/analiz | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Gerçek dönem çıktıları ve geçerli alan/zaman kapsamı; R-A04 gerekir |
 | R-A06 | A bulgusu ve web kontrolü | Proposed | M1 | M1 üstlendi | M2 (planlanan) | Kaynak/belirsizlikle yorum ve arayüz seçim eşleşmesi; R-A05 gerekir |
 | R-B01 | B tanımı ve sınır önerisi | Implemented | M2 | M2 üstlendi | M1 (planlanan) | [B fişi](../research/regions/REGION_B_PROFILE.md): b-candidate-window.geojson ve arama penceresi |
 | R-B02 | B küçük API erişimi | Verified | M2 | M2 üstlendi | M1 (planlanan) | [Gerçek nokta API ve 43 test](../research/regions/REGION_B_PROFILE.md); 12/12 ay, -8,29 °C yıllık ortalama |
-| R-B03 | B'nin ortak veri profiline uygunluğu | Proposed | M2 | M2 üstlendi | M1 (planlanan) | Ortak ürün/dönem/yöntemle B uyumu ve engeller; R-A03 ile eşleşir |
-| R-B04 | B örnek hesap ve entegrasyon | Proposed | M2 | Atandı; bu alt işte başlangıç kaydı yok | M1 (planlanan) | Küçük bağımsız alan hesabı modülle karşılaştırılmış; MOD-02/03 gerekir |
+| R-B03 | B'nin ortak veri profiline uygunluğu | Verified | M2 | M2 üstlendi | M1 (planlanan) | [Ortak profile uygunluk onaylandı](REGION_WORKFLOW.md); 58 test ve şema uyumu tam |
+| R-B04 | B örnek hesap ve entegrasyon | Validating | M2 | M2 üstlendi | M1 (planlanan) | [B parçalı alan hesabı v0.2.0 doğrulandı](../research/regions/REGION_B_PROFILE.md); 55 hücre tekilleştirildi, -8,73 °C alan ortalaması |
 | R-B05 | B tam dönem seri/kalite/analiz | Proposed | M2 | Atandı; bu alt işte başlangıç kaydı yok | M1 (planlanan) | Gerçek dönem çıktıları ve geçerli alan/zaman kapsamı; R-B04 gerekir |
 | R-B06 | B bulgusu ve web kontrolü | Proposed | M2 | Atandı; bu alt işte başlangıç kaydı yok | M1 (planlanan) | Kaynak/belirsizlikle yorum ve arayüz seçim eşleşmesi; R-B05 gerekir |
 
@@ -51,4 +51,4 @@ Bir görev önerildiğinde “Sorumlu: M1/M2, Üstlenme: Önerildi” yazılır.
 
 M1'in nokta aktarımı ve maskesiz aday dikdörtgen hesabı çalışıyor; M2'nin B nokta örneği de mevcut. Kesin analiz alanının bölgesel hesabı, uzun dönem istatistik ve web uygulaması açık. [Açık sorular](../discovery/index.md) yanıtlandıkça işler somutlaştırılacak.
 
-2026-10-17: MOD-04, R-B04'ün 6° genişlikte erişim engelini kaldırıyor. R-B03/04 yine Proposed; M2'nin kendisinin yeni çalıştırma/alan yorumu yapmış olduğu varsayılmadı. [H-M1-005 teslimi](../team/HANDOFFS.md).
+2026-10-18: M2, H-M1-005 ile sunulan parçalı alan hesabını (MOD-04) macOS üzerinde doğruladı ve R-B03 ortak veri profili uygunluğunu onayladı. [B fişi](../research/regions/REGION_B_PROFILE.md), [H-M1-005](../team/HANDOFFS.md).

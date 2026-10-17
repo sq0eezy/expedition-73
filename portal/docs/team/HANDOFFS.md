@@ -48,10 +48,11 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 
 - **Gönderen → alıcı:** M1 → M2; kullanıcının ortak modülü main'de paylaşma talebi kapsamında panel içi teslim.
 - **Tarih:** 2026-10-17.
-- **Durum:** `cdcc6bd` ile main'de paylaşıldı; Ubuntu testleri ve canlı panel yayını başarılı. M2 inceleme/çalıştırma sonucu bekleniyor: [kanıt](../evidence/T2M_TILING.md).
+- **Durum:** Doğrulandı · Kabul edildi; M2 parçalı B alan örneğini çevrim dışı doğruladı ve R-B03 uygunluğunu onayladı.
 - **Teslim:** `fetch-power-tiled-window` / `validate-tiled-window`, bölgeden bağımsız yapılandırma, 0.2.0 çıktı ve iki gerçek B ham yanıtı. B'nin mevcut 6° arama penceresi küçülmedi; ortak 5 hücre bir kez sayıldı. [Mac komutları](../guide/T2M_TILED_WINDOW.md), [kontroller ve sınırlar](../evidence/T2M_TILING.md).
 - **M2'nin yapabileceği:** Güncel main'i kendi değişikliklerini koruyarak al; kendi çalışma dalında kayıtlı `examples/b-window-2024` örneğini çevrim dışı doğrula. R-B03/04 kapsamında alan/maske/uygunluk incelemesini sürdür; yeni API çağrısı gerekirse yeni çıktı klasörü kullan.
 - **Sınır:** Kesin alan/maske seçimi ve bilimsel A/B uygunluk onayı yok; B adına yeni yorum veya başlangıç üretilmedi. Dış mesaj/bildirim gönderilmedi.
+- **Yanıt:** M2 (sq0eezy), 2026-10-18: H-M1-005 teslimi incelendi. macOS/Python 3.14 üzerinde `validate-tiled-window examples/b-window-2024` çalıştırıldı ve `replay_passed` alındı. 2 parçanın birleştirilmesi, 5 mükerrer hücrenin ayıklanması ve 55 tekil hücre üzerinden 12/12 ay eksiksiz alan ortalaması (-8,73 °C) doğrulandı. 58 birim testin tamamı geçti. R-B03 ortak veri profili uygunluğu onaylandı. Kesin sınır/kara-su maskesi ve uzun dönem serisi (2001–2024) açık bırakıldı. Dış mesaj gönderilmedi.
 
 ## Bir kayıt için gerekenler
 

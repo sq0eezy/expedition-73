@@ -21,23 +21,23 @@ change_summary: "Kullanıcının iş bölümü talebi görev sırası ve ortak v
 4. **Küçük hesabı çapraz kontrol et:** R-A04/B04'te tek tarih/az sayıda hücreyle ara hesap incelenir; hatayı tam dönem sonuç üretmeden yakala.
 5. **Aynı sürümle iki alan:** R-A05/B05 tam seri, kapsam ve analiz üretir. R-A06/B06 yorum ve web kontrolünü tamamlar. A–B farkı için ayrıca uygun analiz gerekir.
 
-## Ortak veri profili · Henüz doldurulmadı
+## Ortak veri profili · 2026-10-18 (R-A03 / R-B03)
 
-R-A03/R-B03 bu tabloda adayları kaynaklı biçimde kesinleştirir. Değişiklikte profil sürümü ve gerekçesi yazılır; sonuçlar kullandıkları sürüme bağlanır.
+R-A03 ve R-B03 kapsamında A ve B aday alanlarının veri uyumu incelendi ve doğrulandı.
 
 | Alan | Güncel kayıt |
 |---|---|
-| Profil kimliği/sürümü | Henüz yok |
-| Gösterge | 2 metre hava sıcaklığı; pilot seçildi |
-| Sağlayıcı/ürün/sürüm ve API yolu | İki bölge için seçilmedi; A erişim denemesi NASA POWER Monthly v2.10.0 point API ile başarılı. [Kanıt](../evidence/T2M_POINT_PROBE.md). Doğrudan MERRA-2 ürünüyle eşit sayılmaz |
-| A ve B sınır kimliği/sürümü | Seçilmedi; [A fişi](../research/regions/REGION_A_PROFILE.md), [B fişi](../research/regions/REGION_B_PROFILE.md) |
-| Ortak dönem/sıklık | Seçilmedi; 2001–2024 ve aylık sıklık önceki adaylar |
-| Birim/ölçek/eksik değer kuralı | Ürüne göre doğrulanacak |
-| Kara/su maskesi ve alan/kesişim ağırlığı | Tanımlanmadı; coğrafyaya uygun ama karşılaştırılabilir kurallar gerek |
-| Referans dönem/mevsim tanımı | Gerekliyse açıkça seçilecek |
-| Analiz profili/sürümü ve varsayımlar | Seçilmedi |
-| Modül/sözleşme sürümü ve örnek çağrı | İlk nokta profili/CLI 0.1.0 hazır: [çalıştırma](../guide/T2M_ADAPTER.md). Bölgesel profil henüz yok |
-| Gözlenen uyumluluk/engeller | A nokta API erişimi doğrulandı. B örneği, bölgesel kapsam ve ortak yöntem henüz yok; A/B uyumu doğrulanmadı |
+| Profil kimliği/sürümü | `common-profile-t2m-0.2.0` |
+| Gösterge | 2 metre hava sıcaklığı (T2M) · Pilot gösterge |
+| Sağlayıcı/ürün/sürüm ve API yolu | NASA POWER Monthly and Annual API v2.10.0 (MERRA-2 tabanlı servis). Nokta API ve Parçalı Bölgesel API yolları |
+| A ve B sınır kimliği/sürümü | Bölge A: `[-113, 36, -109, 39]` (`search-window-0.1.0`), Bölge B: `[-156, 68, -150, 70]` (`search-window-0.1.0`) |
+| Ortak dönem/sıklık | 2024 (aylık sıklık, 12/12 ay eksiksiz doğrulandı); uzun dönem adayı: 2001–2024 |
+| Birim/ölçek/eksik değer kuralı | Celsius (°C), dolgu değeri `-999.0` (seriye katılmıyor, eksik değer durumunda ay `null` kalır); 2024 denemelerinde eksik veriyle karşılaşılmadı |
+| Kara/su maskesi ve alan/kesişim ağırlığı | MERRA-2 0,625° × 0,5° ızgara hücre orta noktalarından kenar kurma ve küresel dikdörtgen kesişim integrali (`R=6.371.008,8 m`). Kara/su maskesi henüz uygulanmadı; Region B kıyı hücreleri için Faz 2'de maske eklenecek |
+| Referans dönem/mevsim tanımı | Henüz tanımlanmadı; tam dönem serisinde (2001–2024) belirlenecek |
+| Analiz profili/sürümü ve varsayımlar | `spherical_midpoint_cell_intersection` 0.1.0; hücre içi değer sabit kabul edilir |
+| Modül/sözleşme sürümü ve örnek çağrı | Nokta sözleşmesi v0.1.0 (`monthly_point_series`), Parçalı alan sözleşmesi v0.2.0 (`monthly_tiled_window_series`). CLI komutları: `fetch-power-point`, `fetch-power-tiled-window` |
+| Gözlenen uyumluluk/engeller | A ve B nokta serileri `check-alignment` ile 12 ay eksiksiz eşleşti. B'nin 6° genişliği parçalı API motoruyla (`MOD-04`) çözüldü; 55 tekil hücre integrali doğrulandı. Kalan tek engel: Region B kıyı hücreleri için kara/su maskesi gereksinimi |
 
 API kullanımı bütün arşivi elle indirmek zorunda olmak değildir. Öncelik gerekli küçük alt kümeye programla erişmek; sorgu, yanıt ve üretim izini korumaktır. [NASA POWER aylık API](https://power.larc.nasa.gov/docs/services/api/temporal/monthly/) bir seçenektir; nokta yanıtı bölge ortalaması sayılmaz. POWER yanıtı doğrudan MERRA-2 dosyasıyla aynı ürün/sürüm diye etiketlenmez. Sağlayıcı değişikliği önce uygunluk kontrolünden geçer.
 
