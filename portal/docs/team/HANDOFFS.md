@@ -62,6 +62,8 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 - **İncelenecek:** Kara buzu dahil etme tanımı, tam hücre oranını kırpılmış sınıra uygulama yaklaşımı, kesin sınır ve ortak profil. Sessizlik kabul değildir; M2 adına görüş eklenmedi.
 - **Ayrım:** M2 main'deki önceki parçalı destekle çalışabilir. Bu yeni kayıt maskeli B analizi veya NASA veri doğrulaması değildir. Dış mesaj/bildirim gönderilmedi.
 
+**Erişim adımı güncellemesi · 2026-10-17:** Kayıt adımı tamamlandı bilgisi geldi; programatik erişim henüz doğrulanmadı. [Yerel metadata kontrolü](../guide/EARTHDATA_ACCESS.md) hazır; kullanıcı token'ı kendi terminalinde gizli girer. Başarılı gerçek yanıt gelene kadar fraksiyon veya maske doğrulaması yapılmış sayılmaz.
+
 ## Bir kayıt için gerekenler
 
 | Alan | İçerik |

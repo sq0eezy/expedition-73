@@ -144,6 +144,7 @@ nav:
       - T2M adaptörünü çalıştır: guide/T2M_ADAPTER.md
       - T2M alan denemesini çalıştır: guide/T2M_WINDOW.md
       - Geniş alan için parçalı T2M: guide/T2M_TILED_WINDOW.md
+      - Earthdata erişimini sınama: guide/EARTHDATA_ACCESS.md
       - Ortak web paneli: guide/WEB_PORTAL.md
       - Mac kurulumu: guide/MACOS_SETUP.md
       - Yeni konuşma işleme: guide/AI_WORKFLOW.md

@@ -58,6 +58,8 @@ Windows'ta aynı komutlarda Python yolu `& .\.venv\Scripts\python.exe`. Bu sür�
 
 ## Gerçek veri için sonraki adım
 
+**Kayıt adımı güncellemesi · 2026-10-17:** Earthdata kaydının tamamlandığı bildirildi. Canlı programatik erişim ve uygulama yetkisi henüz doğrulanmadı. Parola/token kaydetmeyen [yerel erişim kontrolü](../guide/EARTHDATA_ACCESS.md) hazır; önce bu metadata isteğinin gerçek sonucu incelenecek.
+
 Kimlik doğrulamalı erişim henüz kurulmadı. [Earthdata Login](https://urs.earthdata.nasa.gov/) üzerinden Register ile hesap açıp etkinleştirmek, sonra koleksiyonun veri erişim akışında gereken uygulama yetkisini tamamlamak gerekir. [NASA kayıt rehberi](https://urs.earthdata.nasa.gov/documentation/for_users/how_to_register), [uygulama yetkisi açıklaması](https://urs.earthdata.nasa.gov/documentation/for_users/how_to_preauth_app). Kimlik bilgileri sohbet veya yayımlanan proje belgelerinde tutulmaz.
 
 Ardından authenticated metadata, küçük A/B alt kümeleri, canlı boyut/ızgara/dolgu ve dört oranın anlamı kontrol edilecek; gerçek dönüşüm/yeniden üretim testi yapılacak. Maske tanımı ve sınır/parça yaklaşımı iki üyenin incelemesine sunulacak. Sabit fraksiyonlar yıllara göre değişen kıyı/bitki örtüsü modülü yerine geçmez.

@@ -6,6 +6,8 @@ Kapsam: MOD-01/02/03'ün ilk aktarım/adaptör dilimi ve R-A02'nin erişim sına
 
 ## Aday maske altyapısı · Gerçek maske henüz alınmadı
 
+Earthdata kayıt adımından sonra, depo kökünde Windows PowerShell: `& .\analysis\.venv\Scripts\python.exe .\analysis\scripts\check_earthdata_access.py`. Mac: `analysis/.venv/bin/python analysis/scripts/check_earthdata_access.py`. Token yerel terminalde gizli girilir; kaydedilmez. Script sabit NASA uç noktasından yalnızca metadata ister; sonuç `analysis/artifacts/earthdata-access-...` altında kalır. [Token oluşturma/uygulama yetkisi ve kullanım](../portal/docs/guide/EARTHDATA_ACCESS.md). Gerçek kullanıcı erişimi henüz doğrulanmadı.
+
 `plan-surface-mask --config examples/b-window-2024.config.json` beklenen kaynak hücrelerini ve sıfır tabanlı indeksleri çevrim dışı listeler. `preview-surface-mask --run RUN_DIR --mask MASK.json --components FRLAND` önce sıcaklık run'ını yeniden doğrular, sonra `schemas/surface-fractions.schema.json` girdisini kontrol edip ayrı `candidate_surface_weight_preview` üretir. Kara buzu dahil olacaksa açıkça `--components FRLAND FRLANDICE` denir; varsayılan bilimsel politika yoktur.
 
 NASA CMR'de M2C0NXASM 5.12.4 bulundu, ancak güncel OPeNDAP metadata isteği oturumsuz 401 verdi. Gerçek fraksiyon veya NetCDF dönüştürücü/kimlik doğrulamalı erişim bu sürümde yok. Kaynak erişim kaydı `resources/merra2-mask-access.json`; A/B türetilmiş istek planları `examples/*-surface-mask-plan.json`. Yapay oranlar yalnızca testlerde üretilir; açık `--allow-synthetic` olmadan reddedilir ve sonuçta sentetik etiket kalır. [Araştırma/yöntem sınırları](../portal/docs/research/SURFACE_MASK.md), [gerçek erişim ve sentetik test ayrımı](../portal/docs/evidence/SURFACE_MASK_CHECK.md).

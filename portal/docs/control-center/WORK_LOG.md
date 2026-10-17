@@ -1,5 +1,11 @@
 # Çalışma günlüğü
 
+## 2026-10-17 · Earthdata kaydı sonrası yerel erişim kontrolü
+
+Kayıt adımının tamamlandığı bildirildi. Tarayıcı oturumunu Python erişimi saymadan, OPeNDAP/NASA resmî token ve uygulama yetkisi belgeleri incelendi. Sabit NASA metadata URL'sine doğrudan Bearer isteği yapan `earthdata.py` ve kullanıcı terminalinde gizli token girişi isteyen `analysis/scripts/check_earthdata_access.py` hazırlandı. Token komut argümanına, ortam değişkenine veya dosyaya yazılmaz; yönlendirme izlenmez, hata gövde/header/cookie basılmaz, gizli giriş yoksa görünür girişe dönülmez. Metadata başarılıysa yalnızca XML ve erişim raporu ignored artifacts klasörüne kaydedilir. [Kılavuz](../guide/EARTHDATA_ACCESS.md).
+
+Yapay token/XML testleri; hata ve yönlendirmeler, bozuk/HTML/büyük yanıt, token yansıması, giriş biçimi, gizli giriş ve metadata değişken/attribute ayrımı üzerinden doğrulandı. Windows/Python 3.12.14'te 79 test (10,458 s) ve eski gerçek A/B nokta/alan örneklerinin doğrulamaları geçti. Portal check/strict build ve git diff --check geçti. Canlı kullanıcı token'ı veya authenticated NASA isteği bu oturumda kullanılmadı. Gerçek erişim ve maske fraksiyonu doğrulanmış sayılmaz. M1 notu, durum ve devir ilişkisi güncellendi; çalışma ayrı dalda, main yayını yapılmadı.
+
 ## 2026-10-17 · Maske hazırlığı ve teknik profil taslağı
 
 M1 devam talebi verdi. Başlangıçta yerel kopya temizdi; fetch sonrasında main/M1 dalı eşleşiyordu ve yeni M2 katkısı yoktu. Ekip notları/devir/pano okundu. CMR'de M2C0NXASM 5.12.4 granule ve güncel bulut OPeNDAP servisi bulundu; girişsiz `.dmr.xml` denemesi 401 Unauthorized verdi. Gerçek fraksiyon/metadata alınmadı. Genel erişim kaydı ve A/B için 56/55 hücrelik türetilmiş istek planları saklandı. [Araştırma ve kaynaklar](../research/SURFACE_MASK.md), [kanıt](../evidence/SURFACE_MASK_CHECK.md).

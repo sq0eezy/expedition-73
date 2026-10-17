@@ -3,13 +3,15 @@ status: Validating
 updated: "2026-10-17"
 phase: Maske hazırlığı ve aday ortak teknik profil
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "Maske kaynağı bulundu, oturumsuz erişim 401 verdi; aday ağırlık altyapısı ve 2024 teknik profil taslağı hazırlandı."
+change_summary: "Earthdata kayıt adımının tamamlandığı bildirildi; gizli token girişli yerel metadata kontrolü hazır, gerçek erişim doğrulaması bekleniyor."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **Earthdata erişim adımı:** Kayıt işleminin tamamlandığı bildirildi; uygulama yetkisi ve Python erişimi henüz doğrulanmadı. [Yerel erişim kontrolü](guide/EARTHDATA_ACCESS.md) hazır: token gizli terminal girdisinden alınıp tek NASA metadata isteğinde kullanılır; kaydedilmez. Kullanıcı kendi terminalinde çalıştırınca dönen metadata ile gerçek maske dönüşümüne devam edilebilecek.
 
 - **Geliştirme dalında maske hazırlığı:** [MERRA-2 sabit fraksiyonları](research/SURFACE_MASK.md) aday kaynak olarak bulundu; güncel OPeNDAP metadata isteği oturumsuz 401 verdi. Gerçek oranlar alınmadı. A/B için 56/55 hücrelik istek planları ve ayrı aday maske ağırlık önizlemesi hazır. 72 test geçti; 14 yeni test sentetik verilerle hesabı denetliyor. [Kapsam ve gerçek erişim kanıtı](evidence/SURFACE_MASK_CHECK.md). Mevcut gerçek T2M örnekleri maskesiz kaldı.
 - [Ortak teknik deneme profili](planning/REGION_WORKFLOW.md) `t2m-technical-2024` 0.1.0 taslağı gerçek örneklerle dolduruldu. Bu, nihai ürün/alan/dönem/maske/istatistik seçimi veya M2 kabulü değildir.
@@ -32,4 +34,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-Gerçek maske için [Earthdata erişimi](research/SURFACE_MASK.md) kurulup authenticated metadata ve küçük A/B alt kümeleri incelenmeli; henüz NetCDF dönüştürücü veya gerçek maskeli seri yok. Kara/buz tanımı ve tam hücre oranının kırpılmış alana uygulanma yaklaşımı iki üye tarafından değerlendirilecek. M2 mevcut main'deki [parçalı komutla](guide/T2M_TILED_WINDOW.md) ilerleyebilir; yeni sürümü denediği varsayılmaz. Maske/alan/ortak bilimsel profil kesinleştirildikten sonra uzun seri, istatistik ve web görünümüne geçilecek. Yeni maske çalışması ayrı M1 dalında; main'e aktarılmış sayılmaz.
+M1 kendi terminalinde [Earthdata kontrolünü](guide/EARTHDATA_ACCESS.md) çalıştırmalı; token sohbet veya proje belgelerine yazılmaz. Dönen authenticated metadata ve küçük A/B alt kümeleri incelenecek; henüz NetCDF dönüştürücü veya gerçek maskeli seri yok. Kara/buz tanımı ve tam hücre oranının kırpılmış alana uygulanma yaklaşımı iki üye tarafından değerlendirilecek. M2 mevcut main'deki [parçalı komutla](guide/T2M_TILED_WINDOW.md) ilerleyebilir; yeni sürümü denediği varsayılmaz. Yeni maske/erişim çalışması ayrı M1 dalında; main'e aktarılmış sayılmaz.
