@@ -1,0 +1,106 @@
+{
+  "checked_date": "2026-10-17",
+  "cmr": {
+    "checked_at": "2026-10-17T09:08:22+00:00",
+    "url": "https://cmr.earthdata.nasa.gov/search/granules.json?short_name=M2C0NXASM&version=5.12.4&page_size=2",
+    "granules": [
+      {
+        "id": "G1277560809-GES_DISC",
+        "title": "M2C0NXASM.5.12.4:MERRA2_101.const_2d_asm_Nx.00000000.nc4",
+        "links": [
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+            "href": "https://data.gesdisc.earthdata.nasa.gov/data/MERRA2_MONTHLY/M2C0NXASM.5.12.4/1980/MERRA2_101.const_2d_asm_Nx.00000000.nc4",
+            "title": "Download MERRA2_101.const_2d_asm_Nx.00000000.nc4"
+          },
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+            "href": "s3://gesdisc-cumulus-prod-protected/MERRA2_MONTHLY/M2C0NXASM.5.12.4/1980/MERRA2_101.const_2d_asm_Nx.00000000.nc4",
+            "title": "This link provides direct download access via S3 to the granule"
+          },
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+            "href": "https://data.gesdisc.earthdata.nasa.gov/data/MERRA2_MONTHLY/M2C0NXASM.5.12.4/1980/MERRA2_101.const_2d_asm_Nx.00000000.nc4.dmrpp",
+            "title": "Download MERRA2_101.const_2d_asm_Nx.00000000.nc4.dmrpp (EXTENDED METADATA)"
+          },
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+            "href": "s3://gesdisc-cumulus-prod-protected/MERRA2_MONTHLY/M2C0NXASM.5.12.4/1980/MERRA2_101.const_2d_asm_Nx.00000000.nc4.dmrpp",
+            "title": "This link provides direct download access via S3 to the granule (EXTENDED METADATA)"
+          },
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+            "href": "https://data.gesdisc.earthdata.nasa.gov/s3credentials",
+            "title": "api endpoint to retrieve temporary credentials valid for same-region direct s3 access (VIEW RELATED INFORMATION)"
+          },
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+            "href": "https://opendap.earthdata.nasa.gov/collections/C1276812819-GES_DISC/granules/M2C0NXASM.5.12.4%3AMERRA2_101.const_2d_asm_Nx.00000000.nc4",
+            "title": "OPeNDAP request URL (GET DATA : OPENDAP DATA)"
+          },
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+            "href": "https://disc.gsfc.nasa.gov/information/howto?tags=MERRA",
+            "title": null
+          },
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+            "href": "https://disc.gsfc.nasa.gov/datacollection/M2C0NXASM_5.12.4.html",
+            "title": null
+          },
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+            "href": "https://goldsmr4.gesdisc.eosdis.nasa.gov/data/MERRA2_MONTHLY/M2C0NXASM.5.12.4/",
+            "title": null
+          },
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+            "href": "https://search.earthdata.nasa.gov/search/granules?p=C1276812819-GES_DISC",
+            "title": null
+          },
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+            "href": "https://cmr.earthdata.nasa.gov/virtual-directory/collections/C1276812819-GES_DISC",
+            "title": null
+          },
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+            "href": "https://gmao.gsfc.nasa.gov/gmao-products/merra-2/documentation_merra-2/",
+            "title": null
+          },
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+            "href": "https://gmao.gsfc.nasa.gov/media/publications/zbly36ziNFDFbmYmvhQeVqPhUo/Bosilovich785.pdf",
+            "title": null
+          },
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+            "href": "https://goldsmr4.gesdisc.eosdis.nasa.gov/data/MERRA2_MONTHLY/M2C0NXASM.5.12.4/doc/MERRA2.README.pdf",
+            "title": null
+          },
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+            "href": "https://disc.gsfc.nasa.gov/information/mission-project?title=MERRA-2",
+            "title": null
+          },
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+            "href": "https://docserver.gesdisc.eosdis.nasa.gov/public/project/MERRA/Records_MERRA-2_Data_Reprocessing_and_Service_Changes.pdf",
+            "title": null
+          },
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+            "href": "https://disc.gsfc.nasa.gov/information/faqs?keywords=MERRA-2&page=1",
+            "title": null
+          }
+        ]
+      }
+    ]
+  },
+  "opendap_probe": {
+    "url": "https://opendap.earthdata.nasa.gov/collections/C1276812819-GES_DISC/granules/M2C0NXASM.5.12.4%3AMERRA2_101.const_2d_asm_Nx.00000000.nc4.dmr.xml",
+    "http_status": 401,
+    "authentication_used": false,
+    "mask_values_retrieved": false
+  }
+}

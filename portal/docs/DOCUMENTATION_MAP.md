@@ -25,6 +25,8 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | Gerçek bölgesel yanıt ve bağımsız alan hesabı kontrolü | [T2M alan kanıtı](evidence/T2M_WINDOW_PROBE.md) |
 | Geniş bölgeyi parçalı API istekleriyle çalıştırma | [Parçalı erişim kılavuzu](guide/T2M_TILED_WINDOW.md) |
 | Gerçek B parçaları, tekilleştirme ve bağımsız hesap | [Parçalı erişim kanıtı](evidence/T2M_TILING.md) |
+| Kara/su oranı adayı, erişim ve deneysel maske kuralları | [Maske araştırması](research/SURFACE_MASK.md) |
+| Maske erişim sonucu ve sentetik hesap kontrolleri | [Maske hazırlığı kanıtı](evidence/SURFACE_MASK_CHECK.md) |
 | Tek göstergeli T2M denemesinin kapsamı/çıkış koşulları | [Pilot](planning/PILOT.md) |
 | İş bölümü, paralel adımlar ve ortak veri profili | [Bölge çalışma akışı](planning/REGION_WORKFLOW.md) |
 | M1'in A ve modül görevlerinin ayrıntısı | [A görevleri](planning/REGION_A.md) |

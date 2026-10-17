@@ -87,6 +87,7 @@ nav:
       - İlk T2M API ve adaptör: evidence/T2M_POINT_PROBE.md
       - İlk T2M alan hesabı: evidence/T2M_WINDOW_PROBE.md
       - Parçalı T2M erişimi: evidence/T2M_TILING.md
+      - Maske hazırlığı ve kontroller: evidence/SURFACE_MASK_CHECK.md
   - Proje:
       - Bağlam ve hedef: PROJECT_CONTEXT.md
       - Belge haritası: DOCUMENTATION_MAP.md
@@ -109,6 +110,7 @@ nav:
       - Varsayımlar: discovery/ASSUMPTIONS.md
       - Araştırma kaydı: research/index.md
       - NASA veri kaynakları: research/DATA_SOURCES.md
+      - Kara/su maskesi adayı: research/SURFACE_MASK.md
       - Bölge seçimi ve iki aday: research/REGION_CANDIDATES.md
       - Bölge A çalışma fişi: research/regions/REGION_A_PROFILE.md
       - Bölge B çalışma fişi: research/regions/REGION_B_PROFILE.md

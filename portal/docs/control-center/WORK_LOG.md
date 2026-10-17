@@ -1,5 +1,13 @@
 # Çalışma günlüğü
 
+## 2026-10-17 · Maske hazırlığı ve teknik profil taslağı
+
+M1 devam talebi verdi. Başlangıçta yerel kopya temizdi; fetch sonrasında main/M1 dalı eşleşiyordu ve yeni M2 katkısı yoktu. Ekip notları/devir/pano okundu. CMR'de M2C0NXASM 5.12.4 granule ve güncel bulut OPeNDAP servisi bulundu; girişsiz `.dmr.xml` denemesi 401 Unauthorized verdi. Gerçek fraksiyon/metadata alınmadı. Genel erişim kaydı ve A/B için 56/55 hücrelik türetilmiş istek planları saklandı. [Araştırma ve kaynaklar](../research/SURFACE_MASK.md), [kanıt](../evidence/SURFACE_MASK_CHECK.md).
+
+`masking.py`, kaynak hücre fraksiyonları girdi şeması, çevrim dışı plan komutu ve ayrı aday ağırlık önizlemesi eklendi. Pozitif ağırlıkta eksik ay, sıfır alan, bozuk/kayıp hücre ve fraksiyonlar hata/eksiklik olarak korunuyor; kara/buz politikası açıkça seçiliyor. Tam hücre oranının kırpılmış parçada kullanılması yaklaşık yöntem olarak etiketlendi. Yapay veriler sadece testlerde; sentetik opt-in olmadan önizleme reddediliyor. Gerçek maskeli A/B sonucu veya kaynak dönüştürücü yok. Kimlik doğrulamalı erişim henüz kurulmadı; Earthdata kayıt/yetki adımları belgelendi. Hiçbir kimlik bilgisi istenip kaydedilmedi.
+
+72 test (14 yeni sentetik maske, 58 önceki) Windows/Python 3.12.14'te son koşuda 14,248 saniyede geçti; eski gerçek A/B nokta ve A/B alan örnekleri çevrim dışı doğrulandı. Bu NASA maskesi doğrulaması veya gerçek Mac çalıştırması değildir. Ortak teknik deneme profili 0.1.0 taslağı dolduruldu; R-A03/MOD-05 Validating, R-B03 inceleme bekliyor. M2'nin notu/görüşü değiştirilmedi; H-M1-006 taslak devri eklendi. Yeni çalışma M1 dalında, main'e geçirilmedi. Portal check ve strict build, beş yerel HTTP yol/içerik kontrolü ve git diff --check geçti; geçici sunucu kapatıldı. Canlı Pages'e bu maske çalışması yayımlanmadı.
+
 ## 2026-10-17 · M2 için parçalı bölgesel T2M desteği
 
 **Sonuç ve paylaşım:** `0413622` M1 dalında paylaşıldı. GitHub entegrasyonu PR oluşturmaya 403 yetki hatası verdi; PR oluşmadı. Kullanıcının açık main talimatıyla yerel inceleme/test sonrası Git merge yapıldı; `cdcc6bd` main'e gönderildi ve ayrı M1 dalı da bu sürüme güncellendi. Ubuntu CI ve Pages yayını başarılı; canlı kılavuz/kanıt/devir kaydı HTTP 200 ve yeni içerikle doğrulandı. [Uzak çalışma bağlantıları](../evidence/T2M_TILING.md). Sonraki geliştirme ayrı dalda sürer.

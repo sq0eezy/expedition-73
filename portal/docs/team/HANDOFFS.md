@@ -53,6 +53,15 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 - **M2'nin yapabileceği:** Güncel main'i kendi değişikliklerini koruyarak al; kendi çalışma dalında kayıtlı `examples/b-window-2024` örneğini çevrim dışı doğrula. R-B03/04 kapsamında alan/maske/uygunluk incelemesini sürdür; yeni API çağrısı gerekirse yeni çıktı klasörü kullan.
 - **Sınır:** Kesin alan/maske seçimi ve bilimsel A/B uygunluk onayı yok; B adına yeni yorum veya başlangıç üretilmedi. Dış mesaj/bildirim gönderilmedi.
 
+## H-M1-006 · Maske adayı ve teknik profil taslağı
+
+- **Gönderen → alıcı:** M1 → M2; ortak modül görevine ait panel içi araştırma/taslak kaydı.
+- **Tarih:** 2026-10-17.
+- **Durum:** M1 geliştirme dalında, inceleme bekliyor; main'e veya canlı panele aktarılmış sayılmaz.
+- **Teslim:** [Maske adayı/erişim](../research/SURFACE_MASK.md), [sentetik testlerin sınırı](../evidence/SURFACE_MASK_CHECK.md), `t2m-technical-2024` 0.1.0 [aday profil](../planning/REGION_WORKFLOW.md). A/B için beklenen maske hücreleri ve indeksleri çıkarıldı; gerçek veri erişimi 401, maske alınmadı.
+- **İncelenecek:** Kara buzu dahil etme tanımı, tam hücre oranını kırpılmış sınıra uygulama yaklaşımı, kesin sınır ve ortak profil. Sessizlik kabul değildir; M2 adına görüş eklenmedi.
+- **Ayrım:** M2 main'deki önceki parçalı destekle çalışabilir. Bu yeni kayıt maskeli B analizi veya NASA veri doğrulaması değildir. Dış mesaj/bildirim gönderilmedi.
+
 ## Bir kayıt için gerekenler
 
 | Alan | İçerik |

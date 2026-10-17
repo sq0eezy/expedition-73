@@ -2,12 +2,13 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 from pathlib import Path
 
 from .power import PilotError, compatibility, fetch, loads, normalize, validate_result
-from . import regional, tiled
+from . import masking, regional, tiled
 
 
 def write_json(path: Path, value) -> None:
@@ -28,6 +29,13 @@ def main(argv=None) -> int:
     tiled_probe.add_argument("--output-dir", type=Path, required=True)
     tiled_check = commands.add_parser("validate-tiled-window", help="Replay all raw tile responses offline.")
     tiled_check.add_argument("directory", type=Path)
+    mask_plan = commands.add_parser("plan-surface-mask", help="List required native grid cells/indices; does not fetch fractions.")
+    mask_plan.add_argument("--config", type=Path, required=True)
+    mask_preview = commands.add_parser("preview-surface-mask", help="Experimental fraction weighting; no accepted analysis profile.")
+    mask_preview.add_argument("--run", type=Path, required=True)
+    mask_preview.add_argument("--mask", type=Path, required=True)
+    mask_preview.add_argument("--components", nargs="+", required=True, choices=["FRLAND", "FRLANDICE"])
+    mask_preview.add_argument("--allow-synthetic", action="store_true")
     replay = commands.add_parser("validate-window", help="Replay a complete window run offline, including geometry and weights.")
     replay.add_argument("directory", type=Path)
     validate = commands.add_parser("validate", help="Validate schema and monthly consistency offline.")
@@ -37,7 +45,17 @@ def main(argv=None) -> int:
     compare.add_argument("right", type=Path)
     args = parser.parse_args(argv)
     try:
-        if args.command == "fetch-power-tiled-window":
+        if args.command == "plan-surface-mask":
+            print(json.dumps(masking.request_plan(loads(args.config.read_bytes())), ensure_ascii=False, indent=2))
+        elif args.command == "preview-surface-mask":
+            config = loads((args.run / "request.json").read_bytes())
+            window = tiled.validate_run(args.run) if (args.run / "manifest.json").exists() else regional.validate_run(args.run)
+            mask_raw = args.mask.read_bytes()
+            mask = loads(mask_raw)
+            result = masking.preview_series(window, mask, config, args.components, allow_synthetic=args.allow_synthetic)
+            result["provenance"]["mask_input_sha256"] = hashlib.sha256(mask_raw).hexdigest()
+            print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))
+        elif args.command == "fetch-power-tiled-window":
             if args.output_dir.exists():
                 raise PilotError("Output directory already exists; choose a new run directory.")
             config = loads(args.config.read_bytes())

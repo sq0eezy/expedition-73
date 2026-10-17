@@ -1,15 +1,18 @@
 ---
 status: Validating
 updated: "2026-10-17"
-phase: Parçalı T2M erişimi ve M2'ye ortak modül teslimi
+phase: Maske hazırlığı ve aday ortak teknik profil
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "Parçalı T2M desteği main'de paylaşıldı; 58 test, Ubuntu CI ve canlı panel yayını doğrulandı."
+change_summary: "Maske kaynağı bulundu, oturumsuz erişim 401 verdi; aday ağırlık altyapısı ve 2024 teknik profil taslağı hazırlandı."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **Geliştirme dalında maske hazırlığı:** [MERRA-2 sabit fraksiyonları](research/SURFACE_MASK.md) aday kaynak olarak bulundu; güncel OPeNDAP metadata isteği oturumsuz 401 verdi. Gerçek oranlar alınmadı. A/B için 56/55 hücrelik istek planları ve ayrı aday maske ağırlık önizlemesi hazır. 72 test geçti; 14 yeni test sentetik verilerle hesabı denetliyor. [Kapsam ve gerçek erişim kanıtı](evidence/SURFACE_MASK_CHECK.md). Mevcut gerçek T2M örnekleri maskesiz kaldı.
+- [Ortak teknik deneme profili](planning/REGION_WORKFLOW.md) `t2m-technical-2024` 0.1.0 taslağı gerçek örneklerle dolduruldu. Bu, nihai ürün/alan/dönem/maske/istatistik seçimi veya M2 kabulü değildir.
 
 - **M2'nin 6° pencere için beklediği teknik destek main'de:** [parçalı T2M komutu](guide/T2M_TILED_WINDOW.md) iki gerçek isteği birleştirdi; 5 tekrar çıkarılıp 55 hücre/12 ay hesaplandı. B aday sınırı değişmedi. Yeni çıktı profili 0.2.0; eski 0.1.0 örnekler çalışıyor, bilimsel alan yöntemi değişmedi. `cdcc6bd` main birleştirmesinde 58 testlik Ubuntu CI ve Pages yayını başarılı; canlı kılavuz HTTP 200. [Kanıt](evidence/T2M_TILING.md). Sonraki geliştirme ayrı M1 dalında sürer.
 
@@ -29,4 +32,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-M2 güncel main'i kendi değişikliklerini koruyarak alıp [kılavuzdaki](guide/T2M_TILED_WINDOW.md) kayıtlı örneği çevrim dışı doğrulayabilir ve kendi B alan incelemesine devam edebilir. Bu teslim M2'nin işi bitirdiği anlamına gelmez. M1 için sırada gerçek sınır/kara-su maskesi ve ortak bilimsel profil var. Parçalı pilot iki yıl ve en fazla 16 istek; tek istek başına pay dahil 5° proje sınırı korunur. Sınır/maske kapsamıyla [ortak profil](planning/REGION_WORKFLOW.md) kesinleştirildikten sonra uzun seri, istatistik ve web görünümüne geçilecek. Yeni konuşmalar [işleme akışıyla](guide/AI_WORKFLOW.md) kaydedilir.
+Gerçek maske için [Earthdata erişimi](research/SURFACE_MASK.md) kurulup authenticated metadata ve küçük A/B alt kümeleri incelenmeli; henüz NetCDF dönüştürücü veya gerçek maskeli seri yok. Kara/buz tanımı ve tam hücre oranının kırpılmış alana uygulanma yaklaşımı iki üye tarafından değerlendirilecek. M2 mevcut main'deki [parçalı komutla](guide/T2M_TILED_WINDOW.md) ilerleyebilir; yeni sürümü denediği varsayılmaz. Maske/alan/ortak bilimsel profil kesinleştirildikten sonra uzun seri, istatistik ve web görünümüne geçilecek. Yeni maske çalışması ayrı M1 dalında; main'e aktarılmış sayılmaz.
