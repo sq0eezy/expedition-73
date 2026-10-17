@@ -1,8 +1,27 @@
 ---
 review_summary: "Ortak webden okuma, GitHub üzerinden düzenleme ve yerel kaynakları eşitleme."
-change_summary: "Webden okuma için pull ihtiyacını kaldıracak Pages akışı ve ilk etkinleştirme kılavuzu eklendi."
+change_summary: "M2'nin B katkısı alındı; M1 için ayrı geliştirme dalı ve main'e incelemeyle geçiş kaydedildi."
 ---
 # Paylaşım ve kurulum
+
+## Güncel geliştirme düzeni · 2026-10-17
+
+M1'in talimatıyla yeni çalışma doğrudan main yerine **`codex/m1-modules-region-a`** dalında devam eder: [ADR-007](../decisions/ADR-007-FEATURE-BRANCHES.md). M2 için ayrı bir kişisel/iş dalı önerilir; M2 adına dal açıldığı veya tercihi kabul ettiği varsayılmadı. Main ortak bütünleşmiş sürüm, geliştirme dalı devam eden iş içindir. Dal değişiklikleri pull request üzerinden incelenip birleştirilir; bu düzen otomatik merge kurmaz.
+
+Bu geçişte çalışma alanı temizdi. `fetch` sonrası main'in bir commit geride olduğu görüldü. M2'nin [4ad9448 katkısı](https://github.com/sq0eezy/expedition-73/commit/4ad9448e171672a3746adb02b30646343f48432b) incelendi; B geometri/config/gerçek nokta yanıtı, test, fiş ve üye/devir notları `git pull --ff-only origin main` ile çakışmasız alındı. Main'in eski `origin/master` izleme ayarı `origin/main` olarak düzeltildi; M1 dalı bu güncel sürümden açıldı. İnceleme anında açık GitHub pull request yoktu.
+
+**Geliştirme dalına push canlı paneli değiştirmez.** Mevcut Pages workflow'u main'den yayımlar. Dalın belgelerini GitHub'da o dalı seçerek veya yerel portal ile inceleyin. Ortak URL ancak değişiklikler main'e birleştirilip yayın başarılı olduğunda güncellenir.
+
+M1'in sonraki oturumlarında, önce `git status` ile korunmamış çalışma kontrol edilir. Temiz ve commit edilmiş çalışma üzerinde:
+
+```sh
+git switch codex/m1-modules-region-a
+git fetch origin
+git log --oneline HEAD..origin/main
+git merge origin/main
+```
+
+Main katkılarını incelemeden birleştirmeyin. Çakışma olursa iki kişinin değişikliği anlaşılır biçimde korunur; körlemesine reset/force kullanılmaz. Paylaşımda yalnızca çalışılan dal hedeflenir: `git push -u origin codex/m1-modules-region-a`. Yeni dış işlem için güncel kullanıcı yetkisi esas alınır.
 
 ## Okumak için ortak web paneli
 

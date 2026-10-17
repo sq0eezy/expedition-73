@@ -1,6 +1,6 @@
 # İş panosu
 
-Görevler eldeki kanıta göre güncellenir. **2026-10-16 iş bölümü:** M1 modüller + A, M2 B. M1 kendi işini üstlendi; M2 ataması M1 tarafından bildirildi, M2 adına başlama/kabul kaydı üretilmedi. İnceleyenler aşağıdaki yeni görevlerde planlanan kişilerdir; inceleme yapılmış sayılmaz. Teslim tarihleri açık. Üye kimlikleri [ekip dizinindedir](../team/index.md). `Verified` portal işleri uygulamanın doğrulandığını göstermez.
+Görevler eldeki kanıta göre güncellenir. **2026-10-16 iş bölümü:** M1 modüller + A, M2 B. M2 daha sonra kendi [notuyla](../team/members/M2.md) B üstlenmesini ve ilk çıktısını bildirdi; `4ad9448` katkısı 2026-10-17'de M1 tarafından alınıp 43 test ve örnek doğrulamalarıyla kontrol edildi. Sonraki B alt işlerine ayrıca başlanmış sayılmadı. M1 artık [ayrı dalda](../decisions/ADR-007-FEATURE-BRANCHES.md) çalışıyor. İnceleyenler planlanan kişilerdir; her aşama incelenmiş sayılmaz. Teslim tarihleri açık. Üye kimlikleri [ekip dizinindedir](../team/index.md). `Verified` portal işleri uygulamanın doğrulandığını göstermez.
 
 | ID | İş | Durum | Sorumlu | Üstlenme | İnceleyen | Tamamlanma ölçütü / kanıt |
 |---|---|---|---|---|---|---|
@@ -24,7 +24,7 @@ Görevler eldeki kanıta göre güncellenir. **2026-10-16 iş bölümü:** M1 mo
 
 ## Modül ve bölge görevleri
 
-**2026-10-16 ikinci ara teslim:** MOD-01/03 için nokta profiline ayrı `monthly_window_series` şeması/CLI eklendi. MOD-02 ve R-A04 için maskesiz aday dikdörtgenin 56 hücre/12 aylık alan hesabı ve bağımsız Ocak kontrolü çalışıyor. Kesin sınır/maske, ortak B profili ve istatistik açık; R-A04 tamamlandı sayılmadı. [Kanıt ve sınırlar](../evidence/T2M_WINDOW_PROBE.md). M2’nin başlama/görüş kaydı eklenmedi.
+**2026-10-16 ikinci ara teslim:** MOD-01/03 için nokta profiline ayrı `monthly_window_series` şeması/CLI eklendi. MOD-02 ve R-A04 için maskesiz aday dikdörtgenin 56 hücre/12 aylık alan hesabı ve bağımsız Ocak kontrolü çalışıyor. Kesin sınır/maske, ortak B profili ve istatistik açık; R-A04 tamamlandı sayılmadı. [Kanıt ve sınırlar](../evidence/T2M_WINDOW_PROBE.md). **2026-10-17 güncellemesi:** M2'nin B nokta katkısı ve 6° pencere için parçalama beklentisi okundu; nokta uyumu kontrol edildi, bölgesel uygunluk henüz açık.
 
 Görevlerin ayrıntıları: [M1 · A ve modüller](REGION_A.md), [M2 · B](REGION_B.md), [ortak profil ve sıra](REGION_WORKFLOW.md). `Proposed` henüz çalıştırılmadığını gösterir; sorumluluk ataması ayrı sütundadır.
 
@@ -33,6 +33,7 @@ Görevlerin ayrıntıları: [M1 · A ve modüller](REGION_A.md), [M2 · B](REGIO
 | MOD-01 | Girdi/çıktı sözleşmesi ve çağrı örneği | Validating | M1 | M1 üstlendi | M2 (planlanan) | Sürümlü şema taslağı ve A/B API örnekleriyle uyumlu girdi/çıktı |
 | MOD-02 | T2M modülü ve bilimsel hesap | Validating | M1 | M1 üstlendi | M2 (planlanan) | Ortak profilde seri/analiz; bağımsız küçük hesap ve yöntem kontrolleri |
 | MOD-03 | Adaptör, uygunluk ve sürümlü modül teslimi | Validating | M1 | M1 üstlendi | M2 (planlanan) | Örnek çalıştırma, sürüm, hata/eksiklik davranışı ve B yapılandırma girdileri |
+| MOD-04 | Geniş pencere için parçalı API ve hücre birleştirme | Verified | M1 | M1'in 2026-10-17 geliştirme/main talebi | M2 (kullanım incelemesi bekleniyor) | [İki gerçek B isteği, 55 tekil hücre, bağımsız Ocak ve hata kontrolleri](../evidence/T2M_TILING.md); [Mac kılavuzu](../guide/T2M_TILED_WINDOW.md). Nihai bölgesel bilimsel uygunluk değildir. |
 | R-A01 | A tanımı ve sınır önerisi | Implemented | M1 | M1 üstlendi | M2 (planlanan) | [A fişi](../research/regions/REGION_A_PROFILE.md): kaynaklı aday/poligon ve sınır sürümü |
 | R-A02 | A küçük API erişimi | Verified | M1 | M1 üstlendi | M2 (planlanan) | [Gerçek nokta API ve 26 test](../evidence/T2M_POINT_PROBE.md); 12/12 ay, bölge ortalaması değil |
 | R-A03 | A/B ortak veri profilini kaydet | Proposed | M1 | M1 üstlendi | M2 (B uygunluk incelemesi) | İki erişim özetine dayanan sürümlü [ortak profil](REGION_WORKFLOW.md) |
@@ -42,10 +43,12 @@ Görevlerin ayrıntıları: [M1 · A ve modüller](REGION_A.md), [M2 · B](REGIO
 | R-B01 | B tanımı ve sınır önerisi | Implemented | M2 | M2 üstlendi | M1 (planlanan) | [B fişi](../research/regions/REGION_B_PROFILE.md): b-candidate-window.geojson ve arama penceresi |
 | R-B02 | B küçük API erişimi | Verified | M2 | M2 üstlendi | M1 (planlanan) | [Gerçek nokta API ve 43 test](../research/regions/REGION_B_PROFILE.md); 12/12 ay, -8,29 °C yıllık ortalama |
 | R-B03 | B'nin ortak veri profiline uygunluğu | Proposed | M2 | M2 üstlendi | M1 (planlanan) | Ortak ürün/dönem/yöntemle B uyumu ve engeller; R-A03 ile eşleşir |
-| R-B04 | B örnek hesap ve entegrasyon | Proposed | M2 | M1 atadı; M2 başlangıç kaydı yok | M1 (planlanan) | Küçük bağımsız alan hesabı modülle karşılaştırılmış; MOD-02/03 gerekir |
-| R-B05 | B tam dönem seri/kalite/analiz | Proposed | M2 | M1 atadı; M2 başlangıç kaydı yok | M1 (planlanan) | Gerçek dönem çıktıları ve geçerli alan/zaman kapsamı; R-B04 gerekir |
-| R-B06 | B bulgusu ve web kontrolü | Proposed | M2 | M1 atadı; M2 başlangıç kaydı yok | M1 (planlanan) | Kaynak/belirsizlikle yorum ve arayüz seçim eşleşmesi; R-B05 gerekir |
+| R-B04 | B örnek hesap ve entegrasyon | Proposed | M2 | Atandı; bu alt işte başlangıç kaydı yok | M1 (planlanan) | Küçük bağımsız alan hesabı modülle karşılaştırılmış; MOD-02/03 gerekir |
+| R-B05 | B tam dönem seri/kalite/analiz | Proposed | M2 | Atandı; bu alt işte başlangıç kaydı yok | M1 (planlanan) | Gerçek dönem çıktıları ve geçerli alan/zaman kapsamı; R-B04 gerekir |
+| R-B06 | B bulgusu ve web kontrolü | Proposed | M2 | Atandı; bu alt işte başlangıç kaydı yok | M1 (planlanan) | Kaynak/belirsizlikle yorum ve arayüz seçim eşleşmesi; R-B05 gerekir |
 
 Bir görev önerildiğinde “Sorumlu: M1/M2, Üstlenme: Önerildi” yazılır. İlgili kişi üstlenince “Kabul edildi” olur. Kişi başlamadan işi `Validating` saymayın; bittiğinde gerçek sonucu ve inceleme ihtiyacını kaydedin. İnceleyen adı yazmak, incelemenin yapılmış olduğunu göstermez.
 
-M1 modül geliştirmesine başladı; ilk teknik dilim nokta-serisi aktarımıdır. Bölgesel hesap ve web arayüzü henüz geliştirilmedi. [Açık sorular](../discovery/index.md) yanıtlandıkça işler somutlaştırılacak.
+M1'in nokta aktarımı ve maskesiz aday dikdörtgen hesabı çalışıyor; M2'nin B nokta örneği de mevcut. Kesin analiz alanının bölgesel hesabı, uzun dönem istatistik ve web uygulaması açık. [Açık sorular](../discovery/index.md) yanıtlandıkça işler somutlaştırılacak.
+
+2026-10-17: MOD-04, R-B04'ün 6° genişlikte erişim engelini kaldırıyor. R-B03/04 yine Proposed; M2'nin kendisinin yeni çalıştırma/alan yorumu yapmış olduğu varsayılmadı. [H-M1-005 teslimi](../team/HANDOFFS.md).

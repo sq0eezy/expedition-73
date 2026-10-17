@@ -4,6 +4,8 @@ change_summary: "Nokta profilinden ayrı bölgesel erişim, kenar hücreleri, ek
 ---
 # T2M · İlk alan hesabı
 
+**2026-10-17 güncellemesi:** Bu sayfa ilk tek istekli 0.1.0 komutunu anlatır. B'nin 6° penceresini küçültmeden işleyen ayrı [parçalı erişim komutu](T2M_TILED_WINDOW.md) ve gerçek örneği artık hazır. Aşağıdaki tek istekli sınırlar o komuta aittir.
+
 `analysis/` artık **aday dikdörtgen için maskesiz aylık alan ortalaması** üretebiliyor. İlk [nokta adaptörü](T2M_ADAPTER.md) korunuyor. Bu deney kesin bölge seçimi, kara ortalaması veya iklim eğilimi değildir. [Gerçek sonuç ve kontroller](../evidence/T2M_WINDOW_PROBE.md).
 
 ## Mac üzerinde önce kaydedilmiş örneği doğrula
@@ -50,6 +52,6 @@ Windows PowerShell'de aynı işlemler `analysis` klasöründe `& .\.venv\Scripts
 
 Yeni çıktı türü `monthly_window_series`, şema sürümü `0.1.0`; eski `monthly_point_series` ile karıştırılmaz. Bölge, değişken, zaman, yöntem, kaynak izi, kalite ve seri alanları ortak yapıyı izler; hücre ayrıntıları `module_details` içinde kalır. Noktalar için olan `check-alignment` bölgesel sonuçları kabul etmez. Bölgesel A/B bilimsel uygunluk karşılaştırması henüz uygulanmadı.
 
-İlk uygulama yalnızca **dikdörtgen, maskesiz, en çok iki yıllık** teknik denemeyi destekler. Yarım hücre payı dahil her eksende en çok 5° proje sınırı vardır; bu NASA'nın genel hizmet sınırı iddiası değildir. Kutup/tarih çizgisi aşan pay, keyfî poligon, arazi fraksiyonu, yükselti düzeltmesi ve istek parçalama desteklenmez. Mevcut 6° genişlikteki B arama penceresi bu sürümün tamamına tek istekte verilemez. M2 mevcut [nokta denemesini](T2M_ADAPTER.md) sürdürebilir; B sınırı/profili geldiğinde parçalama veya uygun veri yolu birlikte ele alınacak. B'yi sessizce küçültmeyin.
+İlk tek istekli uygulama yalnızca **dikdörtgen, maskesiz, en çok iki yıllık** teknik denemeyi destekler. Yarım hücre payı dahil her eksende en çok 5° proje sınırı vardır; bu NASA'nın genel hizmet sınırı iddiası değildir. Kutup/tarih çizgisi aşan pay, keyfî poligon, arazi fraksiyonu ve yükselti düzeltmesi desteklenmez. B'nin 6° arama penceresi için artık [ayrı parçalı komut](T2M_TILED_WINDOW.md) kullanılır; eski nokta denemesi de korunur. B'yi sessizce küçültmeyin.
 
 Kesin sınır, kara/su maskesi ve ortak A/B profili incelenmeden bu teknik hesap nihai bilimsel yöntem sayılmaz. Uzun seri, mevsimsellik/otokorelasyon, trend belirsizliği ve web görünümü sıradaki ayrı işlerdir.

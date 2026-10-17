@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "format",
+    "tiles"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "format": {
+      "const": "power_tiled_run"
+    },
+    "tiles": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "filename",
+          "request_url",
+          "retrieved_at",
+          "response_sha256"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^tile-[0-9]{3}$"
+          },
+          "filename": {
+            "type": "string",
+            "pattern": "^tile-[0-9]{3}\\.json$"
+          },
+          "request_url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://power\\.larc\\.nasa\\.gov/api/temporal/monthly/regional\\?"
+          },
+          "retrieved_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "response_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

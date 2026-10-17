@@ -8,6 +8,7 @@
 | ADR-004 | Modül bağlantıları ve dar T2M pilotu | Accepted | M1’in açık kabulü ve ilk gösterge seçimi; M2 görüşü henüz yok |
 | ADR-005 | M1: modüller/A; M2: B | Accepted | M1’in 2026-10-16 iş bölümü talimatı; M2 adına başlama/kabul beyanı yazılmadı |
 | ADR-006 | İlk POWER T2M nokta adaptörü | Accepted | Görevlere başlama talebi kapsamında bu oturumun teknik prototip seçimi |
+| ADR-007 | M1 için ayrı geliştirme dalı ve main'e incelemeyle geçiş | Accepted | M1'in 2026-10-17 ayrı dalda devam etme talimatı; M2'nin dal tercihi varsayılmadı |
 
 [ADR-001 ayrıntısı](ADR-001-PORTAL.md).
 
@@ -20,6 +21,8 @@
 [ADR-005 ayrıntısı](ADR-005-TEAM-OWNERSHIP.md).
 
 [ADR-006 ayrıntısı](ADR-006-T2M-POINT-ADAPTER.md): ilk Python/POWER nokta-serisi prototipi; nihai ürün/framework kararı değil.
+
+[ADR-007 ayrıntısı](ADR-007-FEATURE-BRANCHES.md): M1 `codex/m1-modules-region-a` dalında devam eder; Pages main sonrasında yayımlanır.
 
 ## Karar bekleyenler
 

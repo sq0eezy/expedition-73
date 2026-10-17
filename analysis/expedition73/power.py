@@ -5,6 +5,7 @@ import hashlib
 import json
 import math
 from datetime import datetime, timezone
+from functools import lru_cache
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
@@ -44,15 +45,22 @@ def loads(raw: bytes | str):
         raise PilotError("Input is not valid UTF-8 JSON.") from exc
 
 
+@lru_cache(maxsize=16)
+def _validator(name):
+    # Schemas are immutable during a CLI run. Reusing compiled validators keeps
+    # per-cell validation affordable when several API tiles are replayed.
+    schema = loads((ROOT / "schemas" / name).read_bytes())
+    Draft202012Validator.check_schema(schema)
+    return Draft202012Validator(schema, format_checker=FormatChecker())
+
+
 def validate_schema(value, name: str) -> None:
     try:
         json.dumps(value, allow_nan=False)
     except (ValueError, TypeError) as exc:
         raise PilotError("Contract values must be finite JSON data.") from exc
-    schema = loads((ROOT / "schemas" / name).read_bytes())
-    Draft202012Validator.check_schema(schema)
     try:
-        Draft202012Validator(schema, format_checker=FormatChecker()).validate(value)
+        _validator(name).validate(value)
     except ValidationError as exc:
         location = ".".join(map(str, exc.absolute_path)) or "document"
         raise PilotError(f"{location}: {exc.message}") from exc

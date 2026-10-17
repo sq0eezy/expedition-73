@@ -4,6 +4,19 @@ NASA POWER Monthly API'den **aday bir noktaya** ait aylık 2 metre hava sıcakl�
 
 Kapsam: MOD-01/02/03'ün ilk aktarım/adaptör dilimi ve R-A02'nin erişim sınaması. Nokta profiline ek olarak maskesiz aday dikdörtgen için deneysel alan ağırlıklı seri çalışıyor; B uygunluğu ve istatistikler sonraki işlerdir.
 
+## Yeni: B'nin geniş penceresi için parçalı erişim
+
+`analysis` içinde kurulu ortamla, Mac/Linux:
+
+```sh
+.venv/bin/python -m expedition73 validate-tiled-window examples/b-window-2024
+.venv/bin/python -m expedition73 fetch-power-tiled-window --config examples/b-window-2024.config.json --output-dir artifacts/b-window-new-run
+```
+
+İlk komut çevrim dışıdır; ikincisi sıralı NASA API istekleri yapar. Windows'ta Python yolu `& .\.venv\Scripts\python.exe`. [Tam kılavuz](../portal/docs/guide/T2M_TILED_WINDOW.md), [gerçek kanıt](../portal/docs/evidence/T2M_TILING.md). B'nin 6° sınırı korunur; iki yanıttaki 5 ortak hücre çıkarılıp 55 benzersiz hücreyle asıl alan bir kez hesaplanır. Çakışan değerler hata verir, parça ortalamaları ortalanmaz. Eksik veri kuralları eski alan yöntemiyle aynıdır.
+
+Parçalı çıktı `monthly_window_series` şema/modül 0.2.0; eski nokta/tek istekli 0.1.0 profilleri korunur. Bilimsel alan yöntemi 0.1.0 değişmedi. Plan 4° gövdeler ve yarım hücre payı, en çok 16 istek ve iki yıl kullanır. Kara maskesi, keyfî poligon, tarih çizgisi/kutup geçişi veya trend çıkarımı yoktur. Her ham parçanın URL/zaman/SHA-256'sı `manifest.json` ve sonuçta tutulur; `validate-tiled-window` bütün planı ve hücre birleşimini yeniden hesaplar. Yapılandırma bölgeden bağımsızdır; M2'nin örneği nihai bölge seçimi değildir.
+
 ## Yeni: maskesiz dikdörtgen denemesi
 
 Mac/Linux, `analysis` klasöründe kurulu ortamla:
@@ -17,7 +30,7 @@ Windows'ta `.venv/bin/python` yerine `& .\.venv\Scripts\python.exe` kullanılır
 
 `monthly_window_series` nokta çıktısından ayrı türdür. Yarım hücre payı içeren istek, MERRA2 0,625°×0,5° ızgarası, orta noktadan kurulan hücre kenarları, dikdörtgen kesişimi ve küresel alan ağırlıkları kullanılır. Tek ayda eksik hücre değeri varsa ortalama null kalır; coğrafi hücre eksikse yanıt reddedilir. Ham yanıt, hücre tanıları ve yıllık sağlayıcı özetleri saklanır. `validate-window RUN_DIR` tüm hesabı yeniden yapar; `check-alignment` yalnızca eski nokta profilini kabul eder.
 
-Kara/su maskesi, kesin coğrafi bölge, keyfî poligon ve çıkarım yoktur. Pilot sınırı: yarım hücre payı dahil en fazla 5°/eksen ve iki yıl; tarih çizgisi/kutup aşımı veya parçalama yok. B'nin mevcut 6° arama penceresi bu komutun kapsamını aşar; B sessizce küçültülmez. Mevcut B nokta erişimi bu sınırlamadan etkilenmez. JSON şemaları `schemas/window-request.schema.json`, `schemas/monthly-window-series.schema.json`; gerçek A örneği `examples/a-window-2024/` altında.
+Kara/su maskesi, kesin coğrafi bölge, keyfî poligon ve çıkarım yoktur. Tek istekli komutun sınırı: yarım hücre payı dahil en fazla 5°/eksen ve iki yıl. B'nin mevcut 6° arama penceresi için yukarıdaki yeni parçalı komut kullanılır; B sessizce küçültülmez. Mevcut B nokta erişimi etkilenmez. JSON şemaları `schemas/window-request.schema.json`, `schemas/monthly-window-series.schema.json`; gerçek A örneği `examples/a-window-2024/` altında.
 
 ## Mac / Linux
 

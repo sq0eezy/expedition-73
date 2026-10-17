@@ -1,0 +1,514 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "output_type",
+    "module",
+    "region",
+    "variable",
+    "time",
+    "spatial_support",
+    "method",
+    "provenance",
+    "quality",
+    "series",
+    "module_details"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.2.0"
+    },
+    "output_type": {
+      "const": "monthly_window_series"
+    },
+    "module": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version"
+      ],
+      "properties": {
+        "id": {
+          "const": "air_temperature_2m"
+        },
+        "version": {
+          "const": "0.2.0"
+        }
+      }
+    },
+    "region": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "selection_status",
+        "candidate_bbox",
+        "candidate_window_version"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selection_status": {
+          "const": "candidate"
+        },
+        "candidate_bbox": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "candidate_window_version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "variable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "unit",
+        "height_m"
+      ],
+      "properties": {
+        "id": {
+          "const": "air_temperature_2m"
+        },
+        "unit": {
+          "const": "degC"
+        },
+        "height_m": {
+          "const": 2
+        }
+      }
+    },
+    "time": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "frequency",
+        "start",
+        "end",
+        "calendar",
+        "provider_time_standard"
+      ],
+      "properties": {
+        "frequency": {
+          "const": "monthly"
+        },
+        "start": {
+          "type": "string",
+          "pattern": "^\\d{4}-(0[1-9]|1[0-2])$"
+        },
+        "end": {
+          "type": "string",
+          "pattern": "^\\d{4}-(0[1-9]|1[0-2])$"
+        },
+        "calendar": {
+          "const": "gregorian"
+        },
+        "provider_time_standard": {
+          "enum": [
+            "LST",
+            "UTC"
+          ]
+        }
+      }
+    },
+    "spatial_support": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "mask",
+        "request_envelope_bbox",
+        "cell_count",
+        "window_area_m2",
+        "grid_step_degrees"
+      ],
+      "properties": {
+        "kind": {
+          "const": "unmasked_rectangular_window"
+        },
+        "mask": {
+          "const": "none"
+        },
+        "cell_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "window_area_m2": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "grid_step_degrees": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "longitude",
+            "latitude"
+          ],
+          "properties": {
+            "longitude": {
+              "const": 0.625
+            },
+            "latitude": {
+              "const": 0.5
+            }
+          }
+        },
+        "request_envelope_bbox": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      }
+    },
+    "method": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version",
+        "sphere_radius_m",
+        "missing_policy",
+        "inference"
+      ],
+      "properties": {
+        "id": {
+          "const": "spherical_midpoint_cell_intersection"
+        },
+        "version": {
+          "const": "0.1.0"
+        },
+        "sphere_radius_m": {
+          "const": 6371008.8
+        },
+        "missing_policy": {
+          "const": "require_all_intersecting_cells"
+        },
+        "inference": {
+          "const": "not_performed"
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "product",
+        "api_version",
+        "sources",
+        "retrieved_at",
+        "requests"
+      ],
+      "properties": {
+        "provider": {
+          "const": "NASA POWER"
+        },
+        "product": {
+          "const": "POWER Monthly and Annual API"
+        },
+        "api_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "retrieved_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "requests": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 16,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "filename",
+              "request_url",
+              "retrieved_at",
+              "response_sha256",
+              "candidate_bbox",
+              "request_bbox",
+              "provider_messages"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^tile-[0-9]{3}$"
+              },
+              "filename": {
+                "type": "string",
+                "pattern": "^tile-[0-9]{3}\\.json$"
+              },
+              "request_url": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https://power\\.larc\\.nasa\\.gov/api/temporal/monthly/regional\\?"
+              },
+              "retrieved_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "response_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "candidate_bbox": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 4,
+                "maxItems": 4
+              },
+              "request_bbox": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 4,
+                "maxItems": 4
+              },
+              "provider_messages": {
+                "type": "array"
+              }
+            }
+          }
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expected_months",
+        "complete_months",
+        "warnings"
+      ],
+      "properties": {
+        "expected_months": {
+          "type": "integer",
+          "minimum": 12,
+          "maximum": 24
+        },
+        "complete_months": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "warnings": {
+          "const": [
+            "CANDIDATE_WINDOW_NOT_ACCEPTED_REGION",
+            "NO_LAND_WATER_MASK",
+            "RECONSTRUCTED_CELL_BOUNDS_SPHERICAL_AREA",
+            "PROVIDER_PIXEL_QA_NOT_SUPPLIED",
+            "INFERENCE_NOT_PERFORMED"
+          ]
+        }
+      }
+    },
+    "series": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 24,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "date",
+          "value",
+          "status",
+          "valid_cells",
+          "valid_area_fraction"
+        ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"
+          },
+          "value": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "status": {
+            "enum": [
+              "complete",
+              "incomplete"
+            ]
+          },
+          "valid_cells": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "valid_area_fraction": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    },
+    "module_details": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cells",
+        "provider_header",
+        "provider_parameter",
+        "provider_messages",
+        "access"
+      ],
+      "properties": {
+        "cells": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "longitude",
+              "latitude",
+              "intersection_bbox",
+              "area_m2",
+              "series",
+              "provider_annual_summary"
+            ],
+            "properties": {
+              "longitude": {
+                "type": "number"
+              },
+              "latitude": {
+                "type": "number"
+              },
+              "intersection_bbox": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 4,
+                "maxItems": 4
+              },
+              "area_m2": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "series": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "date",
+                    "value",
+                    "status"
+                  ],
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "pattern": "^\\d{4}-(0[1-9]|1[0-2])$"
+                    },
+                    "value": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "status": {
+                      "enum": [
+                        "valid",
+                        "not_returned",
+                        "provider_fill"
+                      ]
+                    }
+                  }
+                }
+              },
+              "provider_annual_summary": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "provider_header": {
+          "type": "object"
+        },
+        "provider_parameter": {
+          "type": "object"
+        },
+        "provider_messages": {
+          "type": "array"
+        },
+        "access": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "strategy",
+            "version",
+            "tile_count",
+            "duplicate_cells_removed",
+            "unique_returned_cells"
+          ],
+          "properties": {
+            "strategy": {
+              "const": "sequential_grid_cell_union"
+            },
+            "version": {
+              "const": "0.1.0"
+            },
+            "tile_count": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 16
+            },
+            "duplicate_cells_removed": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "unique_returned_cells": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Monthly unmasked window series from bounded tiled POWER access"
+}
