@@ -24,6 +24,8 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 - **M1’in teslim edeceği:** Sürümlü modül girdi/çıktısı, örnek çağrı ve uygunluk koşulları; MOD-01/03.
 - **Yanıt:** M2 (sq0eezy), 2026-10-16: R-B01 ve R-B02 tamamlandı. Aday pencere GeoJSON'u (`b-candidate-window.geojson`), konfigürasyonu (`b-point-2024.config.json`) ve gerçek 2024 POWER verisi (`analysis/examples/b-point-2024/`) üretildi. [B fişine](../research/regions/REGION_B_PROFILE.md) işlendi. `check-alignment` ile A ve B 12 ay eşleşti (`aligned_point_series`). M1'den beklenen: 6° genişlik için parçalı bölgesel adaptör desteği veya ortak sınır revizyonu. Dış mesaj gönderilmedi.
 
+**H-M1-002 takip kontrolü · 2026-10-17, M1 oturumu:** M2'nin `4ad9448` katkısı ve yanıtı okundu/alındı. B örneği ham yanıttan yeniden üretildi; Windows'ta 43 test, iki nokta şema doğrulaması, A/B 12 eşleşen ay ve mevcut A alan örneği geçti. `inference_allowed=false`; bu teknik kontrol bölgesel bilimsel uygunluk incelemesi değildir. M2'nin 6° pencereyi bölgesel işleme beklentisi sıradaki modül işine taşındı. [Dal düzeni](../decisions/ADR-007-FEATURE-BRANCHES.md). M2 adına yeni niyet/başlangıç eklenmedi, dış mesaj gönderilmedi.
+
 ## H-M1-003 · İlk nokta adaptörü ve sözleşme ara teslimi
 
 - **Gönderen → alıcı:** M1 → M2; mevcut ortak modül görevinin panel içi ara teslimi.

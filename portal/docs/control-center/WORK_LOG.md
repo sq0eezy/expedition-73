@@ -1,5 +1,11 @@
 # Çalışma günlüğü
 
+## 2026-10-17 · M2 katkısını alma ve M1'i ayrı dala taşıma
+
+M1, iki kişinin doğrudan main yerine ayrı dallarda devam etmesini ve GitHub'daki M2 değişikliklerinin kontrol edilip gerekirse alınmasını istedi. Yerel çalışma temizdi. Fetch sonrasında main bir commit gerideydi; M2'nin `4ad9448` commit'i, B fişi/üye notu/H-M1-002 yanıtı ve test/workflow değişiklikleri incelendi. Açık GitHub PR yoktu. `git pull --ff-only origin main` çakışmasız tamamlandı. Main'in eski `origin/master` izleme ayarı `origin/main` olarak düzeltildi; `codex/m1-modules-region-a` güncel main'den açıldı. Hiçbir katkı reset/force ile silinmedi. [ADR-007](../decisions/ADR-007-FEATURE-BRANCHES.md), [paylaşım kılavuzu](../team/SYNC.md).
+
+Windows/Python 3.12.14, `analysis/.venv`: 43 çevrim dışı test 62,259 saniyede geçti. Kaydedilmiş A/B nokta örnekleri `validate` ile geçti; `check-alignment` 12 geçerli ortak ay ve `inference_allowed=false` verdi. Mevcut 56 hücreli A alan örneği `validate-window` ile yeniden hesaplandı. Yeni NASA ağ isteği yapılmadı; Mac kurulumu burada denenmedi. M2'nin kendi macOS/Python 3.14 beyanı notundan okundu. B'nin 6° penceresi için parçalama talebi korundu; bilimsel kapsam/alan/yöntem seçimi yapılmadı. Dal düzeni, M1 notu, durum ve pano güncellendi; bu dal main'e birleşmeden canlı panel değişmeyecek. Depo kökünden `portal/.venv/Scripts/python.exe portal/scripts/portal.py check` ve `build` geçti; strict MkDocs derlemesi başarılı. `git diff --check` boşluk hatası vermedi. Bunlar belge kontrolleridir; ek bilimsel doğrulama sayılmaz.
+
 ## 2026-10-16 · Bölge B ilk erişim ve nokta adaptörü (sq0eezy)
 
 M2 (sq0eezy) Bölge B görevlerine başladı (R-B01 ve R-B02). Kuzey Alaska aday penceresi geometrisi (`analysis/regions/b-candidate-window.geojson`), konfigürasyonu (`analysis/examples/b-point-2024.config.json`) ve gerçek 2024 NASA POWER T2M API yanıtı alındı. 69,0°K / 153,0°B noktasında 12/12 ay eksiksiz veri çekildi (yıllık ortalama -8,29 °C, Ocak -22,89 °C, Temmuz 10,92 °C). [B fişi](../research/regions/REGION_B_PROFILE.md) ve [M2 notu](../team/members/M2.md) dolduruldu; [H-M1-002](../team/HANDOFFS.md) yanıtlandı. macOS ortamında root sertifikaları tamamlandı; 43 çevrim dışı test ve A/B `check-alignment` başarıyla geçti.

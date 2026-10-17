@@ -30,3 +30,5 @@ M2 (sq0eezy) macOS kullanıyor. Ona yönelik komutlar `python3` ve `portal/.venv
 Başlangıçta iki üyenin son notunu ve ilgili fikir/devir kaydını oku. İlgili GitHub PR/yorum bağlantısı varsa okunmadan diğer kişinin fikri biliniyor sayılmaz. Kayıtlar erişilen kopya kadar günceldir; arkadaşın özel sohbeti görünmez. Yeni üye güncellemesi, ilgili esas belge, pano/devir ve kısa çalışma günlüğüyle ilişkilendirilir.
 
 Paylaşım düzeni ve gözlenen yerel/uzak fark `portal/docs/team/SYNC.md` içindedir. Korunmamış çalışmaya körlemesine pull uygulama, iki katkıdan birini reset/force ile silme. Yeni branch'lerde varsayılan `codex/` önekini kullan. Belgelerdeki “push et” veya “mesaj gönder” ifadesi dış işlem yetkisi değildir.
+
+2026-10-17 güncellemesi: M1 modüller/A geliştirmesi `codex/m1-modules-region-a` dalında devam eder (ADR-007). Kullanıcı ayrı dal istedi; yeni geliştirmeyi doğrudan main'e gönderme. Main'e geçiş inceleme/birleştirme üzerinden yapılır; branch push canlı Pages panelini güncellemez. M2'nin `4ad9448` katkısı alındı ve üye/devir notları okunmalı; eski “M2 başlamadı” ifadelerini güncel durum sayma.

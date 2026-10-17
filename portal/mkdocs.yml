@@ -135,6 +135,7 @@ nav:
       - Modül ve pilot kararı: decisions/ADR-004-MODULES-AND-PILOT.md
       - Modül ve bölge sorumluları: decisions/ADR-005-TEAM-OWNERSHIP.md
       - İlk T2M teknik dilimi: decisions/ADR-006-T2M-POINT-ADAPTER.md
+      - Ayrı geliştirme dalları: decisions/ADR-007-FEATURE-BRANCHES.md
   - Kullanım:
       - Başlangıç kılavuzu: guide/index.md
       - T2M adaptörünü çalıştır: guide/T2M_ADAPTER.md
