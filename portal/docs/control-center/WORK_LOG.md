@@ -1,5 +1,9 @@
 # Çalışma günlüğü
 
+## 2026-10-18 · İlk canlı yayın ve platformlar arası kaynak hash düzeltmesi
+
+M1 dalı `7e50536` ile paylaşıldı; PR API yetkisi 403 olduğundan incelenmiş çalışma normal Git merge/push ile `1f6b015` main sürümüne alındı. M2 dalı değişmedi. Pages başarılı, yeni akış sayfası ve okuma kataloğu HTTP 200. Ubuntu analiz CI iki kayıtlı duyarlılık alt testinde başarısız oldu; kaynak JSON dosyalarının Windows CRLF / depo LF baytları uyuşmadı. `.gitattributes` yalnız analysis/examples byte dönüşümünü kapattı; örnekler depo baytlarına getirildi ve iki aday duyarlılık raporu yeniden üretildi. SHA kontrolü veya bilimsel hesap gevşetilmedi; özel artifacts/.env korunur. Düzeltme ayrı M1 dalında, yeni kontroller sürüyor. [Tam yayın/CI kanıtı](../evidence/SURFACE_RELEASE.md).
+
 ## 2026-10-18 · Doğrulanmış M1 dilimini canlıya hazırlama
 
 M1 mevcut çalışmayı dal düzeni korunarak canlıya göndermeyi açıkça istedi. Fetch yapıldı; main `1172824`, M2 dalı `791e07c`, M1 uzak dalı `14a16ba` olarak aynı. Başka katkı reset/force ile silinmedi. M2'nin ayrı dalı birleştirilmez; güncel notlarının incelenmiş özeti korunur. Değişiklikler M1 dalında commit/push, mümkünse PR ve ardından main bütünleştirmesi ile Pages yayınına hazırlanır. [Canlı yayın kanıtı](../evidence/SURFACE_RELEASE.md). Token/özel çalışma klasörleri paylaşılmaz; küçük NASA açık veri örnekleri kaynak izleriyle paylaşılır.

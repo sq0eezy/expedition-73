@@ -74,6 +74,8 @@ class SurfaceWorkflowTests(unittest.TestCase):
             actual = report['nodes']['Sensitivity']['artifact']['value']
             expected = loads((ROOT / f'examples/{region}-surface-sensitivity.json').read_bytes())
             with self.subTest(region=region):
+                self.assertEqual(actual['provenance']['source_files_sha256'],
+                                 expected['provenance']['source_files_sha256'])
                 self.assertTrue(regional._same_result(actual, expected))
                 self.assertEqual(actual['provenance']['surface_fractions']['dataset'], 'M2C0NXASM')
 
