@@ -28,16 +28,16 @@
     "conversion_audit": "recorded_provider_subset_replay_passed",
     "source_files_sha256": {
       "fractions": {
-        "conversion-report.json": "1a8bed33a204ec00dac8418d301c47da0817ce9f0fda07fed999804ef850c2b3",
-        "fractions.json": "7a837bd76dfdba241bdfe5c5102685a6f1964292597c2a6636d0ff671cefd4ed",
+        "conversion-report.json": "185dc40ed1ce18834dda00666310f1ecf4ec0aefcf07a14b63dc88015bf2a988",
+        "fractions.json": "c61b2a5c28351fc5aa67441cacbaac333aa349294580026bdd3a6df4a783867c",
         "metadata.dmr.xml": "baa82cb258a18165c39ec5da17e4e5ec3582ae7facf75e733534ac75f1a3d35a",
-        "request.json": "4ecbfdc2212477ee9ac08b58d1d5307649c353c56ba873f136c62da7800b3ea3",
+        "request.json": "c0d956669bc4a2f9ba8692b58d99e8e9f3f84b15c2df87d584257997ee2180a1",
         "response.nc4": "e0355f23cf902bbe91aab964888863fc74648fe4885ef3714c2f4b8238948bc3"
       },
       "temperature": {
-        "manifest.json": "ac923e19dccde56600ed5fa2b96b0bae092f9ec1a23d4e53d5525045cbe457e9",
-        "request.json": "4ecbfdc2212477ee9ac08b58d1d5307649c353c56ba873f136c62da7800b3ea3",
-        "result.json": "c2e75d5ae595228099e6a7dd4d0043e9b0120a36b28ffa66d8e2bc229f2cebb0",
+        "manifest.json": "2c28c015033b5393d5ca4d6db9fb8cc5d15fb3992ad93fa478307ec909d293ce",
+        "request.json": "c0d956669bc4a2f9ba8692b58d99e8e9f3f84b15c2df87d584257997ee2180a1",
+        "result.json": "b4c053f879be9ea9f4cfe982edad83d95405e060d3b56d42f5e63d992a79ec39",
         "tile-001.json": "368c1795d022f7d26055474237f08f699e5acd1540dd4cece0208d4d64f92484",
         "tile-002.json": "0681c57fb4c68f774ae99e18115b14eeaad53f1f38f9161fbd185616105b7d1f"
       }

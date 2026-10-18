@@ -28,3 +28,7 @@ M2 için de kendisine ait `codex/` önekli bir dal kullanılması önerilir; ad�
 ## 2026-10-17 · Bu modül tesliminin birleştirme yolu
 
 M1, parçalı T2M desteğinin test sonrası main'de paylaşılmasını açıkça istedi. Bağlı GitHub entegrasyonunun PR oluşturma çağrısı `403 Resource not accessible by integration` döndürdü; PR oluşmadı. Bu teslim için ayrı dalda geliştirme, yerel kod incelemesi ve testlerden sonra yerel Git merge ile main'e aktarım uygulanır. Bu, sonraki geliştirmelerde ayrı dal veya mümkün olduğunda PR kullanımını kaldırmaz. [Gerçek sonuç kaydı](../evidence/T2M_TILING.md).
+
+## 2026-10-18 · Aday fraksiyon/modül tesliminin canlı paylaşımı
+
+M1 mevcut çalışmanın dal düzeni korunarak canlıya gönderilmesini açıkça istedi. PR oluşturma yeniden aynı API 403 sonucunu verdi; bu teslimde de ayrı M1 dalı, yerel inceleme/test ve normal Git merge/push kullanıldı. M2'nin `791e07c` dalı birleştirilmedi veya değiştirilmedi. Yayında saptanan CI düzeltmesi de M1 dalında hazırlanır. Bu yetki sonraki işleri otomatik main'e taşımaz. [Yayın ve CI kanıtı](../evidence/SURFACE_RELEASE.md).

@@ -1,0 +1,2 @@
+# Recorded examples carry byte-level provenance hashes; preserve repository bytes.
+analysis/examples/** -text

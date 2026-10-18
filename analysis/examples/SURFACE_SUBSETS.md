@@ -6,6 +6,8 @@ Her klasöre yalnız beş açık kaynak/hesap dosyası kopyalandı: `request.jso
 
 `a-surface-sensitivity.json` / `b-surface-sensitivity.json`, bu fraksiyonlar ile mevcut gerçek 2024 POWER T2M pencerelerinin **aday** yeniden ağırlıklandırma denemesidir. Kaynak SHA-256, birim/dönem, yöntem ve varsayımlar içerir. Kaynak hücre sıcaklığı kara parçasına özgü sıcaklığa dönüşmez; fraksiyon kırpılmış hücre parçasında sabit kabul edilir. Nihai maske/analiz bölgesi veya iklim eğilimi sonucu değildir.
 
+`.gitattributes`, `analysis/examples/**` dosyalarında Git satır sonu dönüşümünü kapatır: kaynak hash'leri gerçek dosya baytlarını doğrular. Kayıtlı duyarlılık örnekleri depodaki aynı baytlardan yeniden üretildi; SHA-256 kontrolü gevşetilmedi. Windows'taki eski çalışma kopyası Git tarafından CRLF'ye çevrilmişse yerel değişiklikleri koruyup temiz güncel checkout kullanın; metadata/JSON dosyalarını editörle yeniden biçimlendirmeyin. Yerel özel artifacts değiştirilmedi.
+
 Çevrim dışı doğrulama/yeniden hesaplama, `analysis` içinde Windows CMD:
 
 ```cmd

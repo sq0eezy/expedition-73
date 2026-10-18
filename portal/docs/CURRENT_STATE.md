@@ -45,4 +45,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-Gerçek T2M/fraksiyon akışı ve iki aday politika duyarlılığı çalışıyor. Sırada etkili alanın tanımı, FRLAND / FRLAND+FRLANDICE tercihi ve kaynak gridinin bilimsel uygunluğunu incelemek var; küçük sayısal fark tek başına yöntem seçimi gerekçesi değildir. Mevcut maskesiz örnekler korunur. Kabul edilmiş sınır/dönem/istatistik, ikinci bilimsel gösterge ve son web arayüzü hâlâ açık. Çalışma yerel M1 dalında; main/Pages yayını yapılmadı.
+Gerçek T2M/fraksiyon akışı ve iki aday politika duyarlılığı çalışıyor. Sırada etkili alanın tanımı, FRLAND / FRLAND+FRLANDICE tercihi ve kaynak gridinin bilimsel uygunluğunu incelemek var; küçük sayısal fark tek başına yöntem seçimi gerekçesi değildir. Mevcut maskesiz örnekler korunur. Kabul edilmiş sınır/dönem/istatistik, ikinci bilimsel gösterge ve son web arayüzü hâlâ açık. İlk main/Pages yayını gerçekleşti; Ubuntu analiz CI kaynak dosyalarının satır sonu/hash farkını yakaladı. M1 dalındaki bayt koruma düzeltmesi ve son yayın kontrolü sürüyor: [yayın kanıtı](evidence/SURFACE_RELEASE.md).
