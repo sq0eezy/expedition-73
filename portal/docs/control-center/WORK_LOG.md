@@ -1,5 +1,11 @@
 # Çalışma günlüğü
 
+## 2026-10-18 · Başarılı Ubuntu CI ve canlı portal teslimi
+
+Kaynak M1 dalında `7e50536`, byte koruma düzeltmesi `75afeeb`; PR API 403 sonrası normal Git merge/push ile main `96815c5`. Bu sürümde Ubuntu/Python 3.12: **134 test / 6,372 saniye**, nokta/alan/parçalı alan/fraksiyon replay'leri ve A/B beş düğümlü gerçek aday akışları başarılı; her biri 12/12 ay. Pages strict build/deploy başarılı. UTC 13:13:27'de yeni akış/yayın sayfaları ve okuma kataloğu HTTP 200, yeni içerik işaretleri mevcut. İlk CI hatası ve çözümü [yayın kanıtında](../evidence/SURFACE_RELEASE.md) korundu. Yerel düzeltme sonrası 134 test / 15,654 saniye, gerçek tekrarlar, portal check/build ve diff kontrolü geçti. SHA kontrolleri gevşetilmedi; küçük aday sayısal sonuç/yöntem değişmedi.
+
+CURRENT_STATE, SYNC, M1, H-M1-006/007/008 ve ADR-007 gerçek yayınla ilişkilendirildi. M2 dalı `791e07c` korunur; ona dış mesaj veya onun adına kabul beyanı yok. `.env`, özel artifacts ve sanal ortam Git/Pages dışında; yalnız açık küçük NASA örnekleri paylaşıldı. Yeni geliştirme ayrı M1 dalında sürer. Son kayıt güncellemesi yalnız belgedir; yayınlanan portal son bilimsel web uygulaması değildir.
+
 ## 2026-10-18 · İlk canlı yayın ve platformlar arası kaynak hash düzeltmesi
 
 M1 dalı `7e50536` ile paylaşıldı; PR API yetkisi 403 olduğundan incelenmiş çalışma normal Git merge/push ile `1f6b015` main sürümüne alındı. M2 dalı değişmedi. Pages başarılı, yeni akış sayfası ve okuma kataloğu HTTP 200. Ubuntu analiz CI iki kayıtlı duyarlılık alt testinde başarısız oldu; kaynak JSON dosyalarının Windows CRLF / depo LF baytları uyuşmadı. `.gitattributes` yalnız analysis/examples byte dönüşümünü kapattı; örnekler depo baytlarına getirildi ve iki aday duyarlılık raporu yeniden üretildi. SHA kontrolü veya bilimsel hesap gevşetilmedi; özel artifacts/.env korunur. Düzeltme ayrı M1 dalında, yeni kontroller sürüyor. [Tam yayın/CI kanıtı](../evidence/SURFACE_RELEASE.md).

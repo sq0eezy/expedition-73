@@ -8,6 +8,8 @@ change_summary: "İki gerçek girdi motorla bağlandı; A/B 12 ay için iki aday
 
 M1 devam talebiyle `analysis/expedition73/surface_workflow.py` ve `run-surface-workflow` komutu eklendi. Önceki [yapay A/B/C motoru](WORKFLOW_ENGINE.md) artık mevcut gerçek NASA örneklerini çevrim dışı doğrulayan işlemlerle de çalıştırıldı. Yeni bilimsel değişken/modül, uzun dönem trend veya kabul edilmiş maske değildir.
 
+**Paylaşım güncellemesi:** Bu teslim main/canlı portalda paylaşıldı; `96815c5` için 134 Ubuntu testi ve iki gerçek aday akış başarılı. Platformlar arası satır sonu/hash düzeltmesi ve Pages/HTTP sonuçları [yayın kanıtında](SURFACE_RELEASE.md). Aşağıdaki yerel ilk uygulama kaydı tarihsel doğrulamadır; M2'nin yeni Mac incelemesi henüz yoktur.
+
 ## Çalışan bağımlılıklar
 
 ~~~mermaid

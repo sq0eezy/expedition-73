@@ -1,12 +1,12 @@
 ---
 review_summary: "Ortak webden okuma, GitHub üzerinden düzenleme ve yerel kaynakları eşitleme."
-change_summary: "M2'nin B katkısı alındı; M1 için ayrı geliştirme dalı ve main'e incelemeyle geçiş kaydedildi."
+change_summary: "M1 aday fraksiyon/modül teslimi main ve Pages'te; ayrı geliştirme dalları korunuyor."
 ---
 # Paylaşım ve kurulum
 
 ## 2026-10-18 · Mevcut M1 dilimini canlıya paylaşma talebi
 
-M1 mevcut doğrulanmış çalışmanın canlı panele gönderilmesini açıkça istedi. Çalışma `codex/m1-modules-region-a` dalında commit edilip paylaşılacak; mevcut Pages main'den çalıştığı için incelenmiş sürüm PR/birleştirme yoluyla ortak ana sürüme aktarılacak. Bu talep yalnız mevcut dilimin yayını içindir; sonraki geliştirme yine ayrı M1 dalında sürer. Fetch sonucunda origin/main `1172824`, M2 dalı `791e07c` olarak aynı kaldı. M2 dalı bu yayına birleştirilmeyecek; teknik inceleme notu korunuyor. [Yayın kanıtı](../evidence/SURFACE_RELEASE.md) işlem ve doğrulama sonuçlarını tutar.
+M1 mevcut doğrulanmış çalışmanın canlı panele gönderilmesini açıkça istedi. Kaynak `7e50536`, ardından byte koruma düzeltmesi `75afeeb`, `codex/m1-modules-region-a` dalında kaydedilip paylaşıldı. PR API yetkisi 403 olduğu için yerel inceleme/test sonrası normal Git merge/push kullanıldı. Main `96815c5` için 134 Ubuntu testi, gerçek A/B aday akışları ve Pages başarılı; yeni canlı belgeler/katalog HTTP 200. Bu talep yalnız mevcut dilimin yayını içindir; sonraki geliştirme yine ayrı M1 dalında sürer. M2 dalı `791e07c` olarak korundu, bu yayına birleştirilmedi; teknik inceleme notu korunuyor. [Yayın kanıtı](../evidence/SURFACE_RELEASE.md) ilk CI hatası, düzeltme ve başarılı iş bağlantılarını tutar. Webden okumak için pull gerekmez; yerel kaynak kullanan AI için kendi değişikliklerini koruyarak main'i çalışma dalına almak gerekir.
 
 
 ## 2026-10-18 · M2 dalı okundu, birleştirme yapılmadı
