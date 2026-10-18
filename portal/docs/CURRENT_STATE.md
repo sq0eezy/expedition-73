@@ -3,13 +3,15 @@ status: Validating
 updated: "2026-10-18"
 phase: Gerçek veriyle aday maske ve modül akışı
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "Kayıtlı gerçek T2M/fraksiyon işlemleri motora bağlandı; iki aday ağırlık seçeneği 12 ay hesaplandı, toplam 134 test geçti. Bilimsel maske/web ürünü açık."
+change_summary: "Gerçek T2M/fraksiyon akışı main ve canlı panelde paylaşıldı; byte koruma düzeltmesiyle 134 Ubuntu testi ve Pages geçti. M1 ayrı dalda sürer."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **Mevcut M1 dilimi ortak panelde paylaşıldı:** Kullanıcının açık talebiyle geliştirme dalı korundu, incelenmiş sürüm main'e birleştirildi. `96815c5` için Ubuntu'da 134 test, gerçek A/B aday akışları ve Pages başarılı; canlı yeni belgeler/katalog HTTP 200. İlk CI'da saptanan Windows/Linux satır sonu kaynak hash farkı, örnek baytlarını koruyan Git ayarı ve yeniden üretimle giderildi. PR API yetkisi olmadığı için normal Git merge kullanıldı. M2'nin ayrı dalı korunur; yeni kabul beyanı yok. [Yayın/CI kanıtı](evidence/SURFACE_RELEASE.md).
 
 - **Gerçek girdiler motorla bağlandı:** [Kayıtlı T2M → fraksiyon uygunluğu → iki aday önizleme → duyarlılık raporu](evidence/SURFACE_WORKFLOW.md) A ve B için tamamlandı; her ikisinde 12/12 ay. Ortak kaynaklar bir kez doğrulanıyor, bozuk/yanlış bölge girdisinde bağımlı hesap engelleniyor; eksik ay null kalıyor. 13 yeni entegrasyon testi, toplam 134 test geçti. Küçük açık NASA fraksiyon örnekleri artık analysis/examples altında tekrar üretilebilir; özel .env kopyalanmadı. İki politika adaydır; bilimsel maske seçilmedi.
 
@@ -45,4 +47,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-Gerçek T2M/fraksiyon akışı ve iki aday politika duyarlılığı çalışıyor. Sırada etkili alanın tanımı, FRLAND / FRLAND+FRLANDICE tercihi ve kaynak gridinin bilimsel uygunluğunu incelemek var; küçük sayısal fark tek başına yöntem seçimi gerekçesi değildir. Mevcut maskesiz örnekler korunur. Kabul edilmiş sınır/dönem/istatistik, ikinci bilimsel gösterge ve son web arayüzü hâlâ açık. İlk main/Pages yayını gerçekleşti; Ubuntu analiz CI kaynak dosyalarının satır sonu/hash farkını yakaladı. M1 dalındaki bayt koruma düzeltmesi ve son yayın kontrolü sürüyor: [yayın kanıtı](evidence/SURFACE_RELEASE.md).
+Gerçek T2M/fraksiyon akışı ve iki aday politika duyarlılığı çalışıyor ve main/canlı portalda paylaşıldı. Sırada etkili alanın tanımı, FRLAND / FRLAND+FRLANDICE tercihi ve kaynak gridinin bilimsel uygunluğunu incelemek var; küçük sayısal fark tek başına yöntem seçimi gerekçesi değildir. Mevcut maskesiz örnekler korunur. Kabul edilmiş sınır/dönem/istatistik, ikinci bilimsel gösterge ve son web arayüzü hâlâ açık. Yeni geliştirme ayrı M1 dalında sürer: [yayın kanıtı](evidence/SURFACE_RELEASE.md).

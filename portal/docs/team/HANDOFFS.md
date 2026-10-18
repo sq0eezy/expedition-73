@@ -59,7 +59,7 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 
 - **Gönderen → alıcı:** M1 → M2; ortak modül görevine ait panel içi araştırma/taslak kaydı.
 - **Tarih:** 2026-10-17.
-- **Durum:** M1 geliştirme dalında, inceleme bekliyor; main'e veya canlı panele aktarılmış sayılmaz.
+- **Durum:** İlk teslim geliştirme dalındaydı; 2026-10-18'de main ve canlı panelde paylaşıldı. M2 bilimsel incelemesi açık. [Yayın kanıtı](../evidence/SURFACE_RELEASE.md).
 - **Teslim:** [Maske adayı/erişim](../research/SURFACE_MASK.md), [sentetik testlerin sınırı](../evidence/SURFACE_MASK_CHECK.md), `t2m-technical-2024` 0.1.0 [aday profil](../planning/REGION_WORKFLOW.md). A/B için beklenen maske hücreleri ve indeksleri çıkarıldı; gerçek veri erişimi 401, maske alınmadı.
 - **İncelenecek:** Kara buzu dahil etme tanımı, tam hücre oranını kırpılmış sınıra uygulama yaklaşımı, kesin sınır ve ortak profil. Sessizlik kabul değildir; M2 adına görüş eklenmedi.
 - **Ayrım:** M2 main'deki önceki parçalı destekle çalışabilir. Bu yeni kayıt maskeli B analizi veya NASA veri doğrulaması değildir. Dış mesaj/bildirim gönderilmedi.
@@ -80,7 +80,7 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 
 - **Gönderen → alıcı:** M1 → M2; ortak modül görevi kapsamında panel içi teknik teslim. Dış mesaj gönderilmedi.
 - **Tarih:** 2026-10-18.
-- **Durum:** Yerel M1 dalında, M2 incelemesi ve main paylaşımı bekliyor.
+- **Durum:** 2026-10-18'de main/canlı panelde paylaşıldı; M2 incelemesi bekliyor. [Yayın kanıtı](../evidence/SURFACE_RELEASE.md).
 - **Çıktı:** [demo-workflow komutu, kayıtlı yapay örnek ve testler](../evidence/WORKFLOW_ENGINE.md); [MOD-06](../planning/WORK_BOARD.md). A ortak kaynağı bir kez hesaplanır; C, B ile aynı A kimliğini alır. Yeni A isteği için eski sonuçlar güncel değil saptanır; eski A/yeni B karışımı, hata ve döngü kontrol edilir.
 - **Sınır:** Bu, NASA T2M/fraksiyon modüllerini henüz çalıştırmayan teknik denemedir. Tip/sürüm/birim etiket kontrolü gerçek bilimsel uygunluk yerine geçmez. Kalıcı cache, otomatik kaynak izleme ve web görünümü yok. M2’nin Mac’te bu yeni komutu çalıştırdığı varsayılmadı.
 
@@ -88,7 +88,7 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 
 - **Gönderen → alıcı:** M1 → M2; panel içi ortak modül teslimi, dış mesaj gönderilmedi.
 - **Tarih:** 2026-10-18.
-- **Durum:** Yerel M1 dalında; M2 incelemesi ve main paylaşımı bekliyor.
+- **Durum:** 2026-10-18'de main/canlı panelde paylaşıldı; 134 Ubuntu testi ve iki gerçek aday akış başarılı. M2 incelemesi bekliyor. [Yayın kanıtı](../evidence/SURFACE_RELEASE.md).
 - **Teslim:** [run-surface-workflow, kaynak örnekleri ve hata kontrolleri](../evidence/SURFACE_WORKFLOW.md). A/B'nin mevcut gerçek T2M kayıtları ve küçük gerçek NASA fraksiyonları ile iki aday politika 12 ay hesaplandı. Paylaşılabilir örnek klasörlerinde credential değeri yok; özel .env Git dışında kalır.
 - **İncelenecek:** Kara buzu kapsamı, etkili alanın anlamı, tam hücre fraksiyonunun kırpılmış parçaya uygulanması ve bilimsel grid uygunluğu. B'de en büyük aylık FRLAND-maskesiz farkı yaklaşık 0,0351 °C; farkın küçük olması politika kabulü değildir.
 - **Sınır:** Uzun dönem/eğilim/son web uygulaması yok. M2'nin Mac'te bu yeni akışı çalıştırdığı veya politikayı onayladığı varsayılmadı.
