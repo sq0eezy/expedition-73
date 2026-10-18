@@ -84,9 +84,15 @@ nav:
       - Bölge araştırması: evidence/REGION_RESEARCH.md
       - Web yayını hazırlığı: evidence/PAGES_SETUP.md
       - Modül tasarım kaydı: evidence/MODULE_DESIGN.md
+      - Modül yürütme denemesi: evidence/WORKFLOW_ENGINE.md
+      - Gerçek verili modül akışı: evidence/SURFACE_WORKFLOW.md
+      - Aday modül akışı yayını: evidence/SURFACE_RELEASE.md
       - İlk T2M API ve adaptör: evidence/T2M_POINT_PROBE.md
       - İlk T2M alan hesabı: evidence/T2M_WINDOW_PROBE.md
       - Parçalı T2M erişimi: evidence/T2M_TILING.md
+      - Maske hazırlığı ve kontroller: evidence/SURFACE_MASK_CHECK.md
+      - Gerçek Earthdata metadata erişimi: evidence/EARTHDATA_METADATA.md
+      - Fraksiyon dönüşümü kontrolleri: evidence/SURFACE_SUBSET_CHECK.md
   - Proje:
       - Bağlam ve hedef: PROJECT_CONTEXT.md
       - Belge haritası: DOCUMENTATION_MAP.md
@@ -109,6 +115,7 @@ nav:
       - Varsayımlar: discovery/ASSUMPTIONS.md
       - Araştırma kaydı: research/index.md
       - NASA veri kaynakları: research/DATA_SOURCES.md
+      - Kara/su maskesi adayı: research/SURFACE_MASK.md
       - Bölge seçimi ve iki aday: research/REGION_CANDIDATES.md
       - Bölge A çalışma fişi: research/regions/REGION_A_PROFILE.md
       - Bölge B çalışma fişi: research/regions/REGION_B_PROFILE.md
@@ -142,6 +149,8 @@ nav:
       - T2M adaptörünü çalıştır: guide/T2M_ADAPTER.md
       - T2M alan denemesini çalıştır: guide/T2M_WINDOW.md
       - Geniş alan için parçalı T2M: guide/T2M_TILED_WINDOW.md
+      - Earthdata erişimini sınama: guide/EARTHDATA_ACCESS.md
+      - Küçük fraksiyon alt kümesi: guide/SURFACE_SUBSET.md
       - Ortak web paneli: guide/WEB_PORTAL.md
       - Mac kurulumu: guide/MACOS_SETUP.md
       - Yeni konuşma işleme: guide/AI_WORKFLOW.md

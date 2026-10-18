@@ -48,12 +48,54 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 
 - **Gönderen → alıcı:** M1 → M2; kullanıcının ortak modülü main'de paylaşma talebi kapsamında panel içi teslim.
 - **Tarih:** 2026-10-17.
-- **Durum:** `cdcc6bd` ile main'de paylaşıldı; Ubuntu testleri ve canlı panel yayını başarılı. M2 inceleme/çalıştırma sonucu bekleniyor: [kanıt](../evidence/T2M_TILING.md).
+- **Durum:** `cdcc6bd` ile main'de paylaşıldı; Ubuntu testleri ve canlı panel yayını başarılı. İlk teslimde M2 incelemesi bekleniyordu; 2026-10-18'de `791e07c` içindeki Mac doğrulama yanıtı okundu: [kanıt](../evidence/T2M_TILING.md).
 - **Teslim:** `fetch-power-tiled-window` / `validate-tiled-window`, bölgeden bağımsız yapılandırma, 0.2.0 çıktı ve iki gerçek B ham yanıtı. B'nin mevcut 6° arama penceresi küçülmedi; ortak 5 hücre bir kez sayıldı. [Mac komutları](../guide/T2M_TILED_WINDOW.md), [kontroller ve sınırlar](../evidence/T2M_TILING.md).
 - **M2'nin yapabileceği:** Güncel main'i kendi değişikliklerini koruyarak al; kendi çalışma dalında kayıtlı `examples/b-window-2024` örneğini çevrim dışı doğrula. R-B03/04 kapsamında alan/maske/uygunluk incelemesini sürdür; yeni API çağrısı gerekirse yeni çıktı klasörü kullan.
 - **Sınır:** Kesin alan/maske seçimi ve bilimsel A/B uygunluk onayı yok; B adına yeni yorum veya başlangıç üretilmedi. Dış mesaj/bildirim gönderilmedi.
 
+**M2 yanıtı, 2026-10-18'de okundu:** [791e07c](https://github.com/sq0eezy/expedition-73/commit/791e07cba899e11065f9bb9846dfe44204eca84c) Mac/Python 3.14 üzerinde `replay_passed`, 58 test, 55 hücre/12 ay ve teknik uygunluk onayı bildiriyor. Bu beyan M2'nin kaydıdır; bu oturumda Mac testi yapılmadı. Profil sürümü ve yıllık özet yöntemi için [M1 incelemesi](SYNC.md) eklendi; bilimsel kabul olarak genişletilmedi.
+
+## H-M1-006 · Maske adayı ve teknik profil taslağı
+
+- **Gönderen → alıcı:** M1 → M2; ortak modül görevine ait panel içi araştırma/taslak kaydı.
+- **Tarih:** 2026-10-17.
+- **Durum:** M1 geliştirme dalında, inceleme bekliyor; main'e veya canlı panele aktarılmış sayılmaz.
+- **Teslim:** [Maske adayı/erişim](../research/SURFACE_MASK.md), [sentetik testlerin sınırı](../evidence/SURFACE_MASK_CHECK.md), `t2m-technical-2024` 0.1.0 [aday profil](../planning/REGION_WORKFLOW.md). A/B için beklenen maske hücreleri ve indeksleri çıkarıldı; gerçek veri erişimi 401, maske alınmadı.
+- **İncelenecek:** Kara buzu dahil etme tanımı, tam hücre oranını kırpılmış sınıra uygulama yaklaşımı, kesin sınır ve ortak profil. Sessizlik kabul değildir; M2 adına görüş eklenmedi.
+- **Ayrım:** M2 main'deki önceki parçalı destekle çalışabilir. Bu yeni kayıt maskeli B analizi veya NASA veri doğrulaması değildir. Dış mesaj/bildirim gönderilmedi.
+
+**Erişim adımı güncellemesi · 2026-10-17:** Kayıt adımı tamamlandı bilgisi geldi; programatik erişim henüz doğrulanmadı. [Yerel metadata kontrolü](../guide/EARTHDATA_ACCESS.md) hazır; kullanıcı token'ı kendi terminalinde gizli girer. Başarılı gerçek yanıt gelene kadar fraksiyon veya maske doğrulaması yapılmış sayılmaz.
+
+**Gerçek kontrol sonucu · 2026-10-17:** Kullanıcı komutu çalıştırdı; HTTP 200 ve dört maske değişkeni/boyut metaverisi [doğrulandı](../evidence/EARTHDATA_METADATA.md). Önceki erişim bekleniyor notu tarihsel kaldı. Token okunmadı; fraksiyon/koordinat değerleri henüz alınmadı. M2 adına yeni çalışma beyanı yok.
+
+**2026-10-18 uygulama güncellemesi:** [Küçük fraksiyon komutu ve NetCDF dönüşümü](../guide/SURFACE_SUBSET.md) hazır; yapay A/B yanıtlarında kayıt/tekrar ve 13 dönüşüm testi geçti. Gerçek kaynak oranları için kullanıcı terminalinde yeni gizli token girişi gerekiyor. Kara/buz politikası seçilmedi; M2 dalının profil önerisi ayrıca incelendi.
+
+**2026-10-18 erişim güncellemesi:** M1 yeni çalıştırmada metadata aşamasında 403 bildirdi ve `.env` kaydı istedi. [Yerel --save-token desteği](../guide/EARTHDATA_ACCESS.md) eklendi; eski “her istekte yeniden gizli giriş gerekir” ifadesi yeni kayıt tercihi için geçerli değil. Gerçek token bu oturumda okunmadı veya kaydedilmedi; kayıt kullanıcı komutuyla yapılacak. Erişim/fraksiyon doğrulaması hâlâ açık; M2 adına yeni beyan yok.
+
+**2026-10-18 hedefli kontrol sonucu:** Kullanıcı Hyrax onay ekranını paylaştı. Kayıtlı token ile Hyrax örnek metadata 200, MERRA-2 ürün metadata 403 verdi. GES DISC/S3 upstream erişim işaretleri görüldü; [NASA GESDISC DATA ARCHIVE izni](../guide/EARTHDATA_ACCESS.md) sıradaki kontrol. `.env` kaydı tamamlandı; token tekrar girilmeyecek. Arşiv izninin verildiği veya 403’ün çözüldüğü varsayılmadı.
+
+**2026-10-18 gerçek alım doğrulandı:** M1 GES DISC onayını verip komutu çalıştırdığını bildirdi. Yereldeki gerçek A/B NetCDF dosyaları, kaynak hash ve 56/55 hücrelik fraksiyon dönüşümleri iki çevrim dışı tekrar kontrolünden geçti. [Kanıt](../evidence/SURFACE_SUBSET_CHECK.md). Erişim engeli bu çalıştırmada aşıldı; bilimsel kara/buz politikası, POWER uygunluğu ve maskeli seri incelemesi açık. Özel artifacts/.env Git dışında; M2’nin bu yeni fraksiyon örneğini incelediği varsayılmadı.
+
+## H-M1-007 · Yerel A/B/C yürütme denemesi
+
+- **Gönderen → alıcı:** M1 → M2; ortak modül görevi kapsamında panel içi teknik teslim. Dış mesaj gönderilmedi.
+- **Tarih:** 2026-10-18.
+- **Durum:** Yerel M1 dalında, M2 incelemesi ve main paylaşımı bekliyor.
+- **Çıktı:** [demo-workflow komutu, kayıtlı yapay örnek ve testler](../evidence/WORKFLOW_ENGINE.md); [MOD-06](../planning/WORK_BOARD.md). A ortak kaynağı bir kez hesaplanır; C, B ile aynı A kimliğini alır. Yeni A isteği için eski sonuçlar güncel değil saptanır; eski A/yeni B karışımı, hata ve döngü kontrol edilir.
+- **Sınır:** Bu, NASA T2M/fraksiyon modüllerini henüz çalıştırmayan teknik denemedir. Tip/sürüm/birim etiket kontrolü gerçek bilimsel uygunluk yerine geçmez. Kalıcı cache, otomatik kaynak izleme ve web görünümü yok. M2’nin Mac’te bu yeni komutu çalıştırdığı varsayılmadı.
+
+## H-M1-008 · Gerçek kayıtlı veriyle aday ağırlık akışı
+
+- **Gönderen → alıcı:** M1 → M2; panel içi ortak modül teslimi, dış mesaj gönderilmedi.
+- **Tarih:** 2026-10-18.
+- **Durum:** Yerel M1 dalında; M2 incelemesi ve main paylaşımı bekliyor.
+- **Teslim:** [run-surface-workflow, kaynak örnekleri ve hata kontrolleri](../evidence/SURFACE_WORKFLOW.md). A/B'nin mevcut gerçek T2M kayıtları ve küçük gerçek NASA fraksiyonları ile iki aday politika 12 ay hesaplandı. Paylaşılabilir örnek klasörlerinde credential değeri yok; özel .env Git dışında kalır.
+- **İncelenecek:** Kara buzu kapsamı, etkili alanın anlamı, tam hücre fraksiyonunun kırpılmış parçaya uygulanması ve bilimsel grid uygunluğu. B'de en büyük aylık FRLAND-maskesiz farkı yaklaşık 0,0351 °C; farkın küçük olması politika kabulü değildir.
+- **Sınır:** Uzun dönem/eğilim/son web uygulaması yok. M2'nin Mac'te bu yeni akışı çalıştırdığı veya politikayı onayladığı varsayılmadı.
+
 ## Bir kayıt için gerekenler
+
+**2026-10-18 mimari açıklık:** M1 çok girdili modül bağımlılığına hazır olup olmadığımızı sordu. [A→B, A+B→C örneği](../architecture/MODULE_SYSTEM.md), C'nin B ile aynı A çıktısını kullanması koşuluyla ayrıntılandırıldı. [MOD-06](../planning/WORK_BOARD.md) önerilen teknik deneme; motor henüz yok. M2 adına inceleme veya onay beyanı üretilmedi.
 
 | Alan | İçerik |
 |---|---|

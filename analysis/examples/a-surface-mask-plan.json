@@ -1,0 +1,285 @@
+{
+  "schema_version": "0.1.0",
+  "output_type": "surface_mask_request_plan",
+  "region_id": "A",
+  "candidate_bbox": [
+    -113,
+    36,
+    -109,
+    39
+  ],
+  "candidate_window_version": "search-window-0.1.0",
+  "source_candidate": {
+    "dataset": "M2C0NXASM",
+    "version": "5.12.4",
+    "collection_id": "C1276812819-GES_DISC",
+    "access_verified": false
+  },
+  "grid": {
+    "id": "merra2_output_0.625x0.5",
+    "shape_lat_lon": [
+      361,
+      576
+    ],
+    "origin_lon_lat": [
+      -180,
+      -90
+    ],
+    "step_lon_lat": [
+      0.625,
+      0.5
+    ]
+  },
+  "required_components": [
+    "FRLAND",
+    "FRLANDICE",
+    "FRLAKE",
+    "FROCEAN"
+  ],
+  "unit": "1",
+  "time_index": 0,
+  "zero_based_inclusive_indices": {
+    "longitude": [
+      107,
+      114
+    ],
+    "latitude": [
+      252,
+      258
+    ]
+  },
+  "expected_cells": 56,
+  "cells": [
+    {
+      "longitude": -113.125,
+      "latitude": 36.0
+    },
+    {
+      "longitude": -112.5,
+      "latitude": 36.0
+    },
+    {
+      "longitude": -111.875,
+      "latitude": 36.0
+    },
+    {
+      "longitude": -111.25,
+      "latitude": 36.0
+    },
+    {
+      "longitude": -110.625,
+      "latitude": 36.0
+    },
+    {
+      "longitude": -110.0,
+      "latitude": 36.0
+    },
+    {
+      "longitude": -109.375,
+      "latitude": 36.0
+    },
+    {
+      "longitude": -108.75,
+      "latitude": 36.0
+    },
+    {
+      "longitude": -113.125,
+      "latitude": 36.5
+    },
+    {
+      "longitude": -112.5,
+      "latitude": 36.5
+    },
+    {
+      "longitude": -111.875,
+      "latitude": 36.5
+    },
+    {
+      "longitude": -111.25,
+      "latitude": 36.5
+    },
+    {
+      "longitude": -110.625,
+      "latitude": 36.5
+    },
+    {
+      "longitude": -110.0,
+      "latitude": 36.5
+    },
+    {
+      "longitude": -109.375,
+      "latitude": 36.5
+    },
+    {
+      "longitude": -108.75,
+      "latitude": 36.5
+    },
+    {
+      "longitude": -113.125,
+      "latitude": 37.0
+    },
+    {
+      "longitude": -112.5,
+      "latitude": 37.0
+    },
+    {
+      "longitude": -111.875,
+      "latitude": 37.0
+    },
+    {
+      "longitude": -111.25,
+      "latitude": 37.0
+    },
+    {
+      "longitude": -110.625,
+      "latitude": 37.0
+    },
+    {
+      "longitude": -110.0,
+      "latitude": 37.0
+    },
+    {
+      "longitude": -109.375,
+      "latitude": 37.0
+    },
+    {
+      "longitude": -108.75,
+      "latitude": 37.0
+    },
+    {
+      "longitude": -113.125,
+      "latitude": 37.5
+    },
+    {
+      "longitude": -112.5,
+      "latitude": 37.5
+    },
+    {
+      "longitude": -111.875,
+      "latitude": 37.5
+    },
+    {
+      "longitude": -111.25,
+      "latitude": 37.5
+    },
+    {
+      "longitude": -110.625,
+      "latitude": 37.5
+    },
+    {
+      "longitude": -110.0,
+      "latitude": 37.5
+    },
+    {
+      "longitude": -109.375,
+      "latitude": 37.5
+    },
+    {
+      "longitude": -108.75,
+      "latitude": 37.5
+    },
+    {
+      "longitude": -113.125,
+      "latitude": 38.0
+    },
+    {
+      "longitude": -112.5,
+      "latitude": 38.0
+    },
+    {
+      "longitude": -111.875,
+      "latitude": 38.0
+    },
+    {
+      "longitude": -111.25,
+      "latitude": 38.0
+    },
+    {
+      "longitude": -110.625,
+      "latitude": 38.0
+    },
+    {
+      "longitude": -110.0,
+      "latitude": 38.0
+    },
+    {
+      "longitude": -109.375,
+      "latitude": 38.0
+    },
+    {
+      "longitude": -108.75,
+      "latitude": 38.0
+    },
+    {
+      "longitude": -113.125,
+      "latitude": 38.5
+    },
+    {
+      "longitude": -112.5,
+      "latitude": 38.5
+    },
+    {
+      "longitude": -111.875,
+      "latitude": 38.5
+    },
+    {
+      "longitude": -111.25,
+      "latitude": 38.5
+    },
+    {
+      "longitude": -110.625,
+      "latitude": 38.5
+    },
+    {
+      "longitude": -110.0,
+      "latitude": 38.5
+    },
+    {
+      "longitude": -109.375,
+      "latitude": 38.5
+    },
+    {
+      "longitude": -108.75,
+      "latitude": 38.5
+    },
+    {
+      "longitude": -113.125,
+      "latitude": 39.0
+    },
+    {
+      "longitude": -112.5,
+      "latitude": 39.0
+    },
+    {
+      "longitude": -111.875,
+      "latitude": 39.0
+    },
+    {
+      "longitude": -111.25,
+      "latitude": 39.0
+    },
+    {
+      "longitude": -110.625,
+      "latitude": 39.0
+    },
+    {
+      "longitude": -110.0,
+      "latitude": 39.0
+    },
+    {
+      "longitude": -109.375,
+      "latitude": 39.0
+    },
+    {
+      "longitude": -108.75,
+      "latitude": 39.0
+    }
+  ],
+  "status": "plan_only_no_provider_fractions",
+  "inference_allowed": false,
+  "warnings": [
+    "SOURCE_METADATA_AND_DIMENSION_ORDER_REQUIRE_AUTHENTICATED_VERIFICATION",
+    "NO_MASK_VALUES_FETCHED",
+    "NOT_AN_ACCEPTED_ANALYSIS_PROFILE"
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "output_type",
+    "data_origin",
+    "grid_id",
+    "spatial_support",
+    "unit",
+    "source",
+    "cells"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "output_type": {
+      "const": "source_cell_surface_fractions"
+    },
+    "data_origin": {
+      "enum": [
+        "synthetic_fixture",
+        "provider_subset"
+      ]
+    },
+    "grid_id": {
+      "const": "merra2_output_0.625x0.5"
+    },
+    "spatial_support": {
+      "const": "whole_source_cell"
+    },
+    "unit": {
+      "const": "1"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset",
+        "version",
+        "uri",
+        "retrieved_at",
+        "response_sha256"
+      ],
+      "properties": {
+        "dataset": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uri": {
+          "type": "string",
+          "format": "uri"
+        },
+        "retrieved_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "response_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "cells": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "longitude",
+          "latitude",
+          "fractions"
+        ],
+        "properties": {
+          "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "fractions": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "FRLAND",
+              "FRLANDICE",
+              "FRLAKE",
+              "FROCEAN"
+            ],
+            "properties": {
+              "FRLAND": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "FRLANDICE": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "FRLAKE": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "FROCEAN": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "data_origin": {
+            "const": "synthetic_fixture"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "source": {
+            "properties": {
+              "dataset": {
+                "const": "synthetic_fixture"
+              },
+              "uri": {
+                "const": "urn:expedition73:synthetic-fixture"
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "source": {
+            "properties": {
+              "dataset": {
+                "const": "M2C0NXASM"
+              },
+              "version": {
+                "const": "5.12.4"
+              },
+              "uri": {
+                "pattern": "^https://(opendap\\.earthdata\\.nasa\\.gov|data\\.gesdisc\\.earthdata\\.nasa\\.gov)/"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

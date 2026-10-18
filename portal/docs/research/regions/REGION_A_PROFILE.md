@@ -21,10 +21,10 @@ M1'in ilk çalışma kaydı, **2026-10-16**. Görev durumu [panoda](../../planni
 | Kapsam/kalite | Deneme yılında 12/12 ay sayısal; piksel kalite bayrağı yok. Bu sayım bilimsel kalite veya tüm alan kapsamı değildir. |
 | Sözleşme/modül | Nokta-serisi profiline ayrı `monthly_window_series` v0.1.0 eklendi; maskesiz dikdörtgen çıktısı ve CLI çalışıyor. Harita/istatistik özeti yok. |
 | Bağımsız hesap | 56 hücre kesişimi toplamı aday pencere alanını kapsıyor. Ocak için açık boylam ağırlıkları ve enlem bantlarıyla ikinci hesap, üretim sonucuyla 12 ondalıkta eşleşti: [alan kanıtı](../../evidence/T2M_WINDOW_PROBE.md). |
-| Ortak profil/B uygunluğu | B erişim örneği henüz yok; A/B ortak ürün/dönem/yöntem seçilmedi |
+| Ortak profil/B uygunluğu | B nokta/parçalı örneği mevcut. [Ortak teknik profil](../../planning/REGION_WORKFLOW.md) 0.1.0 taslağı dolduruldu; bilimsel uygunluk, maske ve nihai ürün/dönem/yöntem seçilmedi |
 | Sonuç dosyaları | [İstek](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/a-point-2024/request.json), [API yanıtı](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/a-point-2024/response.json), [çıktı](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/a-point-2024/result.json) |
 | Bulgular | Gerçek API erişimi/aktarım başarılı. Bölgesel trend, p-değeri ve iklim etkisi bulgusu yok. |
-| Sonraki adım | Gerçek analiz sınırı/kara-su maskesini araştır; B gibi daha geniş pencereler için istek parçalama geliştir. B denemesiyle ortak profili eşleştir; küçük teknik hesabı nihai alan/profilde yeniden doğrula. |
+| Sonraki adım | Parçalama desteği hazır. Gerçek analiz sınırı/kara-su maskesini ve kimlik doğrulamalı küçük maske alt kümesini incele; [maske araştırması](../SURFACE_MASK.md). Küçük teknik hesabı nihai alan/profilde yeniden doğrula. |
 
 ## 2026-10-16 · Maskesiz aday dikdörtgen denemesi
 
