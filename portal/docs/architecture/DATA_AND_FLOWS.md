@@ -28,6 +28,12 @@ Alıcı modül istediği çıktı türünü/göstergeyi; kabul ettiği birimleri
 
 Kaynak çıktı değişince bağımlı sonuç güncel değil sayılır. Zorunlu girdi eksikse alıcı çalışmaz; kısmi hesap destekleniyorsa koşulu yöntem kartında açıklanır. [Modül bağlantıları](MODULE_SYSTEM.md).
 
+**Birden çok girdi için tutarlılık taslağı:** Tüketilen çıktı başına üretici çalışma kimliği, değişmez çıktı kimliği, içerik özeti ve sürüm kaydedilir. C hem A'yı hem A'dan üretilmiş B'yi alıyorsa C'nin A kimliği, B'nin kaynak izindeki A kimliğiyle eşleşmelidir. Tek başına aynı şema/modül sürümü bunu kanıtlamaz. Alıcının aynı-kaynak koşulu ve bölge/dönem/birim/kalite denetimi açıkça tanımlanır. Genel bilimsel sonuç zarfı henüz uygulama şemasına dönüşmedi. Ayrı `technical_workflow_run` 0.1.0 denemesinde çalışma/girdi kimlikleri, context/parametre özeti ve ata tutarlılığı yapay modüllerle sınandı: [çalışan kanıt](../evidence/WORKFLOW_ENGINE.md). Bu metadata etiket kontrolü gerçek NASA birim/dönem/alan/kalite uygunluğunun yerine geçmez. [A/B/C sıra ve kaynak örneği](MODULE_SYSTEM.md).
+
+## Gerçek kayıtlarla ilk tüketim
+
+`run-surface-workflow` 0.1.0, kayıtlı T2M pencere tekrarını, T ile eşleşen fraksiyon dönüşümünü ve iki aday ağırlık önizlemesini aynı snapshot içinde bağlar. `verified_power_window` / `verified_surface_fractions` teknik wrapper profilleri, içteki eski 0.1.0/0.2.0 sonuçları değiştirmez. Tam üretim bilimsel zarfı değildir. Son aday `candidate_surface_sensitivity` çıktısı sıcaklık/fraksiyon kaynağı, ham dosya SHA-256, yöntem, birim/dönem, kapsam ve uyarıları korur; [gerçek kanıt ve sınırlar](../evidence/SURFACE_WORKFLOW.md).
+
 ## Pilot akışı
 
 1. Gerçek T2M örneğinde birim, ölçek, kalite ve zamanı incele.

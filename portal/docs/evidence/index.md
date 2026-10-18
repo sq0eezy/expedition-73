@@ -9,11 +9,15 @@
 | [Bölge adayları araştırması](REGION_RESEARCH.md) | Resmî kaynaklar, 21 CMR metadata isteği ve sınırlar |
 | [GitHub Pages hazırlığı](PAGES_SETUP.md) | Otomatik yayın akışı, erişim yetkisi ve ilk etkinleştirme sınırı |
 | [Modül ve pilot tasarımı](MODULE_DESIGN.md) | Kullanıcı kararı, konu/veri ilişkileri ve tek göstergeli pilot belgelerinin kontrolü |
+| [Çok girdili yürütme denemesi](WORKFLOW_ENGINE.md) | Yapay A→B, A+B→C, aynı kaynak kimliği, hata/döngü ve güncellik kontrolleri; NASA modül entegrasyonu değildir |
+| [Gerçek verili modül akışı](SURFACE_WORKFLOW.md) | Kayıtlı NASA T2M ve fraksiyonlarının motorla bağlanması; iki aday politikanın 12 aylık duyarlılığı ve hata kontrolleri |
+| [Aday maske/modül paylaşımı](SURFACE_RELEASE.md) | Kullanıcının canlı talebi, dal/main bütünleştirmesi ve gerçek yayın kontrolü |
 | [Gerçek T2M API ve adaptör](T2M_POINT_PROBE.md) | 2024 tek nokta yanıtı, 26 test ve bilimsel sınırlar |
 | [Gerçek T2M alan hesabı](T2M_WINDOW_PROBE.md) | 56 hücre/12 ay, kenar kesişimleri, bağımsız hesap ve kapsam sınırları |
 | [Parçalı T2M erişimi](T2M_TILING.md) | B'nin 6° penceresinde iki istek, 55 tekil hücre ve kaynak/hata kontrolleri |
 | [Maske hazırlığı](SURFACE_MASK_CHECK.md) | Gerçek 401 erişim sonucu, hücre planı ve yalnızca sentetik maske hesabı testleri |
 | [Earthdata metadata erişimi](EARTHDATA_METADATA.md) | Yerel kullanıcı isteğinde HTTP 200, dört değişken, boyut/birim ve dosya hash doğrulaması |
+| [Küçük fraksiyon dönüştürücüsü](SURFACE_SUBSET_CHECK.md) | Gerçek A/B fraksiyon alt kümeleri 56/55 hücreyle yeniden doğrulandı; yapay hata testleri ayrı |
 | [Araştırma kaydı](../research/index.md) | İncelenen sayfalar ve erişim sınırları |
 
 NASA POWER sayısal nokta erişimi için [ilk kanıt](T2M_POINT_PROBE.md), maskesiz aday dikdörtgenin küçük alan hesabı için [yeni kanıt](T2M_WINDOW_PROBE.md) var. Kesin analiz bölgesinin uzun dönem serisi/trend/anlamlılık hesabı, performans ölçümü veya kullanıcı denemesi için henüz kanıt yok.

@@ -26,11 +26,13 @@ jobs:
         with:
           python-version: '3.12'
           cache: pip
-          cache-dependency-path: analysis/requirements.txt
+          cache-dependency-path: |
+            analysis/requirements.txt
+            analysis/requirements-mask.txt
       - name: Install isolated adapter environment
         run: |
           python -m venv .venv
-          .venv/bin/python -m pip install --disable-pip-version-check -r requirements.txt
+          .venv/bin/python -m pip install --disable-pip-version-check -r requirements-mask.txt
       - name: Offline provider replay and contract tests
         run: .venv/bin/python -m unittest discover -s tests -v
       - name: Validate committed real samples
@@ -42,3 +44,9 @@ jobs:
         run: .venv/bin/python -m expedition73 validate-window examples/a-window-2024
       - name: Replay all B tiles and deduplicated window result
         run: .venv/bin/python -m expedition73 validate-tiled-window examples/b-window-2024
+      - name: Replay recorded NASA fractions and candidate workflow offline
+        run: |
+          .venv/bin/python scripts/fetch_surface_fractions.py --replay examples/a-surface-fractions
+          .venv/bin/python scripts/fetch_surface_fractions.py --replay examples/b-surface-fractions
+          .venv/bin/python -m expedition73 run-surface-workflow --window-run examples/a-window-2024 --fraction-run examples/a-surface-fractions --output-dir artifacts/ci-a-surface-workflow
+          .venv/bin/python -m expedition73 run-surface-workflow --window-run examples/b-window-2024 --fraction-run examples/b-surface-fractions --output-dir artifacts/ci-b-surface-workflow

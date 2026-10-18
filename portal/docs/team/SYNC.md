@@ -4,6 +4,17 @@ change_summary: "M2'nin B katkısı alındı; M1 için ayrı geliştirme dalı v
 ---
 # Paylaşım ve kurulum
 
+## 2026-10-18 · Mevcut M1 dilimini canlıya paylaşma talebi
+
+M1 mevcut doğrulanmış çalışmanın canlı panele gönderilmesini açıkça istedi. Çalışma `codex/m1-modules-region-a` dalında commit edilip paylaşılacak; mevcut Pages main'den çalıştığı için incelenmiş sürüm PR/birleştirme yoluyla ortak ana sürüme aktarılacak. Bu talep yalnız mevcut dilimin yayını içindir; sonraki geliştirme yine ayrı M1 dalında sürer. Fetch sonucunda origin/main `1172824`, M2 dalı `791e07c` olarak aynı kaldı. M2 dalı bu yayına birleştirilmeyecek; teknik inceleme notu korunuyor. [Yayın kanıtı](../evidence/SURFACE_RELEASE.md) işlem ve doğrulama sonuçlarını tutar.
+
+
+## 2026-10-18 · M2 dalı okundu, birleştirme yapılmadı
+
+Fetch ile `origin/codex/m2-region-b`, `791e07cba899e11065f9bb9846dfe44204eca84c` görüldü. Commit ve altı belgenin farkı okundu: [M2 katkısı](https://github.com/sq0eezy/expedition-73/commit/791e07cba899e11065f9bb9846dfe44204eca84c). M2, B örneğini Mac/Python 3.14 üzerinde tekrar çalıştırıp 58 testi geçtiğini, H-M1-005 teslimini doğruladığını ve R-B03 teknik uygunluğunu onayladığını kaydetmiş. Pano/devir bu gerçek beyana göre güncellendi. Bu oturum Mac'te çalışmadı; uzak dal merge edilmedi, uzak M2 dalına yazılmadı.
+
+**M1 incelemesi:** `common-profile-t2m-0.2.0` önerisi M1 dalındaki `t2m-technical-2024` 0.1.0 taslağıyla uzlaştırılmalı. Parçalı gerçek çıktı türü `monthly_window_series`, şema/modül 0.2.0; bilimsel alan yöntemi 0.1.0. M2'nin -8,73 °C B ve +12,19 °C A özetleri, mevcut 12 aylık pencere değerlerinin eşit aylık ağırlıklı aritmetik ortalamalarıyla uyuşuyor; kabul edilmiş yıllık zaman ağırlıklandırması henüz yok. +20,92 °C mekânsal sıcaklık farkı tek başına iklim değişikliği/eğilim/etki farkı değildir. Maske dışında kesin sınır, uzun dönem, kalite ve istatistik de açıktır; “kalan tek engel maske” ifadesi nihai kapsamı karşılamıyor. M2'nin teknik onayı korunur; ortak bilimsel profil kendiliğinden kabul edilmiş sayılmaz.
+
 ## Güncel geliştirme düzeni · 2026-10-17
 
 M1'in talimatıyla yeni çalışma doğrudan main yerine **`codex/m1-modules-region-a`** dalında devam eder: [ADR-007](../decisions/ADR-007-FEATURE-BRANCHES.md). M2 için ayrı bir kişisel/iş dalı önerilir; M2 adına dal açıldığı veya tercihi kabul ettiği varsayılmadı. Main ortak bütünleşmiş sürüm, geliştirme dalı devam eden iş içindir. Dal değişiklikleri pull request üzerinden incelenip birleştirilir; bu düzen otomatik merge kurmaz.

@@ -1,12 +1,17 @@
 ---
 review_summary: "T2M için MERRA-2 kara/su oranı adayı, gerçek 401 erişim sonucu ve deneysel ağırlık kontrolü."
-change_summary: "M2C0NXASM bulundu; A/B hücre planları ve sentetik verilerle maskeli ağırlık önizlemesi hazırlandı. Gerçek maske alınmadı."
+change_summary: "Gerçek M2C0NXASM fraksiyon alt kümeleri A 56/B 55 hücreyle alındı ve yeniden doğrulandı; bilimsel maske seçimi açık."
 ---
 # Kara/su maskesi · Araştırma ve teknik deneme
 
-**Durum: araştırma adayı ve deneysel altyapı.** Kesin maske veya analiz yöntemi seçilmedi. T2M örnekleri maskesiz olarak korunuyor. Bu çalışma gerçek NASA kara oranlarını uygulamış bir analiz değildir.
+**Durum: araştırma adayı ve deneysel altyapı.** Kesin maske veya analiz yöntemi seçilmedi. T2M örnekleri maskesiz olarak korunuyor. Gerçek NASA fraksiyonları artık iki açık aday ağırlık önizlemesinde uygulandı; bu kabul edilmiş bilimsel maske profili değildir. [Gerçek akış ve duyarlılık](../evidence/SURFACE_WORKFLOW.md).
 
 ## Kaynak adayı ve gerçek erişim
+
+**Güncel sonuç · 2026-10-18:** Kullanıcının GES DISC onayı sonrası çalıştırdığı komut gerçek A/B alt kümelerini üretti. Yerel dosyalar ve iki `--replay` kontrolü başarılı; A 56/B 55 hücre, dört fraksiyon, koordinatlar ve kaynak dolgu kuralları doğrulandı. [Ayrıntılı kanıt](../evidence/SURFACE_SUBSET_CHECK.md). B’de 5 hücrede pozitif okyanus, 45 hücrede göl, 6 hücrede kara buzu oranı var; bunlar tüm kaynak hücresine ait oranlardır, aday alan toplam yüzdesi değildir. Önceki 401/403 ve “gerçek oran yok” ifadeleri ilk denemelerin tarihsel kaydıdır. Sonraki akışta FRLAND ile FRLAND+FRLANDICE için ayrı aday sıcaklık önizlemeleri üretildi; maske bileşen seçimi kabul edilmedi.
+
+
+**2026-10-18 teknik adım:** Küçük A/B `.dap.nc4` alt kümesi için dönüştürücü ve yerel gizli-token komutu hazırlandı. Kaynak metadata'sı gerçek kayıtla denetlendi; 13 dönüşüm testi yapay NetCDF ile geçti. [Kılavuz](../guide/SURFACE_SUBSET.md), [doğrulama sınırı](../evidence/SURFACE_SUBSET_CHECK.md). Gerçek fraksiyon veri isteği henüz bekleniyor; aşağıdaki ilk hazırlık ifadeleri tarihseldir.
 
 **Son durum · 2026-10-17:** İlk oturumsuz 401 denemesinden sonra kullanıcı yerel token kontrolünü çalıştırdı. [Gerçek metadata isteği HTTP 200](../evidence/EARTHDATA_METADATA.md); dört fraksiyon değişkeni ve 1×361×576 boyut sırası doğrulandı. Aşağıdaki 401 ifadeleri ilk denemeyi anlatır. Sayısal fraksiyonlar ve koordinat vektörleri henüz alınmadı.
 

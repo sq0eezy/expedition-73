@@ -18,6 +18,11 @@ def write_json(path: Path, value) -> None:
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
+    commands.add_parser("demo-workflow", help="Offline synthetic A -> B, A+B -> C dependency experiment; no science.")
+    surface_run = commands.add_parser("run-surface-workflow", help="Replay local NASA inputs and compare two candidate fraction policies; offline.")
+    surface_run.add_argument("--window-run", type=Path, required=True)
+    surface_run.add_argument("--fraction-run", type=Path, required=True)
+    surface_run.add_argument("--output-dir", type=Path, required=True)
     probe = commands.add_parser("fetch-power-point", help="Fetch and validate a small candidate point sample; no trend.")
     probe.add_argument("--config", type=Path, required=True)
     probe.add_argument("--output-dir", type=Path, required=True)
@@ -45,7 +50,26 @@ def main(argv=None) -> int:
     compare.add_argument("right", type=Path)
     args = parser.parse_args(argv)
     try:
-        if args.command == "plan-surface-mask":
+        if args.command == "run-surface-workflow":
+            from .surface_workflow import run
+            if args.output_dir.exists():
+                raise PilotError("Output directory already exists; choose a new run directory.")
+            spec, report = run(args.window_run, args.fraction_run)
+            args.output_dir.mkdir(parents=True, exist_ok=False)
+            write_json(args.output_dir / "request.workflow.json", spec)
+            write_json(args.output_dir / "workflow.json", report)
+            summary = {"status": report["status"], "region": spec["context"]["region"]["region_id"],
+                       "nodes": {name: record["status"] for name, record in report["nodes"].items()}}
+            if report["status"] != "completed":
+                print(json.dumps(summary, ensure_ascii=False))
+                return 2
+            result = report["nodes"]["Sensitivity"]["artifact"]["value"]
+            write_json(args.output_dir / "sensitivity.json", result)
+            print(json.dumps({**summary, "diagnostics": result["diagnostics"]}, ensure_ascii=False))
+        elif args.command == "demo-workflow":
+            from .workflow_demo import run
+            print(json.dumps(run(), ensure_ascii=False, indent=2, allow_nan=False))
+        elif args.command == "plan-surface-mask":
             print(json.dumps(masking.request_plan(loads(args.config.read_bytes())), ensure_ascii=False, indent=2))
         elif args.command == "preview-surface-mask":
             config = loads((args.run / "request.json").read_bytes())

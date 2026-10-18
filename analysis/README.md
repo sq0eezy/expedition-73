@@ -4,13 +4,19 @@ NASA POWER Monthly API'den **aday bir noktaya** ait aylık 2 metre hava sıcakl�
 
 Kapsam: MOD-01/02/03'ün ilk aktarım/adaptör dilimi ve R-A02'nin erişim sınaması. Nokta profiline ek olarak maskesiz aday dikdörtgen için deneysel alan ağırlıklı seri çalışıyor; B uygunluğu ve istatistikler sonraki işlerdir.
 
-## Aday maske altyapısı · Gerçek maske henüz alınmadı
+## Yeni: çok girdili yürütme denemesi
 
-Earthdata kayıt adımından sonra, depo kökünde Windows PowerShell: `& .\analysis\.venv\Scripts\python.exe .\analysis\scripts\check_earthdata_access.py`. Mac: `analysis/.venv/bin/python analysis/scripts/check_earthdata_access.py`. Token yerel terminalde gizli girilir; kaydedilmez. Script sabit NASA uç noktasından yalnızca metadata ister; sonuç `analysis/artifacts/earthdata-access-...` altında kalır. [Token oluşturma/uygulama yetkisi ve kullanım](../portal/docs/guide/EARTHDATA_ACCESS.md). Gerçek kullanıcı erişimi henüz doğrulanmadı.
+Gerçek kayıtlı T2M ve fraksiyon işlemleri de artık motora bağlandı: `analysis` içinde Windows CMD ile `.venv\Scripts\python.exe -m expedition73 run-surface-workflow --window-run examples/b-window-2024 --fraction-run examples/b-surface-fractions --output-dir artifacts/b-surface-new-run`. Mac/Linux'ta `.venv/bin/python` kullanılır; `requirements-mask.txt` kurulu olmalı. [Akış, iki aday politika, kaynaklar ve sınırlar](../portal/docs/evidence/SURFACE_WORKFLOW.md). A ve B için 12 ay hesaplandı; maskesiz örnekler değiştirilmedi. Bu komut ağ/token istemez, mevcut küçük kayıtları tekrar doğrular. Başarısız girdide bağımlı işler engellenir ve aday sonuç yazılmaz.
+
+`analysis` içinde Windows CMD: `.venv\Scripts\python.exe -m expedition73 demo-workflow`. Mac/Linux: `.venv/bin/python -m expedition73 demo-workflow`. Yapay A→B, A+B→C grafiğini çalıştırır; C=12, A parametresi değişince yeni çalıştırmada C=21 üretir. Ortak A bir kez hesaplanır, girdi kimlikleri/ata izi ve hata/engelli durumları korunur; eski/yeni A karışımı reddedilir. İstek şeması 0.1.0, örnek `examples/workflow-demo.json`. [Kanıt, komut ve sınırlar](../portal/docs/evidence/WORKFLOW_ENGINE.md). Bu komut yapay örnektir; gerçek kayıtların ayrı akışı yukarıdadır. Kalıcı cache, otomatik kaynak izleme ve web arayüzü yok.
+
+## Aday maske altyapısı · Gerçek fraksiyon erişimi doğrulandı
+
+Metadata kontrolü, depo kökünde Windows PowerShell: `& .\analysis\.venv\Scripts\python.exe .\analysis\scripts\check_earthdata_access.py`. Mac: `analysis/.venv/bin/python analysis/scripts/check_earthdata_access.py`. Proje `.env` kaydı okunur; açık `--save-token` ile gizli girişten kaydedilir. Script yalnız metadata ister; sonuç `analysis/artifacts/earthdata-access-...` altında kalır. [Token/uygulama yetkisi](../portal/docs/guide/EARTHDATA_ACCESS.md). GES DISC onayı sonrası gerçek A/B fraksiyon alt kümeleri de alınıp yeniden doğrulandı: [kanıt](../portal/docs/evidence/SURFACE_SUBSET_CHECK.md).
 
 `plan-surface-mask --config examples/b-window-2024.config.json` beklenen kaynak hücrelerini ve sıfır tabanlı indeksleri çevrim dışı listeler. `preview-surface-mask --run RUN_DIR --mask MASK.json --components FRLAND` önce sıcaklık run'ını yeniden doğrular, sonra `schemas/surface-fractions.schema.json` girdisini kontrol edip ayrı `candidate_surface_weight_preview` üretir. Kara buzu dahil olacaksa açıkça `--components FRLAND FRLANDICE` denir; varsayılan bilimsel politika yoktur.
 
-NASA CMR'de M2C0NXASM 5.12.4 bulundu, ancak güncel OPeNDAP metadata isteği oturumsuz 401 verdi. Gerçek fraksiyon veya NetCDF dönüştürücü/kimlik doğrulamalı erişim bu sürümde yok. Kaynak erişim kaydı `resources/merra2-mask-access.json`; A/B türetilmiş istek planları `examples/*-surface-mask-plan.json`. Yapay oranlar yalnızca testlerde üretilir; açık `--allow-synthetic` olmadan reddedilir ve sonuçta sentetik etiket kalır. [Araştırma/yöntem sınırları](../portal/docs/research/SURFACE_MASK.md), [gerçek erişim ve sentetik test ayrımı](../portal/docs/evidence/SURFACE_MASK_CHECK.md).
+M2C0NXASM 5.12.4 aday kaynağına ilk oturumsuz istek 401 vermişti; erişim kaydı `resources/merra2-mask-access.json` tarihseldir. Güncel `surface_source.py` NetCDF dönüştürücüsü ve yerel komutla alınan gerçek A/B alt kümeleri 56/55 hücreyle doğrulandı; özel yanıtlar Git dışında `artifacts/` içinde. Türetilmiş `examples/*-surface-mask-plan.json` dosyaları ilk istek planlarıdır; veri sonucu değildir. Testteki yapay oranlar açık `--allow-synthetic` olmadan önizlemeye alınmaz. [Araştırma/yöntem sınırları](../portal/docs/research/SURFACE_MASK.md).
 
 Oranlar tüm kaynak hücresine aittir; sınırla kesişen parçaya aynı oranı uygulamak yaklaşık bir yöntemdir. Yeniden ağırlıklandırma, hücre T2M'sini ayrı bir kara yüzey sıcaklığına dönüştürmez. Bu araç mevcut maskesiz örnekleri veya seçilmiş analiz profilini değiştirmez.
 
@@ -42,7 +48,13 @@ Windows'ta `.venv/bin/python` yerine `& .\.venv\Scripts\python.exe` kullanılır
 
 Kara/su maskesi, kesin coğrafi bölge, keyfî poligon ve çıkarım yoktur. Tek istekli komutun sınırı: yarım hücre payı dahil en fazla 5°/eksen ve iki yıl. B'nin mevcut 6° arama penceresi için yukarıdaki yeni parçalı komut kullanılır; B sessizce küçültülmez. Mevcut B nokta erişimi etkilenmez. JSON şemaları `schemas/window-request.schema.json`, `schemas/monthly-window-series.schema.json`; gerçek A örneği `examples/a-window-2024/` altında.
 
-## Mac / Linux
+## Deneysel: gerçek sabit fraksiyon alt kümesi
+
+Yerel NASA komutları proje kökündeki Git dışında tutulan `.env` içinden `EARTHDATA_TOKEN` okur. Açık `--save-token` seçeneği token'ı gizli girişten bu anahtara kaydeder/değiştirir; sonraki çalıştırmalarda tekrar sorulmaz. CMD/PowerShell ayrımı, 403 uygulama yetkisi ve kayıt adımları [erişim kılavuzunda](../portal/docs/guide/EARTHDATA_ACCESS.md). Token değerini komut argümanına veya paylaşılan belgelere yazma.
+
+Gerçek A/B fraksiyon alt kümeleri 2026-10-18’de alındı ve 56/55 hücre için çevrim dışı yeniden doğrulandı; bilimsel maske seçimi ve maskeli seri açık. Küçük alt kümeyi gizli token ile alan ve yerel NetCDF yanıtını ortak maske girdisine dönüştüren yardımcı komut hazır. Ek bağımlılıklar `requirements-mask.txt` içinde; mevcut nokta/alan araçlarının temel kurulumu değişmez. [Windows/Mac komutları ve sınırlar](../portal/docs/guide/SURFACE_SUBSET.md), [sentetik dönüşüm testleri](../portal/docs/evidence/SURFACE_SUBSET_CHECK.md). `--replay REGION_DIRECTORY` ağ/token olmadan ham yanıtı tekrar dönüştürür. Kara/buz politikası seçilmez, sıcaklık serisi değiştirilmez.
+
+## Temel ortam · Mac / Linux
 
 Depo kökünden Python 3.11+ ile:
 

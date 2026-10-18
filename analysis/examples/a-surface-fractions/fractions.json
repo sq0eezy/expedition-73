@@ -1,0 +1,577 @@
+{
+  "schema_version": "0.1.0",
+  "output_type": "source_cell_surface_fractions",
+  "data_origin": "provider_subset",
+  "grid_id": "merra2_output_0.625x0.5",
+  "spatial_support": "whole_source_cell",
+  "unit": "1",
+  "source": {
+    "dataset": "M2C0NXASM",
+    "version": "5.12.4",
+    "uri": "https://opendap.earthdata.nasa.gov/collections/C1276812819-GES_DISC/granules/M2C0NXASM.5.12.4%3AMERRA2_101.const_2d_asm_Nx.00000000.nc4.dap.nc4?dap4.ce=%2Flon%5B107%3A1%3A114%5D%3B%2Flat%5B252%3A1%3A258%5D%3B%2Ftime%5B0%3A1%3A0%5D%3B%2FFRLAND%5B0%3A1%3A0%5D%5B252%3A1%3A258%5D%5B107%3A1%3A114%5D%3B%2FFRLANDICE%5B0%3A1%3A0%5D%5B252%3A1%3A258%5D%5B107%3A1%3A114%5D%3B%2FFRLAKE%5B0%3A1%3A0%5D%5B252%3A1%3A258%5D%5B107%3A1%3A114%5D%3B%2FFROCEAN%5B0%3A1%3A0%5D%5B252%3A1%3A258%5D%5B107%3A1%3A114%5D",
+    "retrieved_at": "2026-10-18T08:42:57+00:00",
+    "response_sha256": "62cccbedac8849e2a5e8de79c44dc37bed3757eb701ec74ce126def1ca5f4584"
+  },
+  "cells": [
+    {
+      "longitude": -113.125,
+      "latitude": 36.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -112.5,
+      "latitude": 36.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -111.875,
+      "latitude": 36.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -111.25,
+      "latitude": 36.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -110.625,
+      "latitude": 36.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -110.0,
+      "latitude": 36.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -109.375,
+      "latitude": 36.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -108.75,
+      "latitude": 36.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -113.125,
+      "latitude": 36.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -112.5,
+      "latitude": 36.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -111.875,
+      "latitude": 36.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -111.25,
+      "latitude": 36.5,
+      "fractions": {
+        "FRLAND": 0.99891597032547,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0010839694878086448,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -110.625,
+      "latitude": 36.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -110.0,
+      "latitude": 36.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -109.375,
+      "latitude": 36.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -108.75,
+      "latitude": 36.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -113.125,
+      "latitude": 37.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -112.5,
+      "latitude": 37.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -111.875,
+      "latitude": 37.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -111.25,
+      "latitude": 37.0,
+      "fractions": {
+        "FRLAND": 0.9951729774475098,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.004827025346457958,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -110.625,
+      "latitude": 37.0,
+      "fractions": {
+        "FRLAND": 0.9999999403953552,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -110.0,
+      "latitude": 37.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -109.375,
+      "latitude": 37.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -108.75,
+      "latitude": 37.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -113.125,
+      "latitude": 37.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -112.5,
+      "latitude": 37.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -111.875,
+      "latitude": 37.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -111.25,
+      "latitude": 37.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -110.625,
+      "latitude": 37.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -110.0,
+      "latitude": 37.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -109.375,
+      "latitude": 37.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -108.75,
+      "latitude": 37.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -113.125,
+      "latitude": 38.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -112.5,
+      "latitude": 38.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -111.875,
+      "latitude": 38.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -111.25,
+      "latitude": 38.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -110.625,
+      "latitude": 38.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -110.0,
+      "latitude": 38.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -109.375,
+      "latitude": 38.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -108.75,
+      "latitude": 38.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -113.125,
+      "latitude": 38.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -112.5,
+      "latitude": 38.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -111.875,
+      "latitude": 38.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -111.25,
+      "latitude": 38.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -110.625,
+      "latitude": 38.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -110.0,
+      "latitude": 38.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -109.375,
+      "latitude": 38.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -108.75,
+      "latitude": 38.5,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -113.125,
+      "latitude": 39.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -112.5,
+      "latitude": 39.0,
+      "fractions": {
+        "FRLAND": 0.9843140840530396,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.01568586938083172,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -111.875,
+      "latitude": 39.0,
+      "fractions": {
+        "FRLAND": 0.998299777507782,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0017002369277179241,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -111.25,
+      "latitude": 39.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -110.625,
+      "latitude": 39.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -110.0,
+      "latitude": 39.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -109.375,
+      "latitude": 39.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    },
+    {
+      "longitude": -108.75,
+      "latitude": 39.0,
+      "fractions": {
+        "FRLAND": 1.0,
+        "FRLANDICE": 0.0,
+        "FRLAKE": 0.0,
+        "FROCEAN": 0.0
+      }
+    }
+  ]
+}

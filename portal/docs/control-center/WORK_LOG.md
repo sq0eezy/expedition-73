@@ -1,5 +1,65 @@
 # Çalışma günlüğü
 
+## 2026-10-18 · Doğrulanmış M1 dilimini canlıya hazırlama
+
+M1 mevcut çalışmayı dal düzeni korunarak canlıya göndermeyi açıkça istedi. Fetch yapıldı; main `1172824`, M2 dalı `791e07c`, M1 uzak dalı `14a16ba` olarak aynı. Başka katkı reset/force ile silinmedi. M2'nin ayrı dalı birleştirilmez; güncel notlarının incelenmiş özeti korunur. Değişiklikler M1 dalında commit/push, mümkünse PR ve ardından main bütünleştirmesi ile Pages yayınına hazırlanır. [Canlı yayın kanıtı](../evidence/SURFACE_RELEASE.md). Token/özel çalışma klasörleri paylaşılmaz; küçük NASA açık veri örnekleri kaynak izleriyle paylaşılır.
+
+
+## 2026-10-18 · Gerçek T2M/fraksiyon işlemleri motorla bağlandı
+
+M1 devam talebi verdi. `surface_workflow.py` ve `run-surface-workflow` eklendi: kaynak dosyalarını bellekte sabitleme → gerçek T2M ham yanıtını tekrar hesaplama → T ile fraksiyon uygunluğu/ham NetCDF dönüşümünü tekrar denetleme → FRLAND / FRLAND+FRLANDICE önizlemeleri → kaynak izli aday duyarlılık raporu. Fraksiyon uygunluk düğümü T'yi alır, her iki önizleme aynı T/F kimliğini kullanır. İlk modüller arası tüketim gerçek kayıtlarla çalışıyor; hesaplar aday ağırlık duyarlılığıdır. [Komut, kaynak, sonuç ve sınırlar](../evidence/SURFACE_WORKFLOW.md).
+
+A/B küçük fraksiyon kayıtlarının sadece beşer açık veri/üretim dosyası examples altına kopyalandı; özel artifacts korundu, .env kopyalanmadı. Aday kaynak izli JSON'lar ve NASA veri atfı eklendi; CI tanımı çevrim dışı fraksiyon/akış kontrolleriyle genişletildi. Uzak CI çalıştırılmadı. `surface_source.replay_data` mevcut dosya replay'inden ayrıştırıldı; eski komut davranışı korundu.
+
+Windows/Python 3.12.14: **134 test / 42,985 saniye**, başarılı; 13 yeni entegrasyon testi. İki gerçek kaynak için akış, Ocak NumPy bağımsız ağırlıklı ortalama, ortak kaynak kimliği, bozuk/yanlış bölge, politika etiketinin değiştirilmesi, eksik ayı null tutma, snapshot'tan sonra dosya değişimi, başarısız işte sonuç yazmama ve üzerine yazmama sınandı. Kayıtlı aday sonuçlar yeniden hesapla eşleşti. Önceki gerçek A/B nokta, A/B pencere ve iki gerçek fraksiyon replay'i geçti. Son iki CLI koşusu beş düğüm completed ve 12/12 ay verdi. A en büyük aylık FRLAND-maskesiz farkı 0,00061586 °C; B 0,03510533 °C. FRLAND+ICE − FRLAND en büyük farkı A 0, B 0,00057698 °C. Bu küçük farklara fiziksel anlamlılık iddiası eklenmedi. Yeni NASA isteği, token okuma veya gerçek Mac çalıştırması yok. Mevcut NumPy deprecation uyarısı hata üretmedi.
+
+Mimari, durum, MOD-05/06, M1 ve H-M1-008 güncellendi; M2 adına kabul üretilmedi. Portal check/strict build ve git diff --check geçti. Çalışma yerel M1 dalında; commit/push/main/Pages yayını yapılmadı.
+
+
+## 2026-10-18 · MOD-06 ilk yerel yürütme denemesi
+
+M1 devam talebi verdi; önceki A→B, A+B→C teknik önerisine devam edildi. Var olan değişiklikler korunarak yerel M1 dalında `workflow.py`, `workflow_demo.py`, istek şeması 0.1.0, `demo-workflow`, kayıtlı yapay JSON örneği ve 20 test eklendi. Planlayıcı ön kontrol/döngü, kayıtlı işlem sürümü/etiket uygunluğu, aynı çalıştırmada ortak A’yı tek üretme, çıktı/ata kimliği, tüketici kopya izolasyonu, başarısız/engelli durumları ve açık snapshot karşılaştırması çalışıyor. İlk A=4, B=8, C=12; parametre değişiminde A=7, B=14, C=21. Eski rapor değişmedi, A/B/C stale saptandı; eski A + yeni B reddedildi. [Kanıt, komut ve sınırlar](../evidence/WORKFLOW_ENGINE.md).
+
+Windows/Python 3.12.14, analysis sanal ortamı: **121 test / 14,722 saniye** başarılı. Önceki gerçek A/B nokta, A tek pencere, B parçalı pencere ve yerel gerçek A/B fraksiyon yeniden doğrulamaları geçti. NASA’ya yeni istek yapılmadı; token okunmadı. Eski yapay NetCDF yazımında deprecation uyarısı sürdü, hata yok. Bu deneme bilimsel modül entegrasyonu, kalıcı iş deposu/cache, otomatik dış kaynak izleme, gerçek Mac çalıştırması veya web ürünü değildir. M2 adına görüş/çalıştırma üretilmedi. Kaynak mimari, durum, MOD-06 Validating, M1 notu ve H-M1-007 güncellendi. Portal check/strict build ve git diff --check geçti. Commit/push/main/Pages yayını yapılmadı.
+
+
+## 2026-10-18 · Çok girdili bağımlılık hazırlığının sınırı
+
+M1, B'nin A çıktısını, C'nin A ve B'yi gerektirdiği yapıya hazır olup olmadığımızı sordu. Mimari ve mevcut analiz kaynakları okundu: contains/consumes ayrımı, sürümlü çıktılar, eksik girdide durma ve döngü reddi mevcut taslakta var; genel çalışan bağımlılık motoru yok. [Modül sistemi](../architecture/MODULE_SYSTEM.md) A→B→C planı, ortak A'yı tek üretme, C'nin B ile aynı değişmez A çıktısını kullanması, kaynak değişince yeni çalışma/bağımlı güncelliği, hata/engelli durumları ve bilimsel ilişkiyle hesap bağımlılığının ayrımıyla somutlaştırıldı. [Ortak sözleşmeye](../architecture/DATA_AND_FLOWS.md) gerekli kimlik/iz koşulları taslak olarak eklendi. MOD-06 Proposed; uygulama veya yeni bilimsel modül seçimi kabul edilmedi, M2 adına görüş üretilmedi. Durum, M1 notu ve devir ilişkilendirildi.
+
+Yalnız belge taslağı değişti; yeni motor, NASA isteği veya analiz hesabı yapılmadı. Portal check/strict build ve git diff --check geçti; bunlar modül yürütmesinin çalıştığını kanıtlamaz. Çalışma yerel M1 dalında, main/Pages yayını yapılmadı.
+
+## 2026-10-18 · Gerçek A/B fraksiyon dosyaları doğrulandı
+
+M1 arşiv uygulamasını onaylayıp CMD’de komutu çalıştırdığını bildirdi, kontrol istedi. Bu sohbete bağlı app terminali yoktu; sonuç yerel dosyalardan incelendi. `surface-fractions-20261018T084254Z` altında A/B NetCDF, metadata, request, fractions ve raporları bulundu. İki bölge `fetch_surface_fractions.py --replay` ile yeniden doğrulandı: A 56/B 55 hücre, kaynak hash/boyut, koordinat/birim/boyut/dolgu/ölçek kontrolleri başarılı. Yanıtlar UTC 08:42:57/59, 55.588’er bayt. [Hash ve gerçek oran özeti](../evidence/SURFACE_SUBSET_CHECK.md). B’de 5 kaynak hücresinde pozitif okyanus oranı var; bu sayı toplam aday alanın deniz yüzdesi değildir.
+
+Yeni NASA ağ isteği yapılmadı, token veya ham konuşma yayımlanmadı; özel artifacts/.env korunur. Gerçek erişim/dönüşüm engeli kalktı. Kara/buz politikası seçilmedi, maskeli sıcaklık serisi veya bilimsel A/B sonucu üretilmedi. MOD-05 bu açık incelemeler nedeniyle Validating kalır; M2 adına yeni inceleme beyanı yok. Çalışan analiz kodu bu kontrol sırasında değişmedi; önceki 101 test tekrar çalıştırılmadı, gerçek A/B dönüşüm tekrarları çalıştırıldı. Portal check/strict build ve git diff --check başarılı. Yeni kayıtlar yerel M1 dalında; commit/push/main/Pages yayını yapılmadı.
+
+
+## 2026-10-18 · Kaydedilmiş token ve Hyrax / GES DISC ayrımı
+
+M1, `--save-token` başarı mesajı sonrasında metadata 403 çıktısını ve Approved Applications ekranını paylaştı. Hyrax onaylı görünüyor; NASA GESDISC DATA ARCHIVE listede görünmüyor. Token dosyası dökülmeden yalnız program içinden okundu ve NASA isteklerinde kullanıldı. Mevcut metadata kontrolü 403’ü yeniden üretti; ham hata/başlıklar/kimlik bilgisi gösterilmeden sınıflandırıldı: DAP4 XML error, GES DISC/S3 ve data.gesdisc.earthdata.nasa.gov işaretleri. Kayıtlı token ile belgelenmiş Hyrax örneği fnoc1.nc.dmr.xml 200 / Dataset verdi; aynı örnek oturumsuz giriş yönlendirmesi istedi. Bu, Hyrax’a authenticated erişimin çalıştığına kanıt; MERRA-2 ürününe erişim veya kaynak fraksiyon doğrulaması değildir.
+
+[NASA uygulama yetkisi rehberine](https://urs.earthdata.nasa.gov/documentation/for_users/data_access/curl_and_wget) ve GES DISC destek kaydına göre sıradaki hedefli kontrol NASA GESDISC DATA ARCHIVE izni olarak [kılavuza](../guide/EARTHDATA_ACCESS.md) eklendi. Eksik izin kesin neden veya çözüm diye sunulmadı; arşiv uygulamasına onay verildiği henüz bildirilmedi. Token, JWT kimlik alanları, ham hata veya ekran görüntüsü yayımlanmadı; özel .env değiştirilmedi. Çalışan analiz kodu değişmedi; gerçek istekler ve belge değişikliği yapıldı. Portal check/strict build ve git diff --check başarılı. Main/push/Pages yayını yapılmadı.
+
+
+## 2026-10-18 · Kullanıcı erişim hatası ve açık yerel token kaydı
+
+M1 CMD üzerinden komutu çalıştırdığını, yanlış girişle 500 ve sonraki denemede 403 gördüğünü bildirdi; `.env` kaydı istedi. Bunlar kullanıcı tarafından iletilen sonuçlardır; bu oturumda canlı istek veya token incelemesi yapılmadı. Çıktı alt küme aşamasına geçmediğinden metadata isteğinin reddi olarak kaydedildi; önceki gerçek HTTP 200 korunur. 403 tek başına uygulama iznini veya token hatasını kesinleştirmez. Resmî NASA/OPeNDAP belgelerindeki Hyrax uygulama ön yetkisi adımları [kılavuza](../guide/EARTHDATA_ACCESS.md) eklendi. Çözümün işe yaradığı henüz doğrulanmadı.
+
+`earthdata.py`, iki yerel komut ve boş `.env.example` güncellendi: proje kökündeki tek `.env` anahtarı okunur; yalnız açık `--save-token` ile gizli yeni giriş kaydedilir/değiştirilir. Diğer ayarlar korunur; token sonuç dosyasına/ekrana/argümana/süreç ortamına taşınmaz. Önce kaydedilip sonra istek yapılır; 403 alınsa bile yerel kayıt korunur. Git ignore hem `.env` hem geçici yazım dosyasını kapsar; `.env` izlenen dosya değildir. Gerçek token kaydedilmedi; kullanıcı kendi terminalinde çalıştıracak. Pano, durum, M1 ve devir kaydı güncellendi. Yeni çalışma yerel M1 dalında, main/Pages yayını yapılmadı.
+
+Son tam koşu Windows/Python 3.12.14 ile **101 test / 9,161 saniye** başarılı. Dokuz yeni test sahte token'la yerel kayıt/yenileme, diğer ayarları koruma, başarısız atomik yazım, bozuk/büyük/tekrarlı giriş, symlink reddi ve 403 sonrası yeniden kullanımı denetledi. Kullanıcı token'ı kullanılmadı; önceki gerçek A/B nokta, A tek pencere ve B parçalı örnek doğrulamaları geçti. Portal check/strict build, Git ignore/izlenmeme ve diff --check kontrolleri geçti. Gerçek fraksiyon erişimi veya Mac ortamı bu oturumda doğrulanmadı.
+
+
+## 2026-10-18 · Küçük A/B fraksiyon aktarımı ve M2 dal incelemesi
+
+M1 devam talebi verdi. Temiz M1 dalından başlandı; fetch ile M2'nin `codex/m2-region-b` / `791e07c` katkısı bulundu. Commit, üye notu, profil, B fişi, pano ve devir farkları okundu. M2 Mac/Python 3.14 üzerinde B `replay_passed`, 58 test ve teknik uygunluk onayı bildirdi; ortak profil için farklı kimlik/sürüm önerdi. Bu beyanlar kaynak bağlantısıyla pano/üye/devir kaydına işlendi. Dal birleştirilmedi; M2'ye dış mesaj veya uzak dalına yazım yapılmadı. Yıllık -8,73 / +12,19 °C özetlerinin aylık değerlerin eşit ağırlıklı ortalamasıyla uyuştuğu kontrol edildi; kabul edilmiş yıllık yöntem veya iklim değişikliği bulgusu sayılmadı. [İnceleme](../team/SYNC.md).
+
+`surface_source.py`, `fetch_surface_fractions.py` ve isteğe bağlı `requirements-mask.txt` eklendi. Bir gizli token girişiyle metadata ve A/B'nin yalnız 56/55 hücrelik DAP4 NetCDF alt kümeleri istenir. NetCDF kütüphanesi ağ/token almaz; yalnız yanıt baytlarını açar. Kaynak metadata, gerçek koordinatlar, boyut/tür/birim/packing/dolgu, fraksiyon aralığı/toplamı ve kapsam denetlenir. Ham yanıt, kaynak/zaman/hash ve ortak maske girdisi korunur; yerel tekrar denetimi eklendi. Kara/buz politikası seçilmez, sıcaklık örnekleri değişmez. Ek paketler sadece analysis sanal ortamına kuruldu; CI tanımı bunları kuracak şekilde güncellendi, uzak CI bu oturumda çalıştırılmadı.
+
+Gerçek kaydedilmiş DMR yeni giriş kontrolünden geçti. Gerçek fraksiyon isteği yapılmadı; token kalıcı olmadığı için kullanıcı terminalinde yeni giriş gerekir. Son tam koşu **92 test / 9,289 saniye**, Windows/Python 3.12.14: başarılı. 13 yeni test tamamen yapay NetCDF/DMR ve sahte token ile; iki bölgenin kaydı/tekrarı ve hata durumları kontrol edildi. Önceki gerçek A/B nokta `validate`, A `validate-window`, B `validate-tiled-window` başarılı. Yapay dosya yazımında NumPy deprecation uyarısı görüldü; hata yoktu. Portal check/strict build ve git diff --check geçti. [Kılavuz](../guide/SURFACE_SUBSET.md), [kanıt sınırı](../evidence/SURFACE_SUBSET_CHECK.md). Yeni çalışma M1 dalındaki yerel değişikliktir; commit/push/main yayını yapılmadı, canlı Pages değişmedi.
+
 ## 2026-10-17 · Yerel Earthdata kontrolü başarılı
 
 Kullanıcı komutu çalıştırdığını ve gizli token girişinin başarılı olup olmadığını kontrol etmemizi istedi. Token okunmadan terminaldeki başarı mesajı, yerel rapor ve DMR XML denetlendi. Gerçek HTTP 200, UTC 09:29:33, 17.065 bayt; XML SHA-256 raporla eşleşti. Dört Float32 fraksiyon değişkeni ve `/time,/lat,/lon` 1×361×576 boyut sırası, birim 1 ve kaynak dolgu metaverisi doğrulandı. [Kanıt](../evidence/EARTHDATA_METADATA.md). Token kalıcı kaydedilmedi; yeni authenticated istek yapılmadı. Fraksiyon değerleri/koordinat vektörleri henüz alınmadı, maskeli seri üretilmedi. Durum, kaynak ve MOD-05/devir/M1 notu güncellendi; main'e aktarım yapılmadı.
