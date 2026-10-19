@@ -1,0 +1,312 @@
+{
+  "schema_version": "0.1.0",
+  "data_origin": "synthetic_fixture",
+  "scope": "dependency_engine_experiment_not_scientific_result",
+  "first_call_order": [
+    "A",
+    "B",
+    "C"
+  ],
+  "first_run": {
+    "schema_version": "0.1.0",
+    "output_type": "technical_workflow_run",
+    "run_id": "eaad6380-f350-4d0b-b6ad-a9ea5788e0fa",
+    "target": "C",
+    "context": {
+      "boundary_version": "demo-1",
+      "period": "synthetic-step-1",
+      "region_id": "synthetic-region",
+      "source_revision": "fabricated-1"
+    },
+    "order": [
+      "A",
+      "B",
+      "C"
+    ],
+    "status": "completed",
+    "nodes": {
+      "A": {
+        "status": "completed",
+        "fingerprint": "33b7f0f33b39c4a54786cc2a6f758f5b84e4305545b336321b7f9adfa4b676b2",
+        "artifact": {
+          "schema_version": "0.1.0",
+          "producer_run_id": "eaad6380-f350-4d0b-b6ad-a9ea5788e0fa",
+          "node_id": "A",
+          "operation": "constant",
+          "operation_version": "0.1.0",
+          "context_sha256": "7bf70c83d85f069603f0eb7bef7c78dfe15fc4092323c212248b287506911bb0",
+          "parameters": {
+            "value": 4
+          },
+          "contract": {
+            "schema_version": "0.1.0",
+            "type": "synthetic_scalar",
+            "unit": "1"
+          },
+          "inputs": {},
+          "lineage": {},
+          "value": {
+            "value": 4
+          },
+          "value_sha256": "07953a67895cdbe07665002609a1c24dc503557aadb8db223e398fd2e7593132",
+          "artifact_id": "sha256:ba765739a867fefff815cc5f9e24c3e4f1c686e4da1d743d72b73da30864017d"
+        }
+      },
+      "B": {
+        "status": "completed",
+        "fingerprint": "1fdd0a0de546a755af49373166101142079a30df7548676387b5b6022cf1b1b4",
+        "artifact": {
+          "schema_version": "0.1.0",
+          "producer_run_id": "eaad6380-f350-4d0b-b6ad-a9ea5788e0fa",
+          "node_id": "B",
+          "operation": "double",
+          "operation_version": "0.1.0",
+          "context_sha256": "7bf70c83d85f069603f0eb7bef7c78dfe15fc4092323c212248b287506911bb0",
+          "parameters": {},
+          "contract": {
+            "schema_version": "0.1.0",
+            "type": "synthetic_scalar",
+            "unit": "1"
+          },
+          "inputs": {
+            "base": "sha256:ba765739a867fefff815cc5f9e24c3e4f1c686e4da1d743d72b73da30864017d"
+          },
+          "lineage": {
+            "A": "sha256:ba765739a867fefff815cc5f9e24c3e4f1c686e4da1d743d72b73da30864017d"
+          },
+          "value": {
+            "value": 8
+          },
+          "value_sha256": "d93acd00ee225eb69e8382f35ac109b9008f067282267e4f379d4d6c231b14c9",
+          "artifact_id": "sha256:6ec4a7616fc57cfa686594721e3b911496b281af6e8baf644add2473cdc52f28"
+        }
+      },
+      "C": {
+        "status": "completed",
+        "fingerprint": "f6c6bee1921b09d2b11752f9abc2e3f5cc13d9419f91d3239d9371cff93fc84b",
+        "artifact": {
+          "schema_version": "0.1.0",
+          "producer_run_id": "eaad6380-f350-4d0b-b6ad-a9ea5788e0fa",
+          "node_id": "C",
+          "operation": "combine",
+          "operation_version": "0.1.0",
+          "context_sha256": "7bf70c83d85f069603f0eb7bef7c78dfe15fc4092323c212248b287506911bb0",
+          "parameters": {},
+          "contract": {
+            "schema_version": "0.1.0",
+            "type": "synthetic_scalar",
+            "unit": "1"
+          },
+          "inputs": {
+            "base": "sha256:ba765739a867fefff815cc5f9e24c3e4f1c686e4da1d743d72b73da30864017d",
+            "derived": "sha256:6ec4a7616fc57cfa686594721e3b911496b281af6e8baf644add2473cdc52f28"
+          },
+          "lineage": {
+            "A": "sha256:ba765739a867fefff815cc5f9e24c3e4f1c686e4da1d743d72b73da30864017d",
+            "B": "sha256:6ec4a7616fc57cfa686594721e3b911496b281af6e8baf644add2473cdc52f28"
+          },
+          "value": {
+            "value": 12
+          },
+          "value_sha256": "63d9335a2d74c2c3a6055e2c8be001c9a92c8e5f9b2e3ba9eff31ffd33b06b25",
+          "artifact_id": "sha256:db5455630cafd5c24c40d55f98e115465f5dbc63ff643d18c7a2855ea121ebfc"
+        }
+      }
+    },
+    "events": [
+      {
+        "node": "A",
+        "status": "waiting"
+      },
+      {
+        "node": "B",
+        "status": "waiting"
+      },
+      {
+        "node": "C",
+        "status": "waiting"
+      },
+      {
+        "node": "A",
+        "status": "running"
+      },
+      {
+        "node": "A",
+        "status": "completed"
+      },
+      {
+        "node": "B",
+        "status": "running"
+      },
+      {
+        "node": "B",
+        "status": "completed"
+      },
+      {
+        "node": "C",
+        "status": "running"
+      },
+      {
+        "node": "C",
+        "status": "completed"
+      }
+    ],
+    "scientific_validation": "not_performed"
+  },
+  "after_A_parameter_change": {
+    "A": "stale",
+    "B": "stale",
+    "C": "stale"
+  },
+  "second_call_order": [
+    "A",
+    "B",
+    "C"
+  ],
+  "second_run": {
+    "schema_version": "0.1.0",
+    "output_type": "technical_workflow_run",
+    "run_id": "bf531754-e214-46b8-a758-f80f822af20e",
+    "target": "C",
+    "context": {
+      "boundary_version": "demo-1",
+      "period": "synthetic-step-1",
+      "region_id": "synthetic-region",
+      "source_revision": "fabricated-1"
+    },
+    "order": [
+      "A",
+      "B",
+      "C"
+    ],
+    "status": "completed",
+    "nodes": {
+      "A": {
+        "status": "completed",
+        "fingerprint": "cb4f6150375222238b29da33a74dd6952aeecca6cc018d2f71eb80483eecadf6",
+        "artifact": {
+          "schema_version": "0.1.0",
+          "producer_run_id": "bf531754-e214-46b8-a758-f80f822af20e",
+          "node_id": "A",
+          "operation": "constant",
+          "operation_version": "0.1.0",
+          "context_sha256": "7bf70c83d85f069603f0eb7bef7c78dfe15fc4092323c212248b287506911bb0",
+          "parameters": {
+            "value": 7
+          },
+          "contract": {
+            "schema_version": "0.1.0",
+            "type": "synthetic_scalar",
+            "unit": "1"
+          },
+          "inputs": {},
+          "lineage": {},
+          "value": {
+            "value": 7
+          },
+          "value_sha256": "9d709bba0358da8fdf5600bb3692fa32d0aa2a19a08152cf4307e0b4240e71ac",
+          "artifact_id": "sha256:773c12ca3eef539d45fc171547ff6a8d7b3e71a65cf0804b1ecd0807864629ce"
+        }
+      },
+      "B": {
+        "status": "completed",
+        "fingerprint": "10cc60f252c911a0f186cee1a0bc29e756f1aa05dd2f881449e801c873b444ff",
+        "artifact": {
+          "schema_version": "0.1.0",
+          "producer_run_id": "bf531754-e214-46b8-a758-f80f822af20e",
+          "node_id": "B",
+          "operation": "double",
+          "operation_version": "0.1.0",
+          "context_sha256": "7bf70c83d85f069603f0eb7bef7c78dfe15fc4092323c212248b287506911bb0",
+          "parameters": {},
+          "contract": {
+            "schema_version": "0.1.0",
+            "type": "synthetic_scalar",
+            "unit": "1"
+          },
+          "inputs": {
+            "base": "sha256:773c12ca3eef539d45fc171547ff6a8d7b3e71a65cf0804b1ecd0807864629ce"
+          },
+          "lineage": {
+            "A": "sha256:773c12ca3eef539d45fc171547ff6a8d7b3e71a65cf0804b1ecd0807864629ce"
+          },
+          "value": {
+            "value": 14
+          },
+          "value_sha256": "c1d4cd787056fe973ad06774fdbb9d02472bcfff1b43bcab70be6926bd68a388",
+          "artifact_id": "sha256:b88cd14c06a5cc6ce5f4dc8f4ec1f40f9b2d203aae07377950d5176b89dc1101"
+        }
+      },
+      "C": {
+        "status": "completed",
+        "fingerprint": "f80665842b7fbab5c7a9236478e0926416e357f3c78a4e04bee0a2be3246ab40",
+        "artifact": {
+          "schema_version": "0.1.0",
+          "producer_run_id": "bf531754-e214-46b8-a758-f80f822af20e",
+          "node_id": "C",
+          "operation": "combine",
+          "operation_version": "0.1.0",
+          "context_sha256": "7bf70c83d85f069603f0eb7bef7c78dfe15fc4092323c212248b287506911bb0",
+          "parameters": {},
+          "contract": {
+            "schema_version": "0.1.0",
+            "type": "synthetic_scalar",
+            "unit": "1"
+          },
+          "inputs": {
+            "base": "sha256:773c12ca3eef539d45fc171547ff6a8d7b3e71a65cf0804b1ecd0807864629ce",
+            "derived": "sha256:b88cd14c06a5cc6ce5f4dc8f4ec1f40f9b2d203aae07377950d5176b89dc1101"
+          },
+          "lineage": {
+            "A": "sha256:773c12ca3eef539d45fc171547ff6a8d7b3e71a65cf0804b1ecd0807864629ce",
+            "B": "sha256:b88cd14c06a5cc6ce5f4dc8f4ec1f40f9b2d203aae07377950d5176b89dc1101"
+          },
+          "value": {
+            "value": 21
+          },
+          "value_sha256": "5d22c9354e66f70dd7ef605bda6274bd98040e92d9d59deeb1db08570d8de871",
+          "artifact_id": "sha256:764004cee33bd7bfc336e412eaa6be308a867a815652c34a9e3e6a267e4ae3c4"
+        }
+      }
+    },
+    "events": [
+      {
+        "node": "A",
+        "status": "waiting"
+      },
+      {
+        "node": "B",
+        "status": "waiting"
+      },
+      {
+        "node": "C",
+        "status": "waiting"
+      },
+      {
+        "node": "A",
+        "status": "running"
+      },
+      {
+        "node": "A",
+        "status": "completed"
+      },
+      {
+        "node": "B",
+        "status": "running"
+      },
+      {
+        "node": "B",
+        "status": "completed"
+      },
+      {
+        "node": "C",
+        "status": "running"
+      },
+      {
+        "node": "C",
+        "status": "completed"
+      }
+    ],
+    "scientific_validation": "not_performed"
+  }
+}

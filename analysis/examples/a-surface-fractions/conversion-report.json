@@ -1,0 +1,11 @@
+{
+  "converter_version": "0.1.0",
+  "metadata_sha256": "baa82cb258a18165c39ec5da17e4e5ec3582ae7facf75e733534ac75f1a3d35a",
+  "response_sha256": "62cccbedac8849e2a5e8de79c44dc37bed3757eb701ec74ce126def1ca5f4584",
+  "response_bytes": 55588,
+  "cells": 56,
+  "credentials_persisted": true,
+  "status": "source_subset_converted",
+  "scientific_profile_accepted": false,
+  "scope": "coordinate_fill_fraction_checks_not_land_temperature_validation"
+}

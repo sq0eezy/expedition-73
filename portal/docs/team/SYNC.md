@@ -1,8 +1,23 @@
 ---
 review_summary: "Ortak webden okuma, GitHub üzerinden düzenleme ve yerel kaynakları eşitleme."
-change_summary: "M2'nin B katkısı alındı; M1 için ayrı geliştirme dalı ve main'e incelemeyle geçiş kaydedildi."
+change_summary: "M2 dalı main (6da0103) ile birleştirildi; macOS üzerinde 134 test ve B aday yüzey akışı doğrulanıp ortak panele hazırlandı."
 ---
 # Paylaşım ve kurulum
+
+## 2026-10-19 · M2 dal senkronizasyonu ve macOS doğrulaması
+
+M2 (`sq0eezy`), `origin/main` (`6da0103`) sürümünü `codex/m2-region-b` dalına birleştirdi ve Emeç'in inceleme notlarını koruyarak çakışmaları çözdü. macOS/Python 3.14 (`netCDF4 1.7.2`, `numpy 2.5.4`) ortamında 134 birim testin tamamı (0 atlanan), A/B nokta ve pencere doğrulamaları, 55 hücreli `b-surface-fractions` NetCDF dönüşüm tekrarı ve 5 düğümlü `run-surface-workflow` Bölge B aday duyarlılık akışı doğrulandı. Teknik deneme profili için `t2m-technical-2024` (`0.1.0`) kimliği ve şema (`0.2.0`) / bilimsel alan yöntemi (`0.1.0`) ayrımı uzlaştırıldı; nihai bilimsel maske/sınır/dönem seçimi açık bırakıldı.
+
+## 2026-10-18 · Mevcut M1 dilimini canlıya paylaşma talebi
+
+M1 mevcut doğrulanmış çalışmanın canlı panele gönderilmesini açıkça istedi. Kaynak `7e50536`, ardından byte koruma düzeltmesi `75afeeb`, `codex/m1-modules-region-a` dalında kaydedilip paylaşıldı. PR API yetkisi 403 olduğu için yerel inceleme/test sonrası normal Git merge/push kullanıldı. Main `96815c5` için 134 Ubuntu testi, gerçek A/B aday akışları ve Pages başarılı; yeni canlı belgeler/katalog HTTP 200. Bu talep yalnız mevcut dilimin yayını içindir; sonraki geliştirme yine ayrı M1 dalında sürer. M2 dalı `791e07c` olarak korundu, bu yayına birleştirilmedi; teknik inceleme notu korunuyor. [Yayın kanıtı](../evidence/SURFACE_RELEASE.md) ilk CI hatası, düzeltme ve başarılı iş bağlantılarını tutar. Webden okumak için pull gerekmez; yerel kaynak kullanan AI için kendi değişikliklerini koruyarak main'i çalışma dalına almak gerekir.
+
+
+## 2026-10-18 · M2 dalı okundu, birleştirme yapılmadı
+
+Fetch ile `origin/codex/m2-region-b`, `791e07cba899e11065f9bb9846dfe44204eca84c` görüldü. Commit ve altı belgenin farkı okundu: [M2 katkısı](https://github.com/sq0eezy/expedition-73/commit/791e07cba899e11065f9bb9846dfe44204eca84c). M2, B örneğini Mac/Python 3.14 üzerinde tekrar çalıştırıp 58 testi geçtiğini, H-M1-005 teslimini doğruladığını ve R-B03 teknik uygunluğunu onayladığını kaydetmiş. Pano/devir bu gerçek beyana göre güncellendi. Bu oturum Mac'te çalışmadı; uzak dal merge edilmedi, uzak M2 dalına yazılmadı.
+
+**M1 incelemesi:** `common-profile-t2m-0.2.0` önerisi M1 dalındaki `t2m-technical-2024` 0.1.0 taslağıyla uzlaştırılmalı. Parçalı gerçek çıktı türü `monthly_window_series`, şema/modül 0.2.0; bilimsel alan yöntemi 0.1.0. M2'nin -8,73 °C B ve +12,19 °C A özetleri, mevcut 12 aylık pencere değerlerinin eşit aylık ağırlıklı aritmetik ortalamalarıyla uyuşuyor; kabul edilmiş yıllık zaman ağırlıklandırması henüz yok. +20,92 °C mekânsal sıcaklık farkı tek başına iklim değişikliği/eğilim/etki farkı değildir. Maske dışında kesin sınır, uzun dönem, kalite ve istatistik de açıktır; “kalan tek engel maske” ifadesi nihai kapsamı karşılamıyor. M2'nin teknik onayı korunur; ortak bilimsel profil kendiliğinden kabul edilmiş sayılmaz.
 
 ## Güncel geliştirme düzeni · 2026-10-17
 

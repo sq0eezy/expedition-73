@@ -2,12 +2,13 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 from pathlib import Path
 
 from .power import PilotError, compatibility, fetch, loads, normalize, validate_result
-from . import regional, tiled
+from . import masking, regional, tiled
 
 
 def write_json(path: Path, value) -> None:
@@ -17,6 +18,11 @@ def write_json(path: Path, value) -> None:
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
+    commands.add_parser("demo-workflow", help="Offline synthetic A -> B, A+B -> C dependency experiment; no science.")
+    surface_run = commands.add_parser("run-surface-workflow", help="Replay local NASA inputs and compare two candidate fraction policies; offline.")
+    surface_run.add_argument("--window-run", type=Path, required=True)
+    surface_run.add_argument("--fraction-run", type=Path, required=True)
+    surface_run.add_argument("--output-dir", type=Path, required=True)
     probe = commands.add_parser("fetch-power-point", help="Fetch and validate a small candidate point sample; no trend.")
     probe.add_argument("--config", type=Path, required=True)
     probe.add_argument("--output-dir", type=Path, required=True)
@@ -28,6 +34,13 @@ def main(argv=None) -> int:
     tiled_probe.add_argument("--output-dir", type=Path, required=True)
     tiled_check = commands.add_parser("validate-tiled-window", help="Replay all raw tile responses offline.")
     tiled_check.add_argument("directory", type=Path)
+    mask_plan = commands.add_parser("plan-surface-mask", help="List required native grid cells/indices; does not fetch fractions.")
+    mask_plan.add_argument("--config", type=Path, required=True)
+    mask_preview = commands.add_parser("preview-surface-mask", help="Experimental fraction weighting; no accepted analysis profile.")
+    mask_preview.add_argument("--run", type=Path, required=True)
+    mask_preview.add_argument("--mask", type=Path, required=True)
+    mask_preview.add_argument("--components", nargs="+", required=True, choices=["FRLAND", "FRLANDICE"])
+    mask_preview.add_argument("--allow-synthetic", action="store_true")
     replay = commands.add_parser("validate-window", help="Replay a complete window run offline, including geometry and weights.")
     replay.add_argument("directory", type=Path)
     validate = commands.add_parser("validate", help="Validate schema and monthly consistency offline.")
@@ -37,7 +50,36 @@ def main(argv=None) -> int:
     compare.add_argument("right", type=Path)
     args = parser.parse_args(argv)
     try:
-        if args.command == "fetch-power-tiled-window":
+        if args.command == "run-surface-workflow":
+            from .surface_workflow import run
+            if args.output_dir.exists():
+                raise PilotError("Output directory already exists; choose a new run directory.")
+            spec, report = run(args.window_run, args.fraction_run)
+            args.output_dir.mkdir(parents=True, exist_ok=False)
+            write_json(args.output_dir / "request.workflow.json", spec)
+            write_json(args.output_dir / "workflow.json", report)
+            summary = {"status": report["status"], "region": spec["context"]["region"]["region_id"],
+                       "nodes": {name: record["status"] for name, record in report["nodes"].items()}}
+            if report["status"] != "completed":
+                print(json.dumps(summary, ensure_ascii=False))
+                return 2
+            result = report["nodes"]["Sensitivity"]["artifact"]["value"]
+            write_json(args.output_dir / "sensitivity.json", result)
+            print(json.dumps({**summary, "diagnostics": result["diagnostics"]}, ensure_ascii=False))
+        elif args.command == "demo-workflow":
+            from .workflow_demo import run
+            print(json.dumps(run(), ensure_ascii=False, indent=2, allow_nan=False))
+        elif args.command == "plan-surface-mask":
+            print(json.dumps(masking.request_plan(loads(args.config.read_bytes())), ensure_ascii=False, indent=2))
+        elif args.command == "preview-surface-mask":
+            config = loads((args.run / "request.json").read_bytes())
+            window = tiled.validate_run(args.run) if (args.run / "manifest.json").exists() else regional.validate_run(args.run)
+            mask_raw = args.mask.read_bytes()
+            mask = loads(mask_raw)
+            result = masking.preview_series(window, mask, config, args.components, allow_synthetic=args.allow_synthetic)
+            result["provenance"]["mask_input_sha256"] = hashlib.sha256(mask_raw).hexdigest()
+            print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))
+        elif args.command == "fetch-power-tiled-window":
             if args.output_dir.exists():
                 raise PilotError("Output directory already exists; choose a new run directory.")
             config = loads(args.config.read_bytes())

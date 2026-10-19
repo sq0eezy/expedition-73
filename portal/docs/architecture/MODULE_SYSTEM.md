@@ -1,10 +1,10 @@
 ---
 review_summary: "Konu ağacı, modüle özel hesaplama ve çıktıyla bağlanan modüllerin sorumlulukları."
-change_summary: "Kabul edilen yaklaşım; contains/consumes ilişkileri, çıktı türleri ve genişleme kurallarıyla tanımlandı."
+change_summary: "İlk yerel bağımlılık motoru ve yapay A/B/C örneği çalışıyor; 20 test eklendi. NASA modülleri, kalıcı cache ve web bağlantısı henüz yok."
 ---
 # Modüller, alt modüller ve bağlantılar
 
-**Yön kabul edildi:** [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md). Teknik kimlikler ve kurallar uygulama taslağıdır; çalışan kayıt sistemi veya doğrulanmış şema değildir.
+**Yön kabul edildi:** [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md). Genel bilimsel kimlikler ve sözleşme uygulama taslağıdır. Ayrı bir 0.1.0 yerel teknik yürütme denemesi ve istek şeması artık çalışıyor: [kanıt](../evidence/WORKFLOW_ENGINE.md). Bu, tüm bilimsel modüllerin entegrasyonu veya kalıcı kayıt sistemi değildir.
 
 ## İki ayrı ilişki
 
@@ -47,6 +47,34 @@ Bağlantı, modül adından öte adlandırılmış ve sürümlü çıktıyı se�
 Çıktı tek sayı, seri, harita veya kalite raporu olabilir; alıcı beklediği türü açıklar. Harita girdisine eğim özeti verilemez. Hava/yüzey sıcaklığı eşitlenmez. Birim dönüşümünün kuralı saklanır; farklı dönem/maske/yöntemde gerekirse yeniden hesaplanır.
 
 Kaynak çıktı kimliği/sürümü, üretim çalışması ve veri özeti korunur. Kaynak değişince bağımlı sonuç **güncel değil** sayılır; yeniden hesaplanmadan güncel gibi gösterilmez. Zorunlu girdi eksikse alıcı gerekçeli durur. Çalıştırma grafiğinde döngüye izin verilmez; fiziksel geri beslemeler pilotta kendiliğinden çift yönlü hesap oklarına dönüşmez.
+
+## Birden çok girdiyi aynı çalıştırmada birleştirme · 2026-10-18 taslağı
+
+M1, B'nin A'dan değer aldığı; C'nin de hem A hem B çıktısını beklediği örneğe hazır olup olmadığımızı sordu. Aşağıdaki A/B/C **modül adlarıdır**, coğrafi A/B bölgeleri değildir. Bu bölüm açıklığa kavuşturulmuş uygulama gereksinimi taslağıdır; devam talebiyle yapılan ilk teknik uygulamanın durumu aşağıdadır. Ayrıntılar iki üye tarafından ortak bilimsel yöntem olarak kabul edilmiş sayılmaz.
+
+~~~mermaid
+flowchart LR
+    A[A modülü - çıktı a1] --> B[B modülü - a1 girdisiyle çıktı b1]
+    A --> C[C modülü - a1 ve b1 birlikte]
+    B --> C
+~~~
+
+1. C istendiğinde zorunlu girdileri ve onların girdileri bulunur. Eksik tanım/çıktı bağlantısı, desteklenmeyen sürüm ve döngü **hesap başlamadan** denetlenir. Üreticiden tüketiciye sıra bu örnekte A → B → C'dir; bağımsız dallar varsa birlikte çalıştırılabilir, zorunlu değildir.
+2. Aynı bölge/sınır, dönem, kaynak, bilimsel profil ve parametreler için A çıktısı bir kez üretilir veya tamamen aynı girdilerle doğrulanmış kayıt kullanılır. Aynı modülün farklı bölge/dönem isteği ayrı çalışma kimliğidir; yanlış paylaşılmaz.
+3. B, A'nın adını veya sadece sürümünü değil, **değişmez çıktı kimliğini ve veri özetini** alır. Örneğin B'nin kaydı `b1 consumes a1` olur; kaynak izinde bu bağ korunur.
+4. C, `a1 + b1` çiftiyle çalışır. B `a1` ile hesaplanmışken C'ye yeni `a2` verilmez. C'nin girdi tanımı bu paylaşılan A kaynağında eşitlik ister; iki dalın bölge/zaman/birim/kalite/yöntem uygunluğu da ayrıca denetlenir. Farklı A kaynakları gerçekten amaçlanıyorsa ayrı adlandırılmış girdiler ve açık yöntem gerekçesi gerekir.
+5. A değişince B ve C'nin önceki sonuçları güncel değil sayılır. Yeni a2 için önce b2, ardından `a2+b2` kullanan c2 oluşturulur. Devam eden eski çalıştırmanın girdileri değiştirilmez; eski sonuç kendi kaynak iziyle korunur, yeni seçimde güncel diye gösterilmez.
+6. A başarısızsa B ve C **girdi nedeniyle engelli** kalır. B başarısızsa A sonucu korunur, C engelli kalır. Bir modülün teknik çalışmasını bitirmesi yeterli değildir: çıktı, alıcının kabul koşullarından geçmelidir. Kısmi hesap yalnız modülün yönteminde önceden tanımlıysa mümkündür; eksik değer sıfır diye tamamlanmaz.
+
+Önerilen görünür durumlar: bekliyor, çalışıyor, tamamlandı, başarısız, girdi nedeniyle engelli ve güncel değil. Web uygulaması C'nin neden beklediğini, hangi kaynağı beklediğini ve girdi çıktı kimliklerini gösterebilir. Bunlar şu an arayüzde uygulanmış durumlar değildir.
+
+“Büyük/küçük konu” otomatik hesap bağımlılığı oluşturmaz. Küresel ısınma bir gezinme başlığı olabilir; hesap yapacaksa göstergesi, yöntemi ve girdi tanımı ayrıca yazılır. Toprak nemi gelecekte NASA'dan doğrudan alınan ayrı bir gösterge olabilir; sırf sıcaklıkla ilişkili diye onu sıcaklıktan hesaplayan bağlantı kurulmaz. Sıcaklık–toprak nemi ilişki analizi ise iki seriyi tüketen ayrı bir modül olarak tanımlanabilir. Bilimsel ilişki/nedensellik ile çalıştırma bağımlılığı birbirinin yerine geçmez; bu örnekler kabul edilmiş yeni modül/veri seçimi değildir.
+
+Fiziksel geri besleme gerektiren model gelecekte gündeme gelirse A ↔ B'yi bu sıraya doğrudan eklemek yerine zaman adımı veya yakınsama koşulları açıkça belirlenmiş ayrı bir birleşik hesap gerekir. İlk çalıştırma taslağı döngüleri reddeder; böyle bir çözücü henüz tasarlanıp uygulanmadı.
+
+**Uygulama durumu · 2026-10-18:** `analysis/expedition73/workflow.py` içinde sıralı planlayıcı, aynı çalıştırmada ortak üreticiyi tek hesaplama, kayıtlı işlem sürümü/çıktı etiketi kontrolü, çıktı kimliği/ata izi, callback kopya izolasyonu ve hata/engelli durumu çalışıyor. `demo-workflow` tamamen yapay A/B/C ile ilk C=12, A değişince C=21 üretti. Eski A + yeni B karışımı reddedildi. `compare_snapshot` açık çağrıldığında tanımlı değişiklik için bağımlı sonuçları güncel değil olarak bulur; canlı otomatik izleme veya kalıcı cache değildir. [20 yeni test ve çalışma kanıtı](../evidence/WORKFLOW_ENGINE.md), [MOD-06](../planning/WORK_BOARD.md).
+
+İlk sürüm tek context, düğüm başına tek `result` portu ve sıralı çalışma kullanır. Kayıtlı gerçek T2M/fraksiyon adaptörleri artık ayrı `run-surface-workflow` ile bağlandı: kaynak tekrar hesabı, bölge/sınır/koordinat ve çıktı tanımı kontrol ediliyor. İki açık aday ağırlık seçeneği hesaplanıyor; bu, tam bilimsel profil/kalite kabulü değildir. [Gerçek verili kanıt](../evidence/SURFACE_WORKFLOW.md). Dış kaynak revizyonu isteğe kaydedilmelidir. Genel bilimsel sonuç zarfı, çoklu çıktı portları, kalıcı iş deposu, kaynak değişimini izleme, tekrar çalıştırmalar arasında cache, paralel işler ve web görünümü sonraki kapsamdır. İlk yapay deneme bilimsel modül doğrulaması değildir; sonraki gerçek kayıt akışı da ikinci bilimsel gösterge veya kabul edilmiş maske analizi sayılmaz.
 
 ## İlk pilot ve genişleme
 

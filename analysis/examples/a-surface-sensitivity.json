@@ -1,0 +1,206 @@
+{
+  "data_origin": "recorded_provider_subsets",
+  "diagnostics": {
+    "complete_paired_months": 12,
+    "max_abs_land_ice_minus_land_degC": 0.0,
+    "max_abs_land_minus_unmasked_degC": 0.0006158557286148891,
+    "months": 12
+  },
+  "method": {
+    "id": "surface_component_sensitivity",
+    "inference": "not_performed",
+    "mask_policy_accepted": false,
+    "policies": {
+      "land": [
+        "FRLAND"
+      ],
+      "land_and_ice": [
+        "FRLAND",
+        "FRLANDICE"
+      ]
+    },
+    "version": "0.1.0",
+    "weight_method": "whole_cell_fraction_on_window_intersection",
+    "weight_method_version": "0.1.0"
+  },
+  "output_type": "candidate_surface_sensitivity",
+  "provenance": {
+    "conversion_audit": "recorded_provider_subset_replay_passed",
+    "source_files_sha256": {
+      "fractions": {
+        "conversion-report.json": "e18747517b9070a0ef6455ce4219e9dc020507811d8606f34b1b160c87d63d75",
+        "fractions.json": "1d5fdcae2e09ec37d70f89d9abe60454000f7a85a199a4a8732a55f98583850a",
+        "metadata.dmr.xml": "baa82cb258a18165c39ec5da17e4e5ec3582ae7facf75e733534ac75f1a3d35a",
+        "request.json": "50ea267a8378d5dc792e8974548f38cb4e30602c97233b613a3f987bff58bd49",
+        "response.nc4": "62cccbedac8849e2a5e8de79c44dc37bed3757eb701ec74ce126def1ca5f4584"
+      },
+      "temperature": {
+        "request.json": "50ea267a8378d5dc792e8974548f38cb4e30602c97233b613a3f987bff58bd49",
+        "response.json": "c38efad91ac280448589c68494d61d3749a499db9d72dcc6a710759e7a76b39c",
+        "result.json": "a31448bd3a52bedd4f6ba29b62ca55e8c1a3aa07d0d8590317f05dedb0bf3ad1"
+      }
+    },
+    "surface_fractions": {
+      "dataset": "M2C0NXASM",
+      "response_sha256": "62cccbedac8849e2a5e8de79c44dc37bed3757eb701ec74ce126def1ca5f4584",
+      "retrieved_at": "2026-10-18T08:42:57+00:00",
+      "uri": "https://opendap.earthdata.nasa.gov/collections/C1276812819-GES_DISC/granules/M2C0NXASM.5.12.4%3AMERRA2_101.const_2d_asm_Nx.00000000.nc4.dap.nc4?dap4.ce=%2Flon%5B107%3A1%3A114%5D%3B%2Flat%5B252%3A1%3A258%5D%3B%2Ftime%5B0%3A1%3A0%5D%3B%2FFRLAND%5B0%3A1%3A0%5D%5B252%3A1%3A258%5D%5B107%3A1%3A114%5D%3B%2FFRLANDICE%5B0%3A1%3A0%5D%5B252%3A1%3A258%5D%5B107%3A1%3A114%5D%3B%2FFRLAKE%5B0%3A1%3A0%5D%5B252%3A1%3A258%5D%5B107%3A1%3A114%5D%3B%2FFROCEAN%5B0%3A1%3A0%5D%5B252%3A1%3A258%5D%5B107%3A1%3A114%5D",
+      "version": "5.12.4"
+    },
+    "temperature": {
+      "api_version": "v2.10.0",
+      "product": "POWER Monthly and Annual API",
+      "provider": "NASA POWER",
+      "request_url": "https://power.larc.nasa.gov/api/temporal/monthly/regional?parameters=T2M&community=SB&longitude-min=-113.3125&longitude-max=-108.6875&latitude-min=35.75&latitude-max=39.25&format=JSON&start=2024&end=2024",
+      "response_sha256": "c38efad91ac280448589c68494d61d3749a499db9d72dcc6a710759e7a76b39c",
+      "retrieved_at": "2026-10-16T08:19:19+00:00",
+      "sources": [
+        "MERRA2"
+      ]
+    }
+  },
+  "region": {
+    "candidate_bbox": [
+      -113,
+      36,
+      -109,
+      39
+    ],
+    "candidate_window_version": "search-window-0.1.0",
+    "id": "A",
+    "label": "Colorado çevresi aday dikdörtgeni: maskesiz teknik alan denemesi",
+    "selection_status": "candidate"
+  },
+  "schema_version": "0.1.0",
+  "selection_status": "candidate",
+  "series": [
+    {
+      "date": "2024-01",
+      "land": -0.3915333442491876,
+      "land_and_ice": -0.3915333442491876,
+      "land_ice_minus_land": 0.0,
+      "land_minus_unmasked": -0.00041485820574649335,
+      "unmasked": -0.3911184860434411
+    },
+    {
+      "date": "2024-02",
+      "land": 1.9558868952700847,
+      "land_and_ice": 1.9558868952700847,
+      "land_ice_minus_land": 0.0,
+      "land_minus_unmasked": -0.0003906511790296996,
+      "unmasked": 1.9562775464491144
+    },
+    {
+      "date": "2024-03",
+      "land": 4.727045804886931,
+      "land_and_ice": 4.727045804886931,
+      "land_ice_minus_land": 0.0,
+      "land_minus_unmasked": -0.00038586314704769364,
+      "unmasked": 4.7274316680339785
+    },
+    {
+      "date": "2024-04",
+      "land": 10.14089048325547,
+      "land_and_ice": 10.14089048325547,
+      "land_ice_minus_land": 0.0,
+      "land_minus_unmasked": -0.000370012759477234,
+      "unmasked": 10.141260496014947
+    },
+    {
+      "date": "2024-05",
+      "land": 14.700331557663736,
+      "land_and_ice": 14.700331557663736,
+      "land_ice_minus_land": 0.0,
+      "land_minus_unmasked": -0.00024105669566054644,
+      "unmasked": 14.700572614359396
+    },
+    {
+      "date": "2024-06",
+      "land": 24.637320929072324,
+      "land_and_ice": 24.637320929072324,
+      "land_ice_minus_land": 0.0,
+      "land_minus_unmasked": -0.00040135965230803095,
+      "unmasked": 24.637722288724632
+    },
+    {
+      "date": "2024-07",
+      "land": 26.522299663128056,
+      "land_and_ice": 26.522299663128056,
+      "land_ice_minus_land": 0.0,
+      "land_minus_unmasked": -0.0005244237478727598,
+      "unmasked": 26.52282408687593
+    },
+    {
+      "date": "2024-08",
+      "land": 24.143296836963643,
+      "land_and_ice": 24.143296836963643,
+      "land_ice_minus_land": 0.0,
+      "land_minus_unmasked": -0.0006158557286148891,
+      "unmasked": 24.143912692692258
+    },
+    {
+      "date": "2024-09",
+      "land": 20.602832979170465,
+      "land_and_ice": 20.602832979170465,
+      "land_ice_minus_land": 0.0,
+      "land_minus_unmasked": -0.00045820741068425264,
+      "unmasked": 20.60329118658115
+    },
+    {
+      "date": "2024-10",
+      "land": 15.085196446618239,
+      "land_and_ice": 15.085196446618239,
+      "land_ice_minus_land": 0.0,
+      "land_minus_unmasked": -0.00025684080423893363,
+      "unmasked": 15.085453287422478
+    },
+    {
+      "date": "2024-11",
+      "land": 2.2318067556103887,
+      "land_and_ice": 2.2318067556103887,
+      "land_ice_minus_land": 0.0,
+      "land_minus_unmasked": -0.0002594458579552317,
+      "unmasked": 2.232066201468344
+    },
+    {
+      "date": "2024-12",
+      "land": 1.911681191201209,
+      "land_and_ice": 1.911681191201209,
+      "land_ice_minus_land": 0.0,
+      "land_minus_unmasked": -0.0002567229068226595,
+      "unmasked": 1.9119379141080317
+    }
+  ],
+  "spatial_support": {
+    "land": {
+      "effective_area_m2": 117653683403.50777,
+      "effective_fraction_of_window": 0.9996226631574069
+    },
+    "land_and_ice": {
+      "effective_area_m2": 117653683403.50777,
+      "effective_fraction_of_window": 0.9996226631574069
+    },
+    "unmasked_area_m2": 117698095231.14151
+  },
+  "time": {
+    "calendar": "gregorian",
+    "end": "2024-12",
+    "frequency": "monthly",
+    "provider_time_standard": "LST",
+    "start": "2024-01"
+  },
+  "variable": {
+    "height_m": 2,
+    "id": "air_temperature_2m",
+    "unit": "degC"
+  },
+  "warnings": [
+    "CANDIDATE_PREVIEW_NOT_ACCEPTED_REGION_MEAN",
+    "FRACTION_ASSUMED_UNIFORM_WITHIN_SOURCE_CELL",
+    "GRID_CORRESPONDENCE_NOT_ACCEPTED_SCIENTIFIC_PROFILE",
+    "INFERENCE_NOT_PERFORMED",
+    "NO_FINE_SCALE_COASTLINE_RECOVERY",
+    "RECORDED_SOURCE_REPLAY_NOT_INDEPENDENT_SOURCE_AUTHENTICATION",
+    "T2M_REMAINS_SOURCE_GRID_TEMPERATURE_NOT_LAND_TILE_TEMPERATURE"
+  ]
+}
