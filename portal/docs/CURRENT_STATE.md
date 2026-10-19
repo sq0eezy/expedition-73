@@ -1,15 +1,17 @@
 ---
 status: Validating
 updated: "2026-10-19"
-phase: Aday maske için alan kapsamı incelemesi
+phase: Kaynak alanı uygunluğu ve aday sonuç hazırlığı
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "M1 dalında koşullu alan denetimi eklendi; 146 yerel test ve gerçek A/B tekrarları geçti. Bilimsel maske seçilmedi, yeni dilim henüz paylaşılmadı."
+change_summary: "Canlı DMR'de AREA yok; kaynak kontrolü eklendi, 153 yerel test ve gerçek tekrarlar geçti. Bilimsel maske açık, yeni dilimler M1 dalında yerel."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **Kaynak AREA uygunluğu kontrol edildi:** Seçili granülün tam DMR'si yeniden HTTP 200 ile okundu; eski hash'le aynı ve AREA sayısal bildirimi yok. Şartname ile başka NASA README tablosu arasındaki fark kaydedildi. `check-source-area` bu durumu çevrim dışı açıkça raporlar; değer/alan karşılaştırması yapılmadı. Yedi yeni test, toplam 153 test ve gerçek veri tekrarları başarılı. [Esas inceleme](research/SOURCE_AREA.md), [erişim/komut kanıtı](evidence/SOURCE_AREA_CHECK.md). Yeni sonuç M1 dalında yerel; maske/profil kabulü yok.
 
 - **Kesilmiş hücreler için alan denetimi:** `audit-surface-support` kayıtlı gerçek girdileri yeniden doğrulayıp iki aday yüzey için koşullu alt/homojen/üst alan raporu verir. 12 yeni testle toplam 146 test başarılı; eski sıcaklık örnekleri değişmedi. Aralıklar güven aralığı veya sıcaklık hata payı değildir; kaynak AREA/alan ölçüsü uyumu doğrulanmadı. [Yöntem](research/SURFACE_SUPPORT.md), [gerçek sonuç](evidence/SURFACE_SUPPORT_CHECK.md). Yeni çalışma M1 dalında yerel; önceki canlı teslim aşağıda.
 
@@ -49,4 +51,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-Koşullu alan kapsamı denetimi M1 dalında çalışıyor. Sırada kaynak AREA ile pilot alan tanımının ilişkisini, grid değerinin temsil ettiği yüzeyi ve FRLAND / FRLAND+FRLANDICE hedefini incelemek var: [karar ölçütleri](research/SURFACE_SUPPORT.md). Mevcut maskesiz örnekler korunur; küçük sıcaklık farkı yöntem seçimi gerekçesi değildir. Kesin sınır/dönem/istatistik, ikinci bilimsel gösterge ve son web arayüzü açık. Önceki 134 testlik akış main/canlı portalda; bu yeni 146 testlik alan denetimi henüz paylaşılmadı. Yeni geliştirme ayrı M1 dalında sürer.
+Seçili kaynakta AREA olmadığı doğrulandı; bu granülden doğrudan alan farkı hesaplamak sıradaki uygulanabilir adım değildir. Koşullu kapsam ve kaynak yeterliliğini görünür tutarak mevcut 2024 kayıtları için ilk sonuç ekranı teknik taslağı hazırlanması öneriliyor: [kaynak alanı incelemesi](research/SOURCE_AREA.md). Bu öneri final web teknolojisi/sorumlusu veya bilimsel profil seçimi değildir. FRLAND / FRLAND+FRLANDICE hedefi, kesin sınır/dönem/istatistik ve ikinci gösterge açık. Önceki 134 testlik akış main/canlı portalda; 153 testlik güncel yerel dilimler henüz paylaşılmadı. Yeni geliştirme ayrı M1 dalında sürer.

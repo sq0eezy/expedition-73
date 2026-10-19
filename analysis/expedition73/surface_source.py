@@ -87,6 +87,49 @@ def fetch_subset(token, config):
     return raw, datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
+def area_capability(metadata_raw):
+    """Audit the selected granule declaration, never infer/download AREA values.
+
+    The 2015 file specification lists AREA; actual observed DMR does not.
+    Even a future AREA declaration is only metadata, not validated numeric data.
+    """
+    if len(metadata_raw) > earthdata.MAX_METADATA_BYTES:
+        raise PilotError("Source metadata exceeds the supported size limit.")
+    metadata_spec(metadata_raw)  # Existing strict product/grid/fraction checks.
+    root = ET.fromstring(metadata_raw)
+    local = lambda element: element.tag.rsplit("}", 1)[-1]
+    if any(local(element) == "Group" for element in root):
+        raise PilotError("Grouped source metadata requires explicit variable mapping.")
+    numeric = {"Float32", "Float64", "Int8", "UInt8", "Byte", "Int16", "UInt16",
+               "Int32", "UInt32", "Int64", "UInt64"}
+    variables = []
+    for element in root:
+        if local(element) not in numeric:
+            continue
+        name = element.attrib.get("name")
+        if not name or any(record["name"] == name for record in variables):
+            raise PilotError("Missing or duplicate numeric variable declaration in source metadata.")
+        units = [value.text for attribute in element if local(attribute) == "Attribute"
+                 and attribute.attrib.get("name") == "units"
+                 for value in attribute if local(value) == "Value"]
+        variables.append({"name": name, "type": local(element), "units": units,
+                          "dimensions": [item.attrib.get("name") for item in element if local(item) == "Dim"]})
+    variables.sort(key=lambda item: item["name"])
+    area = next((variable for variable in variables if variable["name"] == "AREA"), None)
+    return {"schema_version": "0.1.0", "output_type": "source_area_capability_check",
+            "scope": "selected_granule_metadata_only",
+            "source": {"dataset": "M2C0NXASM", "version": "5.12.4", "granule": DATASET_NAME,
+                       "metadata_uri": earthdata.METADATA_URL,
+                       "metadata_sha256": hashlib.sha256(metadata_raw).hexdigest()},
+            "available_numeric_variables": variables,
+            "area": {"numeric_declaration_present": area is not None, "declaration": area,
+                     "comparison_status": "metadata_present_values_not_validated" if area is not None
+                     else "not_available_in_selected_granule",
+                     "numeric_values_retrieved": False, "comparison_performed": False},
+            "automatic_product_or_geometry_substitution": False,
+            "scientific_profile_accepted": False}
+
+
 def convert(raw, metadata_raw, config, retrieved_at):
     """Read local bytes only; the NetCDF library never receives a URL or token."""
     plan = masking.request_plan(config)

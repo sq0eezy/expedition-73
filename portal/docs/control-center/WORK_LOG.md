@@ -1,5 +1,13 @@
 # Çalışma günlüğü
 
+## 2026-10-19 · AREA beklentisi gerçek granülle kontrol edildi
+
+M1 devam istedi; güncel durum/üye/fikir/devir/pano ve kaynaklar okundu. Fetch'te main/M2 değişimi yok; yerel `c0c79e2` korundu. 2015 şartnamesi AREA'yı listeliyor, başka NASA README sabit koleksiyon tablosu listelemiyor. Kayıtlı A/B tam DMR envanteri de AREA içermiyor. Kullanıcının önceden yetkilendirdiği yerel kayıtlı token ile yalnız sabit ürün metadata'sı yeniden alındı: UTC 09:10:18, HTTP 200, 17.065 bayt, eski `baa82cb...` hash'i ile aynı. Token değeri/kimlik alanı gösterilmedi veya yazılmadı, .env değiştirilmedi. Sayısal AREA sorgusu yapılmadı; başka ürün veya geometriye geçilmedi. [Gerçek erişim ve sınırlar](../evidence/SOURCE_AREA_CHECK.md), [esas kaynak incelemesi](../research/SOURCE_AREA.md).
+
+`surface_source.area_capability`, `check-source-area` ve kaynak hash'li örnek JSON eklendi: üst düzey sayısal değişken envanteri, AREA yok/present-but-unvalidated ayrımı; yinelenen/gruplu bildirimlerde durma. Metadata başarısı sayısal alan onayı sayılmıyor. Yedi yeni test; toplam **153 test / 33,269 saniye** başarılı. İki gerçek nokta validate, A alan, B parçalı alan ve iki fraksiyon replay'i geçti. Kayıtlı ve yeni canlı DMR ile iki offline CLI aynı sonucu verdi. Önceden var olan NumPy deprecation uyarısı hata üretmedi. Sıcaklık ve koşullu alan örnekleri değişmedi. Portal check/strict build ve git diff --check geçti.
+
+CURRENT_STATE, MOD-05/R-A04, M1, H-M1-010 ve belge haritası güncellendi; M2 adına kabul/çalıştırma yok. Önceki AREA alt kümesi alınabilir beklentisi gerçek seçili kaynak için düzeltildi. Sonraki ilk sonuç ekranı taslağı öneri olarak kaydedildi; teknoloji/sorumlu/bilimsel profil kabulü yok. Çalışma ayrı M1 dalında yerel; yeni push/main/Pages/Ubuntu/Mac çalıştırması yapılmadı.
+
 ## 2026-10-19 · Kesilmiş hücrelerde koşullu alan kapsamı
 
 M1 devam istedi; önce durum, iki üye/fikir/devir/pano ve maske kaynakları okundu. Fetch'te yeni main/M2 katkısı yok; M2 `791e07c` korunuyor. NASA POWER yöntem sayfası ve MERRA-2 şartnamesi yeniden incelendi: grid sıcaklığını kara sıcaklığı sayma ve kaynak AREA ile pilot küresel alanını eşitleme sınırları [esas araştırmaya](../research/SURFACE_SUPPORT.md) işlendi. Yeni API/token kullanımı yok.

@@ -102,6 +102,15 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 - **İncelenecek:** B sınır parçalarında tam hücre oranını homojen dağıtmanın uygunluğu, AREA/alan tanımı ve kara/buz hedefi. B için bu denetim ortak modülün kaynak uygunluğunu sınar; B görevi veya M2 kabulü yerine geçmez.
 - **Sınır:** Koşullu alan aralığı fiziksel güven aralığı/sıcaklık hatası değildir. Yeni API, kesin maske/profil veya uzun dönem sonucu yok. Yeni Mac/Ubuntu koşusu ve canlı yayın yapılmadı.
 
+## H-M1-010 · Seçili granülde AREA bulunmaması
+
+- **Gönderen → alıcı:** M1 → M2; mevcut MOD-05/R-A04 kapsamında panel içi kaynak incelemesi; dış mesaj yok.
+- **Tarih:** 2026-10-19.
+- **Durum:** Yerel M1 dalında, paylaşım/inceleme bekliyor; M2 görmüş sayılmaz.
+- **Teslim:** [Canlı DMR ve offline komut](../evidence/SOURCE_AREA_CHECK.md), [kaynak alanı/iki belge farkı](../research/SOURCE_AREA.md). Yedi yeni testle toplam 153 yerel test geçti.
+- **İncelenecek:** Kaynak alanıyla doğrudan doğrulama yapıldığı varsayılmadan mevcut geometrik yöntemin ve hedef yüzeyin nasıl açıklanacağı. Başka AREA ürünü gerekiyorsa ayrı kaynak/grid uygunluğu gerekir; otomatik ürün değişimi yok.
+- **Sınır:** Metadata HTTP 200, AREA değerinin veya bilimsel yöntemin doğrulandığı anlamına gelmez. Yeni maske/alan/dönem veya M2 kabulü üretilmedi. İlk sonuç ekranı taslağı öneri; final web teknolojisi/sorumlusu seçilmedi.
+
 ## Bir kayıt için gerekenler
 
 **2026-10-18 mimari açıklık:** M1 çok girdili modül bağımlılığına hazır olup olmadığımızı sordu. [A→B, A+B→C örneği](../architecture/MODULE_SYSTEM.md), C'nin B ile aynı A çıktısını kullanması koşuluyla ayrıntılandırıldı. [MOD-06](../planning/WORK_BOARD.md) önerilen teknik deneme; motor henüz yok. M2 adına inceleme veya onay beyanı üretilmedi.

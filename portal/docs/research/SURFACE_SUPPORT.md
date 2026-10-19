@@ -2,7 +2,7 @@
 status: Validating
 updated: "2026-10-19"
 review_summary: "Kırpılan hücrelerde tam hücre fraksiyonunun nerede bulunduğunu bilmeden ne kadar alan söylenebileceği."
-change_summary: "Koşullu alan sınırı denetimi eklendi; NASA tanımları ile proje geometrisi varsayımları ayrıldı. Maske seçilmedi."
+change_summary: "Koşullu kapsam korunuyor; canlı granül metadata'sında AREA yok, önceki doğrudan alan karşılaştırması beklentisi güncellendi."
 ---
 # Maske kapsamı · Sınır hücreleri ve karar ölçütleri
 
@@ -14,7 +14,9 @@ change_summary: "Koşullu alan sınırı denetimi eklendi; NASA tanımları ile 
 
 [MERRA-2 dosya şartnamesi, §6 / PDF sayfa 21](https://ntrs.nasa.gov/api/citations/20150019760/downloads/20150019760.pdf#page=21) sabit koleksiyonda FRLAND, FRLANDICE, FRLAKE, FROCEAN ve ayrıca AREA değişkenini listeler. Aynı belgenin giriş bölümü, dağıtılan gridin model hesap gridinden farklı olduğunu belirtir. Eşleşen koordinatlar tek başına bütün bilimsel alan tanımlarını doğrulamaz. Kaynaklar 2026-10-19'da yeniden okundu; yeni sayısal NASA isteği yapılmadı.
 
-Mevcut pilot hücre kenarlarını orta noktalardan kuruyor ve ilan edilmiş küre üzerinde alan hesaplıyor. Gerçek alt kümede dört fraksiyon var; **NASA AREA değişkeni alınmadı veya bu küresel alanla karşılaştırılmadı.** Bu denetim, kaynak fraksiyonunu aynı küresel alan ölçüsünde kesin pay kabul eden bir koşullu deneydir. Kaynak fraksiyonunun fiziksel alan/yeniden gridleme hatasını kapsamaz.
+**2026-10-19 sonraki kontrol:** Şartname AREA'yı listelese de seçili granülün kayıtlı ve yeniden alınan tam DMR'sinde AREA yok. Başka bir NASA README tablosu da AREA'yı listelemiyor. [Kaynak uygunluk incelemesi](SOURCE_AREA.md), [HTTP 200/hash kanıtı](../evidence/SOURCE_AREA_CHECK.md). Bu granülden küçük AREA alt kümesi alınabileceği varsayımı geçerli değil.
+
+Mevcut pilot hücre kenarlarını orta noktalardan kuruyor ve ilan edilmiş küre üzerinde alan hesaplıyor. Gerçek alt kümede dört fraksiyon var; **kaynak AREA ile küresel alan karşılaştırması yapılamadı.** Bu denetim, kaynak fraksiyonunu aynı küresel alan ölçüsünde kesin pay kabul eden bir koşullu deneydir. Kaynak fraksiyonunun fiziksel alan/yeniden gridleme hatasını kapsamaz.
 
 ## Koşullu hesap
 
@@ -35,7 +37,7 @@ Alt sınır seçili alanın olabildiğince pencere dışında, üst sınır olab
 | Soru | Eldeki durum | Seçimden önce gereken |
 |---|---|---|
 | Hangi yüzeyin T2M'sini karşılaştırıyoruz? | T2M grid değeri; iki yeniden ağırlık adayı | Kara, kara+buz veya bütün pencere hedefini ortak araştırma sorusuyla tanımlamak |
-| Fraksiyon ve alan ölçüsü uyumlu mu? | Koordinat/birim uyumu doğrulandı; kaynak AREA alınmadı | AREA/çıktı geometrisi tanımını ve yeniden gridleme anlamını incelemek; gerekirse küçük AREA alt kümesiyle teknik farkı ölçmek |
+| Fraksiyon ve alan ölçüsü uyumlu mu? | Koordinat/birim uyumu doğrulandı; seçili granülde AREA bildirimi yok | [Kaynak kısıtı](SOURCE_AREA.md) görünür kalır; mevcut küresel alan varsayımı açıkça gösterilir. Farklı alan kaynağı gerekirse ayrıca uygunluk incelemesi gerekir |
 | Kırpılan parçada yüzey nerede? | Yalnız koşullu yerleşim sınırları var | Kesin sınırı gerekçelendirmek; daha ince maske gerekiyorsa ayrı ürün/sürüm ve yeniden gridleme yöntemi incelemek |
 | Buz dahil edilmeli mi? | FRLANDICE ayrı bileşen; iki aday sürüyor | A/B için aynı gösterge tanımını, kara buzu/deniz buzu ayrımını açıkça yazmak |
 | Bu kontroller trend için yeterli mi? | Yalnız 2024 teknik örnek | Ortak uzun dönem, zaman ağırlıkları, kalite/eksiklik ve istatistik varsayımlarını ayrıca seçmek |

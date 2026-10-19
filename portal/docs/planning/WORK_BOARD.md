@@ -1,5 +1,7 @@
 # İş panosu
 
+**2026-10-19 · MOD-05/R-A04 kaynak kontrolü:** [Canlı tam DMR kontrolü](../evidence/SOURCE_AREA_CHECK.md) seçili granülde AREA bulunmadığını doğruladı; sayısal karşılaştırma yok. Yeni `check-source-area` ile yedi test eklendi, toplam 153 test başarılı. [Kaynak/alan varsayımları](../research/SOURCE_AREA.md) gözden geçirildi; MOD-05/R-A04 Validating kalır. U-01/teknoloji/sorumlu hâlâ açık; ilk sonuç ekranı yalnız sonraki dilim önerisidir.
+
 **2026-10-19 · MOD-05/R-A04:** [Koşullu alan kapsamı denetimi](../evidence/SURFACE_SUPPORT_CHECK.md) yerel M1 dalında eklendi; 12 yeni testle 146 test başarılı. İki aday politikanın sınır hücreleri ve alan varsayımları [ayrı araştırmada](../research/SURFACE_SUPPORT.md). MOD-05/R-A04 Validating kalır: bilimsel alan ölçüsü/yüzey hedefi ve M2 incelemesi açık. Bu yeni dilim main/canlı panelde değil; B görevi tamamlandı veya M2 politikayı kabul etti sayılmaz.
 
 Görevler eldeki kanıta göre güncellenir. **2026-10-16 iş bölümü:** M1 modüller + A, M2 B. M2 daha sonra kendi [notuyla](../team/members/M2.md) B üstlenmesini ve ilk çıktısını bildirdi; `4ad9448` katkısı 2026-10-17'de M1 tarafından alınıp 43 test ve örnek doğrulamalarıyla kontrol edildi. Sonraki B alt işlerine ayrıca başlanmış sayılmadı. M1 artık [ayrı dalda](../decisions/ADR-007-FEATURE-BRANCHES.md) çalışıyor. İnceleyenler planlanan kişilerdir; her aşama incelenmiş sayılmaz. Teslim tarihleri açık. Üye kimlikleri [ekip dizinindedir](../team/index.md). `Verified` portal işleri uygulamanın doğrulandığını göstermez.

@@ -26,6 +26,8 @@ def main(argv=None) -> int:
     support = commands.add_parser("audit-surface-support", help="Conditional clipped-cell area bounds; offline, no policy selection.")
     support.add_argument("--window-run", type=Path, required=True)
     support.add_argument("--fraction-run", type=Path, required=True)
+    area_check = commands.add_parser("check-source-area", help="Check AREA declaration in local source metadata; no network or values.")
+    area_check.add_argument("--metadata", type=Path, required=True)
     probe = commands.add_parser("fetch-power-point", help="Fetch and validate a small candidate point sample; no trend.")
     probe.add_argument("--config", type=Path, required=True)
     probe.add_argument("--output-dir", type=Path, required=True)
@@ -53,7 +55,13 @@ def main(argv=None) -> int:
     compare.add_argument("right", type=Path)
     args = parser.parse_args(argv)
     try:
-        if args.command == "audit-surface-support":
+        if args.command == "check-source-area":
+            from .surface_source import area_capability
+            from .earthdata import MAX_METADATA_BYTES
+            with args.metadata.open("rb") as stream:
+                raw = stream.read(MAX_METADATA_BYTES + 1)
+            print(json.dumps(area_capability(raw), ensure_ascii=False, indent=2, allow_nan=False))
+        elif args.command == "audit-surface-support":
             from .surface_support import run
             print(json.dumps(run(args.window_run, args.fraction_run), ensure_ascii=False, indent=2, allow_nan=False))
         elif args.command == "run-surface-workflow":

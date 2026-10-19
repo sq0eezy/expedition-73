@@ -6,6 +6,8 @@ Kapsam: MOD-01/02/03'ün ilk aktarım/adaptör dilimi ve R-A02'nin erişim sına
 
 ## Yeni: sınır hücrelerinde koşullu alan denetimi
 
+Kaynak alanı ön kontrolü: `.venv\Scripts\python.exe -X utf8 -m expedition73 check-source-area --metadata examples/a-surface-fractions/metadata.dmr.xml`; Mac/Linux'ta `.venv/bin/python` kullanılır. Gerçek seçili granül metaverisinde AREA yok; kaynak sayısal alanı ile karşılaştırma yapılmadı. Çıkış 0 kontrolün tamamlandığı anlamındadır; `comparison_status` alanı sonucu bildirir. Metadata'da ileride AREA görülmesi de değer/birim/geometri onayı değildir. [Gerçek kaynak kontrolü](../portal/docs/evidence/SOURCE_AREA_CHECK.md).
+
 `analysis` içinde Windows CMD: `.venv\Scripts\python.exe -X utf8 -m expedition73 audit-surface-support --window-run examples/b-window-2024 --fraction-run examples/b-surface-fractions`. Mac/Linux aynı argümanlarla `.venv/bin/python -X utf8 -m expedition73 ...`; `requirements-mask.txt` gerekir. Kaynaklar çevrim dışı yeniden doğrulanır; iki aday için tam hücre oranının kırpılan parçadaki bilinmeyen yerleşimine bağlı alt/homojen/üst alan hesaplanır. JSON stdout'a gelir; dosya veya NASA isteği üretmez. [Yöntem/varsayımlar](../portal/docs/research/SURFACE_SUPPORT.md), [gerçek sonuç/12 test](../portal/docs/evidence/SURFACE_SUPPORT_CHECK.md). Kayıtlı ortak özet `examples/surface-support-summary.json`. Koşullu alan aralığı güven aralığı veya sıcaklık hata payı değildir; maske seçilmez, kaynak AREA doğrulaması hâlâ açık.
 
 ## Yeni: çok girdili yürütme denemesi
