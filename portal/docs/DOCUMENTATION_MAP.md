@@ -29,6 +29,7 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | Geniş bölgeyi parçalı API istekleriyle çalıştırma | [Parçalı erişim kılavuzu](guide/T2M_TILED_WINDOW.md) |
 | Gerçek B parçaları, tekilleştirme ve bağımsız hesap | [Parçalı erişim kanıtı](evidence/T2M_TILING.md) |
 | Kara/su oranı adayı, erişim ve deneysel maske kuralları | [Maske araştırması](research/SURFACE_MASK.md) |
+| Kesilmiş hücrelerde alan varsayımları ve maske seçim ölçütleri | [Kapsam araştırması](research/SURFACE_SUPPORT.md), [gerçek alan denetimi](evidence/SURFACE_SUPPORT_CHECK.md) |
 | Maske erişim sonucu ve sentetik hesap kontrolleri | [Maske hazırlığı kanıtı](evidence/SURFACE_MASK_CHECK.md) |
 | Earthdata kaydı sonrası yerel metadata erişimini sınama | [Earthdata erişim kılavuzu](guide/EARTHDATA_ACCESS.md) |
 | Gerçek token ile metadata erişim sonucu | [Earthdata metadata kanıtı](evidence/EARTHDATA_METADATA.md) |

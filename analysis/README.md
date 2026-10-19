@@ -4,6 +4,10 @@ NASA POWER Monthly API'den **aday bir noktaya** ait aylık 2 metre hava sıcakl�
 
 Kapsam: MOD-01/02/03'ün ilk aktarım/adaptör dilimi ve R-A02'nin erişim sınaması. Nokta profiline ek olarak maskesiz aday dikdörtgen için deneysel alan ağırlıklı seri çalışıyor; B uygunluğu ve istatistikler sonraki işlerdir.
 
+## Yeni: sınır hücrelerinde koşullu alan denetimi
+
+`analysis` içinde Windows CMD: `.venv\Scripts\python.exe -X utf8 -m expedition73 audit-surface-support --window-run examples/b-window-2024 --fraction-run examples/b-surface-fractions`. Mac/Linux aynı argümanlarla `.venv/bin/python -X utf8 -m expedition73 ...`; `requirements-mask.txt` gerekir. Kaynaklar çevrim dışı yeniden doğrulanır; iki aday için tam hücre oranının kırpılan parçadaki bilinmeyen yerleşimine bağlı alt/homojen/üst alan hesaplanır. JSON stdout'a gelir; dosya veya NASA isteği üretmez. [Yöntem/varsayımlar](../portal/docs/research/SURFACE_SUPPORT.md), [gerçek sonuç/12 test](../portal/docs/evidence/SURFACE_SUPPORT_CHECK.md). Kayıtlı ortak özet `examples/surface-support-summary.json`. Koşullu alan aralığı güven aralığı veya sıcaklık hata payı değildir; maske seçilmez, kaynak AREA doğrulaması hâlâ açık.
+
 ## Yeni: çok girdili yürütme denemesi
 
 Gerçek kayıtlı T2M ve fraksiyon işlemleri de artık motora bağlandı: `analysis` içinde Windows CMD ile `.venv\Scripts\python.exe -m expedition73 run-surface-workflow --window-run examples/b-window-2024 --fraction-run examples/b-surface-fractions --output-dir artifacts/b-surface-new-run`. Mac/Linux'ta `.venv/bin/python` kullanılır; `requirements-mask.txt` kurulu olmalı. [Akış, iki aday politika, kaynaklar ve sınırlar](../portal/docs/evidence/SURFACE_WORKFLOW.md). A ve B için 12 ay hesaplandı; maskesiz örnekler değiştirilmedi. Bu komut ağ/token istemez, mevcut küçük kayıtları tekrar doğrular. Başarısız girdide bağımlı işler engellenir ve aday sonuç yazılmaz.

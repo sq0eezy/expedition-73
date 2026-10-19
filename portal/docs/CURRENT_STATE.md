@@ -1,15 +1,17 @@
 ---
 status: Validating
-updated: "2026-10-18"
-phase: Gerçek veriyle aday maske ve modül akışı
+updated: "2026-10-19"
+phase: Aday maske için alan kapsamı incelemesi
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "Gerçek T2M/fraksiyon akışı main ve canlı panelde paylaşıldı; byte koruma düzeltmesiyle 134 Ubuntu testi ve Pages geçti. M1 ayrı dalda sürer."
+change_summary: "M1 dalında koşullu alan denetimi eklendi; 146 yerel test ve gerçek A/B tekrarları geçti. Bilimsel maske seçilmedi, yeni dilim henüz paylaşılmadı."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **Kesilmiş hücreler için alan denetimi:** `audit-surface-support` kayıtlı gerçek girdileri yeniden doğrulayıp iki aday yüzey için koşullu alt/homojen/üst alan raporu verir. 12 yeni testle toplam 146 test başarılı; eski sıcaklık örnekleri değişmedi. Aralıklar güven aralığı veya sıcaklık hata payı değildir; kaynak AREA/alan ölçüsü uyumu doğrulanmadı. [Yöntem](research/SURFACE_SUPPORT.md), [gerçek sonuç](evidence/SURFACE_SUPPORT_CHECK.md). Yeni çalışma M1 dalında yerel; önceki canlı teslim aşağıda.
 
 - **Mevcut M1 dilimi ortak panelde paylaşıldı:** Kullanıcının açık talebiyle geliştirme dalı korundu, incelenmiş sürüm main'e birleştirildi. `96815c5` için Ubuntu'da 134 test, gerçek A/B aday akışları ve Pages başarılı; canlı yeni belgeler/katalog HTTP 200. İlk CI'da saptanan Windows/Linux satır sonu kaynak hash farkı, örnek baytlarını koruyan Git ayarı ve yeniden üretimle giderildi. PR API yetkisi olmadığı için normal Git merge kullanıldı. M2'nin ayrı dalı korunur; yeni kabul beyanı yok. [Yayın/CI kanıtı](evidence/SURFACE_RELEASE.md).
 
@@ -47,4 +49,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-Gerçek T2M/fraksiyon akışı ve iki aday politika duyarlılığı çalışıyor ve main/canlı portalda paylaşıldı. Sırada etkili alanın tanımı, FRLAND / FRLAND+FRLANDICE tercihi ve kaynak gridinin bilimsel uygunluğunu incelemek var; küçük sayısal fark tek başına yöntem seçimi gerekçesi değildir. Mevcut maskesiz örnekler korunur. Kabul edilmiş sınır/dönem/istatistik, ikinci bilimsel gösterge ve son web arayüzü hâlâ açık. Yeni geliştirme ayrı M1 dalında sürer: [yayın kanıtı](evidence/SURFACE_RELEASE.md).
+Koşullu alan kapsamı denetimi M1 dalında çalışıyor. Sırada kaynak AREA ile pilot alan tanımının ilişkisini, grid değerinin temsil ettiği yüzeyi ve FRLAND / FRLAND+FRLANDICE hedefini incelemek var: [karar ölçütleri](research/SURFACE_SUPPORT.md). Mevcut maskesiz örnekler korunur; küçük sıcaklık farkı yöntem seçimi gerekçesi değildir. Kesin sınır/dönem/istatistik, ikinci bilimsel gösterge ve son web arayüzü açık. Önceki 134 testlik akış main/canlı portalda; bu yeni 146 testlik alan denetimi henüz paylaşılmadı. Yeni geliştirme ayrı M1 dalında sürer.

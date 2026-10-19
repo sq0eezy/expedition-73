@@ -93,6 +93,15 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 - **İncelenecek:** Kara buzu kapsamı, etkili alanın anlamı, tam hücre fraksiyonunun kırpılmış parçaya uygulanması ve bilimsel grid uygunluğu. B'de en büyük aylık FRLAND-maskesiz farkı yaklaşık 0,0351 °C; farkın küçük olması politika kabulü değildir.
 - **Sınır:** Uzun dönem/eğilim/son web uygulaması yok. M2'nin Mac'te bu yeni akışı çalıştırdığı veya politikayı onayladığı varsayılmadı.
 
+## H-M1-009 · Kesilmiş hücrelerde alan kapsamını inceleme
+
+- **Gönderen → alıcı:** M1 → M2; mevcut MOD-05/R-A04 denetiminin panel içi inceleme kaydı; dış mesaj gönderilmedi.
+- **Tarih:** 2026-10-19.
+- **Durum:** Yerel M1 dalında, paylaşım/M2 incelemesi bekliyor; M2'nin gördüğü varsayılmaz.
+- **Teslim:** [Koşullu alan sınırları ve yüzey hedefi soruları](../research/SURFACE_SUPPORT.md), [gerçek A/B kanıtı/komutu](../evidence/SURFACE_SUPPORT_CHECK.md). Önceki 134 testlik yayına 12 test eklendi; 146 yerel test başarılı.
+- **İncelenecek:** B sınır parçalarında tam hücre oranını homojen dağıtmanın uygunluğu, AREA/alan tanımı ve kara/buz hedefi. B için bu denetim ortak modülün kaynak uygunluğunu sınar; B görevi veya M2 kabulü yerine geçmez.
+- **Sınır:** Koşullu alan aralığı fiziksel güven aralığı/sıcaklık hatası değildir. Yeni API, kesin maske/profil veya uzun dönem sonucu yok. Yeni Mac/Ubuntu koşusu ve canlı yayın yapılmadı.
+
 ## Bir kayıt için gerekenler
 
 **2026-10-18 mimari açıklık:** M1 çok girdili modül bağımlılığına hazır olup olmadığımızı sordu. [A→B, A+B→C örneği](../architecture/MODULE_SYSTEM.md), C'nin B ile aynı A çıktısını kullanması koşuluyla ayrıntılandırıldı. [MOD-06](../planning/WORK_BOARD.md) önerilen teknik deneme; motor henüz yok. M2 adına inceleme veya onay beyanı üretilmedi.

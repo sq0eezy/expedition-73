@@ -116,6 +116,8 @@ nav:
       - Araştırma kaydı: research/index.md
       - NASA veri kaynakları: research/DATA_SOURCES.md
       - Kara/su maskesi adayı: research/SURFACE_MASK.md
+      - Maske kapsamı ve sınır varsayımları: research/SURFACE_SUPPORT.md
+      - Gerçek alan kapsamı denetimi: evidence/SURFACE_SUPPORT_CHECK.md
       - Bölge seçimi ve iki aday: research/REGION_CANDIDATES.md
       - Bölge A çalışma fişi: research/regions/REGION_A_PROFILE.md
       - Bölge B çalışma fişi: research/regions/REGION_B_PROFILE.md

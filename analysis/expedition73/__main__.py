@@ -23,6 +23,9 @@ def main(argv=None) -> int:
     surface_run.add_argument("--window-run", type=Path, required=True)
     surface_run.add_argument("--fraction-run", type=Path, required=True)
     surface_run.add_argument("--output-dir", type=Path, required=True)
+    support = commands.add_parser("audit-surface-support", help="Conditional clipped-cell area bounds; offline, no policy selection.")
+    support.add_argument("--window-run", type=Path, required=True)
+    support.add_argument("--fraction-run", type=Path, required=True)
     probe = commands.add_parser("fetch-power-point", help="Fetch and validate a small candidate point sample; no trend.")
     probe.add_argument("--config", type=Path, required=True)
     probe.add_argument("--output-dir", type=Path, required=True)
@@ -50,7 +53,10 @@ def main(argv=None) -> int:
     compare.add_argument("right", type=Path)
     args = parser.parse_args(argv)
     try:
-        if args.command == "run-surface-workflow":
+        if args.command == "audit-surface-support":
+            from .surface_support import run
+            print(json.dumps(run(args.window_run, args.fraction_run), ensure_ascii=False, indent=2, allow_nan=False))
+        elif args.command == "run-surface-workflow":
             from .surface_workflow import run
             if args.output_dir.exists():
                 raise PilotError("Output directory already exists; choose a new run directory.")

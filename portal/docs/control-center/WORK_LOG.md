@@ -1,5 +1,13 @@
 # Çalışma günlüğü
 
+## 2026-10-19 · Kesilmiş hücrelerde koşullu alan kapsamı
+
+M1 devam istedi; önce durum, iki üye/fikir/devir/pano ve maske kaynakları okundu. Fetch'te yeni main/M2 katkısı yok; M2 `791e07c` korunuyor. NASA POWER yöntem sayfası ve MERRA-2 şartnamesi yeniden incelendi: grid sıcaklığını kara sıcaklığı sayma ve kaynak AREA ile pilot küresel alanını eşitleme sınırları [esas araştırmaya](../research/SURFACE_SUPPORT.md) işlendi. Yeni API/token kullanımı yok.
+
+`surface_support.py` ve `audit-surface-support` eklendi: kayıtlı gerçek workflow bir kez doğrulanır, aynı ölçüde kesin kabul edilen tam hücre oranının kesilen parçadaki olası alan sınırları hesaplanır. Eski sıcaklık çıktıları/bağımlılık motoru değişmedi; `masking.py` başındaki eski “gerçek fraksiyon yok” açıklaması düzeltildi. A/B tam raporları ignored artifacts'ta, yeniden üretilebilir kısa özet examples altında. [Komut, gerçek sayılar ve sınırlar](../evidence/SURFACE_SUPPORT_CHECK.md). A'da 26/B'de 28 kesilmiş hücre var; yerleşim belirsizliği sırasıyla 2/24 hücrede. Koşullu aralık güven aralığı, sıcaklık hatası veya NASA belirsizlik ürünü değildir. Maske, alan veya bilimsel yöntem kabulü üretilmedi.
+
+Windows/Python 3.12.14: **146 test / 11,773 saniye**, başarılı; 12 yeni analitik/entegrasyon testi, iki gerçek nokta doğrulaması, A pencere, B parçalı pencere ve iki fraksiyon replay'i geçti. İki CLI JSON üretti. İlk alt süreç kaydında Windows çıktı encoding'i JSON byte çözümünü bozdu; kayıt komutu `-X utf8` ile düzeltildi, hesap etkilenmedi. Önceki NumPy deprecation uyarısı hata üretmedi. Portal check/strict build ve git diff --check geçti. CURRENT_STATE, MOD-05/R-A04, A fişi, M1, H-M1-009 ve belge haritası ilişkilendirildi. Çalışma ayrı M1 dalında; yeni Ubuntu/Mac koşusu, Git push veya Pages yayını yapılmadı. M2 adına yeni görüş veya dış mesaj yok.
+
 ## 2026-10-18 · Başarılı Ubuntu CI ve canlı portal teslimi
 
 Kaynak M1 dalında `7e50536`, byte koruma düzeltmesi `75afeeb`; PR API 403 sonrası normal Git merge/push ile main `96815c5`. Bu sürümde Ubuntu/Python 3.12: **134 test / 6,372 saniye**, nokta/alan/parçalı alan/fraksiyon replay'leri ve A/B beş düğümlü gerçek aday akışları başarılı; her biri 12/12 ay. Pages strict build/deploy başarılı. UTC 13:13:27'de yeni akış/yayın sayfaları ve okuma kataloğu HTTP 200, yeni içerik işaretleri mevcut. İlk CI hatası ve çözümü [yayın kanıtında](../evidence/SURFACE_RELEASE.md) korundu. Yerel düzeltme sonrası 134 test / 15,654 saniye, gerçek tekrarlar, portal check/build ve diff kontrolü geçti. SHA kontrolleri gevşetilmedi; küçük aday sayısal sonuç/yöntem değişmedi.
