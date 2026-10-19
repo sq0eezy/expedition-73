@@ -4,6 +4,10 @@ NASA POWER Monthly API'den **aday bir noktaya** ait aylık 2 metre hava sıcakl�
 
 Kapsam: MOD-01/02/03'ün ilk aktarım/adaptör dilimi ve R-A02'nin erişim sınaması. Nokta profiline ek olarak maskesiz aday dikdörtgen için deneysel alan ağırlıklı seri çalışıyor; B uygunluğu ve istatistikler sonraki işlerdir.
 
+## İlk yerel sonuç ekranı
+
+Depo kökünde Windows CMD: `analysis\.venv\Scripts\python.exe analysis\scripts\build_web_preview.py`, sonra `analysis\.venv\Scripts\python.exe web\serve.py`. Mac/Linux'ta builder `analysis/.venv/bin/python` ile, sunucu `python3 web/serve.py` ile çalışır. Adres http://127.0.0.1:8873/, kapatma Ctrl+C. [Ekran kılavuzu](../web/README.md). Builder kayıtlı kaynakları mevcut modülle yeniden doğrular; yalnız üç uygulama dosyası ve toplu JSON üretir. Tarayıcı hesap sunucusuna/NASA'ya bağlanmaz; sıcaklık grafiği iki aday politika ve kaynak/kapsam durumlarıyla incelenir. Nihai bilimsel profil veya final web yığını değildir.
+
 ## Yeni: sınır hücrelerinde koşullu alan denetimi
 
 Kaynak alanı ön kontrolü: `.venv\Scripts\python.exe -X utf8 -m expedition73 check-source-area --metadata examples/a-surface-fractions/metadata.dmr.xml`; Mac/Linux'ta `.venv/bin/python` kullanılır. Gerçek seçili granül metaverisinde AREA yok; kaynak sayısal alanı ile karşılaştırma yapılmadı. Çıkış 0 kontrolün tamamlandığı anlamındadır; `comparison_status` alanı sonucu bildirir. Metadata'da ileride AREA görülmesi de değer/birim/geometri onayı değildir. [Gerçek kaynak kontrolü](../portal/docs/evidence/SOURCE_AREA_CHECK.md).

@@ -78,6 +78,8 @@ Fiziksel geri besleme gerektiren model gelecekte gündeme gelirse A ↔ B'yi bu 
 
 ## İlk pilot ve genişleme
 
+**İlk yerel görünüm · 2026-10-19:** [Sonuç prototipi](../product/RESULTS_PREVIEW.md) kayıtlı gerçek T2M/fraksiyon akışını derlemede doğrular ve yalnız toplu veriyi tarayıcıya verir. Bölge listesi aynı T2M işlemlerine yeni uygun kayıt bağlayabilir; konu ağacı/data dependency ayrımı korunur. Bu, genel modül editörü veya hesap sunucusu değildir; nihai bilimsel/yığın kararı açık.
+
 İlk analiz modülü **2 metre hava sıcaklığı** olacak; konu grubu altında gösterilecek. İki bölgenin çıktıları karşılaştırma bileşenine bağlanarak tek göstergede yeniden kullanım sınanır. İkinci bilimsel modül geldiğinde modüller arası gerçek tüketim ayrıca denenir; çizim entegrasyon kanıtı değildir.
 
 Yeni modül: gereksinimler + özel hesap + adaptör + ayrıntı görünümü + örnek doğrulama. Yeni bölge: sürümlü sınır + veri/kalite kapsamı + uygunluk sonucu. [Pilot koşulları](../planning/PILOT.md).

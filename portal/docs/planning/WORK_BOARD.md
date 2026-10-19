@@ -1,5 +1,7 @@
 # İş panosu
 
+**2026-10-19 · İlk yerel sonuç ekranı:** U-02 teknik dilimi, kullanıcının ilk ekran önerisi sonrası devam talebiyle uygulandı; [gerçek kayıtlar ve tarayıcı doğrulaması](../evidence/RESULTS_PREVIEW_CHECK.md). U-01 genel deneyim/nihai teknoloji seçimi bundan ayrı ve açık. Mevcut bilimsel MOD-05/R-A04/R-B04 durumları arayüz başarısıyla tamamlanmış sayılmaz.
+
 **2026-10-19 · MOD-05/R-A04 kaynak kontrolü:** [Canlı tam DMR kontrolü](../evidence/SOURCE_AREA_CHECK.md) seçili granülde AREA bulunmadığını doğruladı; sayısal karşılaştırma yok. Yeni `check-source-area` ile yedi test eklendi, toplam 153 test başarılı. [Kaynak/alan varsayımları](../research/SOURCE_AREA.md) gözden geçirildi; MOD-05/R-A04 Validating kalır. U-01/teknoloji/sorumlu hâlâ açık; ilk sonuç ekranı yalnız sonraki dilim önerisidir.
 
 **2026-10-19 · MOD-05/R-A04:** [Koşullu alan kapsamı denetimi](../evidence/SURFACE_SUPPORT_CHECK.md) yerel M1 dalında eklendi; 12 yeni testle 146 test başarılı. İki aday politikanın sınır hücreleri ve alan varsayımları [ayrı araştırmada](../research/SURFACE_SUPPORT.md). MOD-05/R-A04 Validating kalır: bilimsel alan ölçüsü/yüzey hedefi ve M2 incelemesi açık. Bu yeni dilim main/canlı panelde değil; B görevi tamamlandı veya M2 politikayı kabul etti sayılmaz.
@@ -24,6 +26,7 @@ Görevler eldeki kanıta göre güncellenir. **2026-10-16 iş bölümü:** M1 mo
 | P-04 | Dar T2M pilotunu uçtan uca gerçekleştir | Validating | M1: modül/A; M2: B | [İş bölümü](REGION_WORKFLOW.md); genel web geliştirmesi açık | Karşılıklı inceleme planı | [Pilot çıkış koşulları](PILOT.md); alt görevler aşağıda |
 | A-01 | Modülün istatistik yöntemini belirle | Proposed | M1 | Modül kapsamını üstlendi | M2 (planlanan) | MOD-02: kaynak, varsayımlar ve bağımsız örnek |
 | U-01 | Etkileşim taslağını belirle | Proposed | Atanmadı | Atanmadı | Atanmadı | Harita/grafik/tarih akışı; kapsam seçimine bağlı |
+| U-02 | Kayıtlı T2M için ilk yerel sonuç ekranı | Validating | M1 oturumundaki teknik dilim | İlk ekran önerisi sonrası M1 devam talebi | M1/M2 kullanım incelemesi bekliyor | [Yerel çalışan ekran](../product/RESULTS_PREVIEW.md): 162 analiz testi ve on Chrome senaryosu; kaynak/kapsam/aday durumu görünür. Nihai yığın/barındırma/Mac kabulü açık |
 | C-01 | Yeni konuşmaları özetleyerek işle | Proposed | Atanmadı | Atanmadı | Atanmadı | Yeni bilginin esas belgede yer alması |
 
 ## Modül ve bölge görevleri

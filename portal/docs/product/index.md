@@ -1,10 +1,10 @@
 ---
 review_summary: "Sunulacak web uygulaması ve tek göstergeli pilot ekranları."
-change_summary: "Web uygulaması teslimi ve T2M pilotu kabul edildi; ilk ekranların kapsamı taslaklaştırıldı."
+change_summary: "Kayıtlı gerçek T2M için ilk yerel sonuç ekranı çalışıyor; nihai yığın ve bilimsel profil açık."
 ---
 # Ürün deneyimi ve kapsam
 
-**Kabul edilen:** Sunulacak çıktı bir web uygulaması; başlangıç tek göstergeli deneme: 2 metre hava sıcaklığı. [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md). Ekran düzeni/görsel tasarım/teknoloji taslak; çalışan ürün henüz yok.
+**Kabul edilen:** Sunulacak çıktı bir web uygulaması; başlangıç tek göstergeli deneme: 2 metre hava sıcaklığı. [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md). [İlk yerel sonuç ekranı](RESULTS_PREVIEW.md) mevcut kayıtlarla çalışıyor; görsel düzen ve kullanılan HTML/CSS/JS bu teknik prototipe ait. Nihai teknoloji, genel web sorumlusu ve bilimsel profil seçilmedi.
 
 ## İlk deneyim taslağı
 

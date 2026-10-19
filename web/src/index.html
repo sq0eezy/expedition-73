@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="NASA kayıtlarıyla iki aday pencerenin 2024 aylık sıcaklıklarını inceleyen Expedition 73 teknik önizlemesi.">
+  <title>Expedition 73 · Sıcaklık laboratuvarı</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">İçeriğe geç</a>
+  <header class="header">
+    <a class="brand" href="./" aria-label="Expedition 73 başlangıç"><span class="orbit" aria-hidden="true">73</span><span>EXPEDITION<span class="brand-sub">BÖLGESEL VERİ LABORATUVARI</span></span></a>
+    <div class="header-meta"><span class="status-dot"></span>Yerel teknik önizleme <span class="edition">PİLOT 01</span></div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" aria-label="Gösterge ve veri kapsamı">
+      <div class="section-label">ÇALIŞMA ALANI</div>
+      <div class="topic">İklim <span>konu grubu</span></div>
+      <a class="module active" href="#main" aria-current="page"><span aria-hidden="true">↗</span> Hava sıcaklığı <span class="module-tag">2 m</span></a>
+      <p class="sidebar-note">Tek göstergeyle başlayıp, verinin izin verdiği kadar ilerliyoruz.</p>
+      <div class="sidebar-divider"></div>
+      <div class="section-label">BU ÖRNEKTE</div>
+      <dl class="scope"><dt>Dönem</dt><dd id="scope-year">Yükleniyor</dd><dt>Sıklık</dt><dd>Aylık</dd><dt>Kaynak</dt><dd>NASA POWER<span>MERRA-2 tabanlı</span></dd><dt>Çalışma biçimi</dt><dd>Kayıtlı veri<span>Canlı API isteği yapılmaz</span></dd></dl>
+      <a class="portal-link" href="https://sq0eezy.github.io/expedition-73/" target="_blank" rel="noopener noreferrer">Proje yönetim paneli <span aria-hidden="true">↗</span></a>
+      <div class="sidebar-footer">EXPLORE · QUESTION · COMPARE</div>
+    </aside>
+    <main id="main" tabindex="-1">
+      <div class="intro"><div><div class="eyebrow">İKLİM / TEK GÖSTERGELİ PİLOT</div><h1>2 metre hava sıcaklığı<span class="title-dot">.</span></h1><p>Aynı göstergeyi iki aday pencerede incele. Önce veriyi, sonra farkı gör.</p></div><span class="year-mark" id="year-mark">2024</span></div>
+      <div class="notice"><span class="notice-label">ADAY ANALİZ</span><span>Bu ekran bir yıllık teknik örneği gösterir. Bölge ve maske seçimi açık; eğilim ve iklim etkisi hesaplanmadı.</span></div>
+      <div id="error" class="error" role="alert" hidden><h2>Veri yüklenemedi</h2><p>Doğrulanmış sonuç dosyasına erişilemiyor. Önizlemeyi yeniden derleyip yerel HTTP adresinden açın.</p><button id="retry" type="button">Yeniden dene</button></div>
+      <div id="loading" class="loading" role="status">Kayıtlı NASA sonuçları yükleniyor…</div>
+      <div id="results" hidden>
+        <section class="controls" aria-label="Grafik seçimleri"><fieldset><legend>ADAY PENCERELER</legend><div id="region-options" class="region-options"></div></fieldset><div class="policy-control"><label for="policy">YÜZEY AĞIRLIĞI</label><select id="policy"><option value="unmasked">Bütün pencere · maskesiz</option><option value="land">Kara oranı · FRLAND (aday)</option><option value="land_and_ice">Kara + kara buzu (aday)</option></select></div></section>
+        <section id="metrics" class="metrics" aria-label="Seçili ay sıcaklıkları" aria-live="polite"></section>
+        <section class="chart-panel" aria-labelledby="chart-heading"><div class="panel-heading"><div><span class="section-label">ZAMAN SERİSİ</span><h2 id="chart-heading">Bir yılın sıcaklık ritmi</h2></div><div class="chart-unit">AYLIK ORTALAMA <strong>°C</strong></div></div><div id="legend" class="legend"></div><p id="empty" class="empty" hidden>Grafiği görmek için en az bir aday pencere seçin.</p><div id="chart-wrap" class="chart-wrap"><svg id="chart" viewBox="0 0 920 290" role="img" aria-labelledby="chart-title chart-desc"></svg></div><div class="month-control"><label for="month">AYI İNCELE <strong id="month-label">Ocak</strong></label><input id="month" type="range" min="0" max="11" value="0" step="1" aria-label="İncelenen ay"><span class="month-end">ARALIK</span></div><p class="chart-caption" id="chart-caption"></p></section>
+        <div class="detail-grid"><section class="support-panel"><div class="panel-heading"><div><span class="section-label">ALAN VE SINIR</span><h2>Ne kadarını temsil ediyor?</h2></div><span class="small-symbol" aria-hidden="true">◫</span></div><div id="support"></div><p id="support-note" class="detail-note"></p></section><section class="source-panel"><span class="section-label">KAYNAK DURUMU</span><h2>Sonucun arkasındaki veri</h2><div class="source-line"><span>NASA POWER · T2M</span><span class="source-chip">Kayıttan</span></div><p>Aylık 2 m hava sıcaklığı. Değer, kaynak grid hücresini temsil eder; fraksiyon ağırlığı ayrı bir kara sıcaklığı üretmez.</p><div id="area-state" class="source-state"></div><div class="source-state"><span>Eğilim / anlamlılık</span><strong>Hesaplanmadı</strong></div><details id="provenance"><summary>Kaynak ve yöntem ayrıntıları</summary><div id="provenance-content"></div></details></section></div>
+        <details class="table-panel"><summary>Aylık değerleri tablo olarak incele</summary><div class="table-scroll"><table id="data-table"></table></div></details>
+        <footer class="page-footer"><p id="dataset-note">Kayıtlı örnekler · Aday sınırlar · Bilimsel profil incelemede</p><button id="download" type="button">Görüntülenen veriyi JSON indir <span aria-hidden="true">↓</span></button></footer>
+      </div>
+    </main>
+  </div>
+  <noscript><p class="error">Etkileşimli grafiği görmek için JavaScript'i etkinleştirin.</p></noscript>
+</body>
+</html>

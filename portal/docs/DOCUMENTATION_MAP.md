@@ -7,6 +7,7 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | Aşama ve sıradaki adım | [Mevcut durum](CURRENT_STATE.md) |
 | Amaç, sınırlar, taslak başarı ölçütleri | [Proje bağlamı](PROJECT_CONTEXT.md) |
 | Deneyim ve önerilen ilk kapsam | [Ürün](product/index.md) |
+| Kayıtlı T2M ilk yerel web ekranı ve çalıştırma | [Sonuç prototipi](product/RESULTS_PREVIEW.md), [gerçek tarayıcı kanıtı](evidence/RESULTS_PREVIEW_CHECK.md) |
 | Sınanacak beklentiler | [Hipotezler](product/HYPOTHESES.md) |
 | Fikir adayları ve seçim ölçütleri | [Karşılaştırma](discovery/IDEA_COMPARISON.md) |
 | Cevap bekleyen sorular | [Keşif](discovery/index.md) |

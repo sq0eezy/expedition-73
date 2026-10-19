@@ -1,5 +1,15 @@
 # Çalışma günlüğü
 
+## 2026-10-19 · İlk gerçek kayıtlı sonuç ekranı
+
+M1 ilk ekran önerisi sonrası devam istedi. Başlangıçta mevcut durum, iki üye/fikir/devir/pano ve ürün/pilot kayıtları okundu; fetch'te yeni main/M2 katkısı yok, önceki iki yerel commit korundu. Sites becerisinin yerel/buildless akışıyla web/src HTML/CSS/JS, registry, builder ve yalnız dist sunan loopback komutu hazırlandı; harici Site kaydı/yayını veya final teknoloji kararı yok. [Ürün ve komutlar](../product/RESULTS_PREVIEW.md), [gerçek doğrulama](../evidence/RESULTS_PREVIEW_CHECK.md).
+
+Builder mevcut kayıtları workflow üzerinden bir kez doğrular; metadata değişiminde durur, yalnız dört genel dosya üretir. Tarayıcı A/B seçimi, üç ağırlık görünümü, 12 ay grafiği, seçili ay kartları ve mekânsal fark, koşullu alan, AREA/kaynak durumu, tablo ve JSON indirmeyi gösterir. Eksik ay/boş seçim/hata durumları görünür; sahte sonuç yok. Yeni uygun bölge aynı T2M modülüne registry ile eklenir. Kayıtlı bilimsel sıcaklık/maskesiz/koşullu örnekler değiştirilmedi; yeni NASA isteği/token okuma yok.
+
+Windows/Python 3.12.14: **162 test / 16,218 saniye**, dokuz yeni test ve önceki gerçek nokta/alan/parçalı alan/fraksiyon replay'leri başarılı. JS sözdizimi ve **on Chrome senaryosu** başarılı, JS hatası 0, runtime dış origin isteği 0. Masaüstü 1440×1100 ve mobil 390×844 görseller incelendi; ilk mobil SVG etiketleri dar viewBox ile okunur yapılıp senaryolar tekrar geçti. Paket Chromium'u yoktu; indirme yapılmadan yüklü Chrome kullanıldı. Yeni web/serve.py ile de tarayıcı senaryoları tekrar geçti. Bunlar gerçek Mac/Ubuntu çalıştırması değildir. Portal check/strict build ve git diff --check geçti.
+
+CURRENT_STATE, ürün/pilot, U-02, M1, H-M1-011 ve belge haritası güncellendi; pilotta eski M2 başlamadı ifadesi tarihsel kayda düzeltildi. U-02 Validating, genel web/yığın/sorumlu ve bilimsel profil/maske/uzun dönem açık. M2 adına onay veya dış mesaj yok. Yeni çalışma ayrı M1 dalında yerel; main/Pages değiştirilmedi. Önizleme QA sunucusu kapatıldı; loopback adresinin artık yanıt vermediği doğrulandı. Yeniden açma adımları ürün kaydındadır.
+
 ## 2026-10-19 · AREA beklentisi gerçek granülle kontrol edildi
 
 M1 devam istedi; güncel durum/üye/fikir/devir/pano ve kaynaklar okundu. Fetch'te main/M2 değişimi yok; yerel `c0c79e2` korundu. 2015 şartnamesi AREA'yı listeliyor, başka NASA README sabit koleksiyon tablosu listelemiyor. Kayıtlı A/B tam DMR envanteri de AREA içermiyor. Kullanıcının önceden yetkilendirdiği yerel kayıtlı token ile yalnız sabit ürün metadata'sı yeniden alındı: UTC 09:10:18, HTTP 200, 17.065 bayt, eski `baa82cb...` hash'i ile aynı. Token değeri/kimlik alanı gösterilmedi veya yazılmadı, .env değiştirilmedi. Sayısal AREA sorgusu yapılmadı; başka ürün veya geometriye geçilmedi. [Gerçek erişim ve sınırlar](../evidence/SOURCE_AREA_CHECK.md), [esas kaynak incelemesi](../research/SOURCE_AREA.md).

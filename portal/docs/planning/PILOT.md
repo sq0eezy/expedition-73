@@ -4,7 +4,7 @@ change_summary: "Kullanıcı T2M pilotunu seçti; veri/analiz/arayüz için doğ
 ---
 # Pilot · 2 metre hava sıcaklığı
 
-**Kabul edilen:** Tek göstergeyle deneme; zaman serisi, eğilim ve sonuçları inceleten web uygulaması. [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md). İlk gerçek POWER nokta örneği ve API/JSON adaptörü var: [kanıt](../evidence/T2M_POINT_PROBE.md), [çalıştırma](../guide/T2M_ADAPTER.md). Bölgesel analiz ve web ürünü henüz yok.
+**Kabul edilen:** Tek göstergeyle deneme; zaman serisi, eğilim ve sonuçları inceleten web uygulaması. [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md). Gerçek POWER nokta/aday dikdörtgen örnekleri ve API/JSON adaptörleri var: [ilk kanıt](../evidence/T2M_POINT_PROBE.md). [İlk yerel sonuç ekranı](../product/RESULTS_PREVIEW.md) kayıtlı 2024 verilerini gösteriyor. Kesin bölge/maske profili, uzun dönem eğilim ve nihai uygulama hâlâ açık.
 
 ## Soru ve aday girdiler
 
@@ -33,6 +33,6 @@ Aylık seride zaman eğilimi + takvim ayı etkileri ve zaman bağımlılığın�
 
 Doğrulama: bilinen eğimli/eğimsiz kontrollü seriler, mevsim döngüsü, ardışık bağımlılık, eksik ay, iki bölgede aynı serinin kullanılması ve uyumsuz birim/dönem/alan. Sentetik sonuçlar NASA bulgusu sayılmaz. Gerçek örnekte ara hesap bağımsız araçla karşılaştırılır; aralığın kapsamadığı ürün/model belirsizlikleri açıklanır.
 
-2026-10-16 iş bölümü: M1 modüller ve A, M2 B; [ADR-005](../decisions/ADR-005-TEAM-OWNERSHIP.md). [A](REGION_A.md)/[B](REGION_B.md) görevleri ve [ortak profil](REGION_WORKFLOW.md) hazır. M2 ataması M1 tarafından bildirildi; başlama kaydı yok. İki kişi aynı modül/sözleşme sürümünü kullanır ve bölgesel hesapları çapraz inceler. Yöntem değişirse iki alanın sonucu aynı analiz sürümüne getirilir.
+2026-10-16 iş bölümü: M1 modüller ve A, M2 B; [ADR-005](../decisions/ADR-005-TEAM-OWNERSHIP.md). [A](REGION_A.md)/[B](REGION_B.md) görevleri ve [ortak profil](REGION_WORKFLOW.md) hazır. M2 daha sonra B başlangıcı/örneklerini ve Mac teknik tekrar kontrolünü kendi [üye notunda](../team/members/M2.md) bildirdi; ilk atama anındaki “başlamadı” durumu güncel değildir. İki kişi aynı modül/sözleşme sürümünü kullanır ve bölgesel hesapları çapraz inceler. Yöntem değişirse iki alanın sonucu aynı analiz sürümüne getirilir.
 
 Teslim: tekrarlanabilir çalışma, sürümlü sonuçlar ve bunları gösteren küçük web deneyimi. [Ekran kapsamı](../product/index.md) · [Görevler](WORK_BOARD.md).

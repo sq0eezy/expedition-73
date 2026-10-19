@@ -111,6 +111,15 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 - **İncelenecek:** Kaynak alanıyla doğrudan doğrulama yapıldığı varsayılmadan mevcut geometrik yöntemin ve hedef yüzeyin nasıl açıklanacağı. Başka AREA ürünü gerekiyorsa ayrı kaynak/grid uygunluğu gerekir; otomatik ürün değişimi yok.
 - **Sınır:** Metadata HTTP 200, AREA değerinin veya bilimsel yöntemin doğrulandığı anlamına gelmez. Yeni maske/alan/dönem veya M2 kabulü üretilmedi. İlk sonuç ekranı taslağı öneri; final web teknolojisi/sorumlusu seçilmedi.
 
+## H-M1-011 · Kayıtlı T2M ilk web ekranı
+
+- **Gönderen → alıcı:** M1 → M2; kullanıcının devam talebi kapsamındaki teknik ekranın panel içi teslimi; dış mesaj gönderilmedi.
+- **Tarih:** 2026-10-19.
+- **Durum:** Yerel M1 dalında; paylaşım ve üye kullanım incelemesi bekliyor.
+- **Teslim:** [Ekran/kullanım](../product/RESULTS_PREVIEW.md), [162 test ve on gerçek Chrome senaryosu](../evidence/RESULTS_PREVIEW_CHECK.md). Mac'te kurulu analysis ortamıyla önce `analysis/.venv/bin/python analysis/scripts/build_web_preview.py`, sonra `python3 web/serve.py`; adres 127.0.0.1:8873, kapatma Ctrl+C. Bu komutların Mac'te çalıştırıldığı varsayılmaz.
+- **İncelenecek:** Pencere/ay/maske seçimi, veri kaynağı ve koşullu kapsamın anlaşılması; B değerlerinin kaydedilmiş sonuçla uyuşması. Bölge listesine yeni uygun kayıt eklenebilir; yeni bilimsel gösterge desteği yok.
+- **Sınır:** Arayüz, yöntem veya maske kabulü değildir. M2'nin gördüğü/başladığı veya nihai web görevini üstlendiği varsayılmaz; main/Pages yayını bu teslimde yapılmadı.
+
 ## Bir kayıt için gerekenler
 
 **2026-10-18 mimari açıklık:** M1 çok girdili modül bağımlılığına hazır olup olmadığımızı sordu. [A→B, A+B→C örneği](../architecture/MODULE_SYSTEM.md), C'nin B ile aynı A çıktısını kullanması koşuluyla ayrıntılandırıldı. [MOD-06](../planning/WORK_BOARD.md) önerilen teknik deneme; motor henüz yok. M2 adına inceleme veya onay beyanı üretilmedi.
