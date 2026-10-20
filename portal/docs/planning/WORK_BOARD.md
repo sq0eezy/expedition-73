@@ -1,5 +1,7 @@
 # İş panosu
 
+**2026-10-20 · U-02 aday ağırlık kıyaslaması:** Üç seçeneğin aynı ay sonuçları ve iki farkın yıllık maksimumu/ayı [yerelde doğrulandı](../evidence/POLICY_COMPARISON_CHECK.md): 164 analiz + 8 JS hesap testi, 22 Chrome senaryosu. M2’nin beklediği bilimsel yüzey/maske kararına inceleme desteğidir; kabul veya yeni yayın değildir.
+
 **2026-10-20 · U-02 hücre incelemesi:** [56/55 hücre ve etkin alan görünümü](../evidence/SPATIAL_PREVIEW_CHECK.md) yerel M1 dalında; 164 test ve 18 Chrome senaryosu geçti. M2’nin `a1a83d5` teknik doğrulama kaydı alındı; bilimsel maske/sınır/dönem ve yeni ekran incelemesi açık.
 
 **2026-10-19 · İlk yerel sonuç ekranı:** U-02 teknik dilimi, kullanıcının ilk ekran önerisi sonrası devam talebiyle uygulandı; [gerçek kayıtlar ve tarayıcı doğrulaması](../evidence/RESULTS_PREVIEW_CHECK.md). U-01 genel deneyim/nihai teknoloji seçimi bundan ayrı ve açık. Mevcut bilimsel MOD-05/R-A04/R-B04 durumları arayüz başarısıyla tamamlanmış sayılmaz.
@@ -28,7 +30,7 @@ Görevler eldeki kanıta göre güncellenir. **2026-10-16 iş bölümü:** M1 mo
 | P-04 | Dar T2M pilotunu uçtan uca gerçekleştir | Validating | M1: modül/A; M2: B | [İş bölümü](REGION_WORKFLOW.md); genel web geliştirmesi açık | Karşılıklı inceleme planı | [Pilot çıkış koşulları](PILOT.md); alt görevler aşağıda |
 | A-01 | Modülün istatistik yöntemini belirle | Proposed | M1 | Modül kapsamını üstlendi | M2 (planlanan) | MOD-02: kaynak, varsayımlar ve bağımsız örnek |
 | U-01 | Etkileşim taslağını belirle | Proposed | Atanmadı | Atanmadı | Atanmadı | Harita/grafik/tarih akışı; kapsam seçimine bağlı |
-| U-02 | Kayıtlı T2M için ilk yerel sonuç ekranı | Validating | M1 oturumundaki teknik dilim | İlk ekran önerisi sonrası M1 devam talebi | M1/M2 kullanım incelemesi bekliyor | [Yerel çalışan ekran](../product/RESULTS_PREVIEW.md): hücre/ay/politika incelemesi; [164 analiz testi ve 18 Chrome senaryosu](../evidence/SPATIAL_PREVIEW_CHECK.md). Nihai yığın/barındırma/Mac kabulü açık |
+| U-02 | Kayıtlı T2M için ilk yerel sonuç ekranı | Validating | M1 oturumundaki teknik dilim | İlk ekran önerisi sonrası M1 devam talebi | M1/M2 kullanım incelemesi bekliyor | [Yerel çalışan ekran](../product/RESULTS_PREVIEW.md): hücre/ay/politika ve yan yana ağırlık incelemesi; [164 analiz + 8 JS testi, 22 Chrome senaryosu](../evidence/POLICY_COMPARISON_CHECK.md). Nihai yığın/barındırma/Mac kabulü açık |
 | C-01 | Yeni konuşmaları özetleyerek işle | Proposed | Atanmadı | Atanmadı | Atanmadı | Yeni bilginin esas belgede yer alması |
 
 ## Modül ve bölge görevleri

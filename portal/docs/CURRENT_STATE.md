@@ -3,7 +3,7 @@ status: Validating
 updated: "2026-10-20"
 phase: Kayıtlı verilerle ilk yerel sonuç ekranı
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "M2 macOS doğrulama notları alındı; hücre görünümü yerelde çalışıyor. 164 analiz testi ve 18 Chrome senaryosu geçti; yeni yayın yok."
+change_summary: "Aday ağırlıklar yan yana karşılaştırılıyor; 164 analiz + 8 JS hesap testi ve 22 Chrome senaryosu geçti. Bilimsel seçim ve yeni yayın yok."
 ---
 # Mevcut durum
 
@@ -11,9 +11,11 @@ change_summary: "M2 macOS doğrulama notları alındı; hücre görünümü yere
 
 ## Hazır olanlar
 
+- **Üç aday ağırlık yan yana:** Aynı ayın maskesiz/kara/kara+buz sonuçları, iki ikili farkın yıllık maksimumu/ayı ve ayrı geçerli ay sayıları görünür. 8 JS hesap testi gerçek A/B raporuyla birebir eşleşti; 164 analiz testi, gerçek replay ve 22 Chrome senaryosu başarılı. [Kanıt](evidence/POLICY_COMPARISON_CHECK.md). Yeni bilimsel seçim yok; builder dört uygulama dosyası + JSON üretir. Yerel M1 dalında.
+
 - **Hücre görünümü eklendi:** A/B için 56/55 hücre; seçili ayın grid T2M değeri, tam/kesilmiş sınır, dört fraksiyon ve etkin alan incelenebiliyor. Aynı hücrelerden üç politikanın 12 aylık sonuçları yeniden üretildi. 164 analiz testi ve 18 Chrome senaryosu başarılı. [Ürün](product/RESULTS_PREVIEW.md), [kanıt](evidence/SPATIAL_PREVIEW_CHECK.md). Web aktarımı 0.2.0; kaynak/bilimsel şemalar değişmedi. Yeni dilim yerel M1 dalında.
 
-- **İlk yerel web ekranı çalışıyor:** A/B seçimi, aylık grafik, üç yüzey ağırlığı, ay kartları/farkı, alan kapsamı, kaynak ayrıntısı, tablo ve JSON indirme hazır. Builder kayıtlı girdileri yeniden doğrular, yalnız dört genel çıktı dosyası üretir; tarayıcı NASA/token kullanmaz. Dokuz yeni testle 162 analiz testi, gerçek veri tekrarları ve on Chrome senaryosu geçti; mobil/masaüstü görseller incelendi. [Kullanım ve sınırlar](product/RESULTS_PREVIEW.md), [gerçek kanıt](evidence/RESULTS_PREVIEW_CHECK.md). `web/` teknik prototiptir; nihai teknoloji veya bilimsel profil kabulü yok. M1 dalında yerel, main/Pages değişmedi.
+- **İlk yerel web ekranı çalışıyor:** A/B seçimi, aylık grafik, üç yüzey ağırlığı, ay kartları/farkı, alan kapsamı, kaynak ayrıntısı, tablo ve JSON indirme hazır. Builder ilk teslimde kayıtlı girdileri yeniden doğrulayıp dört genel çıktı dosyası üretti; tarayıcı NASA/token kullanmaz. Dokuz yeni testle 162 analiz testi, gerçek veri tekrarları ve on Chrome senaryosu geçti; mobil/masaüstü görseller incelendi. [Kullanım ve sınırlar](product/RESULTS_PREVIEW.md), [gerçek kanıt](evidence/RESULTS_PREVIEW_CHECK.md). `web/` teknik prototiptir; nihai teknoloji veya bilimsel profil kabulü yok. M1 dalında yerel, main/Pages değişmedi.
 
 - **Kaynak AREA uygunluğu kontrol edildi:** Seçili granülün tam DMR'si yeniden HTTP 200 ile okundu; eski hash'le aynı ve AREA sayısal bildirimi yok. Şartname ile başka NASA README tablosu arasındaki fark kaydedildi. `check-source-area` bu durumu çevrim dışı açıkça raporlar; değer/alan karşılaştırması yapılmadı. Yedi yeni test, toplam 153 test ve gerçek veri tekrarları başarılı. [Esas inceleme](research/SOURCE_AREA.md), [erişim/komut kanıtı](evidence/SOURCE_AREA_CHECK.md). Yeni sonuç M1 dalında yerel; maske/profil kabulü yok.
 
@@ -57,4 +59,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-Hücre görünümü dahil yerel ekranı ekipçe incelemek; M2'nin beklediği yüzey hedefi, kesin sınır ve uzun dönem profilini birlikte netleştirmek. [Ekran kapsamı](product/RESULTS_PREVIEW.md). Kıyı çizgili harita, uzun dönem/trend, ikinci gösterge ve nihai barındırma/yığın açık. AREA bulunmayan granülden sayısal alan karşılaştırması varsayılmaz. M2'nin `a1a83d5` notları `b3718b4` ile yerel M1 dalına alındı; yeni ekranı kabul ettiği anlamına gelmez. 164 testlik yeni dilimler henüz paylaşılmadı; main/Pages'e bu oturumda yazılmadı.
+Hücre ve ağırlık karşılaştırması dahil yerel ekranı ekipçe incelemek; M2'nin beklediği yüzey hedefi, kesin sınır ve uzun dönem profilini birlikte netleştirmek. [Ekran kapsamı](product/RESULTS_PREVIEW.md). Kıyı çizgili harita, uzun dönem/trend, ikinci gösterge ve nihai barındırma/yığın açık. AREA bulunmayan granülden sayısal alan karşılaştırması varsayılmaz. M2'nin `a1a83d5` notları `b3718b4` ile yerel M1 dalına alındı; yeni ekranı kabul ettiği anlamına gelmez. 164 testlik yeni dilimler henüz paylaşılmadı; main/Pages'e bu oturumda yazılmadı.

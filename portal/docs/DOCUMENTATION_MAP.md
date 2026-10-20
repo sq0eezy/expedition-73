@@ -9,6 +9,7 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | Deneyim ve önerilen ilk kapsam | [Ürün](product/index.md) |
 | Kayıtlı T2M ilk yerel web ekranı ve çalıştırma | [Sonuç prototipi](product/RESULTS_PREVIEW.md), [gerçek tarayıcı kanıtı](evidence/RESULTS_PREVIEW_CHECK.md) |
 | Kayıtlı hücre görünümü ve etkin alan tutarlılığı | [Hücre ekranı kanıtı](evidence/SPATIAL_PREVIEW_CHECK.md), [ürün kapsamı](product/RESULTS_PREVIEW.md) |
+| Üç aday ağırlığın yan yana kıyaslanması | [Ağırlık ekranı kanıtı](evidence/POLICY_COMPARISON_CHECK.md), [ürün](product/RESULTS_PREVIEW.md) |
 | Sınanacak beklentiler | [Hipotezler](product/HYPOTHESES.md) |
 | Fikir adayları ve seçim ölçütleri | [Karşılaştırma](discovery/IDEA_COMPARISON.md) |
 | Cevap bekleyen sorular | [Keşif](discovery/index.md) |

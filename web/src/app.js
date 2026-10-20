@@ -1,3 +1,5 @@
+import { summarizePolicyDifferences } from "./comparison.mjs";
+
 const $ = (id) => document.getElementById(id);
 const months = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
 const shortMonths = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
@@ -25,6 +27,7 @@ function validate(data) {
     const signature = JSON.stringify([region.variable.id, region.variable.unit, region.variable.height_m, ...["frequency", "start", "end", "calendar", "provider_time_standard"].map((key) => region.time[key]), provider.provider, provider.product, provider.api_version, [...provider.sources].sort()]);
     if (context !== undefined && signature !== context) throw Error("Incompatible comparison context");
     context = signature;
+    summarizePolicyDifferences(region.series);
     validateSpatial(region, data.dates);
     for (const key of ["land", "land_and_ice"]) {
       const support = region.support.policies[key];
@@ -140,6 +143,36 @@ function renderTable(regions) {
   $("data-table").replaceChildren(el("caption", `${labels[state.policy]} · kayıtlı aylık sıcaklıklar`), head, body);
 }
 
+function renderComparison(regions) {
+  $("comparison-month").textContent = `${months[state.month]} ${state.data.dates[state.month].slice(0, 4)}`;
+  $("comparison-empty").hidden = regions.length > 0;
+  const signed = (v) => v === null ? "Veri yok" : `${v >= 0.0000005 ? "+" : ""}${number(Math.abs(v) < 0.0000005 ? 0 : v, 6)} °C`;
+  $("comparison-cards").replaceChildren(...regions.map((region) => {
+    const box = el("article", undefined, "comparison-card"); box.dataset.region = region.id;
+    const head = el("h3", `${region.id} · ${named(region)}`); head.style.setProperty("--region-color", color(region));
+    const table = el("table"); table.append(el("caption", "Seçili ay · üç ağırlık seçeneği"));
+    const body = el("tbody");
+    for (const [policy, label] of Object.entries(labels)) {
+      const row = el("tr"); row.dataset.policy = policy; if (policy === state.policy) row.className = "chosen-policy";
+      const th = el("th", label); th.scope = "row"; if (policy === state.policy) th.append(el("span", "Grafikte", "comparison-tag"));
+      const temperature = region.series[state.month][policy];
+      row.append(th, el("td", temperature === null ? "Veri yok" : `${number(temperature, 6)} °C`)); body.append(row);
+    }
+    table.append(body); box.append(head, table);
+    for (const contrast of summarizePolicyDifferences(region.series)) {
+      const row = el("div", undefined, "contrast-row"); row.dataset.contrast = contrast.id;
+      const top = el("div", undefined, "contrast-top"); top.append(el("span", contrast.label), el("strong", signed(contrast.values[state.month].delta), "contrast-value"));
+      let peak = "En büyük |fark|: veri yok";
+      if (contrast.max_abs_delta_degC !== null) {
+        const dates = contrast.max_abs_dates.length === 12 ? "12 ay eşit" : contrast.max_abs_dates.map((date) => months[Number(date.slice(-2)) - 1]).join(", ");
+        peak = `En büyük |fark|: ${number(contrast.max_abs_delta_degC, 6)} °C · ${dates}`;
+      }
+      row.append(top, el("p", peak, "contrast-peak"), el("p", `${contrast.valid_months}/12 eşleşen ay · yalnız bu iki seri için`, "detail-note")); box.append(row);
+    }
+    return box;
+  }));
+}
+
 function renderSpatial(regions) {
   $("spatial-empty").hidden = regions.length > 0;
   $("spatial-content").hidden = regions.length === 0;
@@ -203,7 +236,7 @@ function renderSpatial(regions) {
 function render() {
   const regions = active();
   $("month-label").textContent = months[state.month]; $("month").setAttribute("aria-valuetext", `${months[state.month]} ${state.data.dates[0].slice(0, 4)}`);
-  renderMetrics(regions); renderChart(regions); renderSpatial(regions); renderSupport(regions); renderSources(regions); renderTable(regions);
+  renderMetrics(regions); renderChart(regions); renderComparison(regions); renderSpatial(regions); renderSupport(regions); renderSources(regions); renderTable(regions);
   $("download").disabled = !regions.length;
 }
 

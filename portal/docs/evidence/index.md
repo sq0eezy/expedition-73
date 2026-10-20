@@ -14,6 +14,7 @@
 | [Aday maske/modül paylaşımı](SURFACE_RELEASE.md) | Kullanıcının canlı talebi, dal/main bütünleştirmesi ve gerçek yayın kontrolü |
 | [Koşullu alan kapsamı denetimi](SURFACE_SUPPORT_CHECK.md) | Kesilmiş hücrelerin yüzey yerleşim sınırları, iki gerçek pencere ve analitik testler; güven aralığı değildir |
 | [Kaynak AREA uygunluğu](SOURCE_AREA_CHECK.md) | Canlı tam DMR HTTP 200: seçili granülde AREA yok; çevrim dışı yeterlilik kontrolü, sayısal karşılaştırma yapılmadı |
+| [Aday ağırlık kıyaslaması](POLICY_COMPARISON_CHECK.md) | Aynı ayın üç sonucu ve eşleşen çiftlerde yıllık en büyük fark/ayı; 164 analiz + 8 JS testi ve 22 Chrome senaryosu |
 | [Hücre görünümü](SPATIAL_PREVIEW_CHECK.md) | 56/55 hücre, mevcut alan/aylık sonuçları yeniden üretme, 164 analiz testi ve 18 Chrome senaryosu; yeni yayın yok |
 | [İlk yerel sonuç ekranı](RESULTS_PREVIEW_CHECK.md) | Gerçek kayıtlı grafik/ay/maske seçimi, 162 analiz testi ve on Chrome senaryosu; bilimsel profil kabulü değildir |
 | [Gerçek T2M API ve adaptör](T2M_POINT_PROBE.md) | 2024 tek nokta yanıtı, 26 test ve bilimsel sınırlar |

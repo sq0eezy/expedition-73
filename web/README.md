@@ -28,6 +28,7 @@ python3 web/serve.py
 
 - A/B adaylarını birlikte veya ayrı göster; aynı yılın 12 aylık zaman serisini incele.
 - Bütün pencere, FRLAND veya FRLAND+FRLANDICE ağırlığını açıkça seç. Son ikisi aday yöntemdir.
+- Karşılaştırma bölümünde üç seçeneğin aynı ay değerlerini yan yana gör. Kara−maskesiz ve kara+buz−kara farkları, yılın en büyük mutlak farkı/ayı ve her çiftin geçerli ay sayısı gösterilir. Küçük fark yöntemin doğruluğunu kanıtlamaz; altı ondalık ölçüm doğruluğu değildir.
 - Ay kaydırıcısı kartları ve grafik işaretlerini birlikte değiştirir; iki pencere seçiliyken o ayın A−B farkı gösterilir. Bu fark iklim eğilimi değildir.
 - Hücre şemasında pencere seç; bir hücreye tıkla veya ok tuşlarıyla ilerle. Ayın gerçek grid T2M değeri, dört tam-hücre fraksiyonu ve seçili ağırlığın etkin alanı görünür. Renk politikayla değişmez; tüm ay/pencereler ortak ölçekte kalır. Şema alanı korumaz, kıyı çizgisi içermez.
 - Koşullu alan kapsamı, kaynak AREA'nın bulunmaması ve hesaplanmamış eğilim açıkça görünür. Kaynak ayrıntısı ve erişilebilir değer tablosu açılabilir.
@@ -37,7 +38,7 @@ python3 web/serve.py
 
 `regions.json` yalnız gösterim adı, iş kimliği ve analysis içindeki kayıtlı kaynak klasörlerini seçer. Yeni uygun bölge için bir kayıt ekle; dönemi/göstergesi aynı, sürümlü pencere ve fraksiyon girdileri mevcut modül tarafından doğrulanmalıdır. Bu prototip bir tam yıl ve 1–8 pencereyi destekler. Başka gösterge veya serbest poligon desteği eklenmiş sayılmaz.
 
-Builder önce her kaydı gerçek kaynaklarından yeniden hesaplar ve metadata hash'ini eşleştirir. Başarısız/uyumsuz girdide yeni kısmi çıktı üretmez. Sadece `src/index.html`, `styles.css`, `app.js` ve doğrulanmış seri/hücre `data/results.json` dosyasını `dist/` içine yazar. `.env`, ham özel artifacts, NetCDF, çalışma dizini veya token kopyalanmaz. Sunucu yalnız bu çıktı klasörünü loopback üzerinde sunar. Tarayıcı NASA'ya bağlanmaz; kaynak bağlantılarını açmak kullanıcının ayrı eylemidir.
+Builder önce her kaydı gerçek kaynaklarından yeniden hesaplar ve metadata hash'ini eşleştirir. Başarısız/uyumsuz girdide yeni kısmi çıktı üretmez. Sadece `src/index.html`, `styles.css`, `app.js`, `comparison.mjs` ve doğrulanmış seri/hücre `data/results.json` dosyasını `dist/` içine yazar. `.env`, ham özel artifacts, NetCDF, çalışma dizini veya token kopyalanmaz. Sunucu yalnız bu çıktı klasörünü loopback üzerinde sunar. Tarayıcı NASA'ya bağlanmaz; kaynak bağlantılarını açmak kullanıcının ayrı eylemidir.
 
 Web aktarım sürümü 0.2.0; eski 0.1.0 web verisi yeni arayüzle reddedilir. Kod/veri birlikte builder ile yenilenir. Kaynak T2M/fraksiyon şemaları ve bilimsel yöntem sürümleri değişmedi.
 
@@ -47,6 +48,8 @@ Web aktarım sürümü 0.2.0; eski 0.1.0 web verisi yeni arayüzle reddedilir. K
 
 Analysis testleri, **analysis içinde**: `.venv/bin/python -m unittest discover -s tests`. Windows karşılığı `.venv\Scripts\python.exe`.
 
+Saf karşılaştırma hesabı için depo kökünde `node --test web/tests/comparison.test.mjs` (Node yalnız geliştirici kontrolü için). `comparison.mjs` sunucuda JavaScript MIME türüyle sunulur; Windows kayıt defterindeki metin türü kullanılmaz.
+
 İsteğe bağlı tarayıcı QA: Playwright paketinin bulunduğu Node ortamında, sunucu açıkken depo kökünden `node web/tests/browser.cjs`. Varsayılan yüklü Chrome; Edge için `EXPEDITION73_BROWSER=msedge`. Paket ayrı dizindeyse `EXPEDITION73_PLAYWRIGHT` mutlak paket dizini olabilir. Çalışan önizlemenin kendisi Node/Playwright gerektirmez. Test görüntüleri `web/artifacts/` altında tutulur.
 
-[Ürün kapsamı](../portal/docs/product/RESULTS_PREVIEW.md) · [İlk ekran doğrulaması](../portal/docs/evidence/RESULTS_PREVIEW_CHECK.md) · [Hücre görünümü doğrulaması](../portal/docs/evidence/SPATIAL_PREVIEW_CHECK.md)
+[Ürün kapsamı](../portal/docs/product/RESULTS_PREVIEW.md) · [İlk ekran doğrulaması](../portal/docs/evidence/RESULTS_PREVIEW_CHECK.md) · [Hücre görünümü doğrulaması](../portal/docs/evidence/SPATIAL_PREVIEW_CHECK.md) · [Ağırlık karşılaştırması](../portal/docs/evidence/POLICY_COMPARISON_CHECK.md)

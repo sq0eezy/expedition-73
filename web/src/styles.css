@@ -83,6 +83,23 @@ input[type=range]{width:100%;height:4px;accent-color:var(--ink)}
 .month-end{font-size:8px;color:var(--muted);letter-spacing:1px}
 .chart-caption{font-size:9px;color:var(--muted);margin-top:15px;margin-bottom:0}
 .detail-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:16px;margin-top:19px}
+.comparison-panel{margin-top:19px;padding:23px 25px;background:#fafbf7;border:1px solid var(--line);border-radius:5px}
+.comparison-month{font-size:11px;color:var(--muted);white-space:nowrap}
+.comparison-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px;margin:17px 0}
+.comparison-card{min-width:0;background:white;border:1px solid var(--line);padding:16px;border-radius:4px}
+.comparison-card h3{font-size:13px;margin:0 0 12px;font-weight:500;border-left:3px solid var(--region-color);padding-left:9px}
+.comparison-card table{font-size:10px;margin:0 0 15px}
+.comparison-card caption{text-align:left;font-size:9px;color:var(--muted);margin:0 0 8px}
+.comparison-card th,.comparison-card td{padding:9px 6px}
+.comparison-card td{white-space:nowrap}
+.chosen-policy{background:#edf2e6}
+.comparison-tag{display:block;font-size:8px;color:#4f6e46}
+.contrast-row+.contrast-row{border-top:1px solid var(--line);padding-top:11px;margin-top:11px}
+.contrast-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;font-size:10px}
+.contrast-value{font-size:14px;font-weight:500;white-space:nowrap;font-variant-numeric:tabular-nums}
+.contrast-peak{font-size:10px;margin:5px 0;color:var(--muted)}
+.contrast-row .detail-note{margin:0;font-size:9px}
+@media(max-width:740px){.comparison-panel{padding:18px 12px}.comparison-panel .panel-heading{align-items:flex-start;flex-wrap:wrap}.comparison-panel h2{font-size:16px}.comparison-card{padding:12px}.contrast-top{flex-wrap:wrap}.contrast-value{font-size:13px}}
 .spatial-panel{margin-top:19px;padding:23px 25px;background:#fff;border:1px solid var(--line);border-radius:5px}
 .spatial-control label{display:block;font-size:10px;color:var(--muted);margin-bottom:4px}
 .spatial-control select{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:7px;color:var(--ink);font-size:11px;max-width:100%}

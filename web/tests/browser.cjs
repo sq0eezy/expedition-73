@@ -17,6 +17,8 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     page.on('pageerror', (error) => errors.push(error.message));
     page.on('request', (request) => requests.push(request.url()));
     const response = await page.goto(base); assert.equal(response.status(), 200);
+    const moduleResponse = await page.request.get(new URL('comparison.mjs', base).href);
+    assert.equal(moduleResponse.status(), 200); assert.match(moduleResponse.headers()['content-type'], /javascript/);
     await page.locator('#results').waitFor({ state: 'visible' });
     const data = await (await page.request.get(new URL('data/results.json', base).href)).json();
     assert.equal(data.regions.length, 2);
@@ -27,6 +29,19 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     };
     await checkMetrics('unmasked', 0); assert.equal(await page.locator('.chart-path').count(), 2);
     assert.equal(await page.locator('#data-table tbody tr').count(), 12); checks++;
+    const comparisonCard = (id) => page.locator(`.comparison-card[data-region="${id}"]`);
+    const six = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 6, maximumFractionDigits: 6 });
+    for (const region of data.regions) {
+      const card = comparisonCard(region.id);
+      for (const key of ['unmasked', 'land', 'land_and_ice']) assert.equal(await card.locator(`[data-policy="${key}"] td`).innerText(), six(region.series[0][key]) + ' °C');
+      for (const id of ['land_minus_unmasked', 'land_ice_minus_land']) {
+        const expected = region.diagnostics[`max_abs_${id}_degC`];
+        assert.ok((await card.locator(`[data-contrast="${id}"] .contrast-peak`).innerText()).includes(six(expected) + ' °C'));
+        assert.match(await card.locator(`[data-contrast="${id}"]`).innerText(), /12\/12 eşleşen ay/);
+      }
+    }
+    assert.match(await comparisonCard('B').locator('[data-contrast="land_minus_unmasked"] .contrast-peak').innerText(), /Kasım/);
+    assert.match(await comparisonCard('B').locator('[data-contrast="land_ice_minus_land"] .contrast-peak').innerText(), /Ekim/); checks++;
     assert.equal(data.schema_version, '0.2.0');
     assert.equal(await page.locator('#cell-grid [data-cell]').count(), 56);
     const aCell = data.regions[0].spatial.cells[9];
@@ -51,10 +66,14 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     assert.equal(await page.locator('#cell-detail h3').innerText(), format(bCell.series[11].value) + ' °C');
     await page.locator('#spatial-region').selectOption('A'); await page.locator('#policy').selectOption('unmasked'); await page.locator('#month').fill('0'); checks++;
     await page.screenshot({ path: path.join(screenshots, 'desktop.png'), fullPage: true });
+    await page.locator('.comparison-panel').screenshot({ path: path.join(screenshots, 'comparison-desktop.png') });
     await page.locator('.spatial-panel').screenshot({ path: path.join(screenshots, 'spatial-a.png') });
     await page.locator('#month').fill('6'); await checkMetrics('unmasked', 6);
     assert.equal(await page.locator('#month-label').innerText(), 'Temmuz');
     await page.locator('#policy').selectOption('land'); await checkMetrics('land', 6);
+    assert.match(await page.locator('#comparison-month').innerText(), /Temmuz 2024/);
+    assert.equal(await comparisonCard('B').locator('.chosen-policy').getAttribute('data-policy'), 'land');
+    assert.equal(await comparisonCard('B').locator('[data-policy="land"] td').innerText(), six(data.regions[1].series[6].land) + ' °C'); checks++;
     assert.match(await page.locator('#support-note').innerText(), /güven aralığı veya sıcaklık hata payı değildir/); checks++;
     const pendingDownload = page.waitForEvent('download'); await page.locator('#download').click();
     const download = await pendingDownload;
@@ -72,6 +91,8 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     assert.equal(await page.locator('#spatial-empty').isVisible(), true);
     assert.equal(await page.locator('#spatial-region').isDisabled(), true);
     assert.equal(await page.locator('#cell-grid [data-cell]').count(), 0);
+    assert.equal(await page.locator('#comparison-empty').isVisible(), true);
+    assert.equal(await page.locator('.comparison-card').count(), 0);
     await page.getByRole('checkbox', { name: 'A · Colorado çevresi', exact: true }).check();
     await page.getByRole('checkbox', { name: 'B · Kuzey Alaska', exact: true }).check();
     await page.locator('#provenance summary').click();
@@ -84,6 +105,7 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({ path: path.join(screenshots, 'mobile.png'), fullPage: true }); checks++;
+    await page.locator('.comparison-panel').screenshot({ path: path.join(screenshots, 'comparison-mobile.png') });
     const missing = await browser.newPage();
     await missing.route('**/data/results.json', async (route) => {
       const modified = structuredClone(data); modified.regions[0].series[5].unmasked = null;
@@ -98,6 +120,22 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     assert.equal(await missing.locator('#cell-detail h3').innerText(), 'Veri yok');
     assert.equal(await missing.locator('#cell-grid [data-cell="0"]').getAttribute('fill'), '#d7dcd4');
     assert.match(await missing.locator('#cell-detail').innerText(), /0,000 km² · sıcaklık eksik/); checks++;
+    const missingComparison = missing.locator('.comparison-card[data-region="A"]');
+    assert.equal(await missingComparison.locator('[data-contrast="land_minus_unmasked"] .contrast-value').innerText(), 'Veri yok');
+    assert.match(await missingComparison.locator('[data-contrast="land_minus_unmasked"]').innerText(), /11\/12 eşleşen ay/);
+    assert.match(await missingComparison.locator('[data-contrast="land_ice_minus_land"]').innerText(), /12\/12 eşleşen ay/); checks++;
+    const allMissing = await browser.newPage();
+    await allMissing.route('**/data/results.json', (route) => {
+      const modified = structuredClone(data); modified.regions[0].series.forEach((r) => { r.land = null; });
+      return route.fulfill({ json: modified });
+    });
+    await allMissing.goto(base); await allMissing.locator('#results').waitFor({ state: 'visible' });
+    for (const id of ['land_minus_unmasked', 'land_ice_minus_land']) {
+      const row = allMissing.locator(`.comparison-card[data-region="A"] [data-contrast="${id}"]`);
+      assert.match(await row.innerText(), /En büyük \|fark\|: veri yok/);
+      assert.match(await row.innerText(), /0\/12 eşleşen ay/);
+    }
+    await allMissing.close(); checks++;
     const failure = await browser.newPage();
     await failure.route('**/data/results.json', (route) => route.fulfill({ status: 503, body: 'unavailable' }));
     await failure.goto(base); await failure.locator('#error').waitFor({ state: 'visible' });
@@ -135,6 +173,6 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     assert.deepEqual(errors, []);
     console.log(JSON.stringify({ status: 'passed', browser: 'Chrome headless', checks, javascript_errors: errors,
       external_runtime_requests: requests.filter((url) => new URL(url).origin !== new URL(base).origin).length,
-      screenshots: ['web/artifacts/desktop.png', 'web/artifacts/mobile.png', 'web/artifacts/spatial-a.png', 'web/artifacts/spatial-b.png'] }));
+      screenshots: ['web/artifacts/desktop.png', 'web/artifacts/mobile.png', 'web/artifacts/comparison-desktop.png', 'web/artifacts/comparison-mobile.png', 'web/artifacts/spatial-a.png', 'web/artifacts/spatial-b.png'] }));
   } finally { await browser.close(); }
 })().catch((error) => { console.error(error); process.exitCode = 1; });

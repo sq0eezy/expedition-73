@@ -134,6 +134,15 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 - **İncelenecek:** B'nin 55 hücresi, ay değişimi ve seçili hücrenin grid T2M/fraksiyon/etkin alanı; sınırda kesilen hücrelere homojen fraksiyon uygulamasının açıklığı. Bilimsel maske seçimi bu ekranla yapılmış sayılmaz.
 - **Sınır:** M2'nin 134 testlik macOS teyidi alındı; yeni hücre ekranını gördüğü/kabul ettiği varsayılmaz. Main/Pages yayını yapılmadı.
 
+## H-M1-013 · Aday ağırlıkları yan yana inceleme
+
+- **Gönderen → alıcı:** M1 → M2; U-02 panel içi teknik teslim; dış mesaj yok.
+- **Tarih:** 2026-10-20.
+- **Durum:** Yerel M1 dalında; paylaşım/kullanım incelemesi bekliyor.
+- **Teslim:** [Ürün/kullanım](../product/RESULTS_PREVIEW.md), [gerçek kıyaslama ve testler](../evidence/POLICY_COMPARISON_CHECK.md). Mac'te builder yeniden çalıştırılır, ardından `python3 web/serve.py`; `comparison.mjs` dahil beş genel dosya birlikte üretilir.
+- **İncelenecek:** Aynı ayın üç sonucu; kara−maskesiz ve kara+buz−kara farklarının ay/maksimum ve geçerli çift sayıları. Bunlar iklim etkisi veya toplam belirsizlik değildir; hedef yüzeyin seçimi ayrı kalır.
+- **Sınır:** Kara/buz politikası, kesin sınır ve dönem kabul edilmedi. Yeni dilim M2 tarafından görülmüş/çalıştırılmış sayılmaz; Pages'e yayımlanmadı.
+
 ## Bir kayıt için gerekenler
 
 **2026-10-18 mimari açıklık:** M1 çok girdili modül bağımlılığına hazır olup olmadığımızı sordu. [A→B, A+B→C örneği](../architecture/MODULE_SYSTEM.md), C'nin B ile aynı A çıktısını kullanması koşuluyla ayrıntılandırıldı. [MOD-06](../planning/WORK_BOARD.md) önerilen teknik deneme; motor henüz yok. M2 adına inceleme veya onay beyanı üretilmedi.

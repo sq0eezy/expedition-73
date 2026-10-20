@@ -123,7 +123,7 @@ class WebPreviewTests(unittest.TestCase):
             output = Path(temp) / 'dist'
             result = web_preview.build(ROOT, WEB, output)
             files = {p.relative_to(output).as_posix(): p.read_bytes() for p in output.rglob('*') if p.is_file()}
-            self.assertEqual(set(files), {'index.html', 'styles.css', 'app.js', 'data/results.json'})
+            self.assertEqual(set(files), {'index.html', 'styles.css', 'app.js', 'comparison.mjs', 'data/results.json'})
             self.assertFalse(result['live_nasa_request'])
             web_preview.build(ROOT, WEB, output)
             self.assertEqual(files, {p.relative_to(output).as_posix(): p.read_bytes() for p in output.rglob('*') if p.is_file()})

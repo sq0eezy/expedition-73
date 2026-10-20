@@ -1,5 +1,15 @@
 # Çalışma günlüğü
 
+## 2026-10-20 · Aday ağırlık karşılaştırması
+
+M1 devam istedi. Durum/üye/fikir/devir/pano ve ürün/hesap kaynakları okundu; fetch'te main/M2 `a1a83d5` olarak aynı, yeni katkı yok. U-02'ye aynı ayın üç aday ağırlık sonucu, iki ikili farkın maksimumu/ayı ve her çiftin geçerli ay sayısı eklendi. Bilimsel maske, alan, dönem veya M2 tercihi kabul edilmedi. [Ürün](../product/RESULTS_PREVIEW.md), [esas doğrulama](../evidence/POLICY_COMPARISON_CHECK.md).
+
+Saf `comparison.mjs` yalnız mevcut değerlerden çıkarma/maksimum yapar; eksik çiftler dışlanır, hiç geçerli çift yoksa null kalır, sıfır ve eşit maksimumlar korunur. Gerçek A/B workflow farkları/maksimumları birebir yeniden üretildi. Yeni modülle builder beş genel dosya üretir; kaynak örnekler, sıcaklık hesabı ve web 0.2.0 şeması değişmedi. NASA/token erişimi yok. İlk Chrome denemesi, Windows `.mjs` MIME türü text/plain nedeniyle zaman aşımına uğradı; yerel sunucu text/javascript sunacak şekilde düzeltildi, sonraki kontroller geçti.
+
+Windows/Python 3.12.14: **164 analiz testi / 27,386 saniye / OK**, iki nokta, A alan, B parçalı alan ve 56/55 hücreli fraksiyon replay'leri başarılı. **8 JS hesap testi / 113,003 ms**, **22 Chrome senaryo grubu**, JS sözdizimi başarılı; ana sayfa JS hatası/dış runtime isteği 0. 1440×1100 ve 390×844 ekranlar incelendi, yatay taşma yok. HTTP 200 ve doğru modül MIME türü doğrulandı; Codex açma isteği queued, gerçek QA bağımsız yüklü Chrome'da yapıldı. Test sunucusu durduruldu ve kapandığı doğrulandı. Yeni Mac/Ubuntu koşusu veya M2 ekran incelemesi yok.
+
+CURRENT_STATE, ürün/U-02, M1, H-M1-013 ve belge/kanıt haritaları güncellendi. Çalışma yerel M1 dalında; push/main/Pages yayını yapılmadı. Sırada ekipçe yüzey hedefi, kesin sınır ve uzun dönem profilini netleştirmek var; ekran farkları yöntem doğruluğu veya iklim etkisi değildir. Portal check/strict build ve git diff --check geçti; bunlar analiz/tarayıcı kanıtından ayrıdır.
+
 ## 2026-10-20 · M2 güncellemesi alındı, hücre görünümü eklendi
 
 M1 devam istedi. Durum/üye/fikir/devir/pano ve ilgili ürün/hesap kaynakları incelendi. Fetch'te main/M2 `a1a83d5` geldi; M2'nin 134 macOS testi, B gerçek aday fraksiyon akışı ve teknik kimlik uzlaşması okundu. Sekiz belge güncellemesi normal merge ile `b3718b4` olarak M1 dalına alındı; CURRENT_STATE/WORK_LOG çakışmalarında iki katkı da korundu, portal kontrolleri geçti. Üç yerel M1 commit'i silinmedi; M2'nin bilimsel maske veya yeni web ekranını kabul ettiği varsayılmadı. [Paylaşım kaydı](../team/SYNC.md).

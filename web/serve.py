@@ -5,6 +5,11 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 
+class PreviewHandler(SimpleHTTPRequestHandler):
+    # Windows may register .mjs as text/plain; browsers require a JS MIME type.
+    extensions_map = {**SimpleHTTPRequestHandler.extensions_map, '.mjs': 'text/javascript'}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--port', type=int, default=8873)
@@ -15,7 +20,7 @@ def main():
     if not 1024 <= args.port <= 65535:
         parser.error('Choose a port between 1024 and 65535.')
     try:
-        server = ThreadingHTTPServer(('127.0.0.1', args.port), partial(SimpleHTTPRequestHandler, directory=str(root)))
+        server = ThreadingHTTPServer(('127.0.0.1', args.port), partial(PreviewHandler, directory=str(root)))
     except OSError:
         parser.error('Could not bind the local port; stop the previous preview or choose --port.')
     print(f'Local preview: http://127.0.0.1:{args.port}/\nStop: Ctrl+C', flush=True)

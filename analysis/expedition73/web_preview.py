@@ -8,7 +8,7 @@ from pathlib import Path, PurePosixPath
 from . import masking, regional, surface_source, surface_support, surface_workflow
 from .power import PilotError, loads
 
-ASSETS = ("index.html", "styles.css", "app.js")
+ASSETS = ("index.html", "styles.css", "app.js", "comparison.mjs")
 
 
 def _spatial(window, mask, config, audit):
