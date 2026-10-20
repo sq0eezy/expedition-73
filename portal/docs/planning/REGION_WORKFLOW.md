@@ -23,7 +23,7 @@ change_summary: "İki bölgenin gerçek 2024 örnekleriyle ortak teknik deneme p
 
 ## Ortak teknik deneme profili · 0.1.0, aday
 
-**Kimlik:** `t2m-technical-2024`, sürüm `0.1.0`, durum **Candidate / ortak sürüm uzlaştırması açık**. Bu tablo eldeki teknik denemelerin ortak özelliklerini kaydeder; nihai ürün/alan/dönem/maske veya istatistik kabulü değildir. Kodun bu profil belgesini çalışma zamanında otomatik tükettiği varsayılmadı. R-A03 taslağı hazırlandı. M2, ayrı dalındaki `791e07c` ile teknik B uygunluğunu onayladığını ve `common-profile-t2m-0.2.0` önerisini bildirdi; bu dal henüz birleştirilmedi. İki profil kimliği/sürümü ve bilimsel uygunluk ayrıca uzlaştırılacak: [inceleme](../team/SYNC.md). Sonraki değişiklikte sürüm/gerekçe yazılacak.
+**Kimlik:** `t2m-technical-2024`, sürüm `0.1.0`, durum **Candidate / teknik deneme profili uzlaştırıldı, bilimsel profil seçimi açık**. Bu tablo eldeki teknik denemelerin ortak özelliklerini kaydeder; nihai ürün/alan/dönem/maske veya istatistik kabulü değildir. Kodun bu profil belgesini çalışma zamanında otomatik tükettiği varsayılmadı. R-A03 taslağı hazırlandı. M2, `791e07c` ve 2026-10-19 güncellemesiyle teknik B uygunluğunu onayladı ve `t2m-technical-2024` (`0.1.0`) teknik deneme kimliği ile `monthly_window_series` (`0.2.0`) şema sürümü ayrımına katıldı: [inceleme](../team/SYNC.md). Nihai bilimsel profil, kesin sınır ve maske politikası seçildiğinde yeni sürüm/gerekçe yazılacak.
 
 | Alan | Güncel kayıt |
 |---|---|
@@ -33,15 +33,15 @@ change_summary: "İki bölgenin gerçek 2024 örnekleriyle ortak teknik deneme p
 | A ve B sınır kimliği/sürümü | İki proje arama dikdörtgeni; `search-window-0.1.0`. A `[-113,36,-109,39]`, B `[-156,68,-150,70]`; kabul edilmiş analiz sınırı değil. [A fişi](../research/regions/REGION_A_PROFILE.md), [B fişi](../research/regions/REGION_B_PROFILE.md) |
 | Ortak dönem/sıklık | Gerçek teknik örnekler 2024-01…2024-12, aylık, Gregoryen, LST. Uzun dönem seçilmedi; 2001–2024 aday |
 | Birim/ölçek/eksik değer kuralı | T2M, degC, 2 metre; sağlayıcı C tanımı kontrol ediliyor. -999 dolgu ve dönmeyen ay ayrı null statüleri. Yıllık 13. kayıt aylara karışmıyor. Alan hesabında her pozitif destek hücresi gerekli |
-| Kara/su maskesi ve alan/kesişim ağırlığı | Mevcut gerçek örnekler maskesiz; orta nokta hücre kenarı ve küresel dikdörtgen kesişim alanı yöntemi 0.1.0. A 56/B 55 hücre. M2C0NXASM fraksiyonları aday; önce oturumsuz 401, sonra yerel metadata HTTP 200; gerçek A/B küçük fraksiyon alt kümeleri 56/55 hücreyle alınıp yeniden doğrulandı; kara/buz seçimi ve bilimsel uygunluk açık. [Maske araştırması](../research/SURFACE_MASK.md) |
+| Kara/su maskesi ve alan/kesişim ağırlığı | Mevcut gerçek T2M örnekleri maskesiz; orta nokta hücre kenarı ve küresel dikdörtgen kesişim alanı yöntemi 0.1.0. A 56/B 55 hücre. M2C0NXASM 5.12.4 fraksiyon alt kümeleri (A: 56, B: 55 hücre) alınıp Windows, Ubuntu ve macOS'ta yeniden doğrulandı; `FRLAND` ve `FRLAND+FRLANDICE` aday duyarlılıkları hesaplandı, nihai kara/buz seçimi ve bilimsel uygunluk açık. [Maske araştırması](../research/SURFACE_MASK.md), [aday akış](../evidence/SURFACE_WORKFLOW.md) |
 | Referans dönem/mevsim tanımı | Gerekliyse açıkça seçilecek |
 | Analiz profili/sürümü ve varsayımlar | Seçilmedi |
-| Modül/sözleşme sürümü ve örnek çağrı | Nokta ve tek istek 0.1.0, parçalı pencere 0.2.0. Bilimsel alan yöntemi aynı 0.1.0; farklı şemaları aynı sürümmüş gibi etiketlemeyin. [Çalıştırma](../guide/T2M_TILED_WINDOW.md) |
-| Gözlenen uyumluluk/engeller | Nokta A/B aktarım/zaman kontrolünde 12 ay eşleşiyor; `inference_allowed=false`. A tek istek/B parçalı alan örnekleri ayrı yeniden hesaplamalardan geçiyor; bölgesel bilimsel uygunluk onayı yok. Metadata ve sayısal fraksiyon alımı/dönüşümü doğrulandı; bilimsel maske tanımı açık |
+| Modül/sözleşme sürümü ve örnek çağrı | Nokta ve tek istek 0.1.0, parçalı pencere 0.2.0, aday yüzey duyarlılığı 0.1.0. Bilimsel alan yöntemi aynı 0.1.0; farklı şemaları aynı sürümmüş gibi etiketlemeyin. [Çalıştırma](../guide/T2M_TILED_WINDOW.md) |
+| Gözlenen uyumluluk/engeller | Nokta A/B aktarım/zaman kontrolünde 12 ay eşleşiyor; `inference_allowed=false`. A tek istek/B parçalı alan örnekleri ve 5 düğümlü aday yüzey akışı ayrı yeniden hesaplamalardan geçiyor; bölgesel bilimsel uygunluk onayı yok. Metadata ve sayısal fraksiyon alımı/dönüşümü doğrulandı; bilimsel maske tanımı açık |
 
 ## Bilimsel profil için karar bekleyenler
 
-Kesin alan/poligon, kara/buz dahil etme kuralı, maskenin tam hücre oranını sınır parçasında kullanma yaklaşımı, gerçek maske alt kümesi, ortak uzun dönem, istatistik yöntemi ve belirsizlik incelemesi henüz seçilmedi. `preview-surface-mask` ayrı aday türdür; gerçek bölgesel seri veya nihai profil yerine geçirilmez. M2'nin uygunluk görüşü gelmeden bu teknik tablo bilimsel kabul kaydı sayılmaz.
+Kesin alan/poligon, kara/buz dahil etme kuralı, maskenin tam hücre oranını sınır parçasında kullanma yaklaşımı, gerçek maske alt kümesi, ortak uzun dönem, istatistik yöntemi ve belirsizlik incelemesi henüz seçilmedi. `preview-surface-mask` ayrı aday türdür; gerçek bölgesel seri veya nihai profil yerine geçirilmez. İki üyenin nihai bilimsel uygunluk kararı olmadan bu teknik tablo bilimsel kabul kaydı sayılmaz.
 
 API kullanımı bütün arşivi elle indirmek zorunda olmak değildir. Öncelik gerekli küçük alt kümeye programla erişmek; sorgu, yanıt ve üretim izini korumaktır. [NASA POWER aylık API](https://power.larc.nasa.gov/docs/services/api/temporal/monthly/) bir seçenektir; nokta yanıtı bölge ortalaması sayılmaz. POWER yanıtı doğrudan MERRA-2 dosyasıyla aynı ürün/sürüm diye etiketlenmez. Sağlayıcı değişikliği önce uygunluk kontrolünden geçer.
 

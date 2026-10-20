@@ -1,8 +1,12 @@
 ---
 review_summary: "Ortak webden okuma, GitHub üzerinden düzenleme ve yerel kaynakları eşitleme."
-change_summary: "M1 aday fraksiyon/modül teslimi main ve Pages'te; ayrı geliştirme dalları korunuyor."
+change_summary: "M2 dalı main (6da0103) ile birleştirildi; macOS üzerinde 134 test ve B aday yüzey akışı doğrulanıp ortak panele hazırlandı."
 ---
 # Paylaşım ve kurulum
+
+## 2026-10-19 · M2 dal senkronizasyonu ve macOS doğrulaması
+
+M2 (`sq0eezy`), `origin/main` (`6da0103`) sürümünü `codex/m2-region-b` dalına birleştirdi ve Emeç'in inceleme notlarını koruyarak çakışmaları çözdü. macOS/Python 3.14 (`netCDF4 1.7.2`, `numpy 2.5.4`) ortamında 134 birim testin tamamı (0 atlanan), A/B nokta ve pencere doğrulamaları, 55 hücreli `b-surface-fractions` NetCDF dönüşüm tekrarı ve 5 düğümlü `run-surface-workflow` Bölge B aday duyarlılık akışı doğrulandı. Teknik deneme profili için `t2m-technical-2024` (`0.1.0`) kimliği ve şema (`0.2.0`) / bilimsel alan yöntemi (`0.1.0`) ayrımı uzlaştırıldı; nihai bilimsel maske/sınır/dönem seçimi açık bırakıldı.
 
 ## 2026-10-18 · Mevcut M1 dilimini canlıya paylaşma talebi
 
