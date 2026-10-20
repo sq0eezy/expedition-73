@@ -3,7 +3,7 @@ const months = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz"
 const shortMonths = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
 const colors = ["#c77543", "#247c78", "#7466a1", "#777c39", "#a3536b", "#3878a6", "#8c6238", "#626c6a"];
 const labels = { unmasked: "Bütün pencere · maskesiz", land: "Kara oranı · FRLAND (aday)", land_and_ice: "Kara + kara buzu (aday)" };
-const state = { data: null, selected: new Set(), month: 0, policy: "unmasked" };
+const state = { data: null, selected: new Set(), month: 0, policy: "unmasked", spatialRegion: null, cell: 0 };
 const number = (value, digits = 2) => value === null ? "Veri yok" : value.toLocaleString("tr-TR", { minimumFractionDigits: digits, maximumFractionDigits: digits });
 const el = (tag, text, className) => { const node = document.createElement(tag); if (text !== undefined) node.textContent = text; if (className) node.className = className; return node; };
 const color = (region) => colors[state.data.regions.indexOf(region) % colors.length];
@@ -13,7 +13,7 @@ const value = (region, index) => region.series[index][state.policy];
 const svg = (tag, attributes, text) => { const node = document.createElementNS("http://www.w3.org/2000/svg", tag); for (const [key, v] of Object.entries(attributes)) node.setAttribute(key, v); if (text !== undefined) node.textContent = text; return node; };
 
 function validate(data) {
-  if (data.schema_version !== "0.1.0" || data.output_type !== "recorded_temperature_web_preview" || data.data_mode !== "recorded_offline_replay" || data.selection_status !== "candidate" || data.inference_performed !== false) throw Error("Unsupported preview contract");
+  if (data.schema_version !== "0.2.0" || data.output_type !== "recorded_temperature_web_preview" || data.data_mode !== "recorded_offline_replay" || data.selection_status !== "candidate" || data.inference_performed !== false) throw Error("Unsupported preview contract");
   if (!Array.isArray(data.dates) || data.dates.length !== 12 || !data.dates.every((d, i) => d === `${data.dates[0].slice(0, 4)}-${String(i + 1).padStart(2, "0")}`)) throw Error("Unsupported period");
   if (!Array.isArray(data.regions) || !data.regions.length || data.regions.length > 8 || new Set(data.regions.map((r) => r.id)).size !== data.regions.length) throw Error("Unsupported regions");
   let context;
@@ -25,12 +25,39 @@ function validate(data) {
     const signature = JSON.stringify([region.variable.id, region.variable.unit, region.variable.height_m, ...["frequency", "start", "end", "calendar", "provider_time_standard"].map((key) => region.time[key]), provider.provider, provider.product, provider.api_version, [...provider.sources].sort()]);
     if (context !== undefined && signature !== context) throw Error("Incompatible comparison context");
     context = signature;
+    validateSpatial(region, data.dates);
     for (const key of ["land", "land_and_ice"]) {
       const support = region.support.policies[key];
       if (![support.lower_fraction_of_window, support.uniform_fraction_of_window, support.upper_fraction_of_window].every((v) => typeof v === "number" && Number.isFinite(v) && v >= 0 && v <= 1)) throw Error("Invalid area support");
       if (support.lower_fraction_of_window > support.uniform_fraction_of_window || support.uniform_fraction_of_window > support.upper_fraction_of_window) throw Error("Invalid area bounds");
     }
   }
+}
+
+function validateSpatial(region, dates) {
+  const s = region.spatial, bbox = region.region.candidate_bbox;
+  const finite = (v) => typeof v === "number" && Number.isFinite(v);
+  const bounds = (b) => Array.isArray(b) && b.length === 4 && b.every(finite) && b[0] < b[2] && b[1] < b[3] && b[0] >= -180 && b[2] <= 180 && b[1] >= -90 && b[3] <= 90;
+  const close = (a, b) => Math.abs(a - b) <= Math.max(1, Math.abs(b)) * 1e-9;
+  if (!s || s.geometry !== "reconstructed_midpoint_rectangles" || s.fraction_placement !== "uniform_within_full_cell_assumption" || s.longitude_step_deg !== 0.625 || s.latitude_step_deg !== 0.5 || s.area_radius_m !== 6371008.8 || !bounds(bbox) || !Array.isArray(s.cells) || !s.cells.length || s.cells.length !== region.support.cell_count) throw Error("Invalid spatial context");
+  const keys = new Set(), sums = { unmasked: 0, land: 0, land_and_ice: 0 };
+  for (const c of s.cells) {
+    const key = `${c.longitude},${c.latitude}`, f = c.fractions, part = c.intersection_bbox;
+    if (!finite(c.longitude) || !finite(c.latitude) || keys.has(key) || !bounds(c.full_cell_bbox) || !bounds(part)) throw Error("Invalid cell geometry");
+    keys.add(key);
+    const full = [c.longitude - 0.3125, c.latitude - 0.25, c.longitude + 0.3125, c.latitude + 0.25];
+    const intersection = [Math.max(full[0], bbox[0]), Math.max(full[1], bbox[1]), Math.min(full[2], bbox[2]), Math.min(full[3], bbox[3])];
+    if (!full.every((v, i) => close(v, c.full_cell_bbox[i])) || !intersection.every((v, i) => close(v, part[i])) || c.clipped !== full.some((v, i) => !close(v, part[i]))) throw Error("Invalid cell intersection");
+    const area = s.area_radius_m ** 2 * (part[2] - part[0]) * Math.PI / 180 * (Math.sin(part[3] * Math.PI / 180) - Math.sin(part[1] * Math.PI / 180));
+    if (!finite(c.intersection_area_m2) || !close(c.intersection_area_m2, area) || !f || !["FRLAND", "FRLANDICE", "FRLAKE", "FROCEAN"].every((k) => finite(f[k]) && f[k] >= 0 && f[k] <= 1) || Math.abs(f.FRLAND + f.FRLANDICE + f.FRLAKE + f.FROCEAN - 1) > 1e-6) throw Error("Invalid cell fractions or area");
+    const factors = { unmasked: 1, land: f.FRLAND, land_and_ice: f.FRLAND + f.FRLANDICE };
+    for (const policy of Object.keys(labels)) {
+      if (!finite(c.weights_m2[policy]) || !close(c.weights_m2[policy], c.intersection_area_m2 * factors[policy])) throw Error("Invalid cell weight");
+      sums[policy] += c.weights_m2[policy];
+    }
+    if (!Array.isArray(c.series) || c.series.length !== 12 || !c.series.every((r, i) => r.date === dates[i] && (r.value === null || finite(r.value)))) throw Error("Invalid cell series");
+  }
+  if (!close(sums.unmasked, region.support.window_area_m2) || !["land", "land_and_ice"].every((p) => close(sums[p], region.support.policies[p].uniform_estimate_m2))) throw Error("Cell coverage disagrees with aggregate");
 }
 
 function metric(title, temperature, note, region, difference = false) {
@@ -113,10 +140,70 @@ function renderTable(regions) {
   $("data-table").replaceChildren(el("caption", `${labels[state.policy]} · kayıtlı aylık sıcaklıklar`), head, body);
 }
 
+function renderSpatial(regions) {
+  $("spatial-empty").hidden = regions.length > 0;
+  $("spatial-content").hidden = regions.length === 0;
+  $("spatial-region").disabled = !regions.length;
+  $("spatial-region").replaceChildren(...regions.map((r) => { const option = el("option", `${r.id} · ${named(r)}`); option.value = r.id; return option; }));
+  if (!regions.length) { state.spatialRegion = null; $("cell-grid").replaceChildren(); $("cell-detail").replaceChildren(); return; }
+  if (!regions.some((r) => r.id === state.spatialRegion)) { state.spatialRegion = regions[0].id; state.cell = 0; }
+  $("spatial-region").value = state.spatialRegion;
+  const region = regions.find((r) => r.id === state.spatialRegion), cells = region.spatial.cells;
+  state.cell = Math.min(state.cell, cells.length - 1);
+  const temperatures = state.data.regions.flatMap((r) => r.spatial.cells.flatMap((c) => c.series.map((row) => row.value))).filter((v) => v !== null);
+  const low = temperatures.length ? Math.floor(Math.min(...temperatures) / 10) * 10 : 0;
+  const high = temperatures.length ? Math.max(low + 10, Math.ceil(Math.max(...temperatures) / 10) * 10) : 10;
+  const fill = (v) => {
+    if (v === null) return "#d7dcd4";
+    const t = (v - low) / (high - low), a = t < .5 ? [53, 110, 159] : [244, 245, 239], b = t < .5 ? [244, 245, 239] : [199, 117, 67], f = t < .5 ? t * 2 : (t - .5) * 2;
+    return `rgb(${a.map((n, i) => Math.round(n + (b[i] - n) * f)).join(",")})`;
+  };
+  $("scale-low").textContent = number(low, 0); $("scale-high").textContent = number(high, 0);
+  $("spatial-context").textContent = `${region.id} · ${months[state.month]} ${state.data.dates[0].slice(0, 4)} · ${cells.length} hücre · 0,625° boylam × 0,5° enlem. Sınır [B, G, D, K]: ${region.region.candidate_bbox.join(", ")}°.`;
+  const minX = Math.min(...cells.map((c) => c.full_cell_bbox[0])), maxX = Math.max(...cells.map((c) => c.full_cell_bbox[2]));
+  const minY = Math.min(...cells.map((c) => c.full_cell_bbox[1])), maxY = Math.max(...cells.map((c) => c.full_cell_bbox[3]));
+  const x = (lon) => 57 + (lon - minX) / (maxX - minX) * 440, y = (lat) => 290 - (lat - minY) / (maxY - minY) * 267;
+  const box = (b) => ({ x: x(b[0]), y: y(b[3]), width: x(b[2]) - x(b[0]), height: y(b[1]) - y(b[3]) });
+  const grid = $("cell-grid"); grid.replaceChildren(svg("title", {}, `${named(region)} · kayıtlı grid hücreleri`));
+  cells.forEach((c, i) => {
+    grid.append(svg("rect", { ...box(c.full_cell_bbox), class: "full-cell", "aria-hidden": "true" }));
+    const v = c.series[state.month].value, selected = i === state.cell;
+    const rect = svg("rect", { ...box(c.intersection_bbox), fill: fill(v), class: "grid-cell", role: "button", tabindex: selected ? "0" : "-1", "aria-pressed": String(selected), "data-cell": i, "aria-label": `Hücre merkezi ${c.longitude}°, ${c.latitude}°; ${months[state.month]}: ${v === null ? "veri yok" : number(v) + " °C"}` });
+    const select = (index, focus) => { state.cell = index; renderSpatial(regions); if (focus) grid.querySelector(`[data-cell="${index}"]`).focus({ preventScroll: true }); };
+    rect.addEventListener("click", () => select(i, true));
+    rect.addEventListener("keydown", (event) => {
+      if (["Enter", " "].includes(event.key)) { event.preventDefault(); select(i, true); return; }
+      const offset = { ArrowRight: [0.625, 0], ArrowLeft: [-0.625, 0], ArrowUp: [0, 0.5], ArrowDown: [0, -0.5] }[event.key];
+      if (!offset) return; event.preventDefault();
+      const next = cells.findIndex((other) => other.longitude === c.longitude + offset[0] && other.latitude === c.latitude + offset[1]);
+      if (next >= 0) select(next, true);
+    });
+    rect.append(svg("title", {}, rect.getAttribute("aria-label"))); grid.append(rect);
+  });
+  grid.append(svg("rect", { ...box(region.region.candidate_bbox), class: "candidate-outline", "aria-hidden": "true" }));
+  const chosen = cells[state.cell], center = [(chosen.intersection_bbox[0] + chosen.intersection_bbox[2]) / 2, (chosen.intersection_bbox[1] + chosen.intersection_bbox[3]) / 2];
+  grid.append(svg("circle", { cx: x(center[0]), cy: y(center[1]), r: 5, class: "selected-cell-mark", "aria-hidden": "true" }));
+  for (const lon of [minX, maxX]) grid.append(svg("text", { x: x(lon), y: 310, "text-anchor": lon === minX ? "start" : "end", class: "spatial-axis" }, `${number(lon, 3)}°`));
+  for (const lat of [minY, maxY]) grid.append(svg("text", { x: 50, y: y(lat) + 4, "text-anchor": "end", class: "spatial-axis" }, `${number(lat, 2)}°`));
+  grid.append(svg("text", { x: 277, y: 333, "text-anchor": "middle", class: "spatial-axis" }, "Boylam → · Enlem ↑"));
+  const detail = $("cell-detail"), temperature = chosen.series[state.month].value;
+  const total = cells.reduce((sum, c) => sum + (c.series[state.month].value === null ? 0 : c.weights_m2[state.policy]), 0);
+  const effective = temperature === null ? 0 : chosen.weights_m2[state.policy];
+  const table = el("dl", undefined, "cell-facts");
+  const fact = (name, text) => table.append(el("dt", name), el("dd", text));
+  fact("Hücre merkezi (boylam, enlem)", `${chosen.longitude}°, ${chosen.latitude}°`);
+  fact("Sınır kesişimi", chosen.clipped ? "Tam hücrenin bir parçası" : "Tam hücre");
+  fact("Kesişim alanı · pilot küresi", `${number(chosen.intersection_area_m2 / 1e6, 3)} km²`);
+  fact("Seçili ağırlığın etkin alanı", `${number(effective / 1e6, 3)} km²${temperature === null ? " · sıcaklık eksik" : ""}`);
+  fact("Bu ayın geçerli alanındaki payı", total > 0 ? `%${number(effective / total * 100, 3)}` : "Veri yok");
+  for (const [key, label] of Object.entries({ FRLAND: "Kara", FRLANDICE: "Kara buzu", FRLAKE: "Göl", FROCEAN: "Okyanus" })) fact(`${label} · tam hücre oranı`, `%${number(chosen.fractions[key] * 100, 4)}`);
+  detail.replaceChildren(el("span", "SEÇİLİ HÜCRE", "section-label"), el("h3", temperature === null ? "Veri yok" : `${number(temperature)} °C`), el("p", `${months[state.month]} · grid T2M · ${labels[state.policy]}`, "detail-note"), table);
+}
+
 function render() {
   const regions = active();
   $("month-label").textContent = months[state.month]; $("month").setAttribute("aria-valuetext", `${months[state.month]} ${state.data.dates[0].slice(0, 4)}`);
-  renderMetrics(regions); renderChart(regions); renderSupport(regions); renderSources(regions); renderTable(regions);
+  renderMetrics(regions); renderChart(regions); renderSpatial(regions); renderSupport(regions); renderSources(regions); renderTable(regions);
   $("download").disabled = !regions.length;
 }
 
@@ -125,7 +212,7 @@ async function load() {
   try {
     const response = await fetch("./data/results.json", { cache: "no-store" }); if (!response.ok) throw Error("Data unavailable");
     const data = await response.json(); validate(data); state.data = data; state.selected = new Set(data.regions.map((r) => r.id));
-    state.month = 0; state.policy = "unmasked"; $("policy").value = state.policy; $("month").value = "0";
+    state.month = 0; state.policy = "unmasked"; state.spatialRegion = null; state.cell = 0; $("policy").value = state.policy; $("month").value = "0";
     const year = data.dates[0].slice(0, 4); $("scope-year").textContent = `${year} · 12 ay`; $("year-mark").textContent = year;
     $("dataset-note").textContent = `Kayıtlı ${year} örnekleri · Aday sınırlar · Bilimsel profil incelemede`;
     $("region-options").replaceChildren(...data.regions.map((region) => {
@@ -141,9 +228,10 @@ async function load() {
 $("policy").addEventListener("change", () => { state.policy = $("policy").value; render(); });
 $("month").addEventListener("input", () => { state.month = Number($("month").value); render(); });
 $("retry").addEventListener("click", load);
+$("spatial-region").addEventListener("change", () => { state.spatialRegion = $("spatial-region").value; state.cell = 0; renderSpatial(active()); });
 window.matchMedia("(max-width:740px)").addEventListener("change", () => { if (state.data) renderChart(active()); });
 $("download").addEventListener("click", () => {
-  const selected = { schema_version: "0.1.0", selection_status: "candidate", data_mode: state.data.data_mode, inference_performed: false, selected_policy: state.policy, selected_month: state.data.dates[state.month], regions: active() };
+  const selected = { schema_version: state.data.schema_version, selection_status: "candidate", data_mode: state.data.data_mode, inference_performed: false, selected_policy: state.policy, selected_month: state.data.dates[state.month], regions: active() };
   const url = URL.createObjectURL(new Blob([JSON.stringify(selected, null, 2)], { type: "application/json" }));
   const link = el("a"); link.href = url; link.download = "expedition73-temperature-preview.json"; document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 });

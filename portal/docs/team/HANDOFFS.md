@@ -125,6 +125,15 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 - **İncelenecek:** Pencere/ay/maske seçimi, veri kaynağı ve koşullu kapsamın anlaşılması; B değerlerinin kaydedilmiş sonuçla uyuşması. Bölge listesine yeni uygun kayıt eklenebilir; yeni bilimsel gösterge desteği yok.
 - **Sınır:** Arayüz, yöntem veya maske kabulü değildir. M2'nin gördüğü/başladığı veya nihai web görevini üstlendiği varsayılmaz; main/Pages yayını bu teslimde yapılmadı.
 
+## H-M1-012 · Hücre ve etkin alan incelemesi
+
+- **Gönderen → alıcı:** M1 → M2; U-02 kapsamında panel içi teknik teslim; dış mesaj yok.
+- **Tarih:** 2026-10-20.
+- **Durum:** Yerel M1 dalında, paylaşım ve kullanım incelemesi bekliyor.
+- **Teslim:** [Ürün ve Mac komutları](../product/RESULTS_PREVIEW.md), [164 analiz testi ve 18 Chrome senaryosu](../evidence/SPATIAL_PREVIEW_CHECK.md). Önce builder tekrar çalıştırılır; web aktarımı 0.2.0, kaynak şemaları/yöntem aynı.
+- **İncelenecek:** B'nin 55 hücresi, ay değişimi ve seçili hücrenin grid T2M/fraksiyon/etkin alanı; sınırda kesilen hücrelere homojen fraksiyon uygulamasının açıklığı. Bilimsel maske seçimi bu ekranla yapılmış sayılmaz.
+- **Sınır:** M2'nin 134 testlik macOS teyidi alındı; yeni hücre ekranını gördüğü/kabul ettiği varsayılmaz. Main/Pages yayını yapılmadı.
+
 ## Bir kayıt için gerekenler
 
 **2026-10-18 mimari açıklık:** M1 çok girdili modül bağımlılığına hazır olup olmadığımızı sordu. [A→B, A+B→C örneği](../architecture/MODULE_SYSTEM.md), C'nin B ile aynı A çıktısını kullanması koşuluyla ayrıntılandırıldı. [MOD-06](../planning/WORK_BOARD.md) önerilen teknik deneme; motor henüz yok. M2 adına inceleme veya onay beyanı üretilmedi.

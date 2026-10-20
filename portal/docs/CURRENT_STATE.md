@@ -1,15 +1,17 @@
 ---
 status: Validating
-updated: "2026-10-19"
+updated: "2026-10-20"
 phase: Kayıtlı verilerle ilk yerel sonuç ekranı
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "İlk web ekranı yerelde çalışıyor; 162 analiz testi ve on Chrome senaryosu geçti. Nihai profil/yığın ve barındırma açık."
+change_summary: "M2 macOS doğrulama notları alındı; hücre görünümü yerelde çalışıyor. 164 analiz testi ve 18 Chrome senaryosu geçti; yeni yayın yok."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **Hücre görünümü eklendi:** A/B için 56/55 hücre; seçili ayın grid T2M değeri, tam/kesilmiş sınır, dört fraksiyon ve etkin alan incelenebiliyor. Aynı hücrelerden üç politikanın 12 aylık sonuçları yeniden üretildi. 164 analiz testi ve 18 Chrome senaryosu başarılı. [Ürün](product/RESULTS_PREVIEW.md), [kanıt](evidence/SPATIAL_PREVIEW_CHECK.md). Web aktarımı 0.2.0; kaynak/bilimsel şemalar değişmedi. Yeni dilim yerel M1 dalında.
 
 - **İlk yerel web ekranı çalışıyor:** A/B seçimi, aylık grafik, üç yüzey ağırlığı, ay kartları/farkı, alan kapsamı, kaynak ayrıntısı, tablo ve JSON indirme hazır. Builder kayıtlı girdileri yeniden doğrular, yalnız dört genel çıktı dosyası üretir; tarayıcı NASA/token kullanmaz. Dokuz yeni testle 162 analiz testi, gerçek veri tekrarları ve on Chrome senaryosu geçti; mobil/masaüstü görseller incelendi. [Kullanım ve sınırlar](product/RESULTS_PREVIEW.md), [gerçek kanıt](evidence/RESULTS_PREVIEW_CHECK.md). `web/` teknik prototiptir; nihai teknoloji veya bilimsel profil kabulü yok. M1 dalında yerel, main/Pages değişmedi.
 
@@ -55,4 +57,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-İlk sonuç ekranı gerçek 2024 kayıtlarıyla yerelde çalışıyor; sırada ekipçe ay/pencere/maske etkileşimini ve gösterilen kapsam açıklamalarını incelemek, yüzey hedefi/ortak profil kararlarını netleştirmek var. [Çalıştırma ve ekran kapsamı](product/RESULTS_PREVIEW.md). Harita, uzun dönem/trend, ikinci gösterge ve nihai barındırma/yığın hâlâ açık. AREA bulunmayan granülden alan karşılaştırması üretilecek sayılmaz. Önceki 134 testlik akış main/canlı portalda; 162 testlik güncel yerel dilimler henüz paylaşılmadı. Yeni geliştirme ayrı M1 dalında sürer.
+Hücre görünümü dahil yerel ekranı ekipçe incelemek; M2'nin beklediği yüzey hedefi, kesin sınır ve uzun dönem profilini birlikte netleştirmek. [Ekran kapsamı](product/RESULTS_PREVIEW.md). Kıyı çizgili harita, uzun dönem/trend, ikinci gösterge ve nihai barındırma/yığın açık. AREA bulunmayan granülden sayısal alan karşılaştırması varsayılmaz. M2'nin `a1a83d5` notları `b3718b4` ile yerel M1 dalına alındı; yeni ekranı kabul ettiği anlamına gelmez. 164 testlik yeni dilimler henüz paylaşılmadı; main/Pages'e bu oturumda yazılmadı.

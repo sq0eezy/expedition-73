@@ -5,10 +5,28 @@ import hashlib
 import json
 from pathlib import Path, PurePosixPath
 
-from . import surface_source, surface_support, surface_workflow
+from . import masking, regional, surface_source, surface_support, surface_workflow
 from .power import PilotError, loads
 
 ASSETS = ("index.html", "styles.css", "app.js")
+
+
+def _spatial(window, mask, config, audit):
+    """Expose only recorded cell values and the existing audited geometry/weights."""
+    fractions = masking.validate_mask(mask, config)
+    cells = {(c["longitude"], c["latitude"]): c for c in window["module_details"]["cells"]}
+    rows = []
+    for cell in audit["cells"]:
+        key = (cell["longitude"], cell["latitude"])
+        rows.append({**{name: cell[name] for name in (
+            "longitude", "latitude", "full_cell_bbox", "intersection_bbox", "clipped", "intersection_area_m2")},
+            "fractions": dict(fractions[key]),
+            "series": [{"date": row["date"], "value": row["value"]} for row in cells[key]["series"]],
+            "weights_m2": {"unmasked": cell["intersection_area_m2"], **{
+                policy: cell["policies"][policy]["uniform_estimate_m2"] for policy in surface_support.POLICIES}}})
+    return {"geometry": "reconstructed_midpoint_rectangles", "longitude_step_deg": regional.DLON,
+            "latitude_step_deg": regional.DLAT, "area_radius_m": regional.RADIUS_M,
+            "fraction_placement": "uniform_within_full_cell_assumption", "cells": rows}
 
 
 def _directory(root, name):
@@ -68,10 +86,11 @@ def payload(analysis_root, registry):
                         "series": summary["series"], "diagnostics": summary["diagnostics"],
                         "support": {key: value for key, value in audit.items()
                                     if key in {"window_area_m2", "cell_count", "clipped_cells", "policies"}},
+                        "spatial": _spatial(temperature["result"], mask, temperature["request"], audit),
                         "source_area": surface_source.area_capability(metadata)["area"],
                         "provenance": summary["provenance"]})
         ids.add(entry["id"])
-    return {"schema_version": "0.1.0", "output_type": "recorded_temperature_web_preview",
+    return {"schema_version": "0.2.0", "output_type": "recorded_temperature_web_preview",
             "data_mode": "recorded_offline_replay", "selection_status": "candidate",
             "inference_performed": False, "dates": dates, "regions": regions}
 
@@ -86,7 +105,7 @@ def build(analysis_root, web_root, output):
             for item in destination.rglob("*"))):
         raise PilotError("Preview output must be a dedicated directory containing only generated public assets.")
     data = payload(analysis_root, loads((web / "regions.json").read_bytes()))
-    # Only enumerated public assets and validated aggregate data may be served.
+    # Only enumerated public assets and validated preview data may be served.
     files = {name: (web / "src" / name).read_bytes() for name in ASSETS}
     files["data/results.json"] = (json.dumps(data, ensure_ascii=False, indent=2, allow_nan=False) + "\n").encode("utf-8")
     destination.mkdir(parents=True, exist_ok=True)

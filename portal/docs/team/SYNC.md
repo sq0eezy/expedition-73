@@ -1,8 +1,14 @@
 ---
 review_summary: "Ortak webden okuma, GitHub üzerinden düzenleme ve yerel kaynakları eşitleme."
-change_summary: "M2 dalı main (6da0103) ile birleştirildi; macOS üzerinde 134 test ve B aday yüzey akışı doğrulanıp ortak panele hazırlandı."
+change_summary: "M2 a1a83d5 notları yerel M1 dalına alındı; üç yerel commit korundu. Yeni hücre ekranı yerel, push/Pages yayını yok."
 ---
 # Paylaşım ve kurulum
+
+## 2026-10-20 · M2 güncellemesi yerel M1 dalına alındı
+
+Fetch sonrası `origin/main` ve `origin/codex/m2-region-b` aynı `a1a83d5e78e7eccf74739f1b449f6be269c5b6f5` commit'inde görüldü. [M2'nin commit'i](https://github.com/sq0eezy/expedition-73/commit/a1a83d5e78e7eccf74739f1b449f6be269c5b6f5), üye/devir/pano ve B notları okundu: 134 macOS testi, B fraksiyon/akış doğrulaması ve teknik profil kimliği uzlaşması. Sekiz belge değişimi var; yeni kaynak verisi/analiz kodu yok. Mac sonucu M2'nin beyanıdır; bu Windows oturumu Mac doğrulaması yapmadı.
+
+M1'in üç yerel commit'i korunarak normal merge yapıldı (`b3718b4`). CURRENT_STATE ve WORK_LOG çakışmaları iki tarafın kayıtları korunarak çözüldü; portal check/build geçti. Yeni hücre görünümü kendi dalımızda yerel devam etti; uzak M1/M2 veya main'e push yapılmadı. [Yeni kanıt](../evidence/SPATIAL_PREVIEW_CHECK.md). H-M1-009/010/011/012 ve yeni ekran M2 tarafından kabul edilmiş sayılmaz.
 
 ## 2026-10-19 · M2 dal senkronizasyonu ve macOS doğrulaması
 

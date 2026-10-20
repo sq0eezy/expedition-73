@@ -1,5 +1,15 @@
 # Çalışma günlüğü
 
+## 2026-10-20 · M2 güncellemesi alındı, hücre görünümü eklendi
+
+M1 devam istedi. Durum/üye/fikir/devir/pano ve ilgili ürün/hesap kaynakları incelendi. Fetch'te main/M2 `a1a83d5` geldi; M2'nin 134 macOS testi, B gerçek aday fraksiyon akışı ve teknik kimlik uzlaşması okundu. Sekiz belge güncellemesi normal merge ile `b3718b4` olarak M1 dalına alındı; CURRENT_STATE/WORK_LOG çakışmalarında iki katkı da korundu, portal kontrolleri geçti. Üç yerel M1 commit'i silinmedi; M2'nin bilimsel maske veya yeni web ekranını kabul ettiği varsayılmadı. [Paylaşım kaydı](../team/SYNC.md).
+
+Sites yerel akışıyla U-02'ye hücre şeması eklendi. A/B 56/55 hücre, aylık grid T2M, gerçek tam-hücre fraksiyonları ve mevcut audit'ten kesişim/ağırlık aktarılır; tüm ay/pencereler ortak renk ölçeğinde, seçili hücre klavye/dokunmayla incelenir. Sadece web aktarımı 0.2.0 oldu; bilimsel hesap/örnekler değişmedi. İki yeni entegrasyon testi hücreleri replay ile eşleştirip 72 aylık politika/bölge sonucunu yeniden üretti. [Ürün](../product/RESULTS_PREVIEW.md), [gerçek kanıt](../evidence/SPATIAL_PREVIEW_CHECK.md).
+
+Windows/Python 3.12.14: **164 test / 19,000 saniye / OK**. İki gerçek nokta, A alan, B parçalı alan ve iki gerçek fraksiyon replay'i geçti. JS sözdizimi, **18 Chrome senaryo grubu**, eksik/bozuk veri, mobil taşma ve klavye odak kontrolleri geçti; ana sayfa JS hatası/dış runtime isteği 0. 1440×1100 ve 390×844 görüntüler, A/B hücre panelleri incelendi. Sunucu HTTP 200 verdi, Codex açma isteği queued; gerçek tarayıcı QA bağımsız Chrome'da tamamlandı. QA sunucusu durduruldu, loopback erişiminin kapandığı doğrulandı. Yeni NASA/token erişimi veya gerçek Mac/Ubuntu web koşusu yok.
+
+CURRENT_STATE, ürün, U-02, M1, H-M1-012, belge/kanıt haritaları güncellendi. Yüzey hedefi/kesin sınır/uzun dönem profil uzlaşması ve ekip ekran incelemesi açık. Yeni dilim yerel M1 dalında; push/main/Pages yayını yapılmadı. Portal check/strict build ve git diff --check geçti; bu belge kontrolleri analiz/tarayıcı kanıtından ayrıdır.
+
 ## 2026-10-19 · İlk gerçek kayıtlı sonuç ekranı
 
 M1 ilk ekran önerisi sonrası devam istedi. Başlangıçta mevcut durum, iki üye/fikir/devir/pano ve ürün/pilot kayıtları okundu; fetch'te yeni main/M2 katkısı yok, önceki iki yerel commit korundu. Sites becerisinin yerel/buildless akışıyla web/src HTML/CSS/JS, registry, builder ve yalnız dist sunan loopback komutu hazırlandı; harici Site kaydı/yayını veya final teknoloji kararı yok. [Ürün ve komutlar](../product/RESULTS_PREVIEW.md), [gerçek doğrulama](../evidence/RESULTS_PREVIEW_CHECK.md).

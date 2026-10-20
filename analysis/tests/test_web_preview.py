@@ -1,12 +1,13 @@
 """Real recorded-source export, coherent snapshots and isolated public outputs."""
 import copy
 import json
+import math
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from expedition73 import earthdata, surface_source, surface_workflow, web_preview
+from expedition73 import earthdata, masking, surface_source, surface_workflow, web_preview
 from expedition73.power import PilotError, loads
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -37,6 +38,36 @@ class WebPreviewTests(unittest.TestCase):
         result = web_preview.payload(ROOT, [self.registry[1]])
         self.assertEqual([r['id'] for r in result['regions']], ['B'])
         self.assertEqual(result['regions'][0]['display_name'], 'Kuzey Alaska')
+
+    def test_spatial_export_preserves_replayed_cell_values_fractions_and_intersections(self):
+        result = web_preview.payload(ROOT, self.registry)
+        self.assertEqual(result['schema_version'], '0.2.0')
+        for entry, region in zip(self.registry, result['regions']):
+            _, report = surface_workflow.run(ROOT / entry['window'], ROOT / entry['fractions'])
+            temperature = report['nodes']['Temperature']['artifact']['value']
+            mask = report['nodes']['Fractions']['artifact']['value']['result']
+            fractions = masking.validate_mask(mask, temperature['request'])
+            source = {(c['longitude'], c['latitude']): c for c in temperature['result']['module_details']['cells']}
+            self.assertEqual(len(region['spatial']['cells']), len(source))
+            for cell in region['spatial']['cells']:
+                key = (cell['longitude'], cell['latitude'])
+                self.assertEqual(cell['series'], [{'date': r['date'], 'value': r['value']} for r in source[key]['series']])
+                self.assertEqual(cell['fractions'], fractions[key])
+                self.assertEqual(cell['intersection_bbox'], source[key]['intersection_bbox'])
+                self.assertEqual(cell['intersection_area_m2'], source[key]['area_m2'])
+
+    def test_cell_weights_reconstruct_existing_area_and_all_monthly_aggregates(self):
+        for region in web_preview.payload(ROOT, self.registry)['regions']:
+            cells = region['spatial']['cells']
+            self.assertEqual(sum(c['clipped'] for c in cells), region['support']['clipped_cells'])
+            for policy in ('unmasked', 'land', 'land_and_ice'):
+                total = math.fsum(c['weights_m2'][policy] for c in cells)
+                expected = region['support']['window_area_m2'] if policy == 'unmasked' else region['support']['policies'][policy]['uniform_estimate_m2']
+                self.assertAlmostEqual(total / expected, 1, places=12)
+                for month in range(12):
+                    self.assertTrue(all(c['series'][month]['value'] is not None for c in cells))
+                    average = math.fsum(c['series'][month]['value'] * c['weights_m2'][policy] for c in cells) / total
+                    self.assertAlmostEqual(average, region['series'][month][policy], places=8)
 
     def test_registry_rejects_duplicate_wrong_identity_extra_fields_and_empty_names(self):
         for registry in [[], self.registry * 2, [{**self.registry[0], 'id': 'wrong'}],

@@ -110,6 +110,7 @@ nav:
       - Deneyim ve kapsam: product/index.md
       - İlk yerel sonuç ekranı: product/RESULTS_PREVIEW.md
       - Sonuç ekranı doğrulaması: evidence/RESULTS_PREVIEW_CHECK.md
+      - Hücre görünümü doğrulaması: evidence/SPATIAL_PREVIEW_CHECK.md
       - Hipotezler: product/HYPOTHESES.md
   - Keşif ve veri:
       - Açık sorular: discovery/index.md
