@@ -55,4 +55,4 @@ Mac/Linux: `analysis/.venv/bin/python analysis/scripts/build_web_preview.py`, ar
 
 Builder yalnız dört uygulama dosyası ve doğrulanmış seri/hücre JSON dosyası üretir; sunucu yalnız `web/dist` klasörünü sunar. Token/özel .env/ham özel artifacts tarayıcıya verilmez; tarayıcı çalışırken dış veri isteği yapmaz. Ayrı Node/Playwright yalnız isteğe bağlı QA içindir.
 
-Yeni kod M1 dalında yerel. Main/Pages güncellenmedi; mevcut Pages işi yalnız portalı derler. Web ekranının barındırılması, uzun dönem istatistik ve nihai bilimsel A/B karşılaştırması açık. Sonraki küçük adım, bu ekran akışının ekipçe incelenmesi ve gösterilecek yüzey/dönem/kapsamın netleştirilmesidir.
+Yeni kod 2026-10-20 kullanıcı talebiyle [GitHub M1 dalında paylaşıldı](../team/SYNC.md). Main/Pages güncellenmedi; mevcut Pages işi yalnız portalı derler. Web ekranının barındırılması, uzun dönem istatistik ve nihai bilimsel A/B karşılaştırması açık. Sonraki küçük adım, bu ekran akışının ekipçe incelenmesi ve gösterilecek yüzey/dönem/kapsamın netleştirilmesidir.

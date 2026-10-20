@@ -1,5 +1,7 @@
 # İş panosu
 
+**2026-10-20 · M1 dal paylaşımı:** Kullanıcının GitHub talebiyle U-02 ve önceki M1 dilimleri `6b4ab12` olarak geliştirme dalına gönderildi, uzak SHA doğrulandı. [Paylaşım](../team/SYNC.md). Görevlerin bilimsel/kullanım inceleme durumları değişmedi; main/Pages yayını veya yeni CI sonucu yok.
+
 **2026-10-20 · U-02 aday ağırlık kıyaslaması:** Üç seçeneğin aynı ay sonuçları ve iki farkın yıllık maksimumu/ayı [yerelde doğrulandı](../evidence/POLICY_COMPARISON_CHECK.md): 164 analiz + 8 JS hesap testi, 22 Chrome senaryosu. M2’nin beklediği bilimsel yüzey/maske kararına inceleme desteğidir; kabul veya yeni yayın değildir.
 
 **2026-10-20 · U-02 hücre incelemesi:** [56/55 hücre ve etkin alan görünümü](../evidence/SPATIAL_PREVIEW_CHECK.md) yerel M1 dalında; 164 test ve 18 Chrome senaryosu geçti. M2’nin `a1a83d5` teknik doğrulama kaydı alındı; bilimsel maske/sınır/dönem ve yeni ekran incelemesi açık.

@@ -1,8 +1,16 @@
 ---
 review_summary: "Ortak webden okuma, GitHub üzerinden düzenleme ve yerel kaynakları eşitleme."
-change_summary: "M2 a1a83d5 notları yerel M1 dalına alındı; üç yerel commit korundu. Yeni hücre ekranı yerel, push/Pages yayını yok."
+change_summary: "6b4ab12 ve önceki M1 çalışmaları GitHub geliştirme dalına gönderildi; uzak SHA doğrulandı. Main/M2 değişmedi; canlı Pages yayını yok."
 ---
 # Paylaşım ve kurulum
+
+## 2026-10-20 · M1 geliştirme dalı GitHub’da paylaşıldı
+
+Kullanıcı yapılan çalışmaları GitHub’a göndermeyi açıkça istedi. Temiz çalışma alanında fetch yapıldı; main ve M2 `a1a83d5` olarak aynıydı, M1 uzak dalında alınmamış katkı yoktu. M1’in sekiz yerel commit’i normal push ile `codex/m1-modules-region-a` dalına gönderildi. `git ls-remote` sonucu uzak başlık **`6b4ab124ca35b7b89e26b654ca5bbf4179736c83`**, yerel kaynakla aynı. [Paylaşılan dal](https://github.com/sq0eezy/expedition-73/tree/codex/m1-modules-region-a), [son kod commit’i](https://github.com/sq0eezy/expedition-73/commit/6b4ab124ca35b7b89e26b654ca5bbf4179736c83). Main/M2 aynı SHA’da korundu; force veya main birleştirmesi yapılmadı.
+
+Paylaşım; koşullu alan denetimi, kaynak AREA kontrolü, ilk web ekranı, hücre görünümü ve aday ağırlık kıyaslamasını kapsar. Önceki [164 analiz + 8 JS hesap testi ve 22 Chrome senaryosu](../evidence/POLICY_COMPARISON_CHECK.md) kodu değişmeden gönderildi; bu oturumda yeni analiz/Chrome koşusu veya Ubuntu/Mac CI başarısı iddia edilmez. Token/.env, sanal ortam ve özel/generated artifacts Git dışında; gönderilen kaynaklar arasında bu yolların izlenmediği kontrol edildi. Docker yalnız öneri olarak konuşuldu; Docker uygulaması veya kabul kararı yok.
+
+H-M1-009..013 artık dal üzerinden alınabilir; M2’nin gördüğü veya kabul ettiği anlamına gelmez. Canlı Pages main’den üretildiği için bu push ortak URL’yi güncellemez. Arkadaşın kendi çalışmalarını koruyarak önce `git fetch origin` yapıp M1 dalını inceleyebilir; [Mac web komutları](../product/RESULTS_PREVIEW.md) builder ve ardından `python3 web/serve.py` adımlarını içerir. Yerel korunmamış dosyalar varsa körlemesine dal değiştirme/pull yapılmaz.
 
 ## 2026-10-20 · M2 güncellemesi yerel M1 dalına alındı
 

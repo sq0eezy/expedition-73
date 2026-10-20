@@ -3,13 +3,15 @@ status: Validating
 updated: "2026-10-20"
 phase: Kayıtlı verilerle ilk yerel sonuç ekranı
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "Aday ağırlıklar yan yana karşılaştırılıyor; 164 analiz + 8 JS hesap testi ve 22 Chrome senaryosu geçti. Bilimsel seçim ve yeni yayın yok."
+change_summary: "M1 çalışmaları 6b4ab12 ile GitHub geliştirme dalında paylaşıldı. Main/M2 ve canlı site değişmedi; bilimsel seçim açık."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **Yeni M1 çalışmaları GitHub dalında:** Kullanıcının açık talebiyle kaynak `6b4ab12` normal push ile gönderildi ve uzak SHA doğrulandı. [Paylaşım ve Mac inceleme adımları](team/SYNC.md). Main/M2 değişmedi; Pages yayını veya M2 kabulü yok. Önceki testli kod değişmeden paylaşıldı.
 
 - **Üç aday ağırlık yan yana:** Aynı ayın maskesiz/kara/kara+buz sonuçları, iki ikili farkın yıllık maksimumu/ayı ve ayrı geçerli ay sayıları görünür. 8 JS hesap testi gerçek A/B raporuyla birebir eşleşti; 164 analiz testi, gerçek replay ve 22 Chrome senaryosu başarılı. [Kanıt](evidence/POLICY_COMPARISON_CHECK.md). Yeni bilimsel seçim yok; builder dört uygulama dosyası + JSON üretir. Yerel M1 dalında.
 
@@ -59,4 +61,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-Hücre ve ağırlık karşılaştırması dahil yerel ekranı ekipçe incelemek; M2'nin beklediği yüzey hedefi, kesin sınır ve uzun dönem profilini birlikte netleştirmek. [Ekran kapsamı](product/RESULTS_PREVIEW.md). Kıyı çizgili harita, uzun dönem/trend, ikinci gösterge ve nihai barındırma/yığın açık. AREA bulunmayan granülden sayısal alan karşılaştırması varsayılmaz. M2'nin `a1a83d5` notları `b3718b4` ile yerel M1 dalına alındı; yeni ekranı kabul ettiği anlamına gelmez. 164 testlik yeni dilimler henüz paylaşılmadı; main/Pages'e bu oturumda yazılmadı.
+Hücre ve ağırlık karşılaştırması dahil yerel ekranı ekipçe incelemek; M2'nin beklediği yüzey hedefi, kesin sınır ve uzun dönem profilini birlikte netleştirmek. [Ekran kapsamı](product/RESULTS_PREVIEW.md). Kıyı çizgili harita, uzun dönem/trend, ikinci gösterge ve nihai barındırma/yığın açık. AREA bulunmayan granülden sayısal alan karşılaştırması varsayılmaz. M2'nin `a1a83d5` notları `b3718b4` ile yerel M1 dalına alındı; yeni ekranı kabul ettiği anlamına gelmez. 164 testlik yeni dilimler GitHub M1 geliştirme dalında paylaşıldı; main/Pages'e bu oturumda yazılmadı.

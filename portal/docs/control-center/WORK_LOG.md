@@ -1,5 +1,11 @@
 # Çalışma günlüğü
 
+## 2026-10-20 · M1 çalışmalarını GitHub’a gönderme
+
+Kullanıcı yapılanları GitHub’a göndermeyi açıkça istedi. Temiz M1 dalı, güncel ekip/durum/devir kayıtları ve gönderilecek fark incelendi; fetch sonrası yeni uzak katkı yok. `.env`, sanal ortam, özel artifacts ve web generated çıktılarının izlenmediği kontrol edildi. Sekiz yerel commit normal push ile `codex/m1-modules-region-a` dalına gönderildi; `ls-remote` ile kaynak `6b4ab124ca35b7b89e26b654ca5bbf4179736c83` doğrulandı. Main ve M2 `a1a83d5` olarak aynı kaldı. [Paylaşım kaydı](../team/SYNC.md).
+
+Mevcut 164 analiz + 8 JS testi ve 22 Chrome senaryosu kanıtındaki kod değişmedi; yeni analiz/Chrome veya uzak CI çalıştırması raporlanmadı. Docker öneri olarak kaldı. CURRENT_STATE, ürün, pano, M1 ve H-M1-009..013 paylaşım durumları ilişkilendirildi; bilimsel seçim, M2 kabulü veya canlı yayın üretilmedi. Paylaşım kaydı için portal check/strict build ve git diff --check geçti; belge kaydı da aynı M1 dalına gönderilmek üzere hazırlanır.
+
 ## 2026-10-20 · Aday ağırlık karşılaştırması
 
 M1 devam istedi. Durum/üye/fikir/devir/pano ve ürün/hesap kaynakları okundu; fetch'te main/M2 `a1a83d5` olarak aynı, yeni katkı yok. U-02'ye aynı ayın üç aday ağırlık sonucu, iki ikili farkın maksimumu/ayı ve her çiftin geçerli ay sayısı eklendi. Bilimsel maske, alan, dönem veya M2 tercihi kabul edilmedi. [Ürün](../product/RESULTS_PREVIEW.md), [esas doğrulama](../evidence/POLICY_COMPARISON_CHECK.md).

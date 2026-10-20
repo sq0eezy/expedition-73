@@ -98,6 +98,8 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 - **Sınır:** Uzun dönem/eğilim/son web uygulaması yok. M2'nin Mac'te bu yeni akışı çalıştırdığı veya politikayı onayladığı varsayılmadı.
 - **Yanıt:** M2 (sq0eezy), 2026-10-19: macOS/Python 3.14 (`netCDF4 1.7.2`, `numpy 2.5.4`) üzerinde 134 birim testin tamamı ve `run-surface-workflow --window-run examples/b-window-2024 --fraction-run examples/b-surface-fractions` komutu çalıştırıldı (`5/5 düğüm completed`, `12/12 ay`). Bölge B'de `FRLAND` etkin alanı 52.183,622 km² (%98,15), `FRLAND + FRLANDICE` etkin alanı 52.192,891 km² (%98,16); en büyük aylık `|FRLAND - maskesiz|` farkı 0,03510533 °C (Kasım 2024) ve `|FRLAND+ICE - FRLAND|` farkı 0,00057698 °C (Ekim 2024) olarak kayıtlı `b-surface-sensitivity.json` ile birebir eşleşti. Sonuçlar [B fişine](../research/regions/REGION_B_PROFILE.md) işlendi; nihai bilimsel maske/sınır seçimi ve uzun dönem analizi açık bırakıldı. Dış mesaj gönderilmedi.
 
+**2026-10-20 paylaşım güncellemesi:** Aşağıdaki H-M1-009/010/011/012/013 kaynakları artık [GitHub M1 dalında](SYNC.md) bulunur (`6b4ab12`). Kayıtlardaki “yerel/paylaşım bekliyor” ifadeleri ilk hazırlanma anına aittir; güncel durum **dalda paylaşıldı, M2 incelemesi bekliyor**. Main/Pages yayını veya M2 onayı yok.
+
 ## H-M1-009 · Kesilmiş hücrelerde alan kapsamını inceleme
 
 - **Gönderen → alıcı:** M1 → M2; mevcut MOD-05/R-A04 denetiminin panel içi inceleme kaydı; dış mesaj gönderilmedi.
