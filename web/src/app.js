@@ -1,11 +1,12 @@
 import { summarizePolicyDifferences } from "./comparison.mjs";
+import { traceGraph } from "./trace.mjs";
 
 const $ = (id) => document.getElementById(id);
 const months = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
 const shortMonths = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
 const colors = ["#c77543", "#247c78", "#7466a1", "#777c39", "#a3536b", "#3878a6", "#8c6238", "#626c6a"];
 const labels = { unmasked: "Bütün pencere · maskesiz", land: "Kara oranı · FRLAND (aday)", land_and_ice: "Kara + kara buzu (aday)" };
-const state = { data: null, selected: new Set(), month: 0, policy: "unmasked", spatialRegion: null, cell: 0 };
+const state = { data: null, selected: new Set(), month: 0, policy: "unmasked", spatialRegion: null, cell: 0, traceRegion: null, traceNode: null };
 const number = (value, digits = 2) => value === null ? "Veri yok" : value.toLocaleString("tr-TR", { minimumFractionDigits: digits, maximumFractionDigits: digits });
 const el = (tag, text, className) => { const node = document.createElement(tag); if (text !== undefined) node.textContent = text; if (className) node.className = className; return node; };
 const color = (region) => colors[state.data.regions.indexOf(region) % colors.length];
@@ -15,7 +16,7 @@ const value = (region, index) => region.series[index][state.policy];
 const svg = (tag, attributes, text) => { const node = document.createElementNS("http://www.w3.org/2000/svg", tag); for (const [key, v] of Object.entries(attributes)) node.setAttribute(key, v); if (text !== undefined) node.textContent = text; return node; };
 
 function validate(data) {
-  if (data.schema_version !== "0.2.0" || data.output_type !== "recorded_temperature_web_preview" || data.data_mode !== "recorded_offline_replay" || data.selection_status !== "candidate" || data.inference_performed !== false) throw Error("Unsupported preview contract");
+  if (data.schema_version !== "0.3.0" || data.output_type !== "recorded_temperature_web_preview" || data.data_mode !== "recorded_offline_replay" || data.selection_status !== "candidate" || data.inference_performed !== false) throw Error("Unsupported preview contract");
   if (!Array.isArray(data.dates) || data.dates.length !== 12 || !data.dates.every((d, i) => d === `${data.dates[0].slice(0, 4)}-${String(i + 1).padStart(2, "0")}`)) throw Error("Unsupported period");
   if (!Array.isArray(data.regions) || !data.regions.length || data.regions.length > 8 || new Set(data.regions.map((r) => r.id)).size !== data.regions.length) throw Error("Unsupported regions");
   let context;
@@ -29,6 +30,7 @@ function validate(data) {
     context = signature;
     summarizePolicyDifferences(region.series);
     validateSpatial(region, data.dates);
+    traceGraph(region.workflow_trace);
     for (const key of ["land", "land_and_ice"]) {
       const support = region.support.policies[key];
       if (![support.lower_fraction_of_window, support.uniform_fraction_of_window, support.upper_fraction_of_window].every((v) => typeof v === "number" && Number.isFinite(v) && v >= 0 && v <= 1)) throw Error("Invalid area support");
@@ -233,10 +235,48 @@ function renderSpatial(regions) {
   detail.replaceChildren(el("span", "SEÇİLİ HÜCRE", "section-label"), el("h3", temperature === null ? "Veri yok" : `${number(temperature)} °C`), el("p", `${months[state.month]} · grid T2M · ${labels[state.policy]}`, "detail-note"), table);
 }
 
+const traceLabels = { Temperature: "Sıcaklık girdisi", Fractions: "Fraksiyon kontrolü", Land: "Kara ağırlığı", LandIce: "Kara + buz ağırlığı", Sensitivity: "Karşılaştırma" };
+function renderTrace(regions) {
+  const select = $("trace-region"), graph = $("trace-graph"), detail = $("trace-detail");
+  select.replaceChildren(...regions.map((r) => { const option = el("option", `${r.id} · ${named(r)}`); option.value = r.id; return option; }));
+  const region = regions.find((r) => r.id === state.traceRegion) || regions[0];
+  $("trace-empty").hidden = !!region; $("trace-content").hidden = !region; select.disabled = !region;
+  graph.replaceChildren(); detail.replaceChildren();
+  if (!region) { state.traceRegion = null; state.traceNode = null; return; }
+  state.traceRegion = region.id; select.value = region.id;
+  const compact = window.matchMedia("(max-width:740px)").matches;
+  const trace = region.workflow_trace, layout = traceGraph(trace, compact);
+  const selected = layout.nodes.find((n) => n.id === state.traceNode) || layout.nodes.at(-1);
+  state.traceNode = selected.id;
+  $("trace-summary").textContent = `${region.id} · ${layout.nodes.length} adım · ${layout.edges.length} veri bağlantısı · her adım 1 kez çalıştı`;
+  graph.setAttribute("viewBox", `0 0 ${layout.width} ${layout.height}`);
+  const marker = svg("marker", { id: "trace-arrow", viewBox: "0 0 10 10", refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: "auto-start-reverse" }); marker.append(svg("path", { d: "M0,0 L10,5 L0,10 Z" }));
+  const defs = svg("defs", {}); defs.append(marker); graph.append(defs);
+  layout.edges.forEach((edge, i) => {
+    const a = layout.nodes.find((n) => n.id === edge.from), b = layout.nodes.find((n) => n.id === edge.to);
+    const x1 = a.x + 160, x2 = b.x, y1 = a.y, y2 = b.y;
+    const d = compact ? (b.y - a.y > 160 ? `M${a.x + 80},${a.y + 33} L${a.x + 80},${a.y + 48} L${8 + i * 3},${a.y + 48} L${8 + i * 3},${b.y - 48} L${b.x + 80},${b.y - 48} L${b.x + 80},${b.y - 33}` : `M${a.x + 80},${a.y + 33} C${a.x + 80},${a.y + 80} ${b.x + 80},${b.y - 80} ${b.x + 80},${b.y - 33}`) : x2 - x1 > 100 ? `M${x1},${y1} L${x1 + 12},${y1} L${x1 + 12},${20 + i * 8} L${x2 - 14},${20 + i * 8} L${x2 - 14},${y2} L${x2},${y2}` : `M${x1},${y1} C${x1 + 25},${y1} ${x2 - 25},${y2} ${x2},${y2}`;
+    const path = svg("path", { d, class: "trace-edge", "marker-end": "url(#trace-arrow)", "data-from": edge.from, "data-to": edge.to }); path.append(svg("title", {}, `${edge.from} → ${edge.to} · ${edge.alias}`)); graph.append(path);
+  });
+  for (const node of layout.nodes) {
+    const group = svg("g", { transform: `translate(${node.x},${node.y - 33})`, class: "trace-node", role: "button", tabindex: "0", "aria-pressed": String(node.id === selected.id), "aria-label": `${traceLabels[node.id] || node.id} · tamamlandı · 1 çalıştırma`, "data-node": node.id });
+    group.append(svg("rect", { width: 160, height: 66, rx: 10 }), svg("text", { x: 12, y: 25, class: "trace-label" }, traceLabels[node.id] || node.id), svg("text", { x: 12, y: 47, class: "trace-status" }, "✓ Tamamlandı · 1 kez"));
+    const choose = () => { state.traceNode = node.id; renderTrace(regions); graph.querySelector(`[data-node="${node.id}"]`).focus({ preventScroll: true }); };
+    group.addEventListener("click", choose); group.addEventListener("keydown", (event) => { if (["Enter", " "].includes(event.key)) { event.preventDefault(); choose(); } }); graph.append(group);
+  }
+  const dl = el("dl", undefined, "trace-facts");
+  const fact = (label, value) => dl.append(el("dt", label), el("dd", value));
+  fact("İşlem / sürüm", `${selected.operation} / ${selected.operation_version}`);
+  fact("Çıktı sözleşmesi", `${selected.output_contract.type} · ${selected.output_contract.schema_version} · ${selected.output_contract.unit}`);
+  fact("Aldığı girdiler", selected.inputs.length ? selected.inputs.map((i) => `${i.alias} ← ${traceLabels[i.node] || i.node}`).join("; ") : "Üst modül girdisi yok; kayıtlı kaynaklar doğrulanır.");
+  fact("İş tanımı kimliği · SHA-256", selected.definition_fingerprint);
+  detail.append(el("span", "SEÇİLİ ADIM", "section-label"), el("h3", traceLabels[selected.id] || selected.id), dl);
+}
+
 function render() {
   const regions = active();
   $("month-label").textContent = months[state.month]; $("month").setAttribute("aria-valuetext", `${months[state.month]} ${state.data.dates[0].slice(0, 4)}`);
-  renderMetrics(regions); renderChart(regions); renderComparison(regions); renderSpatial(regions); renderSupport(regions); renderSources(regions); renderTable(regions);
+  renderTrace(regions); renderMetrics(regions); renderChart(regions); renderComparison(regions); renderSpatial(regions); renderSupport(regions); renderSources(regions); renderTable(regions);
   $("download").disabled = !regions.length;
 }
 
@@ -245,7 +285,7 @@ async function load() {
   try {
     const response = await fetch("./data/results.json", { cache: "no-store" }); if (!response.ok) throw Error("Data unavailable");
     const data = await response.json(); validate(data); state.data = data; state.selected = new Set(data.regions.map((r) => r.id));
-    state.month = 0; state.policy = "unmasked"; state.spatialRegion = null; state.cell = 0; $("policy").value = state.policy; $("month").value = "0";
+    state.month = 0; state.policy = "unmasked"; state.spatialRegion = null; state.cell = 0; state.traceRegion = null; state.traceNode = null; $("policy").value = state.policy; $("month").value = "0";
     const year = data.dates[0].slice(0, 4); $("scope-year").textContent = `${year} · 12 ay`; $("year-mark").textContent = year;
     $("dataset-note").textContent = `Kayıtlı ${year} örnekleri · Aday sınırlar · Bilimsel profil incelemede`;
     $("region-options").replaceChildren(...data.regions.map((region) => {
@@ -260,9 +300,10 @@ async function load() {
 
 $("policy").addEventListener("change", () => { state.policy = $("policy").value; render(); });
 $("month").addEventListener("input", () => { state.month = Number($("month").value); render(); });
+$("trace-region").addEventListener("change", () => { state.traceRegion = $("trace-region").value; state.traceNode = null; renderTrace(active()); });
 $("retry").addEventListener("click", load);
 $("spatial-region").addEventListener("change", () => { state.spatialRegion = $("spatial-region").value; state.cell = 0; renderSpatial(active()); });
-window.matchMedia("(max-width:740px)").addEventListener("change", () => { if (state.data) renderChart(active()); });
+window.matchMedia("(max-width:740px)").addEventListener("change", () => { if (state.data) { renderChart(active()); renderTrace(active()); } });
 $("download").addEventListener("click", () => {
   const selected = { schema_version: state.data.schema_version, selection_status: "candidate", data_mode: state.data.data_mode, inference_performed: false, selected_policy: state.policy, selected_month: state.data.dates[state.month], regions: active() };
   const url = URL.createObjectURL(new Blob([JSON.stringify(selected, null, 2)], { type: "application/json" }));

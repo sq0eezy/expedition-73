@@ -18,13 +18,13 @@ class WorkspaceTests(unittest.TestCase):
         for name in workspace.PUBLIC:
             target = root / 'web/dist' / name
             target.parent.mkdir(parents=True, exist_ok=True)
-            data = {'schema_version': '0.2.0', 'output_type': 'recorded_temperature_web_preview',
+            data = {'schema_version': '0.3.0', 'output_type': 'recorded_temperature_web_preview',
                     'selection_status': 'candidate', 'data_mode': 'recorded_offline_replay', 'inference_performed': False}
             target.write_text(json.dumps(data) if name.endswith('.json') else 'public fixture', encoding='utf-8')
         (root / '.env').write_text('PRIVATE_FIXTURE_NOT_A_TOKEN', encoding='utf-8')
         (root / 'web/dist/.env').write_text('PRIVATE_EXTRA', encoding='utf-8')
 
-    def test_only_five_public_assets_and_manifest_are_packaged_repeatably(self):
+    def test_only_six_public_assets_and_manifest_are_packaged_repeatably(self):
         with tempfile.TemporaryDirectory() as temp, patch.object(workspace, 'ROOT', Path(temp)), patch.object(workspace, 'build'):
             root = Path(temp)
             self.prepare(root)
@@ -52,6 +52,28 @@ class WorkspaceTests(unittest.TestCase):
                     with zipfile.ZipFile(path, 'w') as archive:
                         for key, raw in altered.items(): archive.writestr(key, raw)
                     with self.assertRaises(ValueError): workspace.verify_package(path)
+
+    def test_previous_manifest_and_web_contract_remain_verifiable(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / 'previous.zip'
+            data = {'schema_version': '0.2.0', 'output_type': 'recorded_temperature_web_preview',
+                    'selection_status': 'candidate', 'data_mode': 'recorded_offline_replay', 'inference_performed': False}
+            files = {name: json.dumps(data).encode() if name.endswith('.json') else b'previous asset'
+                     for name in workspace.LEGACY_PUBLIC}
+            manifest = workspace._manifest(files, '0.1.0')
+            with zipfile.ZipFile(path, 'w') as archive:
+                for name, raw in files.items(): archive.writestr(name, raw)
+                archive.writestr('manifest.json', json.dumps(manifest))
+            self.assertEqual(workspace.verify_package(path)['public_files'], 5)
+
+    def test_new_manifest_cannot_omit_trace_asset_or_claim_previous_web_contract(self):
+        with tempfile.TemporaryDirectory() as temp, patch.object(workspace, 'ROOT', Path(temp)), patch.object(workspace, 'build'):
+            root = Path(temp)
+            self.prepare(root)
+            (root / 'web/dist/data/results.json').write_text(json.dumps({
+                'schema_version': '0.2.0', 'output_type': 'recorded_temperature_web_preview',
+                'selection_status': 'candidate', 'data_mode': 'recorded_offline_replay', 'inference_performed': False}))
+            with self.assertRaises(ValueError): workspace.package()
 
     def test_duplicate_or_traversal_archive_entries_are_rejected_without_extracting(self):
         with tempfile.TemporaryDirectory() as temp:

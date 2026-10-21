@@ -172,3 +172,12 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 Görev durumu burada kopyalanmaz; [iş panosuna](../planning/WORK_BOARD.md) bağlantı verilir. “Görüldü” veya tarayıcıdaki “Okudum” işareti karar onayı anlamına gelmez. Çözülmüş kaydı silmeyin; yanıtını ve sonucunu koruyun.
 
 Kaynak şablon: `templates/TEAM_HANDOFF.md`.
+
+## H-M1-015 · Gerçek akış ekranı ve sözleşme ayrıntıları
+
+- **Gönderen → alıcı:** M1 → M2; U-02/MOD-06/D-02 için panel içi kayıt, dış mesaj yok.
+- **Tarih:** 2026-10-21.
+- **Durum:** Yerel M1 dalında; paylaşım ve M2 incelemesi bekliyor.
+- **Teslim:** [Gerçek akış kontrolü](../evidence/WORKFLOW_TRACE_CHECK.md), [ürün sınırları](../product/RESULTS_PREVIEW.md), [native/Docker açma komutları](../guide/DEV_PACKAGE.md).
+- **İncelenecek:** Kaynaklar paylaşıldıktan sonra Mac'te `sh scripts/start-preview.sh`; B akışında beş adım/sekiz bağ, LandIce/Sensitivity girdileri, telefon/klavye seçimi. Kimlik iş tanımına aittir; bilimsel onay/çıktı artifact hash'i değildir. Yeni web 0.3.0/manifest 0.2.0, eski ZIP doğrulaması korunur.
+- **Kanıt/sınır:** 180 Windows/Linux AMD64 analiz testi, gerçek A/B, 13 JS, 30 Chrome senaryosu geçti; yeni Mac/ARM64/uzak CI yok. Bilimsel maske/sınır/dönem ve M2 kabulü açık; yanıt gelmeden accepted yazılmaz.

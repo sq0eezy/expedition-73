@@ -1,5 +1,7 @@
 # İş panosu
 
+**2026-10-21 · Kayıtlı modül akışı:** U-02/MOD-06/D-02 için [5 adım/8 gerçek bağımlılık ve sözleşme görünümü](../evidence/WORKFLOW_TRACE_CHECK.md) yerelde eklendi. 180 Windows/Linux AMD64 testi, gerçek A/B tekrarları, 13 JS ve 30 Chrome senaryosu geçti. Web 0.3.0/manifest 0.2.0; bilimsel profil değişmedi. Durumlar Validating; [H-M1-015](../team/HANDOFFS.md) M2 incelemesi bekliyor, yeni paylaşım/yayın yok.
+
 **2026-10-21 · D-02 geliştirme paketi:** Büyük paketle devam talebi kapsamında [isteğe bağlı Docker/native çalıştırma, ortak check ve demo ZIP](../guide/DEV_PACKAGE.md) uygulandı. [Gerçek ortam kanıtı](../evidence/DEV_PACKAGE_CHECK.md). Genel yığın veya bilimsel profil seçimi değil; M2 Mac incelemesi/uzak CI ve paylaşım açık.
 
 **2026-10-20 · M1 dal paylaşımı:** Kullanıcının GitHub talebiyle U-02 ve önceki M1 dilimleri `6b4ab12` olarak geliştirme dalına gönderildi, uzak SHA doğrulandı. [Paylaşım](../team/SYNC.md). Görevlerin bilimsel/kullanım inceleme durumları değişmedi; main/Pages yayını veya yeni CI sonucu yok.

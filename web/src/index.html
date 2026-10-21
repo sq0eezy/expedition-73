@@ -52,6 +52,13 @@
           </div>
         </section>
         <div class="detail-grid"><section class="support-panel"><div class="panel-heading"><div><span class="section-label">ALAN VE SINIR</span><h2>Ne kadarını temsil ediyor?</h2></div><span class="small-symbol" aria-hidden="true">◫</span></div><div id="support"></div><p id="support-note" class="detail-note"></p></section><section class="source-panel"><span class="section-label">KAYNAK DURUMU</span><h2>Sonucun arkasındaki veri</h2><div class="source-line"><span>NASA POWER · T2M</span><span class="source-chip">Kayıttan</span></div><p>Aylık 2 m hava sıcaklığı. Değer, kaynak grid hücresini temsil eder; fraksiyon ağırlığı ayrı bir kara sıcaklığı üretmez.</p><div id="area-state" class="source-state"></div><div class="source-state"><span>Eğilim / anlamlılık</span><strong>Hesaplanmadı</strong></div><details id="provenance"><summary>Kaynak ve yöntem ayrıntıları</summary><div id="provenance-content"></div></details></section></div>
+        <section class="trace-panel" aria-labelledby="trace-heading">
+          <div class="panel-heading"><div><span class="section-label">MODÜLLERİN VERİ AKIŞI</span><h2 id="trace-heading">Bu sonuç hangi adımlardan geçti?</h2></div><div class="spatial-control"><label for="trace-region">Akışını incele</label><select id="trace-region"></select></div></div>
+          <p class="detail-note">Oklar gerçek veri bağımlılıklarıdır. Ortak girdi bir kez hesaplanır; iki ağırlık hesabı aynı sıcaklık ve fraksiyon kayıtlarını kullanır. Ayrıntı için bir adıma tıkla veya Tab ve Enter kullan.</p>
+          <p id="trace-empty" class="empty" hidden>Akışı görmek için bir aday pencere seçin.</p>
+          <div id="trace-content"><p id="trace-summary" class="detail-note"></p><div class="trace-layout"><svg id="trace-graph" role="group" aria-label="Derlemede doğrulanan hesap bağımlılıkları"></svg><div id="trace-detail" aria-live="polite"></div></div></div>
+          <p class="detail-note">Derlemede doğrulanan kayıtlı akıştır; canlı iş durumu veya kalıcı önbellek göstermez. İş tanımı kimliği kaynak anlık görüntüsü ve işlem tanımını belirtir; çıktı dosyası kimliği veya bilimsel doğruluk kanıtı değildir. Bilimsel doğrulama yapılmadı.</p>
+        </section>
         <details class="table-panel"><summary>Aylık değerleri tablo olarak incele</summary><div class="table-scroll"><table id="data-table"></table></div></details>
         <footer class="page-footer"><p id="dataset-note">Kayıtlı örnekler · Aday sınırlar · Bilimsel profil incelemede</p><button id="download" type="button">Görüntülenen veriyi JSON indir <span aria-hidden="true">↓</span></button></footer>
       </div>

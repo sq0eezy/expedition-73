@@ -1,8 +1,8 @@
 ---
 status: Validating
-updated: "2026-10-20"
+updated: "2026-10-21"
 review_summary: "Gerçek kayıtlı sıcaklık sonuçlarını inceleten ilk yerel ekran; bilimsel ve ürün sınırları."
-change_summary: "Üç aday ağırlığın aynı ay sonuçları ve ikili yıllık farkları yan yana görülebiliyor. 164 analiz + 8 JS hesap testi ve 22 Chrome senaryosu geçti."
+change_summary: "Gerçek hesap akışı, bağımlılıklar ve adım sözleşmeleri incelenebiliyor; web aktarımı 0.3.0. Bilimsel profil veya yeni yayın değil."
 ---
 # İlk sonuç ekranı · Yerel teknik prototip
 
@@ -60,3 +60,11 @@ Mac/Linux: `analysis/.venv/bin/python analysis/scripts/build_web_preview.py`, ar
 Builder yalnız dört uygulama dosyası ve doğrulanmış seri/hücre JSON dosyası üretir; sunucu yalnız `web/dist` klasörünü sunar. Token/özel .env/ham özel artifacts tarayıcıya verilmez; tarayıcı çalışırken dış veri isteği yapmaz. Ayrı Node/Playwright yalnız isteğe bağlı QA içindir.
 
 Yeni kod 2026-10-20 kullanıcı talebiyle [GitHub M1 dalında paylaşıldı](../team/SYNC.md). Main/Pages güncellenmedi; mevcut Pages işi yalnız portalı derler. Web ekranının barındırılması, uzun dönem istatistik ve nihai bilimsel A/B karşılaştırması açık. Sonraki küçük adım, bu ekran akışının ekipçe incelenmesi ve gösterilecek yüzey/dönem/kapsamın netleştirilmesidir.
+
+## 2026-10-21 · Gerçek modül akışını inceleme
+
+Her seçili aday pencere için derlemede doğrulanan beş adım ve sekiz veri bağlantısı gösterilir. Sıcaklık girdisi bir kez çalışır; fraksiyon kontrolü onu tüketir; kara ve kara+buz hesapları aynı iki girdiyi tüketir; karşılaştırma sıcaklık ile iki ağırlık sonucunu alır. Konu hiyerarşisi bu hesap oklarıyla karıştırılmaz. Bölge seçimi, klavye/tıklama ayrıntısı ve telefon için dikey akış vardır. Adım ayrıntısı gerçek işlem sürümünü, çıktı sözleşmesini, girdi alias/üreticilerini ve iş tanımı kimliğini gösterir.
+
+Önce gerçek çıktı/ata kimlikleri kontrol edilir, sonra küçük genel aktarım üretilir. Tanım parmak izi kaynak snapshot'ı ve işlem tanımına bağlıdır; bilimsel sonuç hash'i veya imza değildir. Rastgele run UUID'leri/özel parametreler aktarılmaz. Yalnız tamamlanmış derleme kaydı gösterilir; bekleyen/çalışan/hatalı işler için canlı izleme, cache veya sunucu eklendiği anlamına gelmez. Yeni uygun bölge aynı kayıttan yapılandırılır; grafik sabit A/B bağlantıları içermez.
+
+**Güncel web aktarımı 0.3.0**, yalnız bu görünüm için zorunlu `workflow_trace` alanı eklendi. Kaynak T2M/fraksiyon şemaları, bilimsel yöntem ve teknik profil 0.1.0 değişmedi. Genel dosya sayısı altı; ZIP manifesti 0.2.0, eski ZIP doğrulaması korunur. [Gerçek kontroller ve sınırlamalar](../evidence/WORKFLOW_TRACE_CHECK.md). U-02/MOD-06 Validating; yeni kod yerel M1 dalında, M2 incelemesi veya main/Pages yayını yok.

@@ -42,7 +42,23 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     }
     assert.match(await comparisonCard('B').locator('[data-contrast="land_minus_unmasked"] .contrast-peak').innerText(), /Kasım/);
     assert.match(await comparisonCard('B').locator('[data-contrast="land_ice_minus_land"] .contrast-peak').innerText(), /Ekim/); checks++;
-    assert.equal(data.schema_version, '0.2.0');
+    assert.equal(data.schema_version, '0.3.0');
+    assert.equal(await page.locator('#trace-graph .trace-node').count(), 5);
+    assert.equal(await page.locator('#trace-graph .trace-edge').count(), 8);
+    await page.locator('#trace-graph [data-node="Fractions"]').click();
+    assert.match(await page.locator('#trace-detail').innerText(), /temperature ← Sıcaklık girdisi/);
+    assert.ok((await page.locator('#trace-detail').innerText()).includes(data.regions[0].workflow_trace.nodes.find((n) => n.id === 'Fractions').definition_fingerprint)); checks++;
+    await page.locator('#trace-region').selectOption('B');
+    const summaryNode = page.locator('#trace-graph [data-node="Sensitivity"]');
+    await summaryNode.focus(); await page.keyboard.press('Enter');
+    assert.match(await page.locator('#trace-detail').innerText(), /land_and_ice ← Kara \+ buz ağırlığı/);
+    assert.equal(await summaryNode.getAttribute('aria-pressed'), 'true'); checks++;
+    const definitionText = await page.locator('#trace-detail').innerText();
+    await page.locator('#month').fill('8'); await page.locator('#policy').selectOption('land');
+    assert.equal(await page.locator('#trace-detail').innerText(), definitionText);
+    await page.locator('#month').fill('0'); await page.locator('#policy').selectOption('unmasked');
+    await page.locator('.trace-panel').screenshot({ path: path.join(screenshots, 'trace-desktop.png') }); checks++;
+
     assert.equal(await page.locator('#cell-grid [data-cell]').count(), 56);
     const aCell = data.regions[0].spatial.cells[9];
     await page.locator('#cell-grid [data-cell="9"]').click();
@@ -87,6 +103,9 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     assert.equal(await page.locator('#metrics .metric').count(), 1);
     await page.getByRole('checkbox', { name: 'B · Kuzey Alaska', exact: true }).uncheck();
     assert.equal(await page.locator('#empty').isVisible(), true); assert.equal(await page.locator('#download').isDisabled(), true);
+    assert.equal(await page.locator('#trace-graph .trace-node').count(), 0);
+    assert.equal(await page.locator('#trace-detail').innerText(), '');
+    assert.equal(await page.locator('#trace-region').isDisabled(), true); checks++;
     assert.match(await page.locator('#area-state').innerText(), /Pencere seçin/); checks++;
     assert.equal(await page.locator('#spatial-empty').isVisible(), true);
     assert.equal(await page.locator('#spatial-region').isDisabled(), true);
@@ -106,6 +125,10 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({ path: path.join(screenshots, 'mobile.png'), fullPage: true }); checks++;
     await page.locator('.comparison-panel').screenshot({ path: path.join(screenshots, 'comparison-mobile.png') });
+    assert.equal(await page.locator('#trace-graph').getAttribute('viewBox'), '0 0 400 550');
+    await page.locator('#trace-graph [data-node=LandIce]').click();
+    assert.equal(await page.locator('#trace-detail h3').innerText(), 'Kara + buz ağırlığı');
+    await page.locator('.trace-panel').screenshot({ path: path.join(screenshots, 'trace-mobile.png') }); checks++;
     const missing = await browser.newPage();
     await missing.route('**/data/results.json', async (route) => {
       const modified = structuredClone(data); modified.regions[0].series[5].unmasked = null;
@@ -156,7 +179,7 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     });
     await incompatible.goto(base); await incompatible.locator('#error').waitFor({ state: 'visible' });
     assert.equal(await incompatible.locator('#results').isVisible(), false); checks++;
-    for (const kind of ['weight', 'geometry', 'coverage', 'date', 'old-contract']) {
+    for (const kind of ['weight', 'geometry', 'coverage', 'date', 'old-contract', 'trace-lineage', 'trace-missing', 'trace-cycle']) {
       const broken = await browser.newPage();
       await broken.route('**/data/results.json', (route) => {
         const modified = structuredClone(data), c = modified.regions[0].spatial.cells[0];
@@ -164,7 +187,10 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
         if (kind === 'geometry') c.intersection_bbox[0] += 0.01;
         if (kind === 'coverage') modified.regions[0].spatial.cells.pop();
         if (kind === 'date') c.series[0].date = '2023-01';
-        if (kind === 'old-contract') modified.schema_version = '0.1.0';
+        if (kind === 'old-contract') modified.schema_version = '0.2.0';
+        if (kind === 'trace-lineage') modified.regions[0].workflow_trace.nodes[1].inputs[0].definition_fingerprint = '0'.repeat(64);
+        if (kind === 'trace-missing') delete modified.regions[0].workflow_trace;
+        if (kind === 'trace-cycle') modified.regions[0].workflow_trace.nodes.reverse();
         return route.fulfill({ json: modified });
       });
       await broken.goto(base); await broken.locator('#error').waitFor({ state: 'visible' });
@@ -173,6 +199,6 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     assert.deepEqual(errors, []);
     console.log(JSON.stringify({ status: 'passed', browser: 'Chrome headless', checks, javascript_errors: errors,
       external_runtime_requests: requests.filter((url) => new URL(url).origin !== new URL(base).origin).length,
-      screenshots: ['web/artifacts/desktop.png', 'web/artifacts/mobile.png', 'web/artifacts/comparison-desktop.png', 'web/artifacts/comparison-mobile.png', 'web/artifacts/spatial-a.png', 'web/artifacts/spatial-b.png'] }));
+      screenshots: ['web/artifacts/desktop.png', 'web/artifacts/mobile.png', 'web/artifacts/comparison-desktop.png', 'web/artifacts/comparison-mobile.png', 'web/artifacts/spatial-a.png', 'web/artifacts/spatial-b.png', 'web/artifacts/trace-desktop.png', 'web/artifacts/trace-mobile.png'] }));
   } finally { await browser.close(); }
 })().catch((error) => { console.error(error); process.exitCode = 1; });

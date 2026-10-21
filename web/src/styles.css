@@ -218,3 +218,15 @@ h1{font-size:27px;letter-spacing:-1.2px}
 }
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}
 }
+
+.trace-panel{margin-top:22px;padding:28px;border:1px solid #dce1dc;border-radius:14px;background:#fff}
+.trace-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(240px,1fr);gap:24px;align-items:center}
+#trace-graph{width:100%;height:auto;overflow:visible}
+.trace-edge{fill:none;stroke:#9aada7;stroke-width:1.4}#trace-arrow path{fill:#718b81}
+.trace-node{cursor:pointer;outline:none}.trace-node rect{fill:#f3f6f3;stroke:#d3ded7;stroke-width:1.5}
+.trace-node[aria-pressed=true] rect,.trace-node:focus rect{fill:#e6f1e9;stroke:#2c6953;stroke-width:2.5}
+.trace-label{font-size:12px;fill:#183f30;font-weight:600}.trace-status{font-size:10px;fill:#526c5e}
+.trace-facts{font-size:12px;line-height:1.6;margin:16px 0}.trace-facts dt{color:#6b786e;margin-top:12px}.trace-facts dd{margin:3px 0;overflow-wrap:anywhere}
+#trace-detail{padding:22px;background:#f6f7f2;border-radius:12px;min-width:0}#trace-detail h3{margin:10px 0;font-size:18px}
+@media(max-width:1000px){.trace-layout{grid-template-columns:1fr}}
+@media(max-width:740px){.trace-panel{padding:18px}.trace-panel .panel-heading{display:block}.trace-panel .spatial-control{margin-top:14px}#trace-graph{min-height:170px}}

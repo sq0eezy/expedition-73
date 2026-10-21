@@ -1,5 +1,11 @@
 # Çalışma günlüğü
 
+## 2026-10-21 · Sonuç ekranında gerçek modül akışı
+
+M1 devam istedi; temiz `294fab6` üzerinden, fetch'te yeni main/M2 katkısı yok. Aynı gerçek motor çalıştırmasından artifact/girdi/ata/event tutarlılığı denetlenip küçük genel akış izi üretildi. Beş adım/sekiz bağ ve tıklama/klavye sözleşme ayrıntısı, telefon dikey görünümü eklendi. İş tanımı kimliği gerçek çıktı kimliğinden ayrıldı; rastgele UUID/özel context-parametreler dışlanarak tekrarlanabilir ZIP korundu. Web 0.3.0, altı genel dosya, manifest 0.2.0; eski beş dosyalı ZIP verifier uyumu var. Bilimsel hesap/kaynaklar/teknik profil değişmedi.
+
+[Esas kanıt](../evidence/WORKFLOW_TRACE_CHECK.md): Windows **180 test / 64,732 s**, Linux AMD64 Docker **180 / 46,529 s**; gerçek A/B tekrarları, 13 JS testi, HTTP smoke ve **30 Chrome senaryosu** geçti. JS hatası/dış runtime isteği 0. Yeni ZIP iki üretimde aynı SHA/baytlarla doğrulandı. Mac/yeni ARM64/uzak CI bu dilimde çalışmadı. U-02/MOD-06/D-02 Validating, H-M1-015 panel içi kayıt; M2 kabulü veya bilimsel politika seçimi yok. Yeni çalışma yerel M1 dalında; push/main/Pages/Sites/dış mesaj yok. Portal check/strict build geçti. QA sunucusu kapatıldı, 8873 TCP bağlantısı kapalı doğrulandı.
+
 ## 2026-10-21 · Taşınabilir geliştirme/doğrulama paketi
 
 M1 daha büyük paketle devam istedi. Önce güncel durum/harita, iki üye, fikir/devir/pano ve sync okundu; temiz dal `6047c42`, fetch'te yeni main/M2 katkısı yok (`a1a83d5`). Sites yerel iş akışı kapsamında isteğe bağlı Docker/native başlatıcı, ortak check ve sınırlı demo ZIP hazırlandı. Nihai ürün yığını, bilimsel maske/sınır/dönem veya M2 tercihi seçilmedi. [Kılavuz](../guide/DEV_PACKAGE.md), [esas kontrol kaydı](../evidence/DEV_PACKAGE_CHECK.md).

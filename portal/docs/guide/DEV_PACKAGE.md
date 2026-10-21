@@ -2,7 +2,7 @@
 status: Validating
 updated: "2026-10-21"
 review_summary: "İki kişilik çalışmada isteğe bağlı Docker, yerel başlatıcı, ortak offline kontrol ve demo paketi."
-change_summary: "Windows/Mac komutları, sabit bağımlılıklar, beş dosyalı demo arşivi ve CI akışı hazırlandı; bilimsel seçim değildir."
+change_summary: "Windows/Mac komutları, sabit bağımlılıklar, altı dosyalı akış ekranı demo arşivi ve CI akışı hazırlandı; bilimsel seçim değildir."
 ---
 # Taşınabilir geliştirme paketi
 
@@ -73,7 +73,7 @@ analysis/.venv/bin/python scripts/workspace.py package
 analysis/.venv/bin/python scripts/workspace.py verify-package web/artifacts/expedition73-preview.zip
 ```
 
-Windows'ta Python yolu `analysis\.venv\Scripts\python.exe`. Varsayılan ZIP `web/artifacts/expedition73-preview.zip`; Git dışında kalır. Paketleme önce gerçek kaynakları yeniden derler, sonra **yalnız beş genel dosyayı ve manifest.json** ekler. Sabit dosya sırası/tarih/izinlerle aynı bayt girdisinden tekrar aynı ZIP üretilir. Manifest her dosyanın byte sayısı/SHA-256'sını ve aday/kayıttan çalışma durumunu taşır; yerel mutlak yol veya zaman damgası içermez.
+Windows'ta Python yolu `analysis\.venv\Scripts\python.exe`. Varsayılan ZIP `web/artifacts/expedition73-preview.zip`; Git dışında kalır. Paketleme önce gerçek kaynakları yeniden derler, sonra **yalnız altı genel dosyayı ve manifest.json** ekler. Sabit dosya sırası/tarih/izinlerle aynı bayt girdisinden tekrar aynı ZIP üretilir. Manifest her dosyanın byte sayısı/SHA-256'sını ve aday/kayıttan çalışma durumunu taşır; yerel mutlak yol veya zaman damgası içermez.
 
 `verify-package` arşivi çıkarmadan dosya listesini, boyut sınırını, hash'leri ve sonuç sözleşmesini kontrol eder. Değişmiş içerik, ek/yinelenen veya üst dizine giden girdiler reddedilir. Bu bir bütünlük kontrolüdür; dijital imza veya bağımsız NASA kaynak doğrulaması değildir. Hatalı yeni derleme eski başarılı ZIP'i bozmaz; eski paket yeni sonuç diye sunulmaz. `--output` yalnız `web/artifacts` altında başka bir `.zip` seçebilir.
 
@@ -90,3 +90,7 @@ Arşiv çevrim dışı inceleme içindir; dosyaya çift tıklamak yerine HTTP ge
 Güncellenen `analysis-checks.yml`, ilgili main/codex push'larında, PR ve manuel çalıştırmada tetiklenir. Windows/macOS/Ubuntu native işleri aynı `setup/check/package/verify-package` komutlarını kullanır; yalnız demo ZIP'i yedi günlük workflow artifact'i olarak yükler. Docker işleri AMD64 ve QEMU ARM64 için ağsız kontrol, sağlıklı önizleme ve HTTP smoke çalıştırır; kendi konteynerlerini son adımda kapatır. Kaynak kod/paket artifaktı erişimi GitHub depo izinlerine bağlıdır.
 
 Workflow dosyasının hazırlanması uzakta başarıyla koştuğu anlamına gelmez. Bu yeni dilimin gerçek koşuları kanıt sayfasındadır. Registry push, main merge, Pages/Sites yayını veya otomatik dış NASA işi eklenmedi. GitHub dalına push, Docker imajını veya demo dosyasını arkadaşın bilgisayarına otomatik taşımaz; güncel kaynak alınarak komut yeniden çalıştırılır. [Ekip senkronizasyonu](../team/SYNC.md).
+
+## Akış ekranıyla paket sürümü
+
+2026-10-21 devam diliminde `trace.mjs` altıncı genel dosya oldu. Yeni ZIP manifesti 0.2.0 / web verisi 0.3.0; kaynak bilimsel şemalar ve teknik profil değişmedi. `verify-package` eski manifest 0.1.0 / web 0.2.0 beş dosyalı paketi kendi izin listesiyle hâlâ doğrular. Yeni arayüz eski web verisini reddeder; builder ile birlikte yenilenir. Hash denetimi bilimsel onay veya imza değildir. [Güncel akış kanıtı](../evidence/WORKFLOW_TRACE_CHECK.md); önceki Docker/Mac ortam sınırları ayrı tutulur.

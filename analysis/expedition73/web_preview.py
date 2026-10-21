@@ -5,10 +5,10 @@ import hashlib
 import json
 from pathlib import Path, PurePosixPath
 
-from . import masking, regional, surface_source, surface_support, surface_workflow
+from . import masking, regional, surface_source, surface_support, surface_workflow, workflow_trace
 from .power import PilotError, loads
 
-ASSETS = ("index.html", "styles.css", "app.js", "comparison.mjs")
+ASSETS = ("index.html", "styles.css", "app.js", "comparison.mjs", "trace.mjs")
 
 
 def _spatial(window, mask, config, audit):
@@ -54,7 +54,7 @@ def payload(analysis_root, registry):
         if not isinstance(entry["id"], str) or entry["id"] in ids:
             raise PilotError("Duplicate or invalid preview region identity.")
         window_dir, fraction_dir = _directory(root, entry["window"]), _directory(root, entry["fractions"])
-        _, report = surface_workflow.run(window_dir, fraction_dir)
+        spec, report = surface_workflow.run(window_dir, fraction_dir)
         if report["status"] != "completed":
             raise PilotError("A source workflow failed; no partial preview exported.")
         temperature = report["nodes"]["Temperature"]["artifact"]["value"]
@@ -88,9 +88,9 @@ def payload(analysis_root, registry):
                                     if key in {"window_area_m2", "cell_count", "clipped_cells", "policies"}},
                         "spatial": _spatial(temperature["result"], mask, temperature["request"], audit),
                         "source_area": surface_source.area_capability(metadata)["area"],
-                        "provenance": summary["provenance"]})
+                        "provenance": summary["provenance"], "workflow_trace": workflow_trace.project(spec, report)})
         ids.add(entry["id"])
-    return {"schema_version": "0.2.0", "output_type": "recorded_temperature_web_preview",
+    return {"schema_version": "0.3.0", "output_type": "recorded_temperature_web_preview",
             "data_mode": "recorded_offline_replay", "selection_status": "candidate",
             "inference_performed": False, "dates": dates, "regions": regions}
 

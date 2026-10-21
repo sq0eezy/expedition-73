@@ -2,7 +2,12 @@
 review_summary: "Ortak webden okuma, GitHub üzerinden düzenleme ve yerel kaynakları eşitleme."
 change_summary: "6b4ab12 ve önceki M1 çalışmaları GitHub geliştirme dalına gönderildi; uzak SHA doğrulandı. Main/M2 değişmedi; canlı Pages yayını yok."
 ---
+
 # Paylaşım ve kurulum
+
+## 2026-10-21 · Akış görünümü yerelde devam
+
+Başlangıç temiz M1 `294fab6`; fetch sonrası uzak M1 `6047c42`, main/M2 `a1a83d5`, yeni katkı yok. [Akış ekranı ve paket uyumu](../evidence/WORKFLOW_TRACE_CHECK.md) yerel M1 dalında eklendi; önceki geliştirme paketi de henüz yereldir. Yeni push/main merge/Pages/Sites yayını veya dış mesaj yok. H-M1-015 ve güncel ekran henüz M2 tarafından incelenmiş/kabul edilmiş sayılmaz. Eski paylaşımdan bu yeni kodu göreceği varsayılmaz.
 
 ## 2026-10-21 · Yeni geliştirme paketi yerelde
 

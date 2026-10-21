@@ -2,6 +2,7 @@
 
 | Kayıt | Kapsam |
 |---|---|
+| [Gerçek modül akışı ekranı](WORKFLOW_TRACE_CHECK.md) | Aynı çalıştırmadan 5/8 bağlantı, kimlik/girdi/ata doğrulama, Windows/Linux 180 test, 13 JS/30 Chrome ve paket uyumu |
 | [Portal kurulumu ve doğrulama](PORTAL_SETUP.md) | Bu oturumdaki belge portalı kontrolleri |
 | [Ekip alanı doğrulaması](TEAM_SETUP.md) | İki üyeli belge yapısı, GitHub kimlik incelemesi ve paylaşım sınırı |
 | [GitHub main aktarımı](GITHUB_SHARE.md) | Uzak katkıların korunması, gönderim ve kurulum takibi |

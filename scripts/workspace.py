@@ -13,7 +13,9 @@ import tempfile
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-PUBLIC = ('app.js', 'comparison.mjs', 'data/results.json', 'index.html', 'styles.css')
+LEGACY_PUBLIC = ('app.js', 'comparison.mjs', 'data/results.json', 'index.html', 'styles.css')
+PUBLIC = (*LEGACY_PUBLIC, 'trace.mjs')
+PACKAGE_CONTRACTS = {'0.1.0': (LEGACY_PUBLIC, '0.2.0'), '0.2.0': (PUBLIC, '0.3.0')}
 ARCHIVE_NAMES = {*PUBLIC, 'manifest.json'}
 LIMIT = 8_000_000
 
@@ -69,15 +71,15 @@ def checks():
                  '--window-run', f'examples/{region}-window-2024',
                  '--fraction-run', f'examples/{region}-surface-fractions',
                  '--output-dir', Path(temp) / region], analysis)
-    run([node, '--test', 'web/tests/comparison.test.mjs'])
-    for name in ('app.js', 'comparison.mjs'):
+    run([node, '--test', 'web/tests/comparison.test.mjs', 'web/tests/trace.test.mjs'])
+    for name in ('app.js', 'comparison.mjs', 'trace.mjs'):
         run([node, '--check', f'web/src/{name}'])
     build()
     print('Offline analysis, A/B replay, JS checks and preview build passed.', flush=True)
 
 
-def _manifest(files):
-    return {'format': 'expedition73-static-preview', 'version': '0.1.0',
+def _manifest(files, version='0.2.0'):
+    return {'format': 'expedition73-static-preview', 'version': version,
             'selection_status': 'candidate', 'data_mode': 'recorded_offline_replay',
             'inference_performed': False,
             'files': {name: {'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()}
@@ -87,22 +89,29 @@ def _manifest(files):
 def verify_package(path):
     with zipfile.ZipFile(path) as archive:
         infos = archive.infolist()
-        if len(infos) != len(ARCHIVE_NAMES) or {i.filename for i in infos} != ARCHIVE_NAMES:
-            raise ValueError('Demo archive must contain exactly five public files and manifest.json.')
+        names = [i.filename for i in infos]
+        if len(names) != len(set(names)) or 'manifest.json' not in names or len(names) > len(ARCHIVE_NAMES):
+            raise ValueError('Duplicate, missing or excessive archive entries.')
         if any(i.file_size > LIMIT or i.is_dir() or i.flag_bits & 1 for i in infos):
             raise ValueError('Unexpected archive size, directory or encrypted entry.')
         # Read the enumerated entries only; never extract an archive into the checkout.
         raw_manifest = archive.read('manifest.json')
         manifest = json.loads(raw_manifest)
-        files = {name: archive.read(name) for name in PUBLIC}
-        if manifest != _manifest(files):
+        contract = PACKAGE_CONTRACTS.get(manifest.get('version')) if isinstance(manifest, dict) else None
+        if contract is None:
+            raise ValueError('Unsupported package manifest version.')
+        public, schema_version = contract
+        if set(names) != {*public, 'manifest.json'}:
+            raise ValueError('Demo archive must contain exactly the versioned public allowlist and manifest.')
+        files = {name: archive.read(name) for name in public}
+        if manifest != _manifest(files, manifest['version']):
             raise ValueError('Demo archive manifest or SHA-256 integrity check failed.')
         data = json.loads(files['data/results.json'])
-        if (data.get('schema_version') != '0.2.0' or data.get('output_type') != 'recorded_temperature_web_preview'
+        if (data.get('schema_version') != schema_version or data.get('output_type') != 'recorded_temperature_web_preview'
                 or data.get('selection_status') != 'candidate' or data.get('inference_performed') is not False
                 or data.get('data_mode') != 'recorded_offline_replay'):
             raise ValueError('Demo archive has an unsupported result contract.')
-    return {'status': 'verified', 'public_files': len(PUBLIC), 'selection_status': 'candidate'}
+    return {'status': 'verified', 'public_files': len(public), 'selection_status': 'candidate'}
 
 
 def package(output=None):

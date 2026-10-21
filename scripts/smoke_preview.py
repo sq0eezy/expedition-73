@@ -11,7 +11,7 @@ def check(base):
     if url.scheme != 'http' or url.hostname not in ('127.0.0.1', 'localhost') or url.username or url.password:
         raise ValueError('Smoke checks require a local HTTP preview URL.')
     base = base.rstrip('/') + '/'
-    for name in ('index.html', 'styles.css', 'app.js', 'comparison.mjs', 'data/results.json'):
+    for name in ('index.html', 'styles.css', 'app.js', 'comparison.mjs', 'trace.mjs', 'data/results.json'):
         with urllib.request.urlopen(base + name, timeout=5) as response:
             raw = response.read(8_000_001)
             if response.status != 200 or len(raw) > 8_000_000:
@@ -30,7 +30,7 @@ def check(base):
                 continue
             raise
         raise ValueError('A private/source path is accessible through the public server.')
-    print('Local HTTP smoke passed: five public files, ES module MIME, recorded data and absent source/private paths.')
+    print('Local HTTP smoke passed: six public files, ES module MIME, recorded data and absent source/private paths.')
 
 
 if __name__ == '__main__':
