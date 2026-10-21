@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFileSync } from 'node:fs';
-import { summarizePolicyDifferences } from '../src/comparison.mjs';
+import { summarizePolicyDifferences, summarizeRegionDifferences } from '../src/comparison.mjs';
 
 const series = () => Array.from({ length: 12 }, (_, i) => ({ date: `2024-${String(i + 1).padStart(2, '0')}`, unmasked: 10, land: 10, land_and_ice: 10 }));
 
@@ -58,5 +58,88 @@ test('both recorded windows reproduce all existing workflow differences and maxi
       assert.deepEqual(summary.values.map((r) => r.delta), recorded.series.map((r) => r[summary.id]));
       assert.equal(summary.valid_months, 12);
     }
+  }
+});
+
+
+// Minimal technical metadata fixture; scientific values are tested separately
+// against both recorded surface sensitivity files below.
+function region(id = 'A') {
+  const nodes = ['Temperature', 'Fractions', 'Land', 'LandIce'].map((id) => ({ id, operation: id, operation_version: '0.1.0', output_contract: { type: id === 'Fractions' ? 'verified_surface_fractions' : 'temperature_fixture', schema_version: '0.1.0', unit: id === 'Fractions' ? '1' : 'degC' } }));
+  return { id, variable: { id: 'air_temperature_2m', height_m: 2, unit: 'degC' },
+    time: { frequency: 'monthly', calendar: 'gregorian', provider_time_standard: 'LST', start: '2024-01', end: '2024-12' },
+    provenance: { temperature: { provider: 'NASA POWER', product: 'POWER Monthly and Annual API', api_version: 'v2.10.0', sources: ['MERRA2'] }, surface_fractions: { dataset: 'M2C0NXASM', version: '5.12.4' }, source_files_sha256: { fractions: { 'metadata.dmr.xml': 'a'.repeat(64) } } },
+    spatial: { geometry: 'reconstructed_midpoint_rectangles', longitude_step_deg: 0.625, latitude_step_deg: 0.5, area_radius_m: 6371008.8, fraction_placement: 'uniform_within_full_cell_assumption' },
+    workflow_trace: { nodes }, series: series() };
+}
+
+test('regional subtraction preserves direction, all tied maxima and inputs', () => {
+  const a = region('A'), b = region('B'); b.series[0].unmasked = 8; b.series[1].unmasked = 12;
+  const before = structuredClone([a, b]), ab = summarizeRegionDifferences(a, b, 'unmasked'), ba = summarizeRegionDifferences(b, a, 'unmasked');
+  assert.equal(ab.compatible, true); assert.equal(ab.inference_performed, false); assert.equal(ab.scope, 'descriptive_spatial_difference_only');
+  assert.equal(ab.values[0].delta, 2); assert.equal(ab.values[1].delta, -2);
+  assert.deepEqual(ab.max_abs_dates, ['2024-01', '2024-02']); assert.equal(ab.max_abs_delta_degC, 2);
+  assert.equal(ba.max_abs_delta_degC, 2); assert.deepEqual(ba.max_abs_dates, ab.max_abs_dates);
+  ab.values.forEach((r, i) => assert.equal(ba.values[i].delta || 0, -r.delta || 0)); assert.deepEqual([a, b], before);
+});
+test('pair gate blocks different identity, quantity, time, provider and geometry metadata', () => {
+  for (const [id, mutate] of [
+    ['identity', (b) => b.id = 'A'], ['quantity', (b) => b.variable.height_m = 10], ['quantity', (b) => b.variable.unit = 'K'],
+    ['time', (b) => b.time.provider_time_standard = 'UTC'], ['time', (b) => b.time.end = '2025-12'],
+    ['provider', (b) => b.provenance.temperature.api_version = 'other'], ['provider', (b) => delete b.provenance.temperature.sources],
+    ['geometry', (b) => b.spatial.area_radius_m = 6371000], ['geometry', (b) => delete b.spatial.geometry],
+  ]) { const b = region('B'); mutate(b); const result = summarizeRegionDifferences(region(), b, 'unmasked');
+    assert.equal(result.compatible, false); assert.equal(result.checks.find((c) => c.id === id).status, 'mismatch');
+    assert.deepEqual(result.values, []); assert.equal(result.max_abs_delta_degC, null);
+  }
+});
+test('recipe versions and contracts are checked only for consumed operations', () => {
+  const a = region(), b = region('B'); b.workflow_trace.nodes.find((n) => n.id === 'LandIce').operation_version = '0.2.0';
+  assert.equal(summarizeRegionDifferences(a, b, 'unmasked').compatible, true);
+  assert.equal(summarizeRegionDifferences(a, b, 'land').compatible, true);
+  assert.equal(summarizeRegionDifferences(a, b, 'land_and_ice').compatible, false);
+  b.workflow_trace.nodes.find((n) => n.id === 'Temperature').output_contract.unit = 'K';
+  assert.equal(summarizeRegionDifferences(a, b, 'unmasked').compatible, false);
+});
+test('surface source, metadata and placement gate masked policies without blocking unmasked', () => {
+  for (const mutate of [(b) => b.provenance.surface_fractions.version = 'other', (b) => b.provenance.source_files_sha256.fractions['metadata.dmr.xml'] = 'b'.repeat(64), (b) => b.spatial.fraction_placement = 'unknown']) {
+    const b = region('B'); mutate(b);
+    assert.equal(summarizeRegionDifferences(region(), b, 'unmasked').checks.find((c) => c.id === 'surface').status, 'not_used');
+    for (const policy of ['land', 'land_and_ice']) assert.equal(summarizeRegionDifferences(region(), b, policy).compatible, false);
+  }
+});
+test('regional missing pairs are policy-specific, zero remains a value', () => {
+  const a = region(), b = region('B'); a.series[0].land = null; b.series[1].land = null;
+  a.series[2].land = 0; b.series[2].land = 0;
+  const land = summarizeRegionDifferences(a, b, 'land');
+  assert.equal(land.valid_months, 10); assert.equal(land.values[0].delta, null); assert.equal(land.values[1].delta, null); assert.equal(land.values[2].delta, 0);
+  assert.equal(summarizeRegionDifferences(a, b, 'unmasked').valid_months, 12);
+});
+test('no valid regional pairs cannot acquire an artificial zero maximum', () => {
+  const a = region(), b = region('B'); b.series.forEach((r) => r.land = null);
+  const result = summarizeRegionDifferences(a, b, 'land'); assert.equal(result.valid_months, 0); assert.equal(result.max_abs_delta_degC, null); assert.deepEqual(result.max_abs_dates, []);
+});
+test('invalid pair calendars, invalid policy and arithmetic overflow are rejected', () => {
+  const a = region(), b = region('B'); assert.throws(() => summarizeRegionDifferences(a, b, 'other'));
+  const wrong = region('B'); wrong.series.reverse(); assert.throws(() => summarizeRegionDifferences(a, wrong, 'unmasked'));
+  for (const r of a.series) r.unmasked = r.land = r.land_and_ice = Number.MAX_VALUE;
+  for (const r of b.series) r.unmasked = r.land = r.land_and_ice = -Number.MAX_VALUE;
+  assert.throws(() => summarizeRegionDifferences(a, b, 'unmasked'));
+});
+test('source order and transport strategy do not change pairing; source membership does', () => {
+  const a = region(), b = region('B'); a.provenance.temperature.sources = ['MERRA2', 'fixture']; b.provenance.temperature.sources = ['fixture', 'MERRA2'];
+  a.provenance.temperature.request_url = 'single'; b.provenance.temperature.requests = [{ id: 'tile' }];
+  assert.equal(summarizeRegionDifferences(a, b, 'unmasked').compatible, true);
+  b.provenance.temperature.sources = ['MERRA2']; assert.equal(summarizeRegionDifferences(a, b, 'unmasked').compatible, false);
+});
+test('recorded A/B monthly pair differences match independent direct subtraction for all policies', () => {
+  const [a, b] = ['a', 'b'].map((id) => { const saved = JSON.parse(readFileSync(new URL(`../../analysis/examples/${id}-surface-sensitivity.json`, import.meta.url), 'utf8')); return { ...region(id.toUpperCase()), series: saved.series, variable: saved.variable, time: saved.time, provenance: saved.provenance }; });
+  for (const policy of ['unmasked', 'land', 'land_and_ice']) {
+    const result = summarizeRegionDifferences(a, b, policy);
+    assert.equal(result.compatible, true); assert.equal(result.valid_months, 12);
+    const independent = a.series.map((row, i) => row[policy] - b.series[i][policy]);
+    assert.deepEqual(result.values.map((r) => r.delta), independent);
+    assert.equal(result.max_abs_delta_degC, Math.max(...independent.map(Math.abs)));
+    assert.deepEqual(result.max_abs_dates, independent.flatMap((v, i) => Math.abs(v) === result.max_abs_delta_degC ? [a.series[i].date] : []));
   }
 });

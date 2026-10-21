@@ -230,3 +230,16 @@ h1{font-size:27px;letter-spacing:-1.2px}
 #trace-detail{padding:22px;background:#f6f7f2;border-radius:12px;min-width:0}#trace-detail h3{margin:10px 0;font-size:18px}
 @media(max-width:1000px){.trace-layout{grid-template-columns:1fr}}
 @media(max-width:740px){.trace-panel{padding:18px}.trace-panel .panel-heading{display:block}.trace-panel .spatial-control{margin-top:14px}#trace-graph{min-height:170px}}
+
+.pair-panel{margin-top:22px;padding:28px;background:#fff;border:1px solid #dce1dc;border-radius:14px}
+.pair-controls{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:end;gap:15px;margin:24px 0 18px}
+.pair-controls label{display:block;letter-spacing:1.1px;font-size:9px;font-weight:600;margin-bottom:8px;color:#607166}
+.pair-controls select{width:100%;min-width:0;padding:11px;background:#f4f6f1;border:1px solid #d3dcd3;border-radius:5px;font:inherit;font-size:13px}
+.pair-controls button{padding:11px;border:1px solid #d3dcd3;border-radius:5px;background:#fff;color:#285e4b;cursor:pointer}
+.pair-ready,.pair-blocked{padding:12px 14px;border-radius:7px;font-size:12px;line-height:1.6}.pair-ready{background:#edf3ee;color:#2a5740}.pair-blocked{background:#fff0df;color:#80551f}
+.pair-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:24px 0}
+.pair-metrics article{min-width:0;padding:17px;background:#f6f7f2;border-radius:9px}.pair-metrics span,.pair-metrics small{display:block;font-size:11px;color:#637064;line-height:1.5}.pair-metrics strong{display:block;font-size:25px;font-weight:500;margin:12px 0;color:#254e3d}
+#pair-chart{width:100%;height:auto}.pair-line{fill:none;stroke:#386e59;stroke-width:2.5}.pair-point{fill:#386e59;stroke:#fff;stroke-width:2}
+#pair-checks,.pair-table{margin-top:20px;font-size:12px}#pair-checks summary,.pair-table summary{cursor:pointer;padding:10px 0}
+#pair-check-table small{display:block;line-height:1.5;color:#637064;margin-top:4px}#pair-check-table tr[data-status=mismatch] td{color:#946023}
+@media(max-width:740px){.pair-panel{padding:18px}.pair-controls{gap:8px}.pair-controls button span{display:none}.pair-controls select{font-size:11px;padding:10px 5px}.pair-metrics{grid-template-columns:1fr;gap:9px}.pair-metrics article{display:grid;grid-template-columns:1fr auto;gap:8px}.pair-metrics strong{font-size:22px;margin:0}.pair-metrics small{grid-column:1/-1}}

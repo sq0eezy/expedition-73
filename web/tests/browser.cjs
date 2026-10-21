@@ -43,6 +43,23 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     assert.match(await comparisonCard('B').locator('[data-contrast="land_minus_unmasked"] .contrast-peak').innerText(), /Kasım/);
     assert.match(await comparisonCard('B').locator('[data-contrast="land_ice_minus_land"] .contrast-peak').innerText(), /Ekim/); checks++;
     assert.equal(data.schema_version, '0.3.0');
+    const pairNumber = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 3, maximumFractionDigits: 3 }) + ' °C';
+    assert.equal(await page.locator('#pair-check-table tr[data-status="mismatch"]').count(), 0);
+    assert.equal(await page.locator('#pair-table tbody tr').count(), 12);
+    assert.equal(await page.locator('#pair-metrics article strong').first().innerText(), pairNumber(data.regions[0].series[0].unmasked - data.regions[1].series[0].unmasked)); checks++;
+    await page.locator('#pair-swap').click();
+    assert.equal(await page.locator('#pair-left').inputValue(), 'B'); assert.equal(await page.locator('#pair-right').inputValue(), 'A');
+    assert.equal(await page.locator('#pair-metrics article strong').first().innerText(), pairNumber(data.regions[1].series[0].unmasked - data.regions[0].series[0].unmasked));
+    await page.locator('#pair-swap').click(); checks++;
+    for (const policy of ['unmasked', 'land', 'land_and_ice']) {
+      await page.locator('#policy').selectOption(policy); await page.locator('#month').fill('6');
+      const expected = data.regions[0].series.map((r, i) => r[policy] - data.regions[1].series[i][policy]);
+      assert.equal(await page.locator('#pair-metrics article strong').first().innerText(), pairNumber(expected[6]));
+      assert.equal(await page.locator('#pair-metrics article strong').nth(1).innerText(), pairNumber(Math.max(...expected.map(Math.abs))));
+    }
+    await page.locator('#policy').selectOption('unmasked'); await page.locator('#month').fill('0');
+    await page.locator('.pair-panel').screenshot({ path: path.join(screenshots, 'pair-desktop.png') }); checks++;
+
     assert.equal(await page.locator('#trace-graph .trace-node').count(), 5);
     assert.equal(await page.locator('#trace-graph .trace-edge').count(), 8);
     await page.locator('#trace-graph [data-node="Fractions"]').click();
@@ -105,7 +122,10 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     assert.equal(await page.locator('#empty').isVisible(), true); assert.equal(await page.locator('#download').isDisabled(), true);
     assert.equal(await page.locator('#trace-graph .trace-node').count(), 0);
     assert.equal(await page.locator('#trace-detail').innerText(), '');
-    assert.equal(await page.locator('#trace-region').isDisabled(), true); checks++;
+    assert.equal(await page.locator('#trace-region').isDisabled(), true);
+    assert.equal(await page.locator('#pair-content').isVisible(), false);
+    assert.equal(await page.locator('#pair-chart path').count(), 0);
+    assert.equal(await page.locator('#pair-table tbody tr').count(), 0); checks++;
     assert.match(await page.locator('#area-state').innerText(), /Pencere seçin/); checks++;
     assert.equal(await page.locator('#spatial-empty').isVisible(), true);
     assert.equal(await page.locator('#spatial-region').isDisabled(), true);
@@ -125,6 +145,9 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({ path: path.join(screenshots, 'mobile.png'), fullPage: true }); checks++;
     await page.locator('.comparison-panel').screenshot({ path: path.join(screenshots, 'comparison-mobile.png') });
+    await page.locator('#pair-swap').click();
+    assert.equal(await page.locator('#pair-left').inputValue(), 'B');
+    await page.locator('.pair-panel').screenshot({ path: path.join(screenshots, 'pair-mobile.png') }); checks++;
     assert.equal(await page.locator('#trace-graph').getAttribute('viewBox'), '0 0 400 550');
     await page.locator('#trace-graph [data-node=LandIce]').click();
     assert.equal(await page.locator('#trace-detail h3').innerText(), 'Kara + buz ağırlığı');
@@ -139,6 +162,7 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     await missing.locator('#month').fill('5');
     assert.equal(await missing.locator('#metrics .metric > strong').first().innerText(), 'Veri yok');
     assert.equal(await missing.locator('#metrics .difference > strong').innerText(), 'Veri yok');
+    assert.equal(await missing.locator('#pair-metrics article strong').nth(2).innerText(), '11/12');
     assert.equal((await missing.locator('.chart-path').first().getAttribute('d')).match(/M/g).length, 2); checks++;
     assert.equal(await missing.locator('#cell-detail h3').innerText(), 'Veri yok');
     assert.equal(await missing.locator('#cell-grid [data-cell="0"]').getAttribute('fill'), '#d7dcd4');
@@ -158,6 +182,9 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
       assert.match(await row.innerText(), /En büyük \|fark\|: veri yok/);
       assert.match(await row.innerText(), /0\/12 eşleşen ay/);
     }
+    await allMissing.locator('#policy').selectOption('land');
+    assert.equal(await allMissing.locator('#pair-metrics article strong').nth(1).innerText(), 'Veri yok');
+    assert.equal(await allMissing.locator('#pair-metrics article strong').nth(2).innerText(), '0/12');
     await allMissing.close(); checks++;
     const failure = await browser.newPage();
     await failure.route('**/data/results.json', (route) => route.fulfill({ status: 503, body: 'unavailable' }));
@@ -196,9 +223,40 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
       await broken.goto(base); await broken.locator('#error').waitFor({ state: 'visible' });
       assert.equal(await broken.locator('#results').isVisible(), false); await broken.close(); checks++;
     }
+
+    const recipeMismatch = await browser.newPage();
+    await recipeMismatch.route('**/data/results.json', (route) => {
+      const modified = structuredClone(data); modified.regions[1].workflow_trace.nodes.find((n) => n.id === 'Land').operation_version = '0.2.0';
+      return route.fulfill({ json: modified });
+    });
+    await recipeMismatch.goto(base); await recipeMismatch.locator('#results').waitFor({ state: 'visible' });
+    assert.match(await recipeMismatch.locator('#pair-status').innerText(), /Teknik eşleşme sağlandı/);
+    await recipeMismatch.locator('#policy').selectOption('land');
+    assert.match(await recipeMismatch.locator('#pair-status').innerText(), /sağlanmadı/);
+    assert.equal(await recipeMismatch.locator('#pair-values').isVisible(), false);
+    assert.equal(await recipeMismatch.locator('#pair-check-table tr[data-check=recipe]').getAttribute('data-status'), 'mismatch');
+    assert.equal(await recipeMismatch.locator('#metrics .difference > strong').innerText(), 'Veri yok');
+    await recipeMismatch.locator('#policy').selectOption('land_and_ice');
+    assert.equal(await recipeMismatch.locator('#pair-values').isVisible(), true); await recipeMismatch.close(); checks++;
+    const threeRegions = await browser.newPage();
+    await threeRegions.route('**/data/results.json', (route) => {
+      const modified = structuredClone(data), synthetic = structuredClone(modified.regions[0]);
+      synthetic.id = synthetic.region.id = 'C'; synthetic.display_name = 'Yalnız UI test kopyası'; modified.regions.push(synthetic);
+      return route.fulfill({ json: modified });
+    });
+    await threeRegions.goto(base); await threeRegions.locator('#results').waitFor({ state: 'visible' });
+    await threeRegions.locator('#pair-left').selectOption('C'); await threeRegions.locator('#pair-right').selectOption('A');
+    assert.equal(await threeRegions.locator('#pair-metrics article strong').first().innerText(), pairNumber(0));
+    await threeRegions.getByRole('checkbox', { name: 'C · Yalnız UI test kopyası', exact: true }).uncheck();
+    assert.notEqual(await threeRegions.locator('#pair-left').inputValue(), 'C');
+    assert.notEqual(await threeRegions.locator('#pair-left').inputValue(), await threeRegions.locator('#pair-right').inputValue());
+    await threeRegions.getByRole('checkbox', { name: 'B · Kuzey Alaska', exact: true }).uncheck();
+    assert.equal(await threeRegions.locator('#pair-content').isVisible(), false);
+    assert.equal(await threeRegions.locator('#pair-table tbody tr').count(), 0);
+    await threeRegions.close(); checks++;
     assert.deepEqual(errors, []);
     console.log(JSON.stringify({ status: 'passed', browser: 'Chrome headless', checks, javascript_errors: errors,
       external_runtime_requests: requests.filter((url) => new URL(url).origin !== new URL(base).origin).length,
-      screenshots: ['web/artifacts/desktop.png', 'web/artifacts/mobile.png', 'web/artifacts/comparison-desktop.png', 'web/artifacts/comparison-mobile.png', 'web/artifacts/spatial-a.png', 'web/artifacts/spatial-b.png', 'web/artifacts/trace-desktop.png', 'web/artifacts/trace-mobile.png'] }));
+      screenshots: ['web/artifacts/desktop.png', 'web/artifacts/mobile.png', 'web/artifacts/comparison-desktop.png', 'web/artifacts/comparison-mobile.png', 'web/artifacts/spatial-a.png', 'web/artifacts/spatial-b.png', 'web/artifacts/trace-desktop.png', 'web/artifacts/trace-mobile.png', 'web/artifacts/pair-desktop.png', 'web/artifacts/pair-mobile.png'] }));
   } finally { await browser.close(); }
 })().catch((error) => { console.error(error); process.exitCode = 1; });

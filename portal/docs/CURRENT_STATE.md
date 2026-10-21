@@ -1,15 +1,17 @@
 ---
 status: Validating
-updated: "2026-10-21"
-phase: Kayıtlı hesap akışını inceleme
+updated: "2026-10-22"
+phase: Kayıtlı pencere farklarını inceleme
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "Gerçek 5 adım/8 bağ akış ekranı yerelde hazır; 180 Windows/Linux AMD64 testi, 13 JS ve 30 Chrome senaryosu geçti. Web 0.3.0; yeni yayın yok."
+change_summary: "İki pencerenin yönlü aylık farkı ve teknik eşleşme koşulları yerelde hazır; 180 analiz, 22 JS, 36 Chrome senaryosu geçti. Bilimsel seçim/yeni yayın yok."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **İki pencerenin betimsel farkı:** Çift/yön seçimi, aynı ay sol−sağ grafiği/tablosu, ayrı geçerli çift sayısı ve maksimum |fark|/ayları eklendi. Gösterge/zaman/kaynak/grid/kullanılan hesap sürümleri; kara seçeneklerinde fraksiyon snapshot'ı eşleşmezse fark gösterilmez. Teknik eşleşme bilimsel kabul değildir. [Kapsam/kanıt](evidence/REGION_COMPARISON_CHECK.md): **180 Windows analiz testi, gerçek A/B, 22 JS ve 36 Chrome senaryosu** geçti. Kaynak veri/hash'ler, web 0.3.0/altı dosya/manifest 0.2.0 değişmedi; yeni Mac/Docker/uzak CI veya yayın yok.
 
 - **Gerçek hesap akışı görünür:** Kayıtlı derlemenin beş adımı/sekiz bağlantısı, sürüm/sözleşme/girdi ayrıntıları ve telefon/klavye seçimi eklendi. Gerçek artifact/ata tutarlılığı denetlenir; ekranda kararlı iş tanımı kimliği gösterilir. Web 0.3.0, altı genel dosya, manifest 0.2.0; eski ZIP doğrulaması korunur. **180 Windows/Linux AMD64 testi, gerçek A/B, 13 JS ve 30 Chrome senaryosu** geçti. [Kapsam ve gerçek kanıt](evidence/WORKFLOW_TRACE_CHECK.md). Yeni Mac/ARM64/uzak CI veya bilimsel onay değil; yerel M1 dalında.
 
@@ -65,4 +67,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-Hücre, ağırlık karşılaştırması ve gerçek akış ayrıntıları dahil yerel ekranı ekipçe incelemek; M2'nin beklediği yüzey hedefi, kesin sınır ve uzun dönem profilini birlikte netleştirmek. [Ekran kapsamı](product/RESULTS_PREVIEW.md). Kıyı çizgili harita, uzun dönem/trend, ikinci gösterge ve nihai barındırma/yığın açık. AREA bulunmayan granülden sayısal alan karşılaştırması varsayılmaz. M2'nin `a1a83d5` notları `b3718b4` ile yerel M1 dalına alındı; yeni ekranı kabul ettiği anlamına gelmez. Önceki 164 testlik dilimler GitHub M1 dalında paylaşıldı. Geliştirme paketi ve yeni 180 testlik akış ekranı yerel M1 dalında; main/Pages'e bu oturumda yazılmadı.
+Hücre, ağırlık karşılaştırması ve gerçek akış ve pencere farkı ayrıntıları dahil yerel ekranı ekipçe incelemek; M2'nin beklediği yüzey hedefi, kesin sınır ve uzun dönem profilini birlikte netleştirmek. [Ekran kapsamı](product/RESULTS_PREVIEW.md). Kıyı çizgili harita, uzun dönem/trend, ikinci gösterge ve nihai barındırma/yığın açık. AREA bulunmayan granülden sayısal alan karşılaştırması varsayılmaz. M2'nin `a1a83d5` notları `b3718b4` ile yerel M1 dalına alındı; yeni ekranı kabul ettiği anlamına gelmez. Önceki 164 testlik dilimler GitHub M1 dalında paylaşıldı. Geliştirme paketi, akış ekranı ve yeni betimsel pencere karşılaştırması yerel M1 dalında; main/Pages'e bu oturumda yazılmadı.

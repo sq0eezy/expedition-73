@@ -1,8 +1,8 @@
 ---
 status: Validating
-updated: "2026-10-21"
+updated: "2026-10-22"
 review_summary: "Gerçek kayıtlı sıcaklık sonuçlarını inceleten ilk yerel ekran; bilimsel ve ürün sınırları."
-change_summary: "Gerçek hesap akışı, bağımlılıklar ve adım sözleşmeleri incelenebiliyor; web aktarımı 0.3.0. Bilimsel profil veya yeni yayın değil."
+change_summary: "İki pencere için teknik eşleşme koşulları, yönlü aylık fark grafiği/tablosu ve geçerli çift sayıları eklendi; bilimsel profil kabulü yok."
 ---
 # İlk sonuç ekranı · Yerel teknik prototip
 
@@ -68,3 +68,13 @@ Her seçili aday pencere için derlemede doğrulanan beş adım ve sekiz veri ba
 Önce gerçek çıktı/ata kimlikleri kontrol edilir, sonra küçük genel aktarım üretilir. Tanım parmak izi kaynak snapshot'ı ve işlem tanımına bağlıdır; bilimsel sonuç hash'i veya imza değildir. Rastgele run UUID'leri/özel parametreler aktarılmaz. Yalnız tamamlanmış derleme kaydı gösterilir; bekleyen/çalışan/hatalı işler için canlı izleme, cache veya sunucu eklendiği anlamına gelmez. Yeni uygun bölge aynı kayıttan yapılandırılır; grafik sabit A/B bağlantıları içermez.
 
 **Güncel web aktarımı 0.3.0**, yalnız bu görünüm için zorunlu `workflow_trace` alanı eklendi. Kaynak T2M/fraksiyon şemaları, bilimsel yöntem ve teknik profil 0.1.0 değişmedi. Genel dosya sayısı altı; ZIP manifesti 0.2.0, eski ZIP doğrulaması korunur. [Gerçek kontroller ve sınırlamalar](../evidence/WORKFLOW_TRACE_CHECK.md). U-02/MOD-06 Validating; yeni kod yerel M1 dalında, M2 incelemesi veya main/Pages yayını yok.
+
+## 2026-10-22 · İki pencerenin aynı ay farkı
+
+Görünür adaylardan iki farklı pencere seçilir; sol−sağ farkı, yön değiştirme, seçili ay, üç ortak yüzey ağırlığı, sıfır merkezli fark grafiği/tablosu, en büyük |fark| ve ayrı geçerli ay çifti sayısı incelenir. Tek/boş seçimde eski sonuç temizlenir. Yeni uygun bölge aynı seçim mantığıyla çalışır.
+
+Saf `summarizeRegionDifferences` gösterge/yükseklik/birim, takvim/dönem/zaman standardı, sağlayıcı/ürün/API/kaynak üyeleri, grid/alan yaklaşımı ve kullanılan işlem/sözleşme sürümlerini kontrol eder. Kara seçeneklerinde fraksiyon ürünü/sürümü/DMR hash'i/yerleşim varsayımı da eşleşir. Maskesizde fraksiyon kullanılmıyor gösterilir. Uyumsuzlukta fark hesaplanmaz, koşul tablosu açılır; mevcut üst fark kartı da bu kapıyı kullanır. Eşleşme bilimsel kabul değildir.
+
+Eksik çift null kalır ve çizgi kesilir; sıfır korunur. Maksimum yalnız geçerli aylardan seçilir, tüm eşit maksimum ayları saklanır. Tamamen eksikte sıfır maksimum uydurulmaz. Hesap önce yuvarlanmaz; üç ondalık gösterimi ölçüm doğruluğu veya hata payı değildir. A/B 2024 maskesiz en büyük |fark| Mart'ta yaklaşık 26,185 °C: **iki aday yerin mekânsal sıcaklık farkı**, küresel ısınma etkisinin veya trendlerin farkı değil.
+
+[Gerçek kontrol](../evidence/REGION_COMPARISON_CHECK.md): Windows 180 analiz, gerçek A/B tekrarları, 22 JS ve 36 Chrome senaryosu. Analiz kaynakları ve data/results.json değişmedi; web 0.3.0/manifest 0.2.0/altı dosya korunur. JSON indirme mevcut girdileri sunar, yeni fark özetini eklemez. Yeni kod yerel M1 dalında, M2 kabulü/yayın ve bilimsel maske/sınır/uzun dönem seçimi yok.

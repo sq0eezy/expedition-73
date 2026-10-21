@@ -1,5 +1,11 @@
 # Çalışma günlüğü
 
+## 2026-10-22 · İki pencerenin aylık farkını inceleme
+
+M1 devam istedi. Temiz `ca485eb`, güncel ekip/durum/fikir/devir/pano okundu; fetch'te yeni main/M2 katkısı yok (`a1a83d5`, uzak M1 `6047c42`). Sonuç ekranına dinamik çift/yön, ay/politika farkı, geçerli çift sayısı, maksimum/bağ ayları, grafik/tablo ve teknik eşleşme kapısı eklendi. Tüketilen hesap sürümleri/kaynak/grid/zaman eşleşmezse fark ve üst kart engellenir; fraksiyon koşulu maskeye bağlıdır. Bu mekânsal betimlemedir, bilimsel profil/trend/iklim etkisi değildir.
+
+[Esas kanıt](../evidence/REGION_COMPARISON_CHECK.md): 180 Windows test / 34,953 s, gerçek A/B tekrarları, 22 JS / 149,688 ms ve 36 Chrome senaryosu geçti; JS hatası/dış runtime isteği 0. Gerçek üç politika farkları doğrudan çıkarmayla eşleşti. data/results.json önceki ZIP ile byte aynı; yeni ZIP iki üretimde aynı (333.744 byte/SHA kanıtta). Web/manifest/dosya sayısı değişmedi. Yeni Mac/Docker/ARM64/uzak CI koşusu yok. U-02 Validating, H-M1-016 panel içi inceleme; M2 kabulü ve bilimsel maske/sınır/dönem seçimi yok. Yerel M1 dalında; push/main/Pages/Sites/dış mesaj yok. QA sunucusu kapatıldı, 8873 TCP kapalı doğrulandı.
+
 ## 2026-10-21 · Sonuç ekranında gerçek modül akışı
 
 M1 devam istedi; temiz `294fab6` üzerinden, fetch'te yeni main/M2 katkısı yok. Aynı gerçek motor çalıştırmasından artifact/girdi/ata/event tutarlılığı denetlenip küçük genel akış izi üretildi. Beş adım/sekiz bağ ve tıklama/klavye sözleşme ayrıntısı, telefon dikey görünümü eklendi. İş tanımı kimliği gerçek çıktı kimliğinden ayrıldı; rastgele UUID/özel context-parametreler dışlanarak tekrarlanabilir ZIP korundu. Web 0.3.0, altı genel dosya, manifest 0.2.0; eski beş dosyalı ZIP verifier uyumu var. Bilimsel hesap/kaynaklar/teknik profil değişmedi.
@@ -252,3 +258,5 @@ GitHub üzerinden paylaşım önerildi; henüz ortak kabul varsayılmadı. Yerel
 - İçerik kontrolü, strict derleme, 29 Python ve 12 JavaScript testi geçti; 12 yerel HTTP isteği 200 döndü. Tarayıcıda başlangıç ve diyagram görüldü. Ayrıntılar [portal kanıt kaydında](../evidence/PORTAL_SETUP.md).
 
 Uygulama geliştirmesine veya bilimsel analize geçilmedi. Sonraki adım: iki adayın küçük sayısal veri örnekleriyle değerlendirilmesi.
+
+2026-10-22 son kontrol: Portal içerik check ve strict build başarılı; bu belge kontrolü bilimsel kabul değildir.

@@ -1,5 +1,7 @@
 # İş panosu
 
+**2026-10-22 · Pencere farkı:** U-02 için [çift/yön/ay/politika farkı ve teknik eşleşme koşulları](../evidence/REGION_COMPARISON_CHECK.md) yerelde eklendi: 180 Windows analiz, gerçek A/B, 22 JS ve 36 Chrome senaryosu. Kaynak veri/şemalar değişmedi; bilimsel karşılaştırma profili değil. U-02 Validating, [H-M1-016](../team/HANDOFFS.md) inceleme bekliyor, yeni paylaşım/yayın yok.
+
 **2026-10-21 · Kayıtlı modül akışı:** U-02/MOD-06/D-02 için [5 adım/8 gerçek bağımlılık ve sözleşme görünümü](../evidence/WORKFLOW_TRACE_CHECK.md) yerelde eklendi. 180 Windows/Linux AMD64 testi, gerçek A/B tekrarları, 13 JS ve 30 Chrome senaryosu geçti. Web 0.3.0/manifest 0.2.0; bilimsel profil değişmedi. Durumlar Validating; [H-M1-015](../team/HANDOFFS.md) M2 incelemesi bekliyor, yeni paylaşım/yayın yok.
 
 **2026-10-21 · D-02 geliştirme paketi:** Büyük paketle devam talebi kapsamında [isteğe bağlı Docker/native çalıştırma, ortak check ve demo ZIP](../guide/DEV_PACKAGE.md) uygulandı. [Gerçek ortam kanıtı](../evidence/DEV_PACKAGE_CHECK.md). Genel yığın veya bilimsel profil seçimi değil; M2 Mac incelemesi/uzak CI ve paylaşım açık.

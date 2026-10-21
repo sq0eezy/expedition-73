@@ -1,4 +1,4 @@
-import { summarizePolicyDifferences } from "./comparison.mjs";
+import { summarizePolicyDifferences, summarizeRegionDifferences } from "./comparison.mjs";
 import { traceGraph } from "./trace.mjs";
 
 const $ = (id) => document.getElementById(id);
@@ -6,7 +6,7 @@ const months = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz"
 const shortMonths = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
 const colors = ["#c77543", "#247c78", "#7466a1", "#777c39", "#a3536b", "#3878a6", "#8c6238", "#626c6a"];
 const labels = { unmasked: "Bütün pencere · maskesiz", land: "Kara oranı · FRLAND (aday)", land_and_ice: "Kara + kara buzu (aday)" };
-const state = { data: null, selected: new Set(), month: 0, policy: "unmasked", spatialRegion: null, cell: 0, traceRegion: null, traceNode: null };
+const state = { data: null, selected: new Set(), month: 0, policy: "unmasked", spatialRegion: null, cell: 0, traceRegion: null, traceNode: null, pairLeft: null, pairRight: null };
 const number = (value, digits = 2) => value === null ? "Veri yok" : value.toLocaleString("tr-TR", { minimumFractionDigits: digits, maximumFractionDigits: digits });
 const el = (tag, text, className) => { const node = document.createElement(tag); if (text !== undefined) node.textContent = text; if (className) node.className = className; return node; };
 const color = (region) => colors[state.data.regions.indexOf(region) % colors.length];
@@ -37,6 +37,10 @@ function validate(data) {
       if (support.lower_fraction_of_window > support.uniform_fraction_of_window || support.uniform_fraction_of_window > support.upper_fraction_of_window) throw Error("Invalid area bounds");
     }
   }
+  // Check every selectable pair/policy now, so invalid arithmetic cannot surface
+  // later only after a user changes a selector.
+  for (let a = 0; a < data.regions.length; a++) for (let b = a + 1; b < data.regions.length; b++)
+    for (const policy of Object.keys(labels)) summarizeRegionDifferences(data.regions[a], data.regions[b], policy);
 }
 
 function validateSpatial(region, dates) {
@@ -79,7 +83,8 @@ function renderMetrics(regions) {
   for (const region of regions) fragment.append(metric(`${region.id} · ${named(region)}`, value(region, state.month), `${months[state.month]} · aday pencere`, region));
   if (regions.length === 2) {
     const a = value(regions[0], state.month), b = value(regions[1], state.month);
-    fragment.append(metric(`${regions[0].id} − ${regions[1].id} · seçili ay farkı`, a === null || b === null ? null : a - b, "Mekânsal fark · iklim eğilimi değildir", null, true));
+    const paired = summarizeRegionDifferences(regions[0], regions[1], state.policy);
+    fragment.append(metric(`${regions[0].id} − ${regions[1].id} · seçili ay farkı`, !paired.compatible || a === null || b === null ? null : a - b, paired.compatible ? "Mekânsal fark · iklim eğilimi değildir" : "Teknik eşleşme sağlanmadı", null, true));
   }
   $("metrics").replaceChildren(fragment);
   $("metrics").style.gridTemplateColumns = `repeat(${Math.min(3, regions.length === 2 ? 3 : Math.max(1, regions.length))},minmax(0,1fr))`;
@@ -273,10 +278,58 @@ function renderTrace(regions) {
   detail.append(el("span", "SEÇİLİ ADIM", "section-label"), el("h3", traceLabels[selected.id] || selected.id), dl);
 }
 
+function renderPair(regions) {
+  const leftSelect = $("pair-left"), rightSelect = $("pair-right");
+  const left = regions.find((r) => r.id === state.pairLeft) || regions[0];
+  const others = regions.filter((r) => r !== left);
+  const right = others.find((r) => r.id === state.pairRight) || others[0];
+  const options = (select, rows, chosen) => { select.replaceChildren(...rows.map((r) => { const o = el("option", `${r.id} · ${named(r)}`); o.value = r.id; return o; })); if (chosen) select.value = chosen.id; select.disabled = !right; };
+  options(leftSelect, regions, left); options(rightSelect, others, right);
+  state.pairLeft = left?.id || null; state.pairRight = right?.id || null;
+  $("pair-empty").hidden = !!right; $("pair-content").hidden = !right; $("pair-swap").disabled = !right;
+  for (const id of ["pair-metrics", "pair-chart", "pair-table", "pair-check-table"]) $(id).replaceChildren();
+  $("pair-status").textContent = ""; $("pair-caption").textContent = "";
+  if (!right) return;
+  const result = summarizeRegionDifferences(left, right, state.policy);
+  $("pair-status").textContent = result.compatible ? `Teknik eşleşme sağlandı · ${labels[state.policy]} · Bilimsel seçimler açık` : "Teknik eşleşme sağlanmadı. Bu seçim için pencere farkı hesaplanmadı.";
+  $("pair-status").className = result.compatible ? "pair-ready" : "pair-blocked";
+  const head = el("thead"), hr = el("tr"); for (const title of ["Koşul", "Durum / kapsam"]) hr.append(el("th", title)); head.append(hr);
+  const body = el("tbody");
+  for (const c of result.checks) {
+    const row = el("tr"), description = el("td");
+    description.append(el("strong", { matched: "Eşleşiyor", mismatch: "Eşleşmiyor / eksik", not_used: "Kullanılmıyor" }[c.status]), el("small", c.status === "mismatch" ? "İki kaydın bu alandaki bilgileri aynı değil veya eksik." : c.detail));
+    row.dataset.check = c.id; row.dataset.status = c.status; row.append(el("th", c.label), description); body.append(row);
+  }
+  $("pair-check-table").append(head, body); $("pair-values").hidden = !result.compatible;
+  if (!result.compatible) { $("pair-checks").open = true; return; }
+  const current = result.values[state.month], metricBox = $("pair-metrics");
+  const card = (label, value, note) => { const box = el("article"); box.append(el("span", label), el("strong", value), el("small", note)); return box; };
+  const delta = (v) => v === null ? "Veri yok" : `${number(v, 3)} °C`;
+  const peakMonths = result.max_abs_dates.map((d) => months[Number(d.slice(-2)) - 1]).join(", ");
+  metricBox.append(card(`${left.id} − ${right.id} · ${months[state.month]}`, delta(current.delta), "Pozitif: sol pencere daha sıcak"), card("Yıl içindeki en büyük |fark|", delta(result.max_abs_delta_degC), peakMonths || "Eşleşen geçerli ay yok"), card("Eşleşen geçerli ay", `${result.valid_months}/12`, "Her iki pencerede de değer bulunan aylar"));
+  const chart = $("pair-chart"), compact = window.matchMedia("(max-width:740px)").matches;
+  const width = compact ? 400 : 920, x = (i) => 48 + i * (width - 70) / 11;
+  const valid = result.values.filter((r) => r.delta !== null), extent = Math.max(1, ...valid.map((r) => Math.abs(r.delta))) * 1.12;
+  const y = (v) => 105 - v / extent * 78;
+  chart.setAttribute("viewBox", `0 0 ${width} 230`);
+  chart.append(svg("title", { id: "pair-chart-title" }, `${left.id} eksi ${right.id} aylık pencere sıcaklığı farkı`), svg("desc", { id: "pair-chart-desc" }, "Sıfırın üstünde sol pencere daha sıcak. Eksik aylar boş bırakılır. Bu mekânsal farktır; iklim eğilimi değildir. Sayılar aşağıdaki tabloda bulunur."));
+  for (const tick of [-extent, 0, extent]) chart.append(svg("line", { x1: 48, x2: width - 22, y1: y(tick), y2: y(tick), class: tick === 0 ? "chart-grid chart-zero" : "chart-grid" }), svg("text", { x: 39, y: y(tick) + 4, "text-anchor": "end", class: "chart-text" }, number(tick, 1)));
+  let path = "", connected = false;
+  result.values.forEach((row, i) => { if (row.delta === null) { connected = false; return; } path += `${connected ? "L" : "M"}${x(i)},${y(row.delta)} `; connected = true; });
+  chart.append(svg("path", { d: path, class: "pair-line" }), svg("line", { x1: x(state.month), x2: x(state.month), y1: 20, y2: 190, class: "chart-focus" }));
+  if (current.delta !== null) chart.append(svg("circle", { cx: x(state.month), cy: y(current.delta), r: 5, class: "pair-point" }));
+  for (let i = 0; i < 12; i++) if (!compact || [0, 2, 4, 6, 8, 11].includes(i)) chart.append(svg("text", { x: x(i), y: 218, "text-anchor": "middle", class: "chart-text" }, shortMonths[i]));
+  $("pair-caption").textContent = `${left.id} · ${named(left)} − ${right.id} · ${named(right)}. Birim °C; yönü çevirince işaret değişir, |fark| değişmez. Dikey ölçek bu çifte göre değişir.`;
+  const tableHead = el("thead"), tableRow = el("tr");
+  for (const title of ["Ay", `${left.id} · °C`, `${right.id} · °C`, `${left.id} − ${right.id} · °C`]) tableRow.append(el("th", title)); tableHead.append(tableRow);
+  const rows = el("tbody"); for (const r of result.values) { const row = el("tr"); row.append(el("th", months[Number(r.date.slice(-2)) - 1]), ...[r.left, r.right, r.delta].map((v) => el("td", v === null ? "Veri yok" : number(v, 3)))); rows.append(row); }
+  $("pair-table").append(tableHead, rows);
+}
+
 function render() {
   const regions = active();
   $("month-label").textContent = months[state.month]; $("month").setAttribute("aria-valuetext", `${months[state.month]} ${state.data.dates[0].slice(0, 4)}`);
-  renderTrace(regions); renderMetrics(regions); renderChart(regions); renderComparison(regions); renderSpatial(regions); renderSupport(regions); renderSources(regions); renderTable(regions);
+  renderPair(regions); renderTrace(regions); renderMetrics(regions); renderChart(regions); renderComparison(regions); renderSpatial(regions); renderSupport(regions); renderSources(regions); renderTable(regions);
   $("download").disabled = !regions.length;
 }
 
@@ -285,7 +338,7 @@ async function load() {
   try {
     const response = await fetch("./data/results.json", { cache: "no-store" }); if (!response.ok) throw Error("Data unavailable");
     const data = await response.json(); validate(data); state.data = data; state.selected = new Set(data.regions.map((r) => r.id));
-    state.month = 0; state.policy = "unmasked"; state.spatialRegion = null; state.cell = 0; state.traceRegion = null; state.traceNode = null; $("policy").value = state.policy; $("month").value = "0";
+    state.month = 0; state.policy = "unmasked"; state.spatialRegion = null; state.cell = 0; state.traceRegion = null; state.traceNode = null; state.pairLeft = null; state.pairRight = null; $("policy").value = state.policy; $("month").value = "0";
     const year = data.dates[0].slice(0, 4); $("scope-year").textContent = `${year} · 12 ay`; $("year-mark").textContent = year;
     $("dataset-note").textContent = `Kayıtlı ${year} örnekleri · Aday sınırlar · Bilimsel profil incelemede`;
     $("region-options").replaceChildren(...data.regions.map((region) => {
@@ -301,9 +354,12 @@ async function load() {
 $("policy").addEventListener("change", () => { state.policy = $("policy").value; render(); });
 $("month").addEventListener("input", () => { state.month = Number($("month").value); render(); });
 $("trace-region").addEventListener("change", () => { state.traceRegion = $("trace-region").value; state.traceNode = null; renderTrace(active()); });
+$("pair-left").addEventListener("change", () => { state.pairLeft = $("pair-left").value; renderPair(active()); });
+$("pair-right").addEventListener("change", () => { state.pairRight = $("pair-right").value; renderPair(active()); });
+$("pair-swap").addEventListener("click", () => { [state.pairLeft, state.pairRight] = [state.pairRight, state.pairLeft]; renderPair(active()); });
 $("retry").addEventListener("click", load);
 $("spatial-region").addEventListener("change", () => { state.spatialRegion = $("spatial-region").value; state.cell = 0; renderSpatial(active()); });
-window.matchMedia("(max-width:740px)").addEventListener("change", () => { if (state.data) { renderChart(active()); renderTrace(active()); } });
+window.matchMedia("(max-width:740px)").addEventListener("change", () => { if (state.data) { renderChart(active()); renderTrace(active()); renderPair(active()); } });
 $("download").addEventListener("click", () => {
   const selected = { schema_version: state.data.schema_version, selection_status: "candidate", data_mode: state.data.data_mode, inference_performed: false, selected_policy: state.policy, selected_month: state.data.dates[state.month], regions: active() };
   const url = URL.createObjectURL(new Blob([JSON.stringify(selected, null, 2)], { type: "application/json" }));

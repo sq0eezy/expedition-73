@@ -181,3 +181,12 @@ Kaynak şablon: `templates/TEAM_HANDOFF.md`.
 - **Teslim:** [Gerçek akış kontrolü](../evidence/WORKFLOW_TRACE_CHECK.md), [ürün sınırları](../product/RESULTS_PREVIEW.md), [native/Docker açma komutları](../guide/DEV_PACKAGE.md).
 - **İncelenecek:** Kaynaklar paylaşıldıktan sonra Mac'te `sh scripts/start-preview.sh`; B akışında beş adım/sekiz bağ, LandIce/Sensitivity girdileri, telefon/klavye seçimi. Kimlik iş tanımına aittir; bilimsel onay/çıktı artifact hash'i değildir. Yeni web 0.3.0/manifest 0.2.0, eski ZIP doğrulaması korunur.
 - **Kanıt/sınır:** 180 Windows/Linux AMD64 analiz testi, gerçek A/B, 13 JS, 30 Chrome senaryosu geçti; yeni Mac/ARM64/uzak CI yok. Bilimsel maske/sınır/dönem ve M2 kabulü açık; yanıt gelmeden accepted yazılmaz.
+
+## H-M1-016 · Pencereler arası betimsel fark ve eşleşme koşulları
+
+- **Gönderen → alıcı:** M1 → M2; U-02 panel içi kayıt, dış mesaj yok.
+- **Tarih:** 2026-10-22.
+- **Durum:** Yerel M1 dalında; paylaşım ve M2 incelemesi bekliyor.
+- **Teslim:** [Çift/yön/ay/yüzey grafiği ve gerçek kanıt](../evidence/REGION_COMPARISON_CHECK.md), [ürün sınırları](../product/RESULTS_PREVIEW.md). Kaynaklar paylaşıldıktan sonra Mac'te `sh scripts/start-preview.sh` ile açılır.
+- **İncelenecek:** A−B/B−A yönü, 12 aylık fark tablosu ve teknik koşullar. Maskesiz/kara/kara+buz sonuçları aynı coğrafyanın alternatif ağırlıklarıdır. Pencere farkı ısınma etkisi/trend/önemlilik değildir. Bilimsel yüzey/sınır/uzun dönem uzlaşması hâlâ gerekir.
+- **Kanıt/sınır:** 180 Windows analiz, gerçek A/B tekrarları, 22 JS ve 36 Chrome senaryosu; yeni Mac/Docker/uzak CI yok. Web 0.3.0, altı dosya, manifest 0.2.0 değişmedi. Yanıt gelmeden M2 kabulü yazılmaz.

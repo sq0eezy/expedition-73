@@ -69,3 +69,9 @@ Her pencerenin aynı gerçek çalıştırmasından beş adım ve sekiz bağıml�
 `workflow_trace.project` gerçek artifact hash'lerini, çalıştırma/context/girdi/ata kimliklerini ve her adımın tek çalışmasını kontrol eder. Tarayıcıya yalnız küçük bir izin listesi aktarılır. Ekrandaki SHA-256 **iş tanımı kimliğidir**, gerçek çıktı artifact kimliği değildir; rastgele çalıştırma UUID'si ve özel parametreler dışarı verilmez. Böylece aynı kaynaklar ve tanımlarla ZIP tekrarlanabilir kalır. Bilimsel doğruluk, canlı görev monitörü veya kalıcı cache kanıtı değildir. [Gerçek kontrol](../portal/docs/evidence/WORKFLOW_TRACE_CHECK.md).
 
 Yeni ZIP manifesti 0.2.0, web verisi 0.3.0 kullanır. `verify-package` önceki manifest 0.1.0/web 0.2.0 beş dosyalı ZIP'i de doğrular; eski web verisini yeni arayüzle karıştırmaz.
+
+## İki pencerenin aynı ay farkı
+
+“İki pencere arasında” bölümünde görünür kayıtlardan farklı bir çift seç, sol−sağ yönünü değiştir. Üstteki ay/yüzey seçimleri bu bölüme de uygulanır. Aylık fark, geçerli çift sayısı ve en büyük mutlak fark/ayları grafikte ve tabloda incelenir. Eksik aylar doldurulmaz. Teknik koşul tablosu gösterge/zaman/kaynak/grid ve tüketilen işlem sürümlerini kontrol eder; kara seçeneklerinde fraksiyon snapshot'ı da eşleşmelidir. Uyumsuz çift için fark gösterilmez. Bu betimsel mekânsal farktır; eğilim, iklim değişikliği etkisi veya bilimsel yöntem kabulü değildir. [Esas doğrulama](../portal/docs/evidence/REGION_COMPARISON_CHECK.md).
+
+Yeni hesap mevcut comparison.mjs içindedir; web 0.3.0, altı genel dosya ve manifest 0.2.0 korunur. JSON indirme kaynak kayıtlarını taşır, bu yeni çift özetini eklemez. Son kontrol: Windows 180 analiz testi/gerçek A/B, 22 JS ve 36 Chrome senaryosu; bu sürüm için yeni Mac/Docker koşusu yok.
