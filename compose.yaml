@@ -1,0 +1,30 @@
+name: expedition73
+services:
+  preview:
+    build:
+      context: .
+      target: preview
+    image: expedition73-preview:local
+    ports:
+      - "127.0.0.1:8873:8873"
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    init: true
+  checks:
+    profiles: [checks]
+    build:
+      context: .
+      target: checks
+    image: expedition73-checks:local
+    read_only: true
+    network_mode: none
+    tmpfs:
+      - /tmp
+      - /workspace/analysis/artifacts:uid=10001,gid=10001
+      - /workspace/web/dist:uid=10001,gid=10001
+      - /workspace/web/artifacts:uid=10001,gid=10001
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]

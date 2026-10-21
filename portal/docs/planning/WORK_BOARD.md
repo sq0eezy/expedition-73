@@ -1,5 +1,7 @@
 # İş panosu
 
+**2026-10-21 · D-02 geliştirme paketi:** Büyük paketle devam talebi kapsamında [isteğe bağlı Docker/native çalıştırma, ortak check ve demo ZIP](../guide/DEV_PACKAGE.md) uygulandı. [Gerçek ortam kanıtı](../evidence/DEV_PACKAGE_CHECK.md). Genel yığın veya bilimsel profil seçimi değil; M2 Mac incelemesi/uzak CI ve paylaşım açık.
+
 **2026-10-20 · M1 dal paylaşımı:** Kullanıcının GitHub talebiyle U-02 ve önceki M1 dilimleri `6b4ab12` olarak geliştirme dalına gönderildi, uzak SHA doğrulandı. [Paylaşım](../team/SYNC.md). Görevlerin bilimsel/kullanım inceleme durumları değişmedi; main/Pages yayını veya yeni CI sonucu yok.
 
 **2026-10-20 · U-02 aday ağırlık kıyaslaması:** Üç seçeneğin aynı ay sonuçları ve iki farkın yıllık maksimumu/ayı [yerelde doğrulandı](../evidence/POLICY_COMPARISON_CHECK.md): 164 analiz + 8 JS hesap testi, 22 Chrome senaryosu. M2’nin beklediği bilimsel yüzey/maske kararına inceleme desteğidir; kabul veya yeni yayın değildir.
@@ -33,6 +35,7 @@ Görevler eldeki kanıta göre güncellenir. **2026-10-16 iş bölümü:** M1 mo
 | A-01 | Modülün istatistik yöntemini belirle | Proposed | M1 | Modül kapsamını üstlendi | M2 (planlanan) | MOD-02: kaynak, varsayımlar ve bağımsız örnek |
 | U-01 | Etkileşim taslağını belirle | Proposed | Atanmadı | Atanmadı | Atanmadı | Harita/grafik/tarih akışı; kapsam seçimine bağlı |
 | U-02 | Kayıtlı T2M için ilk yerel sonuç ekranı | Validating | M1 oturumundaki teknik dilim | İlk ekran önerisi sonrası M1 devam talebi | M1/M2 kullanım incelemesi bekliyor | [Yerel çalışan ekran](../product/RESULTS_PREVIEW.md): hücre/ay/politika ve yan yana ağırlık incelemesi; [164 analiz + 8 JS testi, 22 Chrome senaryosu](../evidence/POLICY_COMPARISON_CHECK.md). Nihai yığın/barındırma/Mac kabulü açık |
+| D-02 | Taşınabilir geliştirme/doğrulama ve demo paketi | Validating | M1 oturumundaki teknik dilim | M1 büyük paketle devam istedi; Docker isteğe bağlı uygulandı | M2 kullanım incelemesi bekliyor | [Ortak komutlar ve paket](../guide/DEV_PACKAGE.md), [Windows/Linux ve tarayıcı kanıtı](../evidence/DEV_PACKAGE_CHECK.md); gerçek Mac/uzak CI ayrı doğrulanır |
 | C-01 | Yeni konuşmaları özetleyerek işle | Proposed | Atanmadı | Atanmadı | Atanmadı | Yeni bilginin esas belgede yer alması |
 
 ## Modül ve bölge görevleri

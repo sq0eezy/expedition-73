@@ -145,6 +145,15 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 - **İncelenecek:** Aynı ayın üç sonucu; kara−maskesiz ve kara+buz−kara farklarının ay/maksimum ve geçerli çift sayıları. Bunlar iklim etkisi veya toplam belirsizlik değildir; hedef yüzeyin seçimi ayrı kalır.
 - **Sınır:** Kara/buz politikası, kesin sınır ve dönem kabul edilmedi. Yeni dilim M2 tarafından görülmüş/çalıştırılmış sayılmaz; Pages'e yayımlanmadı.
 
+## H-M1-014 · İsteğe bağlı geliştirme ve demo paketi
+
+- **Gönderen → alıcı:** M1 → M2; D-02 panel içi teknik teslim; dış mesaj yok.
+- **Tarih:** 2026-10-21.
+- **Durum:** Yerel M1 dalında; paylaşım ve gerçek Mac kullanım incelemesi bekliyor.
+- **Teslim:** [Tek komut Docker/native kılavuzu](../guide/DEV_PACKAGE.md), [gerçek kontrol/ortam sınırları](../evidence/DEV_PACKAGE_CHECK.md). Mac'te mevcut ortamla `sh scripts/start-preview.sh`; Docker Desktop açıksa `docker compose --env-file docker/compose.env up --build`. İkisi de kurulumdan sonra localhost 8873 sunar.
+- **İncelenecek:** Kendi dalındaki değişiklikleri koruyarak güncel kaynak alındıktan sonra Mac başlatıcısı/Docker seçeneği, kontrol komutu ve B kayıtlı sonuçları. Docker zorunlu değil; M2 tercihi varsayılmaz.
+- **Sınır:** Linux ARM emülasyonu gerçek Mac kullanımı değildir. Yeni CI tanımı uzak başarı kanıtı veya bilimsel maske/sınır/dönem kabulü sayılmaz. Yeni kod main/Pages'e gönderilmedi.
+
 ## Bir kayıt için gerekenler
 
 **2026-10-18 mimari açıklık:** M1 çok girdili modül bağımlılığına hazır olup olmadığımızı sordu. [A→B, A+B→C örneği](../architecture/MODULE_SYSTEM.md), C'nin B ile aynı A çıktısını kullanması koşuluyla ayrıntılandırıldı. [MOD-06](../planning/WORK_BOARD.md) önerilen teknik deneme; motor henüz yok. M2 adına inceleme veya onay beyanı üretilmedi.

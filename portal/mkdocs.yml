@@ -161,6 +161,8 @@ nav:
       - Küçük fraksiyon alt kümesi: guide/SURFACE_SUBSET.md
       - Ortak web paneli: guide/WEB_PORTAL.md
       - Mac kurulumu: guide/MACOS_SETUP.md
+      - Docker ve geliştirme paketi: guide/DEV_PACKAGE.md
+      - Geliştirme paketi doğrulaması: evidence/DEV_PACKAGE_CHECK.md
       - Yeni konuşma işleme: guide/AI_WORKFLOW.md
       - Kişisel tercihler: guide/PERSONALIZATION.md
       - Temsili örnek: guide/EXAMPLE.md

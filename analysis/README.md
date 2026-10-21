@@ -1,5 +1,8 @@
 # İlk T2M modül dilimi · v0.1.0
 
+[İsteğe bağlı taşınabilir geliştirme paketi](../portal/docs/guide/DEV_PACKAGE.md): Docker/native başlatıcı, `scripts/workspace.py check` ile ortak offline doğrulama ve yalnız genel dosyalardan demo ZIP. Mevcut analysis venv/CLI kullanılmaya devam eder; bilimsel yöntem veya profil değişmedi.
+
+
 NASA POWER Monthly API'den **aday bir noktaya** ait aylık 2 metre hava sıcaklığını alır; doğrular ve sürümlü ortak JSON çıktısına çevirir. `examples/a-point-2024/` gerçek API yanıtı ve çıktısıdır. Bu sürüm **bölge ortalaması, trend, p-değeri veya nedensellik hesabı yapmaz**. POWER, MERRA-2 tabanlı bir servistir; yanıt doğrudan `M2TMNXSLV` 5.12.4 dosyası diye etiketlenmez.
 
 Kapsam: MOD-01/02/03'ün ilk aktarım/adaptör dilimi ve R-A02'nin erişim sınaması. Nokta profiline ek olarak maskesiz aday dikdörtgen için deneysel alan ağırlıklı seri çalışıyor; B uygunluğu ve istatistikler sonraki işlerdir.

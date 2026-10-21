@@ -4,6 +4,10 @@ change_summary: "6b4ab12 ve önceki M1 çalışmaları GitHub geliştirme dalın
 ---
 # Paylaşım ve kurulum
 
+## 2026-10-21 · Yeni geliştirme paketi yerelde
+
+Başlangıçta fetch yapıldı; M1 uzak dalı `6047c42`, main/M2 `a1a83d5` olarak aynı, yeni katkı yoktu. [İsteğe bağlı Docker/native paket](../guide/DEV_PACKAGE.md) mevcut M1 dalında geliştirildi. Önceki Docker önerisi artık alternatif teknik çalıştırma yoluyla uygulandı; nihai yığın veya M2 tercihi kabulü yok. Yeni kod bu oturumda push/main merge/Pages/Sites yayınına gönderilmedi; hazırlanan CI matrisi henüz uzakta çalıştırılmadı. [Yerel gerçek kontroller](../evidence/DEV_PACKAGE_CHECK.md), [H-M1-014](HANDOFFS.md).
+
 ## 2026-10-20 · M1 geliştirme dalı GitHub’da paylaşıldı
 
 Kullanıcı yapılan çalışmaları GitHub’a göndermeyi açıkça istedi. Temiz çalışma alanında fetch yapıldı; main ve M2 `a1a83d5` olarak aynıydı, M1 uzak dalında alınmamış katkı yoktu. M1’in sekiz yerel commit’i normal push ile `codex/m1-modules-region-a` dalına gönderildi. `git ls-remote` sonucu uzak başlık **`6b4ab124ca35b7b89e26b654ca5bbf4179736c83`**, yerel kaynakla aynı. [Paylaşılan dal](https://github.com/sq0eezy/expedition-73/tree/codex/m1-modules-region-a), [son kod commit’i](https://github.com/sq0eezy/expedition-73/commit/6b4ab124ca35b7b89e26b654ca5bbf4179736c83). Main/M2 aynı SHA’da korundu; force veya main birleştirmesi yapılmadı.

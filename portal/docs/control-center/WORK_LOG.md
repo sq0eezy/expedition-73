@@ -1,5 +1,17 @@
 # Çalışma günlüğü
 
+## 2026-10-21 · Taşınabilir geliştirme/doğrulama paketi
+
+M1 daha büyük paketle devam istedi. Önce güncel durum/harita, iki üye, fikir/devir/pano ve sync okundu; temiz dal `6047c42`, fetch'te yeni main/M2 katkısı yok (`a1a83d5`). Sites yerel iş akışı kapsamında isteğe bağlı Docker/native başlatıcı, ortak check ve sınırlı demo ZIP hazırlandı. Nihai ürün yığını, bilimsel maske/sınır/dönem veya M2 tercihi seçilmedi. [Kılavuz](../guide/DEV_PACKAGE.md), [esas kontrol kaydı](../evidence/DEV_PACKAGE_CHECK.md).
+
+`workspace.py` doctor/setup/check/build/preview/package/verify-package; CMD/POSIX başlatıcıları; sabit resmi imaj index digest'leri ve on pip paketi; ayrı ağsız kontrol/salt statik Docker hedefleri eklendi. Docker bağlamı izin listesi, açık boş Compose env dosyası, UID 10001 ve dar yazılabilir geçici alanlarla sınırlandı; özel Earthdata .env verilmedi. Beş genel dosya + manifest ZIP'i yalnız artifacts'a yazılır, hash kontrolü çıkarma yapmaz; hata/bozulma/tekrar için yedi yeni Python testi var. Bilimsel kaynak örnekleri/hesapları ve web 0.2.0 sözleşmesi değişmedi. CI, üç native OS ve iki Docker mimarisi için hazır; uzakta koşmadı.
+
+Windows/Python 3.12.14: **171 test / 73,631 s**, gerçek replay/A/B akışları ve 8 JS testi geçti. Docker Linux AMD64/Python 3.12.15: **171 test / 36,180 s**, aynı gerçek tekrarlar ve **8 JS testi / 127,693 ms** geçti; kontrol konteyneri runtime network none/read_only/UID 10001 ile çalıştı. Statik Docker konteyneri healthy, HTTP smoke ve **22 Chrome senaryosu** başarılı; JS hatası/dış runtime isteği 0. 1440×1100/390×844 ekranlar incelendi. Windows CMD başlatıcısı 8874'te smoke geçti; mevcut venv setup'ında bütün paketler zaten kurulu, sürümler değişmedi. Mac başlatıcısına Git Bash syntax kontrolü yapıldı; gerçek macOS testi yok.
+
+ARM64 imajı emülasyonla derlendi; **171 test / 611,289 s**, gerçek replay/A/B akışları, **8 JS testi / 3319,944 ms**, syntax ve builder başarılı. Bu, gerçek Mac veya ayrı ARM64 preview hizmeti koşusu değildir. Ayrı çıkarılmış demo dosyaları MIME ayarlı stdlib HTTP smoke ile kontrol edildi; geçici sunucu/klasör kapatıldı. Demo ZIP 297.997 byte, SHA-256 `879341571720ed282917f1fc11e2870c1916e4701f73a620fbfdadf558fb8ab2`, doğrulandı. Docker daemon başlangıçta kapalıydı, CLI ile başlatıldı; engine/CLI erişimi için izinli çağrılar kullanıldı, config/token içeriği gösterilmedi. Yalnız imaj/pip indirmeleri internete çıktı; NASA/token erişimi yok.
+
+D-02 Validating, CURRENT_STATE/ürün/pano/M1/H-M1-014 ve haritalar güncellendi. Docker QA önizlemesi ve Windows başlatıcı kapatıldı; 8873/8874 yanıt vermedi, diğer Docker projeleri silinmedi. Yeni kod M1 dalında yerel; önceki 6047c42 paylaşımı bu dilimin yayını sayılmaz. Push/main/Pages/Sites veya dış mesaj yapılmadı; bilimsel ve ekip kabulü açık. Portal check/strict build, CI YAML/Compose config ve git diff --check geçti; belge/yapılandırma kontrolü uzakta workflow başarısı veya bilimsel uygunluk değildir.
+
 ## 2026-10-20 · M1 çalışmalarını GitHub’a gönderme
 
 Kullanıcı yapılanları GitHub’a göndermeyi açıkça istedi. Temiz M1 dalı, güncel ekip/durum/devir kayıtları ve gönderilecek fark incelendi; fetch sonrası yeni uzak katkı yok. `.env`, sanal ortam, özel artifacts ve web generated çıktılarının izlenmediği kontrol edildi. Sekiz yerel commit normal push ile `codex/m1-modules-region-a` dalına gönderildi; `ls-remote` ile kaynak `6b4ab124ca35b7b89e26b654ca5bbf4179736c83` doğrulandı. Main ve M2 `a1a83d5` olarak aynı kaldı. [Paylaşım kaydı](../team/SYNC.md).

@@ -42,6 +42,10 @@ Yeni bölüm her pencerenin üç politikasını aynı ayda gösterir; grafikte s
 
 `web/regions.json` bir kaynak listesidir; yeni uygun bölge aynı T2M işlemlerine buradan bağlanır. Prototip aynı takvim yılını paylaşan 1–8 kayıtlı pencereyi destekler; gösterge, zaman standardı ve sağlayıcı/sürüm metaverisi eşleşmelidir. Bu teknik kontrol bilimsel karşılaştırma onayı değildir. Kaynak değişince yeniden derleme gerekir. Desteklenmeyen gösterge, serbest poligon, anlık NASA sorgusu, kalıcı işler veya genel modül editörü eklenmedi.
 
+## Geliştirme paketi · 2026-10-21
+
+Yeni isteğe bağlı [Docker/native geliştirme yolu](../guide/DEV_PACKAGE.md), ortak offline kontrol ve beş genel dosyalı demo ZIP eklenmiştir. Mevcut ekran, bilimsel hesap ve web 0.2.0 sözleşmesi korunur. Docker yalnız localhost'ta statik çıktıyı sunar; NASA/token kullanan API veya web yayını değildir. [Gerçek kontroller](../evidence/DEV_PACKAGE_CHECK.md). Bu yeni dilim M1 dalında yereldir; M2 ortam/arayüz kabulü yok.
+
 ## Yerel çalıştırma ve paylaşım
 
 Depo kökünde Windows CMD:

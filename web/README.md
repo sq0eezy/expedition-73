@@ -2,6 +2,10 @@
 
 Kayıtlı gerçek NASA POWER T2M ve MERRA-2 fraksiyon örneklerini inceleyen **yerel teknik prototip**. Mevcut yönetim portalından ayrıdır; nihai web ürünü/yığın veya bilimsel profil kabulü değildir. Bu dilimde framework ve ek tarayıcı paketleri gerektirmeyen HTML/CSS/JS kullanıldı. Yayın/hesap sunucusu kurulmadı.
 
+## Kolay başlatma / Docker alternatifi
+
+Windows: `scripts\start-preview.cmd`. Mac: `sh scripts/start-preview.sh`. Docker Desktop açıkken iki platformda aynı komut: `docker compose --env-file docker/compose.env up --build`. Başlatıcı her açılışta veriyi derler; Docker imajı değişince `--build` ile yenilenir. Docker önizlemesi için yalnız localhost portu açılır. [Kurulum, kontrol ve ZIP](../portal/docs/guide/DEV_PACKAGE.md), [gerçek doğrulama](../portal/docs/evidence/DEV_PACKAGE_CHECK.md).
+
 ## Windows CMD
 
 Depo kökünde, mevcut analysis ortamıyla:
@@ -43,6 +47,10 @@ Builder önce her kaydı gerçek kaynaklarından yeniden hesaplar ve metadata ha
 Web aktarım sürümü 0.2.0; eski 0.1.0 web verisi yeni arayüzle reddedilir. Kod/veri birlikte builder ile yenilenir. Kaynak T2M/fraksiyon şemaları ve bilimsel yöntem sürümleri değişmedi.
 
 `dist/` ve `artifacts/` Git dışında. Eski derleme varsa bir yeni derleme hatası onu güncellemez; hata sonrası eski çıktıyı yeni veri gibi sunma. Dosya değiştirince builder'ı tekrar çalıştır. Yönetim portalının mevcut Pages workflow'u bu klasörü yayımlamaz.
+
+## Demo paketi
+
+Depo kökünde analysis ortamı Python'u ile `scripts/workspace.py package`, sonra `scripts/workspace.py verify-package web/artifacts/expedition73-preview.zip`. ZIP yalnız beş genel dosya ve hash manifesti içerir; Git dışındadır. Kaynaklar yeniden doğrulanır, özel .env/ham yanıt kopyalanmaz. Hash kontrolü bilimsel kaynak doğrulaması veya imza değildir.
 
 ## Geliştirici kontrolü
 

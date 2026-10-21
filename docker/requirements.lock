@@ -1,0 +1,12 @@
+# Python 3.12 development/CI snapshot; native venv remains an alternative.
+# Resolved from the previously verified local environment, then tested in Docker.
+attrs==26.1.0
+certifi==2026.7.22
+cftime==1.6.6.1
+jsonschema==4.25.1
+jsonschema-specifications==2025.9.1
+netCDF4==1.7.2
+numpy==2.5.4
+referencing==0.37.0
+rpds-py==2026.9.1
+typing-extensions==4.16.0

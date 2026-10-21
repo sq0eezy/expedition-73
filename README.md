@@ -10,6 +10,10 @@ varlık
 
 Başlangıç: [mevcut durum](portal/docs/CURRENT_STATE.md), [fikir karşılaştırması](portal/docs/discovery/IDEA_COMPARISON.md), [NASA kaynakları](portal/docs/research/DATA_SOURCES.md).
 
+## İsteğe bağlı geliştirme paketi
+
+Docker Desktop açıkken depo kökünde `docker compose --env-file docker/compose.env up --build`; adres http://127.0.0.1:8873/. Durdurma: Ctrl+C ve aynı env-file ile `docker compose --env-file docker/compose.env down`. Docker olmadan Windows'ta `scripts\start-preview.cmd`, Mac'te `sh scripts/start-preview.sh`. [Kurulum, ortak kontrol ve demo ZIP kılavuzu](portal/docs/guide/DEV_PACKAGE.md), [gerçek platform sınırları](portal/docs/evidence/DEV_PACKAGE_CHECK.md). Yeni paket M1 dalındaki yerel geliştirmedir; main/Pages yayını değildir.
+
 ## İlk yerel sonuç ekranı
 
 Mevcut M1 geliştirme dilimi `web/` içinde. Windows CMD'de depo kökünden `analysis\.venv\Scripts\python.exe analysis\scripts\build_web_preview.py`, ardından `analysis\.venv\Scripts\python.exe web\serve.py`. Adres http://127.0.0.1:8873/, kapatma Ctrl+C. [Mac komutları ve ekran kapsamı](web/README.md). Bu teknik prototip main/Pages yönetim yayınına henüz eklenmedi; yeni kodun bulunduğu dalın yerel kopyası gerekir.
