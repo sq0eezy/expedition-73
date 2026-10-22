@@ -1,5 +1,7 @@
 # İş panosu
 
+**2026-10-22 · Çok yıllı kapsam sorusu:** M1 diğer yılların ne zaman geleceğini sordu. [NASA kapsamı, kodun iki yıl/istek + 12 ay ekran sınırları ve önerilen geçiş](REGION_WORKFLOW.md) açıklandı. 2001–2024 hâlâ aday; yeni veri/kod veya dönem kararı yok. R-A05/R-B05 Proposed; soru başlama/onay sayılmadı.
+
 **2026-10-22 · İnceleme raporu:** U-02/D-02 için [tam kaynak kimlikli rapor indirme/açma](../guide/COMPARISON_REVIEW.md) yerelde eklendi. [180 Windows analiz/gerçek A-B, 30 JS ve 42 Chrome senaryosu](../evidence/COMPARISON_REVIEW_CHECK.md) geçti. Web/manifest/kaynaklar korundu; bilimsel/yazar onayı değil. Validating; H-M1-017/M2 incelemesi ve paylaşım açık.
 
 **2026-10-22 · Pencere farkı:** U-02 için [çift/yön/ay/politika farkı ve teknik eşleşme koşulları](../evidence/REGION_COMPARISON_CHECK.md) yerelde eklendi: 180 Windows analiz, gerçek A/B, 22 JS ve 36 Chrome senaryosu. Kaynak veri/şemalar değişmedi; bilimsel karşılaştırma profili değil. U-02 Validating, [H-M1-016](../team/HANDOFFS.md) inceleme bekliyor, yeni paylaşım/yayın yok.

@@ -1,6 +1,6 @@
 ---
 review_summary: "M1: modüller ve A; M2: B. Paralel başlanacak işler, ortak profil ve karşılıklı teslimler."
-change_summary: "İki bölgenin gerçek 2024 örnekleriyle ortak teknik deneme profili dolduruldu; bilimsel profil/maske seçimi açık."
+change_summary: "2024 pilotu ile NASA zaman kapsamı ayrıldı; iki yıl/12 ay kod sınırları ve önerilen çok yıllı geçiş sırası açıklandı. Dönem seçimi/veri alımı yok."
 ---
 # İki bölge için iş bölümü
 
@@ -48,3 +48,13 @@ API kullanımı bütün arşivi elle indirmek zorunda olmak değildir. Öncelik 
 ## Bir iş tamamlandığında
 
 Kendi fişine gerçek sonuç ve kaynak ekle; panoda ilgili görev satırını güncelle. Diğer kişiden istenen girdiyi [devir listesine](../team/HANDOFFS.md), kısa niyet/özeti kendi üye notuna yaz. İnceleyen adı incelemenin yapıldığı anlamına gelmez. Dış bildirim gönderilmez; ortak sitede görünmesi için değişiklik GitHub main'e ulaşmalı.
+
+## 2026-10-22 · Diğer yıllara geçiş açıklığı
+
+M1, ekranın neden 2024 ile sınırlı olduğunu ve 2001–2024 verilerinin ne zaman geleceğini sordu; yeni kesin dönem/maske/sınır kabulü bildirmedi. 2024 gerçek teknik pilotudur, NASA veri kapsamının tamamı değildir. [NASA POWER Monthly belgesi](https://power.larc.nasa.gov/docs/services/api/temporal/monthly/) 2026-10-22'de kontrol edildi: aylık meteorolojik parametreler MERRA-2 tabanlı olarak 1981-01-01'den önceki yıla kadar tarif ediliyor. Aynı sayfadaki 2001 başlangıcı CERES güneş verisi bölümündedir. Son mevcut yıl ve her konum/ayın doluluğu bu oturumda gerçek API sorgusuyla denenmedi; belgede kapsam olması eksiksiz piksel/ay kanıtı değildir. 2001–2024 proje aday dönemidir, API'nin evrensel alt/üst sınırı değildir.
+
+Mevcut kod: power.py başlangıç/bitiş yılını işler; regional.validate_config istek başına en fazla iki takvim yılına izin verir. Bu projemizin pilot erişim sınırıdır; NASA belgesinden alınmış iki yıl iddiası değildir. web_preview.payload ve ön uç takvim/karşılaştırma/ay seçicileri bir tam yılın 12 ayına göre yazıldı. Yalnız istek URL'sini değiştirmek bütün ekranı çok yıllı yapmaz. Veriler kendiliğinden gelmez; istemci şu anda kayıtlı 2024 snapshot'ını okur.
+
+**Önerilen sıradaki teknik paket:** Önce 2023–2024 gibi küçük bir aday iki yıllık kayıtla zaman parçalama/birleştirme ve ay-sürekliliği sınanır; ardından aday 2001–2024 için yıl parçaları, aynı grid/konum/birim/zaman sürümü, eksik/tekrarlı aylar ve kaynak kimlikleri denetlenir. 24 yıl × 12 ay = pencere başına 288 beklenen aylık kayıt; bu, 288 ayın gerçekten alındığı anlamına gelmez. Çok yıllı grafik/seçici/karşılaştırma ve rapor sözleşmeleri bundan sonra uyarlanır. Bir yıllık eski kayıtlar bozulmadan korunur.
+
+Teknik erişim ve kalite denemesi için bilimsel maske kabulünü beklemek zorunlu değildir; aday/maskesiz olarak işaretlenir. Uzun dönem bilimsel sonuçta kesin sınır/yüzey hedefi/ortak dönem ve eğilim yöntemi ayrıca kararlaştırılır. Seriyi almak, eğilim veya anlamlılık hesabını tamamlamaz. R-A05/R-B05 Proposed kalır; bu açıklama bir uygulama, yeni veri alımı, M2 başlama/onayı veya süre taahhüdü değildir.

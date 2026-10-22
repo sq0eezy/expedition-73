@@ -69,4 +69,6 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
+M1 diğer yılların ne zaman geleceğini sordu. [Çok yıllı geçiş açıklığı](planning/REGION_WORKFLOW.md): 2024 teknik pilot; NASA aylık meteoroloji kapsamı belgede 1981'den başlıyor. Kodda bölgesel istek en fazla iki yıl, ekran/karşılaştırma 12 ayla sınırlı. Önerilen sıradaki teknik paket küçük iki yıllık deneme → yıl parçalarını birleştirme/kalite → aday 2001–2024 ve çok yıllı ekran/rapor desteği. Yeni dönem seçilmedi, eski yıllar bu oturumda alınmadı; R-A05/R-B05 başlamış sayılmaz.
+
 Hücre, ağırlık karşılaştırması ve gerçek akış, pencere farkı ve tekrar açılabilir rapor dahil yerel ekranı ekipçe incelemek; M2'nin beklediği yüzey hedefi, kesin sınır ve uzun dönem profilini birlikte netleştirmek. [Ekran kapsamı](product/RESULTS_PREVIEW.md). Kıyı çizgili harita, uzun dönem/trend, ikinci gösterge ve nihai barındırma/yığın açık. AREA bulunmayan granülden sayısal alan karşılaştırması varsayılmaz. M2'nin `a1a83d5` notları `b3718b4` ile yerel M1 dalına alındı; yeni ekranı kabul ettiği anlamına gelmez. Önceki 164 testlik dilimler GitHub M1 dalında paylaşıldı. Geliştirme paketi, akış ekranı, betimsel pencere karşılaştırması ve rapor yerel M1 dalında; main/Pages'e bu oturumda yazılmadı.

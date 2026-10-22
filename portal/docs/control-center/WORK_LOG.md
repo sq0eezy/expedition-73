@@ -1,5 +1,9 @@
 # Çalışma günlüğü
 
+## 2026-10-22 · 2024 pilotu ve çok yıllı veri kapsamını açıklama
+
+M1 diğer yılların gelişini ve 2001–2024 aralığını sordu. [Esas plan](../planning/REGION_WORKFLOW.md) güncellendi: NASA resmi Monthly belgesinde meteoroloji 1981'den başlar; 2001 CERES güneş kaynağı başlangıcıdır. Son yıl/ay/piksel erişimi canlı veri sorgusuyla denenmedi. Yerel kodda iki yıl/istek ve webde 12 ay sınırları görüldü; bu sınırlar NASA genel kapsamı diye sunulmadı. Küçük iki yıllık teknik deneme, zaman parçalama/kalite ve sonra aday 2001–2024/çok yıllı ekran önerildi. Dönem/maske/sınır/eğilim seçimi, yeni kod/veri alımı, M2 kabulü veya süre taahhüdü yok. R-A05/R-B05 Proposed kalır; yalnız belgeler değişti, analiz testleri tekrar koşulmadı. Yeni kayıt yerel M1 dalında, push/main/Pages yok.
+
 ## 2026-10-22 · Kaynak kimlikli karşılaştırma raporu
 
 M1 devam istedi. Temiz fdaf166, güncel ekip/durum/fikir/devir/pano/sync okundu; fetch'te yeni katkı yok (uzak M1 6047c42, main/M2 a1a83d5). Tam veri SHA-256 kimlikli rapor ve yeniden hesaplayarak seçimleri açma eklendi. Bozuk/farklı kaynakta seçimler korunur; 128 KiB sınırı, eski asenkron okuma koruması, Web Crypto yoksa yalnız raporların kapanması var. Dosya yüklenmez/iletilmez; yazar veya bilimsel yöntem kabulü değildir.
