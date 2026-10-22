@@ -1,5 +1,11 @@
 # Çalışma günlüğü
 
+## 2026-10-22 · Gerçek iki yıllık kaynak ve yıl ekranı
+
+M1 çok yıllı öneri üzerine devam istedi. Temiz 3e4e5ee, ekip/durum kayıtları okundu; M2 uzak dalı önceki M1 paylaşımı 6047c42'ye ilerledi, yeni bağımsız kod/kabul yok. [Esas kanıt](../evidence/T2M_HISTORY_CHECK.md), [komutlar/sözleşmeler](../guide/T2M_HISTORY.md). A 2023 tek/B iki tile alındı; B şema düzeltmesi için iki istek tekrarlandı. 2024 kaynakları byte korunarak yıllık geçmişlere alındı; iki pencerede 24/24 ay. Kaynak/API/grid/zaman/yöntem uyumu, null/ay/yıl ve staging/ezmeme kontrolleri eklendi. İlk Windows geçici ACL sorunu onarıldı, yeni inherited staging yükseltilmiş/normal replay ile doğrulandı.
+
+197 Windows test/49,798 s, gerçek önceki/yeni replay'ler, 30 JS/187,491 ms ve 49 Chrome senaryosu geçti. Web 0.4.0 katalog, annual 0.3.0 exact metin/hash; eski 2024 ve yıllar arası rapor uyumu var. Altı genel dosya, manifest 0.3.0/önceki verifier uyumu. İki demo üretimi aynı (644.736 byte/hash kanıtta). Docker motoru hazır olmadı, kendi bekleyen CLI'ları durduruldu; yeni Linux/Mac/ARM64/CI başarısı yok. 2001–2024 yalnız planlandı, gerçek veri/trend/istatistik/maske seçimi veya M2 kabulü yok. T-01/U-02/D-02 Validating, H-M1-018 inceleme bekler. Yeni kod/veri yerel M1 dalında, push/main/Pages/Sites/dış mesaj yok. Portal check/strict build ve demo byte karşılaştırması geçti; QA sunucusu kapatıldı, 8873 TCP kapalı doğrulandı.
+
 ## 2026-10-22 · 2024 pilotu ve çok yıllı veri kapsamını açıklama
 
 M1 diğer yılların gelişini ve 2001–2024 aralığını sordu. [Esas plan](../planning/REGION_WORKFLOW.md) güncellendi: NASA resmi Monthly belgesinde meteoroloji 1981'den başlar; 2001 CERES güneş kaynağı başlangıcıdır. Son yıl/ay/piksel erişimi canlı veri sorgusuyla denenmedi. Yerel kodda iki yıl/istek ve webde 12 ay sınırları görüldü; bu sınırlar NASA genel kapsamı diye sunulmadı. Küçük iki yıllık teknik deneme, zaman parçalama/kalite ve sonra aday 2001–2024/çok yıllı ekran önerildi. Dönem/maske/sınır/eğilim seçimi, yeni kod/veri alımı, M2 kabulü veya süre taahhüdü yok. R-A05/R-B05 Proposed kalır; yalnız belgeler değişti, analiz testleri tekrar koşulmadı. Yeni kayıt yerel M1 dalında, push/main/Pages yok.

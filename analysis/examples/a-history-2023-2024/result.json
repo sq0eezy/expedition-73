@@ -1,0 +1,261 @@
+{
+  "schema_version": "0.1.0",
+  "output_type": "recorded_window_history",
+  "selection_status": "candidate",
+  "region": {
+    "id": "A",
+    "label": "Colorado çevresi aday dikdörtgeni: maskesiz teknik alan denemesi",
+    "selection_status": "candidate",
+    "candidate_bbox": [
+      -113,
+      36,
+      -109,
+      39
+    ],
+    "candidate_window_version": "search-window-0.1.0"
+  },
+  "variable": {
+    "id": "air_temperature_2m",
+    "unit": "degC",
+    "height_m": 2
+  },
+  "method": {
+    "id": "spherical_midpoint_cell_intersection",
+    "version": "0.1.0",
+    "sphere_radius_m": 6371008.8,
+    "missing_policy": "require_all_intersecting_cells",
+    "inference": "not_performed"
+  },
+  "spatial_support": {
+    "kind": "unmasked_rectangular_window",
+    "mask": "none",
+    "cell_count": 56,
+    "window_area_m2": 117698095231.14151,
+    "grid_step_degrees": {
+      "longitude": 0.625,
+      "latitude": 0.5
+    },
+    "request_envelope_bbox": [
+      -113.3125,
+      35.75,
+      -108.6875,
+      39.25
+    ]
+  },
+  "time": {
+    "frequency": "monthly",
+    "calendar": "gregorian",
+    "provider_time_standard": "LST",
+    "start": "2023-01",
+    "end": "2024-12"
+  },
+  "provenance": {
+    "provider": "NASA POWER",
+    "product": "POWER Monthly and Annual API",
+    "api_version": "v2.10.0",
+    "sources": [
+      "MERRA2"
+    ],
+    "annual_sources": [
+      {
+        "year": 2023,
+        "files_sha256": {
+          "request.json": "e330556a3436ee9720ee516dc99bdebe9f46ad8d5c2bbbc20b8488c53f732bfb",
+          "response.json": "7c85f02944efc1d101dd9ddc6ad9caa49af3000112d136b7d381f6e7c4241dc2",
+          "result.json": "842c400da5309b5d6a4e99f38e743f4e5eec298acffc1b917f1556e7062295c7"
+        }
+      },
+      {
+        "year": 2024,
+        "files_sha256": {
+          "request.json": "50ea267a8378d5dc792e8974548f38cb4e30602c97233b613a3f987bff58bd49",
+          "response.json": "c38efad91ac280448589c68494d61d3749a499db9d72dcc6a710759e7a76b39c",
+          "result.json": "a31448bd3a52bedd4f6ba29b62ca55e8c1a3aa07d0d8590317f05dedb0bf3ad1"
+        }
+      }
+    ]
+  },
+  "quality": {
+    "expected_months": 24,
+    "complete_months": 24,
+    "missing_months": [],
+    "warnings": [
+      "CANDIDATE_WINDOW_NOT_ACCEPTED_REGION",
+      "NO_LAND_WATER_MASK",
+      "RECONSTRUCTED_CELL_BOUNDS_SPHERICAL_AREA",
+      "PROVIDER_PIXEL_QA_NOT_SUPPLIED",
+      "INFERENCE_NOT_PERFORMED",
+      "NO_TREND_OR_SCIENTIFIC_PROFILE_ACCEPTANCE"
+    ]
+  },
+  "series": [
+    {
+      "date": "2023-01",
+      "value": -2.6510296299908664,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-02",
+      "value": -1.2134257268155477,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-03",
+      "value": 1.2877118675843888,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-04",
+      "value": 8.508330499075992,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-05",
+      "value": 15.544105749768866,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-06",
+      "value": 19.12513257130313,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-07",
+      "value": 27.23818253387255,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-08",
+      "value": 23.746351124747378,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-09",
+      "value": 18.72514818274626,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-10",
+      "value": 12.2369281071694,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-11",
+      "value": 5.1344303280309695,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-12",
+      "value": 0.9880911532634422,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-01",
+      "value": -0.3911184860434411,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-02",
+      "value": 1.9562775464491144,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-03",
+      "value": 4.7274316680339785,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-04",
+      "value": 10.141260496014947,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-05",
+      "value": 14.700572614359396,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-06",
+      "value": 24.637722288724632,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-07",
+      "value": 26.52282408687593,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-08",
+      "value": 24.143912692692258,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-09",
+      "value": 20.60329118658115,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-10",
+      "value": 15.085453287422478,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-11",
+      "value": 2.232066201468344,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-12",
+      "value": 1.9119379141080317,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    }
+  ]
+}

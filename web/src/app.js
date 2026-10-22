@@ -6,7 +6,7 @@ const months = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz"
 const shortMonths = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
 const colors = ["#c77543", "#247c78", "#7466a1", "#777c39", "#a3536b", "#3878a6", "#8c6238", "#626c6a"];
 const labels = { unmasked: "Bütün pencere · maskesiz", land: "Kara oranı · FRLAND (aday)", land_and_ice: "Kara + kara buzu (aday)" };
-const state = { data: null, selected: new Set(), month: 0, policy: "unmasked", spatialRegion: null, cell: 0, traceRegion: null, traceNode: null, pairLeft: null, pairRight: null, datasetSha256: null, reviewRequest: 0 };
+const state = { data: null, selected: new Set(), month: 0, policy: "unmasked", spatialRegion: null, cell: 0, traceRegion: null, traceNode: null, pairLeft: null, pairRight: null, datasetSha256: null, reviewRequest: 0, periods: new Map(), year: null };
 const number = (value, digits = 2) => value === null ? "Veri yok" : value.toLocaleString("tr-TR", { minimumFractionDigits: digits, maximumFractionDigits: digits });
 const el = (tag, text, className) => { const node = document.createElement(tag); if (text !== undefined) node.textContent = text; if (className) node.className = className; return node; };
 const color = (region) => colors[state.data.regions.indexOf(region) % colors.length];
@@ -337,29 +337,59 @@ function render() {
   $("download").disabled = !regions.length;
 }
 
+async function readPeriods(bytes) {
+  const source = JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(bytes));
+  const entries = source.schema_version === "0.3.0" ? [{ year: Number(source.dates?.[0]?.slice(0, 4)), data: source, bytes }] : null;
+  if (!entries) {
+    if (source.schema_version !== "0.4.0" || source.output_type !== "recorded_temperature_year_catalog" || source.data_mode !== "recorded_offline_replay" || source.selection_status !== "candidate" || source.inference_performed !== false || !Number.isInteger(source.default_year) || !Array.isArray(source.snapshots) || !source.snapshots.length || source.snapshots.length > 50) throw Error("Unsupported year catalog");
+  }
+  const periods = new Map();
+  for (const [i, row] of (entries || source.snapshots).entries()) {
+    if (!Number.isInteger(row.year) || row.year < 1981 || row.year > 9999 || periods.has(row.year) || i && row.year !== [...periods.keys()].at(-1) + 1) throw Error("Invalid catalog year order");
+    const raw = entries ? row.bytes : new TextEncoder().encode(row.data_json);
+    if (!raw.length || raw.length > 8_000_000 || !entries && (typeof row.data_json !== "string" || !/^[a-f0-9]{64}$/.test(row.sha256))) throw Error("Invalid annual snapshot");
+    const data = entries ? row.data : JSON.parse(row.data_json); validate(data);
+    if (data.dates[0] !== `${row.year}-01`) throw Error("Snapshot belongs to another year");
+    let digest = null;
+    try { digest = await datasetDigest(raw); } catch { /* Keep graphs usable without Web Crypto. */ }
+    if (digest && !entries && digest !== row.sha256) throw Error("Annual snapshot SHA-256 mismatch");
+    periods.set(row.year, { data, digest });
+  }
+  const defaultYear = entries ? entries[0].year : source.default_year;
+  if (!periods.has(defaultYear)) throw Error("Default year is unavailable");
+  return { periods, defaultYear };
+}
+
+function mountYear(year, reset = false) {
+  const snapshot = state.periods.get(year), data = snapshot.data;
+  state.reviewRequest++; state.year = year; state.data = data; state.datasetSha256 = snapshot.digest;
+  state.selected = new Set(data.regions.filter((r) => reset || state.selected.has(r.id)).map((r) => r.id));
+  $("year").value = String(year);
+  if (reset) { state.month = 0; state.policy = "unmasked"; state.spatialRegion = null; state.cell = 0; state.traceRegion = null; state.traceNode = null; state.pairLeft = null; state.pairRight = null; } $("policy").value = state.policy; $("month").value = String(state.month);
+  const shownYear = data.dates[0].slice(0, 4); $("scope-year").textContent = `${shownYear} · 12 ay`; $("year-mark").textContent = shownYear;
+  $("dataset-note").textContent = `Kayıtlı ${shownYear} örnekleri · Aday sınırlar · Bilimsel profil incelemede`;
+  $("region-options").replaceChildren(...data.regions.map((region) => {
+    const label = el("label", undefined, "region-option"), checkbox = el("input"); checkbox.type = "checkbox"; checkbox.checked = state.selected.has(region.id); checkbox.value = region.id; checkbox.setAttribute("aria-label", `${region.id} · ${named(region)}`);
+    checkbox.addEventListener("change", () => { if (checkbox.checked) state.selected.add(region.id); else state.selected.delete(region.id); render(); });
+    const dot = el("span", undefined, "swatch"); dot.style.setProperty("--region-color", color(region)); label.append(checkbox, dot, el("span", `${region.id} · ${named(region)}`)); return label;
+  }));
+  render();
+}
+
 async function load() {
   $("loading").hidden = false; $("results").hidden = true; $("error").hidden = true; state.datasetSha256 = null; state.reviewRequest++;
   try {
     const response = await fetch("./data/results.json", { cache: "no-store" }); if (!response.ok) throw Error("Data unavailable");
     const bytes = new Uint8Array(await response.arrayBuffer());
     if (bytes.length > 8_000_000) throw Error("Preview data too large");
-    const data = JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(bytes)); validate(data); state.data = data;
-    try { state.datasetSha256 = await datasetDigest(bytes); }
-    catch { state.datasetSha256 = null; }
-    $("review-message").textContent = state.datasetSha256 ? "Raporlar yalnız bu tarayıcıda işlenir; sunucuya yüklenmez." : "Bu tarayıcıda SHA-256 kullanılamadığı için rapor indirme/açma devre dışı. Grafikler kullanılabilir."; state.selected = new Set(data.regions.map((r) => r.id));
-    state.month = 0; state.policy = "unmasked"; state.spatialRegion = null; state.cell = 0; state.traceRegion = null; state.traceNode = null; state.pairLeft = null; state.pairRight = null; $("policy").value = state.policy; $("month").value = "0";
-    const year = data.dates[0].slice(0, 4); $("scope-year").textContent = `${year} · 12 ay`; $("year-mark").textContent = year;
-    $("dataset-note").textContent = `Kayıtlı ${year} örnekleri · Aday sınırlar · Bilimsel profil incelemede`;
-    $("region-options").replaceChildren(...data.regions.map((region) => {
-      const label = el("label", undefined, "region-option"), checkbox = el("input"); checkbox.type = "checkbox"; checkbox.checked = true; checkbox.value = region.id; checkbox.setAttribute("aria-label", `${region.id} · ${named(region)}`);
-      checkbox.addEventListener("change", () => { if (checkbox.checked) state.selected.add(region.id); else state.selected.delete(region.id); render(); });
-      const dot = el("span", undefined, "swatch"); dot.style.setProperty("--region-color", color(region)); label.append(checkbox, dot, el("span", `${region.id} · ${named(region)}`)); return label;
-    }));
-    render(); $("results").hidden = false;
+    const catalog = await readPeriods(bytes); state.periods = catalog.periods;
+    $("year").replaceChildren(...[...state.periods.keys()].map((year) => { const option = el("option", String(year)); option.value = String(year); return option; }));
+    mountYear(catalog.defaultYear, true); $("results").hidden = false;
   } catch { $("error").hidden = false; }
   finally { $("loading").hidden = true; }
 }
 
+$("year").addEventListener("change", () => mountYear(Number($("year").value)));
 $("policy").addEventListener("change", () => { state.policy = $("policy").value; render(); });
 $("month").addEventListener("input", () => { state.month = Number($("month").value); render(); });
 $("trace-region").addEventListener("change", () => { state.traceRegion = $("trace-region").value; state.traceNode = null; renderTrace(active()); });
@@ -381,15 +411,20 @@ $("review-download").addEventListener("click", () => {
   } catch { $("review-message").textContent = "Bu seçim için doğrulanabilir rapor üretilemedi. İki uyumlu pencere seçin."; }
 });
 $("review-file").addEventListener("change", async () => {
-  const file = $("review-file").files[0], source = state.data, digest = state.datasetSha256, request = ++state.reviewRequest;
+  const file = $("review-file").files[0], catalog = state.periods, request = ++state.reviewRequest;
   $("review-file").value = "";
   if (!file) return;
   try {
-    if (file.size > 131072 || !digest) throw Error("Unsupported review input");
-    const report = verifyComparisonReview(JSON.parse(await file.text()), source, digest);
+    if (file.size > 131072) throw Error("Unsupported review input");
+    const parsed = JSON.parse(await file.text()), year = Number(parsed.selection?.month?.slice(0, 4));
+    const snapshot = catalog.get(year);
+    if (!snapshot?.digest) throw Error("Report year is unavailable");
+    const source = snapshot.data, digest = snapshot.digest;
+    const report = verifyComparisonReview(parsed, source, digest);
     if (request !== state.reviewRequest) return;
-    if (state.data !== source || state.datasetSha256 !== digest || $("results").hidden) throw Error("Snapshot changed during review load");
+    if (state.periods !== catalog || $("results").hidden) throw Error("Snapshot changed during review load");
     // Apply nothing until every source and computed field has been checked.
+    if (state.year !== year) mountYear(year);
     state.pairLeft = report.selection.left_id; state.pairRight = report.selection.right_id;
     state.policy = report.selection.policy; state.month = source.dates.indexOf(report.selection.month);
     state.selected.add(state.pairLeft); state.selected.add(state.pairRight);

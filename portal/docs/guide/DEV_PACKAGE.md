@@ -94,3 +94,7 @@ Workflow dosyasının hazırlanması uzakta başarıyla koştuğu anlamına gelm
 ## Akış ekranıyla paket sürümü
 
 2026-10-21 devam diliminde `trace.mjs` altıncı genel dosya oldu. Yeni ZIP manifesti 0.2.0 / web verisi 0.3.0; kaynak bilimsel şemalar ve teknik profil değişmedi. `verify-package` eski manifest 0.1.0 / web 0.2.0 beş dosyalı paketi kendi izin listesiyle hâlâ doğrular. Yeni arayüz eski web verisini reddeder; builder ile birlikte yenilenir. Hash denetimi bilimsel onay veya imza değildir. [Güncel akış kanıtı](../evidence/WORKFLOW_TRACE_CHECK.md); önceki Docker/Mac ortam sınırları ayrı tutulur.
+
+## 2023–2024 yıl kataloğu
+
+[Çok yıllı teknik dilim](T2M_HISTORY.md) yeni web zarfı 0.4.0/manifest 0.3.0 kullanır; altı dosya ve eski paket doğrulaması korunur. Yeni Windows 197 test/30 JS/49 Chrome kanıtı ayrı [history kaydındadır](../evidence/T2M_HISTORY_CHECK.md). Bu dilimde Docker motoru hazır olmadığı için yeni Linux/ARM64/Mac sonucu yok; önceki platform testleri bu yeni kodun testi sayılmaz.

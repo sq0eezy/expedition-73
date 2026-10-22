@@ -5,6 +5,10 @@ change_summary: "6b4ab12 ve önceki M1 çalışmaları GitHub geliştirme dalın
 
 # Paylaşım ve kurulum
 
+## 2026-10-22 · İki yıllık kaynak/yıl ekranı yerelde
+
+Başlangıç 3e4e5ee. Fetch'te M2 uzak dalı a1a83d5'ten 6047c42'ye ilerledi; commit aralığı okundu ve tamamının mevcut M1 dalında olduğu görüldü. Yeni M2 kabulü/bağımsız kodu yok; main a1a83d5, uzak M1 6047c42. [2023–2024 teknik dilimi](../guide/T2M_HISTORY.md) ve önceki yerel işler hâlâ M1 dalında, push/main merge/Pages/Sites/dış mesaj yok. H-M1-018/M2 incelemesi bekler; eski uzak kopya yeni veriyi/ekranı içermez.
+
 ## 2026-10-22 · Karşılaştırma raporu yerelde
 
 Temiz fdaf166; fetch sonrası uzak M1 6047c42, main/M2 a1a83d5, yeni katkı yok. [Rapor indirme/açma](../guide/COMPARISON_REVIEW.md) ve önceki üç dilim yerel M1 dalında; yeni push/main merge/Pages/Sites/dış mesaj yok. H-M1-017 henüz gönderilmiş/kabul edilmiş sayılmaz. İki kişi kullanabilmek için güncel kaynak/veri önce paylaşılmalıdır; eski uzak dalda özellik yok.

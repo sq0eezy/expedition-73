@@ -5,7 +5,7 @@ import hashlib
 import json
 from pathlib import Path, PurePosixPath
 
-from . import masking, regional, surface_source, surface_support, surface_workflow, workflow_trace
+from . import history, masking, regional, surface_source, surface_support, surface_workflow, workflow_trace
 from .power import PilotError, loads
 
 ASSETS = ("index.html", "styles.css", "app.js", "comparison.mjs", "trace.mjs")
@@ -95,6 +95,40 @@ def payload(analysis_root, registry):
             "inference_performed": False, "dates": dates, "regions": regions}
 
 
+def catalog(analysis_root, registry):
+    if (not isinstance(registry, dict) or set(registry) != {"schema_version", "default_year", "regions"}
+            or registry["schema_version"] != "0.1.0" or type(registry["default_year"]) is not int
+            or not isinstance(registry["regions"], list) or not 1 <= len(registry["regions"]) <= 8):
+        raise PilotError("Invalid annual preview catalog registry.")
+    years, entries = None, []
+    for entry in registry["regions"]:
+        if not isinstance(entry, dict) or set(entry) != {"id", "display_name", "history", "fractions"}:
+            raise PilotError("Unexpected history preview registry fields.")
+        result = history.validate_run(_directory(Path(analysis_root), entry["history"]))
+        if result["region"]["id"] != entry["id"]:
+            raise PilotError("History preview identity differs from recorded source.")
+        current = list(range(int(result["time"]["start"][:4]), int(result["time"]["end"][:4]) + 1))
+        if years is not None and current != years:
+            raise PilotError("Preview histories must provide exactly the same years; missing years are not dropped.")
+        years = current
+        entries.append(entry)
+    if registry["default_year"] not in years:
+        raise PilotError("Default year is not available in the preview catalog.")
+    snapshots = []
+    for year in years:
+        data = payload(analysis_root, [{"id": e["id"], "display_name": e["display_name"],
+            "window": f"{e['history']}/year-{year}", "fractions": e["fractions"]} for e in entries])
+        if data["dates"][0] != f"{year}-01":
+            raise PilotError("Catalog year disagrees with replayed dates.")
+        # Preserve exact annual snapshot bytes. Existing 2024 reports remain
+        # verifiable even when another year is added to the catalog.
+        raw = history.encoded(data)
+        snapshots.append({"year": year, "sha256": hashlib.sha256(raw).hexdigest(), "data_json": raw.decode("utf-8")})
+    return {"schema_version": "0.4.0", "output_type": "recorded_temperature_year_catalog",
+            "selection_status": "candidate", "data_mode": "recorded_offline_replay", "inference_performed": False,
+            "default_year": registry["default_year"], "snapshots": snapshots}
+
+
 def build(analysis_root, web_root, output):
     web, destination = Path(web_root), Path(output)
     if destination.resolve() in {web.resolve(), (web / "src").resolve(), Path(analysis_root).resolve(), web.parent.resolve()}:
@@ -104,7 +138,11 @@ def build(analysis_root, web_root, output):
             item.is_symlink() or item.relative_to(destination).as_posix() not in allowed
             for item in destination.rglob("*"))):
         raise PilotError("Preview output must be a dedicated directory containing only generated public assets.")
-    data = payload(analysis_root, loads((web / "regions.json").read_bytes()))
+    registry_file = web / "history-regions.json"
+    data = (catalog(analysis_root, loads(registry_file.read_bytes())) if registry_file.exists()
+            else payload(analysis_root, loads((web / "regions.json").read_bytes())))
+    default_data = (loads(next(s["data_json"] for s in data["snapshots"] if s["year"] == data["default_year"]))
+                    if "snapshots" in data else data)
     # Only enumerated public assets and validated preview data may be served.
     files = {name: (web / "src" / name).read_bytes() for name in ASSETS}
     files["data/results.json"] = (json.dumps(data, ensure_ascii=False, indent=2, allow_nan=False) + "\n").encode("utf-8")
@@ -113,5 +151,6 @@ def build(analysis_root, web_root, output):
         target = destination / name
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(raw)
-    return {"status": "built", "regions": [item["id"] for item in data["regions"]],
-            "months": len(data["dates"]), "files": sorted(files), "live_nasa_request": False}
+    return {"status": "built", "regions": [item["id"] for item in default_data["regions"]],
+            "months": len(default_data["dates"]), "years": [s["year"] for s in data.get("snapshots", [])],
+            "files": sorted(files), "live_nasa_request": False}

@@ -18,7 +18,7 @@ class WorkspaceTests(unittest.TestCase):
         for name in workspace.PUBLIC:
             target = root / 'web/dist' / name
             target.parent.mkdir(parents=True, exist_ok=True)
-            data = {'schema_version': '0.3.0', 'output_type': 'recorded_temperature_web_preview',
+            data = {'schema_version': '0.4.0', 'output_type': 'recorded_temperature_year_catalog',
                     'selection_status': 'candidate', 'data_mode': 'recorded_offline_replay', 'inference_performed': False}
             target.write_text(json.dumps(data) if name.endswith('.json') else 'public fixture', encoding='utf-8')
         (root / '.env').write_text('PRIVATE_FIXTURE_NOT_A_TOKEN', encoding='utf-8')

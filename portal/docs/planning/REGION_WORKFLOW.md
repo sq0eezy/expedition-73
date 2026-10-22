@@ -58,3 +58,7 @@ Mevcut kod: power.py başlangıç/bitiş yılını işler; regional.validate_con
 **Önerilen sıradaki teknik paket:** Önce 2023–2024 gibi küçük bir aday iki yıllık kayıtla zaman parçalama/birleştirme ve ay-sürekliliği sınanır; ardından aday 2001–2024 için yıl parçaları, aynı grid/konum/birim/zaman sürümü, eksik/tekrarlı aylar ve kaynak kimlikleri denetlenir. 24 yıl × 12 ay = pencere başına 288 beklenen aylık kayıt; bu, 288 ayın gerçekten alındığı anlamına gelmez. Çok yıllı grafik/seçici/karşılaştırma ve rapor sözleşmeleri bundan sonra uyarlanır. Bir yıllık eski kayıtlar bozulmadan korunur.
 
 Teknik erişim ve kalite denemesi için bilimsel maske kabulünü beklemek zorunlu değildir; aday/maskesiz olarak işaretlenir. Uzun dönem bilimsel sonuçta kesin sınır/yüzey hedefi/ortak dönem ve eğilim yöntemi ayrıca kararlaştırılır. Seriyi almak, eğilim veya anlamlılık hesabını tamamlamaz. R-A05/R-B05 Proposed kalır; bu açıklama bir uygulama, yeni veri alımı, M2 başlama/onayı veya süre taahhüdü değildir.
+
+## 2026-10-22 · İlk iki yıllık uygulama
+
+M1 önceki aşamalı öneri üzerine devam istedi. [Gerçek teknik history ve yıl ekranı](../guide/T2M_HISTORY.md) A/B 2023–2024 24/24 ay ile doğrulandı. 2024 kaynakları değişmedi; 2023 NASA API alımı eklendi. Bu ilk teknik aşamadır; kesin 2001–2024 dönem/maske/bölge veya eğilim yöntemi kabulü değildir. T-01 teknik deneme Validating, R-A05/R-B05 tam dönem/analiz görevleri açık; M2 adına başlama/onay yok. Sonraki erişim adımı daha uzun aday dönem, bilimsel profil uzlaşması ayrıdır.

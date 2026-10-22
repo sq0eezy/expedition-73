@@ -2,9 +2,13 @@
 status: Validating
 updated: "2026-10-22"
 review_summary: "Gerçek kayıtlı sıcaklık sonuçlarını inceleten ilk yerel ekran; bilimsel ve ürün sınırları."
-change_summary: "Kaynak kimlikli karşılaştırma raporu indirilebiliyor; aynı veride yeniden hesaplanıp doğrulanarak seçimler açılıyor. Bilimsel/yazar onayı değil."
+change_summary: "Gerçek 2023 ve 2024 yıl seçimi eklendi; annual snapshot/rapor uyumu korundu. Trend veya tam 2001–2024 sonucu yok."
 ---
 # İlk sonuç ekranı · Yerel teknik prototip
+
+## 2026-10-22 · Gerçek 2023–2024 ve yıl seçimi
+
+Yeni kayıtlı yıl seçici 2023/2024'ün kendi 12 aylık grafik/hücre/çift/maske görünümünü açar; aynı ay/yüzey/çift korunur. Her pencerede 24/24 ay, 56/55 hücre. [Kaynak/komutlar ve sözleşmeler](../guide/T2M_HISTORY.md), [197 Windows test/30 JS/49 Chrome kanıtı](../evidence/T2M_HISTORY_CHECK.md). Dış katalog 0.4.0 annual 0.3.0 exact snapshot'larını taşır; eski 2024 raporları ve yıllar arası rapor açılması çalışır. Altı dosya/rapor 0.1.0; yeni manifest 0.3.0, eski paket doğrulaması korunur. Grafik yılları tek çizgide birleştirmez; trend/istatistik ve gerçek 2001–2024 serisi henüz yok. Eski sabit fraksiyonun 2023'e uygulanması yalnız aday duyarlılık; tarihsel arazi örtüsü kabulü değil. Yerel M1 dalında, yeni Mac/Docker/uzak CI/yayın veya M2 kabulü yok.
 
 ## 2026-10-22 · Tekrar açılabilir karşılaştırma raporu
 

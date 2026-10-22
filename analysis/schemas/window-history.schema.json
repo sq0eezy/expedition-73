@@ -1,0 +1,335 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Recorded annual-source window history; no inference",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "region",
+    "variable",
+    "time",
+    "method",
+    "spatial_support",
+    "series",
+    "schema_version",
+    "output_type",
+    "selection_status",
+    "provenance",
+    "quality"
+  ],
+  "properties": {
+    "region": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "selection_status",
+        "candidate_bbox",
+        "candidate_window_version"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selection_status": {
+          "const": "candidate"
+        },
+        "candidate_bbox": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "candidate_window_version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "variable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "unit",
+        "height_m"
+      ],
+      "properties": {
+        "id": {
+          "const": "air_temperature_2m"
+        },
+        "unit": {
+          "const": "degC"
+        },
+        "height_m": {
+          "const": 2
+        }
+      }
+    },
+    "time": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "frequency",
+        "start",
+        "end",
+        "calendar",
+        "provider_time_standard"
+      ],
+      "properties": {
+        "frequency": {
+          "const": "monthly"
+        },
+        "start": {
+          "type": "string",
+          "pattern": "^\\d{4}-(0[1-9]|1[0-2])$"
+        },
+        "end": {
+          "type": "string",
+          "pattern": "^\\d{4}-(0[1-9]|1[0-2])$"
+        },
+        "calendar": {
+          "const": "gregorian"
+        },
+        "provider_time_standard": {
+          "enum": [
+            "LST",
+            "UTC"
+          ]
+        }
+      }
+    },
+    "method": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version",
+        "sphere_radius_m",
+        "missing_policy",
+        "inference"
+      ],
+      "properties": {
+        "id": {
+          "const": "spherical_midpoint_cell_intersection"
+        },
+        "version": {
+          "const": "0.1.0"
+        },
+        "sphere_radius_m": {
+          "const": 6371008.8
+        },
+        "missing_policy": {
+          "const": "require_all_intersecting_cells"
+        },
+        "inference": {
+          "const": "not_performed"
+        }
+      }
+    },
+    "spatial_support": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "mask",
+        "request_envelope_bbox",
+        "cell_count",
+        "window_area_m2",
+        "grid_step_degrees"
+      ],
+      "properties": {
+        "kind": {
+          "const": "unmasked_rectangular_window"
+        },
+        "mask": {
+          "const": "none"
+        },
+        "cell_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "window_area_m2": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "grid_step_degrees": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "longitude",
+            "latitude"
+          ],
+          "properties": {
+            "longitude": {
+              "const": 0.625
+            },
+            "latitude": {
+              "const": 0.5
+            }
+          }
+        },
+        "request_envelope_bbox": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      }
+    },
+    "series": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 600,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "date",
+          "value",
+          "status",
+          "valid_cells",
+          "valid_area_fraction"
+        ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"
+          },
+          "value": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "status": {
+            "enum": [
+              "complete",
+              "incomplete"
+            ]
+          },
+          "valid_cells": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "valid_area_fraction": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    },
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "output_type": {
+      "const": "recorded_window_history"
+    },
+    "selection_status": {
+      "const": "candidate"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "product",
+        "api_version",
+        "sources",
+        "annual_sources"
+      ],
+      "properties": {
+        "provider": {
+          "const": "NASA POWER"
+        },
+        "product": {
+          "const": "POWER Monthly and Annual API"
+        },
+        "api_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sources": {
+          "const": [
+            "MERRA2"
+          ]
+        },
+        "annual_sources": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "year",
+              "files_sha256"
+            ],
+            "properties": {
+              "year": {
+                "type": "integer",
+                "minimum": 1981,
+                "maximum": 9999
+              },
+              "files_sha256": {
+                "type": "object",
+                "minProperties": 3,
+                "additionalProperties": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expected_months",
+        "complete_months",
+        "missing_months",
+        "warnings"
+      ],
+      "properties": {
+        "expected_months": {
+          "type": "integer",
+          "minimum": 12,
+          "maximum": 600
+        },
+        "complete_months": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 600
+        },
+        "missing_months": {
+          "type": "array",
+          "maxItems": 600,
+          "items": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
+      }
+    }
+  }
+}

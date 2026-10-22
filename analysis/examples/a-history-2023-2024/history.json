@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.1.0",
+  "format": "annual_verified_window_runs",
+  "years": [
+    {
+      "year": 2023,
+      "files_sha256": {
+        "request.json": "e330556a3436ee9720ee516dc99bdebe9f46ad8d5c2bbbc20b8488c53f732bfb",
+        "response.json": "7c85f02944efc1d101dd9ddc6ad9caa49af3000112d136b7d381f6e7c4241dc2",
+        "result.json": "842c400da5309b5d6a4e99f38e743f4e5eec298acffc1b917f1556e7062295c7"
+      }
+    },
+    {
+      "year": 2024,
+      "files_sha256": {
+        "request.json": "50ea267a8378d5dc792e8974548f38cb4e30602c97233b613a3f987bff58bd49",
+        "response.json": "c38efad91ac280448589c68494d61d3749a499db9d72dcc6a710759e7a76b39c",
+        "result.json": "a31448bd3a52bedd4f6ba29b62ca55e8c1a3aa07d0d8590317f05dedb0bf3ad1"
+      }
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # İş panosu
 
+**2026-10-22 · T-01 iki yıllık teknik dilim:** M1 devam talebiyle [A/B 2023–2024 erişim/birleştirme ve yıl ekranı](../guide/T2M_HISTORY.md) uygulandı: 24/24 ay, [197 Windows test/30 JS/49 Chrome](../evidence/T2M_HISTORY_CHECK.md). R-A05/R-B05 tam dönem/analiz tamamlandı veya M2 başladı sayılmaz; 2001–2024 henüz alınmadı. Yeni kayıt/veri yerel M1 dalında; yeni Linux/CI/yayın yok.
+
 **2026-10-22 · Çok yıllı kapsam sorusu:** M1 diğer yılların ne zaman geleceğini sordu. [NASA kapsamı, kodun iki yıl/istek + 12 ay ekran sınırları ve önerilen geçiş](REGION_WORKFLOW.md) açıklandı. 2001–2024 hâlâ aday; yeni veri/kod veya dönem kararı yok. R-A05/R-B05 Proposed; soru başlama/onay sayılmadı.
 
 **2026-10-22 · İnceleme raporu:** U-02/D-02 için [tam kaynak kimlikli rapor indirme/açma](../guide/COMPARISON_REVIEW.md) yerelde eklendi. [180 Windows analiz/gerçek A-B, 30 JS ve 42 Chrome senaryosu](../evidence/COMPARISON_REVIEW_CHECK.md) geçti. Web/manifest/kaynaklar korundu; bilimsel/yazar onayı değil. Validating; H-M1-017/M2 incelemesi ve paylaşım açık.
@@ -44,6 +46,7 @@ Görevler eldeki kanıta göre güncellenir. **2026-10-16 iş bölümü:** M1 mo
 | U-01 | Etkileşim taslağını belirle | Proposed | Atanmadı | Atanmadı | Atanmadı | Harita/grafik/tarih akışı; kapsam seçimine bağlı |
 | U-02 | Kayıtlı T2M için ilk yerel sonuç ekranı | Validating | M1 oturumundaki teknik dilim | İlk ekran önerisi sonrası M1 devam talebi | M1/M2 kullanım incelemesi bekliyor | [Yerel çalışan ekran](../product/RESULTS_PREVIEW.md): hücre/ay/politika ve yan yana ağırlık incelemesi; [164 analiz + 8 JS testi, 22 Chrome senaryosu](../evidence/POLICY_COMPARISON_CHECK.md). Nihai yığın/barındırma/Mac kabulü açık |
 | D-02 | Taşınabilir geliştirme/doğrulama ve demo paketi | Validating | M1 oturumundaki teknik dilim | M1 büyük paketle devam istedi; Docker isteğe bağlı uygulandı | M2 kullanım incelemesi bekliyor | [Ortak komutlar ve paket](../guide/DEV_PACKAGE.md), [Windows/Linux ve tarayıcı kanıtı](../evidence/DEV_PACKAGE_CHECK.md); gerçek Mac/uzak CI ayrı doğrulanır |
+| T-01 | Yıllık T2M kaynaklarından çok yıllı teknik erişim/yıl ekranı | Validating | M1 | M1 iki yıllık denemeyle devam istedi | M2 incelemesi bekler | [24/24 ay ve gerçek kontroller](../evidence/T2M_HISTORY_CHECK.md); uzun dönem bilimsel profil açık |
 | C-01 | Yeni konuşmaları özetleyerek işle | Proposed | Atanmadı | Atanmadı | Atanmadı | Yeni bilginin esas belgede yer alması |
 
 ## Modül ve bölge görevleri

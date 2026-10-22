@@ -19,7 +19,7 @@ COPY analysis/tests/ analysis/tests/
 COPY scripts/workspace.py scripts/workspace.py
 COPY web/src/ web/src/
 COPY web/tests/ web/tests/
-COPY web/regions.json web/serve.py web/
+COPY web/regions.json web/history-regions.json web/serve.py web/
 RUN mkdir -p analysis/artifacts web/dist web/artifacts
 RUN python scripts/workspace.py build
 USER 10001:10001

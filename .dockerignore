@@ -27,6 +27,7 @@
 !web/tests/
 !web/tests/**
 !web/regions.json
+!web/history-regions.json
 !web/serve.py
 **/.env
 **/.env.*

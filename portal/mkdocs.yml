@@ -166,6 +166,8 @@ nav:
       - Gerçek akış ekranı: evidence/WORKFLOW_TRACE_CHECK.md
       - Pencere karşılaştırması: evidence/REGION_COMPARISON_CHECK.md
       - Karşılaştırma raporu: guide/COMPARISON_REVIEW.md
+      - Çok yıllı T2M ve yıl seçimi: guide/T2M_HISTORY.md
+      - İki yıllık kaynak doğrulaması: evidence/T2M_HISTORY_CHECK.md
       - Rapor doğrulaması: evidence/COMPARISON_REVIEW_CHECK.md
       - Yeni konuşma işleme: guide/AI_WORKFLOW.md
       - Kişisel tercihler: guide/PERSONALIZATION.md

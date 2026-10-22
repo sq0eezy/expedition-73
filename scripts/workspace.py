@@ -15,7 +15,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 LEGACY_PUBLIC = ('app.js', 'comparison.mjs', 'data/results.json', 'index.html', 'styles.css')
 PUBLIC = (*LEGACY_PUBLIC, 'trace.mjs')
-PACKAGE_CONTRACTS = {'0.1.0': (LEGACY_PUBLIC, '0.2.0'), '0.2.0': (PUBLIC, '0.3.0')}
+PACKAGE_CONTRACTS = {'0.1.0': (LEGACY_PUBLIC, '0.2.0'), '0.2.0': (PUBLIC, '0.3.0'), '0.3.0': (PUBLIC, '0.4.0')}
 ARCHIVE_NAMES = {*PUBLIC, 'manifest.json'}
 LIMIT = 8_000_000
 
@@ -57,6 +57,7 @@ def checks():
     ]:
         run([sys.executable, '-m', 'expedition73', *args], analysis)
     for region in ('a', 'b'):
+        run([sys.executable, '-m', 'expedition73', 'validate-window-history', f'examples/{region}-history-2023-2024'], analysis)
         run([sys.executable, 'scripts/fetch_surface_fractions.py', '--replay', f'examples/{region}-surface-fractions'], analysis)
     artifacts = analysis / 'artifacts'
     if artifacts.is_symlink() or not artifacts.resolve().is_relative_to(analysis.resolve()):
@@ -78,7 +79,7 @@ def checks():
     print('Offline analysis, A/B replay, JS checks and preview build passed.', flush=True)
 
 
-def _manifest(files, version='0.2.0'):
+def _manifest(files, version='0.3.0'):
     return {'format': 'expedition73-static-preview', 'version': version,
             'selection_status': 'candidate', 'data_mode': 'recorded_offline_replay',
             'inference_performed': False,
@@ -107,7 +108,7 @@ def verify_package(path):
         if manifest != _manifest(files, manifest['version']):
             raise ValueError('Demo archive manifest or SHA-256 integrity check failed.')
         data = json.loads(files['data/results.json'])
-        if (data.get('schema_version') != schema_version or data.get('output_type') != 'recorded_temperature_web_preview'
+        if (data.get('schema_version') != schema_version or data.get('output_type') != ('recorded_temperature_year_catalog' if schema_version == '0.4.0' else 'recorded_temperature_web_preview')
                 or data.get('selection_status') != 'candidate' or data.get('inference_performed') is not False
                 or data.get('data_mode') != 'recorded_offline_replay'):
             raise ValueError('Demo archive has an unsupported result contract.')

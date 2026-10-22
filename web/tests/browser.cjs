@@ -21,7 +21,8 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     const moduleResponse = await page.request.get(new URL('comparison.mjs', base).href);
     assert.equal(moduleResponse.status(), 200); assert.match(moduleResponse.headers()['content-type'], /javascript/);
     await page.locator('#results').waitFor({ state: 'visible' });
-    const data = await (await page.request.get(new URL('data/results.json', base).href)).json();
+    const bundle = await (await page.request.get(new URL('data/results.json', base).href)).json();
+    const data = bundle.schema_version === '0.4.0' ? JSON.parse(bundle.snapshots.find((s) => s.year === bundle.default_year).data_json) : bundle;
     assert.equal(data.regions.length, 2);
     const checkMetrics = async (policy, month) => {
       const actual = await page.locator('#metrics .metric > strong').allTextContents();
@@ -68,7 +69,7 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     assert.equal(reviewDownload.suggestedFilename(), 'expedition73-comparison-review.json');
     const report = JSON.parse(await fs.readFile(reportPath, 'utf8'));
     assert.deepEqual(report.selection, { left_id: 'B', right_id: 'A', policy: 'land_and_ice', month: '2024-10' });
-    const rawDataset = await (await page.request.get(new URL('data/results.json', base).href)).body();
+    const rawDataset = bundle.schema_version === '0.4.0' ? Buffer.from(bundle.snapshots.find((s) => s.year === bundle.default_year).data_json) : await (await page.request.get(new URL('data/results.json', base).href)).body();
     assert.equal(report.dataset.sha256, createHash('sha256').update(rawDataset).digest('hex'));
     assert.equal(report.selected_month.delta, data.regions[1].series[9].land_and_ice - data.regions[0].series[9].land_and_ice); checks++;
     await page.getByRole('checkbox', { name: 'A · Colorado çevresi', exact: true }).uncheck();
@@ -306,9 +307,48 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     assert.equal(await threeRegions.locator('#pair-content').isVisible(), false);
     assert.equal(await threeRegions.locator('#pair-table tbody tr').count(), 0);
     await threeRegions.close(); checks++;
+
+    if (bundle.schema_version === '0.4.0') {
+      assert.deepEqual(await page.locator('#year option').allTextContents(), ['2023', '2024']);
+      await page.locator('#year').selectOption('2023');
+      const data2023 = JSON.parse(bundle.snapshots.find((s) => s.year === 2023).data_json);
+      assert.match(await page.locator('#scope-year').innerText(), /2023/); assert.equal(await page.locator('#year-mark').innerText(), '2023');
+      const chosenMonth = Number(await page.locator('#month').inputValue()), chosenPolicy = await page.locator('#policy').inputValue();
+      const metrics2023 = await page.locator('#metrics .metric > strong').allTextContents();
+      const av = data2023.regions[0].series[chosenMonth][chosenPolicy], bv = data2023.regions[1].series[chosenMonth][chosenPolicy];
+      assert.deepEqual(metrics2023, [av, bv, av-bv].map((v) => format(v)+'°C')); checks++;
+      await page.locator('#month').fill('2');
+      const event2023 = page.waitForEvent('download'); await page.locator('#review-download').click();
+      const review2023Path = await (await event2023).path();
+      const review2023 = JSON.parse(await fs.readFile(review2023Path, 'utf8'));
+      assert.equal(review2023.selection.month, '2023-03');
+      assert.equal(review2023.dataset.sha256, bundle.snapshots.find((s) => s.year === 2023).sha256);
+      await page.locator('#year').selectOption('2024');
+      await page.locator('#review-file').setInputFiles(review2023Path);
+      await page.waitForFunction(() => document.getElementById('year').value === '2023');
+      assert.equal(await page.locator('#month').inputValue(), '2'); checks++;
+      await page.locator('.controls').screenshot({ path: path.join(screenshots, 'year-selector-mobile.png') });
+      await page.locator('.pair-panel').screenshot({ path: path.join(screenshots, 'year-2023-mobile.png') });
+      await page.locator('#review-file').setInputFiles(reportPath);
+      await page.waitForFunction(() => document.getElementById('year').value === '2024');
+      assert.equal(await page.locator('#month').inputValue(), '9'); checks++;
+      for (const kind of ['digest', 'calendar', 'duplicate', 'missing-default']) {
+        const invalidCatalog = await browser.newPage();
+        await invalidCatalog.route('**/data/results.json', (route) => {
+          const changed = structuredClone(bundle);
+          if (kind === 'digest') changed.snapshots[0].data_json += ' ';
+          if (kind === 'calendar') changed.snapshots[0].year = 2022;
+          if (kind === 'duplicate') changed.snapshots[1].year = 2023;
+          if (kind === 'missing-default') changed.default_year = 2025;
+          return route.fulfill({json: changed});
+        });
+        await invalidCatalog.goto(base); await invalidCatalog.locator('#error').waitFor({state:'visible'});
+        assert.equal(await invalidCatalog.locator('#results').isVisible(), false); await invalidCatalog.close(); checks++;
+      }
+    }
     assert.deepEqual(errors, []); assert.deepEqual(uploads, []);
     console.log(JSON.stringify({ status: 'passed', browser: 'Chrome headless', checks, javascript_errors: errors,
       external_runtime_requests: requests.filter((url) => new URL(url).origin !== new URL(base).origin).length,
-      screenshots: ['web/artifacts/desktop.png', 'web/artifacts/mobile.png', 'web/artifacts/comparison-desktop.png', 'web/artifacts/comparison-mobile.png', 'web/artifacts/spatial-a.png', 'web/artifacts/spatial-b.png', 'web/artifacts/trace-desktop.png', 'web/artifacts/trace-mobile.png', 'web/artifacts/pair-desktop.png', 'web/artifacts/pair-mobile.png', 'web/artifacts/review-desktop.png'] }));
+      screenshots: ['web/artifacts/desktop.png', 'web/artifacts/mobile.png', 'web/artifacts/comparison-desktop.png', 'web/artifacts/comparison-mobile.png', 'web/artifacts/spatial-a.png', 'web/artifacts/spatial-b.png', 'web/artifacts/trace-desktop.png', 'web/artifacts/trace-mobile.png', 'web/artifacts/pair-desktop.png', 'web/artifacts/pair-mobile.png', 'web/artifacts/review-desktop.png', 'web/artifacts/year-selector-mobile.png', 'web/artifacts/year-2023-mobile.png'] }));
   } finally { await browser.close(); }
 })().catch((error) => { console.error(error); process.exitCode = 1; });

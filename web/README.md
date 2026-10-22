@@ -81,3 +81,9 @@ Yeni hesap mevcut comparison.mjs içindedir; web 0.3.0, altı genel dosya ve man
 Uyumlu çift/yön/ay/yüzeyi seçip **Karşılaştırma raporunu indir**. Aynı veri kaydı açıkken **Raporu aç ve doğrula** alanından seç: kaynak hash'i ve yeniden hesaplanan bütün alanlar eşleşirse seçimler açılır. Hatalı/farklı kaynakta seçimler korunur. Dosya sunucuya yüklenmez; 128 KiB sınırı ve Web Crypto yoksa raporları kapatma yolu var. [Kullanım/sözleşme](../portal/docs/guide/COMPARISON_REVIEW.md), [gerçek kontrol](../portal/docs/evidence/COMPARISON_REVIEW_CHECK.md).
 
 Ayrı rapor 0.1.0; web 0.3.0/altı dosya/manifest 0.2.0 ve önceki genel JSON indirme korundu. JS farkı tekrar hesaplanır, NASA ham dönüşümü tarayıcıda tekrarlanmaz. SHA-256 imza/bilimsel/yazar kabulü değildir. Windows 180 analiz/gerçek A-B, 30 JS ve 42 Chrome senaryosu geçti; yeni Mac/Docker/uzak CI yok.
+
+## Yıl seçimi · 2023 ve 2024
+
+Kayıtlı yıl alanından 2023/2024 seçilir; grafik o yılın 12 ayını gösterir. Ay/yüzey/çift korunur. Yeni history-regions.json kayıtları yıllık kaynakları seçer; builder tüm geçmişi ve her yıllık T2M/fraksiyon akışını tekrar doğrular. 2023'te aynı sabit fraksiyon yalnız aday duyarlılıktır. [Kullanım/CLI](../portal/docs/guide/T2M_HISTORY.md), [gerçek kontrol](../portal/docs/evidence/T2M_HISTORY_CHECK.md).
+
+Dış web zarfı 0.4.0 yıllık katalogdur. Her snapshot aynı 0.3.0 annual verisini exact UTF-8 JSON metni ve hash ile korur; eski standalone 0.3.0 da açılır. Eski 2024 raporları çalışır; başka yılın raporu doğru yıl snapshot'ında doğrulanıp yılı değiştirir. Kaynak kimliği artık seçili annual snapshot byte'larıdır; katalog zarfının tamamı değildir. Altı genel dosya, rapor 0.1.0; yeni manifest 0.3.0 ve eski 0.1.0/0.2.0 ZIP doğrulaması korunur. 197 Windows analiz, gerçek replay, 30 JS ve 49 Chrome senaryosu geçti; bu dilimde yeni Mac/Docker/Linux başarısı yok. Çok yıllı tek çizgi/trend ve gerçek 2001–2024 serisi henüz yok.

@@ -14,6 +14,7 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | Derlemede doğrulanan modül bağımlılıkları ve sözleşme ekranı | [Gerçek akış ekranı kanıtı](evidence/WORKFLOW_TRACE_CHECK.md), [ürün](product/RESULTS_PREVIEW.md) |
 | İki pencerenin betimsel farkı ve teknik eşleşme koşulları | [Pencere karşılaştırma kanıtı](evidence/REGION_COMPARISON_CHECK.md), [ürün](product/RESULTS_PREVIEW.md) |
 | Aynı karşılaştırmayı raporla tekrar açma | [Rapor sözleşmesi/kullanım](guide/COMPARISON_REVIEW.md), [kanıt](evidence/COMPARISON_REVIEW_CHECK.md) |
+| Yıllık kaynak birleştirme, 2023–2024 ve yıl seçimi | [History komutları/sözleşmeler](guide/T2M_HISTORY.md), [gerçek kontrol](evidence/T2M_HISTORY_CHECK.md) |
 | Sınanacak beklentiler | [Hipotezler](product/HYPOTHESES.md) |
 | Fikir adayları ve seçim ölçütleri | [Karşılaştırma](discovery/IDEA_COMPARISON.md) |
 | Cevap bekleyen sorular | [Keşif](discovery/index.md) |

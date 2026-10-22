@@ -53,9 +53,24 @@ def main(argv=None) -> int:
     compare = commands.add_parser("check-alignment", help="Check point-series transport alignment; no inference.")
     compare.add_argument("left", type=Path)
     compare.add_argument("right", type=Path)
+    for command in ("fetch-power-history", "assemble-window-history"):
+        history_parser = commands.add_parser(command, help="Annual source runs to candidate monthly history; no trend.")
+        history_parser.add_argument("--config", type=Path, required=True)
+        history_parser.add_argument("--output-dir", type=Path, required=True)
+        history_parser.add_argument("--run", type=Path, action="append", default=[])
+    history_check = commands.add_parser("validate-window-history", help="Replay every annual source and history offline.")
+    history_check.add_argument("directory", type=Path)
     args = parser.parse_args(argv)
     try:
-        if args.command == "check-source-area":
+        if args.command in ("fetch-power-history", "assemble-window-history", "validate-window-history"):
+            from . import history
+            if args.command == "validate-window-history":
+                result = history.validate_run(args.directory)
+            else:
+                result = history.collect(loads(args.config.read_bytes()), args.output_dir, args.run,
+                                         fetch_missing=args.command == "fetch-power-history")
+            print(json.dumps({"status": "history_replay_passed", "time": result["time"], "quality": result["quality"]}))
+        elif args.command == "check-source-area":
             from .surface_source import area_capability
             from .earthdata import MAX_METADATA_BYTES
             with args.metadata.open("rb") as stream:

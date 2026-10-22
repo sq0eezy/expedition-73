@@ -115,3 +115,7 @@ Yeni Windows bilgisayarında Python kuruluysa `py -3 -m venv .venv` ve `.\.venv\
 Yinelenen JSON anahtarları, sonlu olmayan sayılar, yanlış birim/tanım/konum/dönem ve şema dışı sonuçlar reddedilir. Dönmeyen ay ile sağlayıcının dolgu değeri ayrı `null` durumlarıdır; gerçek 0 °C geçerlidir. POWER'ın `YYYY13` yıllık özeti aylık seriye katılmaz; özel ayrıntıda korunur. Seri takvim kapsamının tam olması bilimsel/piksel kalite onayı değildir. API'nin kaynak/versiyon, zaman standardı, mesaj ve parametre metaverisi ile ham yanıt SHA-256 özeti saklanır; piksel kalite bayrağı varmış gibi üretilmez.
 
 Kaynaklar: [POWER aylık API](https://power.larc.nasa.gov/docs/services/api/temporal/monthly/), [meteoroloji yöntemi](https://power.larc.nasa.gov/docs/methodology/meteorology/). Görevler ve gerçek bulgular `portal/docs` içindedir; bu kılavuz bilimsel sonuç yerine geçmez.
+
+## Çok yıllı teknik erişim
+
+history.py yıllık kaynakları aynı grid/zaman/sağlayıcı/yöntemle birleştirir. Yeni komutlar: fetch-power-history, assemble-window-history, validate-window-history. A/B gerçek 2023–2024 örnekleri 24/24 ay; 2024 kaynak byte kayıtları korunur. [Komutlar/sözleşme](../portal/docs/guide/T2M_HISTORY.md), [kanıt](../portal/docs/evidence/T2M_HISTORY_CHECK.md). 2001–2024 hâlâ aday; 288 ay yalnız planlandı, çekilmedi. Tam seri/eğilim veya maske kabulü değildir.

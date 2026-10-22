@@ -1,15 +1,17 @@
 ---
 status: Validating
 updated: "2026-10-22"
-phase: Tekrar açılabilir karşılaştırma incelemesi
+phase: Gerçek iki yıllık veri ve yıl seçimi
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "Kaynak kimlikli rapor indirme/açma eklendi; 180 analiz, 30 JS ve 42 Chrome senaryosu geçti. Yerel M1 dalında, yayın yok."
+change_summary: "A/B 2023–2024 24/24 ay ve yıl seçimi hazır; 197 Windows test/30 JS/49 Chrome geçti. Yeni Linux/CI/yayın yok; 2001–2024 henüz alınmadı."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **Gerçek 2023–2024 verisi ve yıl seçimi:** A/B 24/24 ay, 56/55 hücre; yıllık kaynaklar grid/kaynak/zaman/yöntem eşleşmesiyle birleşir. 2024 byte'ları ve eski raporlar korundu. [Kılavuz](guide/T2M_HISTORY.md), [gerçek kanıt](evidence/T2M_HISTORY_CHECK.md): **197 Windows test, gerçek A/B tekrarları, 30 JS ve 49 Chrome** geçti. Web zarfı 0.4.0, annual snapshot 0.3.0, altı dosya, manifest 0.3.0. Grafik seçili yılın 12 ayıdır; trend/tam 2001–2024 yok. Yeni Linux/Mac/CI veya yayın kanıtı yok.
 
 - **Karşılaştırma raporu tekrar açılabiliyor:** Tam kaynak SHA-256 kimliği ve yeniden hesaplanan rapor alanları eşleşirse çift/yön/ay/yüzey açılır; uyuşmazlıkta seçimler korunur. Tarayıcıda işlenir; bilimsel/kişi onayı değil. [Kullanım](guide/COMPARISON_REVIEW.md), [kanıt](evidence/COMPARISON_REVIEW_CHECK.md): **180 Windows analiz/gerçek A-B, 30 JS, 42 Chrome senaryosu** geçti. Yeni rapor 0.1.0; kaynak web 0.3.0/altı dosya/manifest 0.2.0 ve bilimsel profil korundu. Yeni Mac/Docker/uzak CI veya yayın yok.
 
@@ -69,6 +71,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-M1 diğer yılların ne zaman geleceğini sordu. [Çok yıllı geçiş açıklığı](planning/REGION_WORKFLOW.md): 2024 teknik pilot; NASA aylık meteoroloji kapsamı belgede 1981'den başlıyor. Kodda bölgesel istek en fazla iki yıl, ekran/karşılaştırma 12 ayla sınırlı. Önerilen sıradaki teknik paket küçük iki yıllık deneme → yıl parçalarını birleştirme/kalite → aday 2001–2024 ve çok yıllı ekran/rapor desteği. Yeni dönem seçilmedi, eski yıllar bu oturumda alınmadı; R-A05/R-B05 başlamış sayılmaz.
-
-Hücre, ağırlık karşılaştırması ve gerçek akış, pencere farkı ve tekrar açılabilir rapor dahil yerel ekranı ekipçe incelemek; M2'nin beklediği yüzey hedefi, kesin sınır ve uzun dönem profilini birlikte netleştirmek. [Ekran kapsamı](product/RESULTS_PREVIEW.md). Kıyı çizgili harita, uzun dönem/trend, ikinci gösterge ve nihai barındırma/yığın açık. AREA bulunmayan granülden sayısal alan karşılaştırması varsayılmaz. M2'nin `a1a83d5` notları `b3718b4` ile yerel M1 dalına alındı; yeni ekranı kabul ettiği anlamına gelmez. Önceki 164 testlik dilimler GitHub M1 dalında paylaşıldı. Geliştirme paketi, akış ekranı, betimsel pencere karşılaştırması ve rapor yerel M1 dalında; main/Pages'e bu oturumda yazılmadı.
+Önceki çok yıllı geçiş önerisinin ilk teknik aşaması tamamlandı: [2023–2024 kaynak/yıl dilimi](guide/T2M_HISTORY.md). Sonraki erişim adımı, yıl parçalarını daha uzun aday döneme büyütmek ve kaliteyi incelemek; **gerçek 2001–2024 serisi henüz alınmadı**. 24 yıllık/288 aylık plan yalnız test edildi. Kesin sınır/yüzey/dönem ve eğilim yöntemi için ortak bilimsel karar gerekir. M2'nin yeni yıl ekranını veya yeni bilimsel profili kabul ettiği varsayılmaz. Yeni dilim ve önceki geliştirmeler yerel M1 dalında; main/Pages değişmedi.

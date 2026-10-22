@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1.0",
+  "default_year": 2024,
+  "regions": [
+    {
+      "id": "A",
+      "display_name": "Colorado çevresi",
+      "fractions": "examples/a-surface-fractions",
+      "history": "examples/a-history-2023-2024"
+    },
+    {
+      "id": "B",
+      "display_name": "Kuzey Alaska",
+      "fractions": "examples/b-surface-fractions",
+      "history": "examples/b-history-2023-2024"
+    }
+  ]
+}
