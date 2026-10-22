@@ -2,6 +2,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs/promises');
 const path = require('node:path');
+const { createHash } = require('node:crypto');
 const { chromium } = require(process.env.EXPEDITION73_PLAYWRIGHT || 'playwright');
 const base = process.env.EXPEDITION73_PREVIEW_URL || 'http://127.0.0.1:8873/';
 const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -13,9 +14,9 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
   await fs.mkdir(screenshots, { recursive: true });
   try {
     const page = await browser.newPage({ viewport: { width: 1440, height: 1100 }, acceptDownloads: true });
-    const errors = [], requests = [];
+    const errors = [], requests = [], uploads = [];
     page.on('pageerror', (error) => errors.push(error.message));
-    page.on('request', (request) => requests.push(request.url()));
+    page.on('request', (request) => { requests.push(request.url()); if (request.method() !== 'GET') uploads.push(request.method()); });
     const response = await page.goto(base); assert.equal(response.status(), 200);
     const moduleResponse = await page.request.get(new URL('comparison.mjs', base).href);
     assert.equal(moduleResponse.status(), 200); assert.match(moduleResponse.headers()['content-type'], /javascript/);
@@ -60,6 +61,56 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     await page.locator('#policy').selectOption('unmasked'); await page.locator('#month').fill('0');
     await page.locator('.pair-panel').screenshot({ path: path.join(screenshots, 'pair-desktop.png') }); checks++;
 
+
+    await page.locator('#pair-swap').click(); await page.locator('#policy').selectOption('land_and_ice'); await page.locator('#month').fill('9');
+    const reviewEvent = page.waitForEvent('download'); await page.locator('#review-download').click();
+    const reviewDownload = await reviewEvent, reportPath = await reviewDownload.path();
+    assert.equal(reviewDownload.suggestedFilename(), 'expedition73-comparison-review.json');
+    const report = JSON.parse(await fs.readFile(reportPath, 'utf8'));
+    assert.deepEqual(report.selection, { left_id: 'B', right_id: 'A', policy: 'land_and_ice', month: '2024-10' });
+    const rawDataset = await (await page.request.get(new URL('data/results.json', base).href)).body();
+    assert.equal(report.dataset.sha256, createHash('sha256').update(rawDataset).digest('hex'));
+    assert.equal(report.selected_month.delta, data.regions[1].series[9].land_and_ice - data.regions[0].series[9].land_and_ice); checks++;
+    await page.getByRole('checkbox', { name: 'A · Colorado çevresi', exact: true }).uncheck();
+    await page.getByRole('checkbox', { name: 'B · Kuzey Alaska', exact: true }).uncheck();
+    assert.equal(await page.locator('#review-download').isDisabled(), true); assert.equal(await page.locator('#review-file').isDisabled(), false);
+    await page.locator('#review-file').setInputFiles(reportPath);
+    await page.waitForFunction(() => document.getElementById('review-message').textContent.includes('yeniden hesaplanıp doğrulandı'));
+    assert.equal(await page.locator('#pair-left').inputValue(), 'B'); assert.equal(await page.locator('#pair-right').inputValue(), 'A');
+    assert.equal(await page.locator('#month').inputValue(), '9'); assert.equal(await page.locator('#policy').inputValue(), 'land_and_ice');
+    assert.equal(await page.locator('#region-options input:checked').count(), 2); checks++;
+    const reviewState = await page.locator('#pair-metrics').innerText();
+    for (const kind of ['result', 'source', 'selection', 'scientific-claim', 'extra', 'malformed', 'oversized']) {
+      const bad = structuredClone(report);
+      if (kind === 'result') bad.result.values[0].delta += 1;
+      if (kind === 'source') bad.dataset.sha256 = '0'.repeat(64);
+      if (kind === 'selection') bad.selection.month = '2024-11';
+      if (kind === 'scientific-claim') bad.scientific_acceptance = 'approved';
+      if (kind === 'extra') bad.private = 'not allowed';
+      const text = kind === 'malformed' ? '{' : kind === 'oversized' ? ' '.repeat(131073) : JSON.stringify(bad);
+      await page.locator('#review-file').setInputFiles({ name: 'review.json', mimeType: 'application/json', buffer: Buffer.from(text) });
+      await page.waitForFunction(() => document.getElementById('review-message').textContent.includes('doğrulanamadı'));
+      assert.equal(await page.locator('#pair-metrics').innerText(), reviewState);
+      assert.equal(await page.locator('#month').inputValue(), '9');
+      assert.equal(await page.locator('#pair-left').inputValue(), 'B');
+    } checks++;
+    await page.locator('#policy').selectOption('unmasked'); await page.locator('#month').fill('0');
+    await page.locator('#review-file').setInputFiles(reportPath);
+    await page.waitForFunction(() => document.getElementById('month').value === '9');
+    assert.equal(await page.locator('#policy').inputValue(), 'land_and_ice');
+    await page.locator('.pair-panel').screenshot({ path: path.join(screenshots, 'review-desktop.png') }); checks++;
+    const otherSnapshot = await browser.newPage();
+    await otherSnapshot.route('**/data/results.json', (route) => { const modified = structuredClone(data); modified.regions[0].display_name += ' · test'; return route.fulfill({ json: modified }); });
+    await otherSnapshot.goto(base); await otherSnapshot.locator('#results').waitFor({ state: 'visible' });
+    await otherSnapshot.locator('#review-file').setInputFiles(reportPath);
+    await otherSnapshot.waitForFunction(() => document.getElementById('review-message').textContent.includes('doğrulanamadı'));
+    assert.equal(await otherSnapshot.locator('#month').inputValue(), '0'); await otherSnapshot.close(); checks++;
+    const noCrypto = await browser.newPage();
+    await noCrypto.addInitScript(() => Object.defineProperty(globalThis, 'crypto', { value: undefined, configurable: true }));
+    await noCrypto.goto(base); await noCrypto.locator('#results').waitFor({ state: 'visible' });
+    assert.equal(await noCrypto.locator('#review-download').isDisabled(), true); assert.equal(await noCrypto.locator('#review-file').isDisabled(), true);
+    assert.equal(await noCrypto.locator('.chart-path').count(), 2); await noCrypto.close(); checks++;
+    await page.locator('#pair-swap').click(); await page.locator('#policy').selectOption('unmasked'); await page.locator('#month').fill('0');
     assert.equal(await page.locator('#trace-graph .trace-node').count(), 5);
     assert.equal(await page.locator('#trace-graph .trace-edge').count(), 8);
     await page.locator('#trace-graph [data-node="Fractions"]').click();
@@ -234,6 +285,7 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     await recipeMismatch.locator('#policy').selectOption('land');
     assert.match(await recipeMismatch.locator('#pair-status').innerText(), /sağlanmadı/);
     assert.equal(await recipeMismatch.locator('#pair-values').isVisible(), false);
+    assert.equal(await recipeMismatch.locator('#review-download').isDisabled(), true);
     assert.equal(await recipeMismatch.locator('#pair-check-table tr[data-check=recipe]').getAttribute('data-status'), 'mismatch');
     assert.equal(await recipeMismatch.locator('#metrics .difference > strong').innerText(), 'Veri yok');
     await recipeMismatch.locator('#policy').selectOption('land_and_ice');
@@ -254,9 +306,9 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     assert.equal(await threeRegions.locator('#pair-content').isVisible(), false);
     assert.equal(await threeRegions.locator('#pair-table tbody tr').count(), 0);
     await threeRegions.close(); checks++;
-    assert.deepEqual(errors, []);
+    assert.deepEqual(errors, []); assert.deepEqual(uploads, []);
     console.log(JSON.stringify({ status: 'passed', browser: 'Chrome headless', checks, javascript_errors: errors,
       external_runtime_requests: requests.filter((url) => new URL(url).origin !== new URL(base).origin).length,
-      screenshots: ['web/artifacts/desktop.png', 'web/artifacts/mobile.png', 'web/artifacts/comparison-desktop.png', 'web/artifacts/comparison-mobile.png', 'web/artifacts/spatial-a.png', 'web/artifacts/spatial-b.png', 'web/artifacts/trace-desktop.png', 'web/artifacts/trace-mobile.png', 'web/artifacts/pair-desktop.png', 'web/artifacts/pair-mobile.png'] }));
+      screenshots: ['web/artifacts/desktop.png', 'web/artifacts/mobile.png', 'web/artifacts/comparison-desktop.png', 'web/artifacts/comparison-mobile.png', 'web/artifacts/spatial-a.png', 'web/artifacts/spatial-b.png', 'web/artifacts/trace-desktop.png', 'web/artifacts/trace-mobile.png', 'web/artifacts/pair-desktop.png', 'web/artifacts/pair-mobile.png', 'web/artifacts/review-desktop.png'] }));
   } finally { await browser.close(); }
 })().catch((error) => { console.error(error); process.exitCode = 1; });

@@ -1,4 +1,4 @@
-import { summarizePolicyDifferences, summarizeRegionDifferences } from "./comparison.mjs";
+import { summarizePolicyDifferences, summarizeRegionDifferences, datasetDigest, createComparisonReview, verifyComparisonReview } from "./comparison.mjs";
 import { traceGraph } from "./trace.mjs";
 
 const $ = (id) => document.getElementById(id);
@@ -6,7 +6,7 @@ const months = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz"
 const shortMonths = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
 const colors = ["#c77543", "#247c78", "#7466a1", "#777c39", "#a3536b", "#3878a6", "#8c6238", "#626c6a"];
 const labels = { unmasked: "Bütün pencere · maskesiz", land: "Kara oranı · FRLAND (aday)", land_and_ice: "Kara + kara buzu (aday)" };
-const state = { data: null, selected: new Set(), month: 0, policy: "unmasked", spatialRegion: null, cell: 0, traceRegion: null, traceNode: null, pairLeft: null, pairRight: null };
+const state = { data: null, selected: new Set(), month: 0, policy: "unmasked", spatialRegion: null, cell: 0, traceRegion: null, traceNode: null, pairLeft: null, pairRight: null, datasetSha256: null, reviewRequest: 0 };
 const number = (value, digits = 2) => value === null ? "Veri yok" : value.toLocaleString("tr-TR", { minimumFractionDigits: digits, maximumFractionDigits: digits });
 const el = (tag, text, className) => { const node = document.createElement(tag); if (text !== undefined) node.textContent = text; if (className) node.className = className; return node; };
 const color = (region) => colors[state.data.regions.indexOf(region) % colors.length];
@@ -289,8 +289,12 @@ function renderPair(regions) {
   $("pair-empty").hidden = !!right; $("pair-content").hidden = !right; $("pair-swap").disabled = !right;
   for (const id of ["pair-metrics", "pair-chart", "pair-table", "pair-check-table"]) $(id).replaceChildren();
   $("pair-status").textContent = ""; $("pair-caption").textContent = "";
+  $("review-message").textContent = state.datasetSha256 ? "Raporlar yalnız bu tarayıcıda işlenir; sunucuya yüklenmez." : "Bu tarayıcıda SHA-256 kullanılamadığı için rapor indirme/açma devre dışı. Grafikler kullanılabilir.";
+  $("review-download").disabled = !right || !state.datasetSha256;
+  $("review-file").disabled = !state.datasetSha256;
   if (!right) return;
   const result = summarizeRegionDifferences(left, right, state.policy);
+  $("review-download").disabled = !result.compatible || !state.datasetSha256;
   $("pair-status").textContent = result.compatible ? `Teknik eşleşme sağlandı · ${labels[state.policy]} · Bilimsel seçimler açık` : "Teknik eşleşme sağlanmadı. Bu seçim için pencere farkı hesaplanmadı.";
   $("pair-status").className = result.compatible ? "pair-ready" : "pair-blocked";
   const head = el("thead"), hr = el("tr"); for (const title of ["Koşul", "Durum / kapsam"]) hr.append(el("th", title)); head.append(hr);
@@ -334,10 +338,15 @@ function render() {
 }
 
 async function load() {
-  $("loading").hidden = false; $("results").hidden = true; $("error").hidden = true;
+  $("loading").hidden = false; $("results").hidden = true; $("error").hidden = true; state.datasetSha256 = null; state.reviewRequest++;
   try {
     const response = await fetch("./data/results.json", { cache: "no-store" }); if (!response.ok) throw Error("Data unavailable");
-    const data = await response.json(); validate(data); state.data = data; state.selected = new Set(data.regions.map((r) => r.id));
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    if (bytes.length > 8_000_000) throw Error("Preview data too large");
+    const data = JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(bytes)); validate(data); state.data = data;
+    try { state.datasetSha256 = await datasetDigest(bytes); }
+    catch { state.datasetSha256 = null; }
+    $("review-message").textContent = state.datasetSha256 ? "Raporlar yalnız bu tarayıcıda işlenir; sunucuya yüklenmez." : "Bu tarayıcıda SHA-256 kullanılamadığı için rapor indirme/açma devre dışı. Grafikler kullanılabilir."; state.selected = new Set(data.regions.map((r) => r.id));
     state.month = 0; state.policy = "unmasked"; state.spatialRegion = null; state.cell = 0; state.traceRegion = null; state.traceNode = null; state.pairLeft = null; state.pairRight = null; $("policy").value = state.policy; $("month").value = "0";
     const year = data.dates[0].slice(0, 4); $("scope-year").textContent = `${year} · 12 ay`; $("year-mark").textContent = year;
     $("dataset-note").textContent = `Kayıtlı ${year} örnekleri · Aday sınırlar · Bilimsel profil incelemede`;
@@ -360,9 +369,37 @@ $("pair-swap").addEventListener("click", () => { [state.pairLeft, state.pairRigh
 $("retry").addEventListener("click", load);
 $("spatial-region").addEventListener("change", () => { state.spatialRegion = $("spatial-region").value; state.cell = 0; renderSpatial(active()); });
 window.matchMedia("(max-width:740px)").addEventListener("change", () => { if (state.data) { renderChart(active()); renderTrace(active()); renderPair(active()); } });
+function downloadJson(data, name) {
+  const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }));
+  const link = el("a"); link.href = url; link.download = name; document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+$("review-download").addEventListener("click", () => {
+  try {
+    const report = createComparisonReview(state.data, state.datasetSha256, { left_id: state.pairLeft, right_id: state.pairRight, policy: state.policy, month: state.data.dates[state.month] });
+    downloadJson(report, "expedition73-comparison-review.json");
+    $("review-message").textContent = "Rapor hazır: seçimler, sonuçlar ve veri SHA-256 kimliği eklendi. Bilimsel veya kişi onayı değildir.";
+  } catch { $("review-message").textContent = "Bu seçim için doğrulanabilir rapor üretilemedi. İki uyumlu pencere seçin."; }
+});
+$("review-file").addEventListener("change", async () => {
+  const file = $("review-file").files[0], source = state.data, digest = state.datasetSha256, request = ++state.reviewRequest;
+  $("review-file").value = "";
+  if (!file) return;
+  try {
+    if (file.size > 131072 || !digest) throw Error("Unsupported review input");
+    const report = verifyComparisonReview(JSON.parse(await file.text()), source, digest);
+    if (request !== state.reviewRequest) return;
+    if (state.data !== source || state.datasetSha256 !== digest || $("results").hidden) throw Error("Snapshot changed during review load");
+    // Apply nothing until every source and computed field has been checked.
+    state.pairLeft = report.selection.left_id; state.pairRight = report.selection.right_id;
+    state.policy = report.selection.policy; state.month = source.dates.indexOf(report.selection.month);
+    state.selected.add(state.pairLeft); state.selected.add(state.pairRight);
+    for (const checkbox of $("region-options").querySelectorAll("input")) checkbox.checked = state.selected.has(checkbox.value);
+    $("policy").value = state.policy; $("month").value = String(state.month); render();
+    $("review-message").textContent = "Rapor mevcut veri kaydıyla eşleşti; sonuçlar yeniden hesaplanıp doğrulandı ve seçimler açıldı. Bilimsel veya kişi onayı değildir.";
+  } catch { if (request !== state.reviewRequest) return; $("review-message").textContent = "Rapor doğrulanamadı: veri kaydı, rapor içeriği veya biçimi uyuşmuyor. Seçimler değiştirilmedi."; }
+});
 $("download").addEventListener("click", () => {
   const selected = { schema_version: state.data.schema_version, selection_status: "candidate", data_mode: state.data.data_mode, inference_performed: false, selected_policy: state.policy, selected_month: state.data.dates[state.month], regions: active() };
-  const url = URL.createObjectURL(new Blob([JSON.stringify(selected, null, 2)], { type: "application/json" }));
-  const link = el("a"); link.href = url; link.download = "expedition73-temperature-preview.json"; document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+  downloadJson(selected, "expedition73-temperature-preview.json");
 });
 load();

@@ -75,3 +75,9 @@ Yeni ZIP manifesti 0.2.0, web verisi 0.3.0 kullanır. `verify-package` önceki m
 “İki pencere arasında” bölümünde görünür kayıtlardan farklı bir çift seç, sol−sağ yönünü değiştir. Üstteki ay/yüzey seçimleri bu bölüme de uygulanır. Aylık fark, geçerli çift sayısı ve en büyük mutlak fark/ayları grafikte ve tabloda incelenir. Eksik aylar doldurulmaz. Teknik koşul tablosu gösterge/zaman/kaynak/grid ve tüketilen işlem sürümlerini kontrol eder; kara seçeneklerinde fraksiyon snapshot'ı da eşleşmelidir. Uyumsuz çift için fark gösterilmez. Bu betimsel mekânsal farktır; eğilim, iklim değişikliği etkisi veya bilimsel yöntem kabulü değildir. [Esas doğrulama](../portal/docs/evidence/REGION_COMPARISON_CHECK.md).
 
 Yeni hesap mevcut comparison.mjs içindedir; web 0.3.0, altı genel dosya ve manifest 0.2.0 korunur. JSON indirme kaynak kayıtlarını taşır, bu yeni çift özetini eklemez. Son kontrol: Windows 180 analiz testi/gerçek A/B, 22 JS ve 36 Chrome senaryosu; bu sürüm için yeni Mac/Docker koşusu yok.
+
+## Karşılaştırmayı raporla tekrar açma
+
+Uyumlu çift/yön/ay/yüzeyi seçip **Karşılaştırma raporunu indir**. Aynı veri kaydı açıkken **Raporu aç ve doğrula** alanından seç: kaynak hash'i ve yeniden hesaplanan bütün alanlar eşleşirse seçimler açılır. Hatalı/farklı kaynakta seçimler korunur. Dosya sunucuya yüklenmez; 128 KiB sınırı ve Web Crypto yoksa raporları kapatma yolu var. [Kullanım/sözleşme](../portal/docs/guide/COMPARISON_REVIEW.md), [gerçek kontrol](../portal/docs/evidence/COMPARISON_REVIEW_CHECK.md).
+
+Ayrı rapor 0.1.0; web 0.3.0/altı dosya/manifest 0.2.0 ve önceki genel JSON indirme korundu. JS farkı tekrar hesaplanır, NASA ham dönüşümü tarayıcıda tekrarlanmaz. SHA-256 imza/bilimsel/yazar kabulü değildir. Windows 180 analiz/gerçek A-B, 30 JS ve 42 Chrome senaryosu geçti; yeni Mac/Docker/uzak CI yok.

@@ -1,5 +1,11 @@
 # Çalışma günlüğü
 
+## 2026-10-22 · Kaynak kimlikli karşılaştırma raporu
+
+M1 devam istedi. Temiz fdaf166, güncel ekip/durum/fikir/devir/pano/sync okundu; fetch'te yeni katkı yok (uzak M1 6047c42, main/M2 a1a83d5). Tam veri SHA-256 kimlikli rapor ve yeniden hesaplayarak seçimleri açma eklendi. Bozuk/farklı kaynakta seçimler korunur; 128 KiB sınırı, eski asenkron okuma koruması, Web Crypto yoksa yalnız raporların kapanması var. Dosya yüklenmez/iletilmez; yazar veya bilimsel yöntem kabulü değildir.
+
+[Esas kanıt](../evidence/COMPARISON_REVIEW_CHECK.md), [sözleşme/kullanım](../guide/COMPARISON_REVIEW.md): 180 Windows test/20,711 s, gerçek A-B, 30 JS/184,479 ms, 42 Chrome senaryosu; JS hatası/dış runtime ve GET dışı ana sayfa isteği 0. Üç gerçek politika raporu ayrıca doğrulandı; data/results.json byte aynı, yeni ZIP iki üretimde aynı (341.998 byte/hash kanıtta). Web/manifest/dosya sayısı değişmedi. Yeni Mac/Docker/uzak CI yok; U-02/D-02 Validating, H-M1-017 inceleme bekler. Bilimsel seçim/M2 kabulü yok. Yerel M1 dalında; push/main/Pages/Sites/dış mesaj yok. QA sunucusu kapatıldı ve 8873 TCP kapalı doğrulandı; örneklerde Git farkı yok, diff --check/portal check geçti.
+
 ## 2026-10-22 · İki pencerenin aylık farkını inceleme
 
 M1 devam istedi. Temiz `ca485eb`, güncel ekip/durum/fikir/devir/pano okundu; fetch'te yeni main/M2 katkısı yok (`a1a83d5`, uzak M1 `6047c42`). Sonuç ekranına dinamik çift/yön, ay/politika farkı, geçerli çift sayısı, maksimum/bağ ayları, grafik/tablo ve teknik eşleşme kapısı eklendi. Tüketilen hesap sürümleri/kaynak/grid/zaman eşleşmezse fark ve üst kart engellenir; fraksiyon koşulu maskeye bağlıdır. Bu mekânsal betimlemedir, bilimsel profil/trend/iklim etkisi değildir.

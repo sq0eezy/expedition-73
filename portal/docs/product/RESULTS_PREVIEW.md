@@ -2,9 +2,13 @@
 status: Validating
 updated: "2026-10-22"
 review_summary: "Gerçek kayıtlı sıcaklık sonuçlarını inceleten ilk yerel ekran; bilimsel ve ürün sınırları."
-change_summary: "İki pencere için teknik eşleşme koşulları, yönlü aylık fark grafiği/tablosu ve geçerli çift sayıları eklendi; bilimsel profil kabulü yok."
+change_summary: "Kaynak kimlikli karşılaştırma raporu indirilebiliyor; aynı veride yeniden hesaplanıp doğrulanarak seçimler açılıyor. Bilimsel/yazar onayı değil."
 ---
 # İlk sonuç ekranı · Yerel teknik prototip
+
+## 2026-10-22 · Tekrar açılabilir karşılaştırma raporu
+
+Çift/yön/ay/yüzey ve sonuçlar tam kaynak JSON byte SHA-256 kimliğine bağlanır. Aynı veriyle yeniden hesaplanan bütün alanlar eşleşirse seçimler açılır; uyuşmazlıkta korunur. Dosya yalnız tarayıcıda okunur; otomatik gönderim/kalıcı depolama yok. [Sözleşme/kullanım](../guide/COMPARISON_REVIEW.md), [gerçek kontrol](../evidence/COMPARISON_REVIEW_CHECK.md). Ayrı rapor 0.1.0; web 0.3.0/altı dosya/manifest 0.2.0 ve genel JSON indirme korundu. SHA-256 imza veya bilimsel/yazar onayı değildir. Windows 180 analiz/gerçek A-B, 30 JS, 42 Chrome senaryosu; yeni Mac/Docker/uzak CI yok. Yerel M1 dalında, bilimsel seçim/M2 kabulü/yayın yok.
 
 M1, ilk ekran önerisinden sonra devam istedi. Bu dilimde `web/` altında çalışan bir teknik prototip hazırlandı; nihai ürün teknolojisi, genel web sorumlusu veya bilimsel profil seçimi değildir. Yönetim portalı proje hafızasıdır; yeni ekran kayıtlı hesap sonuçlarını inceletir. [Gerçek tarayıcı/test kanıtı](../evidence/RESULTS_PREVIEW_CHECK.md).
 

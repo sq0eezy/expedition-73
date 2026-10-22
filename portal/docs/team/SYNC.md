@@ -5,6 +5,10 @@ change_summary: "6b4ab12 ve önceki M1 çalışmaları GitHub geliştirme dalın
 
 # Paylaşım ve kurulum
 
+## 2026-10-22 · Karşılaştırma raporu yerelde
+
+Temiz fdaf166; fetch sonrası uzak M1 6047c42, main/M2 a1a83d5, yeni katkı yok. [Rapor indirme/açma](../guide/COMPARISON_REVIEW.md) ve önceki üç dilim yerel M1 dalında; yeni push/main merge/Pages/Sites/dış mesaj yok. H-M1-017 henüz gönderilmiş/kabul edilmiş sayılmaz. İki kişi kullanabilmek için güncel kaynak/veri önce paylaşılmalıdır; eski uzak dalda özellik yok.
+
 ## 2026-10-22 · Pencere farkı ekranı yerelde
 
 Temiz başlangıç `ca485eb`; fetch sonrası main/M2 `a1a83d5`, uzak M1 `6047c42`, yeni katkı yok. [Betimsel pencere farkı ve teknik eşleşme](../evidence/REGION_COMPARISON_CHECK.md) M1 dalında yerel geliştirildi; önceki geliştirme paketi ve akış ekranı da henüz yereldir. Push/main merge/Pages/Sites yayını veya dış mesaj yok. H-M1-016, M2'ye gönderilmiş veya kabul edilmiş sayılmaz.

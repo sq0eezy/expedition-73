@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFileSync } from 'node:fs';
-import { summarizePolicyDifferences, summarizeRegionDifferences } from '../src/comparison.mjs';
+import { summarizePolicyDifferences, summarizeRegionDifferences, datasetDigest, createComparisonReview, verifyComparisonReview } from '../src/comparison.mjs';
 
 const series = () => Array.from({ length: 12 }, (_, i) => ({ date: `2024-${String(i + 1).padStart(2, '0')}`, unmasked: 10, land: 10, land_and_ice: 10 }));
 
@@ -142,4 +142,70 @@ test('recorded A/B monthly pair differences match independent direct subtraction
     assert.equal(result.max_abs_delta_degC, Math.max(...independent.map(Math.abs)));
     assert.deepEqual(result.max_abs_dates, independent.flatMap((v, i) => Math.abs(v) === result.max_abs_delta_degC ? [a.series[i].date] : []));
   }
+});
+
+
+function reviewData() {
+  const regions = [region('A'), region('B')];
+  for (const r of regions) {
+    const ids = ['Temperature', 'Fractions', 'Land', 'LandIce', 'Sensitivity'];
+    const links = [[], ['Temperature'], ['Temperature', 'Fractions'], ['Temperature', 'Fractions'], ['Temperature', 'Land', 'LandIce']];
+    r.workflow_trace = { schema_version: '0.1.0', output_type: 'recorded_workflow_trace', execution_status: 'completed', scientific_validation: 'not_performed', identity_kind: 'workflow_plan_fingerprint', context_sha256: 'a'.repeat(64), target: 'Sensitivity', nodes: ids.map((id, i) => ({ id, operation: id, operation_version: '0.1.0', status: 'completed', executions: 1, definition_fingerprint: String(i).repeat(64), output_contract: { type: id === 'Fractions' ? 'verified_surface_fractions' : 'temperature_fixture', schema_version: '0.1.0', unit: id === 'Fractions' ? '1' : 'degC' }, inputs: links[i].map((node) => ({ alias: node.toLowerCase(), node, output: 'result', definition_fingerprint: String(ids.indexOf(node)).repeat(64) })) })) };
+  }
+  return { schema_version: '0.3.0', output_type: 'recorded_temperature_web_preview', data_mode: 'recorded_offline_replay', selection_status: 'candidate', inference_performed: false, dates: series().map((r) => r.date), regions };
+}
+const reviewSelection = () => ({ left_id: 'B', right_id: 'A', policy: 'land', month: '2024-07' });
+const reviewHash = 'c'.repeat(64);
+
+test('dataset digest hashes exact bytes using standard SHA-256', async () => {
+  assert.equal(await datasetDigest(new TextEncoder().encode('abc')), 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');
+  assert.notEqual(await datasetDigest(new TextEncoder().encode('abc')), await datasetDigest(new TextEncoder().encode('abc\n')));
+  await assert.rejects(datasetDigest(new Uint8Array()));
+  await assert.rejects(datasetDigest(new Uint8Array(8_000_001)));
+});
+test('review round trip binds direction, policy, month and definition identities without mutating inputs', () => {
+  const data = reviewData(), before = structuredClone(data), selection = reviewSelection();
+  const report = createComparisonReview(data, reviewHash, selection);
+  assert.deepEqual(verifyComparisonReview(JSON.parse(JSON.stringify(report)), data, reviewHash), report);
+  assert.deepEqual(report.selection, selection); assert.equal(report.selected_month.date, '2024-07');
+  assert.deepEqual(report.result, summarizeRegionDifferences(data.regions[1], data.regions[0], 'land'));
+  assert.equal(report.scientific_acceptance, 'not_performed'); assert.equal(report.identity_authentication, 'not_performed');
+  assert.deepEqual(data, before);
+});
+test('result, source identity, policy, schema, extra fields and scientific claims cannot be silently changed', () => {
+  const data = reviewData(), original = createComparisonReview(data, reviewHash, reviewSelection());
+  for (const mutate of [(r) => r.result.values[0].delta = 99, (r) => r.selected_month.delta = 99, (r) => r.source_definitions[0].definition_fingerprint = '9'.repeat(64), (r) => r.selection.policy = 'unmasked', (r) => r.schema_version = '9.0.0', (r) => r.inference_performed = true, (r) => r.extra = 'private', (r) => r.scientific_acceptance = 'approved']) {
+    const report = structuredClone(original); mutate(report); assert.throws(() => verifyComparisonReview(report, data, reviewHash));
+  }
+});
+test('different source snapshots are rejected even when the selected numerical values match', () => {
+  const data = reviewData(), report = createComparisonReview(data, reviewHash, reviewSelection());
+  assert.throws(() => verifyComparisonReview(report, data, 'd'.repeat(64)));
+  const changed = structuredClone(data); changed.regions[0].workflow_trace.context_sha256 = 'd'.repeat(64);
+  assert.throws(() => verifyComparisonReview(report, changed, reviewHash));
+});
+test('reordered JSON keys verify semantically; serialization order is not a signature', () => {
+  const data = reviewData(), report = createComparisonReview(data, reviewHash, reviewSelection());
+  const reordered = Object.fromEntries(Object.entries(report).reverse());
+  reordered.selection = Object.fromEntries(Object.entries(report.selection).reverse());
+  assert.deepEqual(verifyComparisonReview(reordered, data, reviewHash), report);
+});
+test('unsupported source, unavailable pair, invalid month and uncomparable calculations cannot generate reviews', () => {
+  const data = reviewData();
+  for (const selection of [{ ...reviewSelection(), left_id: 'Missing' }, { ...reviewSelection(), left_id: 'A' }, { ...reviewSelection(), month: '2023-01' }, { ...reviewSelection(), extra: 'private' }]) assert.throws(() => createComparisonReview(data, reviewHash, selection));
+  assert.throws(() => createComparisonReview({ ...data, schema_version: '0.2.0' }, reviewHash, reviewSelection()));
+  assert.throws(() => createComparisonReview(data, 'bad hash', reviewSelection()));
+  data.regions[0].workflow_trace.nodes.find((n) => n.id === 'Land').operation_version = '0.2.0';
+  assert.throws(() => createComparisonReview(data, reviewHash, reviewSelection()));
+});
+test('reviews retain missing pairs and null maximum instead of manufacturing zero evidence', () => {
+  const data = reviewData(); data.regions[0].series.forEach((r) => r.land = null);
+  const report = createComparisonReview(data, reviewHash, reviewSelection());
+  assert.equal(report.result.valid_months, 0); assert.equal(report.result.max_abs_delta_degC, null); assert.equal(report.selected_month.delta, null);
+  assert.deepEqual(verifyComparisonReview(report, data, reviewHash), report);
+});
+test('arbitrary private source fields are not copied into a review', () => {
+  const data = reviewData(); data.private = 'PRIVATE_CONTEXT'; data.regions[0].provenance.private = 'PRIVATE_PATH';
+  data.regions[0].workflow_trace.nodes[0].private = 'PRIVATE_PARAMETER';
+  assert.ok(!JSON.stringify(createComparisonReview(data, reviewHash, reviewSelection())).includes('PRIVATE_'));
 });

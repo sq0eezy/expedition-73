@@ -190,3 +190,11 @@ Kaynak şablon: `templates/TEAM_HANDOFF.md`.
 - **Teslim:** [Çift/yön/ay/yüzey grafiği ve gerçek kanıt](../evidence/REGION_COMPARISON_CHECK.md), [ürün sınırları](../product/RESULTS_PREVIEW.md). Kaynaklar paylaşıldıktan sonra Mac'te `sh scripts/start-preview.sh` ile açılır.
 - **İncelenecek:** A−B/B−A yönü, 12 aylık fark tablosu ve teknik koşullar. Maskesiz/kara/kara+buz sonuçları aynı coğrafyanın alternatif ağırlıklarıdır. Pencere farkı ısınma etkisi/trend/önemlilik değildir. Bilimsel yüzey/sınır/uzun dönem uzlaşması hâlâ gerekir.
 - **Kanıt/sınır:** 180 Windows analiz, gerçek A/B tekrarları, 22 JS ve 36 Chrome senaryosu; yeni Mac/Docker/uzak CI yok. Web 0.3.0, altı dosya, manifest 0.2.0 değişmedi. Yanıt gelmeden M2 kabulü yazılmaz.
+
+## H-M1-017 · Kaynak kimlikli karşılaştırma raporu
+
+- **Gönderen → alıcı:** M1 → M2; U-02/D-02 panel içi kayıt, dış mesaj yok.
+- **Tarih/durum:** 2026-10-22; yerel M1 dalında, paylaşım/M2 incelemesi bekler.
+- **Teslim:** [Kullanım/sözleşme](../guide/COMPARISON_REVIEW.md), [gerçek kontroller](../evidence/COMPARISON_REVIEW_CHECK.md).
+- **İncelenecek:** Kaynak paylaşıldıktan sonra Mac'te `sh scripts/start-preview.sh`, aynı veriyle raporu indir/aç; yön/ay/yüzey/gizli pencerelerin açılmasını dene. Hatalı/farklı kaynakta seçimler korunmalı. Dosya yalnız tarayıcıda işlenir, uygulama kendisi iletmez.
+- **Sınır:** Windows 180 analiz/gerçek A-B, 30 JS, 42 Chrome senaryosu; yeni Mac/Docker/uzak CI yok. SHA-256 bilimsel/yazar onayı değil. Bilimsel profil/M2 kabulü/yayın yok; yanıt olmadan accepted yazılmaz.

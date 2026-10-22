@@ -1,4 +1,5 @@
 /* Descriptive, paired differences of recorded policy series. No inference. */
+import { traceGraph } from "./trace.mjs";
 export const contrasts = [
   { id: "land_minus_unmasked", left: "land", right: "unmasked", label: "Kara − maskesiz" },
   { id: "land_ice_minus_land", left: "land_and_ice", right: "land", label: "Kara + kara buzu − kara" },
@@ -66,4 +67,48 @@ export function summarizeRegionDifferences(left, right, policy) {
   return { left_id: left.id, right_id: right.id, policy, checks, compatible, inference_performed: false,
     scope: "descriptive_spatial_difference_only", values, valid_months: valid.length,
     max_abs_delta_degC: maximum, max_abs_dates: valid.filter((r) => Math.abs(r.delta) === maximum).map((r) => r.date) };
+}
+
+function canonical(value) {
+  if (value === null || typeof value === "string" || typeof value === "boolean") return JSON.stringify(value);
+  if (typeof value === "number" && Number.isFinite(value)) return JSON.stringify(value);
+  if (Array.isArray(value)) return `[${value.map(canonical).join(",")}]`;
+  if (value && typeof value === "object" && Object.getPrototypeOf(value) === Object.prototype)
+    return `{${Object.keys(value).sort().map((k) => `${JSON.stringify(k)}:${canonical(value[k])}`).join(",")}}`;
+  throw Error("Expected finite JSON review fields");
+}
+
+export async function datasetDigest(bytes) {
+  if (!(bytes instanceof Uint8Array) || !bytes.length || bytes.length > 8_000_000) throw Error("Invalid dataset byte size");
+  const digest = await globalThis.crypto.subtle.digest("SHA-256", bytes);
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+export function createComparisonReview(data, datasetSha256, selection) {
+  if (!/^[a-f0-9]{64}$/.test(datasetSha256) || data?.schema_version !== "0.3.0" || data.output_type !== "recorded_temperature_web_preview" || data.data_mode !== "recorded_offline_replay" || data.selection_status !== "candidate" || data.inference_performed !== false || !Array.isArray(data.regions) || !data.regions.length || data.regions.length > 8 || new Set(data.regions.map((r) => r.id)).size !== data.regions.length) throw Error("Unsupported review source snapshot");
+  if (!selection || canonical(Object.keys(selection).sort()) !== canonical(["left_id", "month", "policy", "right_id"]) || !Object.values(selection).every((v) => typeof v === "string")) throw Error("Invalid review selection");
+  const regions = [selection.left_id, selection.right_id].map((id) => data.regions.find((r) => r.id === id));
+  if (regions.some((r) => !r)) throw Error("Review refers to an unavailable region");
+  const result = summarizeRegionDifferences(...regions, selection.policy);
+  if (!result.compatible || !result.values.some((r) => r.date === selection.month) || canonical(data.dates) !== canonical(result.values.map((r) => r.date))) throw Error("Review selection cannot be compared in this snapshot");
+  const definitions = regions.map((r) => {
+    traceGraph(r.workflow_trace);
+    if (r.workflow_trace.target !== "Sensitivity") throw Error("Unsupported review calculation target");
+    return { region_id: r.id, context_sha256: r.workflow_trace.context_sha256,
+      definition_fingerprint: r.workflow_trace.nodes.find((n) => n.id === "Sensitivity").definition_fingerprint };
+  });
+  return { schema_version: "0.1.0", output_type: "recorded_comparison_review", comparison_version: "0.1.0",
+    selection_status: "candidate", data_mode: "recorded_offline_replay", inference_performed: false,
+    dataset: { schema_version: data.schema_version, sha256: datasetSha256 },
+    selection: { left_id: selection.left_id, right_id: selection.right_id, policy: selection.policy, month: selection.month },
+    source_definitions: definitions, result,
+    selected_month: result.values.find((r) => r.date === selection.month),
+    scientific_acceptance: "not_performed", identity_authentication: "not_performed" };
+}
+
+export function verifyComparisonReview(report, data, datasetSha256) {
+  if (report?.dataset?.sha256 !== datasetSha256) throw Error("Review uses a different dataset snapshot");
+  const expected = createComparisonReview(data, datasetSha256, report.selection);
+  if (canonical(report) !== canonical(expected)) throw Error("Review content differs from recomputed comparison");
+  return expected;
 }

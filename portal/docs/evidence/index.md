@@ -2,6 +2,7 @@
 
 | Kayıt | Kapsam |
 |---|---|
+| [Karşılaştırma inceleme raporu](COMPARISON_REVIEW_CHECK.md) | Tam kaynak kimliği, yeniden hesaplama ve seçimleri geri açma; Windows 180/JS 30/Chrome 42; kişi/bilimsel onay değil |
 | [İki pencerenin betimsel farkı](REGION_COMPARISON_CHECK.md) | Teknik koşullar, çift/yön/ay/politika, eksik çiftler, Windows 180/JS 22/Chrome 36; bilimsel profil değil |
 | [Gerçek modül akışı ekranı](WORKFLOW_TRACE_CHECK.md) | Aynı çalıştırmadan 5/8 bağlantı, kimlik/girdi/ata doğrulama, Windows/Linux 180 test, 13 JS/30 Chrome ve paket uyumu |
 | [Portal kurulumu ve doğrulama](PORTAL_SETUP.md) | Bu oturumdaki belge portalı kontrolleri |
