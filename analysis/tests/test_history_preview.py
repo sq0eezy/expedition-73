@@ -14,7 +14,10 @@ WEB = ROOT.parent / 'web'
 
 class HistoryPreviewTests(unittest.TestCase):
     def registry(self):
-        return loads((WEB / 'history-regions.json').read_bytes())
+        registry = loads((WEB / 'history-regions.json').read_bytes())
+        for entry in registry['regions']:
+            entry['history'] = f"examples/{entry['id'].lower()}-history-2023-2024"
+        return registry
 
     def test_actual_catalog_has_both_years_and_original_2024_snapshot_bytes(self):
         catalog = web_preview.catalog(ROOT, self.registry())

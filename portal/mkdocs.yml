@@ -167,6 +167,8 @@ nav:
       - Pencere karşılaştırması: evidence/REGION_COMPARISON_CHECK.md
       - Karşılaştırma raporu: guide/COMPARISON_REVIEW.md
       - Çok yıllı T2M ve yıl seçimi: guide/T2M_HISTORY.md
+      - 2001–2024 teknik kaynakları: guide/T2M_LONG_PERIOD.md
+      - 24 yıllık kaynak doğrulaması: evidence/T2M_LONG_PERIOD_CHECK.md
       - İki yıllık kaynak doğrulaması: evidence/T2M_HISTORY_CHECK.md
       - Rapor doğrulaması: evidence/COMPARISON_REVIEW_CHECK.md
       - Yeni konuşma işleme: guide/AI_WORKFLOW.md

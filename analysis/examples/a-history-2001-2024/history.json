@@ -1,0 +1,198 @@
+{
+  "schema_version": "0.1.0",
+  "format": "annual_verified_window_runs",
+  "years": [
+    {
+      "year": 2001,
+      "files_sha256": {
+        "request.json": "c055759e3d274703b1b337f71f0c0b383950e8b3a08334b8fca6e26cffe05d59",
+        "response.json": "a76a392c09823f69bb010b46e62c1afbfe61a726f1021fd250bbac8e8dc95e8e",
+        "result.json": "002a86f97d8cc0412617df0543008225f17b5a6dc3e9dafdc1c265b0a1267e56"
+      }
+    },
+    {
+      "year": 2002,
+      "files_sha256": {
+        "request.json": "d8bdabd722bcdc0f90973ed3ef0ec76ded0a0e7df64a9bdb0e99f7a0cd124ddc",
+        "response.json": "7f29c82ff25ded51231148ff55c91f4b89d2f62b7d19b0ab60a7454e8d9d78f9",
+        "result.json": "713ddd6e65675c33a16ad8a3f42556449ebf32a395070f3b8fa956dd3e1e571e"
+      }
+    },
+    {
+      "year": 2003,
+      "files_sha256": {
+        "request.json": "9ef5e04e3edd2c50138fd1bf860a0920e6c1b5acc2ac35e62ae324c7253e5258",
+        "response.json": "c4bdf3b74089100291637ed46b13965ae66305de67525bed2cd64f00b8120de6",
+        "result.json": "fbe474af978b23cbe6162dea05e1fae6db0a9c5677b68f72ed506713aec5ce4c"
+      }
+    },
+    {
+      "year": 2004,
+      "files_sha256": {
+        "request.json": "b56b2f0809e16e0f8917a1eeae9f875aa2105d9cdc9c0b07c9984e47bab0628d",
+        "response.json": "f4236ca197caf244a4702c399dff849f1eddcecd9f35b3355bcc0bab828fc1f3",
+        "result.json": "f808db6cb3f7d73924ec14d608f89d4fc2abf1248493eba0674d5a5a87f86c9e"
+      }
+    },
+    {
+      "year": 2005,
+      "files_sha256": {
+        "request.json": "5857635b2a99b4d190e94ccc73b4f1e4ef7b0fac9b7b8072af4fd7eb2cb6a0f6",
+        "response.json": "1475d917b44c21208b5d5a63ee502a68d2a9e269c3a538c8cddbe6d250f15bbf",
+        "result.json": "8e02c95804a9dd8fde213ddbc991987d7fff176ccb1c523ee57dd78949da3e21"
+      }
+    },
+    {
+      "year": 2006,
+      "files_sha256": {
+        "request.json": "ae1d3a3478adc14b9ee94eab98c2191e3f326c7196cdd539dfbbc0a33ca0c69d",
+        "response.json": "cc9594a13ee149a6ae33ac410a3ead28e6424e62f9cc6c4a1231775328b31e13",
+        "result.json": "eaffe5ce758f3ba5d481c0b492f2a59ebe7594204edb40b7de17e6406509e724"
+      }
+    },
+    {
+      "year": 2007,
+      "files_sha256": {
+        "request.json": "7534ca7f54747e40384d1d40bf79907861610bc926a04e98439a0f41f6276a44",
+        "response.json": "a458cda05db05798b42269e6743b989f9ba3ad96708d455033199640f88c6ac6",
+        "result.json": "91f18794260f3dd183310db08172133d85fa1e43f4d6f4920569ee755c5c7a1c"
+      }
+    },
+    {
+      "year": 2008,
+      "files_sha256": {
+        "request.json": "3384cbfa537bb508b61a1dfc467c78307888a5d9ebbc5eaea9ecf150addf5271",
+        "response.json": "968d8f2b623a76ecd4ffb979f50d3d9718fd38c3ad816c2bdba008143165d33f",
+        "result.json": "62139a407f1ccdab5c545fc2c1f2db343976e6eeef1e5b7dc5126312f1e7793e"
+      }
+    },
+    {
+      "year": 2009,
+      "files_sha256": {
+        "request.json": "856916002b71412f97eddd510d699b02878e366cb61f1a8694d29c0c2183024f",
+        "response.json": "50f66fb3c9804d1c57ae902e4075d046e2c78f73402906160d4a4748726d2251",
+        "result.json": "54dc93a571d085bd335d52056004b0917c9ab6ebd6bc96b56881f0d2feb50c14"
+      }
+    },
+    {
+      "year": 2010,
+      "files_sha256": {
+        "request.json": "26bce689c883b870bf9a76b8073b2f86d01d83e3f63146c8a5f57c1cbe5f730c",
+        "response.json": "8096f93b1fe3774e72ab3775b6f6bd9c5f2578d399a8cb411b4cc062db846158",
+        "result.json": "1c716ed37aa5473cbb40fcee7dc6da45218f4c0670ab02c6c80d3625cad3e7ff"
+      }
+    },
+    {
+      "year": 2011,
+      "files_sha256": {
+        "request.json": "25c6755fb7ab76f1dab1120a0409e8ab56f1e6231dbf1e555e920bd280fb6ed8",
+        "response.json": "fcc7e11d71d15605f846f956727d521f09d1fd894e059490e1bee08a4684e5fb",
+        "result.json": "658b30d6c4a0c350952250c1aa71c0e539ba048ed94d831e6529ac962fa74618"
+      }
+    },
+    {
+      "year": 2012,
+      "files_sha256": {
+        "request.json": "a5180bf942d1fc96be65584852a05da17f89d790a3803cc3d63d3bdf8bbaaf96",
+        "response.json": "71da6ddb749d3d918a7c0f9682be58ccce12a01d2cf78fdaba43b91d503f8985",
+        "result.json": "ba25eb8c9d7d9efc5cb2338d36318bd6ed11bf00a7fd1f2eeca7efb94fbc83cd"
+      }
+    },
+    {
+      "year": 2013,
+      "files_sha256": {
+        "request.json": "e92c0beeb2469ba9cfe9968716ef198175c9fd398b6066e5bc30d27544fc9705",
+        "response.json": "cfae18d2f310ea44e34eb7d777dab00526f320146e250e195ae84704d4f3cefb",
+        "result.json": "9addc6ff51f6adc18dc8f7965fa76a9948282d2aabf7ce6d1c1cf4c9cecfc4ac"
+      }
+    },
+    {
+      "year": 2014,
+      "files_sha256": {
+        "request.json": "0bbf688ffcf8ca8a70480a97cec0e9e192c7e9bad49b11a25bd3e4a9e576bcad",
+        "response.json": "a367b649638badb990428d8d57ec59ff68b5a656e27ffc97e41ad81a2b5697e1",
+        "result.json": "190c7b400221d30bbcdca4bbd64ff965a8811869b4e9afdc5b54beeee3a10699"
+      }
+    },
+    {
+      "year": 2015,
+      "files_sha256": {
+        "request.json": "080424a9dfdc2a0a7924ca505827c6bcbd650c0dabe259313c3492c236e5c25f",
+        "response.json": "266376a6697f29cf50ffd14e5b197417c2a8f020f4c9060d6d9722545888d118",
+        "result.json": "9b0d9b04a7c0f040d209c9c661336e2c1cb9c9b351cd0ad4b6144a7274d8dcb5"
+      }
+    },
+    {
+      "year": 2016,
+      "files_sha256": {
+        "request.json": "f79c77fe89ac40525e2a25b5aff545fce93212f8e6b7772f3e7d5136a4bed87c",
+        "response.json": "09112f780ad4f2182e2e609e7be265db40f6dbf6f050d3c384ceeee30f35ad3b",
+        "result.json": "f8a2b5c6a3a15bdaee7fdd2bf99c459eed5da9d7acf01c0296e1b4831e5c9611"
+      }
+    },
+    {
+      "year": 2017,
+      "files_sha256": {
+        "request.json": "1d13b125e48d3e1f7424a6a2ec244dcc8be4c14fce977cf027053ea79b10fd99",
+        "response.json": "2433a754d007a4557d22241c6e02062097a3d0580b744fb57db961576835655f",
+        "result.json": "5f4bdc42854b073f0424a131b82094083d07e568d723f3e2997bb5076b8fe658"
+      }
+    },
+    {
+      "year": 2018,
+      "files_sha256": {
+        "request.json": "a6c148411f0883024e6a60765d8b2a603b88a7e302d64c82bc2bbf232b0ee495",
+        "response.json": "3d73eac3630abd245826e1ec8a291826401f937fc81a9ca2dbb3c14417fdf88b",
+        "result.json": "2e4a0a18c711d619db45e27b3b6eee0fca0a7278015bf3dcd55be39bffa253b5"
+      }
+    },
+    {
+      "year": 2019,
+      "files_sha256": {
+        "request.json": "5c03183b90d474182d0e68a9779b31bce0991582f1f701b7fafc7bf575ea0706",
+        "response.json": "cbfe7a107072c557a41d77f60532f6753109a713494365d30d6eec96690fef2c",
+        "result.json": "35a9e0248fba8a8003bd4fbeb2f783c57ac31071badf4ad9fc9b590157645b9a"
+      }
+    },
+    {
+      "year": 2020,
+      "files_sha256": {
+        "request.json": "6a8a7babe80ff24c4dc29aefeb2019bfba5cf65769799b18a20864c15ecc4e93",
+        "response.json": "502ed5a30e377b6c6f3442dde9498d8e19c1999828fc42d92465122ad8683923",
+        "result.json": "40259581a7f0ca21b3aa1ac1e544e2b48e4819096e3ed4cd53c1e86fb7995136"
+      }
+    },
+    {
+      "year": 2021,
+      "files_sha256": {
+        "request.json": "d0b9b7fcf85e19549ef0174d13b99c32a1d62dbcae7d2d4dd729d18c7e94fbfe",
+        "response.json": "674124370405d21327560f9e85c9a758689fd18268616eb52f1738d3f7cefe89",
+        "result.json": "40b3f2cf7acc429f8de4335f4b7e04e38b56039025d8753131a6f4a889232cce"
+      }
+    },
+    {
+      "year": 2022,
+      "files_sha256": {
+        "request.json": "66e3032aa3a5d5ac66bbe1d23f9a1f9c1420004b0bae090c791de24d2b83ddef",
+        "response.json": "dce8bbdc31321a8f8effec0eeb1f0f4d307e616f3b26d2b4e13dfbb1d701483e",
+        "result.json": "6c77bf056f7ff20fc5e55332f91d7c8ad8fe53790064e96bec3c08a48e426eaa"
+      }
+    },
+    {
+      "year": 2023,
+      "files_sha256": {
+        "request.json": "e330556a3436ee9720ee516dc99bdebe9f46ad8d5c2bbbc20b8488c53f732bfb",
+        "response.json": "7c85f02944efc1d101dd9ddc6ad9caa49af3000112d136b7d381f6e7c4241dc2",
+        "result.json": "842c400da5309b5d6a4e99f38e743f4e5eec298acffc1b917f1556e7062295c7"
+      }
+    },
+    {
+      "year": 2024,
+      "files_sha256": {
+        "request.json": "50ea267a8378d5dc792e8974548f38cb4e30602c97233b613a3f987bff58bd49",
+        "response.json": "c38efad91ac280448589c68494d61d3749a499db9d72dcc6a710759e7a76b39c",
+        "result.json": "a31448bd3a52bedd4f6ba29b62ca55e8c1a3aa07d0d8590317f05dedb0bf3ad1"
+      }
+    }
+  ]
+}

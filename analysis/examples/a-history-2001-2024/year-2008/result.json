@@ -1,0 +1,4442 @@
+{
+  "schema_version": "0.1.0",
+  "output_type": "monthly_window_series",
+  "module": {
+    "id": "air_temperature_2m",
+    "version": "0.1.0"
+  },
+  "region": {
+    "id": "A",
+    "label": "Colorado çevresi aday dikdörtgeni: maskesiz teknik alan denemesi",
+    "selection_status": "candidate",
+    "candidate_bbox": [
+      -113,
+      36,
+      -109,
+      39
+    ],
+    "candidate_window_version": "search-window-0.1.0"
+  },
+  "variable": {
+    "id": "air_temperature_2m",
+    "unit": "degC",
+    "height_m": 2
+  },
+  "time": {
+    "frequency": "monthly",
+    "start": "2008-01",
+    "end": "2008-12",
+    "calendar": "gregorian",
+    "provider_time_standard": "LST"
+  },
+  "spatial_support": {
+    "kind": "unmasked_rectangular_window",
+    "mask": "none",
+    "request_bbox": [
+      -113.3125,
+      35.75,
+      -108.6875,
+      39.25
+    ],
+    "cell_count": 56,
+    "window_area_m2": 117698095231.14151,
+    "grid_step_degrees": {
+      "longitude": 0.625,
+      "latitude": 0.5
+    }
+  },
+  "method": {
+    "id": "spherical_midpoint_cell_intersection",
+    "version": "0.1.0",
+    "sphere_radius_m": 6371008.8,
+    "missing_policy": "require_all_intersecting_cells",
+    "inference": "not_performed"
+  },
+  "provenance": {
+    "provider": "NASA POWER",
+    "product": "POWER Monthly and Annual API",
+    "request_url": "https://power.larc.nasa.gov/api/temporal/monthly/regional?parameters=T2M&community=SB&longitude-min=-113.3125&longitude-max=-108.6875&latitude-min=35.75&latitude-max=39.25&format=JSON&start=2008&end=2008",
+    "retrieved_at": "2026-10-24T08:40:25+00:00",
+    "response_sha256": "968d8f2b623a76ecd4ffb979f50d3d9718fd38c3ad816c2bdba008143165d33f",
+    "api_version": "v2.10.0",
+    "sources": [
+      "MERRA2"
+    ]
+  },
+  "quality": {
+    "expected_months": 12,
+    "complete_months": 12,
+    "warnings": [
+      "CANDIDATE_WINDOW_NOT_ACCEPTED_REGION",
+      "NO_LAND_WATER_MASK",
+      "RECONSTRUCTED_CELL_BOUNDS_SPHERICAL_AREA",
+      "PROVIDER_PIXEL_QA_NOT_SUPPLIED",
+      "INFERENCE_NOT_PERFORMED"
+    ]
+  },
+  "series": [
+    {
+      "date": "2008-01",
+      "value": -4.339794649585234,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2008-02",
+      "value": -0.5717090694234819,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2008-03",
+      "value": 3.7079850509492682,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2008-04",
+      "value": 7.460089866234018,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2008-05",
+      "value": 12.548379265041962,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2008-06",
+      "value": 20.673135830905274,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2008-07",
+      "value": 25.057016402518236,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2008-08",
+      "value": 23.48043198260975,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2008-09",
+      "value": 18.690918350155552,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2008-10",
+      "value": 11.156069422872873,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2008-11",
+      "value": 5.151953523862243,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2008-12",
+      "value": -2.0893739998484104,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    }
+  ],
+  "module_details": {
+    "cells": [
+      {
+        "longitude": -113.125,
+        "latitude": 36.0,
+        "intersection_bbox": [
+          -113,
+          36,
+          -112.8125,
+          36.25
+        ],
+        "area_m2": 468144319.50720054,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": 0.11,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 3.18,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 7.0,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 10.49,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 14.7,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 23.22,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 25.81,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 24.93,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 21.1,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 14.0,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 8.27,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": 1.08,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 12.84
+        }
+      },
+      {
+        "longitude": -112.5,
+        "latitude": 36.0,
+        "intersection_bbox": [
+          -112.8125,
+          36,
+          -112.1875,
+          36.25
+        ],
+        "area_m2": 1560481065.0240016,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -1.61,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 1.39,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 5.65,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 9.2,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 13.31,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 21.61,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 24.45,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 23.49,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 19.59,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 12.4,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 6.69,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -0.45,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 11.33
+        }
+      },
+      {
+        "longitude": -111.875,
+        "latitude": 36.0,
+        "intersection_bbox": [
+          -112.1875,
+          36,
+          -111.5625,
+          36.25
+        ],
+        "area_m2": 1560481065.0240016,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -2.24,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 1.28,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 5.15,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 8.84,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 12.95,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 21.43,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 24.54,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 23.45,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 19.45,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 12.19,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 6.24,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -0.86,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 11.06
+        }
+      },
+      {
+        "longitude": -111.25,
+        "latitude": 36.0,
+        "intersection_bbox": [
+          -111.5625,
+          36,
+          -110.9375,
+          36.25
+        ],
+        "area_m2": 1560481065.0240016,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -1.24,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 2.44,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 6.29,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 10.33,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 14.75,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 23.09,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 26.69,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 25.86,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 21.42,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 13.72,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 7.36,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": 0.78,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 12.65
+        }
+      },
+      {
+        "longitude": -110.625,
+        "latitude": 36.0,
+        "intersection_bbox": [
+          -110.9375,
+          36,
+          -110.3125,
+          36.25
+        ],
+        "area_m2": 1560481065.0240016,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -2.6,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 0.83,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 4.63,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 8.54,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 13.21,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 21.68,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 24.89,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 24.01,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 19.59,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 12.09,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 6.1,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -0.31,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 11.08
+        }
+      },
+      {
+        "longitude": -110.0,
+        "latitude": 36.0,
+        "intersection_bbox": [
+          -110.3125,
+          36,
+          -109.6875,
+          36.25
+        ],
+        "area_m2": 1560481065.0240016,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -3.08,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 0.32,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 4.07,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 8.0,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 12.78,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 21.42,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 23.95,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 23.28,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 18.83,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 11.39,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.33,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -0.63,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 10.5
+        }
+      },
+      {
+        "longitude": -109.375,
+        "latitude": 36.0,
+        "intersection_bbox": [
+          -109.6875,
+          36,
+          -109.0625,
+          36.25
+        ],
+        "area_m2": 1560481065.0240016,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -3.82,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -0.24,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 3.41,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 7.33,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 12.26,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 20.56,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 22.83,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 22.02,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 17.87,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 10.47,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 4.57,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -1.21,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 9.69
+        }
+      },
+      {
+        "longitude": -108.75,
+        "latitude": 36.0,
+        "intersection_bbox": [
+          -109.0625,
+          36,
+          -109,
+          36.25
+        ],
+        "area_m2": 156048106.50240016,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -3.31,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 0.34,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 4.06,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 8.08,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 13.31,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 21.32,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 23.16,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 22.49,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 18.32,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 10.84,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.11,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -0.64,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 10.28
+        }
+      },
+      {
+        "longitude": -113.125,
+        "latitude": 36.5,
+        "intersection_bbox": [
+          -113,
+          36.25,
+          -112.8125,
+          36.75
+        ],
+        "area_m2": 931793692.0534157,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -0.21,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 2.81,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 6.89,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 10.49,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 14.9,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 23.17,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 26.35,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 25.47,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 21.16,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 13.89,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 8.08,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": 0.42,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 12.81
+        }
+      },
+      {
+        "longitude": -112.5,
+        "latitude": 36.5,
+        "intersection_bbox": [
+          -112.8125,
+          36.25,
+          -112.1875,
+          36.75
+        ],
+        "area_m2": 3105978973.511385,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -2.14,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 0.83,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 5.34,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 8.94,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 13.31,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 21.36,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 24.69,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 23.7,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 19.45,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 12.26,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 6.37,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -1.01,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 11.12
+        }
+      },
+      {
+        "longitude": -111.875,
+        "latitude": 36.5,
+        "intersection_bbox": [
+          -112.1875,
+          36.25,
+          -111.5625,
+          36.75
+        ],
+        "area_m2": 3105978973.511385,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -2.7,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 0.9,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 5.05,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 8.87,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 13.27,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 21.85,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 25.37,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 24.03,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 19.56,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 12.39,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 6.13,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -0.91,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 11.17
+        }
+      },
+      {
+        "longitude": -111.25,
+        "latitude": 36.5,
+        "intersection_bbox": [
+          -111.5625,
+          36.25,
+          -110.9375,
+          36.75
+        ],
+        "area_m2": 3105978973.511385,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -3.41,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 0.72,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 4.48,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 8.58,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 13.38,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 21.73,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 25.65,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 24.5,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 19.84,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 12.26,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.79,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -1.13,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 11.06
+        }
+      },
+      {
+        "longitude": -110.625,
+        "latitude": 36.5,
+        "intersection_bbox": [
+          -110.9375,
+          36.25,
+          -110.3125,
+          36.75
+        ],
+        "area_m2": 3105978973.511385,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -3.72,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 0.09,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 3.75,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 7.77,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 12.46,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 20.99,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 24.45,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 23.35,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 18.86,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 11.33,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.23,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -1.28,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 10.3
+        }
+      },
+      {
+        "longitude": -110.0,
+        "latitude": 36.5,
+        "intersection_bbox": [
+          -110.3125,
+          36.25,
+          -109.6875,
+          36.75
+        ],
+        "area_m2": 3105978973.511385,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -3.8,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 0.2,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 3.97,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 8.09,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 12.87,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 21.34,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 24.62,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 23.72,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 19.13,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 11.48,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.28,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -1.0,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 10.52
+        }
+      },
+      {
+        "longitude": -109.375,
+        "latitude": 36.5,
+        "intersection_bbox": [
+          -109.6875,
+          36.25,
+          -109.0625,
+          36.75
+        ],
+        "area_m2": 3105978973.511385,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -3.41,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 0.41,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 4.17,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 8.27,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 13.35,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 21.58,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 24.58,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 23.69,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 19.16,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 11.35,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.24,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -0.74,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 10.66
+        }
+      },
+      {
+        "longitude": -108.75,
+        "latitude": 36.5,
+        "intersection_bbox": [
+          -109.0625,
+          36.25,
+          -109,
+          36.75
+        ],
+        "area_m2": 310597897.35113853,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -3.26,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 0.69,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 4.65,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 8.73,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 14.24,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 22.14,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 24.95,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 24.03,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 19.32,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 11.46,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.47,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -0.64,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 11.01
+        }
+      },
+      {
+        "longitude": -113.125,
+        "latitude": 37.0,
+        "intersection_bbox": [
+          -113,
+          36.75,
+          -112.8125,
+          37.25
+        ],
+        "area_m2": 925741343.9757947,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -0.48,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 2.38,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 6.97,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 10.54,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 15.17,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 23.25,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 26.87,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 25.92,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 21.45,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 14.12,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 8.12,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -0.01,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 12.88
+        }
+      },
+      {
+        "longitude": -112.5,
+        "latitude": 37.0,
+        "intersection_bbox": [
+          -112.8125,
+          36.75,
+          -112.1875,
+          37.25
+        ],
+        "area_m2": 3085804479.919315,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -3.07,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -0.06,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 4.73,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 8.36,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 12.9,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 20.74,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 24.57,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 23.38,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 18.92,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 11.72,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.8,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -2.2,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 10.51
+        }
+      },
+      {
+        "longitude": -111.875,
+        "latitude": 37.0,
+        "intersection_bbox": [
+          -112.1875,
+          36.75,
+          -111.5625,
+          37.25
+        ],
+        "area_m2": 3085804479.919315,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -2.45,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 1.14,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 5.51,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 9.26,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 13.95,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 22.34,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 26.38,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 24.69,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 19.96,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 12.62,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 6.36,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -1.06,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 11.58
+        }
+      },
+      {
+        "longitude": -111.25,
+        "latitude": 37.0,
+        "intersection_bbox": [
+          -111.5625,
+          36.75,
+          -110.9375,
+          37.25
+        ],
+        "area_m2": 3085804479.919315,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -1.65,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 2.51,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 6.4,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 10.43,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 15.45,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 23.87,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 27.95,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 26.39,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 21.52,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 13.84,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 7.26,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": 0.08,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 12.86
+        }
+      },
+      {
+        "longitude": -110.625,
+        "latitude": 37.0,
+        "intersection_bbox": [
+          -110.9375,
+          36.75,
+          -110.3125,
+          37.25
+        ],
+        "area_m2": 3085804479.919315,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -2.41,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 1.48,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 5.15,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 9.2,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 14.2,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 22.62,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 26.55,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 24.99,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 20.19,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 12.7,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 6.23,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -0.34,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 11.74
+        }
+      },
+      {
+        "longitude": -110.0,
+        "latitude": 37.0,
+        "intersection_bbox": [
+          -110.3125,
+          36.75,
+          -109.6875,
+          37.25
+        ],
+        "area_m2": 3085804479.919315,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -2.53,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 1.47,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 5.45,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 9.63,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 14.63,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 22.95,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 27.15,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 25.73,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 20.64,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 12.8,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 6.41,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -0.16,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 12.04
+        }
+      },
+      {
+        "longitude": -109.375,
+        "latitude": 37.0,
+        "intersection_bbox": [
+          -109.6875,
+          36.75,
+          -109.0625,
+          37.25
+        ],
+        "area_m2": 3085804479.919315,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -2.76,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 1.36,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 5.48,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 9.51,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 14.83,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 23.02,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 27.12,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 25.77,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 20.56,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 12.62,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 6.27,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -0.21,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 11.99
+        }
+      },
+      {
+        "longitude": -108.75,
+        "latitude": 37.0,
+        "intersection_bbox": [
+          -109.0625,
+          36.75,
+          -109,
+          37.25
+        ],
+        "area_m2": 308580447.9919315,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -4.79,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -0.08,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 4.43,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 8.24,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 13.77,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 21.49,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 25.31,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 23.9,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 19.03,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 11.32,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.09,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -1.82,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 10.52
+        }
+      },
+      {
+        "longitude": -113.125,
+        "latitude": 37.5,
+        "intersection_bbox": [
+          -113,
+          37.25,
+          -112.8125,
+          37.75
+        ],
+        "area_m2": 919618497.1106517,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -5.94,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -3.06,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 2.33,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 5.87,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 10.38,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 18.18,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 22.13,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 21.11,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 16.76,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 9.6,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 4.05,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -3.78,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 8.16
+        }
+      },
+      {
+        "longitude": -112.5,
+        "latitude": 37.5,
+        "intersection_bbox": [
+          -112.8125,
+          37.25,
+          -112.1875,
+          37.75
+        ],
+        "area_m2": 3065394990.368839,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -7.77,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -4.11,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 1.66,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 4.94,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 9.66,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 17.3,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 21.5,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 20.28,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 15.9,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 8.93,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 3.33,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -4.76,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 7.27
+        }
+      },
+      {
+        "longitude": -111.875,
+        "latitude": 37.5,
+        "intersection_bbox": [
+          -112.1875,
+          37.25,
+          -111.5625,
+          37.75
+        ],
+        "area_m2": 3065394990.368839,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -4.99,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -1.04,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 3.44,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 6.81,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 11.64,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 19.9,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 24.29,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 22.65,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 17.91,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 10.71,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 4.92,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -3.16,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 9.45
+        }
+      },
+      {
+        "longitude": -111.25,
+        "latitude": 37.5,
+        "intersection_bbox": [
+          -111.5625,
+          37.25,
+          -110.9375,
+          37.75
+        ],
+        "area_m2": 3065394990.368839,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -2.83,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 1.42,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 5.34,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 9.09,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 14.2,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 22.71,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 27.22,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 25.33,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 20.3,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 12.57,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 6.25,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -1.13,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 11.73
+        }
+      },
+      {
+        "longitude": -110.625,
+        "latitude": 37.5,
+        "intersection_bbox": [
+          -110.9375,
+          37.25,
+          -110.3125,
+          37.75
+        ],
+        "area_m2": 3065394990.368839,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -1.8,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 2.33,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 6.24,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 10.24,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 15.65,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 23.87,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 28.5,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 26.48,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 21.56,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 13.68,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 7.1,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -0.04,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 12.84
+        }
+      },
+      {
+        "longitude": -110.0,
+        "latitude": 37.5,
+        "intersection_bbox": [
+          -110.3125,
+          37.25,
+          -109.6875,
+          37.75
+        ],
+        "area_m2": 3065394990.368839,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -3.73,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 0.4,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 4.69,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 8.61,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 13.87,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 21.95,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 26.78,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 24.9,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 19.87,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 12.01,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.75,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -1.73,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 11.14
+        }
+      },
+      {
+        "longitude": -109.375,
+        "latitude": 37.5,
+        "intersection_bbox": [
+          -109.6875,
+          37.25,
+          -109.0625,
+          37.75
+        ],
+        "area_m2": 3065394990.368839,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -4.69,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -0.41,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 4.46,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 8.21,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 13.7,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 21.41,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 26.17,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 24.51,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 19.51,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 11.86,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.7,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -1.98,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 10.73
+        }
+      },
+      {
+        "longitude": -108.75,
+        "latitude": 37.5,
+        "intersection_bbox": [
+          -109.0625,
+          37.25,
+          -109,
+          37.75
+        ],
+        "area_m2": 306539499.0368839,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -6.93,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -2.7,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 2.69,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 6.01,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 11.39,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 18.97,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 23.27,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 21.69,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 17.05,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 10.09,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 4.17,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -3.56,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 8.54
+        }
+      },
+      {
+        "longitude": -113.125,
+        "latitude": 38.0,
+        "intersection_bbox": [
+          -113,
+          37.75,
+          -112.8125,
+          38.25
+        ],
+        "area_m2": 913425617.7364994,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -3.27,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -0.31,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 3.81,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 7.67,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 12.31,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 20.19,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 24.76,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 23.42,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 18.88,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 10.96,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.23,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -2.43,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 10.13
+        }
+      },
+      {
+        "longitude": -112.5,
+        "latitude": 38.0,
+        "intersection_bbox": [
+          -112.8125,
+          37.75,
+          -112.1875,
+          38.25
+        ],
+        "area_m2": 3044752059.121664,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -8.51,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -4.94,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 0.7,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 4.16,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 8.92,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 16.62,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 21.27,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 19.76,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 15.35,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 8.19,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 2.73,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -5.07,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 6.63
+        }
+      },
+      {
+        "longitude": -111.875,
+        "latitude": 38.0,
+        "intersection_bbox": [
+          -112.1875,
+          37.75,
+          -111.5625,
+          38.25
+        ],
+        "area_m2": 3044752059.121664,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -9.79,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -6.18,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": -0.43,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 2.9,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 7.63,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 15.56,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 20.29,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 18.81,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 14.29,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 7.21,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 1.96,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -6.17,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 5.54
+        }
+      },
+      {
+        "longitude": -111.25,
+        "latitude": 38.0,
+        "intersection_bbox": [
+          -111.5625,
+          37.75,
+          -110.9375,
+          38.25
+        ],
+        "area_m2": 3044752059.121664,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -4.94,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -0.92,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 2.79,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 6.21,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 11.53,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 20.12,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 24.61,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 22.74,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 17.73,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 10.23,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 4.46,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -2.81,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 9.34
+        }
+      },
+      {
+        "longitude": -110.625,
+        "latitude": 38.0,
+        "intersection_bbox": [
+          -110.9375,
+          37.75,
+          -110.3125,
+          38.25
+        ],
+        "area_m2": 3044752059.121664,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -3.39,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 0.81,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 4.74,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 8.52,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 14.07,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 22.46,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 27.34,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 25.13,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 20.23,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 12.22,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.81,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -1.39,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 11.41
+        }
+      },
+      {
+        "longitude": -110.0,
+        "latitude": 38.0,
+        "intersection_bbox": [
+          -110.3125,
+          37.75,
+          -109.6875,
+          38.25
+        ],
+        "area_m2": 3044752059.121664,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -4.65,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -0.53,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 3.65,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 7.46,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 13.07,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 21.16,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 26.31,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 23.95,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 19.14,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 11.25,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.03,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -2.47,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 10.31
+        }
+      },
+      {
+        "longitude": -109.375,
+        "latitude": 38.0,
+        "intersection_bbox": [
+          -109.6875,
+          37.75,
+          -109.0625,
+          38.25
+        ],
+        "area_m2": 3044752059.121664,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -8.33,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -3.06,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 1.7,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 5.19,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 10.83,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 18.65,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 23.59,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 21.71,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 16.94,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 9.4,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 3.25,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -4.85,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 7.94
+        }
+      },
+      {
+        "longitude": -108.75,
+        "latitude": 38.0,
+        "intersection_bbox": [
+          -109.0625,
+          37.75,
+          -109,
+          38.25
+        ],
+        "area_m2": 304475205.9121664,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -8.86,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -3.45,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 1.59,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 4.91,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 10.71,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 18.12,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 22.74,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 21.04,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 16.46,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 9.25,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 3.2,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -4.96,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 7.59
+        }
+      },
+      {
+        "longitude": -113.125,
+        "latitude": 38.5,
+        "intersection_bbox": [
+          -113,
+          38.25,
+          -112.8125,
+          38.75
+        ],
+        "area_m2": 907163177.4651074,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -3.42,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -0.25,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 3.27,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 7.31,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 12.3,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 20.16,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 25.34,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 23.68,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 18.71,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 10.72,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 4.91,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -1.8,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 10.1
+        }
+      },
+      {
+        "longitude": -112.5,
+        "latitude": 38.5,
+        "intersection_bbox": [
+          -112.8125,
+          38.25,
+          -112.1875,
+          38.75
+        ],
+        "area_m2": 3023877258.2170243,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -6.86,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -3.19,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 0.8,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 4.39,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 9.24,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 16.96,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 22.01,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 20.45,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 15.76,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 8.34,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 3.11,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -4.42,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 7.24
+        }
+      },
+      {
+        "longitude": -111.875,
+        "latitude": 38.5,
+        "intersection_bbox": [
+          -112.1875,
+          38.25,
+          -111.5625,
+          38.75
+        ],
+        "area_m2": 3023877258.2170243,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -10.83,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -7.82,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": -2.15,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 1.44,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 6.22,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 13.96,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 19.2,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 17.61,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 13.01,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 5.81,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 0.9,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -7.01,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 4.23
+        }
+      },
+      {
+        "longitude": -111.25,
+        "latitude": 38.5,
+        "intersection_bbox": [
+          -111.5625,
+          38.25,
+          -110.9375,
+          38.75
+        ],
+        "area_m2": 3023877258.2170243,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -5.91,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -2.54,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 1.32,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 4.69,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 10.22,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 18.38,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 23.4,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 21.64,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 16.42,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 9.18,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 3.43,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -3.55,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 8.09
+        }
+      },
+      {
+        "longitude": -110.625,
+        "latitude": 38.5,
+        "intersection_bbox": [
+          -110.9375,
+          38.25,
+          -110.3125,
+          38.75
+        ],
+        "area_m2": 3023877258.2170243,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -3.85,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 0.05,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 4.02,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 7.76,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 13.55,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 21.77,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 27.17,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 24.89,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 19.59,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 11.75,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.48,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -1.55,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 10.91
+        }
+      },
+      {
+        "longitude": -110.0,
+        "latitude": 38.5,
+        "intersection_bbox": [
+          -110.3125,
+          38.25,
+          -109.6875,
+          38.75
+        ],
+        "area_m2": 3023877258.2170243,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -2.88,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 0.72,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 4.89,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 8.81,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 14.68,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 22.72,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 28.24,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 25.64,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 20.45,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 12.36,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 6.24,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -0.93,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 11.77
+        }
+      },
+      {
+        "longitude": -109.375,
+        "latitude": 38.5,
+        "intersection_bbox": [
+          -109.6875,
+          38.25,
+          -109.0625,
+          38.75
+        ],
+        "area_m2": 3023877258.2170243,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -5.43,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -1.23,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 3.21,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 6.9,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 12.75,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 20.43,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 26.0,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 23.67,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 18.61,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 10.87,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 4.86,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -2.75,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 9.85
+        }
+      },
+      {
+        "longitude": -108.75,
+        "latitude": 38.5,
+        "intersection_bbox": [
+          -109.0625,
+          38.25,
+          -109,
+          38.75
+        ],
+        "area_m2": 302387725.8217024,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -8.98,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -3.85,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 0.84,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 4.31,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 10.29,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 17.92,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 22.98,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 20.93,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 15.99,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 8.71,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 2.85,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -5.18,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 7.26
+        }
+      },
+      {
+        "longitude": -113.125,
+        "latitude": 39.0,
+        "intersection_bbox": [
+          -113,
+          38.75,
+          -112.8125,
+          39
+        ],
+        "area_m2": 451211566.11108905,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -2.47,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": 0.53,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 3.88,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 7.75,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 13.36,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 21.17,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 27.08,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 25.2,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 19.51,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 11.27,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.64,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -0.74,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 11.04
+        }
+      },
+      {
+        "longitude": -112.5,
+        "latitude": 39.0,
+        "intersection_bbox": [
+          -112.8125,
+          38.75,
+          -112.1875,
+          39
+        ],
+        "area_m2": 1504038553.7036297,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -2.94,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -0.59,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 2.97,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 6.98,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 12.3,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 19.98,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 25.65,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 24.13,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 18.66,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 10.84,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.4,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -1.68,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 10.17
+        }
+      },
+      {
+        "longitude": -111.875,
+        "latitude": 39.0,
+        "intersection_bbox": [
+          -112.1875,
+          38.75,
+          -111.5625,
+          39
+        ],
+        "area_m2": 1504038553.7036297,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -6.19,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -3.14,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 0.97,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 4.46,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 10.06,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 17.79,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 23.63,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 21.94,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 16.76,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 9.27,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 3.57,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -3.92,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 7.96
+        }
+      },
+      {
+        "longitude": -111.25,
+        "latitude": 39.0,
+        "intersection_bbox": [
+          -111.5625,
+          38.75,
+          -110.9375,
+          39
+        ],
+        "area_m2": 1504038553.7036297,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -9.24,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -6.16,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": -0.89,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 2.52,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 8.0,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 15.86,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 21.47,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 19.77,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 14.33,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 7.33,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 1.7,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -5.72,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 5.78
+        }
+      },
+      {
+        "longitude": -110.625,
+        "latitude": 39.0,
+        "intersection_bbox": [
+          -110.9375,
+          38.75,
+          -110.3125,
+          39
+        ],
+        "area_m2": 1504038553.7036297,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -4.83,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -1.14,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 2.89,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 6.65,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 12.78,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 20.59,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 26.48,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 24.32,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 18.5,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 10.97,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 4.92,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -2.68,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 9.99
+        }
+      },
+      {
+        "longitude": -110.0,
+        "latitude": 39.0,
+        "intersection_bbox": [
+          -110.3125,
+          38.75,
+          -109.6875,
+          39
+        ],
+        "area_m2": 1504038553.7036297,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -4.38,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -0.43,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 3.87,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 7.49,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 13.68,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 21.62,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 27.4,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 24.89,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 19.2,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 11.36,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 5.46,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -2.16,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 10.7
+        }
+      },
+      {
+        "longitude": -109.375,
+        "latitude": 39.0,
+        "intersection_bbox": [
+          -109.6875,
+          38.75,
+          -109.0625,
+          39
+        ],
+        "area_m2": 1504038553.7036297,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -5.54,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -1.25,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 2.95,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 6.57,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 12.71,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 20.36,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 26.39,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 23.73,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 18.23,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 10.62,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 4.77,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -3.0,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 9.74
+        }
+      },
+      {
+        "longitude": -108.75,
+        "latitude": 39.0,
+        "intersection_bbox": [
+          -109.0625,
+          38.75,
+          -109,
+          39
+        ],
+        "area_m2": 150403855.370363,
+        "series": [
+          {
+            "date": "2008-01",
+            "value": -7.26,
+            "status": "valid"
+          },
+          {
+            "date": "2008-02",
+            "value": -2.29,
+            "status": "valid"
+          },
+          {
+            "date": "2008-03",
+            "value": 2.05,
+            "status": "valid"
+          },
+          {
+            "date": "2008-04",
+            "value": 5.62,
+            "status": "valid"
+          },
+          {
+            "date": "2008-05",
+            "value": 11.75,
+            "status": "valid"
+          },
+          {
+            "date": "2008-06",
+            "value": 19.28,
+            "status": "valid"
+          },
+          {
+            "date": "2008-07",
+            "value": 25.09,
+            "status": "valid"
+          },
+          {
+            "date": "2008-08",
+            "value": 22.68,
+            "status": "valid"
+          },
+          {
+            "date": "2008-09",
+            "value": 17.25,
+            "status": "valid"
+          },
+          {
+            "date": "2008-10",
+            "value": 9.86,
+            "status": "valid"
+          },
+          {
+            "date": "2008-11",
+            "value": 3.99,
+            "status": "valid"
+          },
+          {
+            "date": "2008-12",
+            "value": -4.04,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2008": 8.69
+        }
+      }
+    ],
+    "provider_header": {
+      "title": "NASA/POWER Source Native Resolution Monthly and Annual",
+      "api": {
+        "version": "v2.10.0",
+        "name": "POWER Monthly and Annual API"
+      },
+      "sources": [
+        "MERRA2"
+      ],
+      "fill_value": -999.0,
+      "time_standard": "LST",
+      "start": "20080101",
+      "end": "20081231"
+    },
+    "provider_parameter": {
+      "units": "C",
+      "longname": "Temperature at 2 Meters"
+    },
+    "provider_messages": []
+  }
+}

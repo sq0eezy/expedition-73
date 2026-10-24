@@ -205,3 +205,10 @@ Kaynak şablon: `templates/TEAM_HANDOFF.md`.
 - **Tarih/durum:** 2026-10-22; yerel M1 dalında, paylaşım/M2 incelemesi bekler.
 - **Teslim:** [Komutlar/sözleşmeler](../guide/T2M_HISTORY.md), [gerçek kanıt](../evidence/T2M_HISTORY_CHECK.md). Kaynaklar paylaşıldıktan sonra Mac'te `sh scripts/start-preview.sh`; 2023/2024 seç, B tarih/hücre/politika ve yıllar arası rapor açmayı kontrol et. analysis içinde `.venv/bin/python -m expedition73 validate-window-history examples/b-history-2023-2024`.
 - **Sınır:** Windows 197 analiz/30 JS/49 Chrome; Docker motoru hazır olmadı, yeni Linux/Mac/CI sonucu yok. 2024 byte'ları korundu; 2001–2024 gerçek veri/trend ve nihai maske/sınır/profil seçilmedi. Reusable B teknik örneği M2'nin R-B05'e başladığı/kabul ettiği anlamına gelmez.
+
+## H-M1-019 · 2001–2024 gerçek kaynak ve 24 yıllık seçim
+
+- **Gönderen → alıcı:** M1 → M2; T-01/U-02 için panel içi kayıt, dış mesaj yok.
+- **Tarih/durum:** 2026-10-24; yerel M1 dalında, paylaşım/M2 incelemesi bekler.
+- **Teslim:** [Kullanım/yorum sınırı](../guide/T2M_LONG_PERIOD.md), [gerçek erişim/kontrol](../evidence/T2M_LONG_PERIOD_CHECK.md). Kaynak paylaşılınca Mac'te `sh scripts/start-preview.sh`; 2001/2012/2024 seç, B tarih/hücre/politikayı ve raporla yıl açılmasını dene. analysis içinde `.venv/bin/python -m expedition73 validate-window-history examples/b-history-2001-2024`.
+- **Sınır:** İki pencere 288'er ay; eski kaynak/rapor kimlikleri korunur. Bu teknik erişim R-B05 başlangıcı/analiz tamamlanması, M2 kabulü veya bilimsel dönem/maske/eğilim kararı değildir. Yeni Mac/Linux/Docker/CI/yayın yok. Yanıt bekleniyor.

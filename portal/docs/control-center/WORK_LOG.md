@@ -1,5 +1,9 @@
 # Çalışma günlüğü
 
+## 2026-10-24 · Gerçek 24 yıllık kaynak erişimine devam
+
+M1 devam istedi. Temiz cfaf9d2, ekip/durum/fikir/devir/pano okundu; fetch sonrası main a1a83d5, uzak M1/M2 6047c42, yeni katkı yok. [A/B 2001–2024 kaydı](../guide/T2M_LONG_PERIOD.md) için 66 yeni küçük NASA POWER isteği, 2023/2024 byte-korunmuş seed'ler ve yıllık tamamlanmış parçalardan offline assembly kullanıldı. İki pencere 288/288 ay, bütün 56/55 kesişen hücre mevcut. Yıl kataloğu 24 seçeneğe açıldı; eski annual hash/raporlar korunur. [201 Windows test/388,815 s, gerçek replay'ler, 30 JS/414,5819 ms ve 53 Chrome](../evidence/T2M_LONG_PERIOD_CHECK.md) geçti; dış runtime/JS hatası 0. 198 kaynak dosyasının staged byte'ları eşleşti; katalog 6.649.872 byte. Yeni bilimsel eğilim/istatistik/maske/dönem/sınır seçimi ve M2 kabulü yok; R-A05/R-B05 tamamlandı sayılmaz. T-01/H-M1-019 inceleme bekler. Yeni kod/veri yerel M1 dalında; push/main/Pages/Sites/dış mesaj yok. Son paket ve önizleme kapanış kanıtı esas kontrol kaydındadır.
+
 ## 2026-10-22 · Gerçek iki yıllık kaynak ve yıl ekranı
 
 M1 çok yıllı öneri üzerine devam istedi. Temiz 3e4e5ee, ekip/durum kayıtları okundu; M2 uzak dalı önceki M1 paylaşımı 6047c42'ye ilerledi, yeni bağımsız kod/kabul yok. [Esas kanıt](../evidence/T2M_HISTORY_CHECK.md), [komutlar/sözleşmeler](../guide/T2M_HISTORY.md). A 2023 tek/B iki tile alındı; B şema düzeltmesi için iki istek tekrarlandı. 2024 kaynakları byte korunarak yıllık geçmişlere alındı; iki pencerede 24/24 ay. Kaynak/API/grid/zaman/yöntem uyumu, null/ay/yıl ve staging/ezmeme kontrolleri eklendi. İlk Windows geçici ACL sorunu onarıldı, yeni inherited staging yükseltilmiş/normal replay ile doğrulandı.

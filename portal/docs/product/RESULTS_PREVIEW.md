@@ -1,10 +1,14 @@
 ---
 status: Validating
-updated: "2026-10-22"
+updated: "2026-10-24"
 review_summary: "Gerçek kayıtlı sıcaklık sonuçlarını inceleten ilk yerel ekran; bilimsel ve ürün sınırları."
-change_summary: "Gerçek 2023 ve 2024 yıl seçimi eklendi; annual snapshot/rapor uyumu korundu. Trend veya tam 2001–2024 sonucu yok."
+change_summary: "2001–2024 24 yıl/288 aylık gerçek kayıt yıl seçimine bağlandı; eski rapor kimlikleri korundu. Trend/istatistik ve bilimsel profil açık."
 ---
 # İlk sonuç ekranı · Yerel teknik prototip
+
+## 2026-10-24 · Gerçek 24 yıllık katalog
+
+[2001–2024 kaynakları](../guide/T2M_LONG_PERIOD.md) iki pencerede 288'er ay; 24 seçenekli yıl alanı ve kayıtlı dönem satırı hazır. Ana grafik/hücre/pencere farkı seçilen yılın 12 ayına bağlı kalır. 2023/2024 exact annual byte kimlikleri ve rapor uyumu korunur; 2001 raporu da kendi yılına açılır. Web 0.4.0/annual 0.3.0/rapor 0.1.0/manifest 0.3.0, altı genel dosya değişmedi. [Gerçek erişim ve kontrol](../evidence/T2M_LONG_PERIOD_CHECK.md). Sabit fraksiyonlar yalnız aday ağırlık; tarihsel maske/ayrı kara sıcaklığı veya bilimsel dönem/eğilim kabulü yok. Yeni Mac/Linux/CI ve main/Pages/Sites yayını yok; M2 incelemesi bekler. Aşağıdaki eski dönem ifadeleri ilgili tarihli aşamalardır.
 
 ## 2026-10-22 · Gerçek 2023–2024 ve yıl seçimi
 

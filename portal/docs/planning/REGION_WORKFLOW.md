@@ -1,8 +1,10 @@
 ---
 review_summary: "M1: modüller ve A; M2: B. Paralel başlanacak işler, ortak profil ve karşılıklı teslimler."
-change_summary: "2024 pilotu ile NASA zaman kapsamı ayrıldı; iki yıl/12 ay kod sınırları ve önerilen çok yıllı geçiş sırası açıklandı. Dönem seçimi/veri alımı yok."
+change_summary: "M1 devam talebiyle A/B 2001–2024 teknik erişimi 288'er ayla tamamlandı; bilimsel dönem/maske/istatistik ve M2 kabulü açık."
 ---
 # İki bölge için iş bölümü
+
+**2026-10-24 teknik erişim:** [Aday 2001–2024 gerçek kayıtları](../guide/T2M_LONG_PERIOD.md) M1'in devam talebiyle iki pencerede 288'er ay olarak alındı, yıl kataloğuna bağlandı. T-01 teknik Validating; bu erişim, bilimsel dönem/maske/sınır kabulü veya R-A05/R-B05 analiz tamamlanması değildir. M2 adına başlangıç/kabul kaydı üretilmedi. Önceki tarihli öneri ve iki yıllık dilim aşağıda korunur.
 
 **2026-10-16:** Kullanıcı kendisinin modülleri ve A'yı, arkadaşının B'yi yapacağını belirtti: [ADR-005](../decisions/ADR-005-TEAM-OWNERSHIP.md). M2 adına bağımsız kabul/başlama beyanı yazılmadı. Atama, görüş ve gerçek ilerleme ayrı kaydedilir. Görev durumlarının esas kaynağı [iş panosudur](WORK_BOARD.md).
 

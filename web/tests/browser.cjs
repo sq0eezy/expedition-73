@@ -309,7 +309,23 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     await threeRegions.close(); checks++;
 
     if (bundle.schema_version === '0.4.0') {
-      assert.deepEqual(await page.locator('#year option').allTextContents(), ['2023', '2024']);
+      assert.deepEqual(await page.locator('#year option').allTextContents(), bundle.snapshots.map((s) => String(s.year)));
+      assert.match(await page.locator('#recorded-coverage').innerText(), /2001–2024.*24 yıl.*288 aylık/);
+      for (const year of [2001, 2012, 2024]) {
+        await page.locator('#year').selectOption(String(year));
+        const annual = JSON.parse(bundle.snapshots.find((s) => s.year === year).data_json);
+        const month = Number(await page.locator('#month').inputValue()), policy = await page.locator('#policy').inputValue();
+        const a = annual.regions[0].series[month][policy], b = annual.regions[1].series[month][policy];
+        assert.deepEqual(await page.locator('#metrics .metric > strong').allTextContents(), [a, b, a-b].map((v) => format(v)+'°C'));
+        assert.match(await page.locator('#scope-year').innerText(), new RegExp(String(year))); checks++;
+      }
+      await page.locator('#year').selectOption('2001');
+      // The following download verifies a report from the newly acquired period.
+      const oldestDownload = page.waitForEvent('download'); await page.locator('#review-download').click();
+      const oldestPath = await (await oldestDownload).path();
+      await page.locator('#year').selectOption('2024');
+      await page.locator('#review-file').setInputFiles(oldestPath);
+      await page.waitForFunction(() => document.getElementById('year').value === '2001'); checks++;
       await page.locator('#year').selectOption('2023');
       const data2023 = JSON.parse(bundle.snapshots.find((s) => s.year === 2023).data_json);
       assert.match(await page.locator('#scope-year').innerText(), /2023/); assert.equal(await page.locator('#year-mark').innerText(), '2023');
@@ -338,7 +354,7 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
           const changed = structuredClone(bundle);
           if (kind === 'digest') changed.snapshots[0].data_json += ' ';
           if (kind === 'calendar') changed.snapshots[0].year = 2022;
-          if (kind === 'duplicate') changed.snapshots[1].year = 2023;
+          if (kind === 'duplicate') changed.snapshots[1].year = changed.snapshots[0].year;
           if (kind === 'missing-default') changed.default_year = 2025;
           return route.fulfill({json: changed});
         });

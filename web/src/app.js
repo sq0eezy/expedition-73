@@ -383,6 +383,8 @@ async function load() {
     const bytes = new Uint8Array(await response.arrayBuffer());
     if (bytes.length > 8_000_000) throw Error("Preview data too large");
     const catalog = await readPeriods(bytes); state.periods = catalog.periods;
+    const years = [...state.periods.keys()];
+    $("recorded-coverage").textContent = `Kayıtlı dönem: ${years[0]}–${years.at(-1)} · ${years.length} yıl · pencere başına ${years.length * 12} aylık kayıt. Grafik seçili yılı gösterir; uzun dönem eğilimi hesaplanmadı.`;
     $("year").replaceChildren(...[...state.periods.keys()].map((year) => { const option = el("option", String(year)); option.value = String(year); return option; }));
     mountYear(catalog.defaultYear, true); $("results").hidden = false;
   } catch { $("error").hidden = false; }

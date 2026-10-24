@@ -46,7 +46,7 @@ Görevler eldeki kanıta göre güncellenir. **2026-10-16 iş bölümü:** M1 mo
 | U-01 | Etkileşim taslağını belirle | Proposed | Atanmadı | Atanmadı | Atanmadı | Harita/grafik/tarih akışı; kapsam seçimine bağlı |
 | U-02 | Kayıtlı T2M için ilk yerel sonuç ekranı | Validating | M1 oturumundaki teknik dilim | İlk ekran önerisi sonrası M1 devam talebi | M1/M2 kullanım incelemesi bekliyor | [Yerel çalışan ekran](../product/RESULTS_PREVIEW.md): hücre/ay/politika ve yan yana ağırlık incelemesi; [164 analiz + 8 JS testi, 22 Chrome senaryosu](../evidence/POLICY_COMPARISON_CHECK.md). Nihai yığın/barındırma/Mac kabulü açık |
 | D-02 | Taşınabilir geliştirme/doğrulama ve demo paketi | Validating | M1 oturumundaki teknik dilim | M1 büyük paketle devam istedi; Docker isteğe bağlı uygulandı | M2 kullanım incelemesi bekliyor | [Ortak komutlar ve paket](../guide/DEV_PACKAGE.md), [Windows/Linux ve tarayıcı kanıtı](../evidence/DEV_PACKAGE_CHECK.md); gerçek Mac/uzak CI ayrı doğrulanır |
-| T-01 | Yıllık T2M kaynaklarından çok yıllı teknik erişim/yıl ekranı | Validating | M1 | M1 iki yıllık denemeyle devam istedi | M2 incelemesi bekler | [24/24 ay ve gerçek kontroller](../evidence/T2M_HISTORY_CHECK.md); uzun dönem bilimsel profil açık |
+| T-01 | Yıllık T2M kaynaklarından çok yıllı teknik erişim/yıl ekranı | Validating | M1 | M1 iki yıllık deneme sonrası uzun erişimle devam istedi | M2 incelemesi bekler | [2001–2024 gerçek 288/288 ay ve kontroller](../evidence/T2M_LONG_PERIOD_CHECK.md); uzun dönem bilimsel profil/istatistik açık |
 | C-01 | Yeni konuşmaları özetleyerek işle | Proposed | Atanmadı | Atanmadı | Atanmadı | Yeni bilginin esas belgede yer alması |
 
 ## Modül ve bölge görevleri

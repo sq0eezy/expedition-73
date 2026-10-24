@@ -6,6 +6,8 @@ change_summary: "Windows/Mac komutları, sabit bağımlılıklar, altı dosyalı
 ---
 # Taşınabilir geliştirme paketi
 
+**2026-10-24 güncel veri:** [24 yıllık katalog](T2M_LONG_PERIOD.md) aynı altı genel dosya/web 0.4.0/manifest 0.3.0 yolunu kullanır. Ortak check eski iki yılın yanında yeni A/B 2001–2024 kayıtlarını da doğrular; daha büyük veri test/derleme süresini artırır. Bu dilimde yeni Docker/Mac/Linux/CI koşusu yapılmadı; önceki ortam kanıtları yeni kaynak paketinin derlendiği anlamına gelmez.
+
 M1, daha büyük bir geliştirme paketiyle devam istedi. Önceki Docker önerisi bu teknik dilimde **isteğe bağlı çalışma yolu** olarak uygulandı; nihai ürün yığını, hosting veya M2'nin ortam tercihi kabulü değildir. Yönetim portalı mevcut Pages düzeninde kalır. [Gerçek doğrulama ve ortam sınırları](../evidence/DEV_PACKAGE_CHECK.md).
 
 ## Docker ile tek komut

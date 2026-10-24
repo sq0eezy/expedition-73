@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1.0",
+  "format": "power_tiled_run",
+  "tiles": [
+    {
+      "id": "tile-001",
+      "filename": "tile-001.json",
+      "request_url": "https://power.larc.nasa.gov/api/temporal/monthly/regional?parameters=T2M&community=SB&longitude-min=-156.3125&longitude-max=-152.6875&latitude-min=67.75&latitude-max=70.25&format=JSON&start=2013&end=2013",
+      "retrieved_at": "2026-10-24T08:42:15+00:00",
+      "response_sha256": "2fa92f4dd6a1484515d4732b46ba8cecaee0ba0c487dd5b968de422bc36876d3"
+    },
+    {
+      "id": "tile-002",
+      "filename": "tile-002.json",
+      "request_url": "https://power.larc.nasa.gov/api/temporal/monthly/regional?parameters=T2M&community=SB&longitude-min=-153.3125&longitude-max=-149.6875&latitude-min=67.75&latitude-max=70.25&format=JSON&start=2013&end=2013",
+      "retrieved_at": "2026-10-24T08:42:16+00:00",
+      "response_sha256": "1ceca23ad299e7426d9034c2af6e1d9ee4aedc6495e7ed0673bf244e92eac8e2"
+    }
+  ]
+}

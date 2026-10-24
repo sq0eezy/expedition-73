@@ -2,9 +2,11 @@
 status: Validating
 updated: "2026-10-22"
 review_summary: "Yıllık NASA T2M kaynaklarını doğrulayıp zaman boyunca birleştirme ve yıl seçerek inceleme."
-change_summary: "A/B için gerçek 2023–2024 kayıtları, 24 ay kaynak tekrarı, yıl seçici ve eski rapor uyumu hazır; tam 2001–2024 henüz alınmadı."
+change_summary: "İlk iki yıllık kayıt ve yıllık CLI sözleşmeleri; 2026-10-24 gerçek 2001–2024 uzantısına bağlantı eklendi."
 ---
 # Çok yıllı T2M erişimi · İlk iki yıllık dilim
+
+**2026-10-24 güncel erişim:** [2001–2024 gerçek kaynak/yıl kataloğu](T2M_LONG_PERIOD.md) iki pencerede 288'er ayla hazır. Bu sayfa ilk iki yıllık kaydı ve değişmeyen yıllık CLI/sözleşmeleri anlatır; aşağıdaki henüz alınmadı ifadeleri 2026-10-22 aşamasına aittir.
 
 M1, önce iki yıllık deneme ve sonra uzun dönem altyapısı önerisi üzerine devam istedi. Bu teknik çalışma, kesin bölge/maske/2001–2024 bilimsel dönem veya eğilim yöntemi kabulü değildir. [Gerçek kanıt](../evidence/T2M_HISTORY_CHECK.md).
 

@@ -15,6 +15,7 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | İki pencerenin betimsel farkı ve teknik eşleşme koşulları | [Pencere karşılaştırma kanıtı](evidence/REGION_COMPARISON_CHECK.md), [ürün](product/RESULTS_PREVIEW.md) |
 | Aynı karşılaştırmayı raporla tekrar açma | [Rapor sözleşmesi/kullanım](guide/COMPARISON_REVIEW.md), [kanıt](evidence/COMPARISON_REVIEW_CHECK.md) |
 | Yıllık kaynak birleştirme, 2023–2024 ve yıl seçimi | [History komutları/sözleşmeler](guide/T2M_HISTORY.md), [gerçek kontrol](evidence/T2M_HISTORY_CHECK.md) |
+| Gerçek 2001–2024 erişimi ve 24 yıllık katalog | [Uzun dönem teknik kayıt](guide/T2M_LONG_PERIOD.md), [gerçek kontrol](evidence/T2M_LONG_PERIOD_CHECK.md) |
 | Sınanacak beklentiler | [Hipotezler](product/HYPOTHESES.md) |
 | Fikir adayları ve seçim ölçütleri | [Karşılaştırma](discovery/IDEA_COMPARISON.md) |
 | Cevap bekleyen sorular | [Keşif](discovery/index.md) |

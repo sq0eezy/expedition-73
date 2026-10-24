@@ -1,9 +1,9 @@
 ---
 status: Validating
-updated: "2026-10-22"
-phase: Gerçek iki yıllık veri ve yıl seçimi
+updated: "2026-10-24"
+phase: Gerçek 24 yıllık kaynak ve yıl kataloğu
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "A/B 2023–2024 24/24 ay ve yıl seçimi hazır; 197 Windows test/30 JS/49 Chrome geçti. Yeni Linux/CI/yayın yok; 2001–2024 henüz alınmadı."
+change_summary: "A/B 2001–2024 288'er ay, 24 yıllık katalog; 201 Windows test/30 JS/53 Chrome geçti. Bilimsel eğilim/maske/dönem ve paylaşım açık."
 ---
 # Mevcut durum
 
@@ -11,7 +11,9 @@ change_summary: "A/B 2023–2024 24/24 ay ve yıl seçimi hazır; 197 Windows te
 
 ## Hazır olanlar
 
-- **Gerçek 2023–2024 verisi ve yıl seçimi:** A/B 24/24 ay, 56/55 hücre; yıllık kaynaklar grid/kaynak/zaman/yöntem eşleşmesiyle birleşir. 2024 byte'ları ve eski raporlar korundu. [Kılavuz](guide/T2M_HISTORY.md), [gerçek kanıt](evidence/T2M_HISTORY_CHECK.md): **197 Windows test, gerçek A/B tekrarları, 30 JS ve 49 Chrome** geçti. Web zarfı 0.4.0, annual snapshot 0.3.0, altı dosya, manifest 0.3.0. Grafik seçili yılın 12 ayıdır; trend/tam 2001–2024 yok. Yeni Linux/Mac/CI veya yayın kanıtı yok.
+- **Gerçek 2001–2024 aday kaydı:** A/B 288/288 ay, 56/55 hücre; 66 yeni küçük POWER isteği, 2023/2024 kaynakları byte aynı. [Kullanım/sınırlar](guide/T2M_LONG_PERIOD.md), [201 Windows test/30 JS/53 Chrome gerçek kontrolü](evidence/T2M_LONG_PERIOD_CHECK.md). Yıl seçici 2001…2024; grafik seçili yılın 12 ayıdır. Yeni eğilim/istatistik veya bilimsel dönem/maske/sınır kararı yok. M1 dalında yerel; yeni Mac/Linux/CI/yayın yok.
+
+- **İlk iki yıllık aşama · 2026-10-22:** A/B 2023–2024 24/24 ay, 56/55 hücre; yıllık kaynaklar grid/kaynak/zaman/yöntem eşleşmesiyle birleşti. 2024 byte'ları ve eski raporlar korundu. [Kılavuz](guide/T2M_HISTORY.md), [tarihsel kanıt](evidence/T2M_HISTORY_CHECK.md): **197 Windows test, gerçek A/B tekrarları, 30 JS ve 49 Chrome** geçti. Web zarfı 0.4.0, annual snapshot 0.3.0, altı dosya, manifest 0.3.0. O aşamada tam 2001–2024 yoktu; sonraki erişim yukarıdadır. Yeni Linux/Mac/CI veya yayın kanıtı değildi.
 
 - **Karşılaştırma raporu tekrar açılabiliyor:** Tam kaynak SHA-256 kimliği ve yeniden hesaplanan rapor alanları eşleşirse çift/yön/ay/yüzey açılır; uyuşmazlıkta seçimler korunur. Tarayıcıda işlenir; bilimsel/kişi onayı değil. [Kullanım](guide/COMPARISON_REVIEW.md), [kanıt](evidence/COMPARISON_REVIEW_CHECK.md): **180 Windows analiz/gerçek A-B, 30 JS, 42 Chrome senaryosu** geçti. Yeni rapor 0.1.0; kaynak web 0.3.0/altı dosya/manifest 0.2.0 ve bilimsel profil korundu. Yeni Mac/Docker/uzak CI veya yayın yok.
 
@@ -71,4 +73,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-Önceki çok yıllı geçiş önerisinin ilk teknik aşaması tamamlandı: [2023–2024 kaynak/yıl dilimi](guide/T2M_HISTORY.md). Sonraki erişim adımı, yıl parçalarını daha uzun aday döneme büyütmek ve kaliteyi incelemek; **gerçek 2001–2024 serisi henüz alınmadı**. 24 yıllık/288 aylık plan yalnız test edildi. Kesin sınır/yüzey/dönem ve eğilim yöntemi için ortak bilimsel karar gerekir. M2'nin yeni yıl ekranını veya yeni bilimsel profili kabul ettiği varsayılmaz. Yeni dilim ve önceki geliştirmeler yerel M1 dalında; main/Pages değişmedi.
+[Gerçek 2001–2024 teknik kaynak aşaması](guide/T2M_LONG_PERIOD.md) tamamlandı: iki pencerede 288'er ay ve 24 yıllık seçim var. Sıradaki teknik öneri kesintisiz 288 aylık görünüm; ardından bilimsel hedefe uygun yıllık özet/anomali/eğilim yöntemi ayrı kararlaştırılır. Kesin sınır/yüzey/dönem ve istatistik profili için ortak bilimsel karar gerekir. M2'nin yeni yıl ekranını veya yeni bilimsel profili kabul ettiği varsayılmaz. Yeni dilim ve önceki geliştirmeler yerel M1 dalında; main/Pages değişmedi. Eski tarihli iki yıllık kayıtlar geçmiş aşamaları anlatır.

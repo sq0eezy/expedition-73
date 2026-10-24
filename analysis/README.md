@@ -1,5 +1,7 @@
 # İlk T2M modül dilimi · v0.1.0
 
+**Güncel 2026-10-24:** [Gerçek 2001–2024 yıllık kaynakları](../portal/docs/guide/T2M_LONG_PERIOD.md) A/B 288'er ayla eklendi. `validate-window-history examples/a-history-2001-2024` ve B eşleniği kendi venv Python ile analysis içinde çalışır; ortak workspace check her ikisini tekrarlar. Web yıl seçimi 24 yıla açıldı. Eski kaynak/annual snapshot kimlikleri korunur; trend/nihai bilimsel profil eklenmedi. Önceki bölümler tarihsel teknik dilimleri anlatır.
+
 [İsteğe bağlı taşınabilir geliştirme paketi](../portal/docs/guide/DEV_PACKAGE.md): Docker/native başlatıcı, `scripts/workspace.py check` ile ortak offline doğrulama ve yalnız genel dosyalardan demo ZIP. Mevcut analysis venv/CLI kullanılmaya devam eder; bilimsel yöntem veya profil değişmedi.
 
 
