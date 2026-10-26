@@ -2,6 +2,7 @@
 
 | Kayıt | Kapsam |
 |---|---|
+| [Uzak platformlar ve ARM64 kurulumu](CI_PLATFORM_CHECK.md) | 07f87a3 için üç native/Docker AMD64 başarısı, QEMU kurulum hatası ve hedef değişkeninin daraltılması |
 | [Yıllık adayların web ekranı](ANNUAL_WEB_CHECK.md) | Ayrı JSON/katalog bağı, maskesiz kart/tablo ve hata ayrımı; yedi dosya, manifest 0.4.0 |
 | [Aday yıllık ağırlık hesabı](ANNUAL_WEIGHTING_CHECK.md) | Maskesiz 24'er yıl, eşit ay/takvim günü ve aynı kaynak yıllık hücre kıyası; seçilmiş yöntem/eğilim değil |
 | [288 aylık görünüm](TIMELINE_PREVIEW_CHECK.md) | Kaynakları değiştirmeden aylık grafik/tablo, sözleşme uygunluğu ve yıl/ay/rapor bağlantısı; istatistik değil |

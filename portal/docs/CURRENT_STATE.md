@@ -1,15 +1,17 @@
 ---
 status: Validating
 updated: "2026-10-26"
-phase: Yıllık adayları webde inceleme ve paylaşım
+phase: Uzak platform kontrolü ve ARM64 kurulum düzeltmesi
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "Yıllık ekran ve önceki M1 dilimleri 07f87a3 ile GitHub dalında, uzak SHA doğrulandı. 222 Windows/43 JS/76 Chrome; uzak CI başladı, main/Pages ve bilimsel yöntem değişmedi."
+change_summary: "07f87a3 üç native platform ve Docker AMD64 kontrolünü geçti. ARM64 QEMU kurulumu hata verdi; hedef mimari değişkeni Compose adımlarına daraltıldı. Yeni uzak sonuç SYNC'te izlenir."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **Uzak platform sonuçları okundu:** [Tam iş/günlük kanıtı](evidence/CI_PLATFORM_CHECK.md): 07f87a3 için Windows/macOS ARM64/Ubuntu ve Docker AMD64 222 Python/43 JS ile geçti. Docker ARM64 uygulama başlamadan binfmt kurulumunda exec format error verdi; genel koşu failure. Job-geneli hedef mimari değişkeni yalnız Compose adımlarına taşındı; yeni koşu sonucu [SYNC](team/SYNC.md) içinde ayrı tutulur. M2'nin kendi Mac kabulü veya bilimsel onay değildir.
 
 - **M1 geliştirmeleri GitHub dalında paylaşıldı:** Kullanıcının açık isteğiyle 07f87a3 ve önceki dokuz yerel commit normal push ile gönderildi, uzak SHA eşleşti. [Dal/CI/kurulum kaydı](team/SYNC.md). H-M1-014…022 artık alınabilir; M2 kabulü değildir. Kod SHA'sında uzak CI ilk gözlemde çalışıyor, başarılı sayılmadı. Main/M2 dalı ve canlı Pages aynı kaldı.
 
@@ -81,4 +83,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-[Yıllık aday ekranı](guide/ANNUAL_WEB.md) incelemeye hazırdır. Sıradaki bilimsel konu hedef yüzey/sınır/dönem ile eşit ay/takvim günü hedefini birlikte adlandırmaktır; anomali/eğilim, zaman bağımlılığı, aralık ve p-değeri ayrı gerekçelendirilir. M2'nin aday hesabı veya bilimsel profili kabul ettiği varsayılmaz. Kullanıcı mevcut M1 dalına gönderim istedi; güncel uzak SHA/CI gözlemi [SYNC](team/SYNC.md) kaydındadır. Main/Pages değişmez. Eski tarihli kayıtlar geçmiş aşamaları anlatır.
+Önce [ARM64 kurulum düzeltmesinin](evidence/CI_PLATFORM_CHECK.md) yeni uzak koşuda QEMU ve uygulama adımlarına geçtiği doğrulanır. [Yıllık aday ekranı](guide/ANNUAL_WEB.md) incelemeye hazırdır. Sıradaki bilimsel konu hedef yüzey/sınır/dönem ile eşit ay/takvim günü hedefini birlikte adlandırmaktır; anomali/eğilim, zaman bağımlılığı, aralık ve p-değeri ayrı gerekçelendirilir. M2'nin aday hesabı veya bilimsel profili kabul ettiği varsayılmaz. Güncel uzak SHA/CI gözlemi [SYNC](team/SYNC.md) kaydındadır. Main/Pages değişmez. Eski tarihli kayıtlar geçmiş aşamaları anlatır.

@@ -1,9 +1,15 @@
 ---
 review_summary: "Ortak webden okuma, GitHub üzerinden düzenleme ve yerel kaynakları eşitleme."
-change_summary: "07f87a3 ve önceki dokuz yerel M1 commit'i normal push ile paylaşıldı, uzak SHA eşleşti. CI başladı; main/M2/Pages değişmedi."
+change_summary: "07f87a3 için native üç platform/Docker AMD64 geçti, ARM64 kurulumda hata verdi. Dar CI düzeltmesi M1 dalında hazırlanıyor; main/M2/Pages aynı."
 ---
 
 # Paylaşım ve kurulum
+
+## 2026-10-26 · Tamamlanan CI sonucu ve ARM64 düzeltmesi
+
+Önceki paylaşımın kod SHA'sı 07f87a3, paylaşım belge başlığı 2de8bf8 uzak M1 ile eşleşti. [40335437683](https://github.com/sq0eezy/expedition-73/actions/runs/40335437683) tamamlandı: Windows/macOS ARM64/Ubuntu ve Docker AMD64 success, Docker ARM64 QEMU kurulumunda failure. [Tam kanıt ve kapsam](../evidence/CI_PLATFORM_CHECK.md). İlk in_progress gözlemi tarihsel olarak korunur; bütün matrix başarılı sayılmaz.
+
+Devam talebiyle hedef mimari ayarı yalnız Compose adımlarına daraltıldı. Testler/uygulama/bilimsel kaynaklar aynı. Düzeltme mevcut M1 dalında normal commit/push ile paylaşılır; yeni uzak SHA/koşu sonucu ayrıca kaydedilir. Fetch'te Copilot dalı/PR #1 görülüp metin ve yorumları okundu; incelenen f0bca80 boş plan commit'i. PR/main değiştirilmedi, M2'ye yeni niyet atfedilmedi. Main a1a83d5, M2 6047c42 korunur; Pages/Sites/main merge yok.
 
 ## 2026-10-26 · Yıllık web ve önceki M1 dilimleri GitHub'da
 

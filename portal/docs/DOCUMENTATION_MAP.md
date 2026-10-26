@@ -11,6 +11,7 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | Kayıtlı hücre görünümü ve etkin alan tutarlılığı | [Hücre ekranı kanıtı](evidence/SPATIAL_PREVIEW_CHECK.md), [ürün kapsamı](product/RESULTS_PREVIEW.md) |
 | Üç aday ağırlığın yan yana kıyaslanması | [Ağırlık ekranı kanıtı](evidence/POLICY_COMPARISON_CHECK.md), [ürün](product/RESULTS_PREVIEW.md) |
 | Docker/native geliştirme, ortak kontrol ve demo ZIP | [Geliştirme paketi](guide/DEV_PACKAGE.md), [gerçek ortam kanıtı](evidence/DEV_PACKAGE_CHECK.md) |
+| Uzak native/Docker CI sonuçları ve ARM64 kurulum düzeltmesi | [Platform kontrolü](evidence/CI_PLATFORM_CHECK.md), [güncel dal/koşu](team/SYNC.md) |
 | Derlemede doğrulanan modül bağımlılıkları ve sözleşme ekranı | [Gerçek akış ekranı kanıtı](evidence/WORKFLOW_TRACE_CHECK.md), [ürün](product/RESULTS_PREVIEW.md) |
 | İki pencerenin betimsel farkı ve teknik eşleşme koşulları | [Pencere karşılaştırma kanıtı](evidence/REGION_COMPARISON_CHECK.md), [ürün](product/RESULTS_PREVIEW.md) |
 | Aynı karşılaştırmayı raporla tekrar açma | [Rapor sözleşmesi/kullanım](guide/COMPARISON_REVIEW.md), [kanıt](evidence/COMPARISON_REVIEW_CHECK.md) |

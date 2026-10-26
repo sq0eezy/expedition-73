@@ -163,6 +163,7 @@ nav:
       - Mac kurulumu: guide/MACOS_SETUP.md
       - Docker ve geliştirme paketi: guide/DEV_PACKAGE.md
       - Geliştirme paketi doğrulaması: evidence/DEV_PACKAGE_CHECK.md
+      - Uzak platform kontrolleri: evidence/CI_PLATFORM_CHECK.md
       - Gerçek akış ekranı: evidence/WORKFLOW_TRACE_CHECK.md
       - Pencere karşılaştırması: evidence/REGION_COMPARISON_CHECK.md
       - Karşılaştırma raporu: guide/COMPARISON_REVIEW.md

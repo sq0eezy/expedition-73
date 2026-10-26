@@ -62,8 +62,6 @@ jobs:
       fail-fast: false
       matrix:
         platform: [linux/amd64, linux/arm64]
-    env:
-      DOCKER_DEFAULT_PLATFORM: ${{ matrix.platform }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -74,11 +72,17 @@ jobs:
         with:
           platforms: arm64
       - name: Container checks with no runtime network or credentials
+        env:
+          DOCKER_DEFAULT_PLATFORM: ${{ matrix.platform }}
         run: docker compose --env-file docker/compose.env -p expedition73-ci run --rm --build checks
       - name: Healthy static preview
+        env:
+          DOCKER_DEFAULT_PLATFORM: ${{ matrix.platform }}
         run: docker compose --env-file docker/compose.env -p expedition73-ci up --build --wait --wait-timeout 90 preview
       - name: Public HTTP smoke
         run: python3 scripts/smoke_preview.py
       - name: Stop owned containers
         if: always()
+        env:
+          DOCKER_DEFAULT_PLATFORM: ${{ matrix.platform }}
         run: docker compose --env-file docker/compose.env -p expedition73-ci down --remove-orphans
