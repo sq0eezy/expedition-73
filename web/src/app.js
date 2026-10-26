@@ -1,4 +1,4 @@
-import { summarizePolicyDifferences, summarizeRegionDifferences, datasetDigest, createComparisonReview, verifyComparisonReview, recordedMonthlyHistory } from "./comparison.mjs";
+import { summarizePolicyDifferences, summarizeRegionDifferences, datasetDigest, createComparisonReview, verifyComparisonReview, recordedMonthlyHistory, validateAnnualPreview } from "./comparison.mjs";
 import { traceGraph } from "./trace.mjs";
 
 const $ = (id) => document.getElementById(id);
@@ -6,7 +6,7 @@ const months = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz"
 const shortMonths = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
 const colors = ["#c77543", "#247c78", "#7466a1", "#777c39", "#a3536b", "#3878a6", "#8c6238", "#626c6a"];
 const labels = { unmasked: "Bütün pencere · maskesiz", land: "Kara oranı · FRLAND (aday)", land_and_ice: "Kara + kara buzu (aday)" };
-const state = { data: null, selected: new Set(), month: 0, policy: "unmasked", spatialRegion: null, cell: 0, traceRegion: null, traceNode: null, pairLeft: null, pairRight: null, datasetSha256: null, reviewRequest: 0, periods: new Map(), year: null, historyDates: [] };
+const state = { data: null, selected: new Set(), month: 0, policy: "unmasked", spatialRegion: null, cell: 0, traceRegion: null, traceNode: null, pairLeft: null, pairRight: null, datasetSha256: null, reviewRequest: 0, periods: new Map(), year: null, historyDates: [], annual: null, annualStatus: "loading", annualRequest: 0, annualTables: new Set(), annualSources: new Set() };
 const number = (value, digits = 2) => value === null ? "Veri yok" : value.toLocaleString("tr-TR", { minimumFractionDigits: digits, maximumFractionDigits: digits });
 const el = (tag, text, className) => { const node = document.createElement(tag); if (text !== undefined) node.textContent = text; if (className) node.className = className; return node; };
 const color = (region) => colors[state.data.regions.indexOf(region) % colors.length];
@@ -162,6 +162,78 @@ function renderHistory(regions) {
   const body = el("tbody");
   history.dates.forEach((date, i) => { const tr = el("tr"); tr.dataset.date = date; tr.append(el("th", date)); for (const row of history.series) tr.append(el("td", number(row.values[i].value, 6))); body.append(tr); });
   $("history-table").append(el("caption", `${labels[state.policy]} · ${count} kayıtlı ay · °C`), head, body);
+}
+
+function renderAnnual(regions) {
+  for (const card of $("annual-cards").children) {
+    for (const [selector,set] of [[".annual-values",state.annualTables],[".annual-source",state.annualSources]]) {
+      if (card.querySelector(selector)?.open) set.add(card.dataset.region); else set.delete(card.dataset.region);
+    }
+  }
+  $("annual-cards").replaceChildren();
+  $("annual-year").textContent = String(state.year);
+  if (state.policy !== "unmasked") { $("annual-status").textContent = "Bu yıllık hesap yalnız maskesiz pencere içindir. İncelemek için yüzey ağırlığını Bütün pencere · maskesiz seçin; kara/buz yıllık hesabı eklenmedi."; return; }
+  if (!regions.length) { $("annual-status").textContent = "Yıllık adayları incelemek için en az bir pencere seçin."; return; }
+  if (state.annualStatus === "loading") { $("annual-status").textContent = "Yıllık aday kayıtları ve aylık veri bağı kontrol ediliyor…"; return; }
+  if (!state.annual || state.annual.status !== "available") { $("annual-status").textContent = "Bu aylık kayda bağlı yıllık aday sonuçları kullanılamıyor. Aylık grafikler çalışmaya devam eder; aynı kaynaktan önizlemeyi yeniden derleyin. Kaynak bağı için Web Crypto gerekir."; return; }
+  $("annual-status").textContent = "Kayıtlı kaynağa bağlı aday hesaplar · yalnız maskesiz pencere. Her iki ağırlık yöntemi adaydır; hiçbiri seçilmiş bilimsel profil değildir.";
+  const signed = (v) => v === null ? "Veri yok" : `${v >= 0.0000005 ? "+" : ""}${number(Math.abs(v) < 0.0000005 ? 0 : v,6)} °C`;
+  for (const [index,region] of regions.entries()) {
+    const audit = state.annual.regions.find((r) => r.id === region.id).audit, row = audit.series.find((r) => r.year === state.year);
+    const card = el("article",undefined,"annual-card"); card.dataset.region = region.id; card.style.setProperty("--region-color",color(region));
+    card.append(el("h3",`${region.id} · ${named(region)} / ${state.year}`));
+    const values = el("div",undefined,"annual-metrics");
+    for (const [key,label,v] of [["equal","Eşit ay · aday",row.equal_month_mean_degC],["calendar","Takvim günü · aday",row.calendar_day_mean_degC],["provider","API yıllık hücre özeti",row.provider_annual.area_weighted_mean_degC]]) {
+      const box = el("div"); box.dataset.annualValue = key; box.append(el("span",label),el("strong",v===null?"Veri yok":`${number(v,6)} °C`)); values.append(box);
+    }
+    card.append(values,el("p",`Takvim günü − eşit ay: ${signed(row.calendar_minus_equal_degC)}`,"annual-difference"),
+      el("p",`${row.valid_months}/12 tam ay · ${row.valid_calendar_days}/${row.calendar_days} takvim günü. Eksik ayda iki aday da boş kalır; API özetiyle doldurulmaz.`,"detail-note"));
+    const source = el("details",undefined,"annual-source"), facts = el("div"); source.append(el("summary","Kaynak ve hesap kapsamını incele"));
+    source.open = state.annualSources.has(region.id);
+    facts.append(el("p",`API özeti − eşit ay: ${signed(row.provider_annual.provider_minus_equal_degC)}`),el("p",`API özeti − takvim günü: ${signed(row.provider_annual.provider_minus_calendar_degC)}`),
+      el("p",`API yıllık referansı: ${row.provider_annual.valid_cells}/${row.provider_annual.expected_cells} hücre. Aynı kaynak kıyasıdır; bağımsız doğruluk veya hata payı değildir.`),
+      el("p",`Modül ${audit.module.version} · çıktı ${audit.schema_version} · ${audit.time.calendar} / ${audit.time.provider_time_standard}`),
+      el("p",`Kayıtlı geçmiş sonucu SHA-256: ${audit.provenance.source_history_result_sha256}`,"hash")); source.append(facts); card.append(source);
+    card.append(el("h4","Yıllar boyunca özetleme farkı"),el("p","Takvim günü − eşit ay · °C. Bu eğilim, ısınma veya toplam belirsizlik grafiği değildir.","detail-note"));
+    const plotWidth = window.matchMedia("(max-width:740px)").matches ? 400 : 920;
+    const chart = svg("svg",{viewBox:`0 0 ${plotWidth} 190`,role:"img","aria-labelledby":`annual-title-${index} annual-desc-${index}`,class:"annual-chart"});
+    chart.append(svg("title",{id:`annual-title-${index}`},`${region.id} yıllık özetleme farkları`),svg("desc",{id:`annual-desc-${index}`},"İki Python yıllık hesabının farkı. Eksik yıllar çizilmez; sayısal değerler tabloda bulunur."));
+    const extent = Math.max(0.001,...audit.series.map((r) => r.calendar_minus_equal_degC===null?0:Math.abs(r.calendar_minus_equal_degC))), left = 60, right = plotWidth-18;
+    const x = (i) => left + i/Math.max(1,audit.series.length-1)*(right-left), y = (v) => 81-(v/extent)*62;
+    for (const tick of [-extent,0,extent]) chart.append(svg("line",{x1:left,x2:right,y1:y(tick),y2:y(tick),class:tick===0?"chart-grid chart-zero":"chart-grid"}),svg("text",{x:left-10,y:y(tick)+3,"text-anchor":"end",class:"chart-text"},number(tick,3)));
+    const ticks = [...new Set([0,Math.floor((audit.series.length-1)/2),audit.series.length-1])];
+    for (const i of ticks) chart.append(svg("text",{x:x(i),y:172,"text-anchor":i===0?"start":i===audit.series.length-1?"end":"middle",class:"chart-text"},String(audit.series[i].year)));
+    let path = "", connected = false;
+    audit.series.forEach((r,i) => { if (r.calendar_minus_equal_degC===null) { connected=false; return; } path+=`${connected?"L":"M"}${x(i)},${y(r.calendar_minus_equal_degC)} `; connected=true; });
+    chart.append(svg("path",{d:path,class:"annual-line","data-years":audit.series.length}));
+    if (row.calendar_minus_equal_degC!==null) chart.append(svg("circle",{cx:x(audit.series.indexOf(row)),cy:y(row.calendar_minus_equal_degC),r:4,class:"annual-point"})); card.append(chart);
+    const details = el("details",undefined,"annual-values"), scroll = el("div",undefined,"table-scroll"), table = el("table");
+    details.open = state.annualTables.has(region.id);
+    details.append(el("summary","Bütün yılları tablo olarak incele")); table.append(el("caption","Maskesiz yıllık adaylar · °C · yıl düğmeleri aylık ayrıntıyı açar"));
+    const head = el("thead"), header = el("tr"); for (const label of ["Yıl","Tam ay","Eşit ay","Takvim günü","API yıllık","Gün − ay"]) header.append(el("th",label)); head.append(header); table.append(head);
+    const body = el("tbody");
+    for (const r of audit.series) {
+      const tr = el("tr"); tr.dataset.year = r.year; if(r.year===state.year) tr.className="annual-chosen";
+      const th = el("th"), button = el("button",String(r.year)); button.type="button"; button.setAttribute("aria-label",`${region.id} ${r.year} yılı aylık ayrıntısını aç`);
+      button.dataset.year = String(r.year);
+      button.addEventListener("click",() => { mountYear(r.year); const chosen = [...$("annual-cards").children].find((c) => c.dataset.region === region.id); chosen?.querySelector(`button[data-year="${r.year}"]`)?.focus({preventScroll:true}); }); th.append(button); tr.append(th,el("td",`${r.valid_months}/12`));
+      for (const v of [r.equal_month_mean_degC,r.calendar_day_mean_degC,r.provider_annual.area_weighted_mean_degC,r.calendar_minus_equal_degC]) tr.append(el("td",number(v,6)));
+      body.append(tr);
+    }
+    table.append(body); scroll.append(table); details.append(scroll); card.append(details); $("annual-cards").append(card);
+  }
+}
+
+async function loadAnnual(bytes,periods,request) {
+  try {
+    const digest = await datasetDigest(bytes), response = await fetch("./data/annual.json",{cache:"no-store"});
+    if (!response.ok) throw Error("Annual data unavailable");
+    const raw = new Uint8Array(await response.arrayBuffer()); if(raw.length>2_000_000) throw Error("Annual data too large");
+    const payload = validateAnnualPreview(JSON.parse(new TextDecoder("utf-8",{fatal:true}).decode(raw)),digest,[...periods.values()].map((p)=>p.data));
+    if (request!==state.annualRequest || state.periods!==periods) return;
+    state.annual=payload; state.annualStatus="ready";
+  } catch { if(request!==state.annualRequest || state.periods!==periods) return; state.annual=null; state.annualStatus="unavailable"; }
+  renderAnnual(active());
 }
 
 function renderSupport(regions) {
@@ -380,7 +452,7 @@ function renderPair(regions) {
 function render() {
   const regions = active();
   $("month-label").textContent = months[state.month]; $("month").setAttribute("aria-valuetext", `${months[state.month]} ${state.data.dates[0].slice(0, 4)}`);
-  renderPair(regions); renderTrace(regions); renderMetrics(regions); renderChart(regions); renderHistory(regions); renderComparison(regions); renderSpatial(regions); renderSupport(regions); renderSources(regions); renderTable(regions);
+  renderPair(regions); renderTrace(regions); renderMetrics(regions); renderChart(regions); renderHistory(regions); renderAnnual(regions); renderComparison(regions); renderSpatial(regions); renderSupport(regions); renderSources(regions); renderTable(regions);
   $("download").disabled = !regions.length;
 }
 
@@ -425,6 +497,7 @@ function mountYear(year, reset = false) {
 
 async function load() {
   $("loading").hidden = false; $("results").hidden = true; $("error").hidden = true; state.datasetSha256 = null; state.reviewRequest++;
+  const annualRequest = ++state.annualRequest; state.annual=null; state.annualStatus="loading";
   try {
     const response = await fetch("./data/results.json", { cache: "no-store" }); if (!response.ok) throw Error("Data unavailable");
     const bytes = new Uint8Array(await response.arrayBuffer());
@@ -434,6 +507,7 @@ async function load() {
     $("recorded-coverage").textContent = `Kayıtlı dönem: ${years[0]}–${years.at(-1)} · ${years.length} yıl · pencere başına ${years.length * 12} aylık kayıt. Yıl grafiği seçili yılı, uzun dönem görünümü bütün ayları gösterir. Eğilim hesaplanmadı.`;
     $("year").replaceChildren(...[...state.periods.keys()].map((year) => { const option = el("option", String(year)); option.value = String(year); return option; }));
     mountYear(catalog.defaultYear, true); $("results").hidden = false;
+    void loadAnnual(bytes,state.periods,annualRequest);
   } catch { $("error").hidden = false; }
   finally { $("loading").hidden = true; }
 }
@@ -452,7 +526,7 @@ $("pair-right").addEventListener("change", () => { state.pairRight = $("pair-rig
 $("pair-swap").addEventListener("click", () => { [state.pairLeft, state.pairRight] = [state.pairRight, state.pairLeft]; renderPair(active()); });
 $("retry").addEventListener("click", load);
 $("spatial-region").addEventListener("change", () => { state.spatialRegion = $("spatial-region").value; state.cell = 0; renderSpatial(active()); });
-window.matchMedia("(max-width:740px)").addEventListener("change", () => { if (state.data) { renderChart(active()); renderHistory(active()); renderTrace(active()); renderPair(active()); } });
+window.matchMedia("(max-width:740px)").addEventListener("change", () => { if (state.data) { renderChart(active()); renderHistory(active()); renderAnnual(active()); renderTrace(active()); renderPair(active()); } });
 function downloadJson(data, name) {
   const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }));
   const link = el("a"); link.href = url; link.download = name; document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);

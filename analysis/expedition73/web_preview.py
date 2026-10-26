@@ -5,7 +5,7 @@ import hashlib
 import json
 from pathlib import Path, PurePosixPath
 
-from . import history, masking, regional, surface_source, surface_support, surface_workflow, workflow_trace
+from . import annual_weighting, history, masking, regional, surface_source, surface_support, surface_workflow, workflow_trace
 from .power import PilotError, loads
 
 ASSETS = ("index.html", "styles.css", "app.js", "comparison.mjs", "trace.mjs")
@@ -133,19 +133,21 @@ def build(analysis_root, web_root, output):
     web, destination = Path(web_root), Path(output)
     if destination.resolve() in {web.resolve(), (web / "src").resolve(), Path(analysis_root).resolve(), web.parent.resolve()}:
         raise PilotError("Preview output must not overwrite source assets.")
-    allowed = {*ASSETS, "data", "data/results.json"}
+    allowed = {*ASSETS, "data", "data/results.json", "data/annual.json"}
     if destination.is_symlink() or (destination.exists() and any(
             item.is_symlink() or item.relative_to(destination).as_posix() not in allowed
             for item in destination.rglob("*"))):
         raise PilotError("Preview output must be a dedicated directory containing only generated public assets.")
     registry_file = web / "history-regions.json"
-    data = (catalog(analysis_root, loads(registry_file.read_bytes())) if registry_file.exists()
+    registry = loads(registry_file.read_bytes()) if registry_file.exists() else None
+    data = (catalog(analysis_root, registry) if registry is not None
             else payload(analysis_root, loads((web / "regions.json").read_bytes())))
     default_data = (loads(next(s["data_json"] for s in data["snapshots"] if s["year"] == data["default_year"]))
                     if "snapshots" in data else data)
     # Only enumerated public assets and validated preview data may be served.
     files = {name: (web / "src" / name).read_bytes() for name in ASSETS}
     files["data/results.json"] = (json.dumps(data, ensure_ascii=False, indent=2, allow_nan=False) + "\n").encode("utf-8")
+    files["data/annual.json"] = history.encoded(annual_payload(analysis_root, registry, data, files["data/results.json"]))
     destination.mkdir(parents=True, exist_ok=True)
     for name, raw in files.items():
         target = destination / name
@@ -154,3 +156,25 @@ def build(analysis_root, web_root, output):
     return {"status": "built", "regions": [item["id"] for item in default_data["regions"]],
             "months": len(default_data["dates"]), "years": [s["year"] for s in data.get("snapshots", [])],
             "files": sorted(files), "live_nasa_request": False}
+
+
+def annual_payload(analysis_root, registry, data, catalog_bytes):
+    """Recompute Python annual audits; bind to the exact monthly catalog bytes."""
+    regions = []
+    if registry is not None:
+        for entry in registry["regions"]:
+            audit = annual_weighting.run(_directory(Path(analysis_root), entry["history"]))
+            if audit["region"]["id"] != entry["id"]:
+                raise PilotError("Annual audit identity differs from monthly catalog.")
+            if [r["year"] for r in audit["series"]] != [s["year"] for s in data["snapshots"]]:
+                raise PilotError("Annual audit years differ from monthly catalog.")
+            for snapshot, source in zip(data["snapshots"], audit["provenance"]["annual_sources"], strict=True):
+                monthly = loads(snapshot["data_json"])
+                region = next((r for r in monthly["regions"] if r["id"] == entry["id"]), None)
+                if region is None or source["year"] != snapshot["year"] or source["files_sha256"] != region["provenance"]["source_files_sha256"]["temperature"]:
+                    raise PilotError("Annual and monthly sources changed between replays; no mixed preview produced.")
+            regions.append({"id": entry["id"], "audit": audit})
+    return {"schema_version": "0.1.0", "output_type": "recorded_annual_weighting_web_preview",
+            "data_mode": "recorded_offline_replay", "selection_status": "candidate", "inference_performed": False,
+            "source_catalog_sha256": hashlib.sha256(catalog_bytes).hexdigest(),
+            "status": "available" if regions else "not_available", "regions": regions}

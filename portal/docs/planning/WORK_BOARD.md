@@ -1,5 +1,7 @@
 # İş panosu
 
+**2026-10-26 · T-04/U-02 yıllık ekran:** Kullanıcı devam ve GitHub'a gönderim istedi. [Kart/tablo, kaynak bağı ve kapsam](../guide/ANNUAL_WEB.md) eklendi; [43 JS/76 Chrome](../evidence/ANNUAL_WEB_CHECK.md) geçti. Yöntem kabulü, M2 incelemesi ve yıllık motor entegrasyonu açık; GitHub gönderim kanıtı SYNC'e bağlanır, main/Pages ayrı kalır.
+
 **2026-10-26 · T-03 aday yıllık hesap:** M1 devam talebiyle [eşit ay/takvim günü](../research/TEMPORAL_AGGREGATION.md) mevcut maskesiz A/B 24'er yılda hesaplandı ve API yıllık hücre özetleriyle karşılaştırıldı. [CLI/kanıt](../evidence/ANNUAL_WEIGHTING_CHECK.md). Bu yeni aday yöntem denemesidir; R-A05/R-B05 tamamlandı, yöntem seçildi veya M2 başladı sayılmaz. Web/motora entegrasyon ve bilimsel profil açık; yerel M1 dalında.
 
 **2026-10-26 · T-02/U-02:** [288 aylık görünüm](../guide/T2M_TIMELINE.md) ve ortak ay ayrıntıları, M1 devam talebiyle mevcut kayıtları değiştirmeden uygulandı. [201 Windows/37 JS/65 Chrome](../evidence/TIMELINE_PREVIEW_CHECK.md) geçti; bilimsel profil/istatistik ve M2 incelemesi açık. R-A05/R-B05 tamamlandı sayılmaz. Yeni kod yerel M1 dalında, yayın yok.
@@ -53,6 +55,7 @@ Görevler eldeki kanıta göre güncellenir. **2026-10-16 iş bölümü:** M1 mo
 | T-01 | Yıllık T2M kaynaklarından çok yıllı teknik erişim/yıl ekranı | Validating | M1 | M1 iki yıllık deneme sonrası uzun erişimle devam istedi | M2 incelemesi bekler | [2001–2024 gerçek 288/288 ay ve kontroller](../evidence/T2M_LONG_PERIOD_CHECK.md); uzun dönem bilimsel profil/istatistik açık |
 | T-02 | Kayıtlı aylar için uzun dönem grafik/tablo ve ayrıntı bağlantısı | Validating | M1 | 288 aylık görünüm önerisi sonrası M1 devam istedi | M2 incelemesi bekler | [Kullanım](../guide/T2M_TIMELINE.md), [gerçek kontrol](../evidence/TIMELINE_PREVIEW_CHECK.md); bilimsel istatistik değil |
 | T-03 | Maskesiz T2M için aday yıllık ağırlık hesabı ve kaynak karşılığı | Validating | M1 | Bilimsel tasarımın dar denemesine M1 devam talebi | M2 incelemesi bekler | [İki hedef](../research/TEMPORAL_AGGREGATION.md), [CLI](../guide/T2M_ANNUAL_WEIGHTING.md), [gerçek kontrol](../evidence/ANNUAL_WEIGHTING_CHECK.md); seçilmiş yöntem/eğilim değil |
+| T-04 | Aday yıllık raporları webde kaynak bağıyla gösterme | Validating | M1 | M1 devam ve mevcut dalı GitHub'da paylaşma talebi | M2 incelemesi bekler | [Ekran](../guide/ANNUAL_WEB.md), [kontrol](../evidence/ANNUAL_WEB_CHECK.md); bilimsel politika değil |
 | C-01 | Yeni konuşmaları özetleyerek işle | Proposed | Atanmadı | Atanmadı | Atanmadı | Yeni bilginin esas belgede yer alması |
 
 ## Modül ve bölge görevleri

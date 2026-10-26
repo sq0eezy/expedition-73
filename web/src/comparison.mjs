@@ -154,6 +154,62 @@ export async function datasetDigest(bytes) {
   return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
+// Validate the result adapter and its source binding. Python owns the annual
+// temperature calculation; this adapter never re-averages monthly temperatures.
+export function validateAnnualPreview(payload, catalogSha256, snapshots) {
+  const finite = (v) => typeof v === "number" && Number.isFinite(v);
+  const close = (a, b) => finite(a) && finite(b) && Math.abs(a - b) <= 1e-9 * Math.max(1, Math.abs(b));
+  const same = (a, b) => canonical(a) === canonical(b);
+  const fail = () => { throw Error("Yıllık aday kayıt aylık kaynakla veya hesap sözleşmesiyle eşleşmiyor."); };
+  if (!/^[a-f0-9]{64}$/.test(catalogSha256) || payload?.schema_version !== "0.1.0" || payload.output_type !== "recorded_annual_weighting_web_preview" ||
+      payload.data_mode !== "recorded_offline_replay" || payload.selection_status !== "candidate" || payload.inference_performed !== false || payload.source_catalog_sha256 !== catalogSha256 ||
+      !["available", "not_available"].includes(payload.status) || !Array.isArray(payload.regions) || payload.regions.length > 8 || (payload.status === "available") !== !!payload.regions.length) fail();
+  if (payload.status === "not_available") return payload;
+  if (!Array.isArray(snapshots) || !snapshots.length) fail();
+  const ids = snapshots[0].regions.map((r) => r.id);
+  if (!same([...ids].sort(), payload.regions.map((r) => r.id).sort())) fail();
+  const history = recordedMonthlyHistory(snapshots, ids, "unmasked");
+  for (const entry of payload.regions) {
+    const a = entry.audit, first = snapshots[0].regions.find((r) => r.id === entry.id);
+    if (!a || !same(Object.keys(a).sort(), ["schema_version","output_type","selection_status","inference_performed","scientific_acceptance","module","region","variable","spatial_support","time","method","weighting_definitions","provenance","series","quality","sensitivity"].sort()) ||
+        a.schema_version !== "0.1.0" || a.output_type !== "candidate_annual_weighting_audit" || a.selection_status !== "candidate" || a.inference_performed !== false || a.scientific_acceptance !== "not_performed" ||
+        !same(a.module, {id:"air_temperature_2m_annual_weighting",version:"0.1.0"}) || !same(a.region, first.region) || !same(a.variable, first.variable) ||
+        a.spatial_support?.kind !== "unmasked_rectangular_window" || a.spatial_support.mask !== "none" || a.spatial_support.cell_count !== first.support.cell_count || !close(a.spatial_support.window_area_m2,first.support.window_area_m2) ||
+        !same(a.time,{frequency:"annual",input_frequency:"monthly",calendar:"gregorian",provider_time_standard:first.time.provider_time_standard,start:String(history.years[0]),end:String(history.years.at(-1))}) ||
+        !same(a.method,{id:"compare_annual_temperature_weighting",version:"0.1.0",selection_status:"candidate",selected_weighting:null,missing_policy:"require_12_complete_months",inference:"not_performed",provider_value_role:"comparison_only"}) ||
+        !same(a.weighting_definitions,[{id:"equal_months",formula:"sum(T_m / 12)",target:"mean_of_twelve_monthly_values"},{id:"calendar_days",formula:"sum(T_m * days_m / days_year)",target:"calendar_day_weighted_monthly_values"}]) ||
+        a.provenance?.source_history_schema_version !== "0.1.0" || !/^[a-f0-9]{64}$/.test(a.provenance.source_history_result_sha256) ||
+        !Array.isArray(a.series) || a.series.length !== snapshots.length || !Array.isArray(a.provenance.annual_sources) || a.provenance.annual_sources.length !== snapshots.length) fail();
+    const provider = first.provenance.temperature;
+    for (const key of ["provider","product","api_version"]) if (a.provenance[key] !== provider[key]) fail();
+    if (!same([...a.provenance.sources].sort(),[...provider.sources].sort())) fail();
+    for (const [i,row] of a.series.entries()) {
+      const monthly = snapshots[i].regions.find((r) => r.id === entry.id), year = history.years[i], source = a.provenance.annual_sources[i];
+      if (!monthly || source.year !== year || !same(source.files_sha256,monthly.provenance.source_files_sha256.temperature) || row.year !== year) fail();
+      const missing = monthly.series.filter((r) => r.unmasked === null).map((r) => r.date);
+      const days = monthly.series.map((_,m) => new Date(Date.UTC(year,m+1,0)).getUTCDate()), total = days.reduce((s,d) => s+d,0);
+      const complete = missing.length === 0;
+      if (row.status !== (complete?"complete":"incomplete") || row.valid_months !== 12-missing.length || !same(row.missing_months,missing) || row.calendar_days !== total ||
+          row.valid_calendar_days !== days.reduce((s,d,m) => s+(missing.includes(monthly.series[m].date)?0:d),0) || !Array.isArray(row.weights) || row.weights.length !== 12) fail();
+      row.weights.forEach((w,m) => { if (w.date !== monthly.series[m].date || w.days !== days[m] || !close(w.equal_month_weight,1/12) || !close(w.calendar_day_weight,days[m]/total)) fail(); });
+      const e = row.equal_month_mean_degC, c = row.calendar_day_mean_degC, d = row.calendar_minus_equal_degC, p = row.provider_annual;
+      if (complete ? !finite(e) || !finite(c) || !close(d,c-e) : e !== null || c !== null || d !== null) fail();
+      if (!p || p.expected_cells !== monthly.support.cell_count || !Number.isInteger(p.valid_cells) || p.valid_cells < 0 || p.valid_cells > p.expected_cells ||
+          p.status !== (p.valid_cells===p.expected_cells?"complete":"incomplete") ||
+          (p.status === "complete" ? !finite(p.area_weighted_mean_degC) : p.area_weighted_mean_degC !== null)) fail();
+      for (const [key,v] of [["provider_minus_equal_degC",e],["provider_minus_calendar_degC",c]]) {
+        if (v === null || p.area_weighted_mean_degC === null ? p[key] !== null : !close(p[key],p.area_weighted_mean_degC-v)) fail();
+      }
+    }
+    const valid = a.series.filter((r) => r.status === "complete"), max = valid.length ? Math.max(...valid.map((r) => Math.abs(r.calendar_minus_equal_degC))) : null;
+    if (a.quality?.expected_years !== a.series.length || a.quality.complete_years !== valid.length || !same(a.quality.incomplete_years,a.series.filter((r) => r.status !== "complete").map((r) => r.year)) ||
+        a.quality.provider_complete_years !== a.series.filter((r) => r.provider_annual.status === "complete").length ||
+        a.sensitivity?.valid_years !== valid.length || (max === null ? a.sensitivity.max_abs_calendar_minus_equal_degC !== null : !close(a.sensitivity.max_abs_calendar_minus_equal_degC,max)) ||
+        !same(a.sensitivity.years_at_maximum,valid.filter((r) => Math.abs(r.calendar_minus_equal_degC) === max).map((r) => r.year))) fail();
+  }
+  return payload;
+}
+
 export function createComparisonReview(data, datasetSha256, selection) {
   if (!/^[a-f0-9]{64}$/.test(datasetSha256) || data?.schema_version !== "0.3.0" || data.output_type !== "recorded_temperature_web_preview" || data.data_mode !== "recorded_offline_replay" || data.selection_status !== "candidate" || data.inference_performed !== false || !Array.isArray(data.regions) || !data.regions.length || data.regions.length > 8 || new Set(data.regions.map((r) => r.id)).size !== data.regions.length) throw Error("Unsupported review source snapshot");
   if (!selection || canonical(Object.keys(selection).sort()) !== canonical(["left_id", "month", "policy", "right_id"]) || !Object.values(selection).every((v) => typeof v === "string")) throw Error("Invalid review selection");

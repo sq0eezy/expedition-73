@@ -227,3 +227,10 @@ Kaynak şablon: `templates/TEAM_HANDOFF.md`.
 - **Teslim:** [Yöntem ve kaynak araştırması](../research/TEMPORAL_AGGREGATION.md), [CLI](../guide/T2M_ANNUAL_WEIGHTING.md), [gerçek kayıt/testler](../evidence/ANNUAL_WEIGHTING_CHECK.md). Kaynaklar paylaşıldıktan sonra Mac'te analysis içinde `.venv/bin/python -X utf8 -m expedition73 validate-annual-weighting --run examples/b-history-2001-2024 --input examples/b-annual-weighting-audit.json`.
 - **İncelenecek:** Hedef eşit ay özeti mi, takvim süresini temsil eden özet mi? Kaynak yıllık değere yakınlık bağımsız doğruluk değildir. Nihai yüzey/sınır/dönem ve eksiklik kuralıyla birlikte tartışılmalı.
 - **Sınır:** 24'er tam maskesiz yıl; yeni yöntem seçimi/M2 kabulü/R-B05 başlangıcı veya eğilim yok. Genel web/motor entegrasyonu ve yeni Mac/Linux/CI sonucu yok. Yanıt bekleniyor.
+
+## H-M1-022 · Yıllık adayların webde incelenmesi
+
+- **Gönderen → alıcı:** M1 → M2; T-04/U-02 için panel içi kayıt, dış mesaj yok.
+- **Tarih/durum:** 2026-10-26; testli M1 dilimi. GitHub gönderim sonucu [SYNC](SYNC.md) kaydından izlenir; M2 incelemesi/kabulü bekler.
+- **Teslim:** [Web kullanımı](../guide/ANNUAL_WEB.md), [222 Windows/43 JS/76 Chrome kanıtı](../evidence/ANNUAL_WEB_CHECK.md). Kaynak dalı alındıktan sonra Mac'te `sh scripts/start-preview.sh`; maskesizde A/B yıllık adaylar, tablo/yıl düğmesi, API yıllık referansı ve kara/buz kapsam kapanmasını incele. Yeni yedi dosya/manifest 0.4.0 birlikte üretilir.
+- **Sınır:** Bilimsel profil/eğilim/M2 kabulü yok; aynı kaynak API kıyası bağımsız ölçüm değildir. Aylık akış grafiği yıllık modülü içermiyor. Main/Pages yayını ve gerçek Mac/Docker koşusu bu teslim sayılmaz.

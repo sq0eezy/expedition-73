@@ -6,6 +6,8 @@ change_summary: "Windows/Mac komutları, sabit bağımlılıklar, altı dosyalı
 ---
 # Taşınabilir geliştirme paketi
 
+**2026-10-26 yıllık ekran güncellemesi:** [Ayrı yıllık JSON/katalog bağı](ANNUAL_WEB.md) ile yedi genel dosya, ZIP manifesti 0.4.0 kullanılır. Eski beş/altı dosyalı manifest 0.1.0–0.3.0 kendi allowlist'leriyle doğrulanır. Yerel smoke yedi dosyayı ve exact yıllık/aylık katalog bağını kontrol eder. Güncel native/tarayıcı/paket ve paylaşım kanıtı [yıllık ekran kaydında](../evidence/ANNUAL_WEB_CHECK.md); bu dilim için yeni Docker/Mac/ARM çalıştırıldığı varsayılmaz. Aşağıdaki eski sürüm ifadeleri ilk dilimleri anlatır.
+
 **2026-10-24 güncel veri:** [24 yıllık katalog](T2M_LONG_PERIOD.md) aynı altı genel dosya/web 0.4.0/manifest 0.3.0 yolunu kullanır. Ortak check eski iki yılın yanında yeni A/B 2001–2024 kayıtlarını da doğrular; daha büyük veri test/derleme süresini artırır. Bu dilimde yeni Docker/Mac/Linux/CI koşusu yapılmadı; önceki ortam kanıtları yeni kaynak paketinin derlendiği anlamına gelmez.
 
 M1, daha büyük bir geliştirme paketiyle devam istedi. Önceki Docker önerisi bu teknik dilimde **isteğe bağlı çalışma yolu** olarak uygulandı; nihai ürün yığını, hosting veya M2'nin ortam tercihi kabulü değildir. Yönetim portalı mevcut Pages düzeninde kalır. [Gerçek doğrulama ve ortam sınırları](../evidence/DEV_PACKAGE_CHECK.md).

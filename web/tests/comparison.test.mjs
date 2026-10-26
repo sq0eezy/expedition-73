@@ -1,9 +1,74 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFileSync } from 'node:fs';
-import { summarizePolicyDifferences, summarizeRegionDifferences, datasetDigest, createComparisonReview, verifyComparisonReview, recordedMonthlyHistory } from '../src/comparison.mjs';
+import { summarizePolicyDifferences, summarizeRegionDifferences, datasetDigest, createComparisonReview, verifyComparisonReview, recordedMonthlyHistory, validateAnnualPreview } from '../src/comparison.mjs';
 
 const series = () => Array.from({ length: 12 }, (_, i) => ({ date: `2024-${String(i + 1).padStart(2, '0')}`, unmasked: 10, land: 10, land_and_ice: 10 }));
+
+// Real recorded unmasked inputs/audits. The two unused surface aliases below
+// are technical fixtures only, never claims about actual masked temperatures.
+function annualFixture() {
+  const audits=['a','b'].map((r)=>JSON.parse(readFileSync(new URL(`../../analysis/examples/${r}-annual-weighting-audit.json`,import.meta.url),'utf8')));
+  const snapshots=audits[0].series.map(({year},index)=>{
+    const regions=audits.map((a,i)=>{
+      const r=['a','b'][i], source=JSON.parse(readFileSync(new URL(`../../analysis/examples/${r}-history-2001-2024/year-${year}/result.json`,import.meta.url),'utf8'));
+      return {id:a.region.id,region:source.region,variable:source.variable,time:source.time,
+        support:{cell_count:source.spatial_support.cell_count,window_area_m2:source.spatial_support.window_area_m2},
+        spatial:{geometry:'reconstructed_midpoint_rectangles',longitude_step_deg:0.625,latitude_step_deg:0.5,area_radius_m:6371008.8,
+          cells:source.module_details.cells.map((c)=>({longitude:c.longitude,latitude:c.latitude,full_cell_bbox:[c.longitude-0.3125,c.latitude-0.25,c.longitude+0.3125,c.latitude+0.25],intersection_bbox:c.intersection_bbox,intersection_area_m2:c.area_m2,weights_m2:{unmasked:c.area_m2}}))},
+        series:source.series.map((row)=>({date:row.date,unmasked:row.value,land:row.value,land_and_ice:row.value})),
+        provenance:{temperature:source.provenance,source_files_sha256:{temperature:structuredClone(a.provenance.annual_sources[index].files_sha256)}},
+        workflow_trace:{nodes:[{id:'Temperature',operation:'Temperature',operation_version:'0.1.0',output_contract:{type:'fixture_verified_window',schema_version:source.schema_version,unit:'degC'}}]}};
+    });
+    return {schema_version:'0.3.0',output_type:'recorded_temperature_web_preview',data_mode:'recorded_offline_replay',selection_status:'candidate',inference_performed:false,dates:regions[0].series.map((r)=>r.date),regions};
+  });
+  const digest='c'.repeat(64), payload={schema_version:'0.1.0',output_type:'recorded_annual_weighting_web_preview',data_mode:'recorded_offline_replay',selection_status:'candidate',inference_performed:false,source_catalog_sha256:digest,status:'available',regions:audits.map((audit)=>({id:audit.region.id,audit}))};
+  return {snapshots,digest,payload};
+}
+const annualSource=annualFixture();
+const annualCopy=()=>structuredClone(annualSource);
+
+test('annual adapter accepts exact recorded reports and does not mutate or re-average inputs',()=>{
+  const input=annualCopy(), before=structuredClone(input);
+  assert.equal(validateAnnualPreview(input.payload,input.digest,input.snapshots),input.payload);
+  assert.deepEqual(input,before); assert.equal(input.payload.regions[0].audit.series.length,24);
+});
+test('annual adapter rejects mixed catalog, source hashes, identities, years and accepted claims',()=>{
+  const mutations=[(x)=>x.payload.source_catalog_sha256='0'.repeat(64),(x)=>x.payload.regions.pop(),
+    (x)=>x.payload.regions[0].audit.provenance.annual_sources[0].files_sha256['result.json']='0'.repeat(64),
+    (x)=>x.payload.regions[0].audit.series.pop(),(x)=>x.payload.regions[0].audit.region.candidate_bbox[0]-=1,
+    (x)=>x.payload.regions[0].audit.scientific_acceptance='accepted',(x)=>x.payload.regions[0].audit.method.selected_weighting='calendar_days',
+    (x)=>x.payload.regions[0].audit.module.version='other',(x)=>x.payload.inference_performed=true];
+  for(const change of mutations) {const x=annualCopy(); change(x); assert.throws(()=>validateAnnualPreview(x.payload,x.digest,x.snapshots));}
+});
+test('annual adapter rejects wrong leap weights and inconsistent deltas or quality',()=>{
+  for(const change of [(a)=>a.series.at(-1).weights[1].days=28,(a)=>a.series.at(-1).weights[1].calendar_day_weight=1/12,
+    (a)=>a.series[0].calendar_minus_equal_degC+=1,(a)=>a.quality.complete_years=0,
+    (a)=>a.series[0].provider_annual.provider_minus_equal_degC=999,(a)=>a.sensitivity.years_at_maximum=[]]) {
+    const x=annualCopy(); change(x.payload.regions[0].audit); assert.throws(()=>validateAnnualPreview(x.payload,x.digest,x.snapshots));
+  }
+});
+test('annual adapter permits a missing year only as null candidates, never provider-filled',()=>{
+  const x=annualCopy(), a=x.payload.regions[0].audit, row=a.series.at(-1);
+  x.snapshots.at(-1).regions[0].series[0].unmasked=null;
+  Object.assign(row,{status:'incomplete',valid_months:11,missing_months:['2024-01'],valid_calendar_days:335,equal_month_mean_degC:null,calendar_day_mean_degC:null,calendar_minus_equal_degC:null});
+  row.provider_annual.provider_minus_equal_degC=null; row.provider_annual.provider_minus_calendar_degC=null;
+  a.quality.complete_years=23; a.quality.incomplete_years=[2024]; a.sensitivity.valid_years=23;
+  assert.equal(validateAnnualPreview(x.payload,x.digest,x.snapshots),x.payload);
+  row.calendar_day_mean_degC=row.provider_annual.area_weighted_mean_degC;
+  assert.throws(()=>validateAnnualPreview(x.payload,x.digest,x.snapshots));
+});
+test('annual adapter permits a missing provider reference without discarding complete monthly candidates',()=>{
+  const x=annualCopy(), a=x.payload.regions[0].audit, row=a.series.at(-1);
+  Object.assign(row.provider_annual,{status:'incomplete',valid_cells:55,area_weighted_mean_degC:null,provider_minus_equal_degC:null,provider_minus_calendar_degC:null});
+  a.quality.provider_complete_years=23;
+  assert.equal(validateAnnualPreview(x.payload,x.digest,x.snapshots),x.payload);
+});
+test('annual unavailable contract remains explicit and requires an exact catalog identity',()=>{
+  const x=annualCopy(); x.payload.status='not_available'; x.payload.regions=[];
+  assert.equal(validateAnnualPreview(x.payload,x.digest,x.snapshots),x.payload);
+  assert.throws(()=>validateAnnualPreview(x.payload,'0'.repeat(64),x.snapshots));
+});
 
 test('signed pairs use their own reference; maximum uses absolute size', () => {
   const rows = series(); rows[0] = { ...rows[0], unmasked: -20, land: -22, land_and_ice: -21.5 };

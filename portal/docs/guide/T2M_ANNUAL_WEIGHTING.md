@@ -28,4 +28,4 @@ Yeni çıktı `candidate_annual_weighting_audit` **0.1.0**, modül `air_temperat
 
 `validate-annual-weighting` kaydedilen raporu şemayla ve yeniden hesaplanan bütün alanlarla karşılaştırır; kaynak/sayı/ağırlık/aday bayrakları değişirse reddeder. Mevcut sayısal tekrar toleransı korunur, yeni bilimsel doğruluk eşiği seçilmez. Eksik aylar/sağlayıcı yıllık hücreleri sıfırla veya kısmi ortalamayla doldurulmaz.
 
-Bu ilk hesap analysis içindedir; genel web kataloğuna veya beş düğümlü yüzey motoruna eklenmedi. Mevcut web/rapor/ZIP sözleşmesi değişmedi. Yöntem adayının incelenmesi ve ortak bilimsel karar sonrasında genel sonuç adaptörüne bağlanması ayrı adımdır; M2'nin kabulü varsayılmaz.
+İlk hesap analysis içindedir; sonraki dilimde [ayrı yıllık web dosyasına](ANNUAL_WEB.md) bağlandı. Beş düğümlü aylık yüzey motoruna yeni bir işlem olarak eklenmedi. Aylık web/rapor sözleşmeleri korunur; webdeki yıllık zarf 0.1.0 ve yeni yedi dosyalı ZIP 0.4.0 kılavuzda ayrılır. Yöntem adayının bilimsel kabulü ayrı kalır; M2'nin kabulü varsayılmaz.

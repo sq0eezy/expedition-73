@@ -25,7 +25,7 @@ RUN python scripts/workspace.py build
 USER 10001:10001
 CMD ["python", "scripts/workspace.py", "check"]
 
-# The preview image carries only Python's static server and the six public files.
+# The preview image carries only Python's static server and seven public files.
 FROM python AS preview
 COPY --from=checks /workspace/web/dist/ web/dist/
 COPY web/serve.py web/serve.py

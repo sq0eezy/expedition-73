@@ -1,5 +1,6 @@
 """Portable packaging: public allowlist, repeatability and failure isolation."""
 import importlib.util
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -21,10 +22,15 @@ class WorkspaceTests(unittest.TestCase):
             data = {'schema_version': '0.4.0', 'output_type': 'recorded_temperature_year_catalog',
                     'selection_status': 'candidate', 'data_mode': 'recorded_offline_replay', 'inference_performed': False}
             target.write_text(json.dumps(data) if name.endswith('.json') else 'public fixture', encoding='utf-8')
+        monthly=(root/'web/dist/data/results.json').read_bytes()
+        (root/'web/dist/data/annual.json').write_text(json.dumps({
+            'schema_version':'0.1.0','output_type':'recorded_annual_weighting_web_preview',
+            'selection_status':'candidate','data_mode':'recorded_offline_replay','inference_performed':False,
+            'source_catalog_sha256':hashlib.sha256(monthly).hexdigest(),'status':'not_available','regions':[]}),encoding='utf-8')
         (root / '.env').write_text('PRIVATE_FIXTURE_NOT_A_TOKEN', encoding='utf-8')
         (root / 'web/dist/.env').write_text('PRIVATE_EXTRA', encoding='utf-8')
 
-    def test_only_six_public_assets_and_manifest_are_packaged_repeatably(self):
+    def test_only_seven_public_assets_and_manifest_are_packaged_repeatably(self):
         with tempfile.TemporaryDirectory() as temp, patch.object(workspace, 'ROOT', Path(temp)), patch.object(workspace, 'build'):
             root = Path(temp)
             self.prepare(root)
@@ -65,6 +71,24 @@ class WorkspaceTests(unittest.TestCase):
                 for name, raw in files.items(): archive.writestr(name, raw)
                 archive.writestr('manifest.json', json.dumps(manifest))
             self.assertEqual(workspace.verify_package(path)['public_files'], 5)
+
+    def test_previous_six_file_year_catalog_manifest_remains_verifiable(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp); self.prepare(root); path=root/'previous.zip'
+            files={name:(root/'web/dist'/name).read_bytes() for name in workspace.PRIOR_PUBLIC}
+            with zipfile.ZipFile(path,'w') as archive:
+                for name,raw in files.items(): archive.writestr(name,raw)
+                archive.writestr('manifest.json',json.dumps(workspace._manifest(files,'0.3.0')))
+            self.assertEqual(workspace.verify_package(path)['public_files'],6)
+
+    def test_resealed_annual_catalog_mismatch_preserves_previous_demo(self):
+        with tempfile.TemporaryDirectory() as temp,patch.object(workspace,'ROOT',Path(temp)),patch.object(workspace,'build'):
+            root=Path(temp); self.prepare(root); workspace.package()
+            package=root/'web/artifacts/expedition73-preview.zip'; before=package.read_bytes()
+            path=root/'web/dist/data/annual.json'; data=json.loads(path.read_bytes()); data['source_catalog_sha256']='0'*64
+            path.write_text(json.dumps(data),encoding='utf-8')
+            with self.assertRaises(ValueError): workspace.package()
+            self.assertEqual(package.read_bytes(),before)
 
     def test_new_manifest_cannot_omit_trace_asset_or_claim_previous_web_contract(self):
         with tempfile.TemporaryDirectory() as temp, patch.object(workspace, 'ROOT', Path(temp)), patch.object(workspace, 'build'):

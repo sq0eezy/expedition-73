@@ -2,9 +2,13 @@
 status: Validating
 updated: "2026-10-26"
 review_summary: "Gerçek kayıtlı sıcaklık sonuçlarını inceleten ilk yerel ekran; bilimsel ve ürün sınırları."
-change_summary: "Mevcut 288 ay uzun dönem grafiği/tablosunda ve bağlı ay seçiminde görünür; kaynak/sözleşmeler aynı, istatistik/eğilim açık."
+change_summary: "Maskesiz yıllık adaylar ayrı kaynak bağıyla kart/tablo ve fark grafiğinde görünür; yedi genel dosya/manifest 0.4.0, yöntem seçilmedi."
 ---
 # İlk sonuç ekranı · Yerel teknik prototip
+
+## 2026-10-26 · Yıllık adayları yan yana inceleme
+
+[Yıllık hesap için iki aday](../guide/ANNUAL_WEB.md) Python modülünün doğrulanmış sonuçlarından gösterilir; tarayıcı ortalamaları yeniden hesaplamaz. Üst yıl/pencere seçimi, açık tablo/kaynak ve yıl düğmesinde klavye odağı korunur. İki aday/API referansı, tam ay/gün ve 24 yılın yöntem farkı görünür. Kara/buzda kapsam açıklanır; geçersiz yıllık dosya yalnız yeni bölümü kapatır. [Kontroller](../evidence/ANNUAL_WEB_CHECK.md): 222 Windows, 43 JS, 76 Chrome; paket sonuçları kanıtta. Aylık JSON byte aynı; yeni yıllık web zarfı 0.1.0, yedi dosya/manifest 0.4.0, eski ZIP desteği var. Aylık beş düğümlü akış değişmedi. Bilimsel kabul/eğilim/p-değeri/M2 onayı yok. Gönderim ve uzak gözlem [SYNC](../team/SYNC.md) kaydındadır; dal push'u Pages yayını değildir.
 
 ## 2026-10-26 · Bütün aylara birlikte bakma
 

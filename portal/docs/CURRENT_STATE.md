@@ -1,9 +1,9 @@
 ---
 status: Validating
 updated: "2026-10-26"
-phase: Aday yıllık özet hedeflerini sınama
+phase: Yıllık adayları webde inceleme ve paylaşım
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "216 Windows/37 JS ve gerçek A/B yıllık rapor tekrarları geçti; eşit ay/takvim günü adayları hazır, yöntem seçilmedi. Genel web/eğilim ve paylaşım açık."
+change_summary: "Yıllık aday kart/tablo ve kaynak bağı hazır; 222 Windows/43 JS/76 Chrome. Yedi dosya, manifest 0.4.0; GitHub paylaşımı doğrulaması SYNC'te tutulur, bilimsel yöntem açık."
 ---
 # Mevcut durum
 
@@ -11,7 +11,9 @@ change_summary: "216 Windows/37 JS ve gerçek A/B yıllık rapor tekrarları ge�
 
 ## Hazır olanlar
 
-- **İki aday yıllık özet hesaplandı:** [Zaman ağırlığı araştırması](research/TEMPORAL_AGGREGATION.md), [CLI/sözleşme](guide/T2M_ANNUAL_WEIGHTING.md), [216 Windows/37 JS ve gerçek tekrar kanıtı](evidence/ANNUAL_WEIGHTING_CHECK.md). Maskesiz A/B 24'er tam yıl, ay/gün ağırlıkları ve kaynak API yıllık hücre kıyası var. İki aday arasındaki en büyük fark A 0,079698 °C, B 0,140113 °C; bu hata payı/ısınma değildir. Gün ağırlığı bu 48 bölge-yılda API özetine daha yakın; kaynak kısa açıklaması ağırlıkları belirtmediğinden evrensel NASA algoritması doğrulanmış sayılmaz. Yeni modül/çıktı 0.1.0 aday; yöntem seçilmedi, web/motora bağlanmadı. T-03 yerel M1 incelemesi; yeni Mac/CI/yayın/M2 kabulü yok.
+- **Yıllık adaylar webde:** [Kart/tablo kullanımı](guide/ANNUAL_WEB.md), [gerçek kontroller](evidence/ANNUAL_WEB_CHECK.md). Aynı aylık kataloğa bağlı ayrı 0.1.0 yıllık web dosyası, seçili yılın iki adayı/API referansı ve 24 yılın özetleme farkı vardır. Kara/buzda yıllık kartlar kapanır, kaynak/hata/Web Crypto uyuşmazlığı aylık ekranı bozmaz. 222 Windows birim testi, 43 JS ve 76 Chrome geçti; son paket/paylaşım kanıtı esas kayıtta ayrılır. Aylık katalog/rapor byte kimlikleri korundu; yedi dosya, manifest 0.4.0. Kullanıcı mevcut M1 dalına GitHub gönderimi istedi; main/Pages ve bilimsel kabul ayrı, [durum](team/SYNC.md).
+
+- **İlk aday yıllık CLI hesabı:** [Zaman ağırlığı araştırması](research/TEMPORAL_AGGREGATION.md), [CLI/sözleşme](guide/T2M_ANNUAL_WEIGHTING.md), [216 Windows/37 JS ve gerçek tekrar kanıtı](evidence/ANNUAL_WEIGHTING_CHECK.md). Maskesiz A/B 24'er tam yıl, ay/gün ağırlıkları ve kaynak API yıllık hücre kıyası var. İki aday arasındaki en büyük fark A 0,079698 °C, B 0,140113 °C; bu hata payı/ısınma değildir. Gün ağırlığı bu 48 bölge-yılda API özetine daha yakın; evrensel NASA algoritması doğrulanmış sayılmaz. İlk dilimde web/motor bağlantısı yoktu; web bağlantısı yukarıdadır, yöntem/akış motoru kabulü ayrı kalır.
 
 - **288 ay tek zaman ekseninde:** [Uzun dönem görünümü](guide/T2M_TIMELINE.md) bütün kayıtlı aylık değerleri, geçerli ay sayısını ve tabloyu gösterir. Ortak pencere/yüzey, klavyeli ay seçimi, yıl/ay/hücre/kaynak/rapor bağlantısı çalışır; uyumsuz yıllar birleştirilmez. [201 Windows/37 JS/65 Chrome kanıtı](evidence/TIMELINE_PREVIEW_CHECK.md). Kaynak JSON ve bilimsel hesap aynı; yeni yıllık özet/anomali/eğilim hesabı yok. Web/annual/rapor/ZIP sözleşmeleri ve altı dosya korunur. T-02/U-02 yerel M1 dilimi; M2 kabulü, yeni Mac/Linux/CI veya yayın yok.
 
@@ -77,4 +79,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-[Yıllık özet için iki aday](research/TEMPORAL_AGGREGATION.md) gerçek kayıtta sınandı; sonraki teknik öneri bu ayrı hesapları webde açık aday etiketleriyle yan yana sunmaktır. Bilimsel hedef yüzey/sınır/dönem ve ağırlık kararı yine açık; anomali/eğilim, zaman bağımlılığı, aralık ve p-değeri ayrı gerekçelendirilir. M2'nin aday hesabı veya bilimsel profili kabul ettiği varsayılmaz. Yeni dilim ve önceki geliştirmeler yerel M1 dalında; main/Pages değişmedi. Eski tarihli kayıtlar geçmiş aşamaları anlatır.
+[Yıllık aday ekranı](guide/ANNUAL_WEB.md) incelemeye hazırdır. Sıradaki bilimsel konu hedef yüzey/sınır/dönem ile eşit ay/takvim günü hedefini birlikte adlandırmaktır; anomali/eğilim, zaman bağımlılığı, aralık ve p-değeri ayrı gerekçelendirilir. M2'nin aday hesabı veya bilimsel profili kabul ettiği varsayılmaz. Kullanıcı mevcut M1 dalına gönderim istedi; güncel uzak SHA/CI gözlemi [SYNC](team/SYNC.md) kaydındadır. Main/Pages değişmez. Eski tarihli kayıtlar geçmiş aşamaları anlatır.

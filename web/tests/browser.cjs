@@ -110,7 +110,9 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     await noCrypto.addInitScript(() => Object.defineProperty(globalThis, 'crypto', { value: undefined, configurable: true }));
     await noCrypto.goto(base); await noCrypto.locator('#results').waitFor({ state: 'visible' });
     assert.equal(await noCrypto.locator('#review-download').isDisabled(), true); assert.equal(await noCrypto.locator('#review-file').isDisabled(), true);
-    assert.equal(await noCrypto.locator('#chart .chart-path').count(), 2); await noCrypto.close(); checks++;
+    assert.equal(await noCrypto.locator('#chart .chart-path').count(), 2);
+    await noCrypto.waitForFunction(()=>document.getElementById('annual-status').textContent.includes('Web Crypto'));
+    assert.equal(await noCrypto.locator('.annual-card').count(),0); await noCrypto.close(); checks++;
     await page.locator('#pair-swap').click(); await page.locator('#policy').selectOption('unmasked'); await page.locator('#month').fill('0');
     assert.equal(await page.locator('#trace-graph .trace-node').count(), 5);
     assert.equal(await page.locator('#trace-graph .trace-edge').count(), 8);
@@ -438,6 +440,72 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
         await sample.close(); checks++;
       }
     }
+    const annualBundle = await (await page.request.get(new URL('data/annual.json',base).href)).json();
+    await page.locator('#policy').selectOption('unmasked');
+    await page.waitForFunction(()=>document.querySelectorAll('.annual-card').length===2);
+    for (const entry of annualBundle.regions) {
+      const card=page.locator(`.annual-card[data-region="${entry.id}"]`), row=entry.audit.series.find((r)=>r.year===2024);
+      for (const [key,v] of [['equal',row.equal_month_mean_degC],['calendar',row.calendar_day_mean_degC],['provider',row.provider_annual.area_weighted_mean_degC]])
+        assert.equal(await card.locator(`[data-annual-value="${key}"] strong`).innerText(),six(v)+' °C');
+      const actual=await card.locator('.annual-values tbody tr').evaluateAll((rows)=>rows.map((r)=>[...r.children].map((c)=>c.textContent)));
+      const expected=entry.audit.series.map((r)=>[String(r.year),`${r.valid_months}/12`,...[r.equal_month_mean_degC,r.calendar_day_mean_degC,r.provider_annual.area_weighted_mean_degC,r.calendar_minus_equal_degC].map(six)]);
+      assert.deepEqual(actual,expected); assert.equal(await card.locator('.annual-line').getAttribute('data-years'),'24');
+    } checks++;
+    const annualA=()=>page.locator('.annual-card[data-region="A"]');
+    await annualA().locator('.annual-values summary').click(); await annualA().locator('.annual-source summary').click();
+    await annualA().locator('button[data-year="2023"]').focus(); await page.keyboard.press('Enter');
+    assert.equal(await page.locator('#year').inputValue(),'2023'); assert.equal(await page.locator('#annual-year').innerText(),'2023');
+    assert.equal(await annualA().locator('.annual-values').evaluate((n)=>n.open),true);
+    assert.equal(await annualA().locator('.annual-source').evaluate((n)=>n.open),true);
+    assert.equal(await annualA().locator('button[data-year="2023"]').evaluate((n)=>document.activeElement===n),true); checks++;
+    await page.locator('#year').selectOption('2001');
+    assert.equal(await annualA().locator('[data-annual-value="equal"] strong').innerText(),six(annualBundle.regions[0].audit.series[0].equal_month_mean_degC)+' °C'); checks++;
+    for(const policy of ['land','land_and_ice']) {await page.locator('#policy').selectOption(policy); assert.equal(await page.locator('.annual-card').count(),0); assert.match(await page.locator('#annual-status').innerText(),/yalnız maskesiz/);}
+    await page.locator('#policy').selectOption('unmasked'); assert.equal(await page.locator('.annual-card').count(),2); checks++;
+    await page.locator('#region-options input[value="A"]').uncheck(); assert.equal(await page.locator('.annual-card').count(),1);
+    await page.locator('#region-options input[value="B"]').uncheck(); assert.equal(await page.locator('.annual-card').count(),0);
+    await page.locator('#region-options input[value="A"]').check(); await page.locator('#region-options input[value="B"]').check(); checks++;
+    await page.locator('#review-file').setInputFiles(reportPath);
+    await page.waitForFunction(()=>document.getElementById('year').value==='2024');
+    assert.equal(await page.locator('.annual-card').count(),0);
+    await page.locator('#policy').selectOption('unmasked');
+    await page.setViewportSize({width:1440,height:1100});
+    await annualA().locator('.annual-values summary').click(); await annualA().locator('.annual-source summary').click();
+    await page.locator('.annual-panel').screenshot({path:path.join(screenshots,'annual-desktop.png')});
+    await page.setViewportSize({width:390,height:844});
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth),false);
+    await annualA().screenshot({path:path.join(screenshots,'annual-mobile.png')}); checks++;
+    for(const kind of ['unavailable','catalog','method','sources']) {
+      const sample=await browser.newPage(); sample.on('pageerror',(error)=>errors.push(error.message));
+      await sample.route('**/data/annual.json',(route)=>{
+        if(kind==='unavailable') return route.fulfill({status:503,body:'unavailable'});
+        const changed=structuredClone(annualBundle);
+        if(kind==='catalog') changed.source_catalog_sha256='0'.repeat(64);
+        if(kind==='method') changed.regions[0].audit.method.selected_weighting='calendar_days';
+        if(kind==='sources') changed.regions[0].audit.provenance.annual_sources[0].files_sha256['result.json']='0'.repeat(64);
+        return route.fulfill({json:changed});
+      });
+      await sample.goto(base); await sample.locator('#results').waitFor({state:'visible'});
+      await sample.waitForFunction(()=>document.getElementById('annual-status').textContent.includes('kullanılamıyor'));
+      assert.equal(await sample.locator('.annual-card').count(),0); assert.equal(await sample.locator('#chart .chart-path').count(),2);
+      assert.equal(await sample.locator('#error').isVisible(),false); await sample.close(); checks++;
+    }
+    const annualMissing=await browser.newPage(); annualMissing.on('pageerror',(error)=>errors.push(error.message));
+    const changedCatalog=structuredClone(bundle), snap=changedCatalog.snapshots.find((s)=>s.year===2024), monthly=JSON.parse(snap.data_json);
+    monthly.regions[0].series[0].unmasked=null; monthly.regions[0].spatial.cells[0].series[0].value=null;
+    snap.data_json=JSON.stringify(monthly); snap.sha256=createHash('sha256').update(snap.data_json).digest('hex');
+    const monthlyBytes=Buffer.from(JSON.stringify(changedCatalog)), changedAnnual=structuredClone(annualBundle), audit=changedAnnual.regions[0].audit, last=audit.series.at(-1);
+    changedAnnual.source_catalog_sha256=createHash('sha256').update(monthlyBytes).digest('hex');
+    Object.assign(last,{status:'incomplete',valid_months:11,missing_months:['2024-01'],valid_calendar_days:335,equal_month_mean_degC:null,calendar_day_mean_degC:null,calendar_minus_equal_degC:null});
+    last.provider_annual.provider_minus_equal_degC=null; last.provider_annual.provider_minus_calendar_degC=null;
+    audit.quality.complete_years=23; audit.quality.incomplete_years=[2024]; audit.sensitivity.valid_years=23;
+    await annualMissing.route('**/data/results.json',(route)=>route.fulfill({body:monthlyBytes,contentType:'application/json'}));
+    await annualMissing.route('**/data/annual.json',(route)=>route.fulfill({json:changedAnnual}));
+    await annualMissing.goto(base); await annualMissing.waitForFunction(()=>document.querySelectorAll('.annual-card').length===2);
+    const missingCard=annualMissing.locator('.annual-card[data-region="A"]');
+    for(const key of ['equal','calendar']) assert.equal(await missingCard.locator(`[data-annual-value="${key}"] strong`).innerText(),'Veri yok');
+    assert.notEqual(await missingCard.locator('[data-annual-value="provider"] strong').innerText(),'Veri yok');
+    await annualMissing.close(); checks++;
     assert.deepEqual(errors, []); assert.deepEqual(uploads, []);
     console.log(JSON.stringify({ status: 'passed', browser: 'Chrome headless', checks, javascript_errors: errors,
       external_runtime_requests: requests.filter((url) => new URL(url).origin !== new URL(base).origin).length,

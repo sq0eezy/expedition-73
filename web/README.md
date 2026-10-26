@@ -1,5 +1,7 @@
 # Expedition 73 · İlk sonuç ekranı
 
+**2026-10-26 yıllık aday ekranı:** [Eşit ay/takvim günü](../portal/docs/guide/ANNUAL_WEB.md) yalnız maskesiz pencerede iki aday ve ayrı API yıllık referansıyla görünür. 24 yıllık tablo/yıl düğmeleri mevcut ayrıntılara bağlıdır; yöntem seçimi ve eğilim yok. data/results.json aynı byte; yeni data/annual.json exact katalog hash'ine bağlı, yedi genel dosya/ZIP manifesti 0.4.0. [Gerçek kontrol](../portal/docs/evidence/ANNUAL_WEB_CHECK.md). Çalıştırma aynı; GitHub dalına gönderim Pages/hosting yayını değildir.
+
 **2026-10-26 arayüz:** [Bütün 288 ay](../portal/docs/guide/T2M_TIMELINE.md) ayrı grafik/tablo ve ay seçiciyle incelenir. Seçilen ay yıl/ay/hücre/kaynak/rapor ayrıntılarına bağlıdır; pencere/yüzey seçimi ortaktır. Yalnız kayıtlı aylar taşınır, yeni istatistik/eğilim yok. Kaynak JSON byte'ları ve altı genel dosyalı sözleşme değişmedi. [Gerçek kontroller](../portal/docs/evidence/TIMELINE_PREVIEW_CHECK.md). Önceki tarihli bölümler ilgili dilimi anlatır.
 
 **2026-10-24 güncel kayıt:** [2001–2024 aday dönemi](../portal/docs/guide/T2M_LONG_PERIOD.md), A/B 288'er ay ve yıl seçimi. Dönem satırı 24 yıl/288 kayıt gösterir; grafik yalnız seçilen yılın 12 ayıdır. Eski 2023/2024 rapor kimlikleri korundu; bilimsel eğilim ve maske kabulü yok. Çalıştırma aynı: Windows CMD `scripts\start-preview.cmd`, Mac `sh scripts/start-preview.sh`. Önceki bölümlerin sürüm/test sayıları ilgili tarihli dilime aittir.
