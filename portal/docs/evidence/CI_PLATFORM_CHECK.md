@@ -2,7 +2,7 @@
 status: Validating
 updated: "2026-10-26"
 review_summary: "Yıllık ekran kodunun uzak platform sonuçları ve ARM64 kurulum düzeltmesi."
-change_summary: "07f87a3 dört işi geçti; ARM64 QEMU kurulumunda durdu. Platform değişkeni Compose adımlarına daraltıldı; yeni uzak sonuç ayrı izlenir."
+change_summary: "07f87a3 dört işi geçti; ARM64 QEMU kurulumu hata verdi. b7e0333 düzeltmesi gönderildi; yeni koşuda QEMU geçti, konteyner kontrolleri sürüyor."
 ---
 # Uzak platform kontrolleri ve ARM64 kurulumu
 
@@ -33,3 +33,7 @@ Yerel PyYAML kontrolü yeni/eski workflow ağaçlarını UTF-8 ile okuyarak yaln
 ## Eşzamanlı katkı ve paylaşım
 
 [Copilot PR #1](https://github.com/sq0eezy/expedition-73/pull/1) metni ve yorumları okundu. İncelenen başlık f0bca80 yalnız boş “Initial plan” commit'i, sıfır değişen dosya ve yorumsuz taslaktı; açıklaması aynı neden ve kapsam önerisini içeriyor. Bu PR'dan uygulanmış kod veya M2 onayı alınmış sayılmaz. PR/main değiştirilmeden mevcut M1 dalında dar düzeltme hazırlanır; sonraki uzak koşunun başlık SHA'sı ve sonucu [SYNC](../team/SYNC.md) içinde ayrı tutulur. Bilimsel kaynaklar/yöntemler, maske/sınır/dönem ve M2 kabulü değişmez; main/Pages/Sites yayını yok.
+
+## Düzeltme sonrası ilk gerçek gözlem
+
+Normal push sonrası ls-remote **b7e03335d6d6cfbbdfd484fa2826532cd95352ff** ile eşleşti. [40369026391](https://github.com/sq0eezy/expedition-73/actions/runs/40369026391) tam bu kod SHA'sında başladı. [ARM64 işi 121734439215](https://github.com/sq0eezy/expedition-73/actions/runs/40369026391/job/121734439215) içinde QEMU kurulum adımı **completed/success**, sonraki Container checks adımı **in_progress** olarak gözlendi. Önceki kurulum engeli aşıldı; bu gözlem tek başına bütün ARM64 testleri/build/HTTP veya genel matrix başarısı değildir. Beş işin tamamı bu gözlemde sürüyordu. Portal check/strict build (8,64 s) geçti; bunlar workflow runtime testi değildir. Yeni yerel önizleme sunucusu başlatılmadı.

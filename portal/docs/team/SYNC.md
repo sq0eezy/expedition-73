@@ -1,6 +1,6 @@
 ---
 review_summary: "Ortak webden okuma, GitHub üzerinden düzenleme ve yerel kaynakları eşitleme."
-change_summary: "07f87a3 için native üç platform/Docker AMD64 geçti, ARM64 kurulumda hata verdi. Dar CI düzeltmesi M1 dalında hazırlanıyor; main/M2/Pages aynı."
+change_summary: "b7e0333 M1 dalına gönderildi, uzak SHA eşleşti. Yeni CI'da ARM64 QEMU kurulumu geçti; bütün matrix sonucu henüz yok. Main/M2/Pages aynı."
 ---
 
 # Paylaşım ve kurulum
@@ -9,7 +9,7 @@ change_summary: "07f87a3 için native üç platform/Docker AMD64 geçti, ARM64 k
 
 Önceki paylaşımın kod SHA'sı 07f87a3, paylaşım belge başlığı 2de8bf8 uzak M1 ile eşleşti. [40335437683](https://github.com/sq0eezy/expedition-73/actions/runs/40335437683) tamamlandı: Windows/macOS ARM64/Ubuntu ve Docker AMD64 success, Docker ARM64 QEMU kurulumunda failure. [Tam kanıt ve kapsam](../evidence/CI_PLATFORM_CHECK.md). İlk in_progress gözlemi tarihsel olarak korunur; bütün matrix başarılı sayılmaz.
 
-Devam talebiyle hedef mimari ayarı yalnız Compose adımlarına daraltıldı. Testler/uygulama/bilimsel kaynaklar aynı. Düzeltme mevcut M1 dalında normal commit/push ile paylaşılır; yeni uzak SHA/koşu sonucu ayrıca kaydedilir. Fetch'te Copilot dalı/PR #1 görülüp metin ve yorumları okundu; incelenen f0bca80 boş plan commit'i. PR/main değiştirilmedi, M2'ye yeni niyet atfedilmedi. Main a1a83d5, M2 6047c42 korunur; Pages/Sites/main merge yok.
+Devam talebiyle hedef mimari ayarı yalnız Compose adımlarına daraltıldı. Testler/uygulama/bilimsel kaynaklar aynı. Düzeltme normal commit/push ile **b7e03335d6d6cfbbdfd484fa2826532cd95352ff** olarak mevcut M1 dalına gönderildi; ls-remote eşleşti. [Yeni CI 40369026391](https://github.com/sq0eezy/expedition-73/actions/runs/40369026391) aynı SHA'da başladı. ARM64 QEMU adımı success, konteyner kontrolleri in_progress; ilk engel aşıldı, bütün testlerin başarısı henüz doğrulanmadı. Bu sonraki belge kaydı aynı dala gönderilir; yeni uygulama testi değildir. Fetch'te Copilot dalı/PR #1 görülüp metin ve yorumları okundu; incelenen f0bca80 boş plan commit'i. PR/main değiştirilmedi, M2'ye yeni niyet atfedilmedi. Main a1a83d5, M2 6047c42 korunur; Pages/Sites/main merge yok.
 
 ## 2026-10-26 · Yıllık web ve önceki M1 dilimleri GitHub'da
 

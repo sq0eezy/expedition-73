@@ -1,5 +1,7 @@
 # İş panosu
 
+**2026-10-26 · D-02 uzak CI:** [07f87a3 iş günlükleri](../evidence/CI_PLATFORM_CHECK.md) üç native ve Docker AMD64 için 222 Python/43 JS başarısını doğruladı. Docker ARM64 kurulum hatasına yönelik b7e0333 mevcut M1 dalına gönderildi; yeni koşuda QEMU geçti, konteyner kontrolleri sürüyor. D-02 Validating kalır; hosted Mac sonucu M2 kullanım kabulü değildir. [Güncel koşu](../team/SYNC.md).
+
 **2026-10-26 · T-04/U-02 yıllık ekran:** Kullanıcı devam ve GitHub'a gönderim istedi. [Kart/tablo, kaynak bağı ve kapsam](../guide/ANNUAL_WEB.md) eklendi; [43 JS/76 Chrome](../evidence/ANNUAL_WEB_CHECK.md) geçti. Yöntem kabulü, M2 incelemesi ve yıllık motor entegrasyonu açık; GitHub gönderim kanıtı SYNC'e bağlanır, main/Pages ayrı kalır.
 
 **2026-10-26 · T-03 aday yıllık hesap:** M1 devam talebiyle [eşit ay/takvim günü](../research/TEMPORAL_AGGREGATION.md) mevcut maskesiz A/B 24'er yılda hesaplandı ve API yıllık hücre özetleriyle karşılaştırıldı. [CLI/kanıt](../evidence/ANNUAL_WEIGHTING_CHECK.md). Bu yeni aday yöntem denemesidir; R-A05/R-B05 tamamlandı, yöntem seçildi veya M2 başladı sayılmaz. Web/motora entegrasyon ve bilimsel profil açık; yerel M1 dalında.

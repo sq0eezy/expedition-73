@@ -3,7 +3,7 @@ status: Validating
 updated: "2026-10-26"
 phase: Uzak platform kontrolü ve ARM64 kurulum düzeltmesi
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "07f87a3 üç native platform ve Docker AMD64 kontrolünü geçti. ARM64 QEMU kurulumu hata verdi; hedef mimari değişkeni Compose adımlarına daraltıldı. Yeni uzak sonuç SYNC'te izlenir."
+change_summary: "b7e0333 CI düzeltmesi M1 dalında paylaşıldı; yeni koşuda ARM64 QEMU kurulumu geçti. Konteyner kontrolleri sürüyor; bilimsel politika/main/Pages aynı."
 ---
 # Mevcut durum
 
