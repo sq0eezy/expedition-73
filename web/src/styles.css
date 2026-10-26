@@ -246,3 +246,8 @@ h1{font-size:27px;letter-spacing:-1.2px}
 
 .review-controls{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:24px}.review-controls button,.review-open{font:inherit;font-size:12px;line-height:1.5;border:1px solid #cbd6cc;border-radius:6px;background:#f4f7f1;color:#285440;padding:11px 14px}.review-controls button{cursor:pointer}.review-open input{display:block;font-size:11px;margin-top:7px;max-width:100%;color:#5b695f}.review-controls button:disabled{opacity:.5;cursor:default}.review-open{min-width:0;max-width:100%}
 @media(max-width:740px){.review-controls{align-items:stretch;flex-direction:column}}
+
+.history-panel{margin-top:22px;padding:28px;background:#fff;border:1px solid var(--line);border-radius:14px;min-width:0}
+#history-chart{display:block;width:100%;height:auto}.history-path{stroke-width:1.6}
+.history-values{font-size:12px;margin-top:18px}.history-values summary{cursor:pointer;padding:10px 0}.history-values .table-scroll{max-height:380px;overflow:auto}
+@media(max-width:740px){.history-panel{padding:18px}.history-panel .panel-heading{display:block}.history-panel .source-chip{display:inline-block;margin-top:10px}.history-path{stroke-width:1.1}}

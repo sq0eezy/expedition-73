@@ -6,6 +6,8 @@ change_summary: "A/B için 288'er ay alındı; web yıl kataloğu 24 yıla geni�
 ---
 # 2001–2024 · Gerçek kaynak ve yıl kataloğu
 
+**2026-10-26 güncel arayüz:** [Kayıtlı 288 ay görünümü](T2M_TIMELINE.md) eklendi. Bu sayfadaki ilk tek yıl ekranı ve sonraki görünüm önerisi 2026-10-24 aşamasına aittir; kaynak erişimi ve bilimsel sınırlar korunur.
+
 M1'in devam talebiyle [iki yıllık erişim altyapısı](T2M_HISTORY.md) daha uzun aday dönemde çalıştırıldı. Bu çalışma kesin bölge/sınır, bilimsel dönem, maske veya istatistik yöntemini seçmez. [Gerçek kontrol kaydı](../evidence/T2M_LONG_PERIOD_CHECK.md).
 
 | Kayıt | A aday penceresi | B aday penceresi |

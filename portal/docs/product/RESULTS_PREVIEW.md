@@ -1,10 +1,14 @@
 ---
 status: Validating
-updated: "2026-10-24"
+updated: "2026-10-26"
 review_summary: "Gerçek kayıtlı sıcaklık sonuçlarını inceleten ilk yerel ekran; bilimsel ve ürün sınırları."
-change_summary: "2001–2024 24 yıl/288 aylık gerçek kayıt yıl seçimine bağlandı; eski rapor kimlikleri korundu. Trend/istatistik ve bilimsel profil açık."
+change_summary: "Mevcut 288 ay uzun dönem grafiği/tablosunda ve bağlı ay seçiminde görünür; kaynak/sözleşmeler aynı, istatistik/eğilim açık."
 ---
 # İlk sonuç ekranı · Yerel teknik prototip
+
+## 2026-10-26 · Bütün aylara birlikte bakma
+
+[288 aylık görünüm](../guide/T2M_TIMELINE.md) yıl grafiğinin altındadır. Her ay aynı kayıtlı değeriyle çizilir; tablo/ay seçici, üst yıl/ay, hücre, kaynak, hesap akışı ve rapor açılması aynı tarihi izler. Pencere/yüzey seçimi ortaktır; null ay çizgiyi keser, uygun olmayan yıllık kaynak/sınır/grid/ağırlık/işlem karışımı uzun dönemden engellenir. Yalnız tüketilen fraksiyon/işlemler eşleşmeye katılır. [Gerçek kontroller](../evidence/TIMELINE_PREVIEW_CHECK.md): 201 Windows, 37 JS, 65 Chrome. Mevcut data/results.json byte aynı, altı dosya ve web/annual/rapor/manifest sözleşmeleri korunur. Yeni bilimsel hesap/yıllık özet/anomali/eğilim/M2 kabulü veya yayın yok. Önceki bölümlerdeki tek yıl kapsamı ilgili aşamayı anlatır.
 
 ## 2026-10-24 · Gerçek 24 yıllık katalog
 

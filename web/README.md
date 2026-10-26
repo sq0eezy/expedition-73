@@ -1,5 +1,7 @@
 # Expedition 73 · İlk sonuç ekranı
 
+**2026-10-26 arayüz:** [Bütün 288 ay](../portal/docs/guide/T2M_TIMELINE.md) ayrı grafik/tablo ve ay seçiciyle incelenir. Seçilen ay yıl/ay/hücre/kaynak/rapor ayrıntılarına bağlıdır; pencere/yüzey seçimi ortaktır. Yalnız kayıtlı aylar taşınır, yeni istatistik/eğilim yok. Kaynak JSON byte'ları ve altı genel dosyalı sözleşme değişmedi. [Gerçek kontroller](../portal/docs/evidence/TIMELINE_PREVIEW_CHECK.md). Önceki tarihli bölümler ilgili dilimi anlatır.
+
 **2026-10-24 güncel kayıt:** [2001–2024 aday dönemi](../portal/docs/guide/T2M_LONG_PERIOD.md), A/B 288'er ay ve yıl seçimi. Dönem satırı 24 yıl/288 kayıt gösterir; grafik yalnız seçilen yılın 12 ayıdır. Eski 2023/2024 rapor kimlikleri korundu; bilimsel eğilim ve maske kabulü yok. Çalıştırma aynı: Windows CMD `scripts\start-preview.cmd`, Mac `sh scripts/start-preview.sh`. Önceki bölümlerin sürüm/test sayıları ilgili tarihli dilime aittir.
 
 Kayıtlı gerçek NASA POWER T2M ve MERRA-2 fraksiyon örneklerini inceleyen **yerel teknik prototip**. Mevcut yönetim portalından ayrıdır; nihai web ürünü/yığın veya bilimsel profil kabulü değildir. Bu dilimde framework ve ek tarayıcı paketleri gerektirmeyen HTML/CSS/JS kullanıldı. Yayın/hesap sunucusu kurulmadı.

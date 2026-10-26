@@ -5,6 +5,10 @@ change_summary: "6b4ab12 ve önceki M1 çalışmaları GitHub geliştirme dalın
 
 # Paylaşım ve kurulum
 
+## 2026-10-26 · Uzun dönem görünümü yerelde
+
+Başlangıç temiz c9e7d9c, fetch sonrası main a1a83d5 ve uzak M1/M2 6047c42; yeni katkı yok. [288 aylık görünüm](../guide/T2M_TIMELINE.md) aynı kaynak byte'larıyla yerel M1 dalında eklendi; önceki yedi yerel commit korunur. Push/main merge/Pages/Sites/dış mesaj yok. H-M1-020/M2 incelemesi bekler; mevcut uzak dal yeni kodu/verileri içermez. M2'nin özel sohbeti veya yeni kabulü biliniyor sayılmaz.
+
 ## 2026-10-24 · Uzun aday dönem yerelde
 
 Başlangıç temiz cfaf9d2. Fetch sonrası main a1a83d5, uzak M1/M2 6047c42; yeni katkı yok. [2001–2024 kayıt/yıl kataloğu](../guide/T2M_LONG_PERIOD.md) yerel M1 dalında; önceki altı yerel commit korunur. Push/main merge/Pages/Sites/dış mesaj yapılmadı. H-M1-019/M2 incelemesi bekler; mevcut uzak dal bu veri/ekranı içermez. M2 notu ve iş sahipliği değiştirilmedi.

@@ -29,7 +29,7 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
       const a = data.regions[0].series[month][policy], b = data.regions[1].series[month][policy];
       assert.deepEqual(actual, [a, b, a - b].map((v) => format(v) + '°C'));
     };
-    await checkMetrics('unmasked', 0); assert.equal(await page.locator('.chart-path').count(), 2);
+    await checkMetrics('unmasked', 0); assert.equal(await page.locator('#chart .chart-path').count(), 2);
     assert.equal(await page.locator('#data-table tbody tr').count(), 12); checks++;
     const comparisonCard = (id) => page.locator(`.comparison-card[data-region="${id}"]`);
     const six = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 6, maximumFractionDigits: 6 });
@@ -110,7 +110,7 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     await noCrypto.addInitScript(() => Object.defineProperty(globalThis, 'crypto', { value: undefined, configurable: true }));
     await noCrypto.goto(base); await noCrypto.locator('#results').waitFor({ state: 'visible' });
     assert.equal(await noCrypto.locator('#review-download').isDisabled(), true); assert.equal(await noCrypto.locator('#review-file').isDisabled(), true);
-    assert.equal(await noCrypto.locator('.chart-path').count(), 2); await noCrypto.close(); checks++;
+    assert.equal(await noCrypto.locator('#chart .chart-path').count(), 2); await noCrypto.close(); checks++;
     await page.locator('#pair-swap').click(); await page.locator('#policy').selectOption('unmasked'); await page.locator('#month').fill('0');
     assert.equal(await page.locator('#trace-graph .trace-node').count(), 5);
     assert.equal(await page.locator('#trace-graph .trace-edge').count(), 8);
@@ -168,7 +168,7 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     await page.getByRole('checkbox', { name: 'A · Colorado çevresi', exact: true }).uncheck();
     assert.equal(await page.locator('#spatial-region').inputValue(), 'B');
     assert.equal(await page.locator('#cell-grid [data-cell]').count(), 55);
-    assert.equal(await page.locator('.chart-path').count(), 1);
+    assert.equal(await page.locator('#chart .chart-path').count(), 1);
     assert.equal(await page.locator('#metrics .metric').count(), 1);
     await page.getByRole('checkbox', { name: 'B · Kuzey Alaska', exact: true }).uncheck();
     assert.equal(await page.locator('#empty').isVisible(), true); assert.equal(await page.locator('#download').isDisabled(), true);
@@ -215,7 +215,7 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     assert.equal(await missing.locator('#metrics .metric > strong').first().innerText(), 'Veri yok');
     assert.equal(await missing.locator('#metrics .difference > strong').innerText(), 'Veri yok');
     assert.equal(await missing.locator('#pair-metrics article strong').nth(2).innerText(), '11/12');
-    assert.equal((await missing.locator('.chart-path').first().getAttribute('d')).match(/M/g).length, 2); checks++;
+    assert.equal((await missing.locator('#chart .chart-path').first().getAttribute('d')).match(/M/g).length, 2); checks++;
     assert.equal(await missing.locator('#cell-detail h3').innerText(), 'Veri yok');
     assert.equal(await missing.locator('#cell-grid [data-cell="0"]').getAttribute('fill'), '#d7dcd4');
     assert.match(await missing.locator('#cell-detail').innerText(), /0,000 km² · sıcaklık eksik/); checks++;
@@ -360,6 +360,82 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
         });
         await invalidCatalog.goto(base); await invalidCatalog.locator('#error').waitFor({state:'visible'});
         assert.equal(await invalidCatalog.locator('#results').isVisible(), false); await invalidCatalog.close(); checks++;
+      }
+    }
+    if (bundle.schema_version === '0.4.0') {
+      const annuals = bundle.snapshots.map((s) => JSON.parse(s.data_json));
+      for (const policy of ['unmasked', 'land', 'land_and_ice']) {
+        await page.locator('#policy').selectOption(policy);
+        assert.equal(await page.locator('#history-content').isVisible(), true);
+        assert.equal(await page.locator('#history-table tbody tr').count(), 288);
+        const actual = await page.locator('#history-table tbody tr').evaluateAll((rows) => rows.map((row) => [...row.children].map((c) => c.textContent)));
+        const expected = annuals.flatMap((s) => s.dates.map((date,i) => [date,...s.regions.map((r) => r.series[i][policy].toLocaleString('tr-TR',{minimumFractionDigits:6,maximumFractionDigits:6}))]));
+        assert.deepEqual(actual, expected);
+        for (const line of await page.locator('#history-chart .history-path').all()) {
+          assert.equal(await line.getAttribute('data-records'),'288'); assert.equal(await line.getAttribute('data-valid'),'288');
+          assert.equal((await line.getAttribute('d')).match(/[ML]/g).length,288);
+        } checks++;
+      }
+      await page.locator('#policy').selectOption('unmasked');
+      await page.locator('#history-month').fill('0');
+      assert.equal(await page.locator('#year').inputValue(),'2001'); assert.equal(await page.locator('#month').inputValue(),'0');
+      assert.equal(await page.locator('#comparison-month').innerText(),'Ocak 2001');
+      assert.equal(await page.locator('#history-month').getAttribute('aria-valuetext'),'Ocak 2001'); checks++;
+      await page.locator('#history-month').focus(); await page.keyboard.press('End');
+      assert.equal(await page.locator('#year').inputValue(),'2024'); assert.equal(await page.locator('#month').inputValue(),'11');
+      assert.equal(await page.locator('#history-month').getAttribute('aria-valuetext'),'Aralık 2024');
+      assert.equal(await page.locator('#history-month').evaluate((node)=>document.activeElement===node),true); checks++;
+      await page.locator('#history-month').fill('11'); await page.keyboard.press('ArrowRight');
+      assert.equal(await page.locator('#year').inputValue(),'2002'); assert.equal(await page.locator('#month').inputValue(),'0'); checks++;
+      await page.locator('#year').selectOption('2012'); await page.locator('#month').fill('5');
+      assert.equal(await page.locator('#history-month').inputValue(),'137');
+      assert.equal(await page.locator('#history-month-label').innerText(),'Haziran 2012');
+      await page.locator('#review-file').setInputFiles(reportPath);
+      await page.waitForFunction(()=>document.getElementById('history-month').value==='285'); checks++;
+      for (const id of ['A','B']) await page.locator(`#region-options input[value="${id}"]`).uncheck();
+      assert.equal(await page.locator('#history-content').isVisible(),false); assert.equal(await page.locator('#history-month').isDisabled(),true);
+      assert.equal(await page.locator('#history-table tbody tr').count(),0);
+      await page.locator('#region-options input[value="B"]').check();
+      assert.equal(await page.locator('#history-chart .history-path').count(),1);
+      assert.equal(await page.locator('#history-table tbody tr').first().locator('td').count(),1);
+      await page.locator('#region-options input[value="A"]').check(); checks++;
+      await page.setViewportSize({width:1440,height:1100});
+      await page.locator('.history-panel').screenshot({path:path.join(screenshots,'history-desktop.png')});
+      await page.setViewportSize({width:390,height:844});
+      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth),false);
+      await page.locator('.history-panel').screenshot({path:path.join(screenshots,'history-mobile.png')}); checks++;
+      for (const kind of ['recipe','fractions','missing-boundary']) {
+        const sample = await browser.newPage(); sample.on('pageerror',(error)=>errors.push(error.message));
+        await sample.route('**/data/results.json',(route)=>{
+          const changed = structuredClone(bundle);
+          for (const snapshot of changed.snapshots) {
+            if (snapshot.year !== 2002 && !(kind==='missing-boundary' && snapshot.year===2001)) continue;
+            const source = JSON.parse(snapshot.data_json), r = source.regions[0];
+            if (kind==='recipe') r.workflow_trace.nodes.find((n)=>n.id==='Temperature').operation_version='0.2.0';
+            if (kind==='fractions') r.provenance.surface_fractions.version='fixture-other';
+            if (kind==='missing-boundary') { const index = snapshot.year===2001?11:0; r.series[index].unmasked=null; r.spatial.cells[0].series[index].value=null; }
+            snapshot.data_json=JSON.stringify(source); snapshot.sha256=createHash('sha256').update(snapshot.data_json).digest('hex');
+          }
+          return route.fulfill({json:changed});
+        });
+        await sample.goto(base); await sample.locator('#results').waitFor({state:'visible'});
+        if (kind==='recipe') {
+          assert.equal(await sample.locator('#history-content').isVisible(),false); assert.match(await sample.locator('#history-status').innerText(),/birleştirilmedi/);
+          assert.equal(await sample.locator('#data-table tbody tr').count(),12);
+          await sample.locator('#region-options input[value="A"]').uncheck();
+          assert.equal(await sample.locator('#history-content').isVisible(),true);
+        } else if (kind==='fractions') {
+          assert.equal(await sample.locator('#history-content').isVisible(),true);
+          await sample.locator('#policy').selectOption('land'); assert.equal(await sample.locator('#history-content').isVisible(),false);
+          await sample.locator('#policy').selectOption('unmasked'); assert.equal(await sample.locator('#history-content').isVisible(),true);
+        } else {
+          const line = sample.locator('#history-chart .history-path[data-region="A"]');
+          assert.equal(await line.getAttribute('data-valid'),'286'); assert.equal((await line.getAttribute('d')).match(/M/g).length,2);
+          await sample.locator('.history-values summary').click();
+          for (const date of ['2001-12','2002-01']) assert.equal(await sample.locator(`#history-table tr[data-date="${date}"] td`).first().innerText(),'Veri yok');
+          await sample.locator('#history-month').fill('12'); assert.equal(await sample.locator('#metrics .metric > strong').first().innerText(),'Veri yok');
+        }
+        await sample.close(); checks++;
       }
     }
     assert.deepEqual(errors, []); assert.deepEqual(uploads, []);

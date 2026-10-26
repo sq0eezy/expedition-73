@@ -2,6 +2,7 @@
 
 | Kayıt | Kapsam |
 |---|---|
+| [288 aylık görünüm](TIMELINE_PREVIEW_CHECK.md) | Kaynakları değiştirmeden aylık grafik/tablo, sözleşme uygunluğu ve yıl/ay/rapor bağlantısı; istatistik değil |
 | [Gerçek 24 yıllık kaynak/yıl kataloğu](T2M_LONG_PERIOD_CHECK.md) | A/B 2001–2024 288/288 ay; eski kaynak byte'ları korunur, bilimsel eğilim yok |
 | [Gerçek iki yıllık geçmiş/yıl ekranı](T2M_HISTORY_CHECK.md) | Yeni 2023/korunan 2024, A/B 24/24 ay, annual kaynak replay, 197 Windows/30 JS/49 Chrome; 2001–2024 yalnız plan |
 | [Karşılaştırma inceleme raporu](COMPARISON_REVIEW_CHECK.md) | Tam kaynak kimliği, yeniden hesaplama ve seçimleri geri açma; Windows 180/JS 30/Chrome 42; kişi/bilimsel onay değil |

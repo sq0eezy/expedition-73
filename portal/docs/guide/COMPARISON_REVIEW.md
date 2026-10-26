@@ -33,3 +33,5 @@ Saf `createComparisonReview`/`verifyComparisonReview` mevcut comparison.mjs içi
 Bu işlem normalleştirilmiş kayıttaki **JS pencere farkını** tekrarlar; NASA ham API/NetCDF dönüşümünü tarayıcıda yeniden yapmaz. Onlar builder kaynak tekrarında doğrulanır. Trend/ısınma etkisi/güven aralığı veya bilimsel maske/sınır/uzun dönem seçimi eklenmedi. [H-M1-017](../team/HANDOFFS.md) M2 incelemesi bekler; yeni kod yerel M1 dalındadır.
 
 Yıllar arası rapor açılışında seçilen ayın yılı katalogda bulunmalıdır. Önce o snapshot ve bütün sonuçlar doğrulanır, sonra yıl değiştirilir. [Çok yıllı kaynak/yıl kılavuzu](T2M_HISTORY.md).
+
+2026-10-26: [Uzun dönem işaretçisi](T2M_TIMELINE.md) de doğrulanan raporun ayına gider. Rapor hâlâ tek yıllık snapshot'a bağlıdır; bütün 288 ayın istatistik raporu eklenmedi.

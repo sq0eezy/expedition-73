@@ -29,7 +29,7 @@
     </aside>
     <main id="main" tabindex="-1">
       <div class="intro"><div><div class="eyebrow">İKLİM / TEK GÖSTERGELİ PİLOT</div><h1>2 metre hava sıcaklığı<span class="title-dot">.</span></h1><p>Aynı göstergeyi iki aday pencerede incele. Önce veriyi, sonra farkı gör.</p></div><span class="year-mark" id="year-mark">2024</span></div>
-      <div class="notice"><span class="notice-label">ADAY ANALİZ</span><span>Grafik seçtiğin yılın aylık kayıtlarını gösterir. Bölge ve maske seçimi açık; eğilim ve iklim etkisi hesaplanmadı.</span></div>
+      <div class="notice"><span class="notice-label">ADAY ANALİZ</span><span>Yıl grafiği ve uzun dönem görünümü kayıtlı aylık değerleri gösterir. Bölge ve maske seçimi açık; eğilim ve iklim etkisi hesaplanmadı.</span></div>
       <div id="error" class="error" role="alert" hidden><h2>Veri yüklenemedi</h2><p>Doğrulanmış sonuç dosyasına erişilemiyor. Önizlemeyi yeniden derleyip yerel HTTP adresinden açın.</p><button id="retry" type="button">Yeniden dene</button></div>
       <div id="loading" class="loading" role="status">Kayıtlı NASA sonuçları yükleniyor…</div>
       <div id="results" hidden>
@@ -37,6 +37,16 @@
         <section class="controls" aria-label="Grafik seçimleri"><div class="policy-control"><label for="year">KAYITLI YIL</label><select id="year"></select></div><fieldset><legend>ADAY PENCERELER</legend><div id="region-options" class="region-options"></div></fieldset><div class="policy-control"><label for="policy">YÜZEY AĞIRLIĞI</label><select id="policy"><option value="unmasked">Bütün pencere · maskesiz</option><option value="land">Kara oranı · FRLAND (aday)</option><option value="land_and_ice">Kara + kara buzu (aday)</option></select></div></section>
         <section id="metrics" class="metrics" aria-label="Seçili ay sıcaklıkları" aria-live="polite"></section>
         <section class="chart-panel" aria-labelledby="chart-heading"><div class="panel-heading"><div><span class="section-label">ZAMAN SERİSİ</span><h2 id="chart-heading">Bir yılın sıcaklık ritmi</h2></div><div class="chart-unit">AYLIK ORTALAMA <strong>°C</strong></div></div><div id="legend" class="legend"></div><p id="empty" class="empty" hidden>Grafiği görmek için en az bir aday pencere seçin.</p><div id="chart-wrap" class="chart-wrap"><svg id="chart" viewBox="0 0 920 290" role="img" aria-labelledby="chart-title chart-desc"></svg></div><div class="month-control"><label for="month">AYI İNCELE <strong id="month-label">Ocak</strong></label><input id="month" type="range" min="0" max="11" value="0" step="1" aria-label="İncelenen ay"><span class="month-end">ARALIK</span></div><p class="chart-caption" id="chart-caption"></p></section>
+        <section class="history-panel" aria-labelledby="history-heading">
+          <div class="panel-heading"><div><span class="section-label">KAYITLI DÖNEMİN TAMAMI</span><h2 id="history-heading">Aylar boyunca birlikte bak</h2></div><span class="source-chip">Aylık kayıtlar · °C</span></div>
+          <p class="detail-note">Bütün kayıtlı aylar kendi değerleriyle gösterilir. Mevsimsel dalgalanma korunur; yıllık ortalama, anomali, eğilim veya iklim etkisi hesaplanmaz.</p>
+          <p id="history-status" class="detail-note" role="status"></p>
+          <div id="history-content" hidden><div id="history-legend" class="legend"></div><svg id="history-chart" viewBox="0 0 920 277" role="img" aria-labelledby="history-chart-title history-chart-desc"></svg>
+            <div class="month-control"><label for="history-month">AY SEÇ <strong id="history-month-label"></strong></label><input id="history-month" type="range" min="0" max="0" value="0" step="1" aria-label="Uzun dönemde incelenen ay" disabled></div>
+            <p class="detail-note">Seçtiğin ay yukarıdaki yıl/ay alanına ve aşağıdaki hücre, kaynak ve karşılaştırma ayrıntılarına da uygulanır. Eksik değerler birleştirilmez. Dikey ölçek görünür serilere göre değişir.</p>
+            <details class="history-values"><summary>Bütün kayıtlı ayları tablo olarak incele</summary><div class="table-scroll"><table id="history-table"></table></div></details>
+          </div>
+        </section>
         <section class="pair-panel" aria-labelledby="pair-heading">
           <div class="panel-heading"><div><span class="section-label">İKİ PENCERE ARASINDA</span><h2 id="pair-heading">Aynı ayda ne kadar farklılar?</h2></div><span class="source-chip">Betimsel fark</span></div>
           <p class="detail-note">İki aday pencere seç. Soldaki değer eksi sağdaki değer hesaplanır. Bu, aynı yılın mekânsal farkıdır; ısınma, soğuma eğilimi veya neden–sonuç göstermez.</p>

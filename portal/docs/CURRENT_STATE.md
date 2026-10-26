@@ -1,15 +1,17 @@
 ---
 status: Validating
-updated: "2026-10-24"
-phase: Gerçek 24 yıllık kaynak ve yıl kataloğu
+updated: "2026-10-26"
+phase: Kayıtlı 288 aylık görünüm ve bağlı ayrıntılar
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "A/B 2001–2024 288'er ay, 24 yıllık katalog; 201 Windows test/30 JS/53 Chrome geçti. Bilimsel eğilim/maske/dönem ve paylaşım açık."
+change_summary: "288 aylık grafik/tablo ve bağlı ay seçimi hazır; 201 Windows/37 JS/65 Chrome geçti. Kaynaklar aynı; bilimsel istatistik/maske/dönem ve paylaşım açık."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **288 ay tek zaman ekseninde:** [Uzun dönem görünümü](guide/T2M_TIMELINE.md) bütün kayıtlı aylık değerleri, geçerli ay sayısını ve tabloyu gösterir. Ortak pencere/yüzey, klavyeli ay seçimi, yıl/ay/hücre/kaynak/rapor bağlantısı çalışır; uyumsuz yıllar birleştirilmez. [201 Windows/37 JS/65 Chrome kanıtı](evidence/TIMELINE_PREVIEW_CHECK.md). Kaynak JSON ve bilimsel hesap aynı; yeni yıllık özet/anomali/eğilim hesabı yok. Web/annual/rapor/ZIP sözleşmeleri ve altı dosya korunur. T-02/U-02 yerel M1 dilimi; M2 kabulü, yeni Mac/Linux/CI veya yayın yok.
 
 - **Gerçek 2001–2024 aday kaydı:** A/B 288/288 ay, 56/55 hücre; 66 yeni küçük POWER isteği, 2023/2024 kaynakları byte aynı. [Kullanım/sınırlar](guide/T2M_LONG_PERIOD.md), [201 Windows test/30 JS/53 Chrome gerçek kontrolü](evidence/T2M_LONG_PERIOD_CHECK.md). Yıl seçici 2001…2024; grafik seçili yılın 12 ayıdır. Yeni eğilim/istatistik veya bilimsel dönem/maske/sınır kararı yok. M1 dalında yerel; yeni Mac/Linux/CI/yayın yok.
 
@@ -73,4 +75,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-[Gerçek 2001–2024 teknik kaynak aşaması](guide/T2M_LONG_PERIOD.md) tamamlandı: iki pencerede 288'er ay ve 24 yıllık seçim var. Sıradaki teknik öneri kesintisiz 288 aylık görünüm; ardından bilimsel hedefe uygun yıllık özet/anomali/eğilim yöntemi ayrı kararlaştırılır. Kesin sınır/yüzey/dönem ve istatistik profili için ortak bilimsel karar gerekir. M2'nin yeni yıl ekranını veya yeni bilimsel profili kabul ettiği varsayılmaz. Yeni dilim ve önceki geliştirmeler yerel M1 dalında; main/Pages değişmedi. Eski tarihli iki yıllık kayıtlar geçmiş aşamaları anlatır.
+[Kayıtlı 288 aylık görünüm](guide/T2M_TIMELINE.md) tamamlandı. Sıradaki bilimsel tasarım konusu, hedef yüzey/sınır ve dönem ile yıllık özet/anomali/eğilim yöntemini gerekçelendirmek; yeni hesap kabul edilmeden bilimsel sonuç üretmemektir. Şu anki çizgi mevsimsel aylık değerleri taşır. M2'nin yeni ekranı veya bilimsel profili kabul ettiği varsayılmaz. Yeni dilim ve önceki geliştirmeler yerel M1 dalında; main/Pages değişmedi. Eski tarihli kayıtlar geçmiş aşamaları anlatır.

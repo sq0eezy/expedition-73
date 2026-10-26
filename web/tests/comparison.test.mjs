@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFileSync } from 'node:fs';
-import { summarizePolicyDifferences, summarizeRegionDifferences, datasetDigest, createComparisonReview, verifyComparisonReview } from '../src/comparison.mjs';
+import { summarizePolicyDifferences, summarizeRegionDifferences, datasetDigest, createComparisonReview, verifyComparisonReview, recordedMonthlyHistory } from '../src/comparison.mjs';
 
 const series = () => Array.from({ length: 12 }, (_, i) => ({ date: `2024-${String(i + 1).padStart(2, '0')}`, unmasked: 10, land: 10, land_and_ice: 10 }));
 
@@ -72,6 +72,83 @@ function region(id = 'A') {
     spatial: { geometry: 'reconstructed_midpoint_rectangles', longitude_step_deg: 0.625, latitude_step_deg: 0.5, area_radius_m: 6371008.8, fraction_placement: 'uniform_within_full_cell_assumption' },
     workflow_trace: { nodes }, series: series() };
 }
+
+// Small technical context fixture; its numbers are not scientific evidence.
+function historyYear(year) {
+  const dates = Array.from({ length: 12 }, (_, i) => `${year}-${String(i + 1).padStart(2, '0')}`);
+  return { schema_version: '0.3.0', output_type: 'recorded_temperature_web_preview', data_mode: 'recorded_offline_replay', selection_status: 'candidate', inference_performed: false, dates,
+    regions: ['A', 'B'].map((id) => {
+      const r = region(id);
+      r.region = { id, selection_status: 'candidate', candidate_bbox: [0, 0, 1, 1], candidate_window_version: 'fixture-0.1' };
+      r.time.start = dates[0]; r.time.end = dates.at(-1); r.series.forEach((row, i) => row.date = dates[i]);
+      r.support = { cell_count: 1, window_area_m2: 1 };
+      r.spatial.cells = [{ longitude: 0.5, latitude: 0.5, full_cell_bbox: [0, 0, 1, 1], intersection_bbox: [0, 0, 1, 1], intersection_area_m2: 1, weights_m2: { unmasked: 1, land: 1, land_and_ice: 1 } }];
+      return r;
+    }) };
+}
+
+test('recorded history concatenates exact monthly values without mutating annual sources', () => {
+  const input = [historyYear(2023), historyYear(2024)]; input[1].regions[0].series[0].unmasked = -12.3456789;
+  const before = structuredClone(input), result = recordedMonthlyHistory(input, ['B', 'A'], 'unmasked');
+  assert.deepEqual(result.years, [2023, 2024]); assert.equal(result.dates.length, 24);
+  assert.equal(result.series[1].values[12].value, -12.3456789); assert.equal(result.series[1].valid_months, 24);
+  assert.equal(result.scope, 'recorded_months_only'); assert.equal(result.inference_performed, false); assert.deepEqual(input, before);
+});
+test('history retains zero and policy-specific missing months across a year boundary', () => {
+  const input = [historyYear(2023), historyYear(2024)]; input[0].regions[0].series[11].land = null;
+  input[1].regions[0].series[0].land = null; input[1].regions[0].series[1].land = 0;
+  const result = recordedMonthlyHistory(input, ['A'], 'land');
+  assert.deepEqual(result.series[0].values.slice(11, 14), [{date:'2023-12',value:null},{date:'2024-01',value:null},{date:'2024-02',value:0}]);
+  assert.equal(result.series[0].valid_months, 22); assert.equal(recordedMonthlyHistory(input, ['A'], 'unmasked').series[0].valid_months, 24);
+  input.forEach((s) => s.regions[0].series.forEach((r) => r.land = null));
+  assert.equal(recordedMonthlyHistory(input, ['A'], 'land').series[0].valid_months, 0);
+});
+test('history rejects missing, duplicate, reversed years, malformed months and unsupported selections', () => {
+  for (const input of [[], [historyYear(2024),historyYear(2023)], [historyYear(2023),historyYear(2023)], [historyYear(2022),historyYear(2024)], Array.from({length:51},(_,i)=>historyYear(1981+i))]) assert.throws(() => recordedMonthlyHistory(input,['A'],'unmasked'));
+  for (const mutate of [(s)=>s.dates.reverse(), (s)=>s.regions[0].series.pop(), (s)=>s.regions[0].series[0].unmasked=Infinity, (s)=>s.inference_performed=true, (s)=>s.regions.push(s.regions[0])]) {
+    const input = historyYear(2024); mutate(input); assert.throws(() => recordedMonthlyHistory([input],['A'],'unmasked'));
+  }
+  for (const ids of [[], ['A','A'], ['missing']]) assert.throws(() => recordedMonthlyHistory([historyYear(2024)],ids,'unmasked'));
+  assert.throws(() => recordedMonthlyHistory([historyYear(2024)],['A'],'other'));
+});
+test('history refuses changed region support, provider, time or consumed calculation versions', () => {
+  for (const mutate of [(r)=>r.region.candidate_bbox[0]=-1, (r)=>r.region.candidate_window_version='other',
+    (r)=>r.variable.height_m=10, (r)=>r.time.provider_time_standard='UTC', (r)=>r.time.end='2025-12',
+    (r)=>r.provenance.temperature.api_version='other', (r)=>r.provenance.temperature.sources=['other'],
+    (r)=>r.spatial.cells[0].intersection_area_m2=2, (r)=>r.support.window_area_m2=2,
+    (r)=>r.workflow_trace.nodes[0].operation_version='2.0.0']) {
+    const input = [historyYear(2023),historyYear(2024)]; mutate(input[1].regions[0]);
+    assert.throws(() => recordedMonthlyHistory(input,['A'],'unmasked'));
+  }
+  const input = [historyYear(2023),historyYear(2024)]; input[1].regions.pop();
+  assert.throws(() => recordedMonthlyHistory(input,['B'],'unmasked'));
+  assert.equal(recordedMonthlyHistory(input,['A'],'unmasked').dates.length,24);
+});
+test('history uses fraction identity and policy weights only for a consumed surface', () => {
+  for (const mutate of [(r)=>r.provenance.surface_fractions.version='other', (r)=>r.provenance.source_files_sha256.fractions['metadata.dmr.xml']='b'.repeat(64), (r)=>r.spatial.fraction_placement='other']) {
+    const input = [historyYear(2023),historyYear(2024)]; mutate(input[1].regions[0]);
+    assert.equal(recordedMonthlyHistory(input,['A'],'unmasked').dates.length,24);
+    for (const p of ['land','land_and_ice']) assert.throws(() => recordedMonthlyHistory(input,['A'],p));
+  }
+  const input = [historyYear(2023),historyYear(2024)]; input[1].regions[0].spatial.cells[0].weights_m2.land=0.5;
+  assert.throws(() => recordedMonthlyHistory(input,['A'],'land'));
+  assert.equal(recordedMonthlyHistory(input,['A'],'land_and_ice').dates.length,24);
+});
+test('history ignores unused operation changes and temperature request identity, preserving source ordering semantics', () => {
+  const input = [historyYear(2023),historyYear(2024)];
+  input[1].regions[0].workflow_trace.nodes.find((n)=>n.id==='LandIce').operation_version='other';
+  input[1].regions[0].provenance.temperature.response_sha256='b'.repeat(64);
+  input[0].regions[0].provenance.temperature.sources=['MERRA2','fixture']; input[1].regions[0].provenance.temperature.sources=['fixture','MERRA2'];
+  assert.equal(recordedMonthlyHistory(input,['A'],'land').dates.length,24);
+  assert.throws(() => recordedMonthlyHistory(input,['A'],'land_and_ice'));
+});
+test('real A/B 288 unmasked source values remain exact through history projection', () => {
+  const sources = ['a','b'].map((r)=>JSON.parse(readFileSync(new URL(`../../analysis/examples/${r}-history-2001-2024/result.json`,import.meta.url),'utf8')));
+  const input = Array.from({length:24},(_,i)=>historyYear(2001+i));
+  input.forEach((s,i)=>s.regions.forEach((r,j)=>r.series.forEach((row,m)=>row.unmasked=sources[j].series[i*12+m].value)));
+  const result = recordedMonthlyHistory(input,['A','B'],'unmasked');
+  result.series.forEach((r,i)=>assert.deepEqual(r.values,sources[i].series.map((row)=>({date:row.date,value:row.value}))));
+});
 
 test('regional subtraction preserves direction, all tied maxima and inputs', () => {
   const a = region('A'), b = region('B'); b.series[0].unmasked = 8; b.series[1].unmasked = 12;

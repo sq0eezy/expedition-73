@@ -1,4 +1,4 @@
-import { summarizePolicyDifferences, summarizeRegionDifferences, datasetDigest, createComparisonReview, verifyComparisonReview } from "./comparison.mjs";
+import { summarizePolicyDifferences, summarizeRegionDifferences, datasetDigest, createComparisonReview, verifyComparisonReview, recordedMonthlyHistory } from "./comparison.mjs";
 import { traceGraph } from "./trace.mjs";
 
 const $ = (id) => document.getElementById(id);
@@ -6,7 +6,7 @@ const months = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz"
 const shortMonths = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
 const colors = ["#c77543", "#247c78", "#7466a1", "#777c39", "#a3536b", "#3878a6", "#8c6238", "#626c6a"];
 const labels = { unmasked: "Bütün pencere · maskesiz", land: "Kara oranı · FRLAND (aday)", land_and_ice: "Kara + kara buzu (aday)" };
-const state = { data: null, selected: new Set(), month: 0, policy: "unmasked", spatialRegion: null, cell: 0, traceRegion: null, traceNode: null, pairLeft: null, pairRight: null, datasetSha256: null, reviewRequest: 0, periods: new Map(), year: null };
+const state = { data: null, selected: new Set(), month: 0, policy: "unmasked", spatialRegion: null, cell: 0, traceRegion: null, traceNode: null, pairLeft: null, pairRight: null, datasetSha256: null, reviewRequest: 0, periods: new Map(), year: null, historyDates: [] };
 const number = (value, digits = 2) => value === null ? "Veri yok" : value.toLocaleString("tr-TR", { minimumFractionDigits: digits, maximumFractionDigits: digits });
 const el = (tag, text, className) => { const node = document.createElement(tag); if (text !== undefined) node.textContent = text; if (className) node.className = className; return node; };
 const color = (region) => colors[state.data.regions.indexOf(region) % colors.length];
@@ -115,6 +115,53 @@ function renderChart(regions) {
   }
   $("legend").replaceChildren(...regions.map((r) => { const item = el("span", undefined, "legend-item"); item.style.setProperty("--region-color", color(r)); item.append(el("span", undefined, "legend-line"), el("span", `${r.id} · ${named(r)}`)); return item; }));
   $("chart-caption").textContent = `${labels[state.policy]}. Kayıtlı aylık grid sıcaklıkları; eksik aylar boş bırakılır. Dikey ölçek, görünür serilere göre değişir.`;
+}
+
+function renderHistory(regions) {
+  state.historyDates = [];
+  const hide = () => { $("history-content").hidden = true; $("history-month").disabled = true; };
+  for (const id of ["history-chart", "history-table", "history-legend"]) $(id).replaceChildren();
+  $("history-status").className = "detail-note";
+  if (!regions.length) { hide(); $("history-status").textContent = "Uzun dönem grafiği için en az bir aday pencere seçin."; return; }
+  let history;
+  try { history = recordedMonthlyHistory([...state.periods.values()].map((p) => p.data), regions.map((r) => r.id), state.policy); }
+  catch {
+    hide();
+    $("history-status").className = "pair-blocked";
+    $("history-status").textContent = "Seçili pencerelerin yıllık kaynak, sınır, grid, ağırlık veya işlem sözleşmeleri eşleşmiyor. Uzun dönem birleştirilmedi; tek yıl görünümü kullanılabilir.";
+    return;
+  }
+  state.historyDates = history.dates;
+  const count = history.dates.length, selected = history.dates.indexOf(state.data.dates[state.month]);
+  $("history-content").hidden = false; $("history-month").disabled = false;
+  $("history-month").max = String(count - 1); $("history-month").value = String(selected);
+  const date = history.dates[selected], shown = `${months[Number(date.slice(-2)) - 1]} ${date.slice(0, 4)}`;
+  $("history-month-label").textContent = shown; $("history-month").setAttribute("aria-valuetext", shown);
+  $("history-status").textContent = `${history.dates[0]}–${history.dates.at(-1)} · ${count} aylık kayıt · ${labels[state.policy]}. ${history.series.map((r) => `${r.id}: ${r.valid_months}/${count} geçerli ay`).join(" · ")}`;
+  const chart = $("history-chart"), compact = window.matchMedia("(max-width:740px)").matches;
+  const width = compact ? 400 : 920, left = compact ? 34 : 45, right = width - 20, top = 18, bottom = 236;
+  chart.setAttribute("viewBox", `0 0 ${width} 277`);
+  chart.append(svg("title", { id: "history-chart-title" }, `${history.years[0]}–${history.years.at(-1)} kayıtlı aylık hava sıcaklığı`),
+    svg("desc", { id: "history-chart-desc" }, "Her kayıtlı ay kendi konumunda gösterilir. Eksik değer çizgiyi keser; yumuşatma, yıllık ortalama ve eğilim hesabı yoktur. Ay seçici ile tek yıl ayrıntılarına geçilir; sayısal değerler tabloda bulunur."));
+  const values = history.series.flatMap((r) => r.values.map((v) => v.value)).filter((v) => v !== null);
+  const min = Math.floor((Math.min(0, ...values) - 2) / 10) * 10, max = Math.ceil((Math.max(0, ...values) + 2) / 10) * 10;
+  const x = (i) => left + i / (count - 1) * (right - left), y = (v) => bottom - (v - min) / (max - min) * (bottom - top);
+  for (let tick = min; tick <= max; tick += 10) chart.append(svg("line", { x1: left, x2: right, y1: y(tick), y2: y(tick), class: tick === 0 ? "chart-grid chart-zero" : "chart-grid" }), svg("text", { x: left - 9, y: y(tick) + 3, "text-anchor": "end", class: "chart-text" }, String(tick)));
+  const ticks = [...new Set([0, ...history.years.map((_, i) => i * 12).filter((i) => i > 0 && i < count - 12 && (i / 12) % (compact ? 8 : 4) === 0), count - 1])];
+  for (const i of ticks) chart.append(svg("text", { x: x(i), y: bottom + 25, "text-anchor": i === 0 ? "start" : i === count - 1 ? "end" : "middle", class: "chart-text" }, history.dates[i].slice(0, 4)));
+  chart.append(svg("line", { x1: x(selected), x2: x(selected), y1: top, y2: bottom, class: "chart-focus" }));
+  for (const row of history.series) {
+    const region = regions.find((r) => r.id === row.id); let path = "", connected = false;
+    row.values.forEach(({ value: v }, i) => { if (v === null) { connected = false; return; } path += `${connected ? "L" : "M"}${x(i)},${y(v)} `; connected = true; });
+    const line = svg("path", { d: path, class: "chart-path history-path", "data-region": row.id, "data-records": count, "data-valid": row.valid_months }); line.style.setProperty("--region-color", color(region)); chart.append(line);
+    const temperature = row.values[selected].value;
+    if (temperature !== null) { const point = svg("circle", { cx: x(selected), cy: y(temperature), r: 4, class: "chart-point" }); point.style.setProperty("--region-color", color(region)); point.append(svg("title", {}, `${row.id} · ${shown}: ${number(temperature)} °C`)); chart.append(point); }
+  }
+  $("history-legend").replaceChildren(...regions.map((r) => { const item = el("span", undefined, "legend-item"); item.style.setProperty("--region-color", color(r)); item.append(el("span", undefined, "legend-line"), el("span", `${r.id} · ${named(r)}`)); return item; }));
+  const head = el("thead"), header = el("tr"); header.append(el("th", "Ay")); for (const row of history.series) header.append(el("th", `${row.id} · °C`)); head.append(header);
+  const body = el("tbody");
+  history.dates.forEach((date, i) => { const tr = el("tr"); tr.dataset.date = date; tr.append(el("th", date)); for (const row of history.series) tr.append(el("td", number(row.values[i].value, 6))); body.append(tr); });
+  $("history-table").append(el("caption", `${labels[state.policy]} · ${count} kayıtlı ay · °C`), head, body);
 }
 
 function renderSupport(regions) {
@@ -333,7 +380,7 @@ function renderPair(regions) {
 function render() {
   const regions = active();
   $("month-label").textContent = months[state.month]; $("month").setAttribute("aria-valuetext", `${months[state.month]} ${state.data.dates[0].slice(0, 4)}`);
-  renderPair(regions); renderTrace(regions); renderMetrics(regions); renderChart(regions); renderComparison(regions); renderSpatial(regions); renderSupport(regions); renderSources(regions); renderTable(regions);
+  renderPair(regions); renderTrace(regions); renderMetrics(regions); renderChart(regions); renderHistory(regions); renderComparison(regions); renderSpatial(regions); renderSupport(regions); renderSources(regions); renderTable(regions);
   $("download").disabled = !regions.length;
 }
 
@@ -384,7 +431,7 @@ async function load() {
     if (bytes.length > 8_000_000) throw Error("Preview data too large");
     const catalog = await readPeriods(bytes); state.periods = catalog.periods;
     const years = [...state.periods.keys()];
-    $("recorded-coverage").textContent = `Kayıtlı dönem: ${years[0]}–${years.at(-1)} · ${years.length} yıl · pencere başına ${years.length * 12} aylık kayıt. Grafik seçili yılı gösterir; uzun dönem eğilimi hesaplanmadı.`;
+    $("recorded-coverage").textContent = `Kayıtlı dönem: ${years[0]}–${years.at(-1)} · ${years.length} yıl · pencere başına ${years.length * 12} aylık kayıt. Yıl grafiği seçili yılı, uzun dönem görünümü bütün ayları gösterir. Eğilim hesaplanmadı.`;
     $("year").replaceChildren(...[...state.periods.keys()].map((year) => { const option = el("option", String(year)); option.value = String(year); return option; }));
     mountYear(catalog.defaultYear, true); $("results").hidden = false;
   } catch { $("error").hidden = false; }
@@ -394,13 +441,18 @@ async function load() {
 $("year").addEventListener("change", () => mountYear(Number($("year").value)));
 $("policy").addEventListener("change", () => { state.policy = $("policy").value; render(); });
 $("month").addEventListener("input", () => { state.month = Number($("month").value); render(); });
+$("history-month").addEventListener("input", () => {
+  const date = state.historyDates[Number($("history-month").value)]; if (!date) return;
+  state.month = Number(date.slice(-2)) - 1; $("month").value = String(state.month);
+  const year = Number(date.slice(0, 4)); if (year !== state.year) mountYear(year); else render();
+});
 $("trace-region").addEventListener("change", () => { state.traceRegion = $("trace-region").value; state.traceNode = null; renderTrace(active()); });
 $("pair-left").addEventListener("change", () => { state.pairLeft = $("pair-left").value; renderPair(active()); });
 $("pair-right").addEventListener("change", () => { state.pairRight = $("pair-right").value; renderPair(active()); });
 $("pair-swap").addEventListener("click", () => { [state.pairLeft, state.pairRight] = [state.pairRight, state.pairLeft]; renderPair(active()); });
 $("retry").addEventListener("click", load);
 $("spatial-region").addEventListener("change", () => { state.spatialRegion = $("spatial-region").value; state.cell = 0; renderSpatial(active()); });
-window.matchMedia("(max-width:740px)").addEventListener("change", () => { if (state.data) { renderChart(active()); renderTrace(active()); renderPair(active()); } });
+window.matchMedia("(max-width:740px)").addEventListener("change", () => { if (state.data) { renderChart(active()); renderHistory(active()); renderTrace(active()); renderPair(active()); } });
 function downloadJson(data, name) {
   const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }));
   const link = el("a"); link.href = url; link.download = name; document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);

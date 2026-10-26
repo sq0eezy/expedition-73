@@ -78,6 +78,76 @@ function canonical(value) {
   throw Error("Expected finite JSON review fields");
 }
 
+// Concatenate recorded months only. Check each region across years; do not
+// equate the spatial support of different regions or compute any statistic.
+export function recordedMonthlyHistory(snapshots, ids, policy) {
+  const nonempty = (v) => typeof v === "string" && !!v.trim();
+  const finite = (v) => typeof v === "number" && Number.isFinite(v);
+  const bounds = (v) => Array.isArray(v) && v.length === 4 && v.every(finite) && v[0] < v[2] && v[1] < v[3];
+  if (!Array.isArray(snapshots) || !snapshots.length || snapshots.length > 50 ||
+      !Array.isArray(ids) || !ids.length || ids.length > 8 || !ids.every(nonempty) || new Set(ids).size !== ids.length ||
+      !["unmasked", "land", "land_and_ice"].includes(policy)) throw Error("Geçersiz uzun dönem seçimi.");
+  const context = (r, dates) => {
+    summarizePolicyDifferences(r.series);
+    const t = r.time, p = r.provenance?.temperature, s = r.spatial, g = r.region;
+    if (!nonempty(r.id) || g?.id !== r.id || g.selection_status !== "candidate" || !bounds(g.candidate_bbox) || !nonempty(g.candidate_window_version) ||
+        canonical(r.variable) !== canonical({ id: "air_temperature_2m", height_m: 2, unit: "degC" }) ||
+        t?.frequency !== "monthly" || t.calendar !== "gregorian" || !nonempty(t.provider_time_standard) || t.start !== dates[0] || t.end !== dates.at(-1) ||
+        !r.series.every((row, i) => row.date === dates[i]) ||
+        ![p?.provider, p?.product, p?.api_version].every(nonempty) || !Array.isArray(p.sources) || !p.sources.length || !p.sources.every(nonempty) || new Set(p.sources).size !== p.sources.length ||
+        s?.geometry !== "reconstructed_midpoint_rectangles" || s.longitude_step_deg !== 0.625 || s.latitude_step_deg !== 0.5 || s.area_radius_m !== 6371008.8 ||
+        !Array.isArray(s.cells) || !s.cells.length || s.cells.length !== r.support?.cell_count || !finite(r.support.window_area_m2) || r.support.window_area_m2 <= 0) throw Error("Uzun dönem kaynak bağlamı eksik veya geçersiz.");
+    const names = policy === "unmasked" ? ["Temperature"] : ["Temperature", "Fractions", policy === "land" ? "Land" : "LandIce"];
+    const recipe = names.map((id) => {
+      const matches = r.workflow_trace?.nodes?.filter((n) => n.id === id);
+      const n = matches?.length === 1 ? matches[0] : null;
+      const row = [n?.operation, n?.operation_version, n?.output_contract?.type, n?.output_contract?.schema_version, n?.output_contract?.unit];
+      if (row[0] !== id || !row.every(nonempty) || row[4] !== (id === "Fractions" ? "1" : "degC")) throw Error("Uzun dönem işlem sözleşmesi geçersiz.");
+      return row;
+    });
+    const coordinates = new Set();
+    const cells = s.cells.map((c) => {
+      const key = `${c.longitude},${c.latitude}`;
+      if (!finite(c.longitude) || !finite(c.latitude) || coordinates.has(key) || !bounds(c.full_cell_bbox) || !bounds(c.intersection_bbox) ||
+          !finite(c.intersection_area_m2) || c.intersection_area_m2 <= 0 || !finite(c.weights_m2?.[policy]) || c.weights_m2[policy] < 0) throw Error("Uzun dönem hücre desteği geçersiz.");
+      coordinates.add(key);
+      return [c.longitude, c.latitude, c.full_cell_bbox, c.intersection_bbox, c.intersection_area_m2, c.weights_m2[policy]];
+    }).sort((a, b) => a[1] - b[1] || a[0] - b[0]);
+    let surface = null;
+    if (policy !== "unmasked") {
+      const f = r.provenance?.surface_fractions, hashes = r.provenance?.source_files_sha256?.fractions;
+      if (!nonempty(f?.dataset) || !nonempty(f?.version) || s.fraction_placement !== "uniform_within_full_cell_assumption" ||
+          !hashes || !Object.keys(hashes).length || !/^[a-f0-9]{64}$/.test(hashes["metadata.dmr.xml"]) || !Object.values(hashes).every((v) => /^[a-f0-9]{64}$/.test(v))) throw Error("Uzun dönem fraksiyon kaydı geçersiz.");
+      surface = [f.dataset, f.version, hashes, s.fraction_placement];
+    }
+    return canonical([g.id, g.candidate_bbox, g.candidate_window_version, r.variable,
+      t.frequency, t.calendar, t.provider_time_standard, p.provider, p.product, p.api_version, [...p.sources].sort(),
+      s.geometry, s.longitude_step_deg, s.latitude_step_deg, s.area_radius_m, r.support.window_area_m2, cells, recipe, surface]);
+  };
+  const dates = [], baselines = new Map(), years = [];
+  const series = ids.map((id) => ({ id, values: [], valid_months: 0 }));
+  for (const data of snapshots) {
+    if (data?.schema_version !== "0.3.0" || data.output_type !== "recorded_temperature_web_preview" || data.data_mode !== "recorded_offline_replay" || data.selection_status !== "candidate" || data.inference_performed !== false ||
+        !Array.isArray(data.dates) || data.dates.length !== 12 || !Array.isArray(data.regions) || !data.regions.length || data.regions.length > 8 || new Set(data.regions.map((r) => r.id)).size !== data.regions.length) throw Error("Geçersiz yıllık kaynak kaydı.");
+    const year = Number(data.dates[0]?.slice(0, 4));
+    if (!Number.isInteger(year) || year < 1981 || year > 9999 || years.length && year !== years.at(-1) + 1 ||
+        !data.dates.every((date, i) => date === `${year}-${String(i + 1).padStart(2, "0")}`)) throw Error("Uzun dönemde eksik, yinelenen veya sırasız yıl var.");
+    for (const row of series) {
+      const region = data.regions.find((r) => r.id === row.id);
+      if (!region) throw Error(`${row.id} için ${year} kaydı yok; yıllar atlanmadı.`);
+      const signature = context(region, data.dates);
+      if (baselines.has(row.id) && signature !== baselines.get(row.id)) throw Error(`${row.id} · ${year}: kaynak, sınır, grid, ağırlık veya kullanılan işlem sürümü değişiyor.`);
+      baselines.set(row.id, signature);
+      for (const month of region.series) {
+        row.values.push({ date: month.date, value: month[policy] });
+        if (month[policy] !== null) row.valid_months++;
+      }
+    }
+    dates.push(...data.dates); years.push(year);
+  }
+  return { scope: "recorded_months_only", inference_performed: false, policy, dates, years, series };
+}
+
 export async function datasetDigest(bytes) {
   if (!(bytes instanceof Uint8Array) || !bytes.length || bytes.length > 8_000_000) throw Error("Invalid dataset byte size");
   const digest = await globalThis.crypto.subtle.digest("SHA-256", bytes);

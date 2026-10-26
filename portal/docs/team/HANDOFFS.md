@@ -212,3 +212,10 @@ Kaynak şablon: `templates/TEAM_HANDOFF.md`.
 - **Tarih/durum:** 2026-10-24; yerel M1 dalında, paylaşım/M2 incelemesi bekler.
 - **Teslim:** [Kullanım/yorum sınırı](../guide/T2M_LONG_PERIOD.md), [gerçek erişim/kontrol](../evidence/T2M_LONG_PERIOD_CHECK.md). Kaynak paylaşılınca Mac'te `sh scripts/start-preview.sh`; 2001/2012/2024 seç, B tarih/hücre/politikayı ve raporla yıl açılmasını dene. analysis içinde `.venv/bin/python -m expedition73 validate-window-history examples/b-history-2001-2024`.
 - **Sınır:** İki pencere 288'er ay; eski kaynak/rapor kimlikleri korunur. Bu teknik erişim R-B05 başlangıcı/analiz tamamlanması, M2 kabulü veya bilimsel dönem/maske/eğilim kararı değildir. Yeni Mac/Linux/Docker/CI/yayın yok. Yanıt bekleniyor.
+
+## H-M1-020 · Kayıtlı aylar için uzun dönem görünümü
+
+- **Gönderen → alıcı:** M1 → M2; T-02/U-02 için panel içi kayıt, dış mesaj yok.
+- **Tarih/durum:** 2026-10-26; yerel M1 dalında, paylaşım/M2 incelemesi bekler.
+- **Teslim:** [Kullanım](../guide/T2M_TIMELINE.md), [gerçek kontrol](../evidence/TIMELINE_PREVIEW_CHECK.md). Kaynak paylaşılınca Mac'te `sh scripts/start-preview.sh`; uzun dönem ay seçicisini, yıl sınırını, pencere/yüzey seçimlerini, B hücre/kaynak ayrıntılarını ve eski raporu açınca işaretçinin aynı aya gelmesini incele.
+- **Sınır:** 201 Windows analiz/gerçek A-B, 37 JS, 65 Chrome; yeni Mac/Linux/Docker/CI yok. Kaynak JSON/sözleşmeler aynı. Yeni istatistik/maske/dönem/eğilim kabulü veya R-A05/R-B05 tamamlanması değil. Yanıt gelmeden M2 kabulü yazılmaz.
