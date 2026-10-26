@@ -65,9 +65,29 @@ def main(argv=None) -> int:
     annual_check = commands.add_parser("validate-annual-weighting", help="Recompute a saved candidate annual audit from its raw history.")
     annual_check.add_argument("--run", type=Path, required=True)
     annual_check.add_argument("--input", type=Path, required=True)
+    annual_workflow = commands.add_parser("run-annual-workflow", help="Frozen recorded history -> candidate annual summaries through the offline dependency engine.")
+    annual_workflow.add_argument("--run", type=Path, required=True)
+    annual_workflow.add_argument("--output-dir", type=Path, required=True)
     args = parser.parse_args(argv)
     try:
-        if args.command in ("audit-annual-weighting", "validate-annual-weighting"):
+        if args.command == "run-annual-workflow":
+            from . import annual_workflow, workflow_trace
+            if args.output_dir.exists() or args.output_dir.is_symlink():
+                raise PilotError("Output directory already exists; choose a new run directory.")
+            spec, report = annual_workflow.run(args.run)
+            args.output_dir.mkdir(parents=True, exist_ok=False)
+            write_json(args.output_dir / "request.workflow.json", spec)
+            write_json(args.output_dir / "workflow.json", report)
+            summary = {"status": report["status"], "region": spec["context"]["region"]["region_id"],
+                       "nodes": {name: record["status"] for name, record in report["nodes"].items()}}
+            if report["status"] != "completed":
+                print(json.dumps(summary, ensure_ascii=False))
+                return 2
+            result = report["nodes"]["AnnualWeighting"]["artifact"]["value"]
+            write_json(args.output_dir / "annual-weighting.json", result)
+            write_json(args.output_dir / "trace.json", workflow_trace.project(spec, report))
+            print(json.dumps({**summary, "quality": result["quality"]}, ensure_ascii=False))
+        elif args.command in ("audit-annual-weighting", "validate-annual-weighting"):
             from . import annual_weighting
             if args.command == "audit-annual-weighting":
                 print(json.dumps(annual_weighting.run(args.run), ensure_ascii=False, indent=2, allow_nan=False))

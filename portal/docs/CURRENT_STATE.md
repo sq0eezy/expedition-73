@@ -1,15 +1,17 @@
 ---
 status: Validating
 updated: "2026-10-26"
-phase: Uzak platform kontrolü ve ARM64 kurulum düzeltmesi
+phase: Yıllık hesabın modül bağımlılık akışına bağlanması
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "b7e0333 CI düzeltmesi M1 dalında paylaşıldı; yeni koşuda ARM64 QEMU kurulumu geçti. Konteyner kontrolleri sürüyor; bilimsel politika/main/Pages aynı."
+change_summary: "History → AnnualWeighting akışı 234 Windows/43 JS ve gerçek A/B ile geçti. Yedi web dosyası byte aynı; yeni kodun paylaşım/CI kaydı ayrı. Bilimsel politika/main/Pages aynı."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **Yıllık hesap için iki adımlı motor bağlantısı:** [History → AnnualWeighting](guide/ANNUAL_WORKFLOW.md) kayıtlı kaynakları bir kez yakalayıp tekrar doğrular; yıllık işlem aynı özel hesap fonksiyonuyla bu artifact'i tüketir. Kaynak hatasında yıllık adım blocked; gerçek girdi/ata izi ve ayrı küçük trace dosyası var. [234 Windows/43 JS, gerçek A/B akışları ve byte kontrolü](evidence/ANNUAL_WORKFLOW_CHECK.md) geçti. Aday yöntem/audit 0.1.0 ve web/ZIP korunur; webdeki beş düğümlü aylık grafik aynı kalır. M2/bilimsel profil kabulü değildir.
 
 - **Uzak platform sonuçları okundu:** [Tam iş/günlük kanıtı](evidence/CI_PLATFORM_CHECK.md): 07f87a3 için Windows/macOS ARM64/Ubuntu ve Docker AMD64 222 Python/43 JS ile geçti. Docker ARM64 uygulama başlamadan binfmt kurulumunda exec format error verdi; genel koşu failure. Job-geneli hedef mimari değişkeni yalnız Compose adımlarına taşındı; yeni koşu sonucu [SYNC](team/SYNC.md) içinde ayrı tutulur. M2'nin kendi Mac kabulü veya bilimsel onay değildir.
 
@@ -83,4 +85,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-Önce [ARM64 kurulum düzeltmesinin](evidence/CI_PLATFORM_CHECK.md) yeni uzak koşuda QEMU ve uygulama adımlarına geçtiği doğrulanır. [Yıllık aday ekranı](guide/ANNUAL_WEB.md) incelemeye hazırdır. Sıradaki bilimsel konu hedef yüzey/sınır/dönem ile eşit ay/takvim günü hedefini birlikte adlandırmaktır; anomali/eğilim, zaman bağımlılığı, aralık ve p-değeri ayrı gerekçelendirilir. M2'nin aday hesabı veya bilimsel profili kabul ettiği varsayılmaz. Güncel uzak SHA/CI gözlemi [SYNC](team/SYNC.md) kaydındadır. Main/Pages değişmez. Eski tarihli kayıtlar geçmiş aşamaları anlatır.
+[İki adımlı yıllık akışın](guide/ANNUAL_WORKFLOW.md) son tam kontrol/paylaşım ve [ARM64 CI](evidence/CI_PLATFORM_CHECK.md) sonucu ayrı izlenir. Teknik sonraki aday, yıllık akışı webde kaynak bağı korunarak görünür kılmaktır; henüz uygulanmış veya kabul edilmiş sayılmaz. Bilimsel sonraki konu hedef yüzey/sınır/dönem ile eşit ay/takvim günü hedefini birlikte adlandırmaktır; anomali/eğilim, zaman bağımlılığı, aralık ve p-değeri ayrı gerekçelendirilir. M2'nin aday hesabı veya bilimsel profili kabul ettiği varsayılmaz. Güncel uzak SHA/CI gözlemi [SYNC](team/SYNC.md) kaydındadır. Main/Pages değişmez. Eski tarihli kayıtlar geçmiş aşamaları anlatır.

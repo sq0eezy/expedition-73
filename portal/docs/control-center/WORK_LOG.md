@@ -1,5 +1,11 @@
 # Çalışma günlüğü
 
+## 2026-10-26 · Yıllık özel hesap için gerçek modül bağlantısı
+
+M1 devam istedi. Temiz d95cce1'de ekip/durum/fikir/devir/pano okundu; fetch'te yeni alınmamış M1/M2/main katkısı yoktu. [History → AnnualWeighting](../guide/ANNUAL_WORKFLOW.md) sabit raw byte snapshot'ıyla mevcut yıllık formüle bağlandı; parent/annual hash'leri context'te, gerçek artifact/ata izi workflow.json'da. Kaynak hatası yıllık adımı engeller; küçük trace yalnız başarılı çalışmada üretilir. İlk 26 hedef test / 78,808 s geçti; son tam kontrol [kanıtta](../evidence/ANNUAL_WORKFLOW_CHECK.md) ayrı işlenir. T-05/H-M1-023 inceleme bekler. Bilimsel yöntemler/kaynak örnekleri/web grafiği değişmedi; M2 kabulü/main/Pages yayını yok.
+
+Son ortak check **234 test / 559,165 s**, gerçek eski/yeni A/B tekrarları, iki yeni 24 yıllık akış, **43 JS / 827,9406 ms**, syntax ve builder ile exit 0 tamamlandı. Son yedi genel dosya önceki ZIP ile byte aynı; yeni ZIP/Chrome koşusu yok. Portal ilk check/build 5,69 s geçti; son belgeler de kontrol edilir. Yeni sunucu açılmadı. Paylaşım/uzak CI yeni kod için ayrı kaydedilir.
+
 ## 2026-10-26 · Uzak platform sonuçları ve ARM64 kurulum kapsamı
 
 M1 devam istedi. Temiz 2de8bf8'de fetch ve ekip kayıtları okundu; main a1a83d5/M2 6047c42 aynı. [40335437683 günlükleri](../evidence/CI_PLATFORM_CHECK.md) üç native ve Docker AMD64 için 222 Python/43 JS başarısını; ARM64 için uygulama başlamadan QEMU/binfmt exec format error hatasını doğruladı. Job-geneli DOCKER_DEFAULT_PLATFORM yalnız üç Compose adımına daraltıldı. Matrix/testler/read_only/ağsız koşullar/cleanup aynı; UTF-8 YAML ağaç karşılaştırması ve diff check geçti. Yerel Docker motoru hazır değildi, yeni yerel analysis/web/Chrome koşusu yok. Copilot PR #1 metin/boş plan commit'i/yorumları okundu; PR/main değiştirilmedi. Yeni uzak sonuç [SYNC](../team/SYNC.md) kaydında ayrılır; bilimsel politika/M2 kabulü/Pages yayını yok.

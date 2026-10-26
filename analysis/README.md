@@ -122,4 +122,8 @@ Kaynaklar: [POWER aylık API](https://power.larc.nasa.gov/docs/services/api/temp
 
 ## Çok yıllı teknik erişim
 
-history.py yıllık kaynakları aynı grid/zaman/sağlayıcı/yöntemle birleştirir. Yeni komutlar: fetch-power-history, assemble-window-history, validate-window-history. A/B gerçek 2023–2024 örnekleri 24/24 ay; 2024 kaynak byte kayıtları korunur. [Komutlar/sözleşme](../portal/docs/guide/T2M_HISTORY.md), [kanıt](../portal/docs/evidence/T2M_HISTORY_CHECK.md). 2001–2024 hâlâ aday; 288 ay yalnız planlandı, çekilmedi. Tam seri/eğilim veya maske kabulü değildir.
+history.py yıllık kaynakları aynı grid/zaman/sağlayıcı/yöntemle birleştirir. Komutlar: fetch-power-history, assemble-window-history, validate-window-history. İlk A/B 2023–2024 örnekleri korunur; sonraki gerçek 2001–2024 kayıtları 288'er ay içerir. [Uzun dönem erişimi](../portal/docs/guide/T2M_LONG_PERIOD.md), [kanıt](../portal/docs/evidence/T2M_LONG_PERIOD_CHECK.md). Dönem/yüzey/sınır bilimsel kabulü veya eğilim değildir.
+
+## Yıllık aday hesabı ve modül bağımlılığı
+
+`audit-annual-weighting` ve `validate-annual-weighting`, mevcut maskesiz history'den eşit ay/takvim günü adaylarını ve aynı kaynak yıllık API referansını hesaplar. [Hesap/sözleşme](../portal/docs/guide/T2M_ANNUAL_WEIGHTING.md). `run-annual-workflow --run examples/a-history-2001-2024 --output-dir artifacts/a-annual-workflow-new`, aynı hesabı **History → AnnualWeighting** düğümleri üzerinden çalıştırır; analysis çalışma dizininden çağrılır. History başarısızsa yıllık adım engellenir. Gerçek kayıtlı artifact/girdi/ata izi workflow.json, küçük projeksiyon trace.json içindedir. Kaynaklar bir kez yakalanır; execute sırasında dosya yeniden okuma/token/API yok. [Windows/Mac komutları](../portal/docs/guide/ANNUAL_WORKFLOW.md), [gerçek kontrol](../portal/docs/evidence/ANNUAL_WORKFLOW_CHECK.md). Sonuç aynı 0.1.0 aday rapordur; bilimsel seçim veya web akış ekranının değişmesi değildir.

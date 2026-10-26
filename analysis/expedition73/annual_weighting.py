@@ -93,7 +93,7 @@ def run(directory):
         raise PilotError("Recorded history changed after raw-source replay; no audit produced.")
     if verified["spatial_support"]["kind"] != "unmasked_rectangular_window" or verified["spatial_support"]["mask"] != "none":
         raise PilotError("This candidate audit accepts only replayed unmasked window histories.")
-    series = []
+    annual_inputs = []
     for entry in verified["provenance"]["annual_sources"]:
         files = history.capture(directory / f"year-{entry['year']}")
         if surface_workflow._hashes(files) != entry["files_sha256"]:
@@ -101,7 +101,32 @@ def run(directory):
         # These exact result bytes have already been checked against every raw
         # annual response by validate_run. Never substitute an unbound re-read.
         annual = loads(files["result.json"])
-        series.append(summarize_year(entry["year"], annual["series"], annual["module_details"]["cells"]))
+        annual_inputs.append(_annual_input(entry["year"], annual))
+    return _summarize_verified(verified, annual_inputs, hashlib.sha256(recorded_history).hexdigest())
+
+
+def _annual_input(year, result):
+    """Small sufficient inputs, extracted only after their source was replayed."""
+    return {"year": year, "series": copy.deepcopy(result["series"]),
+            "cells": [{"area_m2": cell["area_m2"],
+                       "provider_annual_summary": copy.deepcopy(cell.get("provider_annual_summary", {}))}
+                      for cell in result["module_details"]["cells"]]}
+
+
+def _summarize_verified(verified, annual_inputs, source_history_sha256):
+    """Shared calculation for trusted replay adapters; does not open any files."""
+    validate_schema(verified, "window-history.schema.json")
+    if (verified["spatial_support"]["kind"] != "unmasked_rectangular_window"
+            or verified["spatial_support"]["mask"] != "none"):
+        raise PilotError("Annual weighting requires replayed unmasked window inputs.")
+    expected = [entry["year"] for entry in verified["provenance"]["annual_sources"]]
+    if [entry["year"] for entry in annual_inputs] != expected:
+        raise PilotError("Annual calculation inputs disagree with verified history years.")
+    series = []
+    for index, entry in enumerate(annual_inputs):
+        if not regional._same_result(entry["series"], verified["series"][index * 12:(index + 1) * 12]):
+            raise PilotError("Annual calculation months disagree with verified history.")
+        series.append(summarize_year(entry["year"], entry["series"], entry["cells"]))
     valid = [row for row in series if row["calendar_minus_equal_degC"] is not None]
     maximum = max((abs(r["calendar_minus_equal_degC"]) for r in valid), default=None)
     result = {"schema_version": "0.1.0", "output_type": "candidate_annual_weighting_audit",
@@ -114,7 +139,7 @@ def run(directory):
               "method": copy.deepcopy(METHOD), "weighting_definitions": copy.deepcopy(DEFINITIONS),
               "provenance": {**copy.deepcopy(verified["provenance"]),
                              "source_history_schema_version": verified["schema_version"],
-                             "source_history_result_sha256": hashlib.sha256(recorded_history).hexdigest()},
+                             "source_history_result_sha256": source_history_sha256},
               "series": series,
               "quality": {"expected_years": len(series), "complete_years": len(valid),
                           "incomplete_years": [r["year"] for r in series if r["status"] != "complete"],

@@ -234,3 +234,11 @@ Kaynak şablon: `templates/TEAM_HANDOFF.md`.
 - **Tarih/durum:** 2026-10-26; testli M1 dilimi. GitHub gönderim sonucu [SYNC](SYNC.md) kaydından izlenir; M2 incelemesi/kabulü bekler.
 - **Teslim:** [Web kullanımı](../guide/ANNUAL_WEB.md), [222 Windows/43 JS/76 Chrome kanıtı](../evidence/ANNUAL_WEB_CHECK.md). Kaynak dalı alındıktan sonra Mac'te `sh scripts/start-preview.sh`; maskesizde A/B yıllık adaylar, tablo/yıl düğmesi, API yıllık referansı ve kara/buz kapsam kapanmasını incele. Yeni yedi dosya/manifest 0.4.0 birlikte üretilir.
 - **Sınır:** Bilimsel profil/eğilim/M2 kabulü yok; aynı kaynak API kıyası bağımsız ölçüm değildir. Aylık akış grafiği yıllık modülü içermiyor. Main/Pages yayını ve gerçek Mac/Docker koşusu bu teslim sayılmaz.
+
+## H-M1-023 · Yıllık hesabın gerçek bağımlılık bağlantısı
+
+- **Gönderen → alıcı:** M1 → M2; T-05 için panel içi kayıt, dış mesaj yok.
+- **Tarih/durum:** 2026-10-26; teknik inceleme bekler. Son test ve dal paylaşımı [kanıt](../evidence/ANNUAL_WORKFLOW_CHECK.md) ve [SYNC](SYNC.md) içinde ayrıdır.
+- **Teslim:** [İki adım/sözleşme ve Windows/Mac komutları](../guide/ANNUAL_WORKFLOW.md). Güncel kaynak kendi işin korunarak alındıktan sonra Mac'te analysis içinde `.venv/bin/python -X utf8 -m expedition73 run-annual-workflow --run examples/b-history-2001-2024 --output-dir artifacts/b-annual-workflow-new`.
+- **İncelenecek:** History/AnnualWeighting completed; yıllık rapor kayıtlı B adayıyla aynı; workflow.json'da yıllık artifact tam History artifact kimliğini tüketiyor. trace.json iki adımlı genel projeksiyondur; webdeki aylık grafiğe kendiliğinden eklenmez. Aynı hedefte tekrar komut önceki dosyaları korumalı.
+- **Sınır:** İki hedef hâlâ aday; yeni bilimsel gösterge/maske/dönem/eğilim veya R-B05 başlangıcı değildir. M2 adına yeni kabul/koşu yazılmaz. Yanıt bekleniyor.

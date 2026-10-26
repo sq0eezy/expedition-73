@@ -80,6 +80,8 @@ Fiziksel geri besleme gerektiren model gelecekte gündeme gelirse A ↔ B'yi bu 
 
 ## İlk pilot ve genişleme
 
+**Yıllık hesap bağlantısı · 2026-10-26:** [İki adımlı yıllık akış](../guide/ANNUAL_WORKFLOW.md) aynı motor içinde History → AnnualWeighting bağlantısıyla çalışır. İlk işlem sabit kayıtlı kaynakları tekrar doğrular; ikinci işlem bu artifact'in yeterli yıllık girdilerini mevcut özel formülle tüketir. Genel motor/annual sonuç şeması aynı; yeni iç verified_annual_weighting_inputs 0.1.0 sözleşmesi ve gerçek ata izi vardır. Beş düğümlü aylık yüzey grafiği ve web aktarımı aynı kalır. İkinci bilimsel gösterge veya yöntem/maske kabulü değildir. [Kontrol durumu](../evidence/ANNUAL_WORKFLOW_CHECK.md).
+
 **İlk yerel görünüm · 2026-10-19:** [Sonuç prototipi](../product/RESULTS_PREVIEW.md) kayıtlı gerçek T2M/fraksiyon akışını derlemede doğrular ve yalnız toplu veriyi tarayıcıya verir. Bölge listesi aynı T2M işlemlerine yeni uygun kayıt bağlayabilir; konu ağacı/data dependency ayrımı korunur. Bu, genel modül editörü veya hesap sunucusu değildir; nihai bilimsel/yığın kararı açık.
 
 İlk analiz modülü **2 metre hava sıcaklığı** olacak; konu grubu altında gösterilecek. İki bölgenin çıktıları karşılaştırma bileşenine bağlanarak tek göstergede yeniden kullanım sınanır. İkinci bilimsel modül geldiğinde modüller arası gerçek tüketim ayrıca denenir; çizim entegrasyon kanıtı değildir.

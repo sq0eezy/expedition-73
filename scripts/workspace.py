@@ -75,6 +75,9 @@ def checks():
                  '--window-run', f'examples/{region}-window-2024',
                  '--fraction-run', f'examples/{region}-surface-fractions',
                  '--output-dir', Path(temp) / region], analysis)
+            run([sys.executable, '-m', 'expedition73', 'run-annual-workflow',
+                 '--run', f'examples/{region}-history-2001-2024',
+                 '--output-dir', Path(temp) / f'{region}-annual'], analysis)
     run([node, '--test', 'web/tests/comparison.test.mjs', 'web/tests/trace.test.mjs'])
     for name in ('app.js', 'comparison.mjs', 'trace.mjs'):
         run([node, '--check', f'web/src/{name}'])

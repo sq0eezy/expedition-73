@@ -5,6 +5,10 @@ change_summary: "b7e0333 M1 dalına gönderildi, uzak SHA eşleşti. Yeni CI'da 
 
 # Paylaşım ve kurulum
 
+## 2026-10-26 · Yıllık modül akışının yerel doğrulaması
+
+M1 devam talebiyle temiz d95cce1 üzerinde [History → AnnualWeighting](../guide/ANNUAL_WORKFLOW.md) eklendi. [234 Windows/43 JS ve gerçek A/B](../evidence/ANNUAL_WORKFLOW_CHECK.md) geçti; bütün yedi genel web dosyası önceki ZIP ile byte aynı. Kaynaklar/hesap yöntemi/web sözleşmeleri değişmedi. Yeni kod mevcut M1 dalında paylaşılır; gönderim sonrası uzak SHA/koşu ayrıca kaydedilir. Önceki b7e0333 CI'sının üç native ve Docker AMD64 işleri success; ARM64 kontrolü son gözlemde sürüyor. Bu işler yeni yıllık motor bağlantısının uzak testi değildir. M2 kabulü veya main/Pages/Sites yayını yok.
+
 ## 2026-10-26 · Tamamlanan CI sonucu ve ARM64 düzeltmesi
 
 Önceki paylaşımın kod SHA'sı 07f87a3, paylaşım belge başlığı 2de8bf8 uzak M1 ile eşleşti. [40335437683](https://github.com/sq0eezy/expedition-73/actions/runs/40335437683) tamamlandı: Windows/macOS ARM64/Ubuntu ve Docker AMD64 success, Docker ARM64 QEMU kurulumunda failure. [Tam kanıt ve kapsam](../evidence/CI_PLATFORM_CHECK.md). İlk in_progress gözlemi tarihsel olarak korunur; bütün matrix başarılı sayılmaz.
