@@ -5,6 +5,10 @@ change_summary: "6b4ab12 ve önceki M1 çalışmaları GitHub geliştirme dalın
 
 # Paylaşım ve kurulum
 
+## 2026-10-26 · Aday yıllık hesap yerelde
+
+Başlangıç temiz 4a1d3dc; fetch sonrası main a1a83d5, uzak M1/M2 6047c42; yeni katkı yok. [Yıllık ağırlık adayları](../guide/T2M_ANNUAL_WEIGHTING.md), ayrı CLI/şema ve iki gerçek aday rapor yerel M1 dalındadır. Önceki sekiz yerel commit korunur; push/main merge/Pages/Sites/dış mesaj yok. H-M1-021/M2 incelemesi bekler. Yeni modül genel webde görünmez; mevcut uzak dal önceki yerel geliştirmeleri de içermez. M2 notu veya bilimsel kabulü değiştirilmedi.
+
 ## 2026-10-26 · Uzun dönem görünümü yerelde
 
 Başlangıç temiz c9e7d9c, fetch sonrası main a1a83d5 ve uzak M1/M2 6047c42; yeni katkı yok. [288 aylık görünüm](../guide/T2M_TIMELINE.md) aynı kaynak byte'larıyla yerel M1 dalında eklendi; önceki yedi yerel commit korunur. Push/main merge/Pages/Sites/dış mesaj yok. H-M1-020/M2 incelemesi bekler; mevcut uzak dal yeni kodu/verileri içermez. M2'nin özel sohbeti veya yeni kabulü biliniyor sayılmaz.

@@ -60,9 +60,21 @@ def main(argv=None) -> int:
         history_parser.add_argument("--run", type=Path, action="append", default=[])
     history_check = commands.add_parser("validate-window-history", help="Replay every annual source and history offline.")
     history_check.add_argument("directory", type=Path)
+    annual = commands.add_parser("audit-annual-weighting", help="Compare two candidate annual weighting targets from replayed unmasked history; offline.")
+    annual.add_argument("--run", type=Path, required=True)
+    annual_check = commands.add_parser("validate-annual-weighting", help="Recompute a saved candidate annual audit from its raw history.")
+    annual_check.add_argument("--run", type=Path, required=True)
+    annual_check.add_argument("--input", type=Path, required=True)
     args = parser.parse_args(argv)
     try:
-        if args.command in ("fetch-power-history", "assemble-window-history", "validate-window-history"):
+        if args.command in ("audit-annual-weighting", "validate-annual-weighting"):
+            from . import annual_weighting
+            if args.command == "audit-annual-weighting":
+                print(json.dumps(annual_weighting.run(args.run), ensure_ascii=False, indent=2, allow_nan=False))
+            else:
+                report = annual_weighting.validate_report(args.run, args.input)
+                print(json.dumps({"status": "annual_weighting_replay_passed", "region": report["region"]["id"], "quality": report["quality"]}))
+        elif args.command in ("fetch-power-history", "assemble-window-history", "validate-window-history"):
             from . import history
             if args.command == "validate-window-history":
                 result = history.validate_run(args.directory)

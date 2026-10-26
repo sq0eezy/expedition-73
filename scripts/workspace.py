@@ -59,6 +59,7 @@ def checks():
     for region in ('a', 'b'):
         run([sys.executable, '-m', 'expedition73', 'validate-window-history', f'examples/{region}-history-2023-2024'], analysis)
         run([sys.executable, '-m', 'expedition73', 'validate-window-history', f'examples/{region}-history-2001-2024'], analysis)
+        run([sys.executable, '-m', 'expedition73', 'validate-annual-weighting', '--run', f'examples/{region}-history-2001-2024', '--input', f'examples/{region}-annual-weighting-audit.json'], analysis)
         run([sys.executable, 'scripts/fetch_surface_fractions.py', '--replay', f'examples/{region}-surface-fractions'], analysis)
     artifacts = analysis / 'artifacts'
     if artifacts.is_symlink() or not artifacts.resolve().is_relative_to(analysis.resolve()):

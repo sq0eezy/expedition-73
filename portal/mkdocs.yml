@@ -171,6 +171,9 @@ nav:
       - 24 yıllık kaynak doğrulaması: evidence/T2M_LONG_PERIOD_CHECK.md
       - 288 aylık görünüm: guide/T2M_TIMELINE.md
       - Uzun dönem ekran kontrolü: evidence/TIMELINE_PREVIEW_CHECK.md
+      - Yıllık özet yöntem adayları: research/TEMPORAL_AGGREGATION.md
+      - Aday yıllık özet komutları: guide/T2M_ANNUAL_WEIGHTING.md
+      - Yıllık özet kontrolü: evidence/ANNUAL_WEIGHTING_CHECK.md
       - İki yıllık kaynak doğrulaması: evidence/T2M_HISTORY_CHECK.md
       - Rapor doğrulaması: evidence/COMPARISON_REVIEW_CHECK.md
       - Yeni konuşma işleme: guide/AI_WORKFLOW.md

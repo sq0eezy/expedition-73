@@ -219,3 +219,11 @@ Kaynak şablon: `templates/TEAM_HANDOFF.md`.
 - **Tarih/durum:** 2026-10-26; yerel M1 dalında, paylaşım/M2 incelemesi bekler.
 - **Teslim:** [Kullanım](../guide/T2M_TIMELINE.md), [gerçek kontrol](../evidence/TIMELINE_PREVIEW_CHECK.md). Kaynak paylaşılınca Mac'te `sh scripts/start-preview.sh`; uzun dönem ay seçicisini, yıl sınırını, pencere/yüzey seçimlerini, B hücre/kaynak ayrıntılarını ve eski raporu açınca işaretçinin aynı aya gelmesini incele.
 - **Sınır:** 201 Windows analiz/gerçek A-B, 37 JS, 65 Chrome; yeni Mac/Linux/Docker/CI yok. Kaynak JSON/sözleşmeler aynı. Yeni istatistik/maske/dönem/eğilim kabulü veya R-A05/R-B05 tamamlanması değil. Yanıt gelmeden M2 kabulü yazılmaz.
+
+## H-M1-021 · Yıllık özetin iki hedefi
+
+- **Gönderen → alıcı:** M1 → M2; T-03 için panel içi kayıt, dış mesaj yok.
+- **Tarih/durum:** 2026-10-26; yerel M1 dalında, paylaşım/M2 incelemesi bekler.
+- **Teslim:** [Yöntem ve kaynak araştırması](../research/TEMPORAL_AGGREGATION.md), [CLI](../guide/T2M_ANNUAL_WEIGHTING.md), [gerçek kayıt/testler](../evidence/ANNUAL_WEIGHTING_CHECK.md). Kaynaklar paylaşıldıktan sonra Mac'te analysis içinde `.venv/bin/python -X utf8 -m expedition73 validate-annual-weighting --run examples/b-history-2001-2024 --input examples/b-annual-weighting-audit.json`.
+- **İncelenecek:** Hedef eşit ay özeti mi, takvim süresini temsil eden özet mi? Kaynak yıllık değere yakınlık bağımsız doğruluk değildir. Nihai yüzey/sınır/dönem ve eksiklik kuralıyla birlikte tartışılmalı.
+- **Sınır:** 24'er tam maskesiz yıl; yeni yöntem seçimi/M2 kabulü/R-B05 başlangıcı veya eğilim yok. Genel web/motor entegrasyonu ve yeni Mac/Linux/CI sonucu yok. Yanıt bekleniyor.

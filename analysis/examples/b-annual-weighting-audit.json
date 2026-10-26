@@ -1,0 +1,2579 @@
+{
+  "schema_version": "0.1.0",
+  "output_type": "candidate_annual_weighting_audit",
+  "selection_status": "candidate",
+  "inference_performed": false,
+  "scientific_acceptance": "not_performed",
+  "module": {
+    "id": "air_temperature_2m_annual_weighting",
+    "version": "0.1.0"
+  },
+  "region": {
+    "id": "B",
+    "label": "Kuzey Alaska aday dikdörtgeni: parçalı erişim teknik modül denemesi",
+    "selection_status": "candidate",
+    "candidate_bbox": [
+      -156,
+      68,
+      -150,
+      70
+    ],
+    "candidate_window_version": "search-window-0.1.0"
+  },
+  "variable": {
+    "id": "air_temperature_2m",
+    "unit": "degC",
+    "height_m": 2
+  },
+  "spatial_support": {
+    "kind": "unmasked_rectangular_window",
+    "mask": "none",
+    "cell_count": 55,
+    "window_area_m2": 53169123845.32998,
+    "grid_step_degrees": {
+      "longitude": 0.625,
+      "latitude": 0.5
+    },
+    "request_envelope_bbox": [
+      -156.3125,
+      67.75,
+      -149.6875,
+      70.25
+    ]
+  },
+  "time": {
+    "frequency": "annual",
+    "input_frequency": "monthly",
+    "calendar": "gregorian",
+    "provider_time_standard": "LST",
+    "start": "2001",
+    "end": "2024"
+  },
+  "method": {
+    "id": "compare_annual_temperature_weighting",
+    "version": "0.1.0",
+    "selection_status": "candidate",
+    "selected_weighting": null,
+    "missing_policy": "require_12_complete_months",
+    "inference": "not_performed",
+    "provider_value_role": "comparison_only"
+  },
+  "weighting_definitions": [
+    {
+      "id": "equal_months",
+      "formula": "sum(T_m / 12)",
+      "target": "mean_of_twelve_monthly_values"
+    },
+    {
+      "id": "calendar_days",
+      "formula": "sum(T_m * days_m / days_year)",
+      "target": "calendar_day_weighted_monthly_values"
+    }
+  ],
+  "provenance": {
+    "provider": "NASA POWER",
+    "product": "POWER Monthly and Annual API",
+    "api_version": "v2.10.0",
+    "sources": [
+      "MERRA2"
+    ],
+    "annual_sources": [
+      {
+        "year": 2001,
+        "files_sha256": {
+          "manifest.json": "57cd9b1ae12ac3e6ee2aec6cedbd399424b60ddddfe1dd3e66cc3f0fc358587d",
+          "request.json": "605d5fe124ff764edf33a73629ad55b364f35a149aeab4b73aeaab40b0c6a21b",
+          "result.json": "a5688d14acf495e49ef1fff7f37dc9eefeb3eb8a1d185b020dca611fbe2ace9d",
+          "tile-001.json": "3a59a1144f13c10d4038056f48de1c7cfe0c726b24ae09f183b801d54a73eaa8",
+          "tile-002.json": "badd0b90b6801f9cb3c505a829b1acb2628c10ccdfc3609ab4a58f156c02a54f"
+        }
+      },
+      {
+        "year": 2002,
+        "files_sha256": {
+          "manifest.json": "71d41a8f283f30881c6b742c5a74a998e1eda447dbd720294bd19e29bdc75ae6",
+          "request.json": "b0bc4a2cadc7864a48fceeff2b440cf2f1dd226a4a020c1f2c9cddaa737b0f0e",
+          "result.json": "1063c06492fa152517d87abeb2dcc5d7a761c6a92758feef0493e5bb064bf319",
+          "tile-001.json": "1ed464109077d4be229665c8cfa6c4f749f6e7b50d4b6ebb72faf7829a9407a9",
+          "tile-002.json": "f5938257bdbdf39001f40352d9db8042c9baa7677cdddceec69894a6dfcae51a"
+        }
+      },
+      {
+        "year": 2003,
+        "files_sha256": {
+          "manifest.json": "fa0496ba6c734390b9b80f372da7e1f457ab87b91672846c50eb25308ddc4b67",
+          "request.json": "2f88d2906240f1ded68da9ab0fef819b73701bb2646fb85e374b07cd181add39",
+          "result.json": "2617ddc7c3d3ca65db3ab8b3479a91e03ca24bc149cdf4a75af84d3b09b52edf",
+          "tile-001.json": "db0c70530cf79a1f00e2d4e820ae4f63d78f6fd090a3be7a3067bd21b34becec",
+          "tile-002.json": "4a80c3b5d4bde20cc80d778d429dfbcbe36666fabddeefef4a83d296a46c7a9b"
+        }
+      },
+      {
+        "year": 2004,
+        "files_sha256": {
+          "manifest.json": "92dd65be64003c80311adb00838e5aac06772832560b4b8cf5128ca7cc27cdba",
+          "request.json": "9370b572eaf341c17a27cd43ae010d344ce1af4c836f947945be258ec87a92af",
+          "result.json": "13e01254b3eb81e884a825fbe9146ccfb6ab64918c9a7aaa18edf6dbc8fdc92e",
+          "tile-001.json": "13920de444bf36f1445bd6c5dfbb6b5d7bc8b3eeea15966e6bfc4e54dff67620",
+          "tile-002.json": "d81ee9d6ffb43fced6f36980dcc4599b88caffa2ad65d3384eabb05e4881d560"
+        }
+      },
+      {
+        "year": 2005,
+        "files_sha256": {
+          "manifest.json": "e063035ddce14395de914ccddbe73a4e8ba7dd79cb1f225e8ab609f54c576c4e",
+          "request.json": "2687d6f4c2c30de4be9f7b8877e2e7137700f00b1d638fbc72e517c1e2d09e78",
+          "result.json": "c2a453b81ca71a2b227eb4d2995c9535db4fcff5c93b3a0507cd1eb52587934b",
+          "tile-001.json": "00d360613b7ddb133f6203c16f6d46174383a41a1144e413bc8b98e6f9880237",
+          "tile-002.json": "cfdc1fb155033842b8f6be95f8fff1d3ea881d2a5c483693dac3a51905910176"
+        }
+      },
+      {
+        "year": 2006,
+        "files_sha256": {
+          "manifest.json": "95cdc14c8275e0ad088060ebcbbfed52c3fb64b74971f4a37afa1f62daaffd2e",
+          "request.json": "74b71e4477d85ef2bd088978b64987a87bce0f70b858524ad9304f0f9bcbc748",
+          "result.json": "281022896030e520564e5326e1d3a24afb669166291bc07787e6f25b66635177",
+          "tile-001.json": "0de842156956576f49e585b9c2ef46defd0fd182605ed87f8c112327497e1152",
+          "tile-002.json": "92aac756e478210f49e93b69e18a92d9c3280f9f06657d4b039ca7ea04af0ec3"
+        }
+      },
+      {
+        "year": 2007,
+        "files_sha256": {
+          "manifest.json": "10740e372b4ed5b09e42474b024f6a01e4557efd270cecec1f5cf9f8ae5cb7e6",
+          "request.json": "98997aea8bf1f0f354a5a249d5bc094cd191150fc1b3d67f774df57610eb8682",
+          "result.json": "e2da7c1acbb5fa9e2863aafcd5c634b50e069589d40406c34ebed77a6ad3cdff",
+          "tile-001.json": "fc72b516f939afc88d45aa43ae118febb301795cdc72afd20475a16b62851072",
+          "tile-002.json": "2e4100bd81daeb2a470c0b6a90e1a479d1e68cc198d2db313f4d64c15c8ee9bf"
+        }
+      },
+      {
+        "year": 2008,
+        "files_sha256": {
+          "manifest.json": "d3e02d6e3c866a8aae2819b353431e811c4c71da00e95956e6d94867d07d7fae",
+          "request.json": "1f3de60425b0a29466e3e8489fdb957c939f829dfe82c64ac78008a210b9591a",
+          "result.json": "d13c53b47c92d04cad82610de0f46342b4e954b3a0449fda8fef58c8e9d16551",
+          "tile-001.json": "7147e4caadb18c4dabde4f3130c2fafcc8388cc96a4f232b8009c4d7e2daa85a",
+          "tile-002.json": "3540f0c76d939df31686d157130c5cf0f59a21e37aa013ce8658ef895f48da13"
+        }
+      },
+      {
+        "year": 2009,
+        "files_sha256": {
+          "manifest.json": "982052066031d8a5915095f26c4665cd678e35895ffaa29052271e0ca73eff0a",
+          "request.json": "744ac5116fcbef837bcbdf3ab19a397a9f754291a74422fb94f498a4fbed231e",
+          "result.json": "3440705ebb8aa843ebf15a43be8b001a99529c788b8ff4c6c6f987790591474e",
+          "tile-001.json": "31c4e35f14e780398bfa28cbc08162d12baa4a8e15f5d25079747ac30cea9575",
+          "tile-002.json": "ca132290813199e908e718b0d22d5d5ff029392d20c07b613cfafa2a440a2aad"
+        }
+      },
+      {
+        "year": 2010,
+        "files_sha256": {
+          "manifest.json": "30778e73b32e55d7c8aa1bec31a5d667bceb91376367f472fa1a2a2f1a872c87",
+          "request.json": "5fe13a00a6164cb74848566a79b8e8a08886bfeb154e4b8667d4926cfb1b664b",
+          "result.json": "19ebc77aee282325b901ea566053ac9e26fa2093b261ef5c49b7414a2cca140c",
+          "tile-001.json": "3e2f04b054a5e8a9d7911e66fe9ad47af30f5728649dc8c02b03e664585d82e7",
+          "tile-002.json": "d42a614ec9558f1af21692f01b7a99da186e2fee3bc8aa19d87158e306f2ac28"
+        }
+      },
+      {
+        "year": 2011,
+        "files_sha256": {
+          "manifest.json": "428f8f6e75c6514ff423d9a993efc1a9fbaaa5e8aa14c2434e63021fd01502e1",
+          "request.json": "cb89ceef0ddfa21f966c3d984263143903ccfcb6706664a78b8eddb6f8d3c95f",
+          "result.json": "e4568f21fa16dd9a0b14c9f88985fc6c4ee776fc51b3f771e32d536b729edb71",
+          "tile-001.json": "1cdbe198163e20e93233d7ba46c9b51501e508842be1c91a7f8684d8899075a6",
+          "tile-002.json": "160869c3a9b7d6f004d0849d32292558546cbd2bcb0b5185c771aaedc58d9615"
+        }
+      },
+      {
+        "year": 2012,
+        "files_sha256": {
+          "manifest.json": "f7ad4430f21619df24316a5f9a3e7c803f95958e63c498b359fb5b67c124dd59",
+          "request.json": "537718003547cd0a2bfd64c984afe24cad56dd346e61439f7651eb12a8bd43b0",
+          "result.json": "bd6ce3ffd36141c658499e1e2ef3d6955b30873cac04fde325abf7b5389d2fdd",
+          "tile-001.json": "1639b109d3e1aadccce77a8bd473a7f6b130d2895e2d8604cb70fe85b0dec4d3",
+          "tile-002.json": "21161d0144aba1265f9aff9c7c024c938ae85620ffab5e9b2c753d3fc78be2b3"
+        }
+      },
+      {
+        "year": 2013,
+        "files_sha256": {
+          "manifest.json": "0fd9cb2332fed9cda80b739c38475b1cb3633af1d634868eb6d6c2609580a557",
+          "request.json": "f65af4619741d4acc6c1c8a910acc70c36fc6b18c1ecf26937be87b395212456",
+          "result.json": "8334c5eccbcfc0c98ce6663526b81a653af2ba414f836136ff9be2d4f27d3f9d",
+          "tile-001.json": "2fa92f4dd6a1484515d4732b46ba8cecaee0ba0c487dd5b968de422bc36876d3",
+          "tile-002.json": "1ceca23ad299e7426d9034c2af6e1d9ee4aedc6495e7ed0673bf244e92eac8e2"
+        }
+      },
+      {
+        "year": 2014,
+        "files_sha256": {
+          "manifest.json": "9d8e8681934802299313b8b6f7720c9005cc9a8baab3c0630dcb06305718c76d",
+          "request.json": "eb18561323c270cd1f8064731fc6d38af16e4a3166be3a283d6a385991063a07",
+          "result.json": "3eae826dbc97f2e68cc52ebb22d1fa6441bd6503e6a69f52b07d7c8371508d81",
+          "tile-001.json": "4f6144256b50a81675013b6047cb0db0f348752b3c88ddd202c9b552dcbc0f7e",
+          "tile-002.json": "cf572b9f84a73193338ca53211ce936bdb66be907b455c547c096e66014832f5"
+        }
+      },
+      {
+        "year": 2015,
+        "files_sha256": {
+          "manifest.json": "c1cd259130b42a9d1d80654b2c12a8a8eff33651374206a6d384353555225d12",
+          "request.json": "b9bfa738c58c16282d0c2a52ee847ca34d59eee582e4201c6c69ebfd22b4680d",
+          "result.json": "a3d9b2d65cdedefd920dee386cfdc318614c00c8ccae3496d2dbb036bd2b74e8",
+          "tile-001.json": "2b86d759932ea1faddbcec1c592177f7eba4a95add579f34431c23c7cd468cca",
+          "tile-002.json": "0e6f92a96d410e684d2a6dd9a7ef8cf140088473567fb79d1b6939ba299343e8"
+        }
+      },
+      {
+        "year": 2016,
+        "files_sha256": {
+          "manifest.json": "c38aa6d67301dbb5f7f715a0083850638a9a87430eebdaaef541ac7b20b34528",
+          "request.json": "9757879d052a69b10784f638cfaa2176a6b7d81a54eb801c68f45a2c8745f2d4",
+          "result.json": "0cb40a776ff28c5ce3533d856c5191ac3254a8b32a62b6dd2eff1f03fab4ea59",
+          "tile-001.json": "6d2ab99825e405bd9bee2b3ef9f7bd2763ab86b76753de246a8cdba05837d7c1",
+          "tile-002.json": "25045c2bff9847a6ab91fa6834b885f050ce9f873502cb11ccfd9920ec606d6c"
+        }
+      },
+      {
+        "year": 2017,
+        "files_sha256": {
+          "manifest.json": "ec5155f93e40f96845c4a30efab5d2bf335de19b6fde64b742f1c9c51c24b531",
+          "request.json": "dca2a3ad552d8a7b2b56cc221eddc7952f5cf602d2512800a235bb98ac5207f0",
+          "result.json": "db26cbd08927b377b37329c9ae9ec2304a8fc733c0603c48e58b375c479811c0",
+          "tile-001.json": "154ea3532d1445308b63fe619a8a8618cac2d3612abeaa0dbaeed8f4416c41a4",
+          "tile-002.json": "f99de5c07d85a06307ab7097817b3cd467892c08d1c835f6b2e9cdd0513c159d"
+        }
+      },
+      {
+        "year": 2018,
+        "files_sha256": {
+          "manifest.json": "adf49565bf12c060022c25028ec9277b0f4219584f2bfbfdbdcacff0a60116a6",
+          "request.json": "4483a7a43a0851af672dd766ca5d473a2b186b811244c9ca3d267e2f57ee0930",
+          "result.json": "b439ab3e8c6c10ad011a32ee5f5f7314cb3235686ba4be56678b85effaf7f741",
+          "tile-001.json": "be0e9096cdba4eaf0f743bf5df8cb45c445f50368fcfddfa3190f0b942ff648b",
+          "tile-002.json": "0af1939b0757bd58436104208c8c200a301a245d54c60a2a48c54ebe44031c99"
+        }
+      },
+      {
+        "year": 2019,
+        "files_sha256": {
+          "manifest.json": "2595e19f888ca96d1e4e28f9aea24abe3cce59bfbb3c5bd9ef77c665ad9aea1f",
+          "request.json": "3202c9055c1fd69b248f74dce0e09071c922bd964389bd7708dacfaeb2327e36",
+          "result.json": "ddf5df4dedbd72ca834f24261a275746abc7f0d2c6c233dff10833034729323e",
+          "tile-001.json": "f064b85012cd78fcaba99c1810744bde6acc2fafe437ca63778713f87e17c5ca",
+          "tile-002.json": "b89d217846e19c2f1b8762588c57420c400bda8dbc6da8e5c4f34b82f8d456bf"
+        }
+      },
+      {
+        "year": 2020,
+        "files_sha256": {
+          "manifest.json": "fa051ceb2d5ecca1b569a91b8c4827df3f5a99f284b32b4557519f9448370990",
+          "request.json": "a7dcd488634432b1daeec8b2fe9041a5fc3ae33bad4a259b23b63d1ead04aea9",
+          "result.json": "6335f0f147fcec44c17d8b9356c2c42a56f2cadea055cf0ff9df69e32363035b",
+          "tile-001.json": "5340317f383a0d99f22a8b3fd03049b7eede1901b712c16aa4116f9b3f8a793a",
+          "tile-002.json": "cb5c05d07320b77fa4907ca39879ba3e4e3333a8842221c4ab0478c22193943c"
+        }
+      },
+      {
+        "year": 2021,
+        "files_sha256": {
+          "manifest.json": "1c386a49902b3b16b0a2fa19ccd8af86f3c5c52c9f8b430a9e6119dfe20e6daa",
+          "request.json": "b23c2ae108c70be737672811716949beae759582e0aa53fb8284cdf6c87a997e",
+          "result.json": "e9e42297a8c11af9b997532013bfced22b280b9bdfb69c93cdba133a1f8c47df",
+          "tile-001.json": "5b44ef833f60fa6af2d8e091d6c60281d30a735af59df3b50010b31dc7e817f7",
+          "tile-002.json": "c49f4e205ebf377d1021135d39191c93ac736bc3bb8c27319ae38215d5b2fdba"
+        }
+      },
+      {
+        "year": 2022,
+        "files_sha256": {
+          "manifest.json": "f218ca1d27839881a7824b7e7e0d663962a8950ffbf95376a3220141b7041c50",
+          "request.json": "df995bb8378845640fa176f0220292ab0cfafb34e0b41d529e8af5f210dbc5ac",
+          "result.json": "d2a44c277f982626f69c666030a483b7d60929aa12f245c1020de2893b846721",
+          "tile-001.json": "d1c2b2f675453e82e0ff4f1637df0a244e77940d84c462d6ac1005a1841ad114",
+          "tile-002.json": "40f173783c21178cb7145e047ae339410354a045be63d59a5adad1c29ee455a7"
+        }
+      },
+      {
+        "year": 2023,
+        "files_sha256": {
+          "manifest.json": "c103450782e976dff53da252ea20acfa16c7e527cf1a8ebb36ab8ded81af9423",
+          "request.json": "3f5ec2702d8afa5865b0a13a2f0cbfbf2170762168f9fb409d049edaf54b7a65",
+          "result.json": "884b5bac67dc6406b990864c6339ac5f9f2356452a03ad3da8801cc5e6b55a2c",
+          "tile-001.json": "9c1968543879bd5b4d39bda6e5151e3281bf2af6d6577e0d3d67be934d956014",
+          "tile-002.json": "053f6c5445049ac994e85fb8e92b9b3230dc1346f991c06a48adf88530bf208d"
+        }
+      },
+      {
+        "year": 2024,
+        "files_sha256": {
+          "manifest.json": "2c28c015033b5393d5ca4d6db9fb8cc5d15fb3992ad93fa478307ec909d293ce",
+          "request.json": "c0d956669bc4a2f9ba8692b58d99e8e9f3f84b15c2df87d584257997ee2180a1",
+          "result.json": "b4c053f879be9ea9f4cfe982edad83d95405e060d3b56d42f5e63d992a79ec39",
+          "tile-001.json": "368c1795d022f7d26055474237f08f699e5acd1540dd4cece0208d4d64f92484",
+          "tile-002.json": "0681c57fb4c68f774ae99e18115b14eeaad53f1f38f9161fbd185616105b7d1f"
+        }
+      }
+    ],
+    "source_history_schema_version": "0.1.0",
+    "source_history_result_sha256": "1757b1ed64ef73529a60cb0d1b20e0b212264c28abdb0bf4e07bd45572822e68"
+  },
+  "series": [
+    {
+      "year": 2001,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2001-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2001-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2001-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2001-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2001-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2001-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2001-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2001-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2001-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2001-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2001-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2001-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -10.164258714971318,
+      "calendar_day_mean_degC": -10.139188527107297,
+      "calendar_minus_equal_degC": 0.02507018786402071,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -10.139055661422924,
+        "provider_minus_equal_degC": 0.025203053548393584,
+        "provider_minus_calendar_degC": 0.00013286568437287372
+      }
+    },
+    {
+      "year": 2002,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2002-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2002-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2002-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2002-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2002-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2002-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2002-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2002-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2002-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2002-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2002-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2002-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -8.259991953543562,
+      "calendar_day_mean_degC": -8.16518982381133,
+      "calendar_minus_equal_degC": 0.09480212973223168,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -8.165391151644842,
+        "provider_minus_equal_degC": 0.09460080189871967,
+        "provider_minus_calendar_degC": -0.00020132783351201056
+      }
+    },
+    {
+      "year": 2003,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2003-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2003-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2003-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2003-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2003-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2003-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2003-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2003-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2003-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2003-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2003-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2003-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -8.710568796158416,
+      "calendar_day_mean_degC": -8.634784133504194,
+      "calendar_minus_equal_degC": 0.07578466265422179,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -8.634663048479558,
+        "provider_minus_equal_degC": 0.07590574767885805,
+        "provider_minus_calendar_degC": 0.00012108502463625825
+      }
+    },
+    {
+      "year": 2004,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 366,
+      "valid_calendar_days": 366,
+      "weights": [
+        {
+          "date": "2004-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2004-02",
+          "days": 29,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07923497267759563
+        },
+        {
+          "date": "2004-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2004-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2004-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2004-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2004-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2004-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2004-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2004-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2004-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2004-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        }
+      ],
+      "equal_month_mean_degC": -9.033695472766262,
+      "calendar_day_mean_degC": -8.97493778309613,
+      "calendar_minus_equal_degC": 0.05875768967013073,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -8.975188100048221,
+        "provider_minus_equal_degC": 0.058507372718040074,
+        "provider_minus_calendar_degC": -0.00025031695209065674
+      }
+    },
+    {
+      "year": 2005,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2005-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2005-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2005-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2005-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2005-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2005-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2005-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2005-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2005-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2005-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2005-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2005-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -8.982010330709219,
+      "calendar_day_mean_degC": -8.885168739910778,
+      "calendar_minus_equal_degC": 0.09684159079844079,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -8.886103907663975,
+        "provider_minus_equal_degC": 0.09590642304524444,
+        "provider_minus_calendar_degC": -0.0009351677531963531
+      }
+    },
+    {
+      "year": 2006,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2006-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2006-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2006-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2006-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2006-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2006-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2006-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2006-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2006-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2006-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2006-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2006-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -9.40018156957209,
+      "calendar_day_mean_degC": -9.349143302386826,
+      "calendar_minus_equal_degC": 0.051038267185264274,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -9.348419914311954,
+        "provider_minus_equal_degC": 0.05176165526013676,
+        "provider_minus_calendar_degC": 0.0007233880748724886
+      }
+    },
+    {
+      "year": 2007,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2007-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2007-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2007-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2007-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2007-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2007-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2007-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2007-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2007-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2007-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2007-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2007-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -8.179235165374402,
+      "calendar_day_mean_degC": -8.104005836042752,
+      "calendar_minus_equal_degC": 0.07522932933165016,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -8.104248204525751,
+        "provider_minus_equal_degC": 0.07498696084865131,
+        "provider_minus_calendar_degC": -0.00024236848299885594
+      }
+    },
+    {
+      "year": 2008,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 366,
+      "valid_calendar_days": 366,
+      "weights": [
+        {
+          "date": "2008-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2008-02",
+          "days": 29,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07923497267759563
+        },
+        {
+          "date": "2008-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2008-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2008-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2008-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2008-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2008-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2008-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2008-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2008-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2008-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        }
+      ],
+      "equal_month_mean_degC": -9.716451444216046,
+      "calendar_day_mean_degC": -9.679776221916821,
+      "calendar_minus_equal_degC": 0.03667522229922504,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -9.679786704291903,
+        "provider_minus_equal_degC": 0.03666473992414332,
+        "provider_minus_calendar_degC": -1.0482375081721784e-05
+      }
+    },
+    {
+      "year": 2009,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2009-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2009-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2009-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2009-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2009-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2009-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2009-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2009-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2009-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2009-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2009-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2009-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -9.6920262682462,
+      "calendar_day_mean_degC": -9.601703610871617,
+      "calendar_minus_equal_degC": 0.09032265737458367,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -9.60194955409432,
+        "provider_minus_equal_degC": 0.09007671415188057,
+        "provider_minus_calendar_degC": -0.0002459432227031044
+      }
+    },
+    {
+      "year": 2010,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2010-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2010-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2010-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2010-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2010-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2010-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2010-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2010-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2010-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2010-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2010-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2010-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -8.999793074638504,
+      "calendar_day_mean_degC": -8.93715747260591,
+      "calendar_minus_equal_degC": 0.06263560203259289,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -8.937039582107776,
+        "provider_minus_equal_degC": 0.06275349253072804,
+        "provider_minus_calendar_degC": 0.00011789049813515362
+      }
+    },
+    {
+      "year": 2011,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2011-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2011-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2011-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2011-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2011-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2011-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2011-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2011-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2011-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2011-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2011-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2011-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -8.84207715417648,
+      "calendar_day_mean_degC": -8.760038799932396,
+      "calendar_minus_equal_degC": 0.08203835424408368,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -8.760702767364046,
+        "provider_minus_equal_degC": 0.08137438681243303,
+        "provider_minus_calendar_degC": -0.0006639674316506472
+      }
+    },
+    {
+      "year": 2012,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 366,
+      "valid_calendar_days": 366,
+      "weights": [
+        {
+          "date": "2012-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2012-02",
+          "days": 29,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07923497267759563
+        },
+        {
+          "date": "2012-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2012-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2012-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2012-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2012-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2012-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2012-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2012-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2012-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2012-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        }
+      ],
+      "equal_month_mean_degC": -10.478077106003546,
+      "calendar_day_mean_degC": -10.464712019373556,
+      "calendar_minus_equal_degC": 0.013365086629990586,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -10.463999587734653,
+        "provider_minus_equal_degC": 0.01407751826889303,
+        "provider_minus_calendar_degC": 0.0007124316389024443
+      }
+    },
+    {
+      "year": 2013,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2013-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2013-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2013-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2013-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2013-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2013-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2013-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2013-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2013-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2013-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2013-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2013-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -9.502640532565854,
+      "calendar_day_mean_degC": -9.383077833202984,
+      "calendar_minus_equal_degC": 0.11956269936287,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -9.382656964126854,
+        "provider_minus_equal_degC": 0.11998356843900027,
+        "provider_minus_calendar_degC": 0.00042086907613025915
+      }
+    },
+    {
+      "year": 2014,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2014-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2014-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2014-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2014-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2014-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2014-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2014-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2014-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2014-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2014-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2014-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2014-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -8.207422061409941,
+      "calendar_day_mean_degC": -8.122860615464685,
+      "calendar_minus_equal_degC": 0.08456144594525661,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -8.123672815040191,
+        "provider_minus_equal_degC": 0.08374924636975045,
+        "provider_minus_calendar_degC": -0.0008121995755061562
+      }
+    },
+    {
+      "year": 2015,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2015-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2015-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2015-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2015-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2015-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2015-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2015-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2015-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2015-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2015-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2015-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2015-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -8.578598586979272,
+      "calendar_day_mean_degC": -8.524074052266151,
+      "calendar_minus_equal_degC": 0.05452453471312069,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -8.524163017111842,
+        "provider_minus_equal_degC": 0.05443556986742948,
+        "provider_minus_calendar_degC": -8.896484569120844e-05
+      }
+    },
+    {
+      "year": 2016,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 366,
+      "valid_calendar_days": 366,
+      "weights": [
+        {
+          "date": "2016-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2016-02",
+          "days": 29,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07923497267759563
+        },
+        {
+          "date": "2016-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2016-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2016-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2016-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2016-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2016-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2016-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2016-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2016-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2016-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        }
+      ],
+      "equal_month_mean_degC": -7.233702534634464,
+      "calendar_day_mean_degC": -7.188692876253951,
+      "calendar_minus_equal_degC": 0.04500965838051307,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -7.189047152001815,
+        "provider_minus_equal_degC": 0.04465538263264879,
+        "provider_minus_calendar_degC": -0.0003542757478642855
+      }
+    },
+    {
+      "year": 2017,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2017-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2017-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2017-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2017-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2017-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2017-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2017-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2017-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2017-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2017-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2017-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2017-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -7.325084749646806,
+      "calendar_day_mean_degC": -7.229245011369171,
+      "calendar_minus_equal_degC": 0.09583973827763526,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -7.22904349384546,
+        "provider_minus_equal_degC": 0.09604125580134593,
+        "provider_minus_calendar_degC": 0.00020151752371067033
+      }
+    },
+    {
+      "year": 2018,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2018-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2018-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2018-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2018-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2018-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2018-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2018-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2018-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2018-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2018-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2018-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2018-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -7.443003301581304,
+      "calendar_day_mean_degC": -7.398328222874384,
+      "calendar_minus_equal_degC": 0.04467507870691989,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -7.39924712977192,
+        "provider_minus_equal_degC": 0.04375617180938374,
+        "provider_minus_calendar_degC": -0.0009189068975361536
+      }
+    },
+    {
+      "year": 2019,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2019-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2019-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2019-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2019-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2019-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2019-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2019-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2019-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2019-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2019-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2019-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2019-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -6.659404480557148,
+      "calendar_day_mean_degC": -6.608689881394877,
+      "calendar_minus_equal_degC": 0.05071459916227106,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -6.608671846284967,
+        "provider_minus_equal_degC": 0.05073263427218144,
+        "provider_minus_calendar_degC": 1.8035109910385927e-05
+      }
+    },
+    {
+      "year": 2020,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 366,
+      "valid_calendar_days": 366,
+      "weights": [
+        {
+          "date": "2020-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2020-02",
+          "days": 29,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07923497267759563
+        },
+        {
+          "date": "2020-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2020-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2020-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2020-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2020-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2020-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2020-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2020-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2020-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2020-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        }
+      ],
+      "equal_month_mean_degC": -9.26021156725267,
+      "calendar_day_mean_degC": -9.199457991243033,
+      "calendar_minus_equal_degC": 0.06075357600963649,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -9.199415856965144,
+        "provider_minus_equal_degC": 0.060795710287525395,
+        "provider_minus_calendar_degC": 4.213427788890556e-05
+      }
+    },
+    {
+      "year": 2021,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2021-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2021-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2021-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2021-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2021-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2021-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2021-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2021-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2021-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2021-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2021-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2021-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -10.521646836721958,
+      "calendar_day_mean_degC": -10.381533728205612,
+      "calendar_minus_equal_degC": 0.14011310851634562,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -10.381528456810729,
+        "provider_minus_equal_degC": 0.14011837991122889,
+        "provider_minus_calendar_degC": 5.271394883266112e-06
+      }
+    },
+    {
+      "year": 2022,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2022-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2022-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2022-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2022-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2022-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2022-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2022-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2022-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2022-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2022-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2022-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2022-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -8.766334028080147,
+      "calendar_day_mean_degC": -8.663304720800967,
+      "calendar_minus_equal_degC": 0.10302930727917925,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -8.662679325934295,
+        "provider_minus_equal_degC": 0.10365470214585137,
+        "provider_minus_calendar_degC": 0.0006253948666721243
+      }
+    },
+    {
+      "year": 2023,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 365,
+      "valid_calendar_days": 365,
+      "weights": [
+        {
+          "date": "2023-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2023-02",
+          "days": 28,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07671232876712329
+        },
+        {
+          "date": "2023-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2023-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2023-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2023-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2023-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2023-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2023-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2023-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        },
+        {
+          "date": "2023-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.0821917808219178
+        },
+        {
+          "date": "2023-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08493150684931507
+        }
+      ],
+      "equal_month_mean_degC": -8.197062697268677,
+      "calendar_day_mean_degC": -8.062577518023062,
+      "calendar_minus_equal_degC": 0.13448517924561543,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -8.062144352194865,
+        "provider_minus_equal_degC": 0.13491834507381206,
+        "provider_minus_calendar_degC": 0.0004331658281966355
+      }
+    },
+    {
+      "year": 2024,
+      "status": "complete",
+      "valid_months": 12,
+      "missing_months": [],
+      "calendar_days": 366,
+      "valid_calendar_days": 366,
+      "weights": [
+        {
+          "date": "2024-01",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2024-02",
+          "days": 29,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.07923497267759563
+        },
+        {
+          "date": "2024-03",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2024-04",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2024-05",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2024-06",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2024-07",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2024-08",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2024-09",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2024-10",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        },
+        {
+          "date": "2024-11",
+          "days": 30,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08196721311475409
+        },
+        {
+          "date": "2024-12",
+          "days": 31,
+          "equal_month_weight": 0.08333333333333333,
+          "calendar_day_weight": 0.08469945355191257
+        }
+      ],
+      "equal_month_mean_degC": -8.726416617022865,
+      "calendar_day_mean_degC": -8.69921256990484,
+      "calendar_minus_equal_degC": 0.027204047118024377,
+      "provider_annual": {
+        "status": "complete",
+        "expected_cells": 55,
+        "valid_cells": 55,
+        "area_weighted_mean_degC": -8.699471418947933,
+        "provider_minus_equal_degC": 0.02694519807493201,
+        "provider_minus_calendar_degC": -0.00025884904309236845
+      }
+    }
+  ],
+  "quality": {
+    "expected_years": 24,
+    "complete_years": 24,
+    "incomplete_years": [],
+    "provider_complete_years": 24,
+    "warnings": [
+      "CANDIDATE_UNMASKED_WINDOW_NOT_ACCEPTED_SCIENTIFIC_PROFILE",
+      "TWO_DISTINCT_ANNUAL_SUMMARY_TARGETS_NO_SELECTION",
+      "PROVIDER_ANNUAL_IS_SAME_SOURCE_COMPARISON_NOT_INDEPENDENT_VALIDATION",
+      "MONTHLY_API_VALUES_HAVE_SOURCE_PRECISION_NO_EXTRA_ACCURACY",
+      "NO_IMPUTATION_TREND_ANOMALY_OR_CLIMATE_NORMAL"
+    ]
+  },
+  "sensitivity": {
+    "valid_years": 24,
+    "max_abs_calendar_minus_equal_degC": 0.14011310851634562,
+    "years_at_maximum": [
+      2021
+    ]
+  }
+}

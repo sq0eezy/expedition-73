@@ -1,0 +1,518 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Candidate annual T2M weighting comparison, no selected scientific profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "output_type",
+    "selection_status",
+    "inference_performed",
+    "scientific_acceptance",
+    "module",
+    "region",
+    "variable",
+    "spatial_support",
+    "time",
+    "method",
+    "weighting_definitions",
+    "provenance",
+    "series",
+    "quality",
+    "sensitivity"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "output_type": {
+      "const": "candidate_annual_weighting_audit"
+    },
+    "selection_status": {
+      "const": "candidate"
+    },
+    "inference_performed": {
+      "const": false
+    },
+    "scientific_acceptance": {
+      "const": "not_performed"
+    },
+    "module": {
+      "const": {
+        "id": "air_temperature_2m_annual_weighting",
+        "version": "0.1.0"
+      }
+    },
+    "region": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "selection_status",
+        "candidate_bbox",
+        "candidate_window_version"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selection_status": {
+          "const": "candidate"
+        },
+        "candidate_bbox": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "candidate_window_version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "variable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "unit",
+        "height_m"
+      ],
+      "properties": {
+        "id": {
+          "const": "air_temperature_2m"
+        },
+        "unit": {
+          "const": "degC"
+        },
+        "height_m": {
+          "const": 2
+        }
+      }
+    },
+    "spatial_support": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "mask",
+        "request_envelope_bbox",
+        "cell_count",
+        "window_area_m2",
+        "grid_step_degrees"
+      ],
+      "properties": {
+        "kind": {
+          "const": "unmasked_rectangular_window"
+        },
+        "mask": {
+          "const": "none"
+        },
+        "cell_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "window_area_m2": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "grid_step_degrees": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "longitude",
+            "latitude"
+          ],
+          "properties": {
+            "longitude": {
+              "const": 0.625
+            },
+            "latitude": {
+              "const": 0.5
+            }
+          }
+        },
+        "request_envelope_bbox": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      }
+    },
+    "time": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "frequency",
+        "input_frequency",
+        "calendar",
+        "provider_time_standard",
+        "start",
+        "end"
+      ],
+      "properties": {
+        "frequency": {
+          "const": "annual"
+        },
+        "input_frequency": {
+          "const": "monthly"
+        },
+        "calendar": {
+          "const": "gregorian"
+        },
+        "provider_time_standard": {
+          "const": "LST"
+        },
+        "start": {
+          "type": "string",
+          "pattern": "^[0-9]{4}$"
+        },
+        "end": {
+          "type": "string",
+          "pattern": "^[0-9]{4}$"
+        }
+      }
+    },
+    "method": {
+      "const": {
+        "id": "compare_annual_temperature_weighting",
+        "version": "0.1.0",
+        "selection_status": "candidate",
+        "selected_weighting": null,
+        "missing_policy": "require_12_complete_months",
+        "inference": "not_performed",
+        "provider_value_role": "comparison_only"
+      }
+    },
+    "weighting_definitions": {
+      "const": [
+        {
+          "id": "equal_months",
+          "formula": "sum(T_m / 12)",
+          "target": "mean_of_twelve_monthly_values"
+        },
+        {
+          "id": "calendar_days",
+          "formula": "sum(T_m * days_m / days_year)",
+          "target": "calendar_day_weighted_monthly_values"
+        }
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "product",
+        "api_version",
+        "sources",
+        "annual_sources",
+        "source_history_schema_version",
+        "source_history_result_sha256"
+      ],
+      "properties": {
+        "provider": {
+          "const": "NASA POWER"
+        },
+        "product": {
+          "const": "POWER Monthly and Annual API"
+        },
+        "api_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sources": {
+          "const": [
+            "MERRA2"
+          ]
+        },
+        "annual_sources": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "year",
+              "files_sha256"
+            ],
+            "properties": {
+              "year": {
+                "type": "integer",
+                "minimum": 1981,
+                "maximum": 9999
+              },
+              "files_sha256": {
+                "type": "object",
+                "minProperties": 3,
+                "additionalProperties": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              }
+            }
+          }
+        },
+        "source_history_schema_version": {
+          "const": "0.1.0"
+        },
+        "source_history_result_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "series": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "year",
+          "status",
+          "valid_months",
+          "missing_months",
+          "calendar_days",
+          "valid_calendar_days",
+          "weights",
+          "equal_month_mean_degC",
+          "calendar_day_mean_degC",
+          "calendar_minus_equal_degC",
+          "provider_annual"
+        ],
+        "properties": {
+          "year": {
+            "type": "integer",
+            "minimum": 1981,
+            "maximum": 9999
+          },
+          "status": {
+            "enum": [
+              "complete",
+              "incomplete"
+            ]
+          },
+          "valid_months": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 12
+          },
+          "missing_months": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"
+            },
+            "minItems": 0,
+            "maxItems": 12
+          },
+          "calendar_days": {
+            "enum": [
+              365,
+              366
+            ]
+          },
+          "valid_calendar_days": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 366
+          },
+          "weights": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "date",
+                "days",
+                "equal_month_weight",
+                "calendar_day_weight"
+              ],
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"
+                },
+                "days": {
+                  "type": "integer",
+                  "minimum": 28,
+                  "maximum": 31
+                },
+                "equal_month_weight": {
+                  "const": 0.08333333333333333
+                },
+                "calendar_day_weight": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 1
+                }
+              }
+            },
+            "minItems": 12,
+            "maxItems": 12
+          },
+          "equal_month_mean_degC": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "calendar_day_mean_degC": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "calendar_minus_equal_degC": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "provider_annual": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "status",
+              "expected_cells",
+              "valid_cells",
+              "area_weighted_mean_degC",
+              "provider_minus_equal_degC",
+              "provider_minus_calendar_degC"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "complete",
+                  "incomplete"
+                ]
+              },
+              "expected_cells": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10000
+              },
+              "valid_cells": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10000
+              },
+              "area_weighted_mean_degC": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "provider_minus_equal_degC": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "provider_minus_calendar_degC": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "minItems": 1,
+      "maxItems": 50
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expected_years",
+        "complete_years",
+        "incomplete_years",
+        "provider_complete_years",
+        "warnings"
+      ],
+      "properties": {
+        "expected_years": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50
+        },
+        "complete_years": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 50
+        },
+        "incomplete_years": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1981,
+            "maximum": 9999
+          },
+          "minItems": 0,
+          "maxItems": 50
+        },
+        "provider_complete_years": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 50
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "maxItems": 20
+        }
+      }
+    },
+    "sensitivity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "valid_years",
+        "max_abs_calendar_minus_equal_degC",
+        "years_at_maximum"
+      ],
+      "properties": {
+        "valid_years": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 50
+        },
+        "max_abs_calendar_minus_equal_degC": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "years_at_maximum": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1981,
+            "maximum": 9999
+          },
+          "minItems": 0,
+          "maxItems": 50
+        }
+      }
+    }
+  }
+}

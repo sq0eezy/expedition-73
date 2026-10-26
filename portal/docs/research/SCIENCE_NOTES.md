@@ -1,5 +1,7 @@
 # Bilimsel kontrol noktaları
 
+**2026-10-26 dar yıllık özet denemesi:** [Eşit ay/takvim günü ve kaynak tanımı](TEMPORAL_AGGREGATION.md) ayrı hedefler olarak sınandı. Mevcut maskesiz A/B 24'er yılda [aday hesap ve API yıllık hücre karşılaştırması](../evidence/ANNUAL_WEIGHTING_CHECK.md) hazır; aynı kaynak yakınlığı doğruluk/bağımsız bilimsel kanıt değildir. Bu yeni betimsel hesap, aşağıdaki eğilim/otokorelasyon/anlamlılık yöntemlerinden birinin seçimi sayılmaz. Yüzey/sınır/dönem ve M2 incelemesi açık.
+
 Bu sayfa analiz sonucu içermez. İlk konuşmadaki kesin ifadeleri daraltır ve yöntem seçimi için araştırma soruları tutar.
 
 ## İlk konuşmayı okurken

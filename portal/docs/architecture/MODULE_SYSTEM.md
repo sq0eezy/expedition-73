@@ -8,6 +8,8 @@ change_summary: "İlk yerel bağımlılık motoru ve yapay A/B/C örneği çalı
 
 ## İki ayrı ilişki
 
+2026-10-26: [Yıllık ağırlık denetimi](../guide/T2M_ANNUAL_WEIGHTING.md), mevcut recorded_window_history 0.1.0 çıktısını ham kaynakları tekrar doğrulayarak tüketen ayrı bir Python modülüdür. Kendi iki aday hesabı ve candidate_annual_weighting_audit 0.1.0 şeması vardır. Bu ilk CLI henüz beş düğümlü yüzey motorunda kayıtlı yeni bir işlem veya web kataloğu değildir; [hedef/yöntem kabulü](../research/TEMPORAL_AGGREGATION.md) ve adaptör/akış entegrasyonu ayrı kalır.
+
 | İlişki | Anlamı | Örnek |
 |---|---|---|
 | `contains` | Konuları ve alt modülleri düzenli gösterir | İklim göstergeleri → Hava sıcaklığı |

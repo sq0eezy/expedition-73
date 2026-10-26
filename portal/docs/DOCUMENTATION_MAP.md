@@ -17,6 +17,7 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | Yıllık kaynak birleştirme, 2023–2024 ve yıl seçimi | [History komutları/sözleşmeler](guide/T2M_HISTORY.md), [gerçek kontrol](evidence/T2M_HISTORY_CHECK.md) |
 | Gerçek 2001–2024 erişimi ve 24 yıllık katalog | [Uzun dönem teknik kayıt](guide/T2M_LONG_PERIOD.md), [gerçek kontrol](evidence/T2M_LONG_PERIOD_CHECK.md) |
 | 288 aylık grafik/tablo ve tek yıl ayrıntılarına geçiş | [Uzun dönem görünümü](guide/T2M_TIMELINE.md), [gerçek kontrol](evidence/TIMELINE_PREVIEW_CHECK.md) |
+| Aylıktan yıllığa iki ağırlık adayı ve kaynak yıllık kıyası | [Yöntem araştırması](research/TEMPORAL_AGGREGATION.md), [CLI](guide/T2M_ANNUAL_WEIGHTING.md), [gerçek kontrol](evidence/ANNUAL_WEIGHTING_CHECK.md) |
 | Sınanacak beklentiler | [Hipotezler](product/HYPOTHESES.md) |
 | Fikir adayları ve seçim ölçütleri | [Karşılaştırma](discovery/IDEA_COMPARISON.md) |
 | Cevap bekleyen sorular | [Keşif](discovery/index.md) |

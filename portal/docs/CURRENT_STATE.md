@@ -1,15 +1,17 @@
 ---
 status: Validating
 updated: "2026-10-26"
-phase: Kayıtlı 288 aylık görünüm ve bağlı ayrıntılar
+phase: Aday yıllık özet hedeflerini sınama
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "288 aylık grafik/tablo ve bağlı ay seçimi hazır; 201 Windows/37 JS/65 Chrome geçti. Kaynaklar aynı; bilimsel istatistik/maske/dönem ve paylaşım açık."
+change_summary: "216 Windows/37 JS ve gerçek A/B yıllık rapor tekrarları geçti; eşit ay/takvim günü adayları hazır, yöntem seçilmedi. Genel web/eğilim ve paylaşım açık."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **İki aday yıllık özet hesaplandı:** [Zaman ağırlığı araştırması](research/TEMPORAL_AGGREGATION.md), [CLI/sözleşme](guide/T2M_ANNUAL_WEIGHTING.md), [216 Windows/37 JS ve gerçek tekrar kanıtı](evidence/ANNUAL_WEIGHTING_CHECK.md). Maskesiz A/B 24'er tam yıl, ay/gün ağırlıkları ve kaynak API yıllık hücre kıyası var. İki aday arasındaki en büyük fark A 0,079698 °C, B 0,140113 °C; bu hata payı/ısınma değildir. Gün ağırlığı bu 48 bölge-yılda API özetine daha yakın; kaynak kısa açıklaması ağırlıkları belirtmediğinden evrensel NASA algoritması doğrulanmış sayılmaz. Yeni modül/çıktı 0.1.0 aday; yöntem seçilmedi, web/motora bağlanmadı. T-03 yerel M1 incelemesi; yeni Mac/CI/yayın/M2 kabulü yok.
 
 - **288 ay tek zaman ekseninde:** [Uzun dönem görünümü](guide/T2M_TIMELINE.md) bütün kayıtlı aylık değerleri, geçerli ay sayısını ve tabloyu gösterir. Ortak pencere/yüzey, klavyeli ay seçimi, yıl/ay/hücre/kaynak/rapor bağlantısı çalışır; uyumsuz yıllar birleştirilmez. [201 Windows/37 JS/65 Chrome kanıtı](evidence/TIMELINE_PREVIEW_CHECK.md). Kaynak JSON ve bilimsel hesap aynı; yeni yıllık özet/anomali/eğilim hesabı yok. Web/annual/rapor/ZIP sözleşmeleri ve altı dosya korunur. T-02/U-02 yerel M1 dilimi; M2 kabulü, yeni Mac/Linux/CI veya yayın yok.
 
@@ -75,4 +77,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-[Kayıtlı 288 aylık görünüm](guide/T2M_TIMELINE.md) tamamlandı. Sıradaki bilimsel tasarım konusu, hedef yüzey/sınır ve dönem ile yıllık özet/anomali/eğilim yöntemini gerekçelendirmek; yeni hesap kabul edilmeden bilimsel sonuç üretmemektir. Şu anki çizgi mevsimsel aylık değerleri taşır. M2'nin yeni ekranı veya bilimsel profili kabul ettiği varsayılmaz. Yeni dilim ve önceki geliştirmeler yerel M1 dalında; main/Pages değişmedi. Eski tarihli kayıtlar geçmiş aşamaları anlatır.
+[Yıllık özet için iki aday](research/TEMPORAL_AGGREGATION.md) gerçek kayıtta sınandı; sonraki teknik öneri bu ayrı hesapları webde açık aday etiketleriyle yan yana sunmaktır. Bilimsel hedef yüzey/sınır/dönem ve ağırlık kararı yine açık; anomali/eğilim, zaman bağımlılığı, aralık ve p-değeri ayrı gerekçelendirilir. M2'nin aday hesabı veya bilimsel profili kabul ettiği varsayılmaz. Yeni dilim ve önceki geliştirmeler yerel M1 dalında; main/Pages değişmedi. Eski tarihli kayıtlar geçmiş aşamaları anlatır.
