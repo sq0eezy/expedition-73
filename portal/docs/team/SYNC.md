@@ -1,13 +1,15 @@
 ---
 review_summary: "Ortak webden okuma, GitHub üzerinden düzenleme ve yerel kaynakları eşitleme."
-change_summary: "b7e0333 M1 dalına gönderildi, uzak SHA eşleşti. Yeni CI'da ARM64 QEMU kurulumu geçti; bütün matrix sonucu henüz yok. Main/M2/Pages aynı."
+change_summary: "Yıllık modül bağlantısı 5dd0630 ile M1 dalına gönderildi; uzak SHA eşleşti, yeni CI sırada. 234 Windows/43 JS yerel kanıt; main/M2/Pages aynı."
 ---
 
 # Paylaşım ve kurulum
 
-## 2026-10-26 · Yıllık modül akışının yerel doğrulaması
+## 2026-10-26 · Yıllık modül akışı GitHub'da
 
-M1 devam talebiyle temiz d95cce1 üzerinde [History → AnnualWeighting](../guide/ANNUAL_WORKFLOW.md) eklendi. [234 Windows/43 JS ve gerçek A/B](../evidence/ANNUAL_WORKFLOW_CHECK.md) geçti; bütün yedi genel web dosyası önceki ZIP ile byte aynı. Kaynaklar/hesap yöntemi/web sözleşmeleri değişmedi. Yeni kod mevcut M1 dalında paylaşılır; gönderim sonrası uzak SHA/koşu ayrıca kaydedilir. Önceki b7e0333 CI'sının üç native ve Docker AMD64 işleri success; ARM64 kontrolü son gözlemde sürüyor. Bu işler yeni yıllık motor bağlantısının uzak testi değildir. M2 kabulü veya main/Pages/Sites yayını yok.
+M1 devam talebiyle temiz d95cce1 üzerinde [History → AnnualWeighting](../guide/ANNUAL_WORKFLOW.md) eklendi. [234 Windows/43 JS ve gerçek A/B](../evidence/ANNUAL_WORKFLOW_CHECK.md) geçti; bütün yedi genel web dosyası önceki ZIP ile byte aynı. Kaynaklar/hesap yöntemi/web sözleşmeleri değişmedi. Kaynak **5dd0630d6d04cd11404c037a7a97b575716ed0d1** mevcut codex/m1-modules-region-a dalına normal push ile gönderildi, ls-remote eşleşti. [Yeni kod CI'sı 40372881297](https://github.com/sq0eezy/expedition-73/actions/runs/40372881297) aynı SHA'da ilk gözlem pending; başarı değildir. Bu sonraki paylaşım belge commit'i aynı dala gider, yeni uygulama testi değildir.
+
+Önceki b7e0333 CI'sının üç native ve Docker AMD64 işleri success; ARM64 kontrolü bu gözlemde sürüyordu. Bu işler yeni yıllık motor bağlantısının uzak testi değildir. Workflow'un mevcut cancel-in-progress ayarı yeni kaynak koşusu başladığında önceki koşuyu iptal edebilir; iptal veya yarım ARM64 sonucu tam başarı sayılmaz. Main a1a83d5/M2 6047c42 aynı doğrulandı; M2 kabulü veya main/Pages/Sites yayını yok. H-M1-023 dalda alınabilir; M2'nin gördüğü/kabul ettiği varsayılmaz.
 
 ## 2026-10-26 · Tamamlanan CI sonucu ve ARM64 düzeltmesi
 

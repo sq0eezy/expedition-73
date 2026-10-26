@@ -6,6 +6,8 @@ M1 devam istedi. Temiz d95cce1'de ekip/durum/fikir/devir/pano okundu; fetch'te y
 
 Son ortak check **234 test / 559,165 s**, gerçek eski/yeni A/B tekrarları, iki yeni 24 yıllık akış, **43 JS / 827,9406 ms**, syntax ve builder ile exit 0 tamamlandı. Son yedi genel dosya önceki ZIP ile byte aynı; yeni ZIP/Chrome koşusu yok. Portal ilk check/build 5,69 s geçti; son belgeler de kontrol edilir. Yeni sunucu açılmadı. Paylaşım/uzak CI yeni kod için ayrı kaydedilir.
 
+Kod 5dd0630 mevcut M1 dalına normal push ile gönderildi, uzak SHA eşleşti; main a1a83d5/M2 6047c42 aynı. Yeni 40372881297 aynı kod SHA'sında ilk gözlem pending; önceki b7e0333 dört başarılı işi bu yeni kodun uzak testi değildir. Sonraki paylaşım belge kaydı aynı dala gönderilir. Portal son check/strict build 3,56 s geçti; bilimsel/yayın kabulü değildir. [Paylaşım](../team/SYNC.md).
+
 ## 2026-10-26 · Uzak platform sonuçları ve ARM64 kurulum kapsamı
 
 M1 devam istedi. Temiz 2de8bf8'de fetch ve ekip kayıtları okundu; main a1a83d5/M2 6047c42 aynı. [40335437683 günlükleri](../evidence/CI_PLATFORM_CHECK.md) üç native ve Docker AMD64 için 222 Python/43 JS başarısını; ARM64 için uygulama başlamadan QEMU/binfmt exec format error hatasını doğruladı. Job-geneli DOCKER_DEFAULT_PLATFORM yalnız üç Compose adımına daraltıldı. Matrix/testler/read_only/ağsız koşullar/cleanup aynı; UTF-8 YAML ağaç karşılaştırması ve diff check geçti. Yerel Docker motoru hazır değildi, yeni yerel analysis/web/Chrome koşusu yok. Copilot PR #1 metin/boş plan commit'i/yorumları okundu; PR/main değiştirilmedi. Yeni uzak sonuç [SYNC](../team/SYNC.md) kaydında ayrılır; bilimsel politika/M2 kabulü/Pages yayını yok.

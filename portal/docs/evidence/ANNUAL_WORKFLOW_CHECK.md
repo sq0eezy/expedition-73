@@ -29,3 +29,5 @@ Portal kendi venv check ve strict build ilk turda 5,69 s, son belge değişiklik
 ## Sınırlar ve paylaşım
 
 İşlem sırası/kaynak bağı teknik kanıttır; bilimsel profil, maske, kesin sınır/dönem, anomali/eğilim, M2 kabulü veya R-A05/R-B05 tamamlanması değildir. Yeni dilimin uzak CI'sı önceki b7e0333 platform koşusuyla karıştırılmaz; [önceki CI](CI_PLATFORM_CHECK.md), [güncel paylaşım](../team/SYNC.md). Yeni sunucu/hosting/Pages/main birleştirmesi yok.
+
+Kod **5dd0630d6d04cd11404c037a7a97b575716ed0d1** normal push ile M1 dalına gönderildi ve uzak SHA eşleşti. [40372881297](https://github.com/sq0eezy/expedition-73/actions/runs/40372881297) bu kod SHA'sında ilk gözlem pending; yeni kod için uzak başarı henüz doğrulanmadı. Sonraki paylaşım belge commit'i yalnız bu gözlemi kaydeder. Main a1a83d5/M2 6047c42 korunur; kaynaklar arasında özel .env/venv/generated artifacts yok.

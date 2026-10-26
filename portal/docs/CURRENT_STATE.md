@@ -3,7 +3,7 @@ status: Validating
 updated: "2026-10-26"
 phase: Yıllık hesabın modül bağımlılık akışına bağlanması
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "History → AnnualWeighting akışı 234 Windows/43 JS ve gerçek A/B ile geçti. Yedi web dosyası byte aynı; yeni kodun paylaşım/CI kaydı ayrı. Bilimsel politika/main/Pages aynı."
+change_summary: "History → AnnualWeighting 5dd0630 ile M1 dalında, uzak SHA doğrulandı. 234 Windows/43 JS ve gerçek A/B geçti; yeni CI sırada, main/Pages ve bilimsel politika aynı."
 ---
 # Mevcut durum
 
@@ -12,6 +12,8 @@ change_summary: "History → AnnualWeighting akışı 234 Windows/43 JS ve gerç
 ## Hazır olanlar
 
 - **Yıllık hesap için iki adımlı motor bağlantısı:** [History → AnnualWeighting](guide/ANNUAL_WORKFLOW.md) kayıtlı kaynakları bir kez yakalayıp tekrar doğrular; yıllık işlem aynı özel hesap fonksiyonuyla bu artifact'i tüketir. Kaynak hatasında yıllık adım blocked; gerçek girdi/ata izi ve ayrı küçük trace dosyası var. [234 Windows/43 JS, gerçek A/B akışları ve byte kontrolü](evidence/ANNUAL_WORKFLOW_CHECK.md) geçti. Aday yöntem/audit 0.1.0 ve web/ZIP korunur; webdeki beş düğümlü aylık grafik aynı kalır. M2/bilimsel profil kabulü değildir.
+
+- **Yeni yıllık akış M1 dalında paylaşıldı:** Kod 5dd0630 normal push ve ls-remote eşleşmesiyle doğrulandı. [SYNC/koşu](team/SYNC.md): yeni kod CI'sı 40372881297 ilk gözlemde pending, başarılı sayılmaz. Main/M2/Pages aynı; H-M1-023 teknik inceleme bekler.
 
 - **Uzak platform sonuçları okundu:** [Tam iş/günlük kanıtı](evidence/CI_PLATFORM_CHECK.md): 07f87a3 için Windows/macOS ARM64/Ubuntu ve Docker AMD64 222 Python/43 JS ile geçti. Docker ARM64 uygulama başlamadan binfmt kurulumunda exec format error verdi; genel koşu failure. Job-geneli hedef mimari değişkeni yalnız Compose adımlarına taşındı; yeni koşu sonucu [SYNC](team/SYNC.md) içinde ayrı tutulur. M2'nin kendi Mac kabulü veya bilimsel onay değildir.
 
