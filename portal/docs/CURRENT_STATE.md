@@ -3,13 +3,15 @@ status: Validating
 updated: "2026-10-26"
 phase: Yıllık adayları webde inceleme ve paylaşım
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "Yıllık aday kart/tablo ve kaynak bağı hazır; 222 Windows/43 JS/76 Chrome. Yedi dosya, manifest 0.4.0; GitHub paylaşımı doğrulaması SYNC'te tutulur, bilimsel yöntem açık."
+change_summary: "Yıllık ekran ve önceki M1 dilimleri 07f87a3 ile GitHub dalında, uzak SHA doğrulandı. 222 Windows/43 JS/76 Chrome; uzak CI başladı, main/Pages ve bilimsel yöntem değişmedi."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **M1 geliştirmeleri GitHub dalında paylaşıldı:** Kullanıcının açık isteğiyle 07f87a3 ve önceki dokuz yerel commit normal push ile gönderildi, uzak SHA eşleşti. [Dal/CI/kurulum kaydı](team/SYNC.md). H-M1-014…022 artık alınabilir; M2 kabulü değildir. Kod SHA'sında uzak CI ilk gözlemde çalışıyor, başarılı sayılmadı. Main/M2 dalı ve canlı Pages aynı kaldı.
 
 - **Yıllık adaylar webde:** [Kart/tablo kullanımı](guide/ANNUAL_WEB.md), [gerçek kontroller](evidence/ANNUAL_WEB_CHECK.md). Aynı aylık kataloğa bağlı ayrı 0.1.0 yıllık web dosyası, seçili yılın iki adayı/API referansı ve 24 yılın özetleme farkı vardır. Kara/buzda yıllık kartlar kapanır, kaynak/hata/Web Crypto uyuşmazlığı aylık ekranı bozmaz. 222 Windows birim testi, 43 JS ve 76 Chrome geçti; son paket/paylaşım kanıtı esas kayıtta ayrılır. Aylık katalog/rapor byte kimlikleri korundu; yedi dosya, manifest 0.4.0. Kullanıcı mevcut M1 dalına GitHub gönderimi istedi; main/Pages ve bilimsel kabul ayrı, [durum](team/SYNC.md).
 

@@ -1,5 +1,9 @@
 # Çalışma günlüğü
 
+## 2026-10-26 · M1 dalına doğrulanmış gönderim
+
+Kullanıcının açık talebiyle yıllık ekran kaynağı [07f87a3](https://github.com/sq0eezy/expedition-73/commit/07f87a3beb921ce44343739b49e1c8058202bfc9) ve önceki dokuz yerel commit normal push ile gönderildi. Outgoing 292 kaynak yolunda özel .env/venv/artifacts yok; uzak SHA ls-remote ile eşleşti. Main a1a83d5 ve M2 6047c42 korundu. [CI 40335437683](https://github.com/sq0eezy/expedition-73/actions/runs/40335437683) kod SHA'sında in_progress olarak gözlendi; başarı iddiası yok. [SYNC](../team/SYNC.md) ve H-M1-014…022 paylaşım kapsamı güncellendi. Bu yazılı kayıt sonraki belge commit'iyle aynı dala gönderilir. Yerel test/paket kanıtı değişmedi; Pages/Sites/main merge veya M2 kabulü yok. QA 8873 sunucusu kapatıldı, port kapalı doğrulandı; portal check/strict build geçti.
+
 ## 2026-10-26 · Yıllık aday ekranı ve paylaşım hazırlığı
 
 M1 devam ve GitHub gönderimi istedi. Temiz 1a59620, dokuz yerel commit korunarak mevcut dalda devam edildi; ekip/durum/fikir/devir/pano okundu. Fetch sonrası main a1a83d5, uzak M1/M2 6047c42; yeni katkı yok. [Yıllık web dosyası](../guide/ANNUAL_WEB.md) exact aylık katalog SHA'sına ve her yılın sıcaklık kaynak hash'lerine bağlandı; Python hesabı korunur, JS adaptörü kapsam/tutarlılığı denetler. Maskesiz kart/tablo/özetleme farkı, kaynak açıklaması, yıl düğmesinde odak/details korunumu ve hata ayrımı çalışır. [222 Windows/353,722 s, gerçek A-B, 43 JS/754,0393 ms ve 76 Chrome](../evidence/ANNUAL_WEB_CHECK.md) başarılı; yedi dosyalı builder/smoke geçti. Yeni yıllık zarf 0.1.0, manifest 0.4.0; aylık veri/rapor kimlikleri aynı, eski ZIP uyumu var. Yeni bilimsel formül/maske/eğilim/M2 kabulü yok. T-04/H-M1-022 inceleme bekler. Uzak gönderim/CI gözlemi SYNC'e bağlanır; main/Pages ve yeni Mac/Docker başarısı varsayılmaz.

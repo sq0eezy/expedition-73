@@ -1,9 +1,17 @@
 ---
 review_summary: "Ortak webden okuma, GitHub üzerinden düzenleme ve yerel kaynakları eşitleme."
-change_summary: "6b4ab12 ve önceki M1 çalışmaları GitHub geliştirme dalına gönderildi; uzak SHA doğrulandı. Main/M2 değişmedi; canlı Pages yayını yok."
+change_summary: "07f87a3 ve önceki dokuz yerel M1 commit'i normal push ile paylaşıldı, uzak SHA eşleşti. CI başladı; main/M2/Pages değişmedi."
 ---
 
 # Paylaşım ve kurulum
+
+## 2026-10-26 · Yıllık web ve önceki M1 dilimleri GitHub'da
+
+Kullanıcı devam edilmesini ve GitHub'a gönderilmesini açıkça istedi. [Kaynak kod 07f87a3](https://github.com/sq0eezy/expedition-73/commit/07f87a3beb921ce44343739b49e1c8058202bfc9), önceki dokuz yerel commit ile birlikte normal push ile [codex/m1-modules-region-a](https://github.com/sq0eezy/expedition-73/tree/codex/m1-modules-region-a) dalına gönderildi. ls-remote başlık **07f87a3beb921ce44343739b49e1c8058202bfc9** olarak yerelle eşleşti. Main a1a83d5 ve M2 dalı 6047c42 aynen kaldı; reset/force/main merge/Pages/Sites yayını yok.
+
+Gönderim; geliştirme paketi, gerçek akış/aylık fark/rapor, iki yıllık ve 24 yıllık kaynaklar, 288 aylık görünüm, aday yıllık Python hesabı ve [yıllık aday ekranını](../guide/ANNUAL_WEB.md) kapsar. [222 Windows/43 JS/76 Chrome ve paket kanıtı](../evidence/ANNUAL_WEB_CHECK.md) yereldir. [GitHub Actions 40335437683](https://github.com/sq0eezy/expedition-73/actions/runs/40335437683) tam bu kod SHA'sında başladı; ilk gözlem **in_progress**, sonucu henüz doğrulanmadı. Bu yazılı paylaşım kaydı koddan sonraki belge commit'i olarak aynı dala gönderilir; kod CI'sı bu belge commit'inin test koşusu diye sunulmaz.
+
+H-M1-014…022 artık geliştirme dalından alınabilir; M2'nin gördüğü/kabul ettiği anlamına gelmez. Korunmamış değişiklikler varken körlemesine pull/checkout yapılmaz. M2 kendi işini koruyup önce `git fetch origin` ile dalı inceleyebilir; uygun temiz çalışma dalında normal birleştirme sonrası Mac'te `sh scripts/start-preview.sh` kullanılır. Yıllık data/annual.json dahil yedi dosya birlikte derlenir. Ana Pages URL'si main'den üretildiği için bu paylaşım onu güncellemez.
 
 ## 2026-10-26 · Aday yıllık hesap yerelde
 
