@@ -6,17 +6,17 @@ varlık
 
 [Ekip alanı](portal/docs/team/index.md): Emeç Yıldız ve sq0eezy için ayrı çalışma notları, fikir alışverişi, görev sahipliği ve devir kayıtları. Ortak kayıtlar bu deponun `main` dalından paylaşılır; [paylaşım kılavuzu](portal/docs/team/SYNC.md).
 
-**Mevcut aşama:** tek göstergeli **2 metre hava sıcaklığı** pilotunu hazırlama. Modüle özel hesap + ortak sonuç adaptörü kabul edildi; bölgeler/ürün/dönem/yöntem açık. [Pilot planı](portal/docs/planning/PILOT.md), [modül sistemi](portal/docs/architecture/MODULE_SYSTEM.md). [T2M adaptörleri](analysis/README.md) ve kayıtlı 2024 sonuçlarıyla [ilk yerel web ekranı](web/README.md) çalışıyor; nihai bilimsel profil, uzun dönem istatistik ve sunum uygulaması açık.
+**Mevcut aşama:** testli **2 metre hava sıcaklığı** temeli main'de; [adım adım toparlama](portal/docs/planning/CONSOLIDATION.md). [T2M adaptörleri](analysis/README.md), gerçek A/B 2001–2024 aday kayıtları, aylık/yıllık hesap ve [teknik sonuç ekranı](web/README.md) çalışıyor. Veri/hesap çekirdeği hazır; [bilimsel pilotun tamamı bitmedi](portal/docs/planning/PILOT.md). Kesin profil/maske/sınır, eğilim ve belirsizlik açık. [Sade karşılaştırma arayüzü taslağı](portal/docs/product/COMPARISON_WORKSPACE.md) sonraki ayrı teslimdir; yeni gösterge henüz seçilmedi.
 
 Başlangıç: [mevcut durum](portal/docs/CURRENT_STATE.md), [fikir karşılaştırması](portal/docs/discovery/IDEA_COMPARISON.md), [NASA kaynakları](portal/docs/research/DATA_SOURCES.md).
 
 ## İsteğe bağlı geliştirme paketi
 
-Docker Desktop açıkken depo kökünde `docker compose --env-file docker/compose.env up --build`; adres http://127.0.0.1:8873/. Durdurma: Ctrl+C ve aynı env-file ile `docker compose --env-file docker/compose.env down`. Docker olmadan Windows'ta `scripts\start-preview.cmd`, Mac'te `sh scripts/start-preview.sh`. [Kurulum, ortak kontrol ve demo ZIP kılavuzu](portal/docs/guide/DEV_PACKAGE.md), [gerçek platform sınırları](portal/docs/evidence/DEV_PACKAGE_CHECK.md). Yeni paket M1 dalındaki yerel geliştirmedir; main/Pages yayını değildir.
+Docker Desktop açıkken depo kökünde `docker compose --env-file docker/compose.env up --build`; adres http://127.0.0.1:8873/. Durdurma: Ctrl+C ve aynı env-file ile `docker compose --env-file docker/compose.env down`. Docker olmadan Windows'ta `scripts\start-preview.cmd`, Mac'te `sh scripts/start-preview.sh`. [Kurulum, ortak kontrol ve demo ZIP kılavuzu](portal/docs/guide/DEV_PACKAGE.md), [ilk main teslimi ve gerçek platform kontrolleri](portal/docs/evidence/T2M_BASELINE_RELEASE.md). Kaynak artık main'dedir; Pages yalnız yönetim portalını yayımlar.
 
 ## İlk yerel sonuç ekranı
 
-Mevcut M1 geliştirme dilimi `web/` içinde. Windows CMD'de depo kökünden `analysis\.venv\Scripts\python.exe analysis\scripts\build_web_preview.py`, ardından `analysis\.venv\Scripts\python.exe web\serve.py`. Adres http://127.0.0.1:8873/, kapatma Ctrl+C. [Mac komutları ve ekran kapsamı](web/README.md). Bu teknik prototip main/Pages yönetim yayınına henüz eklenmedi; yeni kodun bulunduğu dalın yerel kopyası gerekir.
+Main'deki teknik sonuç ekranı `web/` içinde. Windows CMD'de depo kökünden `analysis\.venv\Scripts\python.exe analysis\scripts\build_web_preview.py`, ardından `analysis\.venv\Scripts\python.exe web\serve.py`. Adres http://127.0.0.1:8873/, kapatma Ctrl+C. [Mac komutları ve ekran kapsamı](web/README.md). Kaynak main'den alınabilir; sonuç uygulamasının çevrim içi barındırılması henüz kurulmadı.
 
 ## Ortak web paneli
 

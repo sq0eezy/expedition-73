@@ -3,7 +3,7 @@ status: Validating
 updated: "2026-10-27"
 phase: İlk main paketi ve aşamalı toparlama
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "M1 testli temeli main'e almaya başlamayı istedi. c682441 beş uzak işi geçti; sıcaklığın teknik çekirdeği hazır, bilimsel pilot açık. Sade karşılaştırma taslağı ayrı."
+change_summary: "İlk T2M temeli 6db86b2 main'de; main beş CI işi 238 Python/48 JS, Pages/HTTP başarılı. Teknik çekirdek hazır, bilimsel pilot açık; sonraki iş sade karşılaştırma düzeni."
 ---
 # Mevcut durum
 
@@ -11,7 +11,7 @@ change_summary: "M1 testli temeli main'e almaya başlamayı istedi. c682441 beş
 
 ## Hazır olanlar
 
-- **Yeni yön · aşamalı toparlama:** M1 yapılanları main'e almaya başlamayı istedi. [İlk teslim ve sıra](planning/CONSOLIDATION.md), [gerçek teslim kaydı](evidence/T2M_BASELINE_RELEASE.md). Bu oturum mevcut testli temeli aktarır; yeni arayüz veya ikinci modül kodu eklemez. Aşağıdaki eski tarihli paylaşım durumları kendi aşamalarına aittir.
+- **İlk toparlama paketi main'de:** M1'in açık talebiyle mevcut testli temel 6db86b2 normal merge/push ile aktarıldı; uzak SHA eşleşti, M2 dalı korundu. [Teslim ve sıra](planning/CONSOLIDATION.md), [gerçek merge/Pages/CI kaydı](evidence/T2M_BASELINE_RELEASE.md). Main'in beş CI işi 238 Python/48 JS ile, Pages ve üç yeni sayfada HTTP200 ile başarılı. Yeni UI veya ikinci modül kodu eklenmedi. Aşağıdaki eski tarihli paylaşım durumları kendi aşamalarına aittir.
 - **Sıcaklık bitişi:** Teknik veri/hesap/modül çekirdeği ilk sürüm olarak hazır; [pilotun tamamı bitmedi](planning/PILOT.md). Kesin bilimsel profil, eğilim/belirsizlik ve M2 kabulü açık. İkinci modülde küçük veri denemesi bu açık işlerin yerine geçmez.
 - **Son ekran kodu uzakta doğrulandı:** c682441 / 40461143919 beş iş success; her platform 238 Python/48 JS, native paket ve Docker AMD64/ARM64 HTTP doğrulaması geçti. [Günlük kanıtı](evidence/T2M_BASELINE_RELEASE.md). 43a3e03 yalnız belge farkıdır; bu toparlama oturumunda bilimsel/uygulama kodu değişmez.
 - **Arayüz gereksinimi kaydedildi:** M1 uzun kaydırma yerine sade, anlamı ve karşılaştırmayı öne alan düzen istedi. [Çalışma alanı taslağı](product/COMPARISON_WORKSPACE.md) öneridir; yeni yerleşim henüz uygulanmadı, M2 adına kabul yok.
@@ -100,4 +100,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-Önce [mevcut testli T2M temelinin main teslimi](evidence/T2M_BASELINE_RELEASE.md) tamamlanır; gerçek merge/CI/Pages sonucu kaydedilir. Sonra [karşılaştırma çalışma alanının](product/COMPARISON_WORKSPACE.md) ilk bilgi mimarisi ayrı dal/dilimde uygulanır. Yeni modül için NASA veri/parametre/uygunluk denemesi daha sonra ayrı seçilir; gösterge henüz seçilmedi. Yıllık inceleme raporu ve istatistik eklemek bu teslimin kapsamı değildir. Bilimsel yüzey/sınır/dönem/yıllık hedef ve eğilim/belirsizlik işi açık kalır. M2 kabulü varsayılmaz. [Toparlama sırası](planning/CONSOLIDATION.md), [paylaşım](team/SYNC.md).
+[Main teslimi](evidence/T2M_BASELINE_RELEASE.md) tamamlandı. Sonraki küçük uygulama işi [karşılaştırma çalışma alanının](product/COMPARISON_WORKSPACE.md) ilk bilgi mimarisidir; M1 dalında hesap/veri kimlikleri korunarak ayrı yapılır. Yeni modül için NASA veri/parametre/uygunluk denemesi daha sonra ayrı seçilir; gösterge henüz seçilmedi. Yıllık inceleme raporu ve istatistik eklemek bu teslimin kapsamı değildir. Bilimsel yüzey/sınır/dönem/yıllık hedef ve eğilim/belirsizlik işi açık kalır. M2 kabulü varsayılmaz. [Toparlama sırası](planning/CONSOLIDATION.md), [paylaşım](team/SYNC.md).

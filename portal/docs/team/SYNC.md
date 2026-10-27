@@ -1,9 +1,17 @@
 ---
 review_summary: "Ortak webden okuma, GitHub üzerinden düzenleme ve yerel kaynakları eşitleme."
-change_summary: "Yıllık akış ekranı c682441 ile M1 dalında, uzak SHA eşleşti. 238 Windows/48 JS/87 Chrome; yeni CI queued, ayrı native ARM64 düzeltmesi beş işi geçti. Main/M2/Pages aynı."
+change_summary: "İlk T2M temeli 6db86b2 main'de; beş main CI işi 238 Python/48 JS, Pages/HTTP başarılı. M2 dalı korundu; yeni UI/modül ayrı adımlar."
 ---
 
 # Paylaşım ve kurulum
+
+## 2026-10-27 · İlk toparlama paketi main'de
+
+M1 yapılanları main'e almaya başlamayı açıkça istedi. [T2M çekirdeği ve aşamalar](../planning/CONSOLIDATION.md), [sıcaklık bitiş durumu](../planning/PILOT.md), [gerçek teslim](../evidence/T2M_BASELINE_RELEASE.md). İncelenen c682441 kodu beş uzak işi 238 Python/48 JS ile geçti; 43a3e03 ve hazırlık 6b7b290 yalnız belge farkıdır. PR API 403 sonrası normal Git merge/push ile **6db86b27626f024527f16b41e585bd96413ef034** main'e gönderildi; uzak eşleşti. M2 6047c42 korundu, reset/force yok. Sonraki çalışma için M1 dalına dönülüp yeni main ff-only alındı.
+
+[Pages 40464061377](https://github.com/sq0eezy/expedition-73/actions/runs/40464061377) build/deploy ve üç yeni sayfada HTTP200 doğrulandı. [Main analiz CI 40464061367](https://github.com/sq0eezy/expedition-73/actions/runs/40464061367) son gözlem **beş iş success**; günlüklerde her iş238 Python/48 JS, native paket ve iki Docker HTTP kontrolü geçti. [Teslim kanıtı](../evidence/T2M_BASELINE_RELEASE.md) ayrıntıları tutar. Bu tamamlanmış kayıt sonraki belge commit'iyle aynı M1/main'e paylaşılır; uygulama kodu değişmez. Portal yayını sonuç uygulaması hosting'i değildir. Yeni UI/modül bu pakette uygulanmadı; bilimsel profil/M2 kabulü yok. Eski tarihli "main/Pages değişmedi" ifadeleri geçmiş aşamaları anlatır.
+
+M2 kendi işini koruyarak önce git status/git fetch origin ile farkı inceleyebilir. Kendi temiz çalışma dalında git merge origin/main ile kaynağı alıp Mac'te sh scripts/start-preview.sh kullanabilir; eski .env/venv paylaşılmaz. Bu öneri M2 adına uygulanmış veya kabul edilmiş sayılmaz.
 
 ## 2026-10-27 · Native ARM64 düzeltmesi ve yıllık ekran hazırlığı
 

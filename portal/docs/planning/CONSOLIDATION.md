@@ -10,7 +10,7 @@ M1, 2026-10-27'de yapılanları main'e almaya başlanmasını, sıcaklık modül
 
 | Adım | Somut çıktı | Durum |
 |---|---|---|
-| 1 · Çalışan T2M temeli | Mevcut API/kayıt/replay, 2001–2024 seri, aday yıllık hesap, bağımlılık motoru, teknik sonuç ekranı ve çalışma paketini incelenmiş sürüm olarak main'e al | Hazırlanıyor; [teslim kanıtı](../evidence/T2M_BASELINE_RELEASE.md) gerçek sonucu tutar |
+| 1 · Çalışan T2M temeli | Mevcut API/kayıt/replay, 2001–2024 seri, aday yıllık hesap, bağımlılık motoru, teknik sonuç ekranı ve çalışma paketini incelenmiş sürüm olarak main'e al | Tamamlandı: 6db86b2 main'de; beş iş/Pages/HTTP başarılı; [teslim kanıtı](../evidence/T2M_BASELINE_RELEASE.md) |
 | 2 · Karşılaştırma çalışma alanı | Uzun tek sayfayı görev odaklı bölümlere ayır; ortak seçimler ve ana kıyas aynı çalışma alanında olsun | [Taslak](../product/COMPARISON_WORKSPACE.md); yeni arayüz henüz uygulanmadı |
 | 3 · Yeni gösterge için küçük veri sınaması | NASA ürün/parametre, tanım/birim, zaman, grid ve eksiklik uygunluğunu küçük gerçek örnekle doğrula | Gösterge/ürün seçilmedi; yeni modül başlamadı |
 | 4 · İkinci modülün bağlantı denemesi | Özel bilimsel hesabı + ortak adaptör + T2M ile açık uygunluk/girdi sözleşmesi + bağımsız küçük doğrulama | 3'ün sonucu ve yöntem tasarımı gerekir |

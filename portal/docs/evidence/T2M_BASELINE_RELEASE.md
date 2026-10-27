@@ -1,8 +1,8 @@
 ---
-status: Validating
+status: Verified
 updated: "2026-10-27"
 review_summary: "Mevcut testli T2M temelinin ilk toparlama paketi olarak main'e alınması."
-change_summary: "Kullanıcı main teslimlerine başlamayı istedi. c682441 kodu beş uzak işi geçti; birleştirme ve Pages sonucu ayrı kaydedilir."
+change_summary: "6db86b2 main'de; main CI beş işte 238 Python/48 JS ile, Pages/HTTP ile geçti. Teknik temel teslim edildi; yeni arayüz/modül ve bilimsel pilot ayrı."
 ---
 # T2M temeli · Main teslimi
 
@@ -22,10 +22,14 @@ Uygulama kaynağı **c68244169258af16ea3cde2e6d8cf5d2e5d57411**; 43a3e03 ile far
 
 Önceki [87 yerel Chrome ve gerçek paket/byte kontrolü](ANNUAL_TRACE_CHECK.md) aynı kaynak içindir; bu oturumda yeni Chrome koşusu yapılmadı. Mevcut kod değişmediği için aynı Python suite'i sırf belge/toparlama için tekrar yerelde çalıştırılmadı. Main sonrası CI aynı kaynağın bütünleştirilmiş ortamını ayrıca kontrol eder.
 
-Main'den fark 320 kaynak dosyası; büyük kısmı kayıtlı açık NASA örnekleri. Kod/sözleşme/örnekler ve web builder birbirine bağlı tek teknik temel olarak incelendi. Core hesap, çağrı/adaptörler, derleme/ZIP/CI ve yayın iş akışları karşılaştırıldı; yeni arayüz/ikinci modül kodu eklenmez. git diff --check geçti; outgoing yollarda .env/venv/generated dist/artifacts yok. Ham örnek byte koruma ayarı korunur. Paketlerin her platformda kendi hash'leri doğrulandı; bütün ZIP'lerin platformlar arasında byte eşitliği iddiası yok.
+Hazırlık belgeleri öncesinde main'den fark 320 kaynak dosyasıydı; ilk merge ağacında 324. Büyük kısmı kayıtlı açık NASA örnekleri. Kod/sözleşme/örnekler ve web builder birbirine bağlı tek teknik temel olarak incelendi. Core hesap, çağrı/adaptörler, derleme/ZIP/CI ve yayın iş akışları karşılaştırıldı; yeni arayüz/ikinci modül kodu eklenmedi. git diff --check geçti; outgoing yollarda .env/venv/generated dist/artifacts yok. Ham örnek byte koruma ayarı korunur. Paketlerin her platformda kendi hash'leri doğrulandı; bütün ZIP'lerin platformlar arasında byte eşitliği iddiası yok.
 
 ## Birleştirme ve yayın kaydı
 
-Açık Copilot PR #1 metni/yorumları okundu: f0bca80 boş plan, sıfır değişen dosya, yorum yok. Bu PR'dan kod veya M2 görüşü alındığı varsayılmaz; değiştirilmez. Bu teslim için mevcut M1 dalından PR yolu denenir; gerçek PR/merge veya yetki hatası sonrası normal Git yolu burada kaydedilir. Reset/force kullanılmaz, M2 dalı korunur.
+Açık Copilot PR #1 metni/yorumları okundu: f0bca80 boş plan, sıfır değişen dosya, yorum yok. Bu PR'dan kod veya M2 görüşü alındığı varsayılmaz; değiştirilmedi. Yeni teslim PR oluşturma çağrısı **403 Resource not accessible by integration** verdi; PR oluşmadı. Bu, Codex otomatik onay reddi değil GitHub entegrasyon yetkisidir. Kullanıcının açık main talebiyle incelenmiş dal normal Git merge/push yoluyla aktarıldı; reset/force kullanılmadı.
 
-Main birleştirme SHA'sı, uzak eşleşme, yeni CI/Pages ve HTTP sonucu işlem sonrası eklenir. Portal Pages workflow yalnız portal/site yayımlar; yeni sonuç uygulaması hosting'i kurulmaz. Bilimsel profil/eğilim tamamlandı veya M2 kabul etti sayılmaz. Toparlama ve arayüz taslakları belge değişikliğidir; portal check/build sonucu analiz testi yerine kullanılmaz.
+M1 hazırlık belgesi commit'i **6b7b290** normal push ile paylaşıldı. Temiz çalışma alanında origin/main'in M1'in atası olduğu doğrulandı; yerel main origin/main'e ff-only ile getirildi, M1 --no-ff ile birleştirildi. **6db86b27626f024527f16b41e585bd96413ef034** main'e normal push ile gönderildi; ls-remote eşleşti. Birleşen ağaç M1 6b7b290 ile git diff --quiet sonucunda aynıydı; c682441'den fark yalnız AGENTS/portal belgeleridir. M2 uzak dalı 6047c42 olarak korundu. M1 dalına dönülüp yeni main ff-only alındı; sonraki geliştirme yine ayrı daldadır.
+
+Main ağacında portal check/strict build **3,89 s** ile geçti. [Main analiz CI 40464061367](https://github.com/sq0eezy/expedition-73/actions/runs/40464061367) aynı merge SHA'sında ilk gözlem in_progress, son gözlem **beş iş success**. Beş tam günlük okundu: her iş **238 Python/48 JS**, bütün offline kaynak/akış tekrarları ve builder başarılı. Python süreleri Windows 274,734 s; Ubuntu 150,042 s; macOS 144,219 s; Docker AMD64 263,663 s; native Docker ARM64 193,602 s. Üç native iş paket doğrulamasını, iki Docker işi yedi dosya/bağ/MIME/özel yollar HTTP smoke'unu geçti. Bu, önceki kaynak CI'sından ayrı gerçek main doğrulamasıdır. Bilimsel profil veya M2'nin kendi cihaz kabulü değildir.
+
+[Pages 40464061377](https://github.com/sq0eezy/expedition-73/actions/runs/40464061377) aynı SHA için build ve deploy success. Canlı planning/CONSOLIDATION/, product/COMPARISON_WORKSPACE/ ve planning/PILOT/ sayfaları HTTP200, beklenen yeni içerikle doğrulandı. Portal Pages workflow yalnız portal/site yayımlar; yeni sonuç uygulaması hosting'i kurulmadı. Bilimsel profil/eğilim tamamlandı veya M2 kabul etti sayılmaz. Bu kayıt sonraki belge commit'iyle de main'de paylaşılır; uygulama kodunu değiştirmez, yeni bilimsel/Chrome test sayılmaz.
