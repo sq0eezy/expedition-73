@@ -1,5 +1,7 @@
 # İş panosu
 
+**2026-10-27 · T-06 yıllık akış ekranı:** [İki düğümlü web görünümü](../guide/ANNUAL_TRACE.md) gerçek çalıştırma, kaynak/context ve işlem parmak izlerine bağlıdır. [19 hedef Python/48 JS/87 Chrome ve son kontroller](../evidence/ANNUAL_TRACE_CHECK.md). Ayrı native ARM64 host CI düzeltmesi gönderildi; yeni ekranın uzak testi değildir. Bilimsel yöntem/M2 kabulü ve main/Pages yayını açık.
+
 **2026-10-26 · T-05 yıllık modül bağlantısı:** M1 devam talebiyle [History → AnnualWeighting](../guide/ANNUAL_WORKFLOW.md) ve run-annual-workflow CLI eklendi. Kaynaklar tek yakalamada sabitlenir; ham replay başarısızsa yıllık adım blocked, gerçek artifact/girdi/ata izi vardır. Aynı yıllık özel formül kullanılır; [kontrol](../evidence/ANNUAL_WORKFLOW_CHECK.md). Yıllık web grafiği, yöntem/maske seçimi ve M2 kabulü ayrı kalır.
 
 **2026-10-26 · D-02 uzak CI:** [07f87a3 iş günlükleri](../evidence/CI_PLATFORM_CHECK.md) üç native ve Docker AMD64 için 222 Python/43 JS başarısını doğruladı. Docker ARM64 kurulum hatasına yönelik b7e0333 mevcut M1 dalına gönderildi; yeni koşuda QEMU geçti, konteyner kontrolleri sürüyor. D-02 Validating kalır; hosted Mac sonucu M2 kullanım kabulü değildir. [Güncel koşu](../team/SYNC.md).
@@ -61,6 +63,7 @@ Görevler eldeki kanıta göre güncellenir. **2026-10-16 iş bölümü:** M1 mo
 | T-03 | Maskesiz T2M için aday yıllık ağırlık hesabı ve kaynak karşılığı | Validating | M1 | Bilimsel tasarımın dar denemesine M1 devam talebi | M2 incelemesi bekler | [İki hedef](../research/TEMPORAL_AGGREGATION.md), [CLI](../guide/T2M_ANNUAL_WEIGHTING.md), [gerçek kontrol](../evidence/ANNUAL_WEIGHTING_CHECK.md); seçilmiş yöntem/eğilim değil |
 | T-04 | Aday yıllık raporları webde kaynak bağıyla gösterme | Validating | M1 | M1 devam ve mevcut dalı GitHub'da paylaşma talebi | M2 incelemesi bekler | [Ekran](../guide/ANNUAL_WEB.md), [kontrol](../evidence/ANNUAL_WEB_CHECK.md); bilimsel politika değil |
 | T-05 | Yıllık özel hesabı gerçek bağımlılık motoruna bağla | Validating | M1 | M1 devam talebi | M2 teknik incelemesi bekler | [Akış ve CLI](../guide/ANNUAL_WORKFLOW.md), [kontrol](../evidence/ANNUAL_WORKFLOW_CHECK.md); aynı yöntem/kaynak, web akış ekranı ayrı |
+| T-06 | Gerçek yıllık akışı webde kaynak/işlem bağıyla göster | Validating | M1 | M1 devam talebi | M2 kullanım incelemesi bekler | [Ekran ve sözleşme](../guide/ANNUAL_TRACE.md), [kontrol](../evidence/ANNUAL_TRACE_CHECK.md); iki düğüm, hata ayrımı, yöntem kabulü değil |
 | C-01 | Yeni konuşmaları özetleyerek işle | Proposed | Atanmadı | Atanmadı | Atanmadı | Yeni bilginin esas belgede yer alması |
 
 ## Modül ve bölge görevleri

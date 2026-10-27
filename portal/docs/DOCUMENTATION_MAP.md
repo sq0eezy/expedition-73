@@ -21,6 +21,7 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | Aylıktan yıllığa iki ağırlık adayı ve kaynak yıllık kıyası | [Yöntem araştırması](research/TEMPORAL_AGGREGATION.md), [CLI](guide/T2M_ANNUAL_WEIGHTING.md), [gerçek kontrol](evidence/ANNUAL_WEIGHTING_CHECK.md) |
 | Yıllık adayların web kartı/tablosu ve aylık kaynağa bağı | [Yıllık ekran](guide/ANNUAL_WEB.md), [gerçek kontrol](evidence/ANNUAL_WEB_CHECK.md) |
 | Doğrulanmış geçmiş → yıllık adaylar için gerçek modül bağımlılığı | [İki adımlı akış](guide/ANNUAL_WORKFLOW.md), [gerçek kontrol](evidence/ANNUAL_WORKFLOW_CHECK.md) |
+| Yıllık hesap akışını webde kaynak/işlem kimliğiyle inceleme | [Yıllık akış ekranı](guide/ANNUAL_TRACE.md), [gerçek kontrol](evidence/ANNUAL_TRACE_CHECK.md) |
 | Sınanacak beklentiler | [Hipotezler](product/HYPOTHESES.md) |
 | Fikir adayları ve seçim ölçütleri | [Karşılaştırma](discovery/IDEA_COMPARISON.md) |
 | Cevap bekleyen sorular | [Keşif](discovery/index.md) |

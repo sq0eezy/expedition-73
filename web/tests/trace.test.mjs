@@ -1,6 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { traceGraph } from '../src/trace.mjs';
+import { traceGraph, validateAnnualWorkflow } from '../src/trace.mjs';
+import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 
 const fingerprint = (n) => String(n).repeat(64);
 function fixture() {
@@ -29,4 +31,42 @@ test('incomplete or repeated execution and scientific claims are rejected', () =
 });
 test('only the target dependency closure is displayed', () => {
   const t = fixture(); t.target = 'B'; assert.throws(() => traceGraph(t));
+});
+
+const canonical = (x) => JSON.stringify(x && typeof x === 'object' ? Array.isArray(x) ? x.map((v)=>JSON.parse(canonical(v))) : Object.fromEntries(Object.keys(x).sort().map((k)=>[k,JSON.parse(canonical(x[k]))])) : x);
+const digest = (s) => createHash('sha256').update(s).digest('hex');
+function annualFixture(id='a') {
+  const audit=JSON.parse(readFileSync(new URL(`../../analysis/examples/${id}-annual-weighting-audit.json`,import.meta.url),'utf8'));
+  const directory=new URL(`../../analysis/examples/${id}-history-2001-2024/`,import.meta.url);
+  const parent=Object.fromEntries(['history.json','request.json','result.json'].map((name)=>[name,digest(readFileSync(new URL(name,directory)))]));
+  const context={scope:'candidate_annual_weighting',region:{region_id:audit.region.id,candidate_bbox:audit.region.candidate_bbox,candidate_window_version:audit.region.candidate_window_version},period:{start_year:2001,end_year:2024},source_files_sha256:{history:parent,annual_sources:audit.provenance.annual_sources}};
+  const context_json=canonical(context), historyContract={type:'verified_annual_weighting_inputs',schema_version:'0.1.0',unit:'degC'}, annualContract={type:'candidate_annual_weighting_audit',schema_version:'0.1.0',unit:'degC'};
+  const definitions=[{id:'History',operation:'ReplayRecordedHistory',version:'0.1.0',parameters:{},inputs:{},output_contract:historyContract},{id:'AnnualWeighting',operation:'CompareAnnualWeighting',version:'0.1.0',parameters:{},inputs:{history:{node:'History',output:'result',contract:historyContract}},output_contract:annualContract}];
+  const nodes=[];
+  for(const [i,d] of definitions.entries()) {
+    const fingerprint=digest(`{"context":${context_json},"dependencies":${canonical(i?{history:nodes[0].definition_fingerprint}:{})},"node":${canonical(d)}}`);
+    nodes.push({id:d.id,operation:d.operation,operation_version:d.version,status:'completed',executions:1,definition_fingerprint:fingerprint,output_contract:d.output_contract,inputs:i?[{alias:'history',node:'History',output:'result',definition_fingerprint:nodes[0].definition_fingerprint}]:[]});
+  }
+  return {id:audit.region.id,audit,workflow:{context_json,trace:{schema_version:'0.1.0',output_type:'recorded_workflow_trace',execution_status:'completed',scientific_validation:'not_performed',identity_kind:'workflow_plan_fingerprint',context_sha256:digest(context_json),target:'AnnualWeighting',nodes}}};
+}
+
+test('annual trace binds two known operations to actual region and annual source identities',async()=>{
+  for(const id of ['a','b']) {const entry=annualFixture(id); assert.equal(await validateAnnualWorkflow(entry),entry.workflow.trace); assert.equal(traceGraph(entry.workflow.trace).edges.length,1);}
+});
+test('annual trace cannot be swapped between regions or shifted to another source period',async()=>{
+  const a=annualFixture(), b=annualFixture('b'); a.workflow=b.workflow; await assert.rejects(validateAnnualWorkflow(a));
+  const entry=annualFixture(); const c=JSON.parse(entry.workflow.context_json); c.period.start_year=2002; entry.workflow.context_json=canonical(c); entry.workflow.trace.context_sha256=digest(entry.workflow.context_json); await assert.rejects(validateAnnualWorkflow(entry));
+});
+test('annual trace rejects changed source hash, private context and unsupported wrappers',async()=>{
+  for(const mutate of [(e)=>{const c=JSON.parse(e.workflow.context_json);c.source_files_sha256.history['result.json']='f'.repeat(64);e.workflow.context_json=canonical(c);},(e)=>{const c=JSON.parse(e.workflow.context_json);c.private_note='do not export';e.workflow.context_json=canonical(c);},(e)=>e.workflow.extra='private',(e)=>e.workflow.context_json='x'.repeat(100001)]) {
+    const entry=annualFixture();mutate(entry);await assert.rejects(validateAnnualWorkflow(entry));
+  }
+});
+test('annual operation contract, version, fingerprint, edge and completion are all checked',async()=>{
+  for(const mutate of [(t)=>t.nodes[1].operation_version='0.2.0',(t)=>t.nodes[0].definition_fingerprint='f'.repeat(64),(t)=>t.nodes[1].inputs[0].alias='other',(t)=>t.nodes[1].output_contract.unit='K',(t)=>t.nodes[1].operation='DifferentAnnualMethod',(t)=>t.execution_status='incomplete']) {
+    const entry=annualFixture();mutate(entry.workflow.trace);await assert.rejects(validateAnnualWorkflow(entry));
+  }
+});
+test('missing annual execution metadata never becomes a completed trace',async()=>{
+  for(const entry of [{}, {id:'A',audit:annualFixture().audit}, {...annualFixture(),workflow:null}]) await assert.rejects(validateAnnualWorkflow(entry));
 });

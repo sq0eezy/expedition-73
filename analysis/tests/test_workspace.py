@@ -24,7 +24,7 @@ class WorkspaceTests(unittest.TestCase):
             target.write_text(json.dumps(data) if name.endswith('.json') else 'public fixture', encoding='utf-8')
         monthly=(root/'web/dist/data/results.json').read_bytes()
         (root/'web/dist/data/annual.json').write_text(json.dumps({
-            'schema_version':'0.1.0','output_type':'recorded_annual_weighting_web_preview',
+            'schema_version':'0.2.0','output_type':'recorded_annual_weighting_web_preview',
             'selection_status':'candidate','data_mode':'recorded_offline_replay','inference_performed':False,
             'source_catalog_sha256':hashlib.sha256(monthly).hexdigest(),'status':'not_available','regions':[]}),encoding='utf-8')
         (root / '.env').write_text('PRIVATE_FIXTURE_NOT_A_TOKEN', encoding='utf-8')
@@ -89,6 +89,24 @@ class WorkspaceTests(unittest.TestCase):
             path.write_text(json.dumps(data),encoding='utf-8')
             with self.assertRaises(ValueError): workspace.package()
             self.assertEqual(package.read_bytes(),before)
+
+    def test_previous_annual_manifest_04_still_verifies_without_a_workflow(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp); self.prepare(root); path=root/'previous.zip'
+            files={name:(root/'web/dist'/name).read_bytes() for name in workspace.PUBLIC}
+            annual=json.loads(files['data/annual.json']); annual['schema_version']='0.1.0'
+            files['data/annual.json']=json.dumps(annual).encode()
+            with zipfile.ZipFile(path,'w') as archive:
+                for name,raw in files.items(): archive.writestr(name,raw)
+                archive.writestr('manifest.json',json.dumps(workspace._manifest(files,'0.4.0')))
+            self.assertEqual(workspace.verify_package(path)['public_files'],7)
+
+    def test_current_package_cannot_claim_available_annuals_without_a_trace(self):
+        with tempfile.TemporaryDirectory() as temp,patch.object(workspace,'ROOT',Path(temp)),patch.object(workspace,'build'):
+            root=Path(temp); self.prepare(root); workspace.package()
+            path=root/'web/dist/data/annual.json'; annual=json.loads(path.read_bytes())
+            annual.update(status='available',regions=[{'id':'A','audit':{}}]); path.write_text(json.dumps(annual),encoding='utf-8')
+            with self.assertRaises(ValueError): workspace.package()
 
     def test_new_manifest_cannot_omit_trace_asset_or_claim_previous_web_contract(self):
         with tempfile.TemporaryDirectory() as temp, patch.object(workspace, 'ROOT', Path(temp)), patch.object(workspace, 'build'):

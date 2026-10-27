@@ -1,12 +1,12 @@
 import { summarizePolicyDifferences, summarizeRegionDifferences, datasetDigest, createComparisonReview, verifyComparisonReview, recordedMonthlyHistory, validateAnnualPreview } from "./comparison.mjs";
-import { traceGraph } from "./trace.mjs";
+import { traceGraph, validateAnnualWorkflow } from "./trace.mjs";
 
 const $ = (id) => document.getElementById(id);
 const months = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
 const shortMonths = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
 const colors = ["#c77543", "#247c78", "#7466a1", "#777c39", "#a3536b", "#3878a6", "#8c6238", "#626c6a"];
 const labels = { unmasked: "Bütün pencere · maskesiz", land: "Kara oranı · FRLAND (aday)", land_and_ice: "Kara + kara buzu (aday)" };
-const state = { data: null, selected: new Set(), month: 0, policy: "unmasked", spatialRegion: null, cell: 0, traceRegion: null, traceNode: null, pairLeft: null, pairRight: null, datasetSha256: null, reviewRequest: 0, periods: new Map(), year: null, historyDates: [], annual: null, annualStatus: "loading", annualRequest: 0, annualTables: new Set(), annualSources: new Set() };
+const state = { data: null, selected: new Set(), month: 0, policy: "unmasked", spatialRegion: null, cell: 0, traceRegion: null, traceNode: null, pairLeft: null, pairRight: null, datasetSha256: null, reviewRequest: 0, periods: new Map(), year: null, historyDates: [], annual: null, annualStatus: "loading", annualRequest: 0, annualTables: new Set(), annualSources: new Set(), annualWorkflows: new Set(), annualTraceNodes: new Map(), annualTraces: new Map() };
 const number = (value, digits = 2) => value === null ? "Veri yok" : value.toLocaleString("tr-TR", { minimumFractionDigits: digits, maximumFractionDigits: digits });
 const el = (tag, text, className) => { const node = document.createElement(tag); if (text !== undefined) node.textContent = text; if (className) node.className = className; return node; };
 const color = (region) => colors[state.data.regions.indexOf(region) % colors.length];
@@ -166,7 +166,7 @@ function renderHistory(regions) {
 
 function renderAnnual(regions) {
   for (const card of $("annual-cards").children) {
-    for (const [selector,set] of [[".annual-values",state.annualTables],[".annual-source",state.annualSources]]) {
+    for (const [selector,set] of [[".annual-values",state.annualTables],[".annual-source",state.annualSources],[".annual-workflow",state.annualWorkflows]]) {
       if (card.querySelector(selector)?.open) set.add(card.dataset.region); else set.delete(card.dataset.region);
     }
   }
@@ -182,6 +182,17 @@ function renderAnnual(regions) {
     const audit = state.annual.regions.find((r) => r.id === region.id).audit, row = audit.series.find((r) => r.year === state.year);
     const card = el("article",undefined,"annual-card"); card.dataset.region = region.id; card.style.setProperty("--region-color",color(region));
     card.append(el("h3",`${region.id} · ${named(region)} / ${state.year}`));
+    const trace = state.annualTraces.get(region.id);
+    if (trace) {
+      const flow = el("details",undefined,"annual-workflow"), layout = el("div",undefined,"trace-layout"), graph = svg("svg",{class:"annual-trace-graph",role:"group","aria-label":`${region.id} · Yıllık hesap bağımlılıkları`}), detail = el("div",undefined,"annual-trace-detail");
+      flow.open = state.annualWorkflows.has(region.id);
+      flow.append(el("summary","Yıllık hesap akışı · 2 adım · 1 veri bağlantısı"),el("p",`${region.id} · ${audit.time.start}–${audit.time.end} kaydı doğrulandı; seçili ${state.year} sonucu bu akıştan gelir. Ayrıntı için bir adıma tıkla veya Tab ve Enter kullan.`,"detail-note"));
+      drawTrace(trace,graph,detail,state.annualTraceNodes.get(region.id),`annual-arrow-${region.id}`,(id)=>{
+        state.annualTraceNodes.set(region.id,id); renderAnnual(active());
+        [...$("annual-cards").children].find((c)=>c.dataset.region===region.id)?.querySelector(`.annual-trace-graph [data-node="${id}"]`)?.focus({preventScroll:true});
+      });
+      layout.append(graph,detail); flow.append(layout,el("p","Derlemede doğrulanan kayıtlı akış · canlı görev durumu değildir. İş tanımı kimliği kaynak ve işlem tanımını izler; bilimsel doğruluk veya yöntem kabulü belirtmez.","detail-note")); card.append(flow);
+    } else card.append(el("p","Bu kaydın yıllık akış izi doğrulanamadı veya eski sürümde yok. Yıllık aday değerleri ve aylık grafikler kullanılabilir.","annual-trace-unavailable detail-note"));
     const values = el("div",undefined,"annual-metrics");
     for (const [key,label,v] of [["equal","Eşit ay · aday",row.equal_month_mean_degC],["calendar","Takvim günü · aday",row.calendar_day_mean_degC],["provider","API yıllık hücre özeti",row.provider_annual.area_weighted_mean_degC]]) {
       const box = el("div"); box.dataset.annualValue = key; box.append(el("span",label),el("strong",v===null?"Veri yok":`${number(v,6)} °C`)); values.append(box);
@@ -230,8 +241,12 @@ async function loadAnnual(bytes,periods,request) {
     if (!response.ok) throw Error("Annual data unavailable");
     const raw = new Uint8Array(await response.arrayBuffer()); if(raw.length>2_000_000) throw Error("Annual data too large");
     const payload = validateAnnualPreview(JSON.parse(new TextDecoder("utf-8",{fatal:true}).decode(raw)),digest,[...periods.values()].map((p)=>p.data));
+    const traces = new Map();
+    if (payload.schema_version === "0.2.0") await Promise.all(payload.regions.map(async(entry)=>{
+      try { traces.set(entry.id,await validateAnnualWorkflow(entry)); } catch { /* Isolate trace errors from validated candidate values. */ }
+    }));
     if (request!==state.annualRequest || state.periods!==periods) return;
-    state.annual=payload; state.annualStatus="ready";
+    state.annual=payload; state.annualStatus="ready"; state.annualTraces=traces;
   } catch { if(request!==state.annualRequest || state.periods!==periods) return; state.annual=null; state.annualStatus="unavailable"; }
   renderAnnual(active());
 }
@@ -359,7 +374,7 @@ function renderSpatial(regions) {
   detail.replaceChildren(el("span", "SEÇİLİ HÜCRE", "section-label"), el("h3", temperature === null ? "Veri yok" : `${number(temperature)} °C`), el("p", `${months[state.month]} · grid T2M · ${labels[state.policy]}`, "detail-note"), table);
 }
 
-const traceLabels = { Temperature: "Sıcaklık girdisi", Fractions: "Fraksiyon kontrolü", Land: "Kara ağırlığı", LandIce: "Kara + buz ağırlığı", Sensitivity: "Karşılaştırma" };
+const traceLabels = { Temperature: "Sıcaklık girdisi", Fractions: "Fraksiyon kontrolü", Land: "Kara ağırlığı", LandIce: "Kara + buz ağırlığı", Sensitivity: "Karşılaştırma", History: "Aylık kaynak kontrolü", AnnualWeighting: "Yıllık aday hesabı" };
 function renderTrace(regions) {
   const select = $("trace-region"), graph = $("trace-graph"), detail = $("trace-detail");
   select.replaceChildren(...regions.map((r) => { const option = el("option", `${r.id} · ${named(r)}`); option.value = r.id; return option; }));
@@ -368,24 +383,33 @@ function renderTrace(regions) {
   graph.replaceChildren(); detail.replaceChildren();
   if (!region) { state.traceRegion = null; state.traceNode = null; return; }
   state.traceRegion = region.id; select.value = region.id;
-  const compact = window.matchMedia("(max-width:740px)").matches;
-  const trace = region.workflow_trace, layout = traceGraph(trace, compact);
-  const selected = layout.nodes.find((n) => n.id === state.traceNode) || layout.nodes.at(-1);
-  state.traceNode = selected.id;
+  const layout = traceGraph(region.workflow_trace);
   $("trace-summary").textContent = `${region.id} · ${layout.nodes.length} adım · ${layout.edges.length} veri bağlantısı · her adım 1 kez çalıştı`;
+  drawTrace(region.workflow_trace,graph,detail,state.traceNode,"trace-arrow",(id)=>{
+    state.traceNode=id; renderTrace(regions); graph.querySelector(`[data-node="${id}"]`).focus({preventScroll:true});
+  });
+}
+
+function drawTrace(trace,graph,detail,selectedId,markerId,onChoose) {
+  const compact = window.matchMedia("(max-width:740px)").matches, layout = traceGraph(trace,compact);
+  if (trace.target === "AnnualWeighting") {
+    layout.nodes = layout.nodes.map((node)=>({...node,x:compact?50:node.x,y:compact?node.y:60}));
+    layout.width=compact?260:410; layout.height=compact?250:120;
+  }
+  const selected = layout.nodes.find((n)=>n.id===selectedId) || layout.nodes.at(-1);
   graph.setAttribute("viewBox", `0 0 ${layout.width} ${layout.height}`);
-  const marker = svg("marker", { id: "trace-arrow", viewBox: "0 0 10 10", refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: "auto-start-reverse" }); marker.append(svg("path", { d: "M0,0 L10,5 L0,10 Z" }));
+  const marker = svg("marker", { id: markerId, class:"trace-arrow", viewBox: "0 0 10 10", refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: "auto-start-reverse" }); marker.append(svg("path", { d: "M0,0 L10,5 L0,10 Z" }));
   const defs = svg("defs", {}); defs.append(marker); graph.append(defs);
   layout.edges.forEach((edge, i) => {
     const a = layout.nodes.find((n) => n.id === edge.from), b = layout.nodes.find((n) => n.id === edge.to);
     const x1 = a.x + 160, x2 = b.x, y1 = a.y, y2 = b.y;
     const d = compact ? (b.y - a.y > 160 ? `M${a.x + 80},${a.y + 33} L${a.x + 80},${a.y + 48} L${8 + i * 3},${a.y + 48} L${8 + i * 3},${b.y - 48} L${b.x + 80},${b.y - 48} L${b.x + 80},${b.y - 33}` : `M${a.x + 80},${a.y + 33} C${a.x + 80},${a.y + 80} ${b.x + 80},${b.y - 80} ${b.x + 80},${b.y - 33}`) : x2 - x1 > 100 ? `M${x1},${y1} L${x1 + 12},${y1} L${x1 + 12},${20 + i * 8} L${x2 - 14},${20 + i * 8} L${x2 - 14},${y2} L${x2},${y2}` : `M${x1},${y1} C${x1 + 25},${y1} ${x2 - 25},${y2} ${x2},${y2}`;
-    const path = svg("path", { d, class: "trace-edge", "marker-end": "url(#trace-arrow)", "data-from": edge.from, "data-to": edge.to }); path.append(svg("title", {}, `${edge.from} → ${edge.to} · ${edge.alias}`)); graph.append(path);
+    const path = svg("path", { d, class: "trace-edge", "marker-end": `url(#${markerId})`, "data-from": edge.from, "data-to": edge.to }); path.append(svg("title", {}, `${edge.from} → ${edge.to} · ${edge.alias}`)); graph.append(path);
   });
   for (const node of layout.nodes) {
     const group = svg("g", { transform: `translate(${node.x},${node.y - 33})`, class: "trace-node", role: "button", tabindex: "0", "aria-pressed": String(node.id === selected.id), "aria-label": `${traceLabels[node.id] || node.id} · tamamlandı · 1 çalıştırma`, "data-node": node.id });
     group.append(svg("rect", { width: 160, height: 66, rx: 10 }), svg("text", { x: 12, y: 25, class: "trace-label" }, traceLabels[node.id] || node.id), svg("text", { x: 12, y: 47, class: "trace-status" }, "✓ Tamamlandı · 1 kez"));
-    const choose = () => { state.traceNode = node.id; renderTrace(regions); graph.querySelector(`[data-node="${node.id}"]`).focus({ preventScroll: true }); };
+    const choose = () => onChoose(node.id);
     group.addEventListener("click", choose); group.addEventListener("keydown", (event) => { if (["Enter", " "].includes(event.key)) { event.preventDefault(); choose(); } }); graph.append(group);
   }
   const dl = el("dl", undefined, "trace-facts");
@@ -497,7 +521,7 @@ function mountYear(year, reset = false) {
 
 async function load() {
   $("loading").hidden = false; $("results").hidden = true; $("error").hidden = true; state.datasetSha256 = null; state.reviewRequest++;
-  const annualRequest = ++state.annualRequest; state.annual=null; state.annualStatus="loading";
+  const annualRequest = ++state.annualRequest; state.annual=null; state.annualStatus="loading"; state.annualTraces=new Map();
   try {
     const response = await fetch("./data/results.json", { cache: "no-store" }); if (!response.ok) throw Error("Data unavailable");
     const bytes = new Uint8Array(await response.arrayBuffer());

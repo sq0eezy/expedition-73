@@ -161,7 +161,7 @@ export function validateAnnualPreview(payload, catalogSha256, snapshots) {
   const close = (a, b) => finite(a) && finite(b) && Math.abs(a - b) <= 1e-9 * Math.max(1, Math.abs(b));
   const same = (a, b) => canonical(a) === canonical(b);
   const fail = () => { throw Error("Yıllık aday kayıt aylık kaynakla veya hesap sözleşmesiyle eşleşmiyor."); };
-  if (!/^[a-f0-9]{64}$/.test(catalogSha256) || payload?.schema_version !== "0.1.0" || payload.output_type !== "recorded_annual_weighting_web_preview" ||
+  if (!/^[a-f0-9]{64}$/.test(catalogSha256) || !["0.1.0","0.2.0"].includes(payload?.schema_version) || payload.output_type !== "recorded_annual_weighting_web_preview" ||
       payload.data_mode !== "recorded_offline_replay" || payload.selection_status !== "candidate" || payload.inference_performed !== false || payload.source_catalog_sha256 !== catalogSha256 ||
       !["available", "not_available"].includes(payload.status) || !Array.isArray(payload.regions) || payload.regions.length > 8 || (payload.status === "available") !== !!payload.regions.length) fail();
   if (payload.status === "not_available") return payload;

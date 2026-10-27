@@ -179,6 +179,8 @@ nav:
       - Yıllık ekran kontrolü: evidence/ANNUAL_WEB_CHECK.md
       - Yıllık hesap akışı: guide/ANNUAL_WORKFLOW.md
       - Yıllık akış kontrolü: evidence/ANNUAL_WORKFLOW_CHECK.md
+      - Yıllık akışı webde incele: guide/ANNUAL_TRACE.md
+      - Yıllık akış ekranı kontrolü: evidence/ANNUAL_TRACE_CHECK.md
       - İki yıllık kaynak doğrulaması: evidence/T2M_HISTORY_CHECK.md
       - Rapor doğrulaması: evidence/COMPARISON_REVIEW_CHECK.md
       - Yeni konuşma işleme: guide/AI_WORKFLOW.md

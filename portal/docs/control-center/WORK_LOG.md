@@ -1,5 +1,13 @@
 # Çalışma günlüğü
 
+## 2026-10-27 · Yıllık akış ekranı ve native ARM64 CI
+
+M1 devam istedi. Temiz e6cb249 üzerinde ekip/durum/harita/fikir/devir/pano okundu; fetch'te yeni main/M2/M1 katkısı yoktu. [Önceki CI](../evidence/CI_PLATFORM_CHECK.md) üç native/Docker AMD64 234 Python/43 JS başarısını, ARM64 QEMU 30 dakika sınırı iptalini gösterdi. Native AMD64/ARM64 host matrisi ve mimari guard'ı 6f5db6d ile ayrı gönderildi; 40459504376 başladı, yeni web kodu bu CI'ya dahil değil.
+
+[Yıllık akış ekranı](../guide/ANNUAL_TRACE.md) builder'da aynı gerçek iki adımlı çalıştırmaya bağlandı. İzinli context/hash ve bilinen işlem parmak izleri tarayıcıda denetlenir; yalnız bozuk bölge akışı kapanır, değerler kalır. İlk 19 hedef Python/48 JS ve 87 Chrome geçti; son metin/yerleşim sonrası 87 yeniden geçti, görseller incelendi. Son tam kontrol/paket [kanıtta](../evidence/ANNUAL_TRACE_CHECK.md) ayrıca işlenir. Yıllık zarf0.2/ZIP0.5, aylık katalog/rapor/aday yöntemler aynı. T-06/H-M1-024 inceleme bekler; M2/bilimsel politika/main/Pages kabulü yok. QA finalde kapatılır.
+
+Son check 238 Windows / 643,771 s, gerçek eski/yeni A-B, 48 JS / 1891,0754 ms ve builder ile exit0. ZIP0.5 doğrulandı (6.994.000 byte); yedi dosya son build ile eşit, eski gerçek ZIP0.4 doğrulaması geçti, aylık byte ve audit nesneleri eski/yeni aynı. Son HTTP smoke geçti; QA kapatıldı, TCP8873 kapalı doğrulandı. Ayrı 6f5db6d CI beş iş success; native ARM64 234/43/HTTP geçti, yeni ekranı içermez. Portal son belgelerden önce check/build 7,16 s geçti; final kayıtları da kontrol edilir.
+
 ## 2026-10-26 · Yıllık özel hesap için gerçek modül bağlantısı
 
 M1 devam istedi. Temiz d95cce1'de ekip/durum/fikir/devir/pano okundu; fetch'te yeni alınmamış M1/M2/main katkısı yoktu. [History → AnnualWeighting](../guide/ANNUAL_WORKFLOW.md) sabit raw byte snapshot'ıyla mevcut yıllık formüle bağlandı; parent/annual hash'leri context'te, gerçek artifact/ata izi workflow.json'da. Kaynak hatası yıllık adımı engeller; küçük trace yalnız başarılı çalışmada üretilir. İlk 26 hedef test / 78,808 s geçti; son tam kontrol [kanıtta](../evidence/ANNUAL_WORKFLOW_CHECK.md) ayrı işlenir. T-05/H-M1-023 inceleme bekler. Bilimsel yöntemler/kaynak örnekleri/web grafiği değişmedi; M2 kabulü/main/Pages yayını yok.

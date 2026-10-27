@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 LEGACY_PUBLIC = ('app.js', 'comparison.mjs', 'data/results.json', 'index.html', 'styles.css')
 PRIOR_PUBLIC = (*LEGACY_PUBLIC, 'trace.mjs')
 PUBLIC = (*PRIOR_PUBLIC, 'data/annual.json')
-PACKAGE_CONTRACTS = {'0.1.0': (LEGACY_PUBLIC, '0.2.0'), '0.2.0': (PRIOR_PUBLIC, '0.3.0'), '0.3.0': (PRIOR_PUBLIC, '0.4.0'), '0.4.0': (PUBLIC, '0.4.0')}
+PACKAGE_CONTRACTS = {'0.1.0': (LEGACY_PUBLIC, '0.2.0'), '0.2.0': (PRIOR_PUBLIC, '0.3.0'), '0.3.0': (PRIOR_PUBLIC, '0.4.0'), '0.4.0': (PUBLIC, '0.4.0'), '0.5.0': (PUBLIC, '0.4.0')}
 ARCHIVE_NAMES = {*PUBLIC, 'manifest.json'}
 LIMIT = 8_000_000
 
@@ -85,7 +85,7 @@ def checks():
     print('Offline analysis, A/B replay, JS checks and preview build passed.', flush=True)
 
 
-def _manifest(files, version='0.4.0'):
+def _manifest(files, version='0.5.0'):
     return {'format': 'expedition73-static-preview', 'version': version,
             'selection_status': 'candidate', 'data_mode': 'recorded_offline_replay',
             'inference_performed': False,
@@ -118,15 +118,27 @@ def verify_package(path):
                 or data.get('selection_status') != 'candidate' or data.get('inference_performed') is not False
                 or data.get('data_mode') != 'recorded_offline_replay'):
             raise ValueError('Demo archive has an unsupported result contract.')
-        if manifest['version'] == '0.4.0':
+        if manifest['version'] in {'0.4.0', '0.5.0'}:
             annual = json.loads(files['data/annual.json'])
-            if (annual.get('schema_version') != '0.1.0' or annual.get('output_type') != 'recorded_annual_weighting_web_preview'
+            if (annual.get('schema_version') != ('0.2.0' if manifest['version'] == '0.5.0' else '0.1.0') or annual.get('output_type') != 'recorded_annual_weighting_web_preview'
                     or annual.get('selection_status') != 'candidate' or annual.get('inference_performed') is not False
                     or annual.get('data_mode') != 'recorded_offline_replay'
                     or annual.get('source_catalog_sha256') != hashlib.sha256(files['data/results.json']).hexdigest()
                     or annual.get('status') not in {'available', 'not_available'} or not isinstance(annual.get('regions'), list)
                     or not 0 <= len(annual['regions']) <= 8 or (annual['status'] == 'available') != bool(annual['regions'])):
                 raise ValueError('Annual preview does not match the exact packaged monthly catalog.')
+            if manifest['version'] == '0.5.0':
+                for entry in annual['regions']:
+                    if not isinstance(entry, dict) or not isinstance(entry.get('workflow'), dict):
+                        raise ValueError('Annual workflow identity is missing or inconsistent.')
+                    workflow = entry.get('workflow', {})
+                    context = workflow.get('context_json')
+                    trace = workflow.get('trace', {})
+                    if (not isinstance(trace, dict) or not isinstance(context, str) or len(context) > 100_000
+                            or hashlib.sha256(context.encode('utf-8')).hexdigest() != trace.get('context_sha256')
+                            or trace.get('target') != 'AnnualWeighting' or trace.get('execution_status') != 'completed'
+                            or trace.get('scientific_validation') != 'not_performed'):
+                        raise ValueError('Annual workflow identity is missing or inconsistent.')
     return {'status': 'verified', 'public_files': len(public), 'selection_status': 'candidate'}
 
 

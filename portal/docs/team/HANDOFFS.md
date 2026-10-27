@@ -242,3 +242,11 @@ Kaynak şablon: `templates/TEAM_HANDOFF.md`.
 - **Teslim:** [İki adım/sözleşme ve Windows/Mac komutları](../guide/ANNUAL_WORKFLOW.md). Güncel kaynak kendi işin korunarak alındıktan sonra Mac'te analysis içinde `.venv/bin/python -X utf8 -m expedition73 run-annual-workflow --run examples/b-history-2001-2024 --output-dir artifacts/b-annual-workflow-new`.
 - **İncelenecek:** History/AnnualWeighting completed; yıllık rapor kayıtlı B adayıyla aynı; workflow.json'da yıllık artifact tam History artifact kimliğini tüketiyor. trace.json iki adımlı genel projeksiyondur; webdeki aylık grafiğe kendiliğinden eklenmez. Aynı hedefte tekrar komut önceki dosyaları korumalı.
 - **Sınır:** İki hedef hâlâ aday; yeni bilimsel gösterge/maske/dönem/eğilim veya R-B05 başlangıcı değildir. M2 adına yeni kabul/koşu yazılmaz. Yanıt bekleniyor.
+
+## H-M1-024 · Yıllık modül akışı web kartı
+
+- **Gönderen → alıcı:** M1 → M2; T-06 için panel içi kayıt, dış mesaj yok.
+- **Tarih/durum:** 2026-10-27; teknik/kullanım incelemesi bekler. Kaynak paylaşımı [SYNC](SYNC.md), ortam/test sınırları [kanıt](../evidence/ANNUAL_TRACE_CHECK.md) içindedir.
+- **Teslim:** [Kullanım ve sürümler](../guide/ANNUAL_TRACE.md). Güncel kaynak kendi işin korunarak alındıktan sonra Mac'te `sh scripts/start-preview.sh`; maskesiz B yıllık kartında Yıllık hesap akışı bölümünü aç. İki adımı klavye ile seç, yıl değiştir, beş düğümlü aylık akışın ayrı kaldığını kontrol et.
+- **Beklenen:** İşlem/sürüm, girdi ve tanım kimliği doğru; açık bölüm/seçili adım korunur. Yanlış/eski akışta açıklama gelir, yıllık değerler kalır. Yeni yıllık zarf0.2/ZIP0.5 birlikte derlenir, eski ZIP verifier yolu korunur.
+- **Sınır:** Canlı görev/cache, bilimsel yöntem/maske/sınır/dönem kabulü veya R-B05 başlangıcı değildir. M2 adına yeni koşu/kabul yazılmaz. Yanıt bekleniyor.

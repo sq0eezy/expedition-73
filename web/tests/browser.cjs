@@ -506,6 +506,54 @@ const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maxi
     for(const key of ['equal','calendar']) assert.equal(await missingCard.locator(`[data-annual-value="${key}"] strong`).innerText(),'Veri yok');
     assert.notEqual(await missingCard.locator('[data-annual-value="provider"] strong').innerText(),'Veri yok');
     await annualMissing.close(); checks++;
+    const flowPage=await browser.newPage({viewport:{width:1440,height:1100}});
+    flowPage.on('pageerror',(error)=>errors.push(error.message));
+    flowPage.on('request',(request)=>requests.push(request.url()));
+    await flowPage.goto(base); await flowPage.waitForFunction(()=>document.querySelectorAll('.annual-workflow').length===2);
+    const flowA=()=>flowPage.locator('.annual-card[data-region="A"]');
+    await flowA().locator('.annual-workflow summary').click();
+    assert.equal(await flowA().locator('.annual-trace-graph .trace-node').count(),2);
+    assert.equal(await flowA().locator('.annual-trace-graph .trace-edge').count(),1);
+    assert.equal(await flowPage.locator('#trace-graph .trace-node').count(),5); checks++;
+    const upstream=flowA().locator('.annual-trace-graph [data-node="History"]');
+    await upstream.focus(); await upstream.press('Enter');
+    assert.match(await flowA().locator('.annual-trace-detail').innerText(),/ReplayRecordedHistory/);
+    assert.equal(await flowA().locator('.annual-trace-graph [data-node="History"]').evaluate((n)=>n===document.activeElement),true);
+    assert.equal(await flowA().locator('.annual-workflow').getAttribute('open'),''); checks++;
+    await flowA().locator('.annual-trace-graph [data-node="AnnualWeighting"]').click();
+    assert.match(await flowA().locator('.annual-trace-detail').innerText(),/history ← Aylık kaynak kontrolü/);
+    const fingerprint=annualBundle.regions.find((r)=>r.id==='A').workflow.trace.nodes[1].definition_fingerprint;
+    assert.match(await flowA().locator('.annual-trace-detail').innerText(),new RegExp(fingerprint)); checks++;
+    await flowPage.locator('#year').selectOption('2023');
+    assert.equal(await flowA().locator('.annual-workflow').getAttribute('open'),'');
+    assert.match(await flowA().locator('.annual-workflow').innerText(),/seçili 2023/);
+    assert.match(await flowA().locator('.annual-trace-detail').innerText(),new RegExp(fingerprint)); checks++;
+    await flowPage.locator('#policy').selectOption('land'); assert.equal(await flowPage.locator('.annual-workflow').count(),0);
+    await flowPage.locator('#policy').selectOption('unmasked'); assert.equal(await flowPage.locator('.annual-workflow').count(),2); checks++;
+    await flowA().locator('.annual-workflow').screenshot({path:path.join(screenshots,'annual-workflow-desktop.png')});
+    await flowPage.setViewportSize({width:390,height:844});
+    await flowA().locator('.annual-trace-graph [data-node="History"]').click();
+    assert.equal(await flowPage.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+    await flowA().locator('.annual-workflow').screenshot({path:path.join(screenshots,'annual-workflow-mobile.png')}); checks++;
+    await flowPage.close();
+    for(const kind of ['swapped','fingerprint','context','version','legacy']) {
+      const sample=await browser.newPage(); sample.on('pageerror',(error)=>errors.push(error.message));
+      await sample.route('**/data/annual.json',(route)=>{
+        const changed=structuredClone(annualBundle), w=changed.regions[0].workflow;
+        if(kind==='swapped') changed.regions[0].workflow=changed.regions[1].workflow;
+        if(kind==='fingerprint') w.trace.nodes[0].definition_fingerprint='f'.repeat(64);
+        if(kind==='context') {const c=JSON.parse(w.context_json);c.private_note='not allowed';w.context_json=JSON.stringify(c);}
+        if(kind==='version') w.trace.nodes[1].operation_version='0.2.0';
+        if(kind==='legacy') {changed.schema_version='0.1.0';changed.regions.forEach((r)=>delete r.workflow);}
+        return route.fulfill({json:changed});
+      });
+      await sample.goto(base); await sample.waitForFunction(()=>document.querySelectorAll('.annual-card').length===2);
+      assert.equal(await sample.locator('.annual-card[data-region="A"] .annual-workflow').count(),0);
+      assert.equal(await sample.locator('.annual-card[data-region="A"] [data-annual-value="equal"]').count(),1);
+      assert.equal(await sample.locator('.annual-trace-unavailable').count(),kind==='legacy'?2:1);
+      assert.equal(await sample.locator('#trace-graph .trace-node').count(),5);
+      assert.equal(await sample.locator('#error').isVisible(),false); await sample.close(); checks++;
+    }
     assert.deepEqual(errors, []); assert.deepEqual(uploads, []);
     console.log(JSON.stringify({ status: 'passed', browser: 'Chrome headless', checks, javascript_errors: errors,
       external_runtime_requests: requests.filter((url) => new URL(url).origin !== new URL(base).origin).length,

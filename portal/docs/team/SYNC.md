@@ -5,6 +5,12 @@ change_summary: "Yıllık modül bağlantısı 5dd0630 ile M1 dalına gönderild
 
 # Paylaşım ve kurulum
 
+## 2026-10-27 · Native ARM64 düzeltmesi ve yıllık ekran hazırlığı
+
+6f5db6de9dc2c1eb4a6f2f9bd2db5aa31e75713a yalnız workflow/belge olarak normal M1 push ile gönderildi. [40459504376](https://github.com/sq0eezy/expedition-73/actions/runs/40459504376) tamamlandı: beş iş success; [ARM64 günlük kanıtı](../evidence/CI_PLATFORM_CHECK.md) 234 Python/43 JS/HTTP kontrolünü doğrular. Main a1a83d5/M2 6047c42 değişmedi. Bu kod henüz yeni yıllık akış web ekranını içermez; 238 yerel testli yeni dilimin uzak kanıtı diye sunulmaz.
+
+[Yıllık akış ekranı](../guide/ANNUAL_TRACE.md), aynı M1 dalında yerelde hazırlanıp [kendi kontrolleriyle](../evidence/ANNUAL_TRACE_CHECK.md) doğrulanır. Gönderildiğinde yeni kaynak SHA/CI ayrıca kaydedilir; M2 adına kabul veya main/Pages/Sites yayını yok.
+
 ## 2026-10-26 · Yıllık modül akışı GitHub'da
 
 M1 devam talebiyle temiz d95cce1 üzerinde [History → AnnualWeighting](../guide/ANNUAL_WORKFLOW.md) eklendi. [234 Windows/43 JS ve gerçek A/B](../evidence/ANNUAL_WORKFLOW_CHECK.md) geçti; bütün yedi genel web dosyası önceki ZIP ile byte aynı. Kaynaklar/hesap yöntemi/web sözleşmeleri değişmedi. Kaynak **5dd0630d6d04cd11404c037a7a97b575716ed0d1** mevcut codex/m1-modules-region-a dalına normal push ile gönderildi, ls-remote eşleşti. [Yeni kod CI'sı 40372881297](https://github.com/sq0eezy/expedition-73/actions/runs/40372881297) aynı SHA'da ilk gözlem pending; başarı değildir. Bu sonraki paylaşım belge commit'i aynı dala gider, yeni uygulama testi değildir.

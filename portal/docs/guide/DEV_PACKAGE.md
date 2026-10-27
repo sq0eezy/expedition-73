@@ -6,6 +6,8 @@ change_summary: "Windows/Mac komutları, sabit bağımlılıklar, altı dosyalı
 ---
 # Taşınabilir geliştirme paketi
 
+**2026-10-27 güncellemesi:** [Yıllık akış ekranı](ANNUAL_TRACE.md) için aynı yedi dosya, yıllık zarf0.2 ve ZIP manifest0.5 kullanılır; eski 0.1–0.4 verifier uyumu korunur. Docker CI artık emülasyon yerine mimarisi doğrulanan ubuntu-24.04 / ubuntu-24.04-arm hostlarını seçer; iki platform ve tam testler aynı. [Önceki koşu/süre ve yeni host kanıtı](../evidence/CI_PLATFORM_CHECK.md); yeni ekranın son kontrolü [ayrı kayıtta](../evidence/ANNUAL_TRACE_CHECK.md). Önceki tarihli başarılar yeni kod veya M2 ortam kabulü sayılmaz.
+
 **2026-10-26 uzak kontrol:** 07f87a3, GitHub Windows/macOS ARM64/Ubuntu ve Docker AMD64 işlerinde 222 Python/43 JS ile geçti. ARM64 Docker işi QEMU kurulumunda durdu; hedef mimari değişkeni job yerine yalnız Compose adımlarına taşındı. [İş günlükleri ve düzeltme sınırı](../evidence/CI_PLATFORM_CHECK.md), [sonraki koşu/paylaşım](../team/SYNC.md). Hosted Mac başarısı M2'nin kendi ortam kabulü değildir.
 
 **2026-10-26 yıllık ekran güncellemesi:** [Ayrı yıllık JSON/katalog bağı](ANNUAL_WEB.md) ile yedi genel dosya, ZIP manifesti 0.4.0 kullanılır. Eski beş/altı dosyalı manifest 0.1.0–0.3.0 kendi allowlist'leriyle doğrulanır. Yerel smoke yedi dosyayı ve exact yıllık/aylık katalog bağını kontrol eder. Güncel native/tarayıcı/paket ve paylaşım kanıtı [yıllık ekran kaydında](../evidence/ANNUAL_WEB_CHECK.md); bu dilim için yeni Docker/Mac/ARM çalıştırıldığı varsayılmaz. Aşağıdaki eski sürüm ifadeleri ilk dilimleri anlatır.

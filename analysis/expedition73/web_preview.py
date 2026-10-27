@@ -5,7 +5,7 @@ import hashlib
 import json
 from pathlib import Path, PurePosixPath
 
-from . import annual_weighting, history, masking, regional, surface_source, surface_support, surface_workflow, workflow_trace
+from . import annual_workflow, history, masking, regional, surface_source, surface_support, surface_workflow, workflow_trace
 from .power import PilotError, loads
 
 ASSETS = ("index.html", "styles.css", "app.js", "comparison.mjs", "trace.mjs")
@@ -163,7 +163,22 @@ def annual_payload(analysis_root, registry, data, catalog_bytes):
     regions = []
     if registry is not None:
         for entry in registry["regions"]:
-            audit = annual_weighting.run(_directory(Path(analysis_root), entry["history"]))
+            spec, run = annual_workflow.run(_directory(Path(analysis_root), entry["history"]))
+            if run["status"] != "completed":
+                raise PilotError("Annual dependency workflow did not complete; no preview produced.")
+            audit = run["nodes"]["AnnualWeighting"]["artifact"]["value"]
+            trace = workflow_trace.project(spec, run)
+            context = spec["context"]
+            parent = context["source_files_sha256"]["history"]
+            safe_context = {"scope": "candidate_annual_weighting",
+                "region": {"region_id": audit["region"]["id"], "candidate_bbox": audit["region"]["candidate_bbox"],
+                           "candidate_window_version": audit["region"]["candidate_window_version"]},
+                "period": {"start_year": int(audit["time"]["start"]), "end_year": int(audit["time"]["end"])},
+                "source_files_sha256": {"history": parent, "annual_sources": audit["provenance"]["annual_sources"]}}
+            if (context != safe_context or set(parent) != {"request.json", "history.json", "result.json"}
+                    or parent["result.json"] != audit["provenance"]["source_history_result_sha256"]
+                    or any(not isinstance(v, str) or len(v) != 64 or any(c not in "0123456789abcdef" for c in v) for v in parent.values())):
+                raise PilotError("Annual trace context contains unsupported identities or fields.")
             if audit["region"]["id"] != entry["id"]:
                 raise PilotError("Annual audit identity differs from monthly catalog.")
             if [r["year"] for r in audit["series"]] != [s["year"] for s in data["snapshots"]]:
@@ -173,8 +188,10 @@ def annual_payload(analysis_root, registry, data, catalog_bytes):
                 region = next((r for r in monthly["regions"] if r["id"] == entry["id"]), None)
                 if region is None or source["year"] != snapshot["year"] or source["files_sha256"] != region["provenance"]["source_files_sha256"]["temperature"]:
                     raise PilotError("Annual and monthly sources changed between replays; no mixed preview produced.")
-            regions.append({"id": entry["id"], "audit": audit})
-    return {"schema_version": "0.1.0", "output_type": "recorded_annual_weighting_web_preview",
+            regions.append({"id": entry["id"], "audit": audit,
+                            "workflow": {"context_json": json.dumps(safe_context, sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False),
+                                         "trace": trace}})
+    return {"schema_version": "0.2.0", "output_type": "recorded_annual_weighting_web_preview",
             "data_mode": "recorded_offline_replay", "selection_status": "candidate", "inference_performed": False,
             "source_catalog_sha256": hashlib.sha256(catalog_bytes).hexdigest(),
             "status": "available" if regions else "not_available", "regions": regions}

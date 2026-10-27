@@ -1,10 +1,14 @@
 ---
 status: Validating
-updated: "2026-10-26"
+updated: "2026-10-27"
 review_summary: "Gerçek kayıtlı sıcaklık sonuçlarını inceleten ilk yerel ekran; bilimsel ve ürün sınırları."
-change_summary: "Maskesiz yıllık adaylar ayrı kaynak bağıyla kart/tablo ve fark grafiğinde görünür; yedi genel dosya/manifest 0.4.0, yöntem seçilmedi."
+change_summary: "Yıllık kartta aynı gerçek çalıştırmanın iki adımı/context/işlem bağı gösterilir; yıllık zarf0.2/manifest0.5, aylık veri ve bilimsel yöntemler aynı."
 ---
 # İlk sonuç ekranı · Yerel teknik prototip
+
+## 2026-10-27 · Yıllık hesabın adımlarını inceleme
+
+[Yıllık hesap akışı](../guide/ANNUAL_TRACE.md) maskesiz her bölge kartında iki adımı ve gerçek bağlantıyı gösterir. Builder aynı motor çalıştırmasını kullanır; tarayıcı izinli context/kaynak ve bilinen işlem parmak izlerini doğrular. Yıl değişiminde açık bölüm/seçili adım korunur. Bozuk veya eski akış yalnız bölgenin akış görünümünü kapatır; aday değerler ve aylık ekran kalır. [Gerçek kontroller](../evidence/ANNUAL_TRACE_CHECK.md). Yıllık zarf 0.2.0/ZIP0.5.0; aylık katalog, rapor ve aday yöntemler aynı. Bu canlı iş durumu veya bilimsel kabul değildir; eski tarihli bölümler ilgili dilimi anlatır.
 
 ## 2026-10-26 · Yıllık adayları yan yana inceleme
 

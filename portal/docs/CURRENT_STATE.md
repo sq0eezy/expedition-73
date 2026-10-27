@@ -1,15 +1,21 @@
 ---
 status: Validating
-updated: "2026-10-26"
-phase: Yıllık hesabın modül bağımlılık akışına bağlanması
+updated: "2026-10-27"
+phase: Yıllık modül akışını webde inceleme
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "History → AnnualWeighting 5dd0630 ile M1 dalında, uzak SHA doğrulandı. 234 Windows/43 JS ve gerçek A/B geçti; yeni CI sırada, main/Pages ve bilimsel politika aynı."
+change_summary: "Yıllık akış ekranı 238 Windows/48 JS/87 Chrome ve paketle geçti. Aylık byte/audit aynı; ayrı native ARM64 CI düzeltmesi beş işi geçti, yeni ekranın uzak sonucu ayrı."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **Yıllık akış webde:** [Bölgeye bağlı iki adım](guide/ANNUAL_TRACE.md) aynı gerçek çalıştırmadan gelir; audit kaynakları/context hash'i ve bilinen işlem parmak izleri eşleşir. Klavye/yıl/açık bölüm korunur; yanlış veya eski akışta yalnız akış görünümü kapanır. [238 Windows/48 JS/87 Chrome, gerçek A/B ve paket kontrolü](evidence/ANNUAL_TRACE_CHECK.md) geçti. Yıllık zarf 0.2.0, ZIP 0.5.0; aylık katalog/rapor kimlikleri ve yedi dosya korunur. M2/bilimsel yöntem kabulü değildir.
+
+- **Önceki modül kodu uzak üç native/Docker AMD64 kontrolünü geçti:** 5dd0630 için 234 Python/43 JS; ARM64 emülasyon işi 30 dakika sınırında iptal oldu. [Günlükler ve ayrı native-host düzeltmesi](evidence/CI_PLATFORM_CHECK.md). Yeni host seçimi 6f5db6d dalda paylaşıldı; bu CI henüz yerel yıllık ekran değişikliğini içermiyor.
+
+- **Native ARM64 düzeltmesi uzakta doğrulandı:** 6f5db6d / 40459504376 beş iş success; ARM64 Linux 234 Python/43 JS ve HTTP smoke geçti. [Kanıt](evidence/CI_PLATFORM_CHECK.md). Bu sonuç yeni yıllık web ekranı veya M2'nin kendi cihaz kabulü değildir.
 
 - **Yıllık hesap için iki adımlı motor bağlantısı:** [History → AnnualWeighting](guide/ANNUAL_WORKFLOW.md) kayıtlı kaynakları bir kez yakalayıp tekrar doğrular; yıllık işlem aynı özel hesap fonksiyonuyla bu artifact'i tüketir. Kaynak hatasında yıllık adım blocked; gerçek girdi/ata izi ve ayrı küçük trace dosyası var. [234 Windows/43 JS, gerçek A/B akışları ve byte kontrolü](evidence/ANNUAL_WORKFLOW_CHECK.md) geçti. Aday yöntem/audit 0.1.0 ve web/ZIP korunur; webdeki beş düğümlü aylık grafik aynı kalır. M2/bilimsel profil kabulü değildir.
 
@@ -87,4 +93,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-[İki adımlı yıllık akışın](guide/ANNUAL_WORKFLOW.md) son tam kontrol/paylaşım ve [ARM64 CI](evidence/CI_PLATFORM_CHECK.md) sonucu ayrı izlenir. Teknik sonraki aday, yıllık akışı webde kaynak bağı korunarak görünür kılmaktır; henüz uygulanmış veya kabul edilmiş sayılmaz. Bilimsel sonraki konu hedef yüzey/sınır/dönem ile eşit ay/takvim günü hedefini birlikte adlandırmaktır; anomali/eğilim, zaman bağımlılığı, aralık ve p-değeri ayrı gerekçelendirilir. M2'nin aday hesabı veya bilimsel profili kabul ettiği varsayılmaz. Güncel uzak SHA/CI gözlemi [SYNC](team/SYNC.md) kaydındadır. Main/Pages değişmez. Eski tarihli kayıtlar geçmiş aşamaları anlatır.
+[Yıllık akış ekranının](guide/ANNUAL_TRACE.md) son tam kontrol/paket/paylaşım ve native ARM64 CI sonucu ayrı izlenir. Teknik sonraki aday, iki kişinin aynı yıllık sonucu kaynak bağı korunmuş inceleme kaydıyla paylaşmasıdır; yeni yıllık inceleme raporu henüz uygulanmadı/kabul edilmedi. Bilimsel sonraki konu hedef yüzey/sınır/dönem ile eşit ay/takvim günü hedefini birlikte adlandırmaktır; anomali/eğilim, zaman bağımlılığı, aralık ve p-değeri ayrı gerekçelendirilir. M2'nin aday hesabı veya bilimsel profili kabul ettiği varsayılmaz. Güncel uzak SHA/CI gözlemi [SYNC](team/SYNC.md) kaydındadır. Main/Pages değişmez. Eski tarihli kayıtlar geçmiş aşamaları anlatır.

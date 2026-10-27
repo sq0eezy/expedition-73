@@ -6,6 +6,8 @@ change_summary: "Ayrı yıllık sonuç dosyası aylık kataloğa bağlandı; mas
 ---
 # Yıllık adayları webde incele
 
+**2026-10-27:** Kartlara [aynı gerçek yıllık çalıştırmanın iki adımı](ANNUAL_TRACE.md) eklendi. Yıllık web zarfı artık 0.2.0/ZIP manifesti0.5.0; aşağıdaki ilk 0.1.0 aktarımının değerleri/hesabı korunur. Eski zarf açılır, akışın bulunmadığı açıklanır. [Son kontrol](../evidence/ANNUAL_TRACE_CHECK.md); bilimsel yöntem kabulü değildir.
+
 [Python yıllık ağırlık hesabının](T2M_ANNUAL_WEIGHTING.md) iki adayı, uzun dönem aylık grafiğinin altındaki **Ayları nasıl birleştiriyoruz?** bölümünde görünür. [Yöntem hedefleri](../research/TEMPORAL_AGGREGATION.md), [gerçek ekran/derleme kanıtı](../evidence/ANNUAL_WEB_CHECK.md). Hiçbir ağırlık yöntemi seçilmiş bilimsel profil olarak sunulmaz.
 
 ## Kullanım
