@@ -16,6 +16,8 @@ Ortak zaman seçicisi, duraklatılabilen oynatma ve hareketi azaltma desteği g�
 
 ## Arayüz ilkeleri
 
+**2026-10-27 M1 yönlendirmesi:** Uzun sayfada sürekli kaydırma azaltılacak; görsel gösteriş yerine içeriğin anlamı ve kıyas okunabilirliği öncelikli. [Görev odaklı çalışma alanı](COMPARISON_WORKSPACE.md) önerisi hazır; yeni UI bu main tesliminde uygulanmaz. [Aşamalı toparlama](../planning/CONSOLIDATION.md). Mevcut bilimsel sonuç/rapor kimlikleri ilk yerleşim tesliminde korunmalı; M2 kabulü varsayılmaz.
+
 - Konu ağacı gezinmeyi kolaylaştırır; hesaplamanın hangi girdiden beslendiği ayrıca incelenebilir.
 - Ortak kartlar karşılaştırmayı, özel ayrıntı alanı bilimsel derinliği korur.
 - Veri yetersiz, uyumsuz karşılaştırma, hesaplanmadı ve güncel değil durumları görünürdür.

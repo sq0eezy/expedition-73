@@ -18,6 +18,8 @@ M2 için de kendisine ait `codex/` önekli bir dal kullanılması önerilir; ad�
 
 ## Sonuçlar
 
+**2026-10-27 teslim yetkisi:** M1 yapılanları main'e almaya başlamayı ve adım adım toparlamayı açıkça istedi. Bu teslim mevcut testli T2M temeliyle sınırlıdır; [kapsam/kanıt](../evidence/T2M_BASELINE_RELEASE.md). Yeni arayüz ve ikinci modül geliştirmesi ayrı dalda sürer. Bu, bütün gelecek push'lar için otomatik main birleştirme yetkisi veya M2 bilimsel kabulü değildir.
+
 - İşe başlamadan `git status`, `git fetch origin` ve yerel/uzak fark incelenir. Korunmamış çalışma saklanmadan dal değişimi veya pull yapılmaz.
 - Main, temiz çalışma alanında `git pull --ff-only origin main` ile alınır. Geliştirme dalına main güncellemeleri önce incelenip `git merge origin/main` ile taşınabilir; çakışmada iki katkı korunur. Reset/force ile katkı silinmez.
 - GitHub Pages mevcut workflow ile main'den yayımlanır. **Yalnızca geliştirme dalına push etmek canlı paneli güncellemez.** İnceleme için GitHub dalındaki belgeler veya yerel portal kullanılır; main'e birleştikten sonra başarılı yayınla ortak URL güncellenir.

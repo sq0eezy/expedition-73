@@ -5,6 +5,8 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | Bilgi | Esas kaynak |
 |---|---|
 | Aşama ve sıradaki adım | [Mevcut durum](CURRENT_STATE.md) |
+| Main'e toparlama paketleri ve sıcaklık bitiş durumu | [Toparlama sırası](planning/CONSOLIDATION.md), [pilot durumu](planning/PILOT.md), [ilk teslim kanıtı](evidence/T2M_BASELINE_RELEASE.md) |
+| Daha az kaydırma ve sade karşılaştırma arayüzü | [Çalışma alanı taslağı](product/COMPARISON_WORKSPACE.md) |
 | Amaç, sınırlar, taslak başarı ölçütleri | [Proje bağlamı](PROJECT_CONTEXT.md) |
 | Deneyim ve önerilen ilk kapsam | [Ürün](product/index.md) |
 | Kayıtlı T2M ilk yerel web ekranı ve çalıştırma | [Sonuç prototipi](product/RESULTS_PREVIEW.md), [gerçek tarayıcı kanıtı](evidence/RESULTS_PREVIEW_CHECK.md) |

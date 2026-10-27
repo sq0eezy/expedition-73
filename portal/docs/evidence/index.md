@@ -2,6 +2,7 @@
 
 | Kayıt | Kapsam |
 |---|---|
+| [T2M temelinin main teslimi](T2M_BASELINE_RELEASE.md) | Testli mevcut paketin toparlama teslimi, bilimsel bitiş ayrımı ve gerçek birleştirme/yayın kaydı |
 | [Yıllık akış ekranı](ANNUAL_TRACE_CHECK.md) | Aynı gerçek motor çalıştırması, izinli context/hash/işlem bağı, iki düğümlü görünüm ve bölgeye özel hata ayrımı |
 | [Yıllık modül akışı](ANNUAL_WORKFLOW_CHECK.md) | History → AnnualWeighting; sabit kaynak snapshot'ı, gerçek artifact/girdi/ata izi ve failed/blocked davranışı |
 | [Uzak platformlar ve ARM64 kurulumu](CI_PLATFORM_CHECK.md) | 07f87a3 için üç native/Docker AMD64 başarısı, QEMU kurulum hatası ve hedef değişkeninin daraltılması |

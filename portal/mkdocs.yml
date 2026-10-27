@@ -109,6 +109,7 @@ nav:
   - Ürün fikri:
       - Deneyim ve kapsam: product/index.md
       - İlk yerel sonuç ekranı: product/RESULTS_PREVIEW.md
+      - Karşılaştırma çalışma alanı taslağı: product/COMPARISON_WORKSPACE.md
       - Sonuç ekranı doğrulaması: evidence/RESULTS_PREVIEW_CHECK.md
       - Hücre görünümü doğrulaması: evidence/SPATIAL_PREVIEW_CHECK.md
       - Aday ağırlık karşılaştırması: evidence/POLICY_COMPARISON_CHECK.md
@@ -138,6 +139,8 @@ nav:
   - Plan ve ekip:
       - Yol haritası: planning/index.md
       - İlk pilot · Hava sıcaklığı: planning/PILOT.md
+      - Adım adım toparlama: planning/CONSOLIDATION.md
+      - T2M main teslimi: evidence/T2M_BASELINE_RELEASE.md
       - İş bölümü ve ortak profil: planning/REGION_WORKFLOW.md
       - Bölge A ve modül görevleri: planning/REGION_A.md
       - Bölge B yapılacaklar: planning/REGION_B.md

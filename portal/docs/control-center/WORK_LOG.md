@@ -1,5 +1,9 @@
 # Çalışma günlüğü
 
+## 2026-10-27 · Toparlamaya ve main teslimlerine başlama
+
+M1 testli işleri main'e almaya başlamayı, sıcaklık modülünün bitişini açıklamayı ve arayüz/yeni modülü adım adım ele almayı istedi. Temiz 43a3e03 ve fetch'te main a1a83d5/M2 6047c42 aynı. c682441'in [beş uzak iş/günlüğü](../evidence/T2M_BASELINE_RELEASE.md) 238 Python/48 JS ile başarılı okundu; 43a3e03 farkı yalnız belge. Kod/replay/CI/yayın yolu ve outgoing yollarda özel/generated dosya bulunmaması incelendi. Uygulama kodu değişmedi; yeni Python/Chrome koşusu yok. [Toparlama](../planning/CONSOLIDATION.md) ve [pilot bitişi](../planning/PILOT.md) teknik çekirdek ile bilimsel tamamlanmayı ayırır. [Sade karşılaştırma taslağı](../product/COMPARISON_WORKSPACE.md) M1 gereksinimidir, ekran ayrıntıları öneri; yeni UI/modül uygulanmadı. Main merge/Pages sonucu işlem sonrası kanıta kaydedilir; M2 kabulü varsayılmaz.
+
 ## 2026-10-27 · Yıllık akış ekranı ve native ARM64 CI
 
 M1 devam istedi. Temiz e6cb249 üzerinde ekip/durum/harita/fikir/devir/pano okundu; fetch'te yeni main/M2/M1 katkısı yoktu. [Önceki CI](../evidence/CI_PLATFORM_CHECK.md) üç native/Docker AMD64 234 Python/43 JS başarısını, ARM64 QEMU 30 dakika sınırı iptalini gösterdi. Native AMD64/ARM64 host matrisi ve mimari guard'ı 6f5db6d ile ayrı gönderildi; 40459504376 başladı, yeni web kodu bu CI'ya dahil değil.

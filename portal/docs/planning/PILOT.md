@@ -4,6 +4,23 @@ change_summary: "Kullanıcı T2M pilotunu seçti; veri/analiz/arayüz için doğ
 ---
 # Pilot · 2 metre hava sıcaklığı
 
+## 2026-10-27 · Bitiş durumu
+
+**Veri ve hesap çekirdeğinin ilk teknik sürümü hazır; bilimsel pilot bütünüyle bitmedi.** M1 toparlamayı/main teslimlerine başlamayı istedi; [ilk paketin kanıtı](../evidence/T2M_BASELINE_RELEASE.md). Bu ifade gelecekteki bilimsel kararları veya M2 kabulünü tamamlanmış göstermez.
+
+| Alan | Mevcut durum |
+|---|---|
+| API erişimi/normalleştirme/kaynak kaydı | Gerçek nokta/alan/parçalı kaynaklar ve çevrim dışı replay çalışıyor |
+| Uzun dönem aday kayıt | A/B 2001–2024, 288'er ay; aday pencereler ve kapsam kayıtlı |
+| Aylık alan/yüzey ve yıllık aday hesap | Alan hesabı, aday FRLAND/FRLAND+FRLANDICE, eşit ay/takvim günü hesapları ve eksik veri kuralları testli |
+| Ortak sözleşme/modül bağımlılığı | Kaynak/girdi/ata kimliği, sürüm/birim kontrolü ve başarısız üreticiden tüketiciye engelleme çalışıyor |
+| Webde teknik inceleme | Seri/fark/hücre/kaynak ve akış görünümü çalışıyor; uzun sayfa düzeni yenilenecek |
+| Kesin bilimsel hedef | Bölge/sınır, yüzey/maske, dönem ve yıllık hedef seçimi açık |
+| Eğilim ve belirsizlik | Uygulanmadı; mevsimsellik/zaman bağımlılığı, aralık ve bölgeler arası eğilim farkı doğrulanmadı |
+| Bilimsel/kullanıcı kabulü | M2'nin son ekran/yöntem kabulü ve nihai pilot değerlendirmesi açık |
+
+İkinci modül için küçük veri/uygunluk denemesi yapılabilir; bu deneme pilotun açık bilimsel işlerinin yerine geçmez. Sıradaki uygulama işleri [toparlama planında](CONSOLIDATION.md) ayrı tutulur. Aşağıdaki pilot çıkış koşulları korunur.
+
 **Kabul edilen:** Tek göstergeyle deneme; zaman serisi, eğilim ve sonuçları inceleten web uygulaması. [ADR-004](../decisions/ADR-004-MODULES-AND-PILOT.md). Gerçek POWER nokta/aday dikdörtgen örnekleri ve API/JSON adaptörleri var: [ilk kanıt](../evidence/T2M_POINT_PROBE.md). [İlk yerel sonuç ekranı](../product/RESULTS_PREVIEW.md) kayıtlı 2024 verilerini gösteriyor. Kesin bölge/maske profili, uzun dönem eğilim ve nihai uygulama hâlâ açık.
 
 ## Soru ve aday girdiler
