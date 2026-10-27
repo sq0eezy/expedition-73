@@ -6,6 +6,14 @@ change_summary: "07f87a3 dört işi geçti; ARM64 QEMU kurulumu hata verdi. b7e0
 ---
 # Uzak platform kontrolleri ve ARM64 kurulumu
 
+## 2026-10-27 · Yıllık modül kodu ve emülasyon süresi
+
+[40372881297](https://github.com/sq0eezy/expedition-73/actions/runs/40372881297), 5dd0630 kodu için tamamlandı. İş durumları ve tam günlükler okundu: Windows 234 test / 273,373 s, Ubuntu 234 / 279,782 s, macOS ARM64 234 / 186,387 s ve Docker AMD64 234 / 181,844 s; dördünde 43 JS ve bütün offline replay/build geçti. Üç native iş package doğrulamasını, Docker AMD64 HTTP smoke'u da geçti. Bu sonuç önceki 07f87a3'ün 222 testinden ve yeni yerel web geliştirmesinden ayrıdır; M2'nin kendi cihaz kabulü değildir.
+
+[ARM64 işi 121748364530](https://github.com/sq0eezy/expedition-73/actions/runs/40372881297/job/121748364530) QEMU ve imaj derlemesini geçti; build 513,4 s sürdü. İş 17:54 civarında başladı, `18:24:45Z` tarihinde 30 dakika sınırında `The operation was canceled` ile durdu. Testlerin tamamlandığı veya HTTP smoke geçtiği gösterilmedi; genel sonuç tam başarı değildir. Bu gözlem uygulama hesabının yanlış olduğunu göstermez, emülasyon altındaki süre sınırını gösterir.
+
+Yeni workflow matrisi iki mimariyi de koruyarak AMD64 için ubuntu-24.04, ARM64 için ubuntu-24.04-arm seçer. [GitHub'ın resmi runner tablosunda](https://docs.github.com/en/actions/reference/runners/github-hosted-runners) ARM64 Linux hostu desteklenir. QEMU adımı kaldırılır, `uname -m` kontrolü beklenen x86_64/aarch64 hostunu doğrular. Compose platform ayarı yalnız Compose adımlarında kalır; 30 dakika sınırı, tam testler, read_only/ağsız çalışma ve always cleanup korunur. Yerel YAML kontrolü bu eşleştirmeleri doğruladı. Bu yeni host seçiminin uzak runtime sonucu henüz yoktur; gönderim/koşu aşağıda ayrıca kaydedilir. Yeni yerel Docker veya ARM64 koşusu yapılmadı.
+
 2026-10-26, M1 devam talebiyle temiz 2de8bf8 dalında ekip kayıtları okundu ve fetch yapıldı. Main a1a83d5, M2 6047c42 değişmedi. [40335437683 çalışması](https://github.com/sq0eezy/expedition-73/actions/runs/40335437683), kod **07f87a3beb921ce44343739b49e1c8058202bfc9** için tamamlandı; genel sonuç failure. Önceki in_progress kaydı ilk gözlemdir; bu sayfa tamamlanan sonucu ayırır.
 
 ## Gerçek uzak sonuçlar
