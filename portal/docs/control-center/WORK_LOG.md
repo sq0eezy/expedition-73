@@ -8,6 +8,8 @@ M1 devam istedi. Temiz e6cb249 üzerinde ekip/durum/harita/fikir/devir/pano okun
 
 Son check 238 Windows / 643,771 s, gerçek eski/yeni A-B, 48 JS / 1891,0754 ms ve builder ile exit0. ZIP0.5 doğrulandı (6.994.000 byte); yedi dosya son build ile eşit, eski gerçek ZIP0.4 doğrulaması geçti, aylık byte ve audit nesneleri eski/yeni aynı. Son HTTP smoke geçti; QA kapatıldı, TCP8873 kapalı doğrulandı. Ayrı 6f5db6d CI beş iş success; native ARM64 234/43/HTTP geçti, yeni ekranı içermez. Portal son belgelerden önce check/build 7,16 s geçti; final kayıtları da kontrol edilir.
 
+Yeni ekran c682441 olarak mevcut M1 dalına normal push ile gönderildi, uzak SHA eşleşti. Yeni 40461143919 aynı kod SHA'sında ilk gözlem queued; önceki beş başarılı iş bu kodun CI'sı değildir. Main a1a83d5/M2 6047c42 aynı. Sonraki paylaşım belge commit'i aynı dala gider; yeni uygulama testi değildir. Portal tamamlanmış kanıt turunda check/build 4,38 s geçti; paylaşım kaydı da kontrol edilir. [SYNC](../team/SYNC.md).
+
 ## 2026-10-26 · Yıllık özel hesap için gerçek modül bağlantısı
 
 M1 devam istedi. Temiz d95cce1'de ekip/durum/fikir/devir/pano okundu; fetch'te yeni alınmamış M1/M2/main katkısı yoktu. [History → AnnualWeighting](../guide/ANNUAL_WORKFLOW.md) sabit raw byte snapshot'ıyla mevcut yıllık formüle bağlandı; parent/annual hash'leri context'te, gerçek artifact/ata izi workflow.json'da. Kaynak hatası yıllık adımı engeller; küçük trace yalnız başarılı çalışmada üretilir. İlk 26 hedef test / 78,808 s geçti; son tam kontrol [kanıtta](../evidence/ANNUAL_WORKFLOW_CHECK.md) ayrı işlenir. T-05/H-M1-023 inceleme bekler. Bilimsel yöntemler/kaynak örnekleri/web grafiği değişmedi; M2 kabulü/main/Pages yayını yok.

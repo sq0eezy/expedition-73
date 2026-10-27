@@ -1,6 +1,6 @@
 ---
 review_summary: "Ortak webden okuma, GitHub üzerinden düzenleme ve yerel kaynakları eşitleme."
-change_summary: "Yıllık modül bağlantısı 5dd0630 ile M1 dalına gönderildi; uzak SHA eşleşti, yeni CI sırada. 234 Windows/43 JS yerel kanıt; main/M2/Pages aynı."
+change_summary: "Yıllık akış ekranı c682441 ile M1 dalında, uzak SHA eşleşti. 238 Windows/48 JS/87 Chrome; yeni CI queued, ayrı native ARM64 düzeltmesi beş işi geçti. Main/M2/Pages aynı."
 ---
 
 # Paylaşım ve kurulum
@@ -9,7 +9,7 @@ change_summary: "Yıllık modül bağlantısı 5dd0630 ile M1 dalına gönderild
 
 6f5db6de9dc2c1eb4a6f2f9bd2db5aa31e75713a yalnız workflow/belge olarak normal M1 push ile gönderildi. [40459504376](https://github.com/sq0eezy/expedition-73/actions/runs/40459504376) tamamlandı: beş iş success; [ARM64 günlük kanıtı](../evidence/CI_PLATFORM_CHECK.md) 234 Python/43 JS/HTTP kontrolünü doğrular. Main a1a83d5/M2 6047c42 değişmedi. Bu kod henüz yeni yıllık akış web ekranını içermez; 238 yerel testli yeni dilimin uzak kanıtı diye sunulmaz.
 
-[Yıllık akış ekranı](../guide/ANNUAL_TRACE.md), aynı M1 dalında yerelde hazırlanıp [kendi kontrolleriyle](../evidence/ANNUAL_TRACE_CHECK.md) doğrulanır. Gönderildiğinde yeni kaynak SHA/CI ayrıca kaydedilir; M2 adına kabul veya main/Pages/Sites yayını yok.
+[Yıllık akış ekranı](../guide/ANNUAL_TRACE.md), [238 Windows/48 JS/87 Chrome, gerçek A/B ve paket kontrollerinden](../evidence/ANNUAL_TRACE_CHECK.md) sonra **c68244169258af16ea3cde2e6d8cf5d2e5d57411** olarak mevcut M1 dalına normal push ile gönderildi; ls-remote eşleşti. [Yeni ekran CI'sı 40461143919](https://github.com/sq0eezy/expedition-73/actions/runs/40461143919) aynı kod SHA'sında ilk gözlem queued, başarı değildir. Bu sonraki belge kaydı aynı dala gönderilir; kodun yeni test koşusu değildir. Main a1a83d5/M2 6047c42 yine aynı doğrulandı. H-M1-024 dalda alınabilir; M2 kabulü veya main/Pages/Sites yayını yok. QA durduruldu, TCP8873 kapalı.
 
 ## 2026-10-26 · Yıllık modül akışı GitHub'da
 

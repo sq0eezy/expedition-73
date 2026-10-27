@@ -3,13 +3,15 @@ status: Validating
 updated: "2026-10-27"
 phase: Yıllık modül akışını webde inceleme
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "Yıllık akış ekranı 238 Windows/48 JS/87 Chrome ve paketle geçti. Aylık byte/audit aynı; ayrı native ARM64 CI düzeltmesi beş işi geçti, yeni ekranın uzak sonucu ayrı."
+change_summary: "Yıllık akış ekranı c682441 ile M1 dalında; uzak SHA doğrulandı. 238 Windows/48 JS/87 Chrome/paket geçti, yeni CI queued. Main/Pages ve bilimsel politika aynı."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **Yeni ekran M1 dalında paylaşıldı:** c682441 normal push/uzak SHA eşleşmesi; [40461143919 CI ve paylaşım](team/SYNC.md) ilk gözlem queued. Yerel 238/48/87 sonucu uzak başarı değildir. Main/M2/Pages aynı; M2 incelemesi bekler.
 
 - **Yıllık akış webde:** [Bölgeye bağlı iki adım](guide/ANNUAL_TRACE.md) aynı gerçek çalıştırmadan gelir; audit kaynakları/context hash'i ve bilinen işlem parmak izleri eşleşir. Klavye/yıl/açık bölüm korunur; yanlış veya eski akışta yalnız akış görünümü kapanır. [238 Windows/48 JS/87 Chrome, gerçek A/B ve paket kontrolü](evidence/ANNUAL_TRACE_CHECK.md) geçti. Yıllık zarf 0.2.0, ZIP 0.5.0; aylık katalog/rapor kimlikleri ve yedi dosya korunur. M2/bilimsel yöntem kabulü değildir.
 
