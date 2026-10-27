@@ -108,6 +108,11 @@ nav:
       - Paylaşım ve eşitleme: team/SYNC.md
   - Ürün fikri:
       - Deneyim ve kapsam: product/index.md
+      - İlk yerel sonuç ekranı: product/RESULTS_PREVIEW.md
+      - Karşılaştırma çalışma alanı taslağı: product/COMPARISON_WORKSPACE.md
+      - Sonuç ekranı doğrulaması: evidence/RESULTS_PREVIEW_CHECK.md
+      - Hücre görünümü doğrulaması: evidence/SPATIAL_PREVIEW_CHECK.md
+      - Aday ağırlık karşılaştırması: evidence/POLICY_COMPARISON_CHECK.md
       - Hipotezler: product/HYPOTHESES.md
   - Keşif ve veri:
       - Açık sorular: discovery/index.md
@@ -116,6 +121,10 @@ nav:
       - Araştırma kaydı: research/index.md
       - NASA veri kaynakları: research/DATA_SOURCES.md
       - Kara/su maskesi adayı: research/SURFACE_MASK.md
+      - Maske kapsamı ve sınır varsayımları: research/SURFACE_SUPPORT.md
+      - Kaynak AREA uygunluğu: research/SOURCE_AREA.md
+      - Gerçek AREA metadata kontrolü: evidence/SOURCE_AREA_CHECK.md
+      - Gerçek alan kapsamı denetimi: evidence/SURFACE_SUPPORT_CHECK.md
       - Bölge seçimi ve iki aday: research/REGION_CANDIDATES.md
       - Bölge A çalışma fişi: research/regions/REGION_A_PROFILE.md
       - Bölge B çalışma fişi: research/regions/REGION_B_PROFILE.md
@@ -130,6 +139,8 @@ nav:
   - Plan ve ekip:
       - Yol haritası: planning/index.md
       - İlk pilot · Hava sıcaklığı: planning/PILOT.md
+      - Adım adım toparlama: planning/CONSOLIDATION.md
+      - T2M main teslimi: evidence/T2M_BASELINE_RELEASE.md
       - İş bölümü ve ortak profil: planning/REGION_WORKFLOW.md
       - Bölge A ve modül görevleri: planning/REGION_A.md
       - Bölge B yapılacaklar: planning/REGION_B.md
@@ -153,6 +164,28 @@ nav:
       - Küçük fraksiyon alt kümesi: guide/SURFACE_SUBSET.md
       - Ortak web paneli: guide/WEB_PORTAL.md
       - Mac kurulumu: guide/MACOS_SETUP.md
+      - Docker ve geliştirme paketi: guide/DEV_PACKAGE.md
+      - Geliştirme paketi doğrulaması: evidence/DEV_PACKAGE_CHECK.md
+      - Uzak platform kontrolleri: evidence/CI_PLATFORM_CHECK.md
+      - Gerçek akış ekranı: evidence/WORKFLOW_TRACE_CHECK.md
+      - Pencere karşılaştırması: evidence/REGION_COMPARISON_CHECK.md
+      - Karşılaştırma raporu: guide/COMPARISON_REVIEW.md
+      - Çok yıllı T2M ve yıl seçimi: guide/T2M_HISTORY.md
+      - 2001–2024 teknik kaynakları: guide/T2M_LONG_PERIOD.md
+      - 24 yıllık kaynak doğrulaması: evidence/T2M_LONG_PERIOD_CHECK.md
+      - 288 aylık görünüm: guide/T2M_TIMELINE.md
+      - Uzun dönem ekran kontrolü: evidence/TIMELINE_PREVIEW_CHECK.md
+      - Yıllık özet yöntem adayları: research/TEMPORAL_AGGREGATION.md
+      - Aday yıllık özet komutları: guide/T2M_ANNUAL_WEIGHTING.md
+      - Yıllık özet kontrolü: evidence/ANNUAL_WEIGHTING_CHECK.md
+      - Yıllık adayları webde incele: guide/ANNUAL_WEB.md
+      - Yıllık ekran kontrolü: evidence/ANNUAL_WEB_CHECK.md
+      - Yıllık hesap akışı: guide/ANNUAL_WORKFLOW.md
+      - Yıllık akış kontrolü: evidence/ANNUAL_WORKFLOW_CHECK.md
+      - Yıllık akışı webde incele: guide/ANNUAL_TRACE.md
+      - Yıllık akış ekranı kontrolü: evidence/ANNUAL_TRACE_CHECK.md
+      - İki yıllık kaynak doğrulaması: evidence/T2M_HISTORY_CHECK.md
+      - Rapor doğrulaması: evidence/COMPARISON_REVIEW_CHECK.md
       - Yeni konuşma işleme: guide/AI_WORKFLOW.md
       - Kişisel tercihler: guide/PERSONALIZATION.md
       - Temsili örnek: guide/EXAMPLE.md

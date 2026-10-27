@@ -5,8 +5,25 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | Bilgi | Esas kaynak |
 |---|---|
 | Aşama ve sıradaki adım | [Mevcut durum](CURRENT_STATE.md) |
+| Main'e toparlama paketleri ve sıcaklık bitiş durumu | [Toparlama sırası](planning/CONSOLIDATION.md), [pilot durumu](planning/PILOT.md), [ilk teslim kanıtı](evidence/T2M_BASELINE_RELEASE.md) |
+| Daha az kaydırma ve sade karşılaştırma arayüzü | [Çalışma alanı taslağı](product/COMPARISON_WORKSPACE.md) |
 | Amaç, sınırlar, taslak başarı ölçütleri | [Proje bağlamı](PROJECT_CONTEXT.md) |
 | Deneyim ve önerilen ilk kapsam | [Ürün](product/index.md) |
+| Kayıtlı T2M ilk yerel web ekranı ve çalıştırma | [Sonuç prototipi](product/RESULTS_PREVIEW.md), [gerçek tarayıcı kanıtı](evidence/RESULTS_PREVIEW_CHECK.md) |
+| Kayıtlı hücre görünümü ve etkin alan tutarlılığı | [Hücre ekranı kanıtı](evidence/SPATIAL_PREVIEW_CHECK.md), [ürün kapsamı](product/RESULTS_PREVIEW.md) |
+| Üç aday ağırlığın yan yana kıyaslanması | [Ağırlık ekranı kanıtı](evidence/POLICY_COMPARISON_CHECK.md), [ürün](product/RESULTS_PREVIEW.md) |
+| Docker/native geliştirme, ortak kontrol ve demo ZIP | [Geliştirme paketi](guide/DEV_PACKAGE.md), [gerçek ortam kanıtı](evidence/DEV_PACKAGE_CHECK.md) |
+| Uzak native/Docker CI sonuçları ve ARM64 kurulum düzeltmesi | [Platform kontrolü](evidence/CI_PLATFORM_CHECK.md), [güncel dal/koşu](team/SYNC.md) |
+| Derlemede doğrulanan modül bağımlılıkları ve sözleşme ekranı | [Gerçek akış ekranı kanıtı](evidence/WORKFLOW_TRACE_CHECK.md), [ürün](product/RESULTS_PREVIEW.md) |
+| İki pencerenin betimsel farkı ve teknik eşleşme koşulları | [Pencere karşılaştırma kanıtı](evidence/REGION_COMPARISON_CHECK.md), [ürün](product/RESULTS_PREVIEW.md) |
+| Aynı karşılaştırmayı raporla tekrar açma | [Rapor sözleşmesi/kullanım](guide/COMPARISON_REVIEW.md), [kanıt](evidence/COMPARISON_REVIEW_CHECK.md) |
+| Yıllık kaynak birleştirme, 2023–2024 ve yıl seçimi | [History komutları/sözleşmeler](guide/T2M_HISTORY.md), [gerçek kontrol](evidence/T2M_HISTORY_CHECK.md) |
+| Gerçek 2001–2024 erişimi ve 24 yıllık katalog | [Uzun dönem teknik kayıt](guide/T2M_LONG_PERIOD.md), [gerçek kontrol](evidence/T2M_LONG_PERIOD_CHECK.md) |
+| 288 aylık grafik/tablo ve tek yıl ayrıntılarına geçiş | [Uzun dönem görünümü](guide/T2M_TIMELINE.md), [gerçek kontrol](evidence/TIMELINE_PREVIEW_CHECK.md) |
+| Aylıktan yıllığa iki ağırlık adayı ve kaynak yıllık kıyası | [Yöntem araştırması](research/TEMPORAL_AGGREGATION.md), [CLI](guide/T2M_ANNUAL_WEIGHTING.md), [gerçek kontrol](evidence/ANNUAL_WEIGHTING_CHECK.md) |
+| Yıllık adayların web kartı/tablosu ve aylık kaynağa bağı | [Yıllık ekran](guide/ANNUAL_WEB.md), [gerçek kontrol](evidence/ANNUAL_WEB_CHECK.md) |
+| Doğrulanmış geçmiş → yıllık adaylar için gerçek modül bağımlılığı | [İki adımlı akış](guide/ANNUAL_WORKFLOW.md), [gerçek kontrol](evidence/ANNUAL_WORKFLOW_CHECK.md) |
+| Yıllık hesap akışını webde kaynak/işlem kimliğiyle inceleme | [Yıllık akış ekranı](guide/ANNUAL_TRACE.md), [gerçek kontrol](evidence/ANNUAL_TRACE_CHECK.md) |
 | Sınanacak beklentiler | [Hipotezler](product/HYPOTHESES.md) |
 | Fikir adayları ve seçim ölçütleri | [Karşılaştırma](discovery/IDEA_COMPARISON.md) |
 | Cevap bekleyen sorular | [Keşif](discovery/index.md) |
@@ -29,6 +46,8 @@ Her bilginin tek esas kaynağı bulunur. Başlangıç ve kontrol merkezi bu kayn
 | Geniş bölgeyi parçalı API istekleriyle çalıştırma | [Parçalı erişim kılavuzu](guide/T2M_TILED_WINDOW.md) |
 | Gerçek B parçaları, tekilleştirme ve bağımsız hesap | [Parçalı erişim kanıtı](evidence/T2M_TILING.md) |
 | Kara/su oranı adayı, erişim ve deneysel maske kuralları | [Maske araştırması](research/SURFACE_MASK.md) |
+| Kesilmiş hücrelerde alan varsayımları ve maske seçim ölçütleri | [Kapsam araştırması](research/SURFACE_SUPPORT.md), [gerçek alan denetimi](evidence/SURFACE_SUPPORT_CHECK.md) |
+| Şartname ile seçili granülün AREA uygunluk farkı | [Kaynak alanı incelemesi](research/SOURCE_AREA.md), [gerçek metadata kontrolü](evidence/SOURCE_AREA_CHECK.md) |
 | Maske erişim sonucu ve sentetik hesap kontrolleri | [Maske hazırlığı kanıtı](evidence/SURFACE_MASK_CHECK.md) |
 | Earthdata kaydı sonrası yerel metadata erişimini sınama | [Earthdata erişim kılavuzu](guide/EARTHDATA_ACCESS.md) |
 | Gerçek token ile metadata erişim sonucu | [Earthdata metadata kanıtı](evidence/EARTHDATA_METADATA.md) |

@@ -23,6 +23,11 @@ def main(argv=None) -> int:
     surface_run.add_argument("--window-run", type=Path, required=True)
     surface_run.add_argument("--fraction-run", type=Path, required=True)
     surface_run.add_argument("--output-dir", type=Path, required=True)
+    support = commands.add_parser("audit-surface-support", help="Conditional clipped-cell area bounds; offline, no policy selection.")
+    support.add_argument("--window-run", type=Path, required=True)
+    support.add_argument("--fraction-run", type=Path, required=True)
+    area_check = commands.add_parser("check-source-area", help="Check AREA declaration in local source metadata; no network or values.")
+    area_check.add_argument("--metadata", type=Path, required=True)
     probe = commands.add_parser("fetch-power-point", help="Fetch and validate a small candidate point sample; no trend.")
     probe.add_argument("--config", type=Path, required=True)
     probe.add_argument("--output-dir", type=Path, required=True)
@@ -48,9 +53,65 @@ def main(argv=None) -> int:
     compare = commands.add_parser("check-alignment", help="Check point-series transport alignment; no inference.")
     compare.add_argument("left", type=Path)
     compare.add_argument("right", type=Path)
+    for command in ("fetch-power-history", "assemble-window-history"):
+        history_parser = commands.add_parser(command, help="Annual source runs to candidate monthly history; no trend.")
+        history_parser.add_argument("--config", type=Path, required=True)
+        history_parser.add_argument("--output-dir", type=Path, required=True)
+        history_parser.add_argument("--run", type=Path, action="append", default=[])
+    history_check = commands.add_parser("validate-window-history", help="Replay every annual source and history offline.")
+    history_check.add_argument("directory", type=Path)
+    annual = commands.add_parser("audit-annual-weighting", help="Compare two candidate annual weighting targets from replayed unmasked history; offline.")
+    annual.add_argument("--run", type=Path, required=True)
+    annual_check = commands.add_parser("validate-annual-weighting", help="Recompute a saved candidate annual audit from its raw history.")
+    annual_check.add_argument("--run", type=Path, required=True)
+    annual_check.add_argument("--input", type=Path, required=True)
+    annual_workflow = commands.add_parser("run-annual-workflow", help="Frozen recorded history -> candidate annual summaries through the offline dependency engine.")
+    annual_workflow.add_argument("--run", type=Path, required=True)
+    annual_workflow.add_argument("--output-dir", type=Path, required=True)
     args = parser.parse_args(argv)
     try:
-        if args.command == "run-surface-workflow":
+        if args.command == "run-annual-workflow":
+            from . import annual_workflow, workflow_trace
+            if args.output_dir.exists() or args.output_dir.is_symlink():
+                raise PilotError("Output directory already exists; choose a new run directory.")
+            spec, report = annual_workflow.run(args.run)
+            args.output_dir.mkdir(parents=True, exist_ok=False)
+            write_json(args.output_dir / "request.workflow.json", spec)
+            write_json(args.output_dir / "workflow.json", report)
+            summary = {"status": report["status"], "region": spec["context"]["region"]["region_id"],
+                       "nodes": {name: record["status"] for name, record in report["nodes"].items()}}
+            if report["status"] != "completed":
+                print(json.dumps(summary, ensure_ascii=False))
+                return 2
+            result = report["nodes"]["AnnualWeighting"]["artifact"]["value"]
+            write_json(args.output_dir / "annual-weighting.json", result)
+            write_json(args.output_dir / "trace.json", workflow_trace.project(spec, report))
+            print(json.dumps({**summary, "quality": result["quality"]}, ensure_ascii=False))
+        elif args.command in ("audit-annual-weighting", "validate-annual-weighting"):
+            from . import annual_weighting
+            if args.command == "audit-annual-weighting":
+                print(json.dumps(annual_weighting.run(args.run), ensure_ascii=False, indent=2, allow_nan=False))
+            else:
+                report = annual_weighting.validate_report(args.run, args.input)
+                print(json.dumps({"status": "annual_weighting_replay_passed", "region": report["region"]["id"], "quality": report["quality"]}))
+        elif args.command in ("fetch-power-history", "assemble-window-history", "validate-window-history"):
+            from . import history
+            if args.command == "validate-window-history":
+                result = history.validate_run(args.directory)
+            else:
+                result = history.collect(loads(args.config.read_bytes()), args.output_dir, args.run,
+                                         fetch_missing=args.command == "fetch-power-history")
+            print(json.dumps({"status": "history_replay_passed", "time": result["time"], "quality": result["quality"]}))
+        elif args.command == "check-source-area":
+            from .surface_source import area_capability
+            from .earthdata import MAX_METADATA_BYTES
+            with args.metadata.open("rb") as stream:
+                raw = stream.read(MAX_METADATA_BYTES + 1)
+            print(json.dumps(area_capability(raw), ensure_ascii=False, indent=2, allow_nan=False))
+        elif args.command == "audit-surface-support":
+            from .surface_support import run
+            print(json.dumps(run(args.window_run, args.fraction_run), ensure_ascii=False, indent=2, allow_nan=False))
+        elif args.command == "run-surface-workflow":
             from .surface_workflow import run
             if args.output_dir.exists():
                 raise PilotError("Output directory already exists; choose a new run directory.")

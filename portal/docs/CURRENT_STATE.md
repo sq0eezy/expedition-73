@@ -1,15 +1,66 @@
 ---
 status: Validating
-updated: "2026-10-19"
-phase: Gerçek veriyle aday maske ve modül akışı
+updated: "2026-10-27"
+phase: İlk main paketi ve aşamalı toparlama
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "M2 dalı main (6da0103) ile birleştirildi; macOS üzerinde 134 test, B fraksiyon dönüşümü ve 5 düğümlü aday yüzey akışı doğrulandı."
+change_summary: "M1 testli temeli main'e almaya başlamayı istedi. c682441 beş uzak işi geçti; sıcaklığın teknik çekirdeği hazır, bilimsel pilot açık. Sade karşılaştırma taslağı ayrı."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **Yeni yön · aşamalı toparlama:** M1 yapılanları main'e almaya başlamayı istedi. [İlk teslim ve sıra](planning/CONSOLIDATION.md), [gerçek teslim kaydı](evidence/T2M_BASELINE_RELEASE.md). Bu oturum mevcut testli temeli aktarır; yeni arayüz veya ikinci modül kodu eklemez. Aşağıdaki eski tarihli paylaşım durumları kendi aşamalarına aittir.
+- **Sıcaklık bitişi:** Teknik veri/hesap/modül çekirdeği ilk sürüm olarak hazır; [pilotun tamamı bitmedi](planning/PILOT.md). Kesin bilimsel profil, eğilim/belirsizlik ve M2 kabulü açık. İkinci modülde küçük veri denemesi bu açık işlerin yerine geçmez.
+- **Son ekran kodu uzakta doğrulandı:** c682441 / 40461143919 beş iş success; her platform 238 Python/48 JS, native paket ve Docker AMD64/ARM64 HTTP doğrulaması geçti. [Günlük kanıtı](evidence/T2M_BASELINE_RELEASE.md). 43a3e03 yalnız belge farkıdır; bu toparlama oturumunda bilimsel/uygulama kodu değişmez.
+- **Arayüz gereksinimi kaydedildi:** M1 uzun kaydırma yerine sade, anlamı ve karşılaştırmayı öne alan düzen istedi. [Çalışma alanı taslağı](product/COMPARISON_WORKSPACE.md) öneridir; yeni yerleşim henüz uygulanmadı, M2 adına kabul yok.
+
+- **Yeni ekran M1 dalında paylaşıldı:** c682441 normal push/uzak SHA eşleşmesi; [40461143919 CI ve paylaşım](team/SYNC.md) ilk gözlem queued. Yerel 238/48/87 sonucu uzak başarı değildir. Main/M2/Pages aynı; M2 incelemesi bekler.
+
+- **Yıllık akış webde:** [Bölgeye bağlı iki adım](guide/ANNUAL_TRACE.md) aynı gerçek çalıştırmadan gelir; audit kaynakları/context hash'i ve bilinen işlem parmak izleri eşleşir. Klavye/yıl/açık bölüm korunur; yanlış veya eski akışta yalnız akış görünümü kapanır. [238 Windows/48 JS/87 Chrome, gerçek A/B ve paket kontrolü](evidence/ANNUAL_TRACE_CHECK.md) geçti. Yıllık zarf 0.2.0, ZIP 0.5.0; aylık katalog/rapor kimlikleri ve yedi dosya korunur. M2/bilimsel yöntem kabulü değildir.
+
+- **Önceki modül kodu uzak üç native/Docker AMD64 kontrolünü geçti:** 5dd0630 için 234 Python/43 JS; ARM64 emülasyon işi 30 dakika sınırında iptal oldu. [Günlükler ve ayrı native-host düzeltmesi](evidence/CI_PLATFORM_CHECK.md). Yeni host seçimi 6f5db6d dalda paylaşıldı; bu CI henüz yerel yıllık ekran değişikliğini içermiyor.
+
+- **Native ARM64 düzeltmesi uzakta doğrulandı:** 6f5db6d / 40459504376 beş iş success; ARM64 Linux 234 Python/43 JS ve HTTP smoke geçti. [Kanıt](evidence/CI_PLATFORM_CHECK.md). Bu sonuç yeni yıllık web ekranı veya M2'nin kendi cihaz kabulü değildir.
+
+- **Yıllık hesap için iki adımlı motor bağlantısı:** [History → AnnualWeighting](guide/ANNUAL_WORKFLOW.md) kayıtlı kaynakları bir kez yakalayıp tekrar doğrular; yıllık işlem aynı özel hesap fonksiyonuyla bu artifact'i tüketir. Kaynak hatasında yıllık adım blocked; gerçek girdi/ata izi ve ayrı küçük trace dosyası var. [234 Windows/43 JS, gerçek A/B akışları ve byte kontrolü](evidence/ANNUAL_WORKFLOW_CHECK.md) geçti. Aday yöntem/audit 0.1.0 ve web/ZIP korunur; webdeki beş düğümlü aylık grafik aynı kalır. M2/bilimsel profil kabulü değildir.
+
+- **Yeni yıllık akış M1 dalında paylaşıldı:** Kod 5dd0630 normal push ve ls-remote eşleşmesiyle doğrulandı. [SYNC/koşu](team/SYNC.md): yeni kod CI'sı 40372881297 ilk gözlemde pending, başarılı sayılmaz. Main/M2/Pages aynı; H-M1-023 teknik inceleme bekler.
+
+- **Uzak platform sonuçları okundu:** [Tam iş/günlük kanıtı](evidence/CI_PLATFORM_CHECK.md): 07f87a3 için Windows/macOS ARM64/Ubuntu ve Docker AMD64 222 Python/43 JS ile geçti. Docker ARM64 uygulama başlamadan binfmt kurulumunda exec format error verdi; genel koşu failure. Job-geneli hedef mimari değişkeni yalnız Compose adımlarına taşındı; yeni koşu sonucu [SYNC](team/SYNC.md) içinde ayrı tutulur. M2'nin kendi Mac kabulü veya bilimsel onay değildir.
+
+- **M1 geliştirmeleri GitHub dalında paylaşıldı:** Kullanıcının açık isteğiyle 07f87a3 ve önceki dokuz yerel commit normal push ile gönderildi, uzak SHA eşleşti. [Dal/CI/kurulum kaydı](team/SYNC.md). H-M1-014…022 artık alınabilir; M2 kabulü değildir. Kod SHA'sında uzak CI ilk gözlemde çalışıyor, başarılı sayılmadı. Main/M2 dalı ve canlı Pages aynı kaldı.
+
+- **Yıllık adaylar webde:** [Kart/tablo kullanımı](guide/ANNUAL_WEB.md), [gerçek kontroller](evidence/ANNUAL_WEB_CHECK.md). Aynı aylık kataloğa bağlı ayrı 0.1.0 yıllık web dosyası, seçili yılın iki adayı/API referansı ve 24 yılın özetleme farkı vardır. Kara/buzda yıllık kartlar kapanır, kaynak/hata/Web Crypto uyuşmazlığı aylık ekranı bozmaz. 222 Windows birim testi, 43 JS ve 76 Chrome geçti; son paket/paylaşım kanıtı esas kayıtta ayrılır. Aylık katalog/rapor byte kimlikleri korundu; yedi dosya, manifest 0.4.0. Kullanıcı mevcut M1 dalına GitHub gönderimi istedi; main/Pages ve bilimsel kabul ayrı, [durum](team/SYNC.md).
+
+- **İlk aday yıllık CLI hesabı:** [Zaman ağırlığı araştırması](research/TEMPORAL_AGGREGATION.md), [CLI/sözleşme](guide/T2M_ANNUAL_WEIGHTING.md), [216 Windows/37 JS ve gerçek tekrar kanıtı](evidence/ANNUAL_WEIGHTING_CHECK.md). Maskesiz A/B 24'er tam yıl, ay/gün ağırlıkları ve kaynak API yıllık hücre kıyası var. İki aday arasındaki en büyük fark A 0,079698 °C, B 0,140113 °C; bu hata payı/ısınma değildir. Gün ağırlığı bu 48 bölge-yılda API özetine daha yakın; evrensel NASA algoritması doğrulanmış sayılmaz. İlk dilimde web/motor bağlantısı yoktu; web bağlantısı yukarıdadır, yöntem/akış motoru kabulü ayrı kalır.
+
+- **288 ay tek zaman ekseninde:** [Uzun dönem görünümü](guide/T2M_TIMELINE.md) bütün kayıtlı aylık değerleri, geçerli ay sayısını ve tabloyu gösterir. Ortak pencere/yüzey, klavyeli ay seçimi, yıl/ay/hücre/kaynak/rapor bağlantısı çalışır; uyumsuz yıllar birleştirilmez. [201 Windows/37 JS/65 Chrome kanıtı](evidence/TIMELINE_PREVIEW_CHECK.md). Kaynak JSON ve bilimsel hesap aynı; yeni yıllık özet/anomali/eğilim hesabı yok. Web/annual/rapor/ZIP sözleşmeleri ve altı dosya korunur. T-02/U-02 yerel M1 dilimi; M2 kabulü, yeni Mac/Linux/CI veya yayın yok.
+
+- **Gerçek 2001–2024 aday kaydı:** A/B 288/288 ay, 56/55 hücre; 66 yeni küçük POWER isteği, 2023/2024 kaynakları byte aynı. [Kullanım/sınırlar](guide/T2M_LONG_PERIOD.md), [201 Windows test/30 JS/53 Chrome gerçek kontrolü](evidence/T2M_LONG_PERIOD_CHECK.md). Yıl seçici 2001…2024; grafik seçili yılın 12 ayıdır. Yeni eğilim/istatistik veya bilimsel dönem/maske/sınır kararı yok. M1 dalında yerel; yeni Mac/Linux/CI/yayın yok.
+
+- **İlk iki yıllık aşama · 2026-10-22:** A/B 2023–2024 24/24 ay, 56/55 hücre; yıllık kaynaklar grid/kaynak/zaman/yöntem eşleşmesiyle birleşti. 2024 byte'ları ve eski raporlar korundu. [Kılavuz](guide/T2M_HISTORY.md), [tarihsel kanıt](evidence/T2M_HISTORY_CHECK.md): **197 Windows test, gerçek A/B tekrarları, 30 JS ve 49 Chrome** geçti. Web zarfı 0.4.0, annual snapshot 0.3.0, altı dosya, manifest 0.3.0. O aşamada tam 2001–2024 yoktu; sonraki erişim yukarıdadır. Yeni Linux/Mac/CI veya yayın kanıtı değildi.
+
+- **Karşılaştırma raporu tekrar açılabiliyor:** Tam kaynak SHA-256 kimliği ve yeniden hesaplanan rapor alanları eşleşirse çift/yön/ay/yüzey açılır; uyuşmazlıkta seçimler korunur. Tarayıcıda işlenir; bilimsel/kişi onayı değil. [Kullanım](guide/COMPARISON_REVIEW.md), [kanıt](evidence/COMPARISON_REVIEW_CHECK.md): **180 Windows analiz/gerçek A-B, 30 JS, 42 Chrome senaryosu** geçti. Yeni rapor 0.1.0; kaynak web 0.3.0/altı dosya/manifest 0.2.0 ve bilimsel profil korundu. Yeni Mac/Docker/uzak CI veya yayın yok.
+
+- **İki pencerenin betimsel farkı:** Çift/yön seçimi, aynı ay sol−sağ grafiği/tablosu, ayrı geçerli çift sayısı ve maksimum |fark|/ayları eklendi. Gösterge/zaman/kaynak/grid/kullanılan hesap sürümleri; kara seçeneklerinde fraksiyon snapshot'ı eşleşmezse fark gösterilmez. Teknik eşleşme bilimsel kabul değildir. [Kapsam/kanıt](evidence/REGION_COMPARISON_CHECK.md): **180 Windows analiz testi, gerçek A/B, 22 JS ve 36 Chrome senaryosu** geçti. Kaynak veri/hash'ler, web 0.3.0/altı dosya/manifest 0.2.0 değişmedi; yeni Mac/Docker/uzak CI veya yayın yok.
+
+- **Gerçek hesap akışı görünür:** Kayıtlı derlemenin beş adımı/sekiz bağlantısı, sürüm/sözleşme/girdi ayrıntıları ve telefon/klavye seçimi eklendi. Gerçek artifact/ata tutarlılığı denetlenir; ekranda kararlı iş tanımı kimliği gösterilir. Web 0.3.0, altı genel dosya, manifest 0.2.0; eski ZIP doğrulaması korunur. **180 Windows/Linux AMD64 testi, gerçek A/B, 13 JS ve 30 Chrome senaryosu** geçti. [Kapsam ve gerçek kanıt](evidence/WORKFLOW_TRACE_CHECK.md). Yeni Mac/ARM64/uzak CI veya bilimsel onay değil; yerel M1 dalında.
+
+- **İsteğe bağlı geliştirme paketi:** Docker önizleme/kontrol hedefleri, Windows/Mac başlatıcıları, ortak offline check ve beş genel dosyalı demo ZIP hazırlandı. 171 Windows/Linux AMD64/ARM64 emülasyon testi, 8 JS testi ve Docker ekranında 22 Chrome senaryosu başarılı. [Kılavuz](guide/DEV_PACKAGE.md), [gerçek ortam kanıtı](evidence/DEV_PACKAGE_CHECK.md). CI matrisi hazır ama uzakta çalıştırılmadı; M2/Mac kabulü yok. Yeni D-02 dilimi yerel M1 dalında; bilimsel profil ve web sözleşmesi değişmedi.
+
+- **Yeni M1 çalışmaları GitHub dalında:** Kullanıcının açık talebiyle kaynak `6b4ab12` normal push ile gönderildi ve uzak SHA doğrulandı. [Paylaşım ve Mac inceleme adımları](team/SYNC.md). Main/M2 değişmedi; Pages yayını veya M2 kabulü yok. Önceki testli kod değişmeden paylaşıldı.
+
+- **Üç aday ağırlık yan yana:** Aynı ayın maskesiz/kara/kara+buz sonuçları, iki ikili farkın yıllık maksimumu/ayı ve ayrı geçerli ay sayıları görünür. 8 JS hesap testi gerçek A/B raporuyla birebir eşleşti; 164 analiz testi, gerçek replay ve 22 Chrome senaryosu başarılı. [Kanıt](evidence/POLICY_COMPARISON_CHECK.md). Yeni bilimsel seçim yok; builder dört uygulama dosyası + JSON üretir. Yerel M1 dalında.
+
+- **Hücre görünümü eklendi:** A/B için 56/55 hücre; seçili ayın grid T2M değeri, tam/kesilmiş sınır, dört fraksiyon ve etkin alan incelenebiliyor. Aynı hücrelerden üç politikanın 12 aylık sonuçları yeniden üretildi. 164 analiz testi ve 18 Chrome senaryosu başarılı. [Ürün](product/RESULTS_PREVIEW.md), [kanıt](evidence/SPATIAL_PREVIEW_CHECK.md). Web aktarımı 0.2.0; kaynak/bilimsel şemalar değişmedi. Yeni dilim yerel M1 dalında.
+
+- **İlk yerel web ekranı çalışıyor:** A/B seçimi, aylık grafik, üç yüzey ağırlığı, ay kartları/farkı, alan kapsamı, kaynak ayrıntısı, tablo ve JSON indirme hazır. Builder ilk teslimde kayıtlı girdileri yeniden doğrulayıp dört genel çıktı dosyası üretti; tarayıcı NASA/token kullanmaz. Dokuz yeni testle 162 analiz testi, gerçek veri tekrarları ve on Chrome senaryosu geçti; mobil/masaüstü görseller incelendi. [Kullanım ve sınırlar](product/RESULTS_PREVIEW.md), [gerçek kanıt](evidence/RESULTS_PREVIEW_CHECK.md). `web/` teknik prototiptir; nihai teknoloji veya bilimsel profil kabulü yok. M1 dalında yerel, main/Pages değişmedi.
+
+- **Kaynak AREA uygunluğu kontrol edildi:** Seçili granülün tam DMR'si yeniden HTTP 200 ile okundu; eski hash'le aynı ve AREA sayısal bildirimi yok. Şartname ile başka NASA README tablosu arasındaki fark kaydedildi. `check-source-area` bu durumu çevrim dışı açıkça raporlar; değer/alan karşılaştırması yapılmadı. Yedi yeni test, toplam 153 test ve gerçek veri tekrarları başarılı. [Esas inceleme](research/SOURCE_AREA.md), [erişim/komut kanıtı](evidence/SOURCE_AREA_CHECK.md). Yeni sonuç M1 dalında yerel; maske/profil kabulü yok.
+
+- **Kesilmiş hücreler için alan denetimi:** `audit-surface-support` kayıtlı gerçek girdileri yeniden doğrulayıp iki aday yüzey için koşullu alt/homojen/üst alan raporu verir. 12 yeni testle toplam 146 test başarılı; eski sıcaklık örnekleri değişmedi. Aralıklar güven aralığı veya sıcaklık hata payı değildir; kaynak AREA/alan ölçüsü uyumu doğrulanmadı. [Yöntem](research/SURFACE_SUPPORT.md), [gerçek sonuç](evidence/SURFACE_SUPPORT_CHECK.md). Yeni çalışma M1 dalında yerel; önceki canlı teslim aşağıda.
 
 - **M2 macOS üzerinde 134 testi ve Bölge B aday yüzey akışını doğruladı:** `origin/main` (`6da0103`), `codex/m2-region-b` dalına alındı; macOS/Python 3.14 (`netCDF4 1.7.2`, `numpy 2.5.4`) üzerinde 134 birim testin tamamı (0 atlanan), 55 hücrelik `b-surface-fractions` NetCDF dönüşüm tekrarı ve 5 düğümlü `run-surface-workflow` Bölge B akışı (`12/12 ay`) doğrulandı. [B fişi](research/regions/REGION_B_PROFILE.md), [M2 notu](team/members/M2.md), [H-M1-008 yanıtı](team/HANDOFFS.md). Nihai bilimsel maske/sınır seçimi açık.
 
@@ -29,7 +80,7 @@ change_summary: "M2 dalı main (6da0103) ile birleştirildi; macOS üzerinde 134
 - **Earthdata metadata erişimi doğrulandı:** Kullanıcının yerel terminalde gizli token ile çalıştırdığı kontrol HTTP 200 verdi. Dört maske değişkeni, Float32/birim/boyut sırası ve dolgu metaverisi okundu; XML hash'i raporla eşleşti. Token okunmadı/kaydedilmedi. [Gerçek kanıt](evidence/EARTHDATA_METADATA.md). Bu ilk metadata kontrolünden sonra sayısal A/B fraksiyon/koordinat değerleri de alındı; iki aday ağırlık önizlemesi de sonraki gerçek veri akışında hesaplandı, bilimsel politika kabulü yok.
 
 - **Geliştirme dalında maske hazırlığı:** [MERRA-2 sabit fraksiyonları](research/SURFACE_MASK.md) aday kaynak olarak bulundu; güncel OPeNDAP metadata isteği oturumsuz 401 verdi. İlk hazırlıkta gerçek oranlar yoktu; 2026-10-18 alımı üstteki kanıtla doğrulandı. A/B için 56/55 hücrelik istek planları ve ayrı aday maske ağırlık önizlemesi hazır. 72 test geçti; 14 yeni test sentetik verilerle hesabı denetliyor. [Kapsam ve gerçek erişim kanıtı](evidence/SURFACE_MASK_CHECK.md). Mevcut gerçek T2M örnekleri maskesiz kaldı.
-- [Ortak teknik deneme profili](planning/REGION_WORKFLOW.md) `t2m-technical-2024` 0.1.0 taslağı gerçek örneklerle dolduruldu. Bu, nihai ürün/alan/dönem/maske/istatistik seçimi değildir. M2 ayrı dalında teknik uygunluk onayı ve farklı profil kimliği önerdi; ortak sürüm uzlaştırması açık.
+- [Ortak teknik deneme profili](planning/REGION_WORKFLOW.md) `t2m-technical-2024` 0.1.0 taslağı gerçek örneklerle dolduruldu. Bu, nihai ürün/alan/dönem/maske/istatistik seçimi değildir. M2 ayrı dalında teknik uygunluk onayı ve farklı profil kimliği önerdi; teknik kimlik ayrımı 2026-10-19 M2 kaydıyla uzlaştırıldı; bilimsel profil açık.
 
 - **M2'nin 6° pencere için beklediği teknik destek main'de:** [parçalı T2M komutu](guide/T2M_TILED_WINDOW.md) iki gerçek isteği birleştirdi; 5 tekrar çıkarılıp 55 hücre/12 ay hesaplandı. B aday sınırı değişmedi. Yeni çıktı profili 0.2.0; eski 0.1.0 örnekler çalışıyor, bilimsel alan yöntemi değişmedi. `cdcc6bd` main birleştirmesinde 58 testlik Ubuntu CI ve Pages yayını başarılı; canlı kılavuz HTTP 200. [Kanıt](evidence/T2M_TILING.md). Sonraki geliştirme ayrı M1 dalında sürer.
 
@@ -49,4 +100,4 @@ NASA POWER API’den A aday dikdörtgeniyle kesişen 56 hücre için 2024'ün 12
 
 ## Sıradaki küçük adım
 
-Gerçek T2M/fraksiyon akışı ve iki aday politika duyarlılığı çalışıyor ve main/canlı portalda paylaşıldı. Sırada etkili alanın tanımı, FRLAND / FRLAND+FRLANDICE tercihi ve kaynak gridinin bilimsel uygunluğunu incelemek var; küçük sayısal fark tek başına yöntem seçimi gerekçesi değildir. Mevcut maskesiz örnekler korunur. Kabul edilmiş sınır/dönem/istatistik, ikinci bilimsel gösterge ve son web arayüzü hâlâ açık. Yeni geliştirme ayrı M1 dalında sürer: [yayın kanıtı](evidence/SURFACE_RELEASE.md).
+Önce [mevcut testli T2M temelinin main teslimi](evidence/T2M_BASELINE_RELEASE.md) tamamlanır; gerçek merge/CI/Pages sonucu kaydedilir. Sonra [karşılaştırma çalışma alanının](product/COMPARISON_WORKSPACE.md) ilk bilgi mimarisi ayrı dal/dilimde uygulanır. Yeni modül için NASA veri/parametre/uygunluk denemesi daha sonra ayrı seçilir; gösterge henüz seçilmedi. Yıllık inceleme raporu ve istatistik eklemek bu teslimin kapsamı değildir. Bilimsel yüzey/sınır/dönem/yıllık hedef ve eğilim/belirsizlik işi açık kalır. M2 kabulü varsayılmaz. [Toparlama sırası](planning/CONSOLIDATION.md), [paylaşım](team/SYNC.md).

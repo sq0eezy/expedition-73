@@ -6,6 +6,8 @@ change_summary: "Aday dikdörtgen için 56 hücre/12 ay alındı; maskesiz alan 
 
 M1'in ilk çalışma kaydı, **2026-10-16**. Görev durumu [panoda](../../planning/WORK_BOARD.md), kullanım [T2M kılavuzunda](../../guide/T2M_ADAPTER.md). Alanın kesin seçimi yapılmadı; bu fiş ilk teknik incelemedir.
 
+**2026-10-19 · R-A04 kontrolü:** Kayıtlı 56 hücrenin 26'sı sınırdan kesiliyor; iki hücrede seçili yüzeyin kesilen parçadaki yerleşimi bilinmiyor. [Koşullu alan denetimi](../../evidence/SURFACE_SUPPORT_CHECK.md) ve [alan ölçüsü varsayımları](../SURFACE_SUPPORT.md) eklendi. Kaynak AREA karşılaştırması, kesin sınır ve bilimsel maske seçimi hâlâ açık; yeni bir sıcaklık/trend bulgusu değildir.
+
 | Alan | Kayıt |
 |---|---|
 | Soru | Seçilecek bu kara alanında 2 metre hava sıcaklığının ortak uzun dönemdeki eğilimi nedir? Bu deneme yalnızca erişim/biçim sınar. |

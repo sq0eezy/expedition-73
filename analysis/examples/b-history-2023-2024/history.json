@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.1.0",
+  "format": "annual_verified_window_runs",
+  "years": [
+    {
+      "year": 2023,
+      "files_sha256": {
+        "manifest.json": "c103450782e976dff53da252ea20acfa16c7e527cf1a8ebb36ab8ded81af9423",
+        "request.json": "3f5ec2702d8afa5865b0a13a2f0cbfbf2170762168f9fb409d049edaf54b7a65",
+        "result.json": "884b5bac67dc6406b990864c6339ac5f9f2356452a03ad3da8801cc5e6b55a2c",
+        "tile-001.json": "9c1968543879bd5b4d39bda6e5151e3281bf2af6d6577e0d3d67be934d956014",
+        "tile-002.json": "053f6c5445049ac994e85fb8e92b9b3230dc1346f991c06a48adf88530bf208d"
+      }
+    },
+    {
+      "year": 2024,
+      "files_sha256": {
+        "manifest.json": "2c28c015033b5393d5ca4d6db9fb8cc5d15fb3992ad93fa478307ec909d293ce",
+        "request.json": "c0d956669bc4a2f9ba8692b58d99e8e9f3f84b15c2df87d584257997ee2180a1",
+        "result.json": "b4c053f879be9ea9f4cfe982edad83d95405e060d3b56d42f5e63d992a79ec39",
+        "tile-001.json": "368c1795d022f7d26055474237f08f699e5acd1540dd4cece0208d4d64f92484",
+        "tile-002.json": "0681c57fb4c68f774ae99e18115b14eeaad53f1f38f9161fbd185616105b7d1f"
+      }
+    }
+  ]
+}

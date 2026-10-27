@@ -98,6 +98,62 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 - **Sınır:** Uzun dönem/eğilim/son web uygulaması yok. M2'nin Mac'te bu yeni akışı çalıştırdığı veya politikayı onayladığı varsayılmadı.
 - **Yanıt:** M2 (sq0eezy), 2026-10-19: macOS/Python 3.14 (`netCDF4 1.7.2`, `numpy 2.5.4`) üzerinde 134 birim testin tamamı ve `run-surface-workflow --window-run examples/b-window-2024 --fraction-run examples/b-surface-fractions` komutu çalıştırıldı (`5/5 düğüm completed`, `12/12 ay`). Bölge B'de `FRLAND` etkin alanı 52.183,622 km² (%98,15), `FRLAND + FRLANDICE` etkin alanı 52.192,891 km² (%98,16); en büyük aylık `|FRLAND - maskesiz|` farkı 0,03510533 °C (Kasım 2024) ve `|FRLAND+ICE - FRLAND|` farkı 0,00057698 °C (Ekim 2024) olarak kayıtlı `b-surface-sensitivity.json` ile birebir eşleşti. Sonuçlar [B fişine](../research/regions/REGION_B_PROFILE.md) işlendi; nihai bilimsel maske/sınır seçimi ve uzun dönem analizi açık bırakıldı. Dış mesaj gönderilmedi.
 
+**2026-10-20 paylaşım güncellemesi:** Aşağıdaki H-M1-009/010/011/012/013 kaynakları artık [GitHub M1 dalında](SYNC.md) bulunur (`6b4ab12`). Kayıtlardaki “yerel/paylaşım bekliyor” ifadeleri ilk hazırlanma anına aittir; güncel durum **dalda paylaşıldı, M2 incelemesi bekliyor**. Main/Pages yayını veya M2 onayı yok.
+
+## H-M1-009 · Kesilmiş hücrelerde alan kapsamını inceleme
+
+- **Gönderen → alıcı:** M1 → M2; mevcut MOD-05/R-A04 denetiminin panel içi inceleme kaydı; dış mesaj gönderilmedi.
+- **Tarih:** 2026-10-19.
+- **Durum:** Yerel M1 dalında, paylaşım/M2 incelemesi bekliyor; M2'nin gördüğü varsayılmaz.
+- **Teslim:** [Koşullu alan sınırları ve yüzey hedefi soruları](../research/SURFACE_SUPPORT.md), [gerçek A/B kanıtı/komutu](../evidence/SURFACE_SUPPORT_CHECK.md). Önceki 134 testlik yayına 12 test eklendi; 146 yerel test başarılı.
+- **İncelenecek:** B sınır parçalarında tam hücre oranını homojen dağıtmanın uygunluğu, AREA/alan tanımı ve kara/buz hedefi. B için bu denetim ortak modülün kaynak uygunluğunu sınar; B görevi veya M2 kabulü yerine geçmez.
+- **Sınır:** Koşullu alan aralığı fiziksel güven aralığı/sıcaklık hatası değildir. Yeni API, kesin maske/profil veya uzun dönem sonucu yok. Yeni Mac/Ubuntu koşusu ve canlı yayın yapılmadı.
+
+## H-M1-010 · Seçili granülde AREA bulunmaması
+
+- **Gönderen → alıcı:** M1 → M2; mevcut MOD-05/R-A04 kapsamında panel içi kaynak incelemesi; dış mesaj yok.
+- **Tarih:** 2026-10-19.
+- **Durum:** Yerel M1 dalında, paylaşım/inceleme bekliyor; M2 görmüş sayılmaz.
+- **Teslim:** [Canlı DMR ve offline komut](../evidence/SOURCE_AREA_CHECK.md), [kaynak alanı/iki belge farkı](../research/SOURCE_AREA.md). Yedi yeni testle toplam 153 yerel test geçti.
+- **İncelenecek:** Kaynak alanıyla doğrudan doğrulama yapıldığı varsayılmadan mevcut geometrik yöntemin ve hedef yüzeyin nasıl açıklanacağı. Başka AREA ürünü gerekiyorsa ayrı kaynak/grid uygunluğu gerekir; otomatik ürün değişimi yok.
+- **Sınır:** Metadata HTTP 200, AREA değerinin veya bilimsel yöntemin doğrulandığı anlamına gelmez. Yeni maske/alan/dönem veya M2 kabulü üretilmedi. İlk sonuç ekranı taslağı öneri; final web teknolojisi/sorumlusu seçilmedi.
+
+## H-M1-011 · Kayıtlı T2M ilk web ekranı
+
+- **Gönderen → alıcı:** M1 → M2; kullanıcının devam talebi kapsamındaki teknik ekranın panel içi teslimi; dış mesaj gönderilmedi.
+- **Tarih:** 2026-10-19.
+- **Durum:** Yerel M1 dalında; paylaşım ve üye kullanım incelemesi bekliyor.
+- **Teslim:** [Ekran/kullanım](../product/RESULTS_PREVIEW.md), [162 test ve on gerçek Chrome senaryosu](../evidence/RESULTS_PREVIEW_CHECK.md). Mac'te kurulu analysis ortamıyla önce `analysis/.venv/bin/python analysis/scripts/build_web_preview.py`, sonra `python3 web/serve.py`; adres 127.0.0.1:8873, kapatma Ctrl+C. Bu komutların Mac'te çalıştırıldığı varsayılmaz.
+- **İncelenecek:** Pencere/ay/maske seçimi, veri kaynağı ve koşullu kapsamın anlaşılması; B değerlerinin kaydedilmiş sonuçla uyuşması. Bölge listesine yeni uygun kayıt eklenebilir; yeni bilimsel gösterge desteği yok.
+- **Sınır:** Arayüz, yöntem veya maske kabulü değildir. M2'nin gördüğü/başladığı veya nihai web görevini üstlendiği varsayılmaz; main/Pages yayını bu teslimde yapılmadı.
+
+## H-M1-012 · Hücre ve etkin alan incelemesi
+
+- **Gönderen → alıcı:** M1 → M2; U-02 kapsamında panel içi teknik teslim; dış mesaj yok.
+- **Tarih:** 2026-10-20.
+- **Durum:** Yerel M1 dalında, paylaşım ve kullanım incelemesi bekliyor.
+- **Teslim:** [Ürün ve Mac komutları](../product/RESULTS_PREVIEW.md), [164 analiz testi ve 18 Chrome senaryosu](../evidence/SPATIAL_PREVIEW_CHECK.md). Önce builder tekrar çalıştırılır; web aktarımı 0.2.0, kaynak şemaları/yöntem aynı.
+- **İncelenecek:** B'nin 55 hücresi, ay değişimi ve seçili hücrenin grid T2M/fraksiyon/etkin alanı; sınırda kesilen hücrelere homojen fraksiyon uygulamasının açıklığı. Bilimsel maske seçimi bu ekranla yapılmış sayılmaz.
+- **Sınır:** M2'nin 134 testlik macOS teyidi alındı; yeni hücre ekranını gördüğü/kabul ettiği varsayılmaz. Main/Pages yayını yapılmadı.
+
+## H-M1-013 · Aday ağırlıkları yan yana inceleme
+
+- **Gönderen → alıcı:** M1 → M2; U-02 panel içi teknik teslim; dış mesaj yok.
+- **Tarih:** 2026-10-20.
+- **Durum:** Yerel M1 dalında; paylaşım/kullanım incelemesi bekliyor.
+- **Teslim:** [Ürün/kullanım](../product/RESULTS_PREVIEW.md), [gerçek kıyaslama ve testler](../evidence/POLICY_COMPARISON_CHECK.md). Mac'te builder yeniden çalıştırılır, ardından `python3 web/serve.py`; `comparison.mjs` dahil beş genel dosya birlikte üretilir.
+- **İncelenecek:** Aynı ayın üç sonucu; kara−maskesiz ve kara+buz−kara farklarının ay/maksimum ve geçerli çift sayıları. Bunlar iklim etkisi veya toplam belirsizlik değildir; hedef yüzeyin seçimi ayrı kalır.
+- **Sınır:** Kara/buz politikası, kesin sınır ve dönem kabul edilmedi. Yeni dilim M2 tarafından görülmüş/çalıştırılmış sayılmaz; Pages'e yayımlanmadı.
+
+## H-M1-014 · İsteğe bağlı geliştirme ve demo paketi
+
+- **Gönderen → alıcı:** M1 → M2; D-02 panel içi teknik teslim; dış mesaj yok.
+- **Tarih:** 2026-10-21.
+- **Durum:** Yerel M1 dalında; paylaşım ve gerçek Mac kullanım incelemesi bekliyor.
+- **Teslim:** [Tek komut Docker/native kılavuzu](../guide/DEV_PACKAGE.md), [gerçek kontrol/ortam sınırları](../evidence/DEV_PACKAGE_CHECK.md). Mac'te mevcut ortamla `sh scripts/start-preview.sh`; Docker Desktop açıksa `docker compose --env-file docker/compose.env up --build`. İkisi de kurulumdan sonra localhost 8873 sunar.
+- **İncelenecek:** Kendi dalındaki değişiklikleri koruyarak güncel kaynak alındıktan sonra Mac başlatıcısı/Docker seçeneği, kontrol komutu ve B kayıtlı sonuçları. Docker zorunlu değil; M2 tercihi varsayılmaz.
+- **Sınır:** Linux ARM emülasyonu gerçek Mac kullanımı değildir. Yeni CI tanımı uzak başarı kanıtı veya bilimsel maske/sınır/dönem kabulü sayılmaz. Yeni kod main/Pages'e gönderilmedi.
+
 ## Bir kayıt için gerekenler
 
 **2026-10-18 mimari açıklık:** M1 çok girdili modül bağımlılığına hazır olup olmadığımızı sordu. [A→B, A+B→C örneği](../architecture/MODULE_SYSTEM.md), C'nin B ile aynı A çıktısını kullanması koşuluyla ayrıntılandırıldı. [MOD-06](../planning/WORK_BOARD.md) önerilen teknik deneme; motor henüz yok. M2 adına inceleme veya onay beyanı üretilmedi.
@@ -116,3 +172,81 @@ Buraya yazmak tek başına bildirim göndermez; alıcı ortak depodan güncel ka
 Görev durumu burada kopyalanmaz; [iş panosuna](../planning/WORK_BOARD.md) bağlantı verilir. “Görüldü” veya tarayıcıdaki “Okudum” işareti karar onayı anlamına gelmez. Çözülmüş kaydı silmeyin; yanıtını ve sonucunu koruyun.
 
 Kaynak şablon: `templates/TEAM_HANDOFF.md`.
+
+## H-M1-015 · Gerçek akış ekranı ve sözleşme ayrıntıları
+
+- **Gönderen → alıcı:** M1 → M2; U-02/MOD-06/D-02 için panel içi kayıt, dış mesaj yok.
+- **Tarih:** 2026-10-21.
+- **Durum:** Yerel M1 dalında; paylaşım ve M2 incelemesi bekliyor.
+- **Teslim:** [Gerçek akış kontrolü](../evidence/WORKFLOW_TRACE_CHECK.md), [ürün sınırları](../product/RESULTS_PREVIEW.md), [native/Docker açma komutları](../guide/DEV_PACKAGE.md).
+- **İncelenecek:** Kaynaklar paylaşıldıktan sonra Mac'te `sh scripts/start-preview.sh`; B akışında beş adım/sekiz bağ, LandIce/Sensitivity girdileri, telefon/klavye seçimi. Kimlik iş tanımına aittir; bilimsel onay/çıktı artifact hash'i değildir. Yeni web 0.3.0/manifest 0.2.0, eski ZIP doğrulaması korunur.
+- **Kanıt/sınır:** 180 Windows/Linux AMD64 analiz testi, gerçek A/B, 13 JS, 30 Chrome senaryosu geçti; yeni Mac/ARM64/uzak CI yok. Bilimsel maske/sınır/dönem ve M2 kabulü açık; yanıt gelmeden accepted yazılmaz.
+
+## H-M1-016 · Pencereler arası betimsel fark ve eşleşme koşulları
+
+- **Gönderen → alıcı:** M1 → M2; U-02 panel içi kayıt, dış mesaj yok.
+- **Tarih:** 2026-10-22.
+- **Durum:** Yerel M1 dalında; paylaşım ve M2 incelemesi bekliyor.
+- **Teslim:** [Çift/yön/ay/yüzey grafiği ve gerçek kanıt](../evidence/REGION_COMPARISON_CHECK.md), [ürün sınırları](../product/RESULTS_PREVIEW.md). Kaynaklar paylaşıldıktan sonra Mac'te `sh scripts/start-preview.sh` ile açılır.
+- **İncelenecek:** A−B/B−A yönü, 12 aylık fark tablosu ve teknik koşullar. Maskesiz/kara/kara+buz sonuçları aynı coğrafyanın alternatif ağırlıklarıdır. Pencere farkı ısınma etkisi/trend/önemlilik değildir. Bilimsel yüzey/sınır/uzun dönem uzlaşması hâlâ gerekir.
+- **Kanıt/sınır:** 180 Windows analiz, gerçek A/B tekrarları, 22 JS ve 36 Chrome senaryosu; yeni Mac/Docker/uzak CI yok. Web 0.3.0, altı dosya, manifest 0.2.0 değişmedi. Yanıt gelmeden M2 kabulü yazılmaz.
+
+## H-M1-017 · Kaynak kimlikli karşılaştırma raporu
+
+- **Gönderen → alıcı:** M1 → M2; U-02/D-02 panel içi kayıt, dış mesaj yok.
+- **Tarih/durum:** 2026-10-22; yerel M1 dalında, paylaşım/M2 incelemesi bekler.
+- **Teslim:** [Kullanım/sözleşme](../guide/COMPARISON_REVIEW.md), [gerçek kontroller](../evidence/COMPARISON_REVIEW_CHECK.md).
+- **İncelenecek:** Kaynak paylaşıldıktan sonra Mac'te `sh scripts/start-preview.sh`, aynı veriyle raporu indir/aç; yön/ay/yüzey/gizli pencerelerin açılmasını dene. Hatalı/farklı kaynakta seçimler korunmalı. Dosya yalnız tarayıcıda işlenir, uygulama kendisi iletmez.
+- **Sınır:** Windows 180 analiz/gerçek A-B, 30 JS, 42 Chrome senaryosu; yeni Mac/Docker/uzak CI yok. SHA-256 bilimsel/yazar onayı değil. Bilimsel profil/M2 kabulü/yayın yok; yanıt olmadan accepted yazılmaz.
+
+## H-M1-018 · 2023–2024 kaynak birleştirme ve yıl seçimi
+
+- **Gönderen → alıcı:** M1 → M2; T-01/U-02 panel içi kayıt, dış mesaj yok.
+- **Tarih/durum:** 2026-10-22; yerel M1 dalında, paylaşım/M2 incelemesi bekler.
+- **Teslim:** [Komutlar/sözleşmeler](../guide/T2M_HISTORY.md), [gerçek kanıt](../evidence/T2M_HISTORY_CHECK.md). Kaynaklar paylaşıldıktan sonra Mac'te `sh scripts/start-preview.sh`; 2023/2024 seç, B tarih/hücre/politika ve yıllar arası rapor açmayı kontrol et. analysis içinde `.venv/bin/python -m expedition73 validate-window-history examples/b-history-2023-2024`.
+- **Sınır:** Windows 197 analiz/30 JS/49 Chrome; Docker motoru hazır olmadı, yeni Linux/Mac/CI sonucu yok. 2024 byte'ları korundu; 2001–2024 gerçek veri/trend ve nihai maske/sınır/profil seçilmedi. Reusable B teknik örneği M2'nin R-B05'e başladığı/kabul ettiği anlamına gelmez.
+
+## H-M1-019 · 2001–2024 gerçek kaynak ve 24 yıllık seçim
+
+- **Gönderen → alıcı:** M1 → M2; T-01/U-02 için panel içi kayıt, dış mesaj yok.
+- **Tarih/durum:** 2026-10-24; yerel M1 dalında, paylaşım/M2 incelemesi bekler.
+- **Teslim:** [Kullanım/yorum sınırı](../guide/T2M_LONG_PERIOD.md), [gerçek erişim/kontrol](../evidence/T2M_LONG_PERIOD_CHECK.md). Kaynak paylaşılınca Mac'te `sh scripts/start-preview.sh`; 2001/2012/2024 seç, B tarih/hücre/politikayı ve raporla yıl açılmasını dene. analysis içinde `.venv/bin/python -m expedition73 validate-window-history examples/b-history-2001-2024`.
+- **Sınır:** İki pencere 288'er ay; eski kaynak/rapor kimlikleri korunur. Bu teknik erişim R-B05 başlangıcı/analiz tamamlanması, M2 kabulü veya bilimsel dönem/maske/eğilim kararı değildir. Yeni Mac/Linux/Docker/CI/yayın yok. Yanıt bekleniyor.
+
+## H-M1-020 · Kayıtlı aylar için uzun dönem görünümü
+
+- **Gönderen → alıcı:** M1 → M2; T-02/U-02 için panel içi kayıt, dış mesaj yok.
+- **Tarih/durum:** 2026-10-26; yerel M1 dalında, paylaşım/M2 incelemesi bekler.
+- **Teslim:** [Kullanım](../guide/T2M_TIMELINE.md), [gerçek kontrol](../evidence/TIMELINE_PREVIEW_CHECK.md). Kaynak paylaşılınca Mac'te `sh scripts/start-preview.sh`; uzun dönem ay seçicisini, yıl sınırını, pencere/yüzey seçimlerini, B hücre/kaynak ayrıntılarını ve eski raporu açınca işaretçinin aynı aya gelmesini incele.
+- **Sınır:** 201 Windows analiz/gerçek A-B, 37 JS, 65 Chrome; yeni Mac/Linux/Docker/CI yok. Kaynak JSON/sözleşmeler aynı. Yeni istatistik/maske/dönem/eğilim kabulü veya R-A05/R-B05 tamamlanması değil. Yanıt gelmeden M2 kabulü yazılmaz.
+
+## H-M1-021 · Yıllık özetin iki hedefi
+
+- **Gönderen → alıcı:** M1 → M2; T-03 için panel içi kayıt, dış mesaj yok.
+- **Tarih/durum:** 2026-10-26; yerel M1 dalında, paylaşım/M2 incelemesi bekler.
+- **Teslim:** [Yöntem ve kaynak araştırması](../research/TEMPORAL_AGGREGATION.md), [CLI](../guide/T2M_ANNUAL_WEIGHTING.md), [gerçek kayıt/testler](../evidence/ANNUAL_WEIGHTING_CHECK.md). Kaynaklar paylaşıldıktan sonra Mac'te analysis içinde `.venv/bin/python -X utf8 -m expedition73 validate-annual-weighting --run examples/b-history-2001-2024 --input examples/b-annual-weighting-audit.json`.
+- **İncelenecek:** Hedef eşit ay özeti mi, takvim süresini temsil eden özet mi? Kaynak yıllık değere yakınlık bağımsız doğruluk değildir. Nihai yüzey/sınır/dönem ve eksiklik kuralıyla birlikte tartışılmalı.
+- **Sınır:** 24'er tam maskesiz yıl; yeni yöntem seçimi/M2 kabulü/R-B05 başlangıcı veya eğilim yok. Genel web/motor entegrasyonu ve yeni Mac/Linux/CI sonucu yok. Yanıt bekleniyor.
+
+## H-M1-022 · Yıllık adayların webde incelenmesi
+
+- **Gönderen → alıcı:** M1 → M2; T-04/U-02 için panel içi kayıt, dış mesaj yok.
+- **Tarih/durum:** 2026-10-26; testli M1 dilimi. GitHub gönderim sonucu [SYNC](SYNC.md) kaydından izlenir; M2 incelemesi/kabulü bekler.
+- **Teslim:** [Web kullanımı](../guide/ANNUAL_WEB.md), [222 Windows/43 JS/76 Chrome kanıtı](../evidence/ANNUAL_WEB_CHECK.md). Kaynak dalı alındıktan sonra Mac'te `sh scripts/start-preview.sh`; maskesizde A/B yıllık adaylar, tablo/yıl düğmesi, API yıllık referansı ve kara/buz kapsam kapanmasını incele. Yeni yedi dosya/manifest 0.4.0 birlikte üretilir.
+- **Sınır:** Bilimsel profil/eğilim/M2 kabulü yok; aynı kaynak API kıyası bağımsız ölçüm değildir. Aylık akış grafiği yıllık modülü içermiyor. Main/Pages yayını ve gerçek Mac/Docker koşusu bu teslim sayılmaz.
+
+## H-M1-023 · Yıllık hesabın gerçek bağımlılık bağlantısı
+
+- **Gönderen → alıcı:** M1 → M2; T-05 için panel içi kayıt, dış mesaj yok.
+- **Tarih/durum:** 2026-10-26; teknik inceleme bekler. Son test ve dal paylaşımı [kanıt](../evidence/ANNUAL_WORKFLOW_CHECK.md) ve [SYNC](SYNC.md) içinde ayrıdır.
+- **Teslim:** [İki adım/sözleşme ve Windows/Mac komutları](../guide/ANNUAL_WORKFLOW.md). Güncel kaynak kendi işin korunarak alındıktan sonra Mac'te analysis içinde `.venv/bin/python -X utf8 -m expedition73 run-annual-workflow --run examples/b-history-2001-2024 --output-dir artifacts/b-annual-workflow-new`.
+- **İncelenecek:** History/AnnualWeighting completed; yıllık rapor kayıtlı B adayıyla aynı; workflow.json'da yıllık artifact tam History artifact kimliğini tüketiyor. trace.json iki adımlı genel projeksiyondur; webdeki aylık grafiğe kendiliğinden eklenmez. Aynı hedefte tekrar komut önceki dosyaları korumalı.
+- **Sınır:** İki hedef hâlâ aday; yeni bilimsel gösterge/maske/dönem/eğilim veya R-B05 başlangıcı değildir. M2 adına yeni kabul/koşu yazılmaz. Yanıt bekleniyor.
+
+## H-M1-024 · Yıllık modül akışı web kartı
+
+- **Gönderen → alıcı:** M1 → M2; T-06 için panel içi kayıt, dış mesaj yok.
+- **Tarih/durum:** 2026-10-27; teknik/kullanım incelemesi bekler. Kaynak paylaşımı [SYNC](SYNC.md), ortam/test sınırları [kanıt](../evidence/ANNUAL_TRACE_CHECK.md) içindedir.
+- **Teslim:** [Kullanım ve sürümler](../guide/ANNUAL_TRACE.md). Güncel kaynak kendi işin korunarak alındıktan sonra Mac'te `sh scripts/start-preview.sh`; maskesiz B yıllık kartında Yıllık hesap akışı bölümünü aç. İki adımı klavye ile seç, yıl değiştir, beş düğümlü aylık akışın ayrı kaldığını kontrol et.
+- **Beklenen:** İşlem/sürüm, girdi ve tanım kimliği doğru; açık bölüm/seçili adım korunur. Yanlış/eski akışta açıklama gelir, yıllık değerler kalır. Yeni yıllık zarf0.2/ZIP0.5 birlikte derlenir, eski ZIP verifier yolu korunur.
+- **Sınır:** Canlı görev/cache, bilimsel yöntem/maske/sınır/dönem kabulü veya R-B05 başlangıcı değildir. M2 adına yeni koşu/kabul yazılmaz. Yanıt bekleniyor.

@@ -8,6 +8,8 @@ change_summary: "İlk yerel bağımlılık motoru ve yapay A/B/C örneği çalı
 
 ## İki ayrı ilişki
 
+2026-10-26: [Yıllık ağırlık denetimi](../guide/T2M_ANNUAL_WEIGHTING.md), mevcut recorded_window_history 0.1.0 çıktısını ham kaynakları tekrar doğrulayarak tüketen ayrı bir Python modülüdür. Kendi iki aday hesabı ve candidate_annual_weighting_audit 0.1.0 şeması vardır. Bu ilk CLI henüz beş düğümlü yüzey motorunda kayıtlı yeni bir işlem veya web kataloğu değildir; [hedef/yöntem kabulü](../research/TEMPORAL_AGGREGATION.md) ve adaptör/akış entegrasyonu ayrı kalır.
+
 | İlişki | Anlamı | Örnek |
 |---|---|---|
 | `contains` | Konuları ve alt modülleri düzenli gösterir | İklim göstergeleri → Hava sıcaklığı |
@@ -66,7 +68,7 @@ flowchart LR
 5. A değişince B ve C'nin önceki sonuçları güncel değil sayılır. Yeni a2 için önce b2, ardından `a2+b2` kullanan c2 oluşturulur. Devam eden eski çalıştırmanın girdileri değiştirilmez; eski sonuç kendi kaynak iziyle korunur, yeni seçimde güncel diye gösterilmez.
 6. A başarısızsa B ve C **girdi nedeniyle engelli** kalır. B başarısızsa A sonucu korunur, C engelli kalır. Bir modülün teknik çalışmasını bitirmesi yeterli değildir: çıktı, alıcının kabul koşullarından geçmelidir. Kısmi hesap yalnız modülün yönteminde önceden tanımlıysa mümkündür; eksik değer sıfır diye tamamlanmaz.
 
-Önerilen görünür durumlar: bekliyor, çalışıyor, tamamlandı, başarısız, girdi nedeniyle engelli ve güncel değil. Web uygulaması C'nin neden beklediğini, hangi kaynağı beklediğini ve girdi çıktı kimliklerini gösterebilir. Bunlar şu an arayüzde uygulanmış durumlar değildir.
+Önerilen görünür durumlar: bekliyor, çalışıyor, tamamlandı, başarısız, girdi nedeniyle engelli ve güncel değil. Web uygulaması C'nin neden beklediğini, hangi kaynağı beklediğini ve girdi çıktı kimliklerini gösterebilir. Canlı durum geçişleri henüz arayüzde uygulanmadı; 2026-10-21 görünümü yalnız derlemede tamamlanan gerçek akışı gösterir.
 
 “Büyük/küçük konu” otomatik hesap bağımlılığı oluşturmaz. Küresel ısınma bir gezinme başlığı olabilir; hesap yapacaksa göstergesi, yöntemi ve girdi tanımı ayrıca yazılır. Toprak nemi gelecekte NASA'dan doğrudan alınan ayrı bir gösterge olabilir; sırf sıcaklıkla ilişkili diye onu sıcaklıktan hesaplayan bağlantı kurulmaz. Sıcaklık–toprak nemi ilişki analizi ise iki seriyi tüketen ayrı bir modül olarak tanımlanabilir. Bilimsel ilişki/nedensellik ile çalıştırma bağımlılığı birbirinin yerine geçmez; bu örnekler kabul edilmiş yeni modül/veri seçimi değildir.
 
@@ -74,10 +76,16 @@ Fiziksel geri besleme gerektiren model gelecekte gündeme gelirse A ↔ B'yi bu 
 
 **Uygulama durumu · 2026-10-18:** `analysis/expedition73/workflow.py` içinde sıralı planlayıcı, aynı çalıştırmada ortak üreticiyi tek hesaplama, kayıtlı işlem sürümü/çıktı etiketi kontrolü, çıktı kimliği/ata izi, callback kopya izolasyonu ve hata/engelli durumu çalışıyor. `demo-workflow` tamamen yapay A/B/C ile ilk C=12, A değişince C=21 üretti. Eski A + yeni B karışımı reddedildi. `compare_snapshot` açık çağrıldığında tanımlı değişiklik için bağımlı sonuçları güncel değil olarak bulur; canlı otomatik izleme veya kalıcı cache değildir. [20 yeni test ve çalışma kanıtı](../evidence/WORKFLOW_ENGINE.md), [MOD-06](../planning/WORK_BOARD.md).
 
-İlk sürüm tek context, düğüm başına tek `result` portu ve sıralı çalışma kullanır. Kayıtlı gerçek T2M/fraksiyon adaptörleri artık ayrı `run-surface-workflow` ile bağlandı: kaynak tekrar hesabı, bölge/sınır/koordinat ve çıktı tanımı kontrol ediliyor. İki açık aday ağırlık seçeneği hesaplanıyor; bu, tam bilimsel profil/kalite kabulü değildir. [Gerçek verili kanıt](../evidence/SURFACE_WORKFLOW.md). Dış kaynak revizyonu isteğe kaydedilmelidir. Genel bilimsel sonuç zarfı, çoklu çıktı portları, kalıcı iş deposu, kaynak değişimini izleme, tekrar çalıştırmalar arasında cache, paralel işler ve web görünümü sonraki kapsamdır. İlk yapay deneme bilimsel modül doğrulaması değildir; sonraki gerçek kayıt akışı da ikinci bilimsel gösterge veya kabul edilmiş maske analizi sayılmaz.
+İlk sürüm tek context, düğüm başına tek `result` portu ve sıralı çalışma kullanır. Kayıtlı gerçek T2M/fraksiyon adaptörleri artık ayrı `run-surface-workflow` ile bağlandı: kaynak tekrar hesabı, bölge/sınır/koordinat ve çıktı tanımı kontrol ediliyor. İki açık aday ağırlık seçeneği hesaplanıyor; bu, tam bilimsel profil/kalite kabulü değildir. [Gerçek verili kanıt](../evidence/SURFACE_WORKFLOW.md). Dış kaynak revizyonu isteğe kaydedilmelidir. Genel bilimsel sonuç zarfı, çoklu çıktı portları, kalıcı iş deposu, kaynak değişimini izleme, tekrar çalıştırmalar arasında cache, paralel işler ve canlı iş görünümü sonraki kapsamdır. İlk yapay deneme bilimsel modül doğrulaması değildir; sonraki gerçek kayıt akışı da ikinci bilimsel gösterge veya kabul edilmiş maske analizi sayılmaz.
 
 ## İlk pilot ve genişleme
+
+**Yıllık hesap bağlantısı · 2026-10-26:** [İki adımlı yıllık akış](../guide/ANNUAL_WORKFLOW.md) aynı motor içinde History → AnnualWeighting bağlantısıyla çalışır. İlk işlem sabit kayıtlı kaynakları tekrar doğrular; ikinci işlem bu artifact'in yeterli yıllık girdilerini mevcut özel formülle tüketir. Genel motor/annual sonuç şeması aynı; yeni iç verified_annual_weighting_inputs 0.1.0 sözleşmesi ve gerçek ata izi vardır. Beş düğümlü aylık yüzey grafiği ve web aktarımı aynı kalır. İkinci bilimsel gösterge veya yöntem/maske kabulü değildir. [Kontrol durumu](../evidence/ANNUAL_WORKFLOW_CHECK.md).
+
+**İlk yerel görünüm · 2026-10-19:** [Sonuç prototipi](../product/RESULTS_PREVIEW.md) kayıtlı gerçek T2M/fraksiyon akışını derlemede doğrular ve yalnız toplu veriyi tarayıcıya verir. Bölge listesi aynı T2M işlemlerine yeni uygun kayıt bağlayabilir; konu ağacı/data dependency ayrımı korunur. Bu, genel modül editörü veya hesap sunucusu değildir; nihai bilimsel/yığın kararı açık.
 
 İlk analiz modülü **2 metre hava sıcaklığı** olacak; konu grubu altında gösterilecek. İki bölgenin çıktıları karşılaştırma bileşenine bağlanarak tek göstergede yeniden kullanım sınanır. İkinci bilimsel modül geldiğinde modüller arası gerçek tüketim ayrıca denenir; çizim entegrasyon kanıtı değildir.
 
 Yeni modül: gereksinimler + özel hesap + adaptör + ayrıntı görünümü + örnek doğrulama. Yeni bölge: sürümlü sınır + veri/kalite kapsamı + uygunluk sonucu. [Pilot koşulları](../planning/PILOT.md).
+
+**Kayıtlı akış görünümü · 2026-10-21:** Sonuç ekranı aynı gerçek yüzey çalıştırmasının beş düğüm/sekiz bağını gösterir. Genel projeksiyondan önce artifact/girdi/ata/context tutarlılığı ve her adımın bir kez çalışması doğrulanır. Ekrandaki kararlı kimlik bir **tanım parmak izidir**; motorun rastgele çalıştırma UUID'sine bağlı değişmez artifact kimliği ile aynı değildir. Özel parametre/context/payload dışarı kopyalanmaz. Bu, canlı yürütme veya kalıcı cache uygulaması değildir. [Ürün kapsamı](../product/RESULTS_PREVIEW.md), [kanıt](../evidence/WORKFLOW_TRACE_CHECK.md).

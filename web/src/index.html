@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="NASA kayıtlarıyla iki aday pencerenin aylık sıcaklıklarını inceleyen Expedition 73 teknik önizlemesi.">
+  <title>Expedition 73 · Sıcaklık laboratuvarı</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">İçeriğe geç</a>
+  <header class="header">
+    <a class="brand" href="./" aria-label="Expedition 73 başlangıç"><span class="orbit" aria-hidden="true">73</span><span>EXPEDITION<span class="brand-sub">BÖLGESEL VERİ LABORATUVARI</span></span></a>
+    <div class="header-meta"><span class="status-dot"></span>Yerel teknik önizleme <span class="edition">PİLOT 01</span></div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" aria-label="Gösterge ve veri kapsamı">
+      <div class="section-label">ÇALIŞMA ALANI</div>
+      <div class="topic">İklim <span>konu grubu</span></div>
+      <a class="module active" href="#main" aria-current="page"><span aria-hidden="true">↗</span> Hava sıcaklığı <span class="module-tag">2 m</span></a>
+      <p class="sidebar-note">Tek göstergeyle başlayıp, verinin izin verdiği kadar ilerliyoruz.</p>
+      <div class="sidebar-divider"></div>
+      <div class="section-label">BU ÖRNEKTE</div>
+      <dl class="scope"><dt>Dönem</dt><dd id="scope-year">Yükleniyor</dd><dt>Sıklık</dt><dd>Aylık</dd><dt>Kaynak</dt><dd>NASA POWER<span>MERRA-2 tabanlı</span></dd><dt>Çalışma biçimi</dt><dd>Kayıtlı veri<span>Canlı API isteği yapılmaz</span></dd></dl>
+      <a class="portal-link" href="https://sq0eezy.github.io/expedition-73/" target="_blank" rel="noopener noreferrer">Proje yönetim paneli <span aria-hidden="true">↗</span></a>
+      <div class="sidebar-footer">EXPLORE · QUESTION · COMPARE</div>
+    </aside>
+    <main id="main" tabindex="-1">
+      <div class="intro"><div><div class="eyebrow">İKLİM / TEK GÖSTERGELİ PİLOT</div><h1>2 metre hava sıcaklığı<span class="title-dot">.</span></h1><p>Aynı göstergeyi iki aday pencerede incele. Önce veriyi, sonra farkı gör.</p></div><span class="year-mark" id="year-mark">2024</span></div>
+      <div class="notice"><span class="notice-label">ADAY ANALİZ</span><span>Yıl grafiği ve uzun dönem görünümü kayıtlı aylık değerleri gösterir. Bölge ve maske seçimi açık; eğilim ve iklim etkisi hesaplanmadı.</span></div>
+      <div id="error" class="error" role="alert" hidden><h2>Veri yüklenemedi</h2><p>Doğrulanmış sonuç dosyasına erişilemiyor. Önizlemeyi yeniden derleyip yerel HTTP adresinden açın.</p><button id="retry" type="button">Yeniden dene</button></div>
+      <div id="loading" class="loading" role="status">Kayıtlı NASA sonuçları yükleniyor…</div>
+      <div id="results" hidden>
+        <p id="recorded-coverage" class="detail-note" role="status"></p>
+        <section class="controls" aria-label="Grafik seçimleri"><div class="policy-control"><label for="year">KAYITLI YIL</label><select id="year"></select></div><fieldset><legend>ADAY PENCERELER</legend><div id="region-options" class="region-options"></div></fieldset><div class="policy-control"><label for="policy">YÜZEY AĞIRLIĞI</label><select id="policy"><option value="unmasked">Bütün pencere · maskesiz</option><option value="land">Kara oranı · FRLAND (aday)</option><option value="land_and_ice">Kara + kara buzu (aday)</option></select></div></section>
+        <section id="metrics" class="metrics" aria-label="Seçili ay sıcaklıkları" aria-live="polite"></section>
+        <section class="chart-panel" aria-labelledby="chart-heading"><div class="panel-heading"><div><span class="section-label">ZAMAN SERİSİ</span><h2 id="chart-heading">Bir yılın sıcaklık ritmi</h2></div><div class="chart-unit">AYLIK ORTALAMA <strong>°C</strong></div></div><div id="legend" class="legend"></div><p id="empty" class="empty" hidden>Grafiği görmek için en az bir aday pencere seçin.</p><div id="chart-wrap" class="chart-wrap"><svg id="chart" viewBox="0 0 920 290" role="img" aria-labelledby="chart-title chart-desc"></svg></div><div class="month-control"><label for="month">AYI İNCELE <strong id="month-label">Ocak</strong></label><input id="month" type="range" min="0" max="11" value="0" step="1" aria-label="İncelenen ay"><span class="month-end">ARALIK</span></div><p class="chart-caption" id="chart-caption"></p></section>
+        <section class="history-panel" aria-labelledby="history-heading">
+          <div class="panel-heading"><div><span class="section-label">KAYITLI DÖNEMİN TAMAMI</span><h2 id="history-heading">Aylar boyunca birlikte bak</h2></div><span class="source-chip">Aylık kayıtlar · °C</span></div>
+          <p class="detail-note">Bütün kayıtlı aylar kendi değerleriyle gösterilir. Mevsimsel dalgalanma korunur; yıllık ortalama, anomali, eğilim veya iklim etkisi hesaplanmaz.</p>
+          <p id="history-status" class="detail-note" role="status"></p>
+          <div id="history-content" hidden><div id="history-legend" class="legend"></div><svg id="history-chart" viewBox="0 0 920 277" role="img" aria-labelledby="history-chart-title history-chart-desc"></svg>
+            <div class="month-control"><label for="history-month">AY SEÇ <strong id="history-month-label"></strong></label><input id="history-month" type="range" min="0" max="0" value="0" step="1" aria-label="Uzun dönemde incelenen ay" disabled></div>
+            <p class="detail-note">Seçtiğin ay yukarıdaki yıl/ay alanına ve aşağıdaki hücre, kaynak ve karşılaştırma ayrıntılarına da uygulanır. Eksik değerler birleştirilmez. Dikey ölçek görünür serilere göre değişir.</p>
+            <details class="history-values"><summary>Bütün kayıtlı ayları tablo olarak incele</summary><div class="table-scroll"><table id="history-table"></table></div></details>
+          </div>
+        </section>
+        <section class="annual-panel" aria-labelledby="annual-heading">
+          <div class="panel-heading"><div><span class="section-label">YILLIK ÖZET / İKİ ADAY</span><h2 id="annual-heading">Ayları nasıl birleştiriyoruz?</h2></div><span id="annual-year" class="source-chip">2024</span></div>
+          <p class="detail-note">İki ayrı yıllık hesabı karşılaştır. Aylar eşit ağırlıklı olabilir veya takvimdeki gün sayılarıyla ağırlıklandırılabilir. Yöntem seçimi açık; bu sonuçlar anomali, eğilim ya da anlamlılık testi değildir.</p>
+          <p id="annual-status" role="status" class="detail-note"></p><div id="annual-cards" class="annual-cards"></div>
+        </section>
+        <section class="pair-panel" aria-labelledby="pair-heading">
+          <div class="panel-heading"><div><span class="section-label">İKİ PENCERE ARASINDA</span><h2 id="pair-heading">Aynı ayda ne kadar farklılar?</h2></div><span class="source-chip">Betimsel fark</span></div>
+          <p class="detail-note">İki aday pencere seç. Soldaki değer eksi sağdaki değer hesaplanır. Bu, aynı yılın mekânsal farkıdır; ısınma, soğuma eğilimi veya neden–sonuç göstermez.</p>
+          <div class="pair-controls"><div><label for="pair-left">SOLDAN AL</label><select id="pair-left"></select></div><button id="pair-swap" type="button" aria-label="Karşılaştırma yönünü ters çevir">⇄ <span>Yönü çevir</span></button><div><label for="pair-right">SAĞDAN ÇIKAR</label><select id="pair-right"></select></div></div>
+          <p id="pair-empty" class="empty" hidden>Karşılaştırmak için en az iki aday pencere seçin.</p>
+          <div id="pair-content"><p id="pair-status" role="status"></p><div id="pair-values"><div id="pair-metrics" class="pair-metrics"></div><svg id="pair-chart" viewBox="0 0 920 230" role="img" aria-labelledby="pair-chart-title pair-chart-desc"></svg><p id="pair-caption" class="detail-note"></p><details class="pair-table"><summary>İki pencerenin aylık fark tablosu</summary><div class="table-scroll"><table id="pair-table"></table></div></details></div><details id="pair-checks"><summary>Teknik eşleşme koşullarını incele</summary><div class="table-scroll"><table id="pair-check-table"></table></div></details></div>
+          <div class="review-controls"><button id="review-download" type="button" disabled>Karşılaştırma raporunu indir</button><label class="review-open" for="review-file">Raporu aç ve doğrula<input id="review-file" type="file" accept=".json,application/json" disabled></label></div>
+          <p id="review-message" class="detail-note" role="status">Raporlar yalnız bu tarayıcıda işlenir; sunucuya yüklenmez.</p>
+          <p class="detail-note">Rapor seçilen çift/yön/ay/yüzeyi, farkları ve veri kaydının SHA-256 kimliğini içerir. Aynı veri kaydı açıkken sonuçlar yeniden hesaplanarak doğrulanır. İmza veya ekip onayı değildir.</p>
+          <p class="detail-note">Bölge sınırı, yüzey hedefi ve uzun dönem bilimsel profili henüz seçilmedi. Teknik eşleşme bu kararların kabulü değildir. Eksik ay çiftleri çıkarılır; boş kayıt sıfıra çevrilmez. Gösterilen ondalıklar ölçüm doğruluğu veya güven aralığı belirtmez.</p>
+        </section>
+        <section class="comparison-panel" aria-labelledby="comparison-heading">
+          <div class="panel-heading"><div><span class="section-label">YÜZEY SEÇİMİNİN ETKİSİ</span><h2 id="comparison-heading">Ağırlık değişince sonuç ne kadar değişiyor?</h2></div><span id="comparison-month" class="comparison-month"></span></div>
+          <p class="detail-note">Aynı kayıtlı grid sıcaklıkları, üç ayrı ağırlık. Aşağıdaki farklar aynı pencerenin seçenekleri arasındadır; iki bölge arasındaki fark değildir.</p>
+          <p id="comparison-empty" class="empty" hidden>Seçenekleri karşılaştırmak için bir aday pencere seçin.</p>
+          <div id="comparison-cards" class="comparison-grid"></div>
+          <p class="detail-note">En büyük |fark|, bu yılın eşleşen aylarında görülen mutlak hesap farkıdır. Eksik aylar o çiftten çıkarılır; sayıları ayrı gösterilir. Altı ondalık küçük farkları görünür kılar, ölçüm doğruluğunu belirtmez. Küçük fark bir yöntemin bilimsel olarak doğru olduğunu kanıtlamaz; bunlar güven aralığı, belirsizlik veya iklim eğilimi değildir. Maske seçimi hâlâ açık.</p>
+        </section>
+        <section class="spatial-panel" aria-labelledby="spatial-heading">
+          <div class="panel-heading"><div><span class="section-label">PENCEREDEN HÜCREYE</span><h2 id="spatial-heading">Bu ortalamaya hangi hücreler katılıyor?</h2></div><div class="spatial-control"><label for="spatial-region">Hücrelerini incele</label><select id="spatial-region"></select></div></div>
+          <p id="spatial-empty" class="empty" hidden>Hücreleri görmek için bir aday pencere seçin.</p>
+          <div id="spatial-content">
+            <div class="spatial-layout"><div><p id="spatial-context" class="detail-note"></p><svg id="cell-grid" viewBox="0 0 520 340" role="group" aria-label="Aday pencerenin sıcaklık hücreleri" aria-describedby="grid-help"></svg><div class="temperature-key"><span id="scale-low"></span><span class="temperature-gradient" aria-hidden="true"></span><span id="scale-high"></span><span>°C · ortak yıllık ölçek · Gri: veri yok</span></div><p id="grid-help" class="detail-note">Bir hücreye dokun veya Tab ile girip ok tuşlarıyla ilerle. Düz çizgi aday sınırı, kesik çizgiler tam grid hücrelerini gösterir. Şema enlem/boylam düzlemindedir; alanı korumaz, kıyı çizgisi içermez.</p></div><div id="cell-detail" class="cell-detail" aria-live="polite"></div></div>
+            <p class="detail-note">Renk, seçili ayın grid T2M değeridir. Yüzey ağırlığı hücrenin sıcaklığını değiştirmez; ortalamaya katıldığı etkin alanı değiştirir. Tam hücre fraksiyonunun sınırda kesilen parçada da aynı olduğu varsayılır. Hücre içindeki kara/su konumu ve ayrı kara sıcaklığı çıkarılmaz.</p>
+          </div>
+        </section>
+        <div class="detail-grid"><section class="support-panel"><div class="panel-heading"><div><span class="section-label">ALAN VE SINIR</span><h2>Ne kadarını temsil ediyor?</h2></div><span class="small-symbol" aria-hidden="true">◫</span></div><div id="support"></div><p id="support-note" class="detail-note"></p></section><section class="source-panel"><span class="section-label">KAYNAK DURUMU</span><h2>Sonucun arkasındaki veri</h2><div class="source-line"><span>NASA POWER · T2M</span><span class="source-chip">Kayıttan</span></div><p>Aylık 2 m hava sıcaklığı. Değer, kaynak grid hücresini temsil eder; fraksiyon ağırlığı ayrı bir kara sıcaklığı üretmez.</p><div id="area-state" class="source-state"></div><div class="source-state"><span>Eğilim / anlamlılık</span><strong>Hesaplanmadı</strong></div><details id="provenance"><summary>Kaynak ve yöntem ayrıntıları</summary><div id="provenance-content"></div></details></section></div>
+        <section class="trace-panel" aria-labelledby="trace-heading">
+          <div class="panel-heading"><div><span class="section-label">MODÜLLERİN VERİ AKIŞI</span><h2 id="trace-heading">Aylık yüzey hesabı nasıl çalıştı?</h2></div><div class="spatial-control"><label for="trace-region">Akışını incele</label><select id="trace-region"></select></div></div>
+          <p class="detail-note">Oklar gerçek veri bağımlılıklarıdır. Ortak girdi bir kez hesaplanır; iki ağırlık hesabı aynı sıcaklık ve fraksiyon kayıtlarını kullanır. Ayrıntı için bir adıma tıkla veya Tab ve Enter kullan.</p>
+          <p id="trace-empty" class="empty" hidden>Akışı görmek için bir aday pencere seçin.</p>
+          <div id="trace-content"><p id="trace-summary" class="detail-note"></p><div class="trace-layout"><svg id="trace-graph" role="group" aria-label="Derlemede doğrulanan hesap bağımlılıkları"></svg><div id="trace-detail" aria-live="polite"></div></div></div>
+          <p class="detail-note">Derlemede doğrulanan kayıtlı akıştır; canlı iş durumu veya kalıcı önbellek göstermez. İş tanımı kimliği kaynak anlık görüntüsü ve işlem tanımını belirtir; çıktı dosyası kimliği veya bilimsel doğruluk kanıtı değildir. Bilimsel doğrulama yapılmadı.</p>
+        </section>
+        <details class="table-panel"><summary>Aylık değerleri tablo olarak incele</summary><div class="table-scroll"><table id="data-table"></table></div></details>
+        <footer class="page-footer"><p id="dataset-note">Kayıtlı örnekler · Aday sınırlar · Bilimsel profil incelemede</p><button id="download" type="button">Görüntülenen veriyi JSON indir <span aria-hidden="true">↓</span></button></footer>
+      </div>
+    </main>
+  </div>
+  <noscript><p class="error">Etkileşimli grafiği görmek için JavaScript'i etkinleştirin.</p></noscript>
+</body>
+</html>

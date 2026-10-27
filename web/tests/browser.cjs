@@ -1,0 +1,562 @@
+/* Optional browser QA: Playwright + installed Chrome. Application needs neither. */
+const assert = require('node:assert/strict');
+const fs = require('node:fs/promises');
+const path = require('node:path');
+const { createHash } = require('node:crypto');
+const { chromium } = require(process.env.EXPEDITION73_PLAYWRIGHT || 'playwright');
+const base = process.env.EXPEDITION73_PREVIEW_URL || 'http://127.0.0.1:8873/';
+const format = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+(async () => {
+  const browser = await chromium.launch({ headless: true, channel: process.env.EXPEDITION73_BROWSER || 'chrome' });
+  let checks = 0;
+  const screenshots = path.join(__dirname, '../artifacts');
+  await fs.mkdir(screenshots, { recursive: true });
+  try {
+    const page = await browser.newPage({ viewport: { width: 1440, height: 1100 }, acceptDownloads: true });
+    const errors = [], requests = [], uploads = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    page.on('request', (request) => { requests.push(request.url()); if (request.method() !== 'GET') uploads.push(request.method()); });
+    const response = await page.goto(base); assert.equal(response.status(), 200);
+    const moduleResponse = await page.request.get(new URL('comparison.mjs', base).href);
+    assert.equal(moduleResponse.status(), 200); assert.match(moduleResponse.headers()['content-type'], /javascript/);
+    await page.locator('#results').waitFor({ state: 'visible' });
+    const bundle = await (await page.request.get(new URL('data/results.json', base).href)).json();
+    const data = bundle.schema_version === '0.4.0' ? JSON.parse(bundle.snapshots.find((s) => s.year === bundle.default_year).data_json) : bundle;
+    assert.equal(data.regions.length, 2);
+    const checkMetrics = async (policy, month) => {
+      const actual = await page.locator('#metrics .metric > strong').allTextContents();
+      const a = data.regions[0].series[month][policy], b = data.regions[1].series[month][policy];
+      assert.deepEqual(actual, [a, b, a - b].map((v) => format(v) + '°C'));
+    };
+    await checkMetrics('unmasked', 0); assert.equal(await page.locator('#chart .chart-path').count(), 2);
+    assert.equal(await page.locator('#data-table tbody tr').count(), 12); checks++;
+    const comparisonCard = (id) => page.locator(`.comparison-card[data-region="${id}"]`);
+    const six = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 6, maximumFractionDigits: 6 });
+    for (const region of data.regions) {
+      const card = comparisonCard(region.id);
+      for (const key of ['unmasked', 'land', 'land_and_ice']) assert.equal(await card.locator(`[data-policy="${key}"] td`).innerText(), six(region.series[0][key]) + ' °C');
+      for (const id of ['land_minus_unmasked', 'land_ice_minus_land']) {
+        const expected = region.diagnostics[`max_abs_${id}_degC`];
+        assert.ok((await card.locator(`[data-contrast="${id}"] .contrast-peak`).innerText()).includes(six(expected) + ' °C'));
+        assert.match(await card.locator(`[data-contrast="${id}"]`).innerText(), /12\/12 eşleşen ay/);
+      }
+    }
+    assert.match(await comparisonCard('B').locator('[data-contrast="land_minus_unmasked"] .contrast-peak').innerText(), /Kasım/);
+    assert.match(await comparisonCard('B').locator('[data-contrast="land_ice_minus_land"] .contrast-peak').innerText(), /Ekim/); checks++;
+    assert.equal(data.schema_version, '0.3.0');
+    const pairNumber = (v) => v.toLocaleString('tr-TR', { minimumFractionDigits: 3, maximumFractionDigits: 3 }) + ' °C';
+    assert.equal(await page.locator('#pair-check-table tr[data-status="mismatch"]').count(), 0);
+    assert.equal(await page.locator('#pair-table tbody tr').count(), 12);
+    assert.equal(await page.locator('#pair-metrics article strong').first().innerText(), pairNumber(data.regions[0].series[0].unmasked - data.regions[1].series[0].unmasked)); checks++;
+    await page.locator('#pair-swap').click();
+    assert.equal(await page.locator('#pair-left').inputValue(), 'B'); assert.equal(await page.locator('#pair-right').inputValue(), 'A');
+    assert.equal(await page.locator('#pair-metrics article strong').first().innerText(), pairNumber(data.regions[1].series[0].unmasked - data.regions[0].series[0].unmasked));
+    await page.locator('#pair-swap').click(); checks++;
+    for (const policy of ['unmasked', 'land', 'land_and_ice']) {
+      await page.locator('#policy').selectOption(policy); await page.locator('#month').fill('6');
+      const expected = data.regions[0].series.map((r, i) => r[policy] - data.regions[1].series[i][policy]);
+      assert.equal(await page.locator('#pair-metrics article strong').first().innerText(), pairNumber(expected[6]));
+      assert.equal(await page.locator('#pair-metrics article strong').nth(1).innerText(), pairNumber(Math.max(...expected.map(Math.abs))));
+    }
+    await page.locator('#policy').selectOption('unmasked'); await page.locator('#month').fill('0');
+    await page.locator('.pair-panel').screenshot({ path: path.join(screenshots, 'pair-desktop.png') }); checks++;
+
+
+    await page.locator('#pair-swap').click(); await page.locator('#policy').selectOption('land_and_ice'); await page.locator('#month').fill('9');
+    const reviewEvent = page.waitForEvent('download'); await page.locator('#review-download').click();
+    const reviewDownload = await reviewEvent, reportPath = await reviewDownload.path();
+    assert.equal(reviewDownload.suggestedFilename(), 'expedition73-comparison-review.json');
+    const report = JSON.parse(await fs.readFile(reportPath, 'utf8'));
+    assert.deepEqual(report.selection, { left_id: 'B', right_id: 'A', policy: 'land_and_ice', month: '2024-10' });
+    const rawDataset = bundle.schema_version === '0.4.0' ? Buffer.from(bundle.snapshots.find((s) => s.year === bundle.default_year).data_json) : await (await page.request.get(new URL('data/results.json', base).href)).body();
+    assert.equal(report.dataset.sha256, createHash('sha256').update(rawDataset).digest('hex'));
+    assert.equal(report.selected_month.delta, data.regions[1].series[9].land_and_ice - data.regions[0].series[9].land_and_ice); checks++;
+    await page.getByRole('checkbox', { name: 'A · Colorado çevresi', exact: true }).uncheck();
+    await page.getByRole('checkbox', { name: 'B · Kuzey Alaska', exact: true }).uncheck();
+    assert.equal(await page.locator('#review-download').isDisabled(), true); assert.equal(await page.locator('#review-file').isDisabled(), false);
+    await page.locator('#review-file').setInputFiles(reportPath);
+    await page.waitForFunction(() => document.getElementById('review-message').textContent.includes('yeniden hesaplanıp doğrulandı'));
+    assert.equal(await page.locator('#pair-left').inputValue(), 'B'); assert.equal(await page.locator('#pair-right').inputValue(), 'A');
+    assert.equal(await page.locator('#month').inputValue(), '9'); assert.equal(await page.locator('#policy').inputValue(), 'land_and_ice');
+    assert.equal(await page.locator('#region-options input:checked').count(), 2); checks++;
+    const reviewState = await page.locator('#pair-metrics').innerText();
+    for (const kind of ['result', 'source', 'selection', 'scientific-claim', 'extra', 'malformed', 'oversized']) {
+      const bad = structuredClone(report);
+      if (kind === 'result') bad.result.values[0].delta += 1;
+      if (kind === 'source') bad.dataset.sha256 = '0'.repeat(64);
+      if (kind === 'selection') bad.selection.month = '2024-11';
+      if (kind === 'scientific-claim') bad.scientific_acceptance = 'approved';
+      if (kind === 'extra') bad.private = 'not allowed';
+      const text = kind === 'malformed' ? '{' : kind === 'oversized' ? ' '.repeat(131073) : JSON.stringify(bad);
+      await page.locator('#review-file').setInputFiles({ name: 'review.json', mimeType: 'application/json', buffer: Buffer.from(text) });
+      await page.waitForFunction(() => document.getElementById('review-message').textContent.includes('doğrulanamadı'));
+      assert.equal(await page.locator('#pair-metrics').innerText(), reviewState);
+      assert.equal(await page.locator('#month').inputValue(), '9');
+      assert.equal(await page.locator('#pair-left').inputValue(), 'B');
+    } checks++;
+    await page.locator('#policy').selectOption('unmasked'); await page.locator('#month').fill('0');
+    await page.locator('#review-file').setInputFiles(reportPath);
+    await page.waitForFunction(() => document.getElementById('month').value === '9');
+    assert.equal(await page.locator('#policy').inputValue(), 'land_and_ice');
+    await page.locator('.pair-panel').screenshot({ path: path.join(screenshots, 'review-desktop.png') }); checks++;
+    const otherSnapshot = await browser.newPage();
+    await otherSnapshot.route('**/data/results.json', (route) => { const modified = structuredClone(data); modified.regions[0].display_name += ' · test'; return route.fulfill({ json: modified }); });
+    await otherSnapshot.goto(base); await otherSnapshot.locator('#results').waitFor({ state: 'visible' });
+    await otherSnapshot.locator('#review-file').setInputFiles(reportPath);
+    await otherSnapshot.waitForFunction(() => document.getElementById('review-message').textContent.includes('doğrulanamadı'));
+    assert.equal(await otherSnapshot.locator('#month').inputValue(), '0'); await otherSnapshot.close(); checks++;
+    const noCrypto = await browser.newPage();
+    await noCrypto.addInitScript(() => Object.defineProperty(globalThis, 'crypto', { value: undefined, configurable: true }));
+    await noCrypto.goto(base); await noCrypto.locator('#results').waitFor({ state: 'visible' });
+    assert.equal(await noCrypto.locator('#review-download').isDisabled(), true); assert.equal(await noCrypto.locator('#review-file').isDisabled(), true);
+    assert.equal(await noCrypto.locator('#chart .chart-path').count(), 2);
+    await noCrypto.waitForFunction(()=>document.getElementById('annual-status').textContent.includes('Web Crypto'));
+    assert.equal(await noCrypto.locator('.annual-card').count(),0); await noCrypto.close(); checks++;
+    await page.locator('#pair-swap').click(); await page.locator('#policy').selectOption('unmasked'); await page.locator('#month').fill('0');
+    assert.equal(await page.locator('#trace-graph .trace-node').count(), 5);
+    assert.equal(await page.locator('#trace-graph .trace-edge').count(), 8);
+    await page.locator('#trace-graph [data-node="Fractions"]').click();
+    assert.match(await page.locator('#trace-detail').innerText(), /temperature ← Sıcaklık girdisi/);
+    assert.ok((await page.locator('#trace-detail').innerText()).includes(data.regions[0].workflow_trace.nodes.find((n) => n.id === 'Fractions').definition_fingerprint)); checks++;
+    await page.locator('#trace-region').selectOption('B');
+    const summaryNode = page.locator('#trace-graph [data-node="Sensitivity"]');
+    await summaryNode.focus(); await page.keyboard.press('Enter');
+    assert.match(await page.locator('#trace-detail').innerText(), /land_and_ice ← Kara \+ buz ağırlığı/);
+    assert.equal(await summaryNode.getAttribute('aria-pressed'), 'true'); checks++;
+    const definitionText = await page.locator('#trace-detail').innerText();
+    await page.locator('#month').fill('8'); await page.locator('#policy').selectOption('land');
+    assert.equal(await page.locator('#trace-detail').innerText(), definitionText);
+    await page.locator('#month').fill('0'); await page.locator('#policy').selectOption('unmasked');
+    await page.locator('.trace-panel').screenshot({ path: path.join(screenshots, 'trace-desktop.png') }); checks++;
+
+    assert.equal(await page.locator('#cell-grid [data-cell]').count(), 56);
+    const aCell = data.regions[0].spatial.cells[9];
+    await page.locator('#cell-grid [data-cell="9"]').click();
+    assert.equal(await page.locator('#cell-detail h3').innerText(), format(aCell.series[0].value) + ' °C');
+    assert.match(await page.locator('#cell-detail').innerText(), new RegExp(String(aCell.longitude).replace('.', '\\.')));
+    assert.equal(await page.locator('#cell-grid [data-cell="9"]').getAttribute('aria-pressed'), 'true');
+    await page.keyboard.press('ArrowRight');
+    const nextIndex = data.regions[0].spatial.cells.findIndex((c) => c.longitude === aCell.longitude + 0.625 && c.latitude === aCell.latitude);
+    assert.equal(await page.locator('#cell-grid [tabindex="0"]').getAttribute('data-cell'), String(nextIndex));
+    assert.equal(await page.locator('#cell-grid [tabindex="0"]').evaluate((node) => node === document.activeElement), true); checks++;
+    await page.locator('#spatial-region').selectOption('B');
+    assert.equal(await page.locator('#cell-grid [data-cell]').count(), 55);
+    const bCell = data.regions[1].spatial.cells[0];
+    const originalFill = await page.locator('#cell-grid [data-cell="0"]').getAttribute('fill');
+    await page.locator('#policy').selectOption('land_and_ice');
+    await page.locator('.spatial-panel').screenshot({ path: path.join(screenshots, 'spatial-b.png') });
+    assert.equal(await page.locator('#cell-grid [data-cell="0"]').getAttribute('fill'), originalFill);
+    const areaText = (bCell.weights_m2.land_and_ice / 1e6).toLocaleString('tr-TR', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
+    assert.ok((await page.locator('#cell-detail').innerText()).includes(areaText + ' km²'));
+    await page.locator('#month').fill('11');
+    assert.equal(await page.locator('#cell-detail h3').innerText(), format(bCell.series[11].value) + ' °C');
+    await page.locator('#spatial-region').selectOption('A'); await page.locator('#policy').selectOption('unmasked'); await page.locator('#month').fill('0'); checks++;
+    await page.screenshot({ path: path.join(screenshots, 'desktop.png'), fullPage: true });
+    await page.locator('.comparison-panel').screenshot({ path: path.join(screenshots, 'comparison-desktop.png') });
+    await page.locator('.spatial-panel').screenshot({ path: path.join(screenshots, 'spatial-a.png') });
+    await page.locator('#month').fill('6'); await checkMetrics('unmasked', 6);
+    assert.equal(await page.locator('#month-label').innerText(), 'Temmuz');
+    await page.locator('#policy').selectOption('land'); await checkMetrics('land', 6);
+    assert.match(await page.locator('#comparison-month').innerText(), /Temmuz 2024/);
+    assert.equal(await comparisonCard('B').locator('.chosen-policy').getAttribute('data-policy'), 'land');
+    assert.equal(await comparisonCard('B').locator('[data-policy="land"] td').innerText(), six(data.regions[1].series[6].land) + ' °C'); checks++;
+    assert.match(await page.locator('#support-note').innerText(), /güven aralığı veya sıcaklık hata payı değildir/); checks++;
+    const pendingDownload = page.waitForEvent('download'); await page.locator('#download').click();
+    const download = await pendingDownload;
+    const exported = JSON.parse(await fs.readFile(await download.path(), 'utf-8'));
+    assert.equal(exported.selected_policy, 'land'); assert.equal(exported.selected_month, '2024-07');
+    assert.equal(exported.inference_performed, false); assert.deepEqual(exported.regions, data.regions); checks++;
+    await page.getByRole('checkbox', { name: 'A · Colorado çevresi', exact: true }).uncheck();
+    assert.equal(await page.locator('#spatial-region').inputValue(), 'B');
+    assert.equal(await page.locator('#cell-grid [data-cell]').count(), 55);
+    assert.equal(await page.locator('#chart .chart-path').count(), 1);
+    assert.equal(await page.locator('#metrics .metric').count(), 1);
+    await page.getByRole('checkbox', { name: 'B · Kuzey Alaska', exact: true }).uncheck();
+    assert.equal(await page.locator('#empty').isVisible(), true); assert.equal(await page.locator('#download').isDisabled(), true);
+    assert.equal(await page.locator('#trace-graph .trace-node').count(), 0);
+    assert.equal(await page.locator('#trace-detail').innerText(), '');
+    assert.equal(await page.locator('#trace-region').isDisabled(), true);
+    assert.equal(await page.locator('#pair-content').isVisible(), false);
+    assert.equal(await page.locator('#pair-chart path').count(), 0);
+    assert.equal(await page.locator('#pair-table tbody tr').count(), 0); checks++;
+    assert.match(await page.locator('#area-state').innerText(), /Pencere seçin/); checks++;
+    assert.equal(await page.locator('#spatial-empty').isVisible(), true);
+    assert.equal(await page.locator('#spatial-region').isDisabled(), true);
+    assert.equal(await page.locator('#cell-grid [data-cell]').count(), 0);
+    assert.equal(await page.locator('#comparison-empty').isVisible(), true);
+    assert.equal(await page.locator('.comparison-card').count(), 0);
+    await page.getByRole('checkbox', { name: 'A · Colorado çevresi', exact: true }).check();
+    await page.getByRole('checkbox', { name: 'B · Kuzey Alaska', exact: true }).check();
+    await page.locator('#provenance summary').click();
+    assert.match(await page.locator('#provenance-content').innerText(), /62cccbedac8849e2a5e8de79c44dc37bed3757eb701ec74ce126def1ca5f4584/);
+    assert.ok(requests.every((url) => new URL(url).origin === new URL(base).origin));
+    assert.deepEqual(errors, []); checks++;
+    await page.locator('#provenance summary').click();
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.waitForFunction(() => document.getElementById('chart').getAttribute('viewBox').startsWith('0 0 400'));
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.screenshot({ path: path.join(screenshots, 'mobile.png'), fullPage: true }); checks++;
+    await page.locator('.comparison-panel').screenshot({ path: path.join(screenshots, 'comparison-mobile.png') });
+    await page.locator('#pair-swap').click();
+    assert.equal(await page.locator('#pair-left').inputValue(), 'B');
+    await page.locator('.pair-panel').screenshot({ path: path.join(screenshots, 'pair-mobile.png') }); checks++;
+    assert.equal(await page.locator('#trace-graph').getAttribute('viewBox'), '0 0 400 550');
+    await page.locator('#trace-graph [data-node=LandIce]').click();
+    assert.equal(await page.locator('#trace-detail h3').innerText(), 'Kara + buz ağırlığı');
+    await page.locator('.trace-panel').screenshot({ path: path.join(screenshots, 'trace-mobile.png') }); checks++;
+    const missing = await browser.newPage();
+    await missing.route('**/data/results.json', async (route) => {
+      const modified = structuredClone(data); modified.regions[0].series[5].unmasked = null;
+      modified.regions[0].spatial.cells[0].series[5].value = null;
+      await route.fulfill({ json: modified });
+    });
+    await missing.goto(base); await missing.locator('#results').waitFor({ state: 'visible' });
+    await missing.locator('#month').fill('5');
+    assert.equal(await missing.locator('#metrics .metric > strong').first().innerText(), 'Veri yok');
+    assert.equal(await missing.locator('#metrics .difference > strong').innerText(), 'Veri yok');
+    assert.equal(await missing.locator('#pair-metrics article strong').nth(2).innerText(), '11/12');
+    assert.equal((await missing.locator('#chart .chart-path').first().getAttribute('d')).match(/M/g).length, 2); checks++;
+    assert.equal(await missing.locator('#cell-detail h3').innerText(), 'Veri yok');
+    assert.equal(await missing.locator('#cell-grid [data-cell="0"]').getAttribute('fill'), '#d7dcd4');
+    assert.match(await missing.locator('#cell-detail').innerText(), /0,000 km² · sıcaklık eksik/); checks++;
+    const missingComparison = missing.locator('.comparison-card[data-region="A"]');
+    assert.equal(await missingComparison.locator('[data-contrast="land_minus_unmasked"] .contrast-value').innerText(), 'Veri yok');
+    assert.match(await missingComparison.locator('[data-contrast="land_minus_unmasked"]').innerText(), /11\/12 eşleşen ay/);
+    assert.match(await missingComparison.locator('[data-contrast="land_ice_minus_land"]').innerText(), /12\/12 eşleşen ay/); checks++;
+    const allMissing = await browser.newPage();
+    await allMissing.route('**/data/results.json', (route) => {
+      const modified = structuredClone(data); modified.regions[0].series.forEach((r) => { r.land = null; });
+      return route.fulfill({ json: modified });
+    });
+    await allMissing.goto(base); await allMissing.locator('#results').waitFor({ state: 'visible' });
+    for (const id of ['land_minus_unmasked', 'land_ice_minus_land']) {
+      const row = allMissing.locator(`.comparison-card[data-region="A"] [data-contrast="${id}"]`);
+      assert.match(await row.innerText(), /En büyük \|fark\|: veri yok/);
+      assert.match(await row.innerText(), /0\/12 eşleşen ay/);
+    }
+    await allMissing.locator('#policy').selectOption('land');
+    assert.equal(await allMissing.locator('#pair-metrics article strong').nth(1).innerText(), 'Veri yok');
+    assert.equal(await allMissing.locator('#pair-metrics article strong').nth(2).innerText(), '0/12');
+    await allMissing.close(); checks++;
+    const failure = await browser.newPage();
+    await failure.route('**/data/results.json', (route) => route.fulfill({ status: 503, body: 'unavailable' }));
+    await failure.goto(base); await failure.locator('#error').waitFor({ state: 'visible' });
+    assert.equal(await failure.locator('#results').isVisible(), false);
+    await failure.unroute('**/data/results.json'); await failure.locator('#retry').click();
+    await failure.locator('#results').waitFor({ state: 'visible' }); checks++;
+    const invalid = await browser.newPage();
+    await invalid.route('**/data/results.json', (route) => {
+      const modified = structuredClone(data); modified.regions[0].variable.unit = 'K';
+      return route.fulfill({ json: modified });
+    });
+    await invalid.goto(base); await invalid.locator('#error').waitFor({ state: 'visible' });
+    assert.equal(await invalid.locator('#results').isVisible(), false); checks++;
+    const incompatible = await browser.newPage();
+    await incompatible.route('**/data/results.json', (route) => {
+      const modified = structuredClone(data); modified.regions[1].time.provider_time_standard = 'UTC';
+      return route.fulfill({ json: modified });
+    });
+    await incompatible.goto(base); await incompatible.locator('#error').waitFor({ state: 'visible' });
+    assert.equal(await incompatible.locator('#results').isVisible(), false); checks++;
+    for (const kind of ['weight', 'geometry', 'coverage', 'date', 'old-contract', 'trace-lineage', 'trace-missing', 'trace-cycle']) {
+      const broken = await browser.newPage();
+      await broken.route('**/data/results.json', (route) => {
+        const modified = structuredClone(data), c = modified.regions[0].spatial.cells[0];
+        if (kind === 'weight') c.weights_m2.land *= 0.5;
+        if (kind === 'geometry') c.intersection_bbox[0] += 0.01;
+        if (kind === 'coverage') modified.regions[0].spatial.cells.pop();
+        if (kind === 'date') c.series[0].date = '2023-01';
+        if (kind === 'old-contract') modified.schema_version = '0.2.0';
+        if (kind === 'trace-lineage') modified.regions[0].workflow_trace.nodes[1].inputs[0].definition_fingerprint = '0'.repeat(64);
+        if (kind === 'trace-missing') delete modified.regions[0].workflow_trace;
+        if (kind === 'trace-cycle') modified.regions[0].workflow_trace.nodes.reverse();
+        return route.fulfill({ json: modified });
+      });
+      await broken.goto(base); await broken.locator('#error').waitFor({ state: 'visible' });
+      assert.equal(await broken.locator('#results').isVisible(), false); await broken.close(); checks++;
+    }
+
+    const recipeMismatch = await browser.newPage();
+    await recipeMismatch.route('**/data/results.json', (route) => {
+      const modified = structuredClone(data); modified.regions[1].workflow_trace.nodes.find((n) => n.id === 'Land').operation_version = '0.2.0';
+      return route.fulfill({ json: modified });
+    });
+    await recipeMismatch.goto(base); await recipeMismatch.locator('#results').waitFor({ state: 'visible' });
+    assert.match(await recipeMismatch.locator('#pair-status').innerText(), /Teknik eşleşme sağlandı/);
+    await recipeMismatch.locator('#policy').selectOption('land');
+    assert.match(await recipeMismatch.locator('#pair-status').innerText(), /sağlanmadı/);
+    assert.equal(await recipeMismatch.locator('#pair-values').isVisible(), false);
+    assert.equal(await recipeMismatch.locator('#review-download').isDisabled(), true);
+    assert.equal(await recipeMismatch.locator('#pair-check-table tr[data-check=recipe]').getAttribute('data-status'), 'mismatch');
+    assert.equal(await recipeMismatch.locator('#metrics .difference > strong').innerText(), 'Veri yok');
+    await recipeMismatch.locator('#policy').selectOption('land_and_ice');
+    assert.equal(await recipeMismatch.locator('#pair-values').isVisible(), true); await recipeMismatch.close(); checks++;
+    const threeRegions = await browser.newPage();
+    await threeRegions.route('**/data/results.json', (route) => {
+      const modified = structuredClone(data), synthetic = structuredClone(modified.regions[0]);
+      synthetic.id = synthetic.region.id = 'C'; synthetic.display_name = 'Yalnız UI test kopyası'; modified.regions.push(synthetic);
+      return route.fulfill({ json: modified });
+    });
+    await threeRegions.goto(base); await threeRegions.locator('#results').waitFor({ state: 'visible' });
+    await threeRegions.locator('#pair-left').selectOption('C'); await threeRegions.locator('#pair-right').selectOption('A');
+    assert.equal(await threeRegions.locator('#pair-metrics article strong').first().innerText(), pairNumber(0));
+    await threeRegions.getByRole('checkbox', { name: 'C · Yalnız UI test kopyası', exact: true }).uncheck();
+    assert.notEqual(await threeRegions.locator('#pair-left').inputValue(), 'C');
+    assert.notEqual(await threeRegions.locator('#pair-left').inputValue(), await threeRegions.locator('#pair-right').inputValue());
+    await threeRegions.getByRole('checkbox', { name: 'B · Kuzey Alaska', exact: true }).uncheck();
+    assert.equal(await threeRegions.locator('#pair-content').isVisible(), false);
+    assert.equal(await threeRegions.locator('#pair-table tbody tr').count(), 0);
+    await threeRegions.close(); checks++;
+
+    if (bundle.schema_version === '0.4.0') {
+      assert.deepEqual(await page.locator('#year option').allTextContents(), bundle.snapshots.map((s) => String(s.year)));
+      assert.match(await page.locator('#recorded-coverage').innerText(), /2001–2024.*24 yıl.*288 aylık/);
+      for (const year of [2001, 2012, 2024]) {
+        await page.locator('#year').selectOption(String(year));
+        const annual = JSON.parse(bundle.snapshots.find((s) => s.year === year).data_json);
+        const month = Number(await page.locator('#month').inputValue()), policy = await page.locator('#policy').inputValue();
+        const a = annual.regions[0].series[month][policy], b = annual.regions[1].series[month][policy];
+        assert.deepEqual(await page.locator('#metrics .metric > strong').allTextContents(), [a, b, a-b].map((v) => format(v)+'°C'));
+        assert.match(await page.locator('#scope-year').innerText(), new RegExp(String(year))); checks++;
+      }
+      await page.locator('#year').selectOption('2001');
+      // The following download verifies a report from the newly acquired period.
+      const oldestDownload = page.waitForEvent('download'); await page.locator('#review-download').click();
+      const oldestPath = await (await oldestDownload).path();
+      await page.locator('#year').selectOption('2024');
+      await page.locator('#review-file').setInputFiles(oldestPath);
+      await page.waitForFunction(() => document.getElementById('year').value === '2001'); checks++;
+      await page.locator('#year').selectOption('2023');
+      const data2023 = JSON.parse(bundle.snapshots.find((s) => s.year === 2023).data_json);
+      assert.match(await page.locator('#scope-year').innerText(), /2023/); assert.equal(await page.locator('#year-mark').innerText(), '2023');
+      const chosenMonth = Number(await page.locator('#month').inputValue()), chosenPolicy = await page.locator('#policy').inputValue();
+      const metrics2023 = await page.locator('#metrics .metric > strong').allTextContents();
+      const av = data2023.regions[0].series[chosenMonth][chosenPolicy], bv = data2023.regions[1].series[chosenMonth][chosenPolicy];
+      assert.deepEqual(metrics2023, [av, bv, av-bv].map((v) => format(v)+'°C')); checks++;
+      await page.locator('#month').fill('2');
+      const event2023 = page.waitForEvent('download'); await page.locator('#review-download').click();
+      const review2023Path = await (await event2023).path();
+      const review2023 = JSON.parse(await fs.readFile(review2023Path, 'utf8'));
+      assert.equal(review2023.selection.month, '2023-03');
+      assert.equal(review2023.dataset.sha256, bundle.snapshots.find((s) => s.year === 2023).sha256);
+      await page.locator('#year').selectOption('2024');
+      await page.locator('#review-file').setInputFiles(review2023Path);
+      await page.waitForFunction(() => document.getElementById('year').value === '2023');
+      assert.equal(await page.locator('#month').inputValue(), '2'); checks++;
+      await page.locator('.controls').screenshot({ path: path.join(screenshots, 'year-selector-mobile.png') });
+      await page.locator('.pair-panel').screenshot({ path: path.join(screenshots, 'year-2023-mobile.png') });
+      await page.locator('#review-file').setInputFiles(reportPath);
+      await page.waitForFunction(() => document.getElementById('year').value === '2024');
+      assert.equal(await page.locator('#month').inputValue(), '9'); checks++;
+      for (const kind of ['digest', 'calendar', 'duplicate', 'missing-default']) {
+        const invalidCatalog = await browser.newPage();
+        await invalidCatalog.route('**/data/results.json', (route) => {
+          const changed = structuredClone(bundle);
+          if (kind === 'digest') changed.snapshots[0].data_json += ' ';
+          if (kind === 'calendar') changed.snapshots[0].year = 2022;
+          if (kind === 'duplicate') changed.snapshots[1].year = changed.snapshots[0].year;
+          if (kind === 'missing-default') changed.default_year = 2025;
+          return route.fulfill({json: changed});
+        });
+        await invalidCatalog.goto(base); await invalidCatalog.locator('#error').waitFor({state:'visible'});
+        assert.equal(await invalidCatalog.locator('#results').isVisible(), false); await invalidCatalog.close(); checks++;
+      }
+    }
+    if (bundle.schema_version === '0.4.0') {
+      const annuals = bundle.snapshots.map((s) => JSON.parse(s.data_json));
+      for (const policy of ['unmasked', 'land', 'land_and_ice']) {
+        await page.locator('#policy').selectOption(policy);
+        assert.equal(await page.locator('#history-content').isVisible(), true);
+        assert.equal(await page.locator('#history-table tbody tr').count(), 288);
+        const actual = await page.locator('#history-table tbody tr').evaluateAll((rows) => rows.map((row) => [...row.children].map((c) => c.textContent)));
+        const expected = annuals.flatMap((s) => s.dates.map((date,i) => [date,...s.regions.map((r) => r.series[i][policy].toLocaleString('tr-TR',{minimumFractionDigits:6,maximumFractionDigits:6}))]));
+        assert.deepEqual(actual, expected);
+        for (const line of await page.locator('#history-chart .history-path').all()) {
+          assert.equal(await line.getAttribute('data-records'),'288'); assert.equal(await line.getAttribute('data-valid'),'288');
+          assert.equal((await line.getAttribute('d')).match(/[ML]/g).length,288);
+        } checks++;
+      }
+      await page.locator('#policy').selectOption('unmasked');
+      await page.locator('#history-month').fill('0');
+      assert.equal(await page.locator('#year').inputValue(),'2001'); assert.equal(await page.locator('#month').inputValue(),'0');
+      assert.equal(await page.locator('#comparison-month').innerText(),'Ocak 2001');
+      assert.equal(await page.locator('#history-month').getAttribute('aria-valuetext'),'Ocak 2001'); checks++;
+      await page.locator('#history-month').focus(); await page.keyboard.press('End');
+      assert.equal(await page.locator('#year').inputValue(),'2024'); assert.equal(await page.locator('#month').inputValue(),'11');
+      assert.equal(await page.locator('#history-month').getAttribute('aria-valuetext'),'Aralık 2024');
+      assert.equal(await page.locator('#history-month').evaluate((node)=>document.activeElement===node),true); checks++;
+      await page.locator('#history-month').fill('11'); await page.keyboard.press('ArrowRight');
+      assert.equal(await page.locator('#year').inputValue(),'2002'); assert.equal(await page.locator('#month').inputValue(),'0'); checks++;
+      await page.locator('#year').selectOption('2012'); await page.locator('#month').fill('5');
+      assert.equal(await page.locator('#history-month').inputValue(),'137');
+      assert.equal(await page.locator('#history-month-label').innerText(),'Haziran 2012');
+      await page.locator('#review-file').setInputFiles(reportPath);
+      await page.waitForFunction(()=>document.getElementById('history-month').value==='285'); checks++;
+      for (const id of ['A','B']) await page.locator(`#region-options input[value="${id}"]`).uncheck();
+      assert.equal(await page.locator('#history-content').isVisible(),false); assert.equal(await page.locator('#history-month').isDisabled(),true);
+      assert.equal(await page.locator('#history-table tbody tr').count(),0);
+      await page.locator('#region-options input[value="B"]').check();
+      assert.equal(await page.locator('#history-chart .history-path').count(),1);
+      assert.equal(await page.locator('#history-table tbody tr').first().locator('td').count(),1);
+      await page.locator('#region-options input[value="A"]').check(); checks++;
+      await page.setViewportSize({width:1440,height:1100});
+      await page.locator('.history-panel').screenshot({path:path.join(screenshots,'history-desktop.png')});
+      await page.setViewportSize({width:390,height:844});
+      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth),false);
+      await page.locator('.history-panel').screenshot({path:path.join(screenshots,'history-mobile.png')}); checks++;
+      for (const kind of ['recipe','fractions','missing-boundary']) {
+        const sample = await browser.newPage(); sample.on('pageerror',(error)=>errors.push(error.message));
+        await sample.route('**/data/results.json',(route)=>{
+          const changed = structuredClone(bundle);
+          for (const snapshot of changed.snapshots) {
+            if (snapshot.year !== 2002 && !(kind==='missing-boundary' && snapshot.year===2001)) continue;
+            const source = JSON.parse(snapshot.data_json), r = source.regions[0];
+            if (kind==='recipe') r.workflow_trace.nodes.find((n)=>n.id==='Temperature').operation_version='0.2.0';
+            if (kind==='fractions') r.provenance.surface_fractions.version='fixture-other';
+            if (kind==='missing-boundary') { const index = snapshot.year===2001?11:0; r.series[index].unmasked=null; r.spatial.cells[0].series[index].value=null; }
+            snapshot.data_json=JSON.stringify(source); snapshot.sha256=createHash('sha256').update(snapshot.data_json).digest('hex');
+          }
+          return route.fulfill({json:changed});
+        });
+        await sample.goto(base); await sample.locator('#results').waitFor({state:'visible'});
+        if (kind==='recipe') {
+          assert.equal(await sample.locator('#history-content').isVisible(),false); assert.match(await sample.locator('#history-status').innerText(),/birleştirilmedi/);
+          assert.equal(await sample.locator('#data-table tbody tr').count(),12);
+          await sample.locator('#region-options input[value="A"]').uncheck();
+          assert.equal(await sample.locator('#history-content').isVisible(),true);
+        } else if (kind==='fractions') {
+          assert.equal(await sample.locator('#history-content').isVisible(),true);
+          await sample.locator('#policy').selectOption('land'); assert.equal(await sample.locator('#history-content').isVisible(),false);
+          await sample.locator('#policy').selectOption('unmasked'); assert.equal(await sample.locator('#history-content').isVisible(),true);
+        } else {
+          const line = sample.locator('#history-chart .history-path[data-region="A"]');
+          assert.equal(await line.getAttribute('data-valid'),'286'); assert.equal((await line.getAttribute('d')).match(/M/g).length,2);
+          await sample.locator('.history-values summary').click();
+          for (const date of ['2001-12','2002-01']) assert.equal(await sample.locator(`#history-table tr[data-date="${date}"] td`).first().innerText(),'Veri yok');
+          await sample.locator('#history-month').fill('12'); assert.equal(await sample.locator('#metrics .metric > strong').first().innerText(),'Veri yok');
+        }
+        await sample.close(); checks++;
+      }
+    }
+    const annualBundle = await (await page.request.get(new URL('data/annual.json',base).href)).json();
+    await page.locator('#policy').selectOption('unmasked');
+    await page.waitForFunction(()=>document.querySelectorAll('.annual-card').length===2);
+    for (const entry of annualBundle.regions) {
+      const card=page.locator(`.annual-card[data-region="${entry.id}"]`), row=entry.audit.series.find((r)=>r.year===2024);
+      for (const [key,v] of [['equal',row.equal_month_mean_degC],['calendar',row.calendar_day_mean_degC],['provider',row.provider_annual.area_weighted_mean_degC]])
+        assert.equal(await card.locator(`[data-annual-value="${key}"] strong`).innerText(),six(v)+' °C');
+      const actual=await card.locator('.annual-values tbody tr').evaluateAll((rows)=>rows.map((r)=>[...r.children].map((c)=>c.textContent)));
+      const expected=entry.audit.series.map((r)=>[String(r.year),`${r.valid_months}/12`,...[r.equal_month_mean_degC,r.calendar_day_mean_degC,r.provider_annual.area_weighted_mean_degC,r.calendar_minus_equal_degC].map(six)]);
+      assert.deepEqual(actual,expected); assert.equal(await card.locator('.annual-line').getAttribute('data-years'),'24');
+    } checks++;
+    const annualA=()=>page.locator('.annual-card[data-region="A"]');
+    await annualA().locator('.annual-values summary').click(); await annualA().locator('.annual-source summary').click();
+    await annualA().locator('button[data-year="2023"]').focus(); await page.keyboard.press('Enter');
+    assert.equal(await page.locator('#year').inputValue(),'2023'); assert.equal(await page.locator('#annual-year').innerText(),'2023');
+    assert.equal(await annualA().locator('.annual-values').evaluate((n)=>n.open),true);
+    assert.equal(await annualA().locator('.annual-source').evaluate((n)=>n.open),true);
+    assert.equal(await annualA().locator('button[data-year="2023"]').evaluate((n)=>document.activeElement===n),true); checks++;
+    await page.locator('#year').selectOption('2001');
+    assert.equal(await annualA().locator('[data-annual-value="equal"] strong').innerText(),six(annualBundle.regions[0].audit.series[0].equal_month_mean_degC)+' °C'); checks++;
+    for(const policy of ['land','land_and_ice']) {await page.locator('#policy').selectOption(policy); assert.equal(await page.locator('.annual-card').count(),0); assert.match(await page.locator('#annual-status').innerText(),/yalnız maskesiz/);}
+    await page.locator('#policy').selectOption('unmasked'); assert.equal(await page.locator('.annual-card').count(),2); checks++;
+    await page.locator('#region-options input[value="A"]').uncheck(); assert.equal(await page.locator('.annual-card').count(),1);
+    await page.locator('#region-options input[value="B"]').uncheck(); assert.equal(await page.locator('.annual-card').count(),0);
+    await page.locator('#region-options input[value="A"]').check(); await page.locator('#region-options input[value="B"]').check(); checks++;
+    await page.locator('#review-file').setInputFiles(reportPath);
+    await page.waitForFunction(()=>document.getElementById('year').value==='2024');
+    assert.equal(await page.locator('.annual-card').count(),0);
+    await page.locator('#policy').selectOption('unmasked');
+    await page.setViewportSize({width:1440,height:1100});
+    await annualA().locator('.annual-values summary').click(); await annualA().locator('.annual-source summary').click();
+    await page.locator('.annual-panel').screenshot({path:path.join(screenshots,'annual-desktop.png')});
+    await page.setViewportSize({width:390,height:844});
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth),false);
+    await annualA().screenshot({path:path.join(screenshots,'annual-mobile.png')}); checks++;
+    for(const kind of ['unavailable','catalog','method','sources']) {
+      const sample=await browser.newPage(); sample.on('pageerror',(error)=>errors.push(error.message));
+      await sample.route('**/data/annual.json',(route)=>{
+        if(kind==='unavailable') return route.fulfill({status:503,body:'unavailable'});
+        const changed=structuredClone(annualBundle);
+        if(kind==='catalog') changed.source_catalog_sha256='0'.repeat(64);
+        if(kind==='method') changed.regions[0].audit.method.selected_weighting='calendar_days';
+        if(kind==='sources') changed.regions[0].audit.provenance.annual_sources[0].files_sha256['result.json']='0'.repeat(64);
+        return route.fulfill({json:changed});
+      });
+      await sample.goto(base); await sample.locator('#results').waitFor({state:'visible'});
+      await sample.waitForFunction(()=>document.getElementById('annual-status').textContent.includes('kullanılamıyor'));
+      assert.equal(await sample.locator('.annual-card').count(),0); assert.equal(await sample.locator('#chart .chart-path').count(),2);
+      assert.equal(await sample.locator('#error').isVisible(),false); await sample.close(); checks++;
+    }
+    const annualMissing=await browser.newPage(); annualMissing.on('pageerror',(error)=>errors.push(error.message));
+    const changedCatalog=structuredClone(bundle), snap=changedCatalog.snapshots.find((s)=>s.year===2024), monthly=JSON.parse(snap.data_json);
+    monthly.regions[0].series[0].unmasked=null; monthly.regions[0].spatial.cells[0].series[0].value=null;
+    snap.data_json=JSON.stringify(monthly); snap.sha256=createHash('sha256').update(snap.data_json).digest('hex');
+    const monthlyBytes=Buffer.from(JSON.stringify(changedCatalog)), changedAnnual=structuredClone(annualBundle), audit=changedAnnual.regions[0].audit, last=audit.series.at(-1);
+    changedAnnual.source_catalog_sha256=createHash('sha256').update(monthlyBytes).digest('hex');
+    Object.assign(last,{status:'incomplete',valid_months:11,missing_months:['2024-01'],valid_calendar_days:335,equal_month_mean_degC:null,calendar_day_mean_degC:null,calendar_minus_equal_degC:null});
+    last.provider_annual.provider_minus_equal_degC=null; last.provider_annual.provider_minus_calendar_degC=null;
+    audit.quality.complete_years=23; audit.quality.incomplete_years=[2024]; audit.sensitivity.valid_years=23;
+    await annualMissing.route('**/data/results.json',(route)=>route.fulfill({body:monthlyBytes,contentType:'application/json'}));
+    await annualMissing.route('**/data/annual.json',(route)=>route.fulfill({json:changedAnnual}));
+    await annualMissing.goto(base); await annualMissing.waitForFunction(()=>document.querySelectorAll('.annual-card').length===2);
+    const missingCard=annualMissing.locator('.annual-card[data-region="A"]');
+    for(const key of ['equal','calendar']) assert.equal(await missingCard.locator(`[data-annual-value="${key}"] strong`).innerText(),'Veri yok');
+    assert.notEqual(await missingCard.locator('[data-annual-value="provider"] strong').innerText(),'Veri yok');
+    await annualMissing.close(); checks++;
+    const flowPage=await browser.newPage({viewport:{width:1440,height:1100}});
+    flowPage.on('pageerror',(error)=>errors.push(error.message));
+    flowPage.on('request',(request)=>requests.push(request.url()));
+    await flowPage.goto(base); await flowPage.waitForFunction(()=>document.querySelectorAll('.annual-workflow').length===2);
+    const flowA=()=>flowPage.locator('.annual-card[data-region="A"]');
+    await flowA().locator('.annual-workflow summary').click();
+    assert.equal(await flowA().locator('.annual-trace-graph .trace-node').count(),2);
+    assert.equal(await flowA().locator('.annual-trace-graph .trace-edge').count(),1);
+    assert.equal(await flowPage.locator('#trace-graph .trace-node').count(),5); checks++;
+    const upstream=flowA().locator('.annual-trace-graph [data-node="History"]');
+    await upstream.focus(); await upstream.press('Enter');
+    assert.match(await flowA().locator('.annual-trace-detail').innerText(),/ReplayRecordedHistory/);
+    assert.equal(await flowA().locator('.annual-trace-graph [data-node="History"]').evaluate((n)=>n===document.activeElement),true);
+    assert.equal(await flowA().locator('.annual-workflow').getAttribute('open'),''); checks++;
+    await flowA().locator('.annual-trace-graph [data-node="AnnualWeighting"]').click();
+    assert.match(await flowA().locator('.annual-trace-detail').innerText(),/history ← Aylık kaynak kontrolü/);
+    const fingerprint=annualBundle.regions.find((r)=>r.id==='A').workflow.trace.nodes[1].definition_fingerprint;
+    assert.match(await flowA().locator('.annual-trace-detail').innerText(),new RegExp(fingerprint)); checks++;
+    await flowPage.locator('#year').selectOption('2023');
+    assert.equal(await flowA().locator('.annual-workflow').getAttribute('open'),'');
+    assert.match(await flowA().locator('.annual-workflow').innerText(),/seçili 2023/);
+    assert.match(await flowA().locator('.annual-trace-detail').innerText(),new RegExp(fingerprint)); checks++;
+    await flowPage.locator('#policy').selectOption('land'); assert.equal(await flowPage.locator('.annual-workflow').count(),0);
+    await flowPage.locator('#policy').selectOption('unmasked'); assert.equal(await flowPage.locator('.annual-workflow').count(),2); checks++;
+    await flowA().locator('.annual-workflow').screenshot({path:path.join(screenshots,'annual-workflow-desktop.png')});
+    await flowPage.setViewportSize({width:390,height:844});
+    await flowA().locator('.annual-trace-graph [data-node="History"]').click();
+    assert.equal(await flowPage.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+    await flowA().locator('.annual-workflow').screenshot({path:path.join(screenshots,'annual-workflow-mobile.png')}); checks++;
+    await flowPage.close();
+    for(const kind of ['swapped','fingerprint','context','version','legacy']) {
+      const sample=await browser.newPage(); sample.on('pageerror',(error)=>errors.push(error.message));
+      await sample.route('**/data/annual.json',(route)=>{
+        const changed=structuredClone(annualBundle), w=changed.regions[0].workflow;
+        if(kind==='swapped') changed.regions[0].workflow=changed.regions[1].workflow;
+        if(kind==='fingerprint') w.trace.nodes[0].definition_fingerprint='f'.repeat(64);
+        if(kind==='context') {const c=JSON.parse(w.context_json);c.private_note='not allowed';w.context_json=JSON.stringify(c);}
+        if(kind==='version') w.trace.nodes[1].operation_version='0.2.0';
+        if(kind==='legacy') {changed.schema_version='0.1.0';changed.regions.forEach((r)=>delete r.workflow);}
+        return route.fulfill({json:changed});
+      });
+      await sample.goto(base); await sample.waitForFunction(()=>document.querySelectorAll('.annual-card').length===2);
+      assert.equal(await sample.locator('.annual-card[data-region="A"] .annual-workflow').count(),0);
+      assert.equal(await sample.locator('.annual-card[data-region="A"] [data-annual-value="equal"]').count(),1);
+      assert.equal(await sample.locator('.annual-trace-unavailable').count(),kind==='legacy'?2:1);
+      assert.equal(await sample.locator('#trace-graph .trace-node').count(),5);
+      assert.equal(await sample.locator('#error').isVisible(),false); await sample.close(); checks++;
+    }
+    assert.deepEqual(errors, []); assert.deepEqual(uploads, []);
+    console.log(JSON.stringify({ status: 'passed', browser: 'Chrome headless', checks, javascript_errors: errors,
+      external_runtime_requests: requests.filter((url) => new URL(url).origin !== new URL(base).origin).length,
+      screenshots: ['web/artifacts/desktop.png', 'web/artifacts/mobile.png', 'web/artifacts/comparison-desktop.png', 'web/artifacts/comparison-mobile.png', 'web/artifacts/spatial-a.png', 'web/artifacts/spatial-b.png', 'web/artifacts/trace-desktop.png', 'web/artifacts/trace-mobile.png', 'web/artifacts/pair-desktop.png', 'web/artifacts/pair-mobile.png', 'web/artifacts/review-desktop.png', 'web/artifacts/year-selector-mobile.png', 'web/artifacts/year-2023-mobile.png'] }));
+  } finally { await browser.close(); }
+})().catch((error) => { console.error(error); process.exitCode = 1; });

@@ -1,8 +1,25 @@
 # İlk T2M modül dilimi · v0.1.0
 
+**2026-10-26 aday yıllık hesap:** [annual_weighting CLI](../portal/docs/guide/T2M_ANNUAL_WEIGHTING.md) mevcut maskesiz geçmişte eşit ay/takvim günü ağırlıklarını ve API yıllık hücre özetini karşılaştırır. `audit-annual-weighting --run examples/a-history-2001-2024` stdout JSON; `validate-annual-weighting --run examples/a-history-2001-2024 --input examples/a-annual-weighting-audit.json` kaynak tekrarı yapar. Kendi venv Python ile analysis içinde, yönlendirme için `-X utf8` kullanılır. B eşleniği ve iki kayıtlı aday çıktı ortak check'e dahil; genel web/motora bağlanmadı. Kaynak/yöntemler, eksiklik ve kabul sınırları kılavuzdadır.
+
+**Güncel 2026-10-24:** [Gerçek 2001–2024 yıllık kaynakları](../portal/docs/guide/T2M_LONG_PERIOD.md) A/B 288'er ayla eklendi. `validate-window-history examples/a-history-2001-2024` ve B eşleniği kendi venv Python ile analysis içinde çalışır; ortak workspace check her ikisini tekrarlar. Web yıl seçimi 24 yıla açıldı. Eski kaynak/annual snapshot kimlikleri korunur; trend/nihai bilimsel profil eklenmedi. Önceki bölümler tarihsel teknik dilimleri anlatır.
+
+[İsteğe bağlı taşınabilir geliştirme paketi](../portal/docs/guide/DEV_PACKAGE.md): Docker/native başlatıcı, `scripts/workspace.py check` ile ortak offline doğrulama ve yalnız genel dosyalardan demo ZIP. Mevcut analysis venv/CLI kullanılmaya devam eder; bilimsel yöntem veya profil değişmedi.
+
+
 NASA POWER Monthly API'den **aday bir noktaya** ait aylık 2 metre hava sıcaklığını alır; doğrular ve sürümlü ortak JSON çıktısına çevirir. `examples/a-point-2024/` gerçek API yanıtı ve çıktısıdır. Bu sürüm **bölge ortalaması, trend, p-değeri veya nedensellik hesabı yapmaz**. POWER, MERRA-2 tabanlı bir servistir; yanıt doğrudan `M2TMNXSLV` 5.12.4 dosyası diye etiketlenmez.
 
 Kapsam: MOD-01/02/03'ün ilk aktarım/adaptör dilimi ve R-A02'nin erişim sınaması. Nokta profiline ek olarak maskesiz aday dikdörtgen için deneysel alan ağırlıklı seri çalışıyor; B uygunluğu ve istatistikler sonraki işlerdir.
+
+## İlk yerel sonuç ekranı
+
+Depo kökünde Windows CMD: `analysis\.venv\Scripts\python.exe analysis\scripts\build_web_preview.py`, sonra `analysis\.venv\Scripts\python.exe web\serve.py`. Mac/Linux'ta builder `analysis/.venv/bin/python` ile, sunucu `python3 web/serve.py` ile çalışır. Adres http://127.0.0.1:8873/, kapatma Ctrl+C. [Ekran kılavuzu](../web/README.md). Builder kayıtlı kaynakları mevcut modülle yeniden doğrular; yalnız dört uygulama dosyası ve doğrulanmış seri/hücre JSON dosyası üretir. Tarayıcı hesap sunucusuna/NASA'ya bağlanmaz; sıcaklık grafiği iki aday politika ve kaynak/kapsam durumlarıyla incelenir. Web aktarımı 0.2.0 hücre şemasıyla aylık grid T2M, fraksiyon ve etkin alanı da gösterir; kaynak/bilimsel sürümler değişmedi. Nihai bilimsel profil veya final web yığını değildir.
+
+## Yeni: sınır hücrelerinde koşullu alan denetimi
+
+Kaynak alanı ön kontrolü: `.venv\Scripts\python.exe -X utf8 -m expedition73 check-source-area --metadata examples/a-surface-fractions/metadata.dmr.xml`; Mac/Linux'ta `.venv/bin/python` kullanılır. Gerçek seçili granül metaverisinde AREA yok; kaynak sayısal alanı ile karşılaştırma yapılmadı. Çıkış 0 kontrolün tamamlandığı anlamındadır; `comparison_status` alanı sonucu bildirir. Metadata'da ileride AREA görülmesi de değer/birim/geometri onayı değildir. [Gerçek kaynak kontrolü](../portal/docs/evidence/SOURCE_AREA_CHECK.md).
+
+`analysis` içinde Windows CMD: `.venv\Scripts\python.exe -X utf8 -m expedition73 audit-surface-support --window-run examples/b-window-2024 --fraction-run examples/b-surface-fractions`. Mac/Linux aynı argümanlarla `.venv/bin/python -X utf8 -m expedition73 ...`; `requirements-mask.txt` gerekir. Kaynaklar çevrim dışı yeniden doğrulanır; iki aday için tam hücre oranının kırpılan parçadaki bilinmeyen yerleşimine bağlı alt/homojen/üst alan hesaplanır. JSON stdout'a gelir; dosya veya NASA isteği üretmez. [Yöntem/varsayımlar](../portal/docs/research/SURFACE_SUPPORT.md), [gerçek sonuç/12 test](../portal/docs/evidence/SURFACE_SUPPORT_CHECK.md). Kayıtlı ortak özet `examples/surface-support-summary.json`. Koşullu alan aralığı güven aralığı veya sıcaklık hata payı değildir; maske seçilmez, kaynak AREA doğrulaması hâlâ açık.
 
 ## Yeni: çok girdili yürütme denemesi
 
@@ -102,3 +119,11 @@ Yeni Windows bilgisayarında Python kuruluysa `py -3 -m venv .venv` ve `.\.venv\
 Yinelenen JSON anahtarları, sonlu olmayan sayılar, yanlış birim/tanım/konum/dönem ve şema dışı sonuçlar reddedilir. Dönmeyen ay ile sağlayıcının dolgu değeri ayrı `null` durumlarıdır; gerçek 0 °C geçerlidir. POWER'ın `YYYY13` yıllık özeti aylık seriye katılmaz; özel ayrıntıda korunur. Seri takvim kapsamının tam olması bilimsel/piksel kalite onayı değildir. API'nin kaynak/versiyon, zaman standardı, mesaj ve parametre metaverisi ile ham yanıt SHA-256 özeti saklanır; piksel kalite bayrağı varmış gibi üretilmez.
 
 Kaynaklar: [POWER aylık API](https://power.larc.nasa.gov/docs/services/api/temporal/monthly/), [meteoroloji yöntemi](https://power.larc.nasa.gov/docs/methodology/meteorology/). Görevler ve gerçek bulgular `portal/docs` içindedir; bu kılavuz bilimsel sonuç yerine geçmez.
+
+## Çok yıllı teknik erişim
+
+history.py yıllık kaynakları aynı grid/zaman/sağlayıcı/yöntemle birleştirir. Komutlar: fetch-power-history, assemble-window-history, validate-window-history. İlk A/B 2023–2024 örnekleri korunur; sonraki gerçek 2001–2024 kayıtları 288'er ay içerir. [Uzun dönem erişimi](../portal/docs/guide/T2M_LONG_PERIOD.md), [kanıt](../portal/docs/evidence/T2M_LONG_PERIOD_CHECK.md). Dönem/yüzey/sınır bilimsel kabulü veya eğilim değildir.
+
+## Yıllık aday hesabı ve modül bağımlılığı
+
+`audit-annual-weighting` ve `validate-annual-weighting`, mevcut maskesiz history'den eşit ay/takvim günü adaylarını ve aynı kaynak yıllık API referansını hesaplar. [Hesap/sözleşme](../portal/docs/guide/T2M_ANNUAL_WEIGHTING.md). `run-annual-workflow --run examples/a-history-2001-2024 --output-dir artifacts/a-annual-workflow-new`, aynı hesabı **History → AnnualWeighting** düğümleri üzerinden çalıştırır; analysis çalışma dizininden çağrılır. History başarısızsa yıllık adım engellenir. Gerçek kayıtlı artifact/girdi/ata izi workflow.json, küçük projeksiyon trace.json içindedir. Kaynaklar bir kez yakalanır; execute sırasında dosya yeniden okuma/token/API yok. [Windows/Mac komutları](../portal/docs/guide/ANNUAL_WORKFLOW.md), [gerçek kontrol](../portal/docs/evidence/ANNUAL_WORKFLOW_CHECK.md). Sonuç aynı 0.1.0 aday rapordur; bilimsel seçim veya web akış ekranının değişmesi değildir.

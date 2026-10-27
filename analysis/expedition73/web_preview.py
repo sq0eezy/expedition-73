@@ -1,0 +1,197 @@
+"""Build a bounded, credential-free static view from replayed recorded inputs."""
+from __future__ import annotations
+
+import hashlib
+import json
+from pathlib import Path, PurePosixPath
+
+from . import annual_workflow, history, masking, regional, surface_source, surface_support, surface_workflow, workflow_trace
+from .power import PilotError, loads
+
+ASSETS = ("index.html", "styles.css", "app.js", "comparison.mjs", "trace.mjs")
+
+
+def _spatial(window, mask, config, audit):
+    """Expose only recorded cell values and the existing audited geometry/weights."""
+    fractions = masking.validate_mask(mask, config)
+    cells = {(c["longitude"], c["latitude"]): c for c in window["module_details"]["cells"]}
+    rows = []
+    for cell in audit["cells"]:
+        key = (cell["longitude"], cell["latitude"])
+        rows.append({**{name: cell[name] for name in (
+            "longitude", "latitude", "full_cell_bbox", "intersection_bbox", "clipped", "intersection_area_m2")},
+            "fractions": dict(fractions[key]),
+            "series": [{"date": row["date"], "value": row["value"]} for row in cells[key]["series"]],
+            "weights_m2": {"unmasked": cell["intersection_area_m2"], **{
+                policy: cell["policies"][policy]["uniform_estimate_m2"] for policy in surface_support.POLICIES}}})
+    return {"geometry": "reconstructed_midpoint_rectangles", "longitude_step_deg": regional.DLON,
+            "latitude_step_deg": regional.DLAT, "area_radius_m": regional.RADIUS_M,
+            "fraction_placement": "uniform_within_full_cell_assumption", "cells": rows}
+
+
+def _directory(root, name):
+    if not isinstance(name, str) or not name or "\\" in name:
+        raise PilotError("Preview inputs must use analysis-relative directories.")
+    path = PurePosixPath(name)
+    if path.is_absolute() or any(part in {"..", "."} for part in name.split("/")) or path.parts[0] not in {"examples", "artifacts"}:
+        raise PilotError("Preview inputs must stay in analysis/examples or analysis/artifacts.")
+    candidate = (root / name).resolve()
+    if not candidate.is_relative_to(root.resolve()):
+        raise PilotError("Preview input resolves outside analysis.")
+    return candidate
+
+
+def payload(analysis_root, registry):
+    root = Path(analysis_root)
+    if not isinstance(registry, list) or not 1 <= len(registry) <= 8:
+        raise PilotError("Preview requires one to eight explicit region sources.")
+    regions, dates, ids, context = [], None, set(), None
+    for entry in registry:
+        if not isinstance(entry, dict) or set(entry) != {"id", "display_name", "window", "fractions"}:
+            raise PilotError("Unexpected preview registry fields.")
+        if not isinstance(entry["display_name"], str) or not 1 <= len(entry["display_name"].strip()) <= 100:
+            raise PilotError("Preview regions need an explicit short display name.")
+        if not isinstance(entry["id"], str) or entry["id"] in ids:
+            raise PilotError("Duplicate or invalid preview region identity.")
+        window_dir, fraction_dir = _directory(root, entry["window"]), _directory(root, entry["fractions"])
+        spec, report = surface_workflow.run(window_dir, fraction_dir)
+        if report["status"] != "completed":
+            raise PilotError("A source workflow failed; no partial preview exported.")
+        temperature = report["nodes"]["Temperature"]["artifact"]["value"]
+        mask = report["nodes"]["Fractions"]["artifact"]["value"]["result"]
+        summary = report["nodes"]["Sensitivity"]["artifact"]["value"]
+        if summary["region"]["id"] != entry["id"]:
+            raise PilotError("Registry identity disagrees with replayed region.")
+        months = [row["date"] for row in summary["series"]]
+        if len(months) != 12 or months != [months[0][:4] + f"-{month:02d}" for month in range(1, 13)]:
+            raise PilotError("This first preview supports one complete calendar year of monthly records.")
+        if dates is not None and months != dates:
+            raise PilotError("Preview regions must use the same monthly calendar.")
+        provider = summary["provenance"]["temperature"]
+        signature = {"variable": summary["variable"], "time": summary["time"],
+                     "provider": {key: provider[key] for key in ("provider", "product", "api_version", "sources")}}
+        if context is not None and signature != context:
+            raise PilotError("Preview regions disagree on indicator, time standard or provider metadata.")
+        context = signature
+        dates = months
+        # Capabilities refer to precisely the metadata captured by the source run.
+        with (fraction_dir / "metadata.dmr.xml").open("rb") as stream:
+            metadata = stream.read(1_000_001)
+        expected = summary["provenance"]["source_files_sha256"]["fractions"]["metadata.dmr.xml"]
+        if hashlib.sha256(metadata).hexdigest() != expected:
+            raise PilotError("Metadata changed after source replay; rebuild from a consistent snapshot.")
+        audit = surface_support._summarize(temperature["result"], mask, temperature["request"])
+        regions.append({"id": entry["id"], "display_name": entry["display_name"], "region": summary["region"],
+                        "variable": summary["variable"], "time": summary["time"],
+                        "series": summary["series"], "diagnostics": summary["diagnostics"],
+                        "support": {key: value for key, value in audit.items()
+                                    if key in {"window_area_m2", "cell_count", "clipped_cells", "policies"}},
+                        "spatial": _spatial(temperature["result"], mask, temperature["request"], audit),
+                        "source_area": surface_source.area_capability(metadata)["area"],
+                        "provenance": summary["provenance"], "workflow_trace": workflow_trace.project(spec, report)})
+        ids.add(entry["id"])
+    return {"schema_version": "0.3.0", "output_type": "recorded_temperature_web_preview",
+            "data_mode": "recorded_offline_replay", "selection_status": "candidate",
+            "inference_performed": False, "dates": dates, "regions": regions}
+
+
+def catalog(analysis_root, registry):
+    if (not isinstance(registry, dict) or set(registry) != {"schema_version", "default_year", "regions"}
+            or registry["schema_version"] != "0.1.0" or type(registry["default_year"]) is not int
+            or not isinstance(registry["regions"], list) or not 1 <= len(registry["regions"]) <= 8):
+        raise PilotError("Invalid annual preview catalog registry.")
+    years, entries = None, []
+    for entry in registry["regions"]:
+        if not isinstance(entry, dict) or set(entry) != {"id", "display_name", "history", "fractions"}:
+            raise PilotError("Unexpected history preview registry fields.")
+        result = history.validate_run(_directory(Path(analysis_root), entry["history"]))
+        if result["region"]["id"] != entry["id"]:
+            raise PilotError("History preview identity differs from recorded source.")
+        current = list(range(int(result["time"]["start"][:4]), int(result["time"]["end"][:4]) + 1))
+        if years is not None and current != years:
+            raise PilotError("Preview histories must provide exactly the same years; missing years are not dropped.")
+        years = current
+        entries.append(entry)
+    if registry["default_year"] not in years:
+        raise PilotError("Default year is not available in the preview catalog.")
+    snapshots = []
+    for year in years:
+        data = payload(analysis_root, [{"id": e["id"], "display_name": e["display_name"],
+            "window": f"{e['history']}/year-{year}", "fractions": e["fractions"]} for e in entries])
+        if data["dates"][0] != f"{year}-01":
+            raise PilotError("Catalog year disagrees with replayed dates.")
+        # Preserve exact annual snapshot bytes. Existing 2024 reports remain
+        # verifiable even when another year is added to the catalog.
+        raw = history.encoded(data)
+        snapshots.append({"year": year, "sha256": hashlib.sha256(raw).hexdigest(), "data_json": raw.decode("utf-8")})
+    return {"schema_version": "0.4.0", "output_type": "recorded_temperature_year_catalog",
+            "selection_status": "candidate", "data_mode": "recorded_offline_replay", "inference_performed": False,
+            "default_year": registry["default_year"], "snapshots": snapshots}
+
+
+def build(analysis_root, web_root, output):
+    web, destination = Path(web_root), Path(output)
+    if destination.resolve() in {web.resolve(), (web / "src").resolve(), Path(analysis_root).resolve(), web.parent.resolve()}:
+        raise PilotError("Preview output must not overwrite source assets.")
+    allowed = {*ASSETS, "data", "data/results.json", "data/annual.json"}
+    if destination.is_symlink() or (destination.exists() and any(
+            item.is_symlink() or item.relative_to(destination).as_posix() not in allowed
+            for item in destination.rglob("*"))):
+        raise PilotError("Preview output must be a dedicated directory containing only generated public assets.")
+    registry_file = web / "history-regions.json"
+    registry = loads(registry_file.read_bytes()) if registry_file.exists() else None
+    data = (catalog(analysis_root, registry) if registry is not None
+            else payload(analysis_root, loads((web / "regions.json").read_bytes())))
+    default_data = (loads(next(s["data_json"] for s in data["snapshots"] if s["year"] == data["default_year"]))
+                    if "snapshots" in data else data)
+    # Only enumerated public assets and validated preview data may be served.
+    files = {name: (web / "src" / name).read_bytes() for name in ASSETS}
+    files["data/results.json"] = (json.dumps(data, ensure_ascii=False, indent=2, allow_nan=False) + "\n").encode("utf-8")
+    files["data/annual.json"] = history.encoded(annual_payload(analysis_root, registry, data, files["data/results.json"]))
+    destination.mkdir(parents=True, exist_ok=True)
+    for name, raw in files.items():
+        target = destination / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(raw)
+    return {"status": "built", "regions": [item["id"] for item in default_data["regions"]],
+            "months": len(default_data["dates"]), "years": [s["year"] for s in data.get("snapshots", [])],
+            "files": sorted(files), "live_nasa_request": False}
+
+
+def annual_payload(analysis_root, registry, data, catalog_bytes):
+    """Recompute Python annual audits; bind to the exact monthly catalog bytes."""
+    regions = []
+    if registry is not None:
+        for entry in registry["regions"]:
+            spec, run = annual_workflow.run(_directory(Path(analysis_root), entry["history"]))
+            if run["status"] != "completed":
+                raise PilotError("Annual dependency workflow did not complete; no preview produced.")
+            audit = run["nodes"]["AnnualWeighting"]["artifact"]["value"]
+            trace = workflow_trace.project(spec, run)
+            context = spec["context"]
+            parent = context["source_files_sha256"]["history"]
+            safe_context = {"scope": "candidate_annual_weighting",
+                "region": {"region_id": audit["region"]["id"], "candidate_bbox": audit["region"]["candidate_bbox"],
+                           "candidate_window_version": audit["region"]["candidate_window_version"]},
+                "period": {"start_year": int(audit["time"]["start"]), "end_year": int(audit["time"]["end"])},
+                "source_files_sha256": {"history": parent, "annual_sources": audit["provenance"]["annual_sources"]}}
+            if (context != safe_context or set(parent) != {"request.json", "history.json", "result.json"}
+                    or parent["result.json"] != audit["provenance"]["source_history_result_sha256"]
+                    or any(not isinstance(v, str) or len(v) != 64 or any(c not in "0123456789abcdef" for c in v) for v in parent.values())):
+                raise PilotError("Annual trace context contains unsupported identities or fields.")
+            if audit["region"]["id"] != entry["id"]:
+                raise PilotError("Annual audit identity differs from monthly catalog.")
+            if [r["year"] for r in audit["series"]] != [s["year"] for s in data["snapshots"]]:
+                raise PilotError("Annual audit years differ from monthly catalog.")
+            for snapshot, source in zip(data["snapshots"], audit["provenance"]["annual_sources"], strict=True):
+                monthly = loads(snapshot["data_json"])
+                region = next((r for r in monthly["regions"] if r["id"] == entry["id"]), None)
+                if region is None or source["year"] != snapshot["year"] or source["files_sha256"] != region["provenance"]["source_files_sha256"]["temperature"]:
+                    raise PilotError("Annual and monthly sources changed between replays; no mixed preview produced.")
+            regions.append({"id": entry["id"], "audit": audit,
+                            "workflow": {"context_json": json.dumps(safe_context, sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False),
+                                         "trace": trace}})
+    return {"schema_version": "0.2.0", "output_type": "recorded_annual_weighting_web_preview",
+            "data_mode": "recorded_offline_replay", "selection_status": "candidate", "inference_performed": False,
+            "source_catalog_sha256": hashlib.sha256(catalog_bytes).hexdigest(),
+            "status": "available" if regions else "not_available", "regions": regions}

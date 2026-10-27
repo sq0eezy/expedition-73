@@ -1,2 +1,5 @@
 # Recorded examples carry byte-level provenance hashes; preserve repository bytes.
-analysis/examples/** -text
+analysis/examples/** -text whitespace=cr-at-eol
+# Portable launchers must retain the line endings expected by each shell.
+*.sh text eol=lf
+*.cmd text eol=crlf

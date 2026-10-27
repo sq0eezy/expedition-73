@@ -1,0 +1,265 @@
+{
+  "schema_version": "0.1.0",
+  "output_type": "recorded_window_history",
+  "selection_status": "candidate",
+  "region": {
+    "id": "B",
+    "label": "Kuzey Alaska aday dikdörtgeni: parçalı erişim teknik modül denemesi",
+    "selection_status": "candidate",
+    "candidate_bbox": [
+      -156,
+      68,
+      -150,
+      70
+    ],
+    "candidate_window_version": "search-window-0.1.0"
+  },
+  "variable": {
+    "id": "air_temperature_2m",
+    "unit": "degC",
+    "height_m": 2
+  },
+  "method": {
+    "id": "spherical_midpoint_cell_intersection",
+    "version": "0.1.0",
+    "sphere_radius_m": 6371008.8,
+    "missing_policy": "require_all_intersecting_cells",
+    "inference": "not_performed"
+  },
+  "spatial_support": {
+    "kind": "unmasked_rectangular_window",
+    "mask": "none",
+    "cell_count": 55,
+    "window_area_m2": 53169123845.32998,
+    "grid_step_degrees": {
+      "longitude": 0.625,
+      "latitude": 0.5
+    },
+    "request_envelope_bbox": [
+      -156.3125,
+      67.75,
+      -149.6875,
+      70.25
+    ]
+  },
+  "time": {
+    "frequency": "monthly",
+    "calendar": "gregorian",
+    "provider_time_standard": "LST",
+    "start": "2023-01",
+    "end": "2024-12"
+  },
+  "provenance": {
+    "provider": "NASA POWER",
+    "product": "POWER Monthly and Annual API",
+    "api_version": "v2.10.0",
+    "sources": [
+      "MERRA2"
+    ],
+    "annual_sources": [
+      {
+        "year": 2023,
+        "files_sha256": {
+          "manifest.json": "c103450782e976dff53da252ea20acfa16c7e527cf1a8ebb36ab8ded81af9423",
+          "request.json": "3f5ec2702d8afa5865b0a13a2f0cbfbf2170762168f9fb409d049edaf54b7a65",
+          "result.json": "884b5bac67dc6406b990864c6339ac5f9f2356452a03ad3da8801cc5e6b55a2c",
+          "tile-001.json": "9c1968543879bd5b4d39bda6e5151e3281bf2af6d6577e0d3d67be934d956014",
+          "tile-002.json": "053f6c5445049ac994e85fb8e92b9b3230dc1346f991c06a48adf88530bf208d"
+        }
+      },
+      {
+        "year": 2024,
+        "files_sha256": {
+          "manifest.json": "2c28c015033b5393d5ca4d6db9fb8cc5d15fb3992ad93fa478307ec909d293ce",
+          "request.json": "c0d956669bc4a2f9ba8692b58d99e8e9f3f84b15c2df87d584257997ee2180a1",
+          "result.json": "b4c053f879be9ea9f4cfe982edad83d95405e060d3b56d42f5e63d992a79ec39",
+          "tile-001.json": "368c1795d022f7d26055474237f08f699e5acd1540dd4cece0208d4d64f92484",
+          "tile-002.json": "0681c57fb4c68f774ae99e18115b14eeaad53f1f38f9161fbd185616105b7d1f"
+        }
+      }
+    ]
+  },
+  "quality": {
+    "expected_months": 24,
+    "complete_months": 24,
+    "missing_months": [],
+    "warnings": [
+      "CANDIDATE_WINDOW_NOT_ACCEPTED_REGION",
+      "NO_LAND_WATER_MASK",
+      "RECONSTRUCTED_CELL_BOUNDS_SPHERICAL_AREA",
+      "PROVIDER_PIXEL_QA_NOT_SUPPLIED",
+      "INFERENCE_NOT_PERFORMED",
+      "NO_TREND_OR_SCIENTIFIC_PROFILE_ACCEPTANCE"
+    ]
+  },
+  "series": [
+    {
+      "date": "2023-01",
+      "value": -22.50867120266421,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-02",
+      "value": -27.965046995914562,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-03",
+      "value": -17.36131847223046,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-04",
+      "value": -17.533683294997456,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-05",
+      "value": -0.129103054801387,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-06",
+      "value": 7.536944979361936,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-07",
+      "value": 13.814911499245211,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-08",
+      "value": 8.710365857346456,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-09",
+      "value": 1.1260991926998098,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-10",
+      "value": -8.061845362556868,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-11",
+      "value": -13.700749194851221,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2023-12",
+      "value": -22.292656317861383,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-01",
+      "value": -24.127031413962634,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-02",
+      "value": -21.530455779177252,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-03",
+      "value": -21.457205489228084,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-04",
+      "value": -10.188009889407121,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-05",
+      "value": -3.186690796575963,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-06",
+      "value": 8.85020320370591,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-07",
+      "value": 9.697483506384906,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-08",
+      "value": 7.187454152840247,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-09",
+      "value": 1.6335909432726516,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-10",
+      "value": -9.436861157965717,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-11",
+      "value": -19.550053646550943,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2024-12",
+      "value": -22.609423037610377,
+      "status": "complete",
+      "valid_cells": 55,
+      "valid_area_fraction": 1.0
+    }
+  ]
+}

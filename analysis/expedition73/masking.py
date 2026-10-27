@@ -1,6 +1,6 @@
 """Candidate surface-fraction checks; no automatic mask/method selection.
 
-Actual NASA fractions are not bundled: the observed OPeNDAP service needs login.
+Small recorded NASA subsets are bundled; fresh OPeNDAP access needs login.
 Whole-cell fractions on clipped window pieces are a declared approximation.
 """
 from __future__ import annotations

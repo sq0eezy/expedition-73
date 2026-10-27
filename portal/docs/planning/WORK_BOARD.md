@@ -1,5 +1,43 @@
 # İş panosu
 
+**2026-10-27 · Toparlama:** M1 yapılanları main'e almaya başlamayı ve sonraki işleri ayrı teslimlerde yürütmeyi istedi. [İlk paket](CONSOLIDATION.md) mevcut testli T2M temelidir; [bitiş durumu](PILOT.md) teknik çekirdeğin hazır, bilimsel profil/eğilim/belirsizliğin açık olduğunu ayırır. [Arayüz taslağı](../product/COMPARISON_WORKSPACE.md) yeni uygulanmış ekran değildir. İkinci gösterge seçilmedi; MOD-02/R-A05/R-B05 tamamlandı veya M2 kabul etti sayılmaz.
+
+**2026-10-27 · T-06 yıllık akış ekranı:** [İki düğümlü web görünümü](../guide/ANNUAL_TRACE.md) gerçek çalıştırma, kaynak/context ve işlem parmak izlerine bağlıdır. [19 hedef Python/48 JS/87 Chrome ve son kontroller](../evidence/ANNUAL_TRACE_CHECK.md). Ayrı native ARM64 host CI düzeltmesi gönderildi; yeni ekranın uzak testi değildir. Bilimsel yöntem/M2 kabulü ve main/Pages yayını açık.
+
+**2026-10-26 · T-05 yıllık modül bağlantısı:** M1 devam talebiyle [History → AnnualWeighting](../guide/ANNUAL_WORKFLOW.md) ve run-annual-workflow CLI eklendi. Kaynaklar tek yakalamada sabitlenir; ham replay başarısızsa yıllık adım blocked, gerçek artifact/girdi/ata izi vardır. Aynı yıllık özel formül kullanılır; [kontrol](../evidence/ANNUAL_WORKFLOW_CHECK.md). Yıllık web grafiği, yöntem/maske seçimi ve M2 kabulü ayrı kalır.
+
+**2026-10-26 · D-02 uzak CI:** [07f87a3 iş günlükleri](../evidence/CI_PLATFORM_CHECK.md) üç native ve Docker AMD64 için 222 Python/43 JS başarısını doğruladı. Docker ARM64 kurulum hatasına yönelik b7e0333 mevcut M1 dalına gönderildi; yeni koşuda QEMU geçti, konteyner kontrolleri sürüyor. D-02 Validating kalır; hosted Mac sonucu M2 kullanım kabulü değildir. [Güncel koşu](../team/SYNC.md).
+
+**2026-10-26 · T-04/U-02 yıllık ekran:** Kullanıcı devam ve GitHub'a gönderim istedi. [Kart/tablo, kaynak bağı ve kapsam](../guide/ANNUAL_WEB.md) eklendi; [43 JS/76 Chrome](../evidence/ANNUAL_WEB_CHECK.md) geçti. Yöntem kabulü, M2 incelemesi ve yıllık motor entegrasyonu açık; GitHub gönderim kanıtı SYNC'e bağlanır, main/Pages ayrı kalır.
+
+**2026-10-26 · T-03 aday yıllık hesap:** M1 devam talebiyle [eşit ay/takvim günü](../research/TEMPORAL_AGGREGATION.md) mevcut maskesiz A/B 24'er yılda hesaplandı ve API yıllık hücre özetleriyle karşılaştırıldı. [CLI/kanıt](../evidence/ANNUAL_WEIGHTING_CHECK.md). Bu yeni aday yöntem denemesidir; R-A05/R-B05 tamamlandı, yöntem seçildi veya M2 başladı sayılmaz. Web/motora entegrasyon ve bilimsel profil açık; yerel M1 dalında.
+
+**2026-10-26 · T-02/U-02:** [288 aylık görünüm](../guide/T2M_TIMELINE.md) ve ortak ay ayrıntıları, M1 devam talebiyle mevcut kayıtları değiştirmeden uygulandı. [201 Windows/37 JS/65 Chrome](../evidence/TIMELINE_PREVIEW_CHECK.md) geçti; bilimsel profil/istatistik ve M2 incelemesi açık. R-A05/R-B05 tamamlandı sayılmaz. Yeni kod yerel M1 dalında, yayın yok.
+
+**2026-10-22 · T-01 iki yıllık teknik dilim:** M1 devam talebiyle [A/B 2023–2024 erişim/birleştirme ve yıl ekranı](../guide/T2M_HISTORY.md) uygulandı: 24/24 ay, [197 Windows test/30 JS/49 Chrome](../evidence/T2M_HISTORY_CHECK.md). R-A05/R-B05 tam dönem/analiz tamamlandı veya M2 başladı sayılmaz; 2001–2024 henüz alınmadı. Yeni kayıt/veri yerel M1 dalında; yeni Linux/CI/yayın yok.
+
+**2026-10-22 · Çok yıllı kapsam sorusu:** M1 diğer yılların ne zaman geleceğini sordu. [NASA kapsamı, kodun iki yıl/istek + 12 ay ekran sınırları ve önerilen geçiş](REGION_WORKFLOW.md) açıklandı. 2001–2024 hâlâ aday; yeni veri/kod veya dönem kararı yok. R-A05/R-B05 Proposed; soru başlama/onay sayılmadı.
+
+**2026-10-22 · İnceleme raporu:** U-02/D-02 için [tam kaynak kimlikli rapor indirme/açma](../guide/COMPARISON_REVIEW.md) yerelde eklendi. [180 Windows analiz/gerçek A-B, 30 JS ve 42 Chrome senaryosu](../evidence/COMPARISON_REVIEW_CHECK.md) geçti. Web/manifest/kaynaklar korundu; bilimsel/yazar onayı değil. Validating; H-M1-017/M2 incelemesi ve paylaşım açık.
+
+**2026-10-22 · Pencere farkı:** U-02 için [çift/yön/ay/politika farkı ve teknik eşleşme koşulları](../evidence/REGION_COMPARISON_CHECK.md) yerelde eklendi: 180 Windows analiz, gerçek A/B, 22 JS ve 36 Chrome senaryosu. Kaynak veri/şemalar değişmedi; bilimsel karşılaştırma profili değil. U-02 Validating, [H-M1-016](../team/HANDOFFS.md) inceleme bekliyor, yeni paylaşım/yayın yok.
+
+**2026-10-21 · Kayıtlı modül akışı:** U-02/MOD-06/D-02 için [5 adım/8 gerçek bağımlılık ve sözleşme görünümü](../evidence/WORKFLOW_TRACE_CHECK.md) yerelde eklendi. 180 Windows/Linux AMD64 testi, gerçek A/B tekrarları, 13 JS ve 30 Chrome senaryosu geçti. Web 0.3.0/manifest 0.2.0; bilimsel profil değişmedi. Durumlar Validating; [H-M1-015](../team/HANDOFFS.md) M2 incelemesi bekliyor, yeni paylaşım/yayın yok.
+
+**2026-10-21 · D-02 geliştirme paketi:** Büyük paketle devam talebi kapsamında [isteğe bağlı Docker/native çalıştırma, ortak check ve demo ZIP](../guide/DEV_PACKAGE.md) uygulandı. [Gerçek ortam kanıtı](../evidence/DEV_PACKAGE_CHECK.md). Genel yığın veya bilimsel profil seçimi değil; M2 Mac incelemesi/uzak CI ve paylaşım açık.
+
+**2026-10-20 · M1 dal paylaşımı:** Kullanıcının GitHub talebiyle U-02 ve önceki M1 dilimleri `6b4ab12` olarak geliştirme dalına gönderildi, uzak SHA doğrulandı. [Paylaşım](../team/SYNC.md). Görevlerin bilimsel/kullanım inceleme durumları değişmedi; main/Pages yayını veya yeni CI sonucu yok.
+
+**2026-10-20 · U-02 aday ağırlık kıyaslaması:** Üç seçeneğin aynı ay sonuçları ve iki farkın yıllık maksimumu/ayı [yerelde doğrulandı](../evidence/POLICY_COMPARISON_CHECK.md): 164 analiz + 8 JS hesap testi, 22 Chrome senaryosu. M2’nin beklediği bilimsel yüzey/maske kararına inceleme desteğidir; kabul veya yeni yayın değildir.
+
+**2026-10-20 · U-02 hücre incelemesi:** [56/55 hücre ve etkin alan görünümü](../evidence/SPATIAL_PREVIEW_CHECK.md) yerel M1 dalında; 164 test ve 18 Chrome senaryosu geçti. M2’nin `a1a83d5` teknik doğrulama kaydı alındı; bilimsel maske/sınır/dönem ve yeni ekran incelemesi açık.
+
+**2026-10-19 · İlk yerel sonuç ekranı:** U-02 teknik dilimi, kullanıcının ilk ekran önerisi sonrası devam talebiyle uygulandı; [gerçek kayıtlar ve tarayıcı doğrulaması](../evidence/RESULTS_PREVIEW_CHECK.md). U-01 genel deneyim/nihai teknoloji seçimi bundan ayrı ve açık. Mevcut bilimsel MOD-05/R-A04/R-B04 durumları arayüz başarısıyla tamamlanmış sayılmaz.
+
+**2026-10-19 · MOD-05/R-A04 kaynak kontrolü:** [Canlı tam DMR kontrolü](../evidence/SOURCE_AREA_CHECK.md) seçili granülde AREA bulunmadığını doğruladı; sayısal karşılaştırma yok. Yeni `check-source-area` ile yedi test eklendi, toplam 153 test başarılı. [Kaynak/alan varsayımları](../research/SOURCE_AREA.md) gözden geçirildi; MOD-05/R-A04 Validating kalır. U-01/teknoloji/sorumlu hâlâ açık; ilk sonuç ekranı yalnız sonraki dilim önerisidir.
+
+**2026-10-19 · MOD-05/R-A04:** [Koşullu alan kapsamı denetimi](../evidence/SURFACE_SUPPORT_CHECK.md) yerel M1 dalında eklendi; 12 yeni testle 146 test başarılı. İki aday politikanın sınır hücreleri ve alan varsayımları [ayrı araştırmada](../research/SURFACE_SUPPORT.md). MOD-05/R-A04 Validating kalır: bilimsel alan ölçüsü/yüzey hedefi ve M2 incelemesi açık. Bu yeni dilim main/canlı panelde değil; B görevi tamamlandı veya M2 politikayı kabul etti sayılmaz.
+
 Görevler eldeki kanıta göre güncellenir. **2026-10-16 iş bölümü:** M1 modüller + A, M2 B. M2 daha sonra kendi [notuyla](../team/members/M2.md) B üstlenmesini ve ilk çıktısını bildirdi; `4ad9448` katkısı 2026-10-17'de M1 tarafından alınıp 43 test ve örnek doğrulamalarıyla kontrol edildi. Sonraki B alt işlerine ayrıca başlanmış sayılmadı. M1 artık [ayrı dalda](../decisions/ADR-007-FEATURE-BRANCHES.md) çalışıyor. İnceleyenler planlanan kişilerdir; her aşama incelenmiş sayılmaz. Teslim tarihleri açık. Üye kimlikleri [ekip dizinindedir](../team/index.md). `Verified` portal işleri uygulamanın doğrulandığını göstermez.
 
 | ID | İş | Durum | Sorumlu | Üstlenme | İnceleyen | Tamamlanma ölçütü / kanıt |
@@ -11,6 +49,7 @@ Görevler eldeki kanıta göre güncellenir. **2026-10-16 iş bölümü:** M1 mo
 | S-02 | Main'i alıp kendi Mac bilgisayarında portalı kur | Proposed | M2 | Önerildi | Atanmadı | [Mac kurulumu](../guide/MACOS_SETUP.md); M2'nin kendi ortamında açılış sonucu |
 | S-03 | Pull gerektirmeyen ortak web yayını hazırla | Verified | Bu yapay zekâ oturumu | Kullanıcı talebi | Başarılı yayın ve HTTP doğrulaması | [Pages kaydı](../evidence/PAGES_SETUP.md); portal açık |
 | S-04 | Pages kaynağını GitHub Actions seç ve ilk yayını aç | Verified | Depo hesabı | Kullanıcı ayarı yaptığını bildirdi | Bu oturum: yayın/HTTP kontrolü | [Başarılı çalışma](../evidence/PAGES_SETUP.md), canlı site HTTP 200 |
+| S-05 | Testli T2M temelini ilk toparlama paketi olarak main'e al | Validating | M1 oturumu | M1 açık main teslim talebi | Teknik inceleme/uzak CI; M2 bilimsel kabulü ayrı | [Kapsam](CONSOLIDATION.md), [merge/CI/Pages kanıtı](../evidence/T2M_BASELINE_RELEASE.md) |
 | R-01 | İki adayı kısa listeye al | Proposed | M1: A; M2: B | Alt görevler aşağıda | Karşı üye (planlanan) | R-A01/R-B01 fişleri ve gerekçeli alan önerileri |
 | R-02 | Sayısal veri erişimini sına | Proposed | M1: A; M2: B | Alt görevler aşağıda | Karşı üye (planlanan) | R-A02/R-B02: küçük API yanıtı, kaynak/sürüm/birim ve erişim özeti |
 | R-03 | İki bölge ve ortak dönem adayını araştır | Implemented | Bu yapay zekâ oturumu | Kullanıcı talebi | M1/M2 görüşü bekleniyor | [İki aday](../research/REGION_CANDIDATES.md); gerekçeler ve katalog kontrolü hazır, seçim yapılmadı |
@@ -20,6 +59,15 @@ Görevler eldeki kanıta göre güncellenir. **2026-10-16 iş bölümü:** M1 mo
 | P-04 | Dar T2M pilotunu uçtan uca gerçekleştir | Validating | M1: modül/A; M2: B | [İş bölümü](REGION_WORKFLOW.md); genel web geliştirmesi açık | Karşılıklı inceleme planı | [Pilot çıkış koşulları](PILOT.md); alt görevler aşağıda |
 | A-01 | Modülün istatistik yöntemini belirle | Proposed | M1 | Modül kapsamını üstlendi | M2 (planlanan) | MOD-02: kaynak, varsayımlar ve bağımsız örnek |
 | U-01 | Etkileşim taslağını belirle | Proposed | Atanmadı | Atanmadı | Atanmadı | Harita/grafik/tarih akışı; kapsam seçimine bağlı |
+| U-03 | Karşılaştırma odaklı sade çalışma alanının ilk düzeni | Proposed | Genel sorumlu açık | M1 gereksinimleri kaydedildi; henüz uygulama yok | M1/M2 kullanım incelemesi | [Taslak ve ölçütler](../product/COMPARISON_WORKSPACE.md); hesap/veri kimliği korunur |
+| U-02 | Kayıtlı T2M için ilk yerel sonuç ekranı | Validating | M1 oturumundaki teknik dilim | İlk ekran önerisi sonrası M1 devam talebi | M1/M2 kullanım incelemesi bekliyor | [Yerel çalışan ekran](../product/RESULTS_PREVIEW.md): hücre/ay/politika ve yan yana ağırlık incelemesi; [164 analiz + 8 JS testi, 22 Chrome senaryosu](../evidence/POLICY_COMPARISON_CHECK.md). Nihai yığın/barındırma/Mac kabulü açık |
+| D-02 | Taşınabilir geliştirme/doğrulama ve demo paketi | Validating | M1 oturumundaki teknik dilim | M1 büyük paketle devam istedi; Docker isteğe bağlı uygulandı | M2 kullanım incelemesi bekliyor | [Ortak komutlar ve paket](../guide/DEV_PACKAGE.md), [Windows/Linux ve tarayıcı kanıtı](../evidence/DEV_PACKAGE_CHECK.md); gerçek Mac/uzak CI ayrı doğrulanır |
+| T-01 | Yıllık T2M kaynaklarından çok yıllı teknik erişim/yıl ekranı | Validating | M1 | M1 iki yıllık deneme sonrası uzun erişimle devam istedi | M2 incelemesi bekler | [2001–2024 gerçek 288/288 ay ve kontroller](../evidence/T2M_LONG_PERIOD_CHECK.md); uzun dönem bilimsel profil/istatistik açık |
+| T-02 | Kayıtlı aylar için uzun dönem grafik/tablo ve ayrıntı bağlantısı | Validating | M1 | 288 aylık görünüm önerisi sonrası M1 devam istedi | M2 incelemesi bekler | [Kullanım](../guide/T2M_TIMELINE.md), [gerçek kontrol](../evidence/TIMELINE_PREVIEW_CHECK.md); bilimsel istatistik değil |
+| T-03 | Maskesiz T2M için aday yıllık ağırlık hesabı ve kaynak karşılığı | Validating | M1 | Bilimsel tasarımın dar denemesine M1 devam talebi | M2 incelemesi bekler | [İki hedef](../research/TEMPORAL_AGGREGATION.md), [CLI](../guide/T2M_ANNUAL_WEIGHTING.md), [gerçek kontrol](../evidence/ANNUAL_WEIGHTING_CHECK.md); seçilmiş yöntem/eğilim değil |
+| T-04 | Aday yıllık raporları webde kaynak bağıyla gösterme | Validating | M1 | M1 devam ve mevcut dalı GitHub'da paylaşma talebi | M2 incelemesi bekler | [Ekran](../guide/ANNUAL_WEB.md), [kontrol](../evidence/ANNUAL_WEB_CHECK.md); bilimsel politika değil |
+| T-05 | Yıllık özel hesabı gerçek bağımlılık motoruna bağla | Validating | M1 | M1 devam talebi | M2 teknik incelemesi bekler | [Akış ve CLI](../guide/ANNUAL_WORKFLOW.md), [kontrol](../evidence/ANNUAL_WORKFLOW_CHECK.md); aynı yöntem/kaynak, web akış ekranı ayrı |
+| T-06 | Gerçek yıllık akışı webde kaynak/işlem bağıyla göster | Validating | M1 | M1 devam talebi | M2 kullanım incelemesi bekler | [Ekran ve sözleşme](../guide/ANNUAL_TRACE.md), [kontrol](../evidence/ANNUAL_TRACE_CHECK.md); iki düğüm, hata ayrımı, yöntem kabulü değil |
 | C-01 | Yeni konuşmaları özetleyerek işle | Proposed | Atanmadı | Atanmadı | Atanmadı | Yeni bilginin esas belgede yer alması |
 
 ## Modül ve bölge görevleri

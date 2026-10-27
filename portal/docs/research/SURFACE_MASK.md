@@ -6,6 +6,8 @@ change_summary: "Gerçek M2C0NXASM fraksiyon alt kümeleri A 56/B 55 hücreyle a
 
 **Durum: araştırma adayı ve deneysel altyapı.** Kesin maske veya analiz yöntemi seçilmedi. T2M örnekleri maskesiz olarak korunuyor. Gerçek NASA fraksiyonları artık iki açık aday ağırlık önizlemesinde uygulandı; bu kabul edilmiş bilimsel maske profili değildir. [Gerçek akış ve duyarlılık](../evidence/SURFACE_WORKFLOW.md).
 
+**2026-10-19 kapsam incelemesi:** [Koşullu alt/üst alan denetimi](SURFACE_SUPPORT.md) eklendi; kesilmiş hücrelerde fraksiyonun bilinmeyen yerleşimi, homojen varsayımdan ayrı gösteriliyor. [Gerçek A/B sonucu ve 146 test](../evidence/SURFACE_SUPPORT_CHECK.md). Bu bir sıcaklık hata payı değil; AREA/alan ölçüsü uyumu ve yüzey hedefi seçimi açık. Aşağıdaki eski erişim adımları tarihseldir.
+
 ## Kaynak adayı ve gerçek erişim
 
 **Güncel sonuç · 2026-10-18:** Kullanıcının GES DISC onayı sonrası çalıştırdığı komut gerçek A/B alt kümelerini üretti. Yerel dosyalar ve iki `--replay` kontrolü başarılı; A 56/B 55 hücre, dört fraksiyon, koordinatlar ve kaynak dolgu kuralları doğrulandı. [Ayrıntılı kanıt](../evidence/SURFACE_SUBSET_CHECK.md). B’de 5 hücrede pozitif okyanus, 45 hücrede göl, 6 hücrede kara buzu oranı var; bunlar tüm kaynak hücresine ait oranlardır, aday alan toplam yüzdesi değildir. Önceki 401/403 ve “gerçek oran yok” ifadeleri ilk denemelerin tarihsel kaydıdır. Sonraki akışta FRLAND ile FRLAND+FRLANDICE için ayrı aday sıcaklık önizlemeleri üretildi; maske bileşen seçimi kabul edilmedi.

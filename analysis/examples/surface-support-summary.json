@@ -1,0 +1,248 @@
+{
+  "a": {
+    "schema_version": "0.1.0",
+    "output_type": "candidate_surface_support_audit",
+    "selection_status": "candidate",
+    "region": {
+      "candidate_bbox": [
+        -113,
+        36,
+        -109,
+        39
+      ],
+      "candidate_window_version": "search-window-0.1.0",
+      "id": "A",
+      "label": "Colorado çevresi aday dikdörtgeni: maskesiz teknik alan denemesi",
+      "selection_status": "candidate"
+    },
+    "method": {
+      "id": "conditional_subcell_area_conservation_bounds",
+      "version": "0.1.0",
+      "area_measure": "pilot_midpoint_rectangles_on_declared_sphere",
+      "radius_m": 6371008.8,
+      "fractions_treated_as_exact_areal_shares": true,
+      "subcell_placement": "unknown",
+      "mask_policy_accepted": false,
+      "inference": "not_performed"
+    },
+    "window_area_m2": 117698095231.1415,
+    "cell_count": 56,
+    "clipped_cells": 26,
+    "clipped_intersection_area_fraction": 0.2187227296563826,
+    "policies": {
+      "land": {
+        "selected_components": [
+          "FRLAND"
+        ],
+        "lower_m2": 117627626213.24356,
+        "uniform_estimate_m2": 117653683403.50777,
+        "upper_m2": 117679832826.02031,
+        "lower_fraction_of_window": 0.9994012730812717,
+        "uniform_fraction_of_window": 0.999622663157407,
+        "upper_fraction_of_window": 0.9998448368677053,
+        "placement_range_m2": 52206612.77674866,
+        "ambiguous_clipped_cells": 2
+      },
+      "land_and_ice": {
+        "selected_components": [
+          "FRLAND",
+          "FRLANDICE"
+        ],
+        "lower_m2": 117627626213.24356,
+        "uniform_estimate_m2": 117653683403.50777,
+        "upper_m2": 117679832826.02031,
+        "lower_fraction_of_window": 0.9994012730812717,
+        "uniform_fraction_of_window": 0.999622663157407,
+        "upper_fraction_of_window": 0.9998448368677053,
+        "placement_range_m2": 52206612.77674866,
+        "ambiguous_clipped_cells": 2
+      }
+    },
+    "warnings": [
+      "CONDITIONAL_AREA_BOUNDS_NOT_CONFIDENCE_INTERVALS",
+      "SOURCE_FRACTION_AND_AREA_MEASURE_COMPATIBILITY_NOT_VALIDATED",
+      "NO_SUBCELL_COASTLINE_OR_TEMPERATURE_RECOVERY",
+      "NO_TEMPERATURE_ERROR_OR_TREND_INFERENCE",
+      "NO_AUTOMATIC_MASK_POLICY_SELECTION"
+    ],
+    "provenance": {
+      "conversion_audit": "recorded_provider_subset_replay_passed",
+      "source_files_sha256": {
+        "fractions": {
+          "conversion-report.json": "e18747517b9070a0ef6455ce4219e9dc020507811d8606f34b1b160c87d63d75",
+          "fractions.json": "1d5fdcae2e09ec37d70f89d9abe60454000f7a85a199a4a8732a55f98583850a",
+          "metadata.dmr.xml": "baa82cb258a18165c39ec5da17e4e5ec3582ae7facf75e733534ac75f1a3d35a",
+          "request.json": "50ea267a8378d5dc792e8974548f38cb4e30602c97233b613a3f987bff58bd49",
+          "response.nc4": "62cccbedac8849e2a5e8de79c44dc37bed3757eb701ec74ce126def1ca5f4584"
+        },
+        "temperature": {
+          "request.json": "50ea267a8378d5dc792e8974548f38cb4e30602c97233b613a3f987bff58bd49",
+          "response.json": "c38efad91ac280448589c68494d61d3749a499db9d72dcc6a710759e7a76b39c",
+          "result.json": "a31448bd3a52bedd4f6ba29b62ca55e8c1a3aa07d0d8590317f05dedb0bf3ad1"
+        }
+      },
+      "surface_fractions": {
+        "dataset": "M2C0NXASM",
+        "response_sha256": "62cccbedac8849e2a5e8de79c44dc37bed3757eb701ec74ce126def1ca5f4584",
+        "retrieved_at": "2026-10-18T08:42:57+00:00",
+        "uri": "https://opendap.earthdata.nasa.gov/collections/C1276812819-GES_DISC/granules/M2C0NXASM.5.12.4%3AMERRA2_101.const_2d_asm_Nx.00000000.nc4.dap.nc4?dap4.ce=%2Flon%5B107%3A1%3A114%5D%3B%2Flat%5B252%3A1%3A258%5D%3B%2Ftime%5B0%3A1%3A0%5D%3B%2FFRLAND%5B0%3A1%3A0%5D%5B252%3A1%3A258%5D%5B107%3A1%3A114%5D%3B%2FFRLANDICE%5B0%3A1%3A0%5D%5B252%3A1%3A258%5D%5B107%3A1%3A114%5D%3B%2FFRLAKE%5B0%3A1%3A0%5D%5B252%3A1%3A258%5D%5B107%3A1%3A114%5D%3B%2FFROCEAN%5B0%3A1%3A0%5D%5B252%3A1%3A258%5D%5B107%3A1%3A114%5D",
+        "version": "5.12.4"
+      },
+      "temperature": {
+        "api_version": "v2.10.0",
+        "product": "POWER Monthly and Annual API",
+        "provider": "NASA POWER",
+        "request_url": "https://power.larc.nasa.gov/api/temporal/monthly/regional?parameters=T2M&community=SB&longitude-min=-113.3125&longitude-max=-108.6875&latitude-min=35.75&latitude-max=39.25&format=JSON&start=2024&end=2024",
+        "response_sha256": "c38efad91ac280448589c68494d61d3749a499db9d72dcc6a710759e7a76b39c",
+        "retrieved_at": "2026-10-16T08:19:19+00:00",
+        "sources": [
+          "MERRA2"
+        ]
+      }
+    }
+  },
+  "b": {
+    "schema_version": "0.1.0",
+    "output_type": "candidate_surface_support_audit",
+    "selection_status": "candidate",
+    "region": {
+      "candidate_bbox": [
+        -156,
+        68,
+        -150,
+        70
+      ],
+      "candidate_window_version": "search-window-0.1.0",
+      "id": "B",
+      "label": "Kuzey Alaska aday dikdörtgeni: parçalı erişim teknik modül denemesi",
+      "selection_status": "candidate"
+    },
+    "method": {
+      "id": "conditional_subcell_area_conservation_bounds",
+      "version": "0.1.0",
+      "area_measure": "pilot_midpoint_rectangles_on_declared_sphere",
+      "radius_m": 6371008.8,
+      "fractions_treated_as_exact_areal_shares": true,
+      "subcell_placement": "unknown",
+      "mask_policy_accepted": false,
+      "inference": "not_performed"
+    },
+    "window_area_m2": 53169123845.32997,
+    "cell_count": 55,
+    "clipped_cells": 28,
+    "clipped_intersection_area_fraction": 0.29685938198643036,
+    "policies": {
+      "land": {
+        "selected_components": [
+          "FRLAND"
+        ],
+        "lower_m2": 51586416227.5372,
+        "uniform_estimate_m2": 52183621618.94144,
+        "upper_m2": 52668980398.62565,
+        "lower_fraction_of_window": 0.9702325804277516,
+        "uniform_fraction_of_window": 0.9814647646018133,
+        "upper_fraction_of_window": 0.9905933479709154,
+        "placement_range_m2": 1082564171.0884476,
+        "ambiguous_clipped_cells": 24
+      },
+      "land_and_ice": {
+        "selected_components": [
+          "FRLAND",
+          "FRLANDICE"
+        ],
+        "lower_m2": 51611104523.22021,
+        "uniform_estimate_m2": 52192891450.975266,
+        "upper_m2": 52669507968.60721,
+        "lower_fraction_of_window": 0.9706969156264061,
+        "uniform_fraction_of_window": 0.9816391107516726,
+        "upper_fraction_of_window": 0.9906032704586941,
+        "placement_range_m2": 1058403445.387001,
+        "ambiguous_clipped_cells": 24
+      }
+    },
+    "warnings": [
+      "CONDITIONAL_AREA_BOUNDS_NOT_CONFIDENCE_INTERVALS",
+      "SOURCE_FRACTION_AND_AREA_MEASURE_COMPATIBILITY_NOT_VALIDATED",
+      "NO_SUBCELL_COASTLINE_OR_TEMPERATURE_RECOVERY",
+      "NO_TEMPERATURE_ERROR_OR_TREND_INFERENCE",
+      "NO_AUTOMATIC_MASK_POLICY_SELECTION"
+    ],
+    "provenance": {
+      "conversion_audit": "recorded_provider_subset_replay_passed",
+      "source_files_sha256": {
+        "fractions": {
+          "conversion-report.json": "185dc40ed1ce18834dda00666310f1ecf4ec0aefcf07a14b63dc88015bf2a988",
+          "fractions.json": "c61b2a5c28351fc5aa67441cacbaac333aa349294580026bdd3a6df4a783867c",
+          "metadata.dmr.xml": "baa82cb258a18165c39ec5da17e4e5ec3582ae7facf75e733534ac75f1a3d35a",
+          "request.json": "c0d956669bc4a2f9ba8692b58d99e8e9f3f84b15c2df87d584257997ee2180a1",
+          "response.nc4": "e0355f23cf902bbe91aab964888863fc74648fe4885ef3714c2f4b8238948bc3"
+        },
+        "temperature": {
+          "manifest.json": "2c28c015033b5393d5ca4d6db9fb8cc5d15fb3992ad93fa478307ec909d293ce",
+          "request.json": "c0d956669bc4a2f9ba8692b58d99e8e9f3f84b15c2df87d584257997ee2180a1",
+          "result.json": "b4c053f879be9ea9f4cfe982edad83d95405e060d3b56d42f5e63d992a79ec39",
+          "tile-001.json": "368c1795d022f7d26055474237f08f699e5acd1540dd4cece0208d4d64f92484",
+          "tile-002.json": "0681c57fb4c68f774ae99e18115b14eeaad53f1f38f9161fbd185616105b7d1f"
+        }
+      },
+      "surface_fractions": {
+        "dataset": "M2C0NXASM",
+        "response_sha256": "e0355f23cf902bbe91aab964888863fc74648fe4885ef3714c2f4b8238948bc3",
+        "retrieved_at": "2026-10-18T08:42:59+00:00",
+        "uri": "https://opendap.earthdata.nasa.gov/collections/C1276812819-GES_DISC/granules/M2C0NXASM.5.12.4%3AMERRA2_101.const_2d_asm_Nx.00000000.nc4.dap.nc4?dap4.ce=%2Flon%5B38%3A1%3A48%5D%3B%2Flat%5B316%3A1%3A320%5D%3B%2Ftime%5B0%3A1%3A0%5D%3B%2FFRLAND%5B0%3A1%3A0%5D%5B316%3A1%3A320%5D%5B38%3A1%3A48%5D%3B%2FFRLANDICE%5B0%3A1%3A0%5D%5B316%3A1%3A320%5D%5B38%3A1%3A48%5D%3B%2FFRLAKE%5B0%3A1%3A0%5D%5B316%3A1%3A320%5D%5B38%3A1%3A48%5D%3B%2FFROCEAN%5B0%3A1%3A0%5D%5B316%3A1%3A320%5D%5B38%3A1%3A48%5D",
+        "version": "5.12.4"
+      },
+      "temperature": {
+        "api_version": "v2.10.0",
+        "product": "POWER Monthly and Annual API",
+        "provider": "NASA POWER",
+        "requests": [
+          {
+            "candidate_bbox": [
+              -156.0,
+              68.0,
+              -153.0,
+              70.0
+            ],
+            "filename": "tile-001.json",
+            "id": "tile-001",
+            "provider_messages": [],
+            "request_bbox": [
+              -156.3125,
+              67.75,
+              -152.6875,
+              70.25
+            ],
+            "request_url": "https://power.larc.nasa.gov/api/temporal/monthly/regional?parameters=T2M&community=SB&longitude-min=-156.3125&longitude-max=-152.6875&latitude-min=67.75&latitude-max=70.25&format=JSON&start=2024&end=2024",
+            "response_sha256": "368c1795d022f7d26055474237f08f699e5acd1540dd4cece0208d4d64f92484",
+            "retrieved_at": "2026-10-17T08:53:25+00:00"
+          },
+          {
+            "candidate_bbox": [
+              -153.0,
+              68.0,
+              -150.0,
+              70.0
+            ],
+            "filename": "tile-002.json",
+            "id": "tile-002",
+            "provider_messages": [],
+            "request_bbox": [
+              -153.3125,
+              67.75,
+              -149.6875,
+              70.25
+            ],
+            "request_url": "https://power.larc.nasa.gov/api/temporal/monthly/regional?parameters=T2M&community=SB&longitude-min=-153.3125&longitude-max=-149.6875&latitude-min=67.75&latitude-max=70.25&format=JSON&start=2024&end=2024",
+            "response_sha256": "0681c57fb4c68f774ae99e18115b14eeaad53f1f38f9161fbd185616105b7d1f",
+            "retrieved_at": "2026-10-17T08:53:26+00:00"
+          }
+        ],
+        "retrieved_at": "2026-10-17T08:53:26+00:00",
+        "sources": [
+          "MERRA2"
+        ]
+      }
+    }
+  }
+}

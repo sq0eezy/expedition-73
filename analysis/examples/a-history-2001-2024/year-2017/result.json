@@ -1,0 +1,4442 @@
+{
+  "schema_version": "0.1.0",
+  "output_type": "monthly_window_series",
+  "module": {
+    "id": "air_temperature_2m",
+    "version": "0.1.0"
+  },
+  "region": {
+    "id": "A",
+    "label": "Colorado çevresi aday dikdörtgeni: maskesiz teknik alan denemesi",
+    "selection_status": "candidate",
+    "candidate_bbox": [
+      -113,
+      36,
+      -109,
+      39
+    ],
+    "candidate_window_version": "search-window-0.1.0"
+  },
+  "variable": {
+    "id": "air_temperature_2m",
+    "unit": "degC",
+    "height_m": 2
+  },
+  "time": {
+    "frequency": "monthly",
+    "start": "2017-01",
+    "end": "2017-12",
+    "calendar": "gregorian",
+    "provider_time_standard": "LST"
+  },
+  "spatial_support": {
+    "kind": "unmasked_rectangular_window",
+    "mask": "none",
+    "request_bbox": [
+      -113.3125,
+      35.75,
+      -108.6875,
+      39.25
+    ],
+    "cell_count": 56,
+    "window_area_m2": 117698095231.14151,
+    "grid_step_degrees": {
+      "longitude": 0.625,
+      "latitude": 0.5
+    }
+  },
+  "method": {
+    "id": "spherical_midpoint_cell_intersection",
+    "version": "0.1.0",
+    "sphere_radius_m": 6371008.8,
+    "missing_policy": "require_all_intersecting_cells",
+    "inference": "not_performed"
+  },
+  "provenance": {
+    "provider": "NASA POWER",
+    "product": "POWER Monthly and Annual API",
+    "request_url": "https://power.larc.nasa.gov/api/temporal/monthly/regional?parameters=T2M&community=SB&longitude-min=-113.3125&longitude-max=-108.6875&latitude-min=35.75&latitude-max=39.25&format=JSON&start=2017&end=2017",
+    "retrieved_at": "2026-10-24T08:40:40+00:00",
+    "response_sha256": "2433a754d007a4557d22241c6e02062097a3d0580b744fb57db961576835655f",
+    "api_version": "v2.10.0",
+    "sources": [
+      "MERRA2"
+    ]
+  },
+  "quality": {
+    "expected_months": 12,
+    "complete_months": 12,
+    "warnings": [
+      "CANDIDATE_WINDOW_NOT_ACCEPTED_REGION",
+      "NO_LAND_WATER_MASK",
+      "RECONSTRUCTED_CELL_BOUNDS_SPHERICAL_AREA",
+      "PROVIDER_PIXEL_QA_NOT_SUPPLIED",
+      "INFERENCE_NOT_PERFORMED"
+    ]
+  },
+  "series": [
+    {
+      "date": "2017-01",
+      "value": -1.9298781784295818,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2017-02",
+      "value": 3.2038504833765025,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2017-03",
+      "value": 7.929292690134924,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2017-04",
+      "value": 9.010397385167048,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2017-05",
+      "value": 14.533978732834335,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2017-06",
+      "value": 23.52923438021936,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2017-07",
+      "value": 25.209320351498977,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2017-08",
+      "value": 23.127953879921076,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2017-09",
+      "value": 18.029719858979036,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2017-10",
+      "value": 10.783390492063893,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2017-11",
+      "value": 7.381709693563821,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "date": "2017-12",
+      "value": 1.5178119617446657,
+      "status": "complete",
+      "valid_cells": 56,
+      "valid_area_fraction": 1.0
+    }
+  ],
+  "module_details": {
+    "cells": [
+      {
+        "longitude": -113.125,
+        "latitude": 36.0,
+        "intersection_bbox": [
+          -113,
+          36,
+          -112.8125,
+          36.25
+        ],
+        "area_m2": 468144319.50720054,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": 1.13,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 5.45,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 10.17,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 11.96,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 16.59,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 25.26,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 26.2,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 24.42,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 19.4,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 14.16,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 10.28,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 4.82,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 14.2
+        }
+      },
+      {
+        "longitude": -112.5,
+        "latitude": 36.0,
+        "intersection_bbox": [
+          -112.8125,
+          36,
+          -112.1875,
+          36.25
+        ],
+        "area_m2": 1560481065.0240016,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -0.63,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 4.23,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.92,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 10.6,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 15.16,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 23.77,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 24.71,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 22.92,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 18.14,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 12.78,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.83,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 3.38,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 12.78
+        }
+      },
+      {
+        "longitude": -111.875,
+        "latitude": 36.0,
+        "intersection_bbox": [
+          -112.1875,
+          36,
+          -111.5625,
+          36.25
+        ],
+        "area_m2": 1560481065.0240016,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -0.5,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 4.03,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.69,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 10.36,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 14.87,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 23.89,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 24.81,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 22.86,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 18.21,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 12.55,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.72,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 2.82,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 12.65
+        }
+      },
+      {
+        "longitude": -111.25,
+        "latitude": 36.0,
+        "intersection_bbox": [
+          -111.5625,
+          36,
+          -110.9375,
+          36.25
+        ],
+        "area_m2": 1560481065.0240016,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": 0.4,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 5.28,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 9.78,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 11.74,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 16.59,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 25.55,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 26.93,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 24.84,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 20.28,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 13.94,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 10.04,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 3.66,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 14.13
+        }
+      },
+      {
+        "longitude": -110.625,
+        "latitude": 36.0,
+        "intersection_bbox": [
+          -110.9375,
+          36,
+          -110.3125,
+          36.25
+        ],
+        "area_m2": 1560481065.0240016,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": 0.14,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 4.29,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.74,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 10.58,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 15.29,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 24.66,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 25.31,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 23.31,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 19.53,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 13.17,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.95,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 2.83,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 13.11
+        }
+      },
+      {
+        "longitude": -110.0,
+        "latitude": 36.0,
+        "intersection_bbox": [
+          -110.3125,
+          36,
+          -109.6875,
+          36.25
+        ],
+        "area_m2": 1560481065.0240016,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -0.49,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.72,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.2,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 9.78,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 14.55,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 23.97,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 24.51,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 22.61,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 18.95,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 12.42,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.52,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 2.28,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 12.46
+        }
+      },
+      {
+        "longitude": -109.375,
+        "latitude": 36.0,
+        "intersection_bbox": [
+          -109.6875,
+          36,
+          -109.0625,
+          36.25
+        ],
+        "area_m2": 1560481065.0240016,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -1.66,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 2.84,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 7.14,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 8.69,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 13.21,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 22.63,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 23.35,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 21.51,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 17.88,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 11.37,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 7.87,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 1.74,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 11.42
+        }
+      },
+      {
+        "longitude": -108.75,
+        "latitude": 36.0,
+        "intersection_bbox": [
+          -109.0625,
+          36,
+          -109,
+          36.25
+        ],
+        "area_m2": 156048106.50240016,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -1.19,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.33,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 7.67,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 9.16,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 13.62,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 23.19,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 23.76,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 21.85,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 18.46,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 11.54,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.48,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 2.25,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 11.88
+        }
+      },
+      {
+        "longitude": -113.125,
+        "latitude": 36.5,
+        "intersection_bbox": [
+          -113,
+          36.25,
+          -112.8125,
+          36.75
+        ],
+        "area_m2": 931793692.0534157,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": 1.06,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 5.48,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 10.1,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 11.7,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 16.79,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 25.37,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 26.67,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 24.82,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 19.55,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 13.72,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 10.02,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 4.35,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 14.18
+        }
+      },
+      {
+        "longitude": -112.5,
+        "latitude": 36.5,
+        "intersection_bbox": [
+          -112.8125,
+          36.25,
+          -112.1875,
+          36.75
+        ],
+        "area_m2": 3105978973.511385,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -0.9,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 4.08,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.76,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 10.2,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 15.18,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 23.73,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 24.91,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 23.25,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 18.09,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 12.23,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.35,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 2.96,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 12.61
+        }
+      },
+      {
+        "longitude": -111.875,
+        "latitude": 36.5,
+        "intersection_bbox": [
+          -112.1875,
+          36.25,
+          -111.5625,
+          36.75
+        ],
+        "area_m2": 3105978973.511385,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -0.99,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.88,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.73,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 10.12,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 15.05,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 24.28,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 25.37,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 23.42,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 18.62,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 12.48,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.49,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 2.69,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 12.72
+        }
+      },
+      {
+        "longitude": -111.25,
+        "latitude": 36.5,
+        "intersection_bbox": [
+          -111.5625,
+          36.25,
+          -110.9375,
+          36.75
+        ],
+        "area_m2": 3105978973.511385,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -1.29,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.63,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.14,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 9.96,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 15.12,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 24.39,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 25.81,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 23.44,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 18.86,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 12.47,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.46,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 2.24,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 12.65
+        }
+      },
+      {
+        "longitude": -110.625,
+        "latitude": 36.5,
+        "intersection_bbox": [
+          -110.9375,
+          36.25,
+          -110.3125,
+          36.75
+        ],
+        "area_m2": 3105978973.511385,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -1.51,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.26,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 7.83,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 9.38,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 14.19,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 23.63,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 24.82,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 22.52,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 18.39,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 11.94,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 7.96,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 1.77,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 12.06
+        }
+      },
+      {
+        "longitude": -110.0,
+        "latitude": 36.5,
+        "intersection_bbox": [
+          -110.3125,
+          36.25,
+          -109.6875,
+          36.75
+        ],
+        "area_m2": 3105978973.511385,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -0.86,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.79,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.39,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 9.77,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 14.52,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 24.1,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 25.11,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 22.93,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 18.99,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 12.14,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.44,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 1.83,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 12.47
+        }
+      },
+      {
+        "longitude": -109.375,
+        "latitude": 36.5,
+        "intersection_bbox": [
+          -109.6875,
+          36.25,
+          -109.0625,
+          36.75
+        ],
+        "area_m2": 3105978973.511385,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -0.98,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.75,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.27,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 9.52,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 14.25,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 23.82,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 25.02,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 22.92,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 19.06,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 11.93,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.63,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 1.89,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 12.38
+        }
+      },
+      {
+        "longitude": -108.75,
+        "latitude": 36.5,
+        "intersection_bbox": [
+          -109.0625,
+          36.25,
+          -109,
+          36.75
+        ],
+        "area_m2": 310597897.35113853,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -0.87,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.88,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.44,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 9.79,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 14.52,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 23.92,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 25.23,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 23.2,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 19.4,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 11.97,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.82,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 2.43,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 12.6
+        }
+      },
+      {
+        "longitude": -113.125,
+        "latitude": 37.0,
+        "intersection_bbox": [
+          -113,
+          36.75,
+          -112.8125,
+          37.25
+        ],
+        "area_m2": 925741343.9757947,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": 0.9,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 5.8,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 10.37,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 11.69,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 17.12,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 25.52,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 27.11,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 25.27,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 19.9,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 13.91,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 9.99,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 4.61,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 14.39
+        }
+      },
+      {
+        "longitude": -112.5,
+        "latitude": 37.0,
+        "intersection_bbox": [
+          -112.8125,
+          36.75,
+          -112.1875,
+          37.25
+        ],
+        "area_m2": 3085804479.919315,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -1.25,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.83,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.3,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 9.51,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 14.96,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 23.26,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 24.75,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 23.07,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 17.77,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 11.46,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 7.55,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 2.39,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 12.18
+        }
+      },
+      {
+        "longitude": -111.875,
+        "latitude": 37.0,
+        "intersection_bbox": [
+          -112.1875,
+          36.75,
+          -111.5625,
+          37.25
+        ],
+        "area_m2": 3085804479.919315,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -0.62,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 4.33,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 9.28,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 10.41,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 15.89,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 24.72,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 26.28,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 24.36,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 19.27,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 12.45,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.29,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 2.81,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 13.17
+        }
+      },
+      {
+        "longitude": -111.25,
+        "latitude": 37.0,
+        "intersection_bbox": [
+          -111.5625,
+          36.75,
+          -110.9375,
+          37.25
+        ],
+        "area_m2": 3085804479.919315,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": 0.18,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 5.18,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 10.15,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 11.62,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 17.18,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 26.41,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 27.84,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 25.64,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 20.81,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 13.59,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 9.58,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 3.3,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 14.33
+        }
+      },
+      {
+        "longitude": -110.625,
+        "latitude": 37.0,
+        "intersection_bbox": [
+          -110.9375,
+          36.75,
+          -110.3125,
+          37.25
+        ],
+        "area_m2": 3085804479.919315,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -0.39,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 4.47,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 9.35,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 10.62,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 15.88,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 25.25,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 26.62,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 24.37,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 19.9,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 12.61,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.96,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 2.41,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 13.38
+        }
+      },
+      {
+        "longitude": -110.0,
+        "latitude": 37.0,
+        "intersection_bbox": [
+          -110.3125,
+          36.75,
+          -109.6875,
+          37.25
+        ],
+        "area_m2": 3085804479.919315,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": 0.16,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 5.09,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 10.06,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 11.28,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 16.36,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 25.98,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 27.19,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 25.01,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 20.65,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 12.96,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 9.27,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 2.49,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 13.92
+        }
+      },
+      {
+        "longitude": -109.375,
+        "latitude": 37.0,
+        "intersection_bbox": [
+          -109.6875,
+          36.75,
+          -109.0625,
+          37.25
+        ],
+        "area_m2": 3085804479.919315,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": 0.25,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 4.93,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 9.92,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 11.15,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 16.09,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 25.77,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 27.23,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 25.17,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 20.76,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 12.93,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 9.38,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 2.46,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 13.88
+        }
+      },
+      {
+        "longitude": -108.75,
+        "latitude": 37.0,
+        "intersection_bbox": [
+          -109.0625,
+          36.75,
+          -109,
+          37.25
+        ],
+        "area_m2": 308580447.9919315,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -1.44,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.5,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.55,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 9.59,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 14.46,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 23.7,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 25.25,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 23.48,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 19.13,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 11.58,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.13,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 1.9,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 12.36
+        }
+      },
+      {
+        "longitude": -113.125,
+        "latitude": 37.5,
+        "intersection_bbox": [
+          -113,
+          37.25,
+          -112.8125,
+          37.75
+        ],
+        "area_m2": 919618497.1106517,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -3.37,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 1.62,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 5.96,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 7.04,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 12.57,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 20.66,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 22.74,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 20.86,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 15.24,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 9.26,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 5.86,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 0.86,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 9.99
+        }
+      },
+      {
+        "longitude": -112.5,
+        "latitude": 37.5,
+        "intersection_bbox": [
+          -112.8125,
+          37.25,
+          -112.1875,
+          37.75
+        ],
+        "area_m2": 3065394990.368839,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -4.07,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 1.16,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 5.21,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 6.26,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 11.87,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 19.97,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 21.85,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 20.2,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 14.64,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 8.43,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 4.93,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 0.53,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 9.29
+        }
+      },
+      {
+        "longitude": -111.875,
+        "latitude": 37.5,
+        "intersection_bbox": [
+          -112.1875,
+          37.25,
+          -111.5625,
+          37.75
+        ],
+        "area_m2": 3065394990.368839,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -2.47,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 2.62,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 7.36,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 8.18,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 13.89,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 22.6,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 24.12,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 22.3,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 16.89,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 10.32,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 6.52,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 1.74,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 11.22
+        }
+      },
+      {
+        "longitude": -111.25,
+        "latitude": 37.5,
+        "intersection_bbox": [
+          -111.5625,
+          37.25,
+          -110.9375,
+          37.75
+        ],
+        "area_m2": 3065394990.368839,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -1.09,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 4.02,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 9.32,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 10.21,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 16.06,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 25.2,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 26.69,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 24.45,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 19.3,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 11.93,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.11,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 2.54,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 13.11
+        }
+      },
+      {
+        "longitude": -110.625,
+        "latitude": 37.5,
+        "intersection_bbox": [
+          -110.9375,
+          37.25,
+          -110.3125,
+          37.75
+        ],
+        "area_m2": 3065394990.368839,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": 0.16,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 5.45,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 10.62,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 11.69,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 17.41,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 26.71,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 28.39,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 25.97,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 21.14,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 13.1,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 9.34,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 2.93,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 14.45
+        }
+      },
+      {
+        "longitude": -110.0,
+        "latitude": 37.5,
+        "intersection_bbox": [
+          -110.3125,
+          37.25,
+          -109.6875,
+          37.75
+        ],
+        "area_m2": 3065394990.368839,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -0.98,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 4.12,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 9.2,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 10.31,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 15.7,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 25.2,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 26.66,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 24.28,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 19.65,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 11.85,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.08,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 1.73,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 13.03
+        }
+      },
+      {
+        "longitude": -109.375,
+        "latitude": 37.5,
+        "intersection_bbox": [
+          -109.6875,
+          37.25,
+          -109.0625,
+          37.75
+        ],
+        "area_m2": 3065394990.368839,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -1.28,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.7,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 9.05,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 10.11,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 15.26,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 24.63,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 26.15,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 23.98,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 19.39,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 11.89,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.11,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 2.07,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 12.8
+        }
+      },
+      {
+        "longitude": -108.75,
+        "latitude": 37.5,
+        "intersection_bbox": [
+          -109.0625,
+          37.25,
+          -109,
+          37.75
+        ],
+        "area_m2": 306539499.0368839,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -3.34,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 1.83,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 6.7,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 7.63,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 12.41,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 21.55,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 23.15,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 21.33,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 16.9,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 10.24,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 6.64,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 1.02,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 10.55
+        }
+      },
+      {
+        "longitude": -113.125,
+        "latitude": 38.0,
+        "intersection_bbox": [
+          -113,
+          37.75,
+          -112.8125,
+          38.25
+        ],
+        "area_m2": 913425617.7364994,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -1.71,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.22,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.09,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 9.03,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 15.0,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 22.79,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 25.75,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 23.72,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 17.44,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 10.36,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 7.66,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 0.96,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 11.9
+        }
+      },
+      {
+        "longitude": -112.5,
+        "latitude": 38.0,
+        "intersection_bbox": [
+          -112.8125,
+          37.75,
+          -112.1875,
+          38.25
+        ],
+        "area_m2": 3044752059.121664,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -4.14,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 0.75,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 4.83,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 5.6,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 11.54,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 19.66,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 21.92,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 20.26,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 14.23,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 7.71,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 4.72,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": -0.12,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 8.96
+        }
+      },
+      {
+        "longitude": -111.875,
+        "latitude": 38.0,
+        "intersection_bbox": [
+          -112.1875,
+          37.75,
+          -111.5625,
+          38.25
+        ],
+        "area_m2": 3044752059.121664,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -5.58,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": -0.32,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 3.71,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 4.39,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 10.28,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 18.88,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 20.55,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 18.8,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 13.13,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 6.56,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 3.66,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": -0.86,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 7.81
+        }
+      },
+      {
+        "longitude": -111.25,
+        "latitude": 38.0,
+        "intersection_bbox": [
+          -111.5625,
+          37.75,
+          -110.9375,
+          38.25
+        ],
+        "area_m2": 3044752059.121664,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -3.17,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 2.02,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 6.95,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 7.61,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 13.62,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 22.77,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 24.07,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 22.02,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 16.57,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 9.35,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 6.2,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 1.1,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 10.8
+        }
+      },
+      {
+        "longitude": -110.625,
+        "latitude": 38.0,
+        "intersection_bbox": [
+          -110.9375,
+          37.75,
+          -110.3125,
+          38.25
+        ],
+        "area_m2": 3044752059.121664,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -1.39,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 4.01,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 9.35,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 10.17,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 16.08,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 25.38,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 27.21,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 24.75,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 19.62,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 11.25,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 7.71,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 1.69,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 13.03
+        }
+      },
+      {
+        "longitude": -110.0,
+        "latitude": 38.0,
+        "intersection_bbox": [
+          -110.3125,
+          37.75,
+          -109.6875,
+          38.25
+        ],
+        "area_m2": 3044752059.121664,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -2.02,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.29,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.34,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 9.35,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 15.02,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 24.44,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 26.15,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 23.73,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 18.77,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 10.51,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 7.28,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 0.83,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 12.18
+        }
+      },
+      {
+        "longitude": -109.375,
+        "latitude": 38.0,
+        "intersection_bbox": [
+          -109.6875,
+          37.75,
+          -109.0625,
+          38.25
+        ],
+        "area_m2": 3044752059.121664,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -4.32,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 1.25,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 6.37,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 7.24,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 12.6,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 22.01,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 23.67,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 21.52,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 16.59,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 8.95,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 5.57,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": -0.22,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 10.15
+        }
+      },
+      {
+        "longitude": -108.75,
+        "latitude": 38.0,
+        "intersection_bbox": [
+          -109.0625,
+          37.75,
+          -109,
+          38.25
+        ],
+        "area_m2": 304475205.9121664,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -4.96,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 1.0,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 5.94,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 6.89,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 11.89,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 20.9,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 22.64,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 20.97,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 16.2,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 9.05,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 5.53,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": -0.14,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 9.7
+        }
+      },
+      {
+        "longitude": -113.125,
+        "latitude": 38.5,
+        "intersection_bbox": [
+          -113,
+          38.25,
+          -112.8125,
+          38.75
+        ],
+        "area_m2": 907163177.4651074,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -2.64,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 2.54,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 7.67,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 8.46,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 14.63,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 22.49,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 26.13,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 24.03,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 17.1,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 9.21,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 6.98,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": -0.21,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 11.41
+        }
+      },
+      {
+        "longitude": -112.5,
+        "latitude": 38.5,
+        "intersection_bbox": [
+          -112.8125,
+          38.25,
+          -112.1875,
+          38.75
+        ],
+        "area_m2": 3023877258.2170243,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -3.84,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 0.99,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 5.15,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 5.91,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 12.15,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 20.25,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 22.93,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 21.0,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 14.62,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 7.59,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 5.29,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": -0.77,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 9.32
+        }
+      },
+      {
+        "longitude": -111.875,
+        "latitude": 38.5,
+        "intersection_bbox": [
+          -112.1875,
+          38.25,
+          -111.5625,
+          38.75
+        ],
+        "area_m2": 3023877258.2170243,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -6.51,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": -0.96,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 2.45,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 3.06,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 9.19,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 17.5,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 19.92,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 18.02,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 12.04,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 5.09,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 2.76,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": -2.42,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 6.72
+        }
+      },
+      {
+        "longitude": -111.25,
+        "latitude": 38.5,
+        "intersection_bbox": [
+          -111.5625,
+          38.25,
+          -110.9375,
+          38.75
+        ],
+        "area_m2": 3023877258.2170243,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -4.23,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 1.42,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 5.7,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 6.37,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 12.66,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 21.3,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 23.41,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 21.31,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 15.53,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 7.86,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 5.23,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 0.18,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 9.77
+        }
+      },
+      {
+        "longitude": -110.625,
+        "latitude": 38.5,
+        "intersection_bbox": [
+          -110.9375,
+          38.25,
+          -110.3125,
+          38.75
+        ],
+        "area_m2": 3023877258.2170243,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -2.23,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.73,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.91,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 9.6,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 15.81,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 24.85,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 27.05,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 24.74,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 19.13,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 10.27,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 7.16,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 1.52,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 12.59
+        }
+      },
+      {
+        "longitude": -110.0,
+        "latitude": 38.5,
+        "intersection_bbox": [
+          -110.3125,
+          38.25,
+          -109.6875,
+          38.75
+        ],
+        "area_m2": 3023877258.2170243,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -0.86,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 4.78,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 9.88,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 10.73,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 16.77,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 26.13,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 28.04,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 25.56,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 20.19,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 11.11,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 8.21,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 1.76,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 13.57
+        }
+      },
+      {
+        "longitude": -109.375,
+        "latitude": 38.5,
+        "intersection_bbox": [
+          -109.6875,
+          38.25,
+          -109.0625,
+          38.75
+        ],
+        "area_m2": 3023877258.2170243,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -2.35,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.08,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.03,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 8.88,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 14.58,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 24.2,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 25.91,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 23.44,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 18.38,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 9.99,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 7.12,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 1.02,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 11.9
+        }
+      },
+      {
+        "longitude": -108.75,
+        "latitude": 38.5,
+        "intersection_bbox": [
+          -109.0625,
+          38.25,
+          -109,
+          38.75
+        ],
+        "area_m2": 302387725.8217024,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -5.3,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 0.6,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 5.21,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 6.32,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 11.73,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 21.16,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 22.93,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 20.75,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 15.85,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 8.1,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 4.96,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": -0.54,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 9.36
+        }
+      },
+      {
+        "longitude": -113.125,
+        "latitude": 39.0,
+        "intersection_bbox": [
+          -113,
+          38.75,
+          -112.8125,
+          39
+        ],
+        "area_m2": 451211566.11108905,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -2.34,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.34,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.34,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 8.81,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 15.22,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 23.23,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 27.6,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 25.69,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 17.99,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 9.48,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 7.55,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 0.19,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 12.14
+        }
+      },
+      {
+        "longitude": -112.5,
+        "latitude": 39.0,
+        "intersection_bbox": [
+          -112.8125,
+          38.75,
+          -112.1875,
+          39
+        ],
+        "area_m2": 1504038553.7036297,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -2.3,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.18,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 7.95,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 8.35,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 14.89,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 22.88,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 26.61,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 24.84,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 17.64,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 9.47,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 7.57,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 0.17,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 11.82
+        }
+      },
+      {
+        "longitude": -111.875,
+        "latitude": 39.0,
+        "intersection_bbox": [
+          -112.1875,
+          38.75,
+          -111.5625,
+          39
+        ],
+        "area_m2": 1504038553.7036297,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -3.7,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 1.74,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 5.98,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 6.37,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 13.21,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 21.21,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 24.56,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 22.75,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 15.92,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 8.05,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 5.98,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": -0.43,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 10.18
+        }
+      },
+      {
+        "longitude": -111.25,
+        "latitude": 39.0,
+        "intersection_bbox": [
+          -111.5625,
+          38.75,
+          -110.9375,
+          39
+        ],
+        "area_m2": 1504038553.7036297,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -7.17,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": -0.32,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 3.78,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 4.18,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 10.84,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 18.94,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 21.85,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 20.01,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 13.75,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 5.59,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 3.49,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": -1.77,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 7.81
+        }
+      },
+      {
+        "longitude": -110.625,
+        "latitude": 39.0,
+        "intersection_bbox": [
+          -110.9375,
+          38.75,
+          -110.3125,
+          39
+        ],
+        "area_m2": 1504038553.7036297,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -3.54,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 2.86,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 7.95,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 8.65,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 15.11,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 23.75,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 26.58,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 24.26,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 18.28,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 9.21,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 6.07,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 1.01,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 11.73
+        }
+      },
+      {
+        "longitude": -110.0,
+        "latitude": 39.0,
+        "intersection_bbox": [
+          -110.3125,
+          38.75,
+          -109.6875,
+          39
+        ],
+        "area_m2": 1504038553.7036297,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -2.42,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 3.46,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 8.77,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 9.63,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 15.92,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 25.2,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 27.3,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 24.89,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 19.14,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 9.87,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 6.75,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 1.18,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 12.52
+        }
+      },
+      {
+        "longitude": -109.375,
+        "latitude": 39.0,
+        "intersection_bbox": [
+          -109.6875,
+          38.75,
+          -109.0625,
+          39
+        ],
+        "area_m2": 1504038553.7036297,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -2.75,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 2.83,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 7.84,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 8.89,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 14.77,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 24.35,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 26.13,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 23.63,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 18.32,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 9.25,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 6.5,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 0.78,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 11.75
+        }
+      },
+      {
+        "longitude": -108.75,
+        "latitude": 39.0,
+        "intersection_bbox": [
+          -109.0625,
+          38.75,
+          -109,
+          39
+        ],
+        "area_m2": 150403855.370363,
+        "series": [
+          {
+            "date": "2017-01",
+            "value": -3.84,
+            "status": "valid"
+          },
+          {
+            "date": "2017-02",
+            "value": 1.95,
+            "status": "valid"
+          },
+          {
+            "date": "2017-03",
+            "value": 6.82,
+            "status": "valid"
+          },
+          {
+            "date": "2017-04",
+            "value": 8.0,
+            "status": "valid"
+          },
+          {
+            "date": "2017-05",
+            "value": 13.48,
+            "status": "valid"
+          },
+          {
+            "date": "2017-06",
+            "value": 22.82,
+            "status": "valid"
+          },
+          {
+            "date": "2017-07",
+            "value": 24.82,
+            "status": "valid"
+          },
+          {
+            "date": "2017-08",
+            "value": 22.41,
+            "status": "valid"
+          },
+          {
+            "date": "2017-09",
+            "value": 17.53,
+            "status": "valid"
+          },
+          {
+            "date": "2017-10",
+            "value": 8.71,
+            "status": "valid"
+          },
+          {
+            "date": "2017-11",
+            "value": 5.84,
+            "status": "valid"
+          },
+          {
+            "date": "2017-12",
+            "value": 0.48,
+            "status": "valid"
+          }
+        ],
+        "provider_annual_summary": {
+          "2017": 10.79
+        }
+      }
+    ],
+    "provider_header": {
+      "title": "NASA/POWER Source Native Resolution Monthly and Annual",
+      "api": {
+        "version": "v2.10.0",
+        "name": "POWER Monthly and Annual API"
+      },
+      "sources": [
+        "MERRA2"
+      ],
+      "fill_value": -999.0,
+      "time_standard": "LST",
+      "start": "20170101",
+      "end": "20171231"
+    },
+    "provider_parameter": {
+      "units": "C",
+      "longname": "Temperature at 2 Meters"
+    },
+    "provider_messages": []
+  }
+}

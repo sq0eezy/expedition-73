@@ -1,23 +1,35 @@
-name: T2M adapter checks
+name: Recorded T2M and preview checks
 
 on:
   push:
-    branches: [main]
-    paths: ['analysis/**', '.github/workflows/analysis-checks.yml']
+    branches: [main, 'codex/**']
+    paths: ['analysis/**', 'web/**', 'scripts/**', 'docker/**', 'Dockerfile', 'compose.yaml', '.dockerignore', '.github/workflows/analysis-checks.yml']
   pull_request:
-    paths: ['analysis/**', '.github/workflows/analysis-checks.yml']
+    paths: ['analysis/**', 'web/**', 'scripts/**', 'docker/**', 'Dockerfile', 'compose.yaml', '.dockerignore', '.github/workflows/analysis-checks.yml']
   workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: recorded-checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  adapter:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    defaults:
-      run:
-        working-directory: analysis
+  native:
+    name: Offline checks · ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python: analysis/.venv/bin/python
+          - os: macos-latest
+            python: analysis/.venv/bin/python
+          - os: windows-latest
+            python: analysis/.venv/Scripts/python.exe
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -26,27 +38,56 @@ jobs:
         with:
           python-version: '3.12'
           cache: pip
-          cache-dependency-path: |
-            analysis/requirements.txt
-            analysis/requirements-mask.txt
-      - name: Install isolated adapter environment
+          cache-dependency-path: docker/requirements.lock
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+      - name: Isolated Python setup
+        run: python scripts/workspace.py setup
+      - name: Complete offline checks and preview build
+        run: ${{ matrix.python }} scripts/workspace.py check
+      - name: Package and verify public demo
         run: |
-          python -m venv .venv
-          .venv/bin/python -m pip install --disable-pip-version-check -r requirements-mask.txt
-      - name: Offline provider replay and contract tests
-        run: .venv/bin/python -m unittest discover -s tests -v
-      - name: Validate committed real samples
-        run: |
-          .venv/bin/python -m expedition73 validate examples/a-point-2024/result.json
-          .venv/bin/python -m expedition73 validate examples/b-point-2024/result.json
-          .venv/bin/python -m expedition73 check-alignment examples/a-point-2024/result.json examples/b-point-2024/result.json
-      - name: Replay regional geometry, weights and real response
-        run: .venv/bin/python -m expedition73 validate-window examples/a-window-2024
-      - name: Replay all B tiles and deduplicated window result
-        run: .venv/bin/python -m expedition73 validate-tiled-window examples/b-window-2024
-      - name: Replay recorded NASA fractions and candidate workflow offline
-        run: |
-          .venv/bin/python scripts/fetch_surface_fractions.py --replay examples/a-surface-fractions
-          .venv/bin/python scripts/fetch_surface_fractions.py --replay examples/b-surface-fractions
-          .venv/bin/python -m expedition73 run-surface-workflow --window-run examples/a-window-2024 --fraction-run examples/a-surface-fractions --output-dir artifacts/ci-a-surface-workflow
-          .venv/bin/python -m expedition73 run-surface-workflow --window-run examples/b-window-2024 --fraction-run examples/b-surface-fractions --output-dir artifacts/ci-b-surface-workflow
+          ${{ matrix.python }} scripts/workspace.py package
+          ${{ matrix.python }} scripts/workspace.py verify-package web/artifacts/expedition73-preview.zip
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: recorded-preview-${{ matrix.os }}
+          path: web/artifacts/expedition73-preview.zip
+          if-no-files-found: error
+          retention-days: 7
+  container:
+    name: Docker offline and HTTP · ${{ matrix.platform }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux/amd64
+            runner: ubuntu-24.04
+            architecture: x86_64
+          - platform: linux/arm64
+            runner: ubuntu-24.04-arm
+            architecture: aarch64
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Verify native runner architecture
+        run: test "$(uname -m)" = "${{ matrix.architecture }}"
+      - name: Container checks with no runtime network or credentials
+        env:
+          DOCKER_DEFAULT_PLATFORM: ${{ matrix.platform }}
+        run: docker compose --env-file docker/compose.env -p expedition73-ci run --rm --build checks
+      - name: Healthy static preview
+        env:
+          DOCKER_DEFAULT_PLATFORM: ${{ matrix.platform }}
+        run: docker compose --env-file docker/compose.env -p expedition73-ci up --build --wait --wait-timeout 90 preview
+      - name: Public HTTP smoke
+        run: python3 scripts/smoke_preview.py
+      - name: Stop owned containers
+        if: always()
+        env:
+          DOCKER_DEFAULT_PLATFORM: ${{ matrix.platform }}
+        run: docker compose --env-file docker/compose.env -p expedition73-ci down --remove-orphans

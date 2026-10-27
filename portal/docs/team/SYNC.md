@@ -1,8 +1,81 @@
 ---
 review_summary: "Ortak webden okuma, GitHub üzerinden düzenleme ve yerel kaynakları eşitleme."
-change_summary: "M2 dalı main (6da0103) ile birleştirildi; macOS üzerinde 134 test ve B aday yüzey akışı doğrulanıp ortak panele hazırlandı."
+change_summary: "Yıllık akış ekranı c682441 ile M1 dalında, uzak SHA eşleşti. 238 Windows/48 JS/87 Chrome; yeni CI queued, ayrı native ARM64 düzeltmesi beş işi geçti. Main/M2/Pages aynı."
 ---
+
 # Paylaşım ve kurulum
+
+## 2026-10-27 · Native ARM64 düzeltmesi ve yıllık ekran hazırlığı
+
+6f5db6de9dc2c1eb4a6f2f9bd2db5aa31e75713a yalnız workflow/belge olarak normal M1 push ile gönderildi. [40459504376](https://github.com/sq0eezy/expedition-73/actions/runs/40459504376) tamamlandı: beş iş success; [ARM64 günlük kanıtı](../evidence/CI_PLATFORM_CHECK.md) 234 Python/43 JS/HTTP kontrolünü doğrular. Main a1a83d5/M2 6047c42 değişmedi. Bu kod henüz yeni yıllık akış web ekranını içermez; 238 yerel testli yeni dilimin uzak kanıtı diye sunulmaz.
+
+[Yıllık akış ekranı](../guide/ANNUAL_TRACE.md), [238 Windows/48 JS/87 Chrome, gerçek A/B ve paket kontrollerinden](../evidence/ANNUAL_TRACE_CHECK.md) sonra **c68244169258af16ea3cde2e6d8cf5d2e5d57411** olarak mevcut M1 dalına normal push ile gönderildi; ls-remote eşleşti. [Yeni ekran CI'sı 40461143919](https://github.com/sq0eezy/expedition-73/actions/runs/40461143919) aynı kod SHA'sında ilk gözlem queued, başarı değildir. Bu sonraki belge kaydı aynı dala gönderilir; kodun yeni test koşusu değildir. Main a1a83d5/M2 6047c42 yine aynı doğrulandı. H-M1-024 dalda alınabilir; M2 kabulü veya main/Pages/Sites yayını yok. QA durduruldu, TCP8873 kapalı.
+
+## 2026-10-26 · Yıllık modül akışı GitHub'da
+
+M1 devam talebiyle temiz d95cce1 üzerinde [History → AnnualWeighting](../guide/ANNUAL_WORKFLOW.md) eklendi. [234 Windows/43 JS ve gerçek A/B](../evidence/ANNUAL_WORKFLOW_CHECK.md) geçti; bütün yedi genel web dosyası önceki ZIP ile byte aynı. Kaynaklar/hesap yöntemi/web sözleşmeleri değişmedi. Kaynak **5dd0630d6d04cd11404c037a7a97b575716ed0d1** mevcut codex/m1-modules-region-a dalına normal push ile gönderildi, ls-remote eşleşti. [Yeni kod CI'sı 40372881297](https://github.com/sq0eezy/expedition-73/actions/runs/40372881297) aynı SHA'da ilk gözlem pending; başarı değildir. Bu sonraki paylaşım belge commit'i aynı dala gider, yeni uygulama testi değildir.
+
+Önceki b7e0333 CI'sının üç native ve Docker AMD64 işleri success; ARM64 kontrolü bu gözlemde sürüyordu. Bu işler yeni yıllık motor bağlantısının uzak testi değildir. Workflow'un mevcut cancel-in-progress ayarı yeni kaynak koşusu başladığında önceki koşuyu iptal edebilir; iptal veya yarım ARM64 sonucu tam başarı sayılmaz. Main a1a83d5/M2 6047c42 aynı doğrulandı; M2 kabulü veya main/Pages/Sites yayını yok. H-M1-023 dalda alınabilir; M2'nin gördüğü/kabul ettiği varsayılmaz.
+
+## 2026-10-26 · Tamamlanan CI sonucu ve ARM64 düzeltmesi
+
+Önceki paylaşımın kod SHA'sı 07f87a3, paylaşım belge başlığı 2de8bf8 uzak M1 ile eşleşti. [40335437683](https://github.com/sq0eezy/expedition-73/actions/runs/40335437683) tamamlandı: Windows/macOS ARM64/Ubuntu ve Docker AMD64 success, Docker ARM64 QEMU kurulumunda failure. [Tam kanıt ve kapsam](../evidence/CI_PLATFORM_CHECK.md). İlk in_progress gözlemi tarihsel olarak korunur; bütün matrix başarılı sayılmaz.
+
+Devam talebiyle hedef mimari ayarı yalnız Compose adımlarına daraltıldı. Testler/uygulama/bilimsel kaynaklar aynı. Düzeltme normal commit/push ile **b7e03335d6d6cfbbdfd484fa2826532cd95352ff** olarak mevcut M1 dalına gönderildi; ls-remote eşleşti. [Yeni CI 40369026391](https://github.com/sq0eezy/expedition-73/actions/runs/40369026391) aynı SHA'da başladı. ARM64 QEMU adımı success, konteyner kontrolleri in_progress; ilk engel aşıldı, bütün testlerin başarısı henüz doğrulanmadı. Bu sonraki belge kaydı aynı dala gönderilir; yeni uygulama testi değildir. Fetch'te Copilot dalı/PR #1 görülüp metin ve yorumları okundu; incelenen f0bca80 boş plan commit'i. PR/main değiştirilmedi, M2'ye yeni niyet atfedilmedi. Main a1a83d5, M2 6047c42 korunur; Pages/Sites/main merge yok.
+
+## 2026-10-26 · Yıllık web ve önceki M1 dilimleri GitHub'da
+
+Kullanıcı devam edilmesini ve GitHub'a gönderilmesini açıkça istedi. [Kaynak kod 07f87a3](https://github.com/sq0eezy/expedition-73/commit/07f87a3beb921ce44343739b49e1c8058202bfc9), önceki dokuz yerel commit ile birlikte normal push ile [codex/m1-modules-region-a](https://github.com/sq0eezy/expedition-73/tree/codex/m1-modules-region-a) dalına gönderildi. ls-remote başlık **07f87a3beb921ce44343739b49e1c8058202bfc9** olarak yerelle eşleşti. Main a1a83d5 ve M2 dalı 6047c42 aynen kaldı; reset/force/main merge/Pages/Sites yayını yok.
+
+Gönderim; geliştirme paketi, gerçek akış/aylık fark/rapor, iki yıllık ve 24 yıllık kaynaklar, 288 aylık görünüm, aday yıllık Python hesabı ve [yıllık aday ekranını](../guide/ANNUAL_WEB.md) kapsar. [222 Windows/43 JS/76 Chrome ve paket kanıtı](../evidence/ANNUAL_WEB_CHECK.md) yereldir. [GitHub Actions 40335437683](https://github.com/sq0eezy/expedition-73/actions/runs/40335437683) tam bu kod SHA'sında başladı; ilk gözlem **in_progress**, sonucu henüz doğrulanmadı. Bu yazılı paylaşım kaydı koddan sonraki belge commit'i olarak aynı dala gönderilir; kod CI'sı bu belge commit'inin test koşusu diye sunulmaz.
+
+H-M1-014…022 artık geliştirme dalından alınabilir; M2'nin gördüğü/kabul ettiği anlamına gelmez. Korunmamış değişiklikler varken körlemesine pull/checkout yapılmaz. M2 kendi işini koruyup önce `git fetch origin` ile dalı inceleyebilir; uygun temiz çalışma dalında normal birleştirme sonrası Mac'te `sh scripts/start-preview.sh` kullanılır. Yıllık data/annual.json dahil yedi dosya birlikte derlenir. Ana Pages URL'si main'den üretildiği için bu paylaşım onu güncellemez.
+
+## 2026-10-26 · Aday yıllık hesap yerelde
+
+Başlangıç temiz 4a1d3dc; fetch sonrası main a1a83d5, uzak M1/M2 6047c42; yeni katkı yok. [Yıllık ağırlık adayları](../guide/T2M_ANNUAL_WEIGHTING.md), ayrı CLI/şema ve iki gerçek aday rapor yerel M1 dalındadır. Önceki sekiz yerel commit korunur; push/main merge/Pages/Sites/dış mesaj yok. H-M1-021/M2 incelemesi bekler. Yeni modül genel webde görünmez; mevcut uzak dal önceki yerel geliştirmeleri de içermez. M2 notu veya bilimsel kabulü değiştirilmedi.
+
+## 2026-10-26 · Uzun dönem görünümü yerelde
+
+Başlangıç temiz c9e7d9c, fetch sonrası main a1a83d5 ve uzak M1/M2 6047c42; yeni katkı yok. [288 aylık görünüm](../guide/T2M_TIMELINE.md) aynı kaynak byte'larıyla yerel M1 dalında eklendi; önceki yedi yerel commit korunur. Push/main merge/Pages/Sites/dış mesaj yok. H-M1-020/M2 incelemesi bekler; mevcut uzak dal yeni kodu/verileri içermez. M2'nin özel sohbeti veya yeni kabulü biliniyor sayılmaz.
+
+## 2026-10-24 · Uzun aday dönem yerelde
+
+Başlangıç temiz cfaf9d2. Fetch sonrası main a1a83d5, uzak M1/M2 6047c42; yeni katkı yok. [2001–2024 kayıt/yıl kataloğu](../guide/T2M_LONG_PERIOD.md) yerel M1 dalında; önceki altı yerel commit korunur. Push/main merge/Pages/Sites/dış mesaj yapılmadı. H-M1-019/M2 incelemesi bekler; mevcut uzak dal bu veri/ekranı içermez. M2 notu ve iş sahipliği değiştirilmedi.
+
+## 2026-10-22 · İki yıllık kaynak/yıl ekranı yerelde
+
+Başlangıç 3e4e5ee. Fetch'te M2 uzak dalı a1a83d5'ten 6047c42'ye ilerledi; commit aralığı okundu ve tamamının mevcut M1 dalında olduğu görüldü. Yeni M2 kabulü/bağımsız kodu yok; main a1a83d5, uzak M1 6047c42. [2023–2024 teknik dilimi](../guide/T2M_HISTORY.md) ve önceki yerel işler hâlâ M1 dalında, push/main merge/Pages/Sites/dış mesaj yok. H-M1-018/M2 incelemesi bekler; eski uzak kopya yeni veriyi/ekranı içermez.
+
+## 2026-10-22 · Karşılaştırma raporu yerelde
+
+Temiz fdaf166; fetch sonrası uzak M1 6047c42, main/M2 a1a83d5, yeni katkı yok. [Rapor indirme/açma](../guide/COMPARISON_REVIEW.md) ve önceki üç dilim yerel M1 dalında; yeni push/main merge/Pages/Sites/dış mesaj yok. H-M1-017 henüz gönderilmiş/kabul edilmiş sayılmaz. İki kişi kullanabilmek için güncel kaynak/veri önce paylaşılmalıdır; eski uzak dalda özellik yok.
+
+## 2026-10-22 · Pencere farkı ekranı yerelde
+
+Temiz başlangıç `ca485eb`; fetch sonrası main/M2 `a1a83d5`, uzak M1 `6047c42`, yeni katkı yok. [Betimsel pencere farkı ve teknik eşleşme](../evidence/REGION_COMPARISON_CHECK.md) M1 dalında yerel geliştirildi; önceki geliştirme paketi ve akış ekranı da henüz yereldir. Push/main merge/Pages/Sites yayını veya dış mesaj yok. H-M1-016, M2'ye gönderilmiş veya kabul edilmiş sayılmaz.
+
+## 2026-10-21 · Akış görünümü yerelde devam
+
+Başlangıç temiz M1 `294fab6`; fetch sonrası uzak M1 `6047c42`, main/M2 `a1a83d5`, yeni katkı yok. [Akış ekranı ve paket uyumu](../evidence/WORKFLOW_TRACE_CHECK.md) yerel M1 dalında eklendi; önceki geliştirme paketi de henüz yereldir. Yeni push/main merge/Pages/Sites yayını veya dış mesaj yok. H-M1-015 ve güncel ekran henüz M2 tarafından incelenmiş/kabul edilmiş sayılmaz. Eski paylaşımdan bu yeni kodu göreceği varsayılmaz.
+
+## 2026-10-21 · Yeni geliştirme paketi yerelde
+
+Başlangıçta fetch yapıldı; M1 uzak dalı `6047c42`, main/M2 `a1a83d5` olarak aynı, yeni katkı yoktu. [İsteğe bağlı Docker/native paket](../guide/DEV_PACKAGE.md) mevcut M1 dalında geliştirildi. Önceki Docker önerisi artık alternatif teknik çalıştırma yoluyla uygulandı; nihai yığın veya M2 tercihi kabulü yok. Yeni kod bu oturumda push/main merge/Pages/Sites yayınına gönderilmedi; hazırlanan CI matrisi henüz uzakta çalıştırılmadı. [Yerel gerçek kontroller](../evidence/DEV_PACKAGE_CHECK.md), [H-M1-014](HANDOFFS.md).
+
+## 2026-10-20 · M1 geliştirme dalı GitHub’da paylaşıldı
+
+Kullanıcı yapılan çalışmaları GitHub’a göndermeyi açıkça istedi. Temiz çalışma alanında fetch yapıldı; main ve M2 `a1a83d5` olarak aynıydı, M1 uzak dalında alınmamış katkı yoktu. M1’in sekiz yerel commit’i normal push ile `codex/m1-modules-region-a` dalına gönderildi. `git ls-remote` sonucu uzak başlık **`6b4ab124ca35b7b89e26b654ca5bbf4179736c83`**, yerel kaynakla aynı. [Paylaşılan dal](https://github.com/sq0eezy/expedition-73/tree/codex/m1-modules-region-a), [son kod commit’i](https://github.com/sq0eezy/expedition-73/commit/6b4ab124ca35b7b89e26b654ca5bbf4179736c83). Main/M2 aynı SHA’da korundu; force veya main birleştirmesi yapılmadı.
+
+Paylaşım; koşullu alan denetimi, kaynak AREA kontrolü, ilk web ekranı, hücre görünümü ve aday ağırlık kıyaslamasını kapsar. Önceki [164 analiz + 8 JS hesap testi ve 22 Chrome senaryosu](../evidence/POLICY_COMPARISON_CHECK.md) kodu değişmeden gönderildi; bu oturumda yeni analiz/Chrome koşusu veya Ubuntu/Mac CI başarısı iddia edilmez. Token/.env, sanal ortam ve özel/generated artifacts Git dışında; gönderilen kaynaklar arasında bu yolların izlenmediği kontrol edildi. Docker yalnız öneri olarak konuşuldu; Docker uygulaması veya kabul kararı yok.
+
+H-M1-009..013 artık dal üzerinden alınabilir; M2’nin gördüğü veya kabul ettiği anlamına gelmez. Canlı Pages main’den üretildiği için bu push ortak URL’yi güncellemez. Arkadaşın kendi çalışmalarını koruyarak önce `git fetch origin` yapıp M1 dalını inceleyebilir; [Mac web komutları](../product/RESULTS_PREVIEW.md) builder ve ardından `python3 web/serve.py` adımlarını içerir. Yerel korunmamış dosyalar varsa körlemesine dal değiştirme/pull yapılmaz.
+
+## 2026-10-20 · M2 güncellemesi yerel M1 dalına alındı
+
+Fetch sonrası `origin/main` ve `origin/codex/m2-region-b` aynı `a1a83d5e78e7eccf74739f1b449f6be269c5b6f5` commit'inde görüldü. [M2'nin commit'i](https://github.com/sq0eezy/expedition-73/commit/a1a83d5e78e7eccf74739f1b449f6be269c5b6f5), üye/devir/pano ve B notları okundu: 134 macOS testi, B fraksiyon/akış doğrulaması ve teknik profil kimliği uzlaşması. Sekiz belge değişimi var; yeni kaynak verisi/analiz kodu yok. Mac sonucu M2'nin beyanıdır; bu Windows oturumu Mac doğrulaması yapmadı.
+
+M1'in üç yerel commit'i korunarak normal merge yapıldı (`b3718b4`). CURRENT_STATE ve WORK_LOG çakışmaları iki tarafın kayıtları korunarak çözüldü; portal check/build geçti. Yeni hücre görünümü kendi dalımızda yerel devam etti; uzak M1/M2 veya main'e push yapılmadı. [Yeni kanıt](../evidence/SPATIAL_PREVIEW_CHECK.md). H-M1-009/010/011/012 ve yeni ekran M2 tarafından kabul edilmiş sayılmaz.
 
 ## 2026-10-19 · M2 dal senkronizasyonu ve macOS doğrulaması
 

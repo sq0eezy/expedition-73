@@ -1,0 +1,125 @@
+{
+  "schema_version": "0.1.0",
+  "output_type": "source_area_capability_check",
+  "scope": "selected_granule_metadata_only",
+  "source": {
+    "dataset": "M2C0NXASM",
+    "version": "5.12.4",
+    "granule": "MERRA2_101.const_2d_asm_Nx.00000000.nc4",
+    "metadata_uri": "https://opendap.earthdata.nasa.gov/collections/C1276812819-GES_DISC/granules/M2C0NXASM.5.12.4%3AMERRA2_101.const_2d_asm_Nx.00000000.nc4.dmr.xml",
+    "metadata_sha256": "baa82cb258a18165c39ec5da17e4e5ec3582ae7facf75e733534ac75f1a3d35a"
+  },
+  "available_numeric_variables": [
+    {
+      "name": "FRLAKE",
+      "type": "Float32",
+      "units": [
+        "1"
+      ],
+      "dimensions": [
+        "/time",
+        "/lat",
+        "/lon"
+      ]
+    },
+    {
+      "name": "FRLAND",
+      "type": "Float32",
+      "units": [
+        "1"
+      ],
+      "dimensions": [
+        "/time",
+        "/lat",
+        "/lon"
+      ]
+    },
+    {
+      "name": "FRLANDICE",
+      "type": "Float32",
+      "units": [
+        "1"
+      ],
+      "dimensions": [
+        "/time",
+        "/lat",
+        "/lon"
+      ]
+    },
+    {
+      "name": "FROCEAN",
+      "type": "Float32",
+      "units": [
+        "1"
+      ],
+      "dimensions": [
+        "/time",
+        "/lat",
+        "/lon"
+      ]
+    },
+    {
+      "name": "PHIS",
+      "type": "Float32",
+      "units": [
+        "m+2 s-2"
+      ],
+      "dimensions": [
+        "/time",
+        "/lat",
+        "/lon"
+      ]
+    },
+    {
+      "name": "SGH",
+      "type": "Float32",
+      "units": [
+        "m"
+      ],
+      "dimensions": [
+        "/time",
+        "/lat",
+        "/lon"
+      ]
+    },
+    {
+      "name": "lat",
+      "type": "Float64",
+      "units": [
+        "degrees_north"
+      ],
+      "dimensions": [
+        "/lat"
+      ]
+    },
+    {
+      "name": "lon",
+      "type": "Float64",
+      "units": [
+        "degrees_east"
+      ],
+      "dimensions": [
+        "/lon"
+      ]
+    },
+    {
+      "name": "time",
+      "type": "Int32",
+      "units": [
+        "minutes since 1992-01-02 03:00:00"
+      ],
+      "dimensions": [
+        "/time"
+      ]
+    }
+  ],
+  "area": {
+    "numeric_declaration_present": false,
+    "declaration": null,
+    "comparison_status": "not_available_in_selected_granule",
+    "numeric_values_retrieved": false,
+    "comparison_performed": false
+  },
+  "automatic_product_or_geometry_substitution": false,
+  "scientific_profile_accepted": false
+}
