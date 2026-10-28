@@ -1,9 +1,13 @@
 ---
 review_summary: "Ortak webden okuma, GitHub üzerinden düzenleme ve yerel kaynakları eşitleme."
-change_summary: "İlk T2M temeli 6db86b2 main'de; beş main CI işi 238 Python/48 JS, Pages/HTTP başarılı. M2 dalı korundu; yeni UI/modül ayrı adımlar."
+change_summary: "M2 dalı (codex/m2-region-b) ilk main konsolidasyon paketiyle (271cd9e) eşitlendi; macOS üzerinde 238 Python testi, B 2001–2024 geçmişi, yıllık akış ve 0.5.0 web paketi doğrulandı."
 ---
 
 # Paylaşım ve kurulum
+
+## 2026-10-28 · M2 dalının ilk main konsolidasyonuyla (`271cd9e`) eşitlenmesi ve macOS doğrulaması
+
+M2 (`sq0eezy`), `origin/main` (`271cd9e` / `6db86b2` ilk T2M konsolidasyon paketi) geçmişini `codex/m2-region-b` dalına ileri-sarım (fast-forward) ile entegre etti. macOS (`Python 3.14.8`, `jsonschema 4.25.1`, `netCDF4 1.7.2`, `numpy 2.5.4`) üzerinde **238 Python birim testinin tamamı** (69,35 s, 0 hata/atlanan), Bölge B kırpılmış hücre alan sınırları (`audit-surface-support`), `check-source-area`, `2023–2024` (24/24 ay) ve `2001–2024` (288/288 ay, 55 hücre) geçmiş serileri (`validate-window-history`), yıllık ağırlık denetimi (`validate-annual-weighting`) ve iki adımlı bağımlılık akışı (`run-annual-workflow`, 24/24 tam yıl) doğrulandı. `scripts/workspace.py package` ile 7 genel dosyalı `0.5.0` web paketi (`SHA-256: 934cd18f...`) derlenip `web/serve.py` + `scripts/smoke_preview.py` (`127.0.0.1:8873`) ile yerel HTTP 200 ve özel yol yalıtımı teyit edildi, ardından sunucu kapatıldı. `portal/.venv/bin/python portal/scripts/portal.py check` ve `build` komutları sıfır hatayla geçti (`S-02`). [H-M1-009..024](HANDOFFS.md) teknik doğrulamalarla yanıtlandı; nihai bilimsel maske/sınır/yıllık özet seçimi ve `R-B05` eğilim analizi açık bırakıldı.
 
 ## 2026-10-27 · İlk toparlama paketi main'de
 

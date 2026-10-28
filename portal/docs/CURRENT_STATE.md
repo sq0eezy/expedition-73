@@ -1,15 +1,17 @@
 ---
 status: Validating
-updated: "2026-10-27"
+updated: "2026-10-28"
 phase: İlk main paketi ve aşamalı toparlama
 review_summary: "Kabul edilen mimari yön, seçilen pilot ve henüz açık olan veri kararları."
-change_summary: "İlk T2M temeli 6db86b2 main'de; main beş CI işi 238 Python/48 JS, Pages/HTTP başarılı. Teknik çekirdek hazır, bilimsel pilot açık; sonraki iş sade karşılaştırma düzeni."
+change_summary: "M2 dalı (codex/m2-region-b) main (271cd9e) ile eşitlendi; macOS üzerinde 238 Python testi, B 2001–2024 geçmişi, yıllık akış ve 0.5.0 web paketi doğrulandı."
 ---
 # Mevcut durum
 
 **İlk pilot seçildi: 2 metre hava sıcaklığının zaman serisi ve eğilimi.** Kullanıcı modüle özel bilimsel hesap + ortak sonuç adaptörü yaklaşımını kabul etti; alt modüller ve modüller arası veri bağlantıları istedi. Sonuçları inceleten bir web uygulaması sunulacak. [ADR-004](decisions/ADR-004-MODULES-AND-PILOT.md).
 
 ## Hazır olanlar
+
+- **M2 (`sq0eezy`) ilk konsolidasyon paketini (`271cd9e`) macOS üzerinde doğruladı:** `origin/main` (`271cd9e` / `6db86b2`), `codex/m2-region-b` dalına alındı. macOS (`Python 3.14.8`, `jsonschema 4.25.1`, `netCDF4 1.7.2`, `numpy 2.5.4`) üzerinde **238 Python birim testinin tamamı** (0 atlanan), Bölge B kırpılmış hücre alan sınırları (`audit-surface-support`), `check-source-area`, `2001–2024` (288/288 ay, 55 hücre) geçmiş serisi (`validate-window-history`), `validate-annual-weighting`, `run-annual-workflow` (24/24 tam yıl) ve 7 dosyalı `0.5.0` web paketi (`scripts/workspace.py package` + `smoke_preview.py`) doğrulandı. [B fişi](research/regions/REGION_B_PROFILE.md), [M2 notu](team/members/M2.md), [H-M1-009..024 yanıtları](team/HANDOFFS.md). Nihai bilimsel maske/sınır/yıllık özet seçimi ve `R-B05` eğilim analizi açık.
 
 - **İlk toparlama paketi main'de:** M1'in açık talebiyle mevcut testli temel 6db86b2 normal merge/push ile aktarıldı; uzak SHA eşleşti, M2 dalı korundu. [Teslim ve sıra](planning/CONSOLIDATION.md), [gerçek merge/Pages/CI kaydı](evidence/T2M_BASELINE_RELEASE.md). Main'in beş CI işi 238 Python/48 JS ile, Pages ve üç yeni sayfada HTTP200 ile başarılı. Yeni UI veya ikinci modül kodu eklenmedi. Aşağıdaki eski tarihli paylaşım durumları kendi aşamalarına aittir.
 - **Sıcaklık bitişi:** Teknik veri/hesap/modül çekirdeği ilk sürüm olarak hazır; [pilotun tamamı bitmedi](planning/PILOT.md). Kesin bilimsel profil, eğilim/belirsizlik ve M2 kabulü açık. İkinci modülde küçük veri denemesi bu açık işlerin yerine geçmez.

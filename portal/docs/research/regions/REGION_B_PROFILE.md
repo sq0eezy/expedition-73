@@ -1,10 +1,10 @@
 ---
 review_summary: "B aday penceresinin ilk kaynak/sınır önerisi ve gerçek 2024 T2M nokta API denemesi."
-change_summary: "M2 için B arama penceresi GeoJSON'u, b-point-2024 config/yanıt/çıktı dosyaları ve ilk NASA POWER denemesi eklendi."
+change_summary: "Bölge B için kırpılmış hücre alan sınırları (audit-surface-support), 2001–2024 (288 ay) geçmiş serisi ve yıllık ağırlık akışı macOS üzerinde doğrulandı."
 ---
 # Bölge B · Çalışma fişi
 
-sq0eezy'nin ilk çalışma kaydı, **2026-10-16**. Görev durumu [panoda](../../planning/WORK_BOARD.md), kullanım [T2M kılavuzunda](../../guide/T2M_ADAPTER.md). Alanın kesin seçimi yapılmadı; bu fiş ilk teknik inceleme ve API erişim kaydıdır.
+sq0eezy'nin ilk çalışma kaydı, **2026-10-16** (son güncelleme **2026-10-28**). Görev durumu [panoda](../../planning/WORK_BOARD.md), kullanım [T2M kılavuzunda](../../guide/T2M_ADAPTER.md). Alanın kesin seçimi yapılmadı; bu fiş teknik inceleme, çok yıllı seri ve aday ağırlık doğrulama kaydıdır.
 
 | Alan | Kayıt |
 |---|---|
@@ -13,18 +13,26 @@ sq0eezy'nin ilk çalışma kaydı, **2026-10-16**. Görev durumu [panoda](../../
 | Sınır önerisi/sürümü | Proje tarafından tanımlı arama dikdörtgeni: west/south/east/north = -156,68,-150,70; `search-window-0.1.0`. Kabul edilmiş analiz poligonu değil. |
 | Geometri | [GeoJSON aday penceresi](https://github.com/sq0eezy/expedition-73/blob/main/analysis/regions/b-candidate-window.geojson); boylam/enlem sırasıyla kapanan dikdörtgen |
 | Bölgesel gerekçe | Soğuk mevsim, tundra/orman geçişi ve bitki tepkisi için aday: [NASA saha araştırması](https://science.nasa.gov/blogs/notes-from-the-field/2021/10/05/unraveling-the-mysteries-of-arctic-greening-and-browning/). Koordinatlar bu kaynaktan türetilmiş resmî sınır değil, önceki proje arama önerisi. |
-| Kara/su, yükselti ve grid kapsamı | `M2C0NXASM` 5.12.4 alt kümesi (55 hücre: boylam `38..48`, enlem `316..320`) alınıp doğrulandı; 5 kaynak hücresinde pozitif `FROCEAN` oranı var. `FRLAND` etkin alanı 52.183,622 km² (%98,15), `FRLAND+FRLANDICE` 52.192,891 km² (%98,16). Nihai kara/buz maske politikası ve yükselti düzeltmesi açık. |
+| Kara/su, yükselti ve grid kapsamı | `M2C0NXASM` 5.12.4 alt kümesi (55 hücre: boylam `38..48`, enlem `316..320`, 28 kırpılmış sınır hücresi [%29,69 alan]) doğrulandı; 5 kaynak hücresinde pozitif `FROCEAN` var, granülde `AREA` bildirimi yok (`check-source-area`). Koşullu alan sınırları (`audit-surface-support`): `FRLAND` alt/homojen/üst `51.586,416` / `52.183,622` / `52.668,980 km²` (%97,02 / %98,15 / %99,06); `FRLAND+FRLANDICE` `51.611,105` / `52.192,891` / `52.669,508 km²` (%97,07 / %98,16 / %99,06). Nihai kara/buz maske politikası ve yükselti düzeltmesi açık. |
 | Deneme noktası | 69,0°K / 153,0°B (yükselti 304,58 m); arama penceresinin içindeki teknik erişim noktası, temsili bölge ortalaması değil |
 | Sağlayıcı/API | NASA POWER Monthly and Annual API v2.10.0 (`MERRA2` T2M) ve NASA GES DISC OPeNDAP (`M2C0NXASM` 5.12.4 yüzey fraksiyonları) |
 | Kaynak ve sürüm ayrımı | POWER yanıtında kaynak `MERRA2`; bu, doğrudan `M2TMNXSLV` 5.12.4 dosyası veya nihai iki-bölge ürünü diye etiketlenmedi |
-| Gerçek yanıt | 12 aylık kayıt; `C`, Temperature at 2 Meters; -999 dolgu; LST zaman standardı. `202413` yıllık özet (-8,29 °C) ayrı korundu. |
-| Kapsam/kalite | Deneme yılında 12/12 ay sayısal; piksel kalite bayrağı yok. Bu sayım bilimsel kalite veya tüm alan kapsamı değildir. |
-| Sözleşme/modül | Nokta (`v0.1.0`), parçalı alan (`v0.2.0`) ve aday yüzey duyarlılığı (`v0.1.0`) şemaları tam uyumlu (`validate-tiled-window`, `fetch_surface_fractions.py --replay` ve `run-surface-workflow` macOS'ta geçti). |
-| Bağımsız hesap | Nokta (12 ay): Ocak -22,89 °C, Temmuz 10,92 °C, Yıllık -8,29 °C. Parçalı maskesiz alan (55 hücre): Ocak -24,13 °C, Temmuz 9,70 °C (12 ay eşit ağırlıklı ortalama -8,73 °C). Aday `FRLAND` ağırlıklı: Ocak -24,13 °C, Temmuz 9,70 °C, Kasım -19,59 °C (`|FRLAND - maskesiz|` maks fark: 0,0351 °C). |
-| Ortak profil/A uygunluğu | `t2m-technical-2024` (`0.1.0`) teknik deneme profili doğrulandı: A ve B aynı sağlayıcı/gösterge/takvim ve 5 düğümlü aday yüzey akışıyla çalışıyor (134 test geçti). Nihai bilimsel profil ve maske seçimi açık. |
-| Sonuç dosyaları | [Nokta çıktısı](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/b-point-2024/result.json), [Parçalı alan çıktısı](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/b-window-2024/result.json), [Yüzey fraksiyonları](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/b-surface-fractions/fractions.json), [Duyarlılık raporu](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/b-surface-sensitivity.json) |
-| Bulgular | Nokta, 55 hücreli parçalı alan ve gerçek `M2C0NXASM` fraksiyonlarıyla 5 düğümlü aday duyarlılık akışı macOS üzerinde doğrulandı. En büyük aylık `|FRLAND - maskesiz|` farkı 0,0351 °C, `|FRLAND+ICE - FRLAND|` farkı 0,00058 °C. Bölgesel trend, p-değeri ve nihai maske kabulü yok. |
-| Sonraki adım | Teknik doğrulamalar tamamlandı; sırada kesin sınır/maske politikası uzlaşması ve 2001–2024 uzun dönem serisi hazırlığı var. |
+| Gerçek yanıt | 2024 tek yıl (12/12 ay) ve 2001–2024 çok yıllı geçmiş (`288/288 ay`, 55 hücre); `C`, Temperature at 2 Meters; -999 dolgu; LST zaman standardı. |
+| Kapsam/kalite | 2001–2024 döneminde 288/288 ay ve 24/24 tam yıl sayısal; piksel kalite bayrağı yok. Bu sayım bilimsel kalite veya tüm alan kapsamı değildir. |
+| Sözleşme/modül | Nokta (`v0.1.0`), parçalı alan (`v0.2.0`), çok yıllı geçmiş (`v0.1.0`), aday yüzey duyarlılığı (`v0.1.0`) ve yıllık ağırlık denetimi (`v0.1.0`) şemaları macOS üzerinde 238 Python testiyle doğrulandı. |
+| Bağımsız hesap | Nokta (2024): Ocak -22,89 °C, Temmuz 10,92 °C, Yıllık -8,29 °C. Parçalı maskesiz alan (2024, 55 hücre): Ocak -24,13 °C, Temmuz 9,70 °C; eşit ay yıllık `-8,7264 °C`, takvim günü ağırlıklı `-8,6992 °C` (`fark: +0,0272 °C`), sağlayıcı yıllık `-8,6995 °C`. 2001–2024 (24 yıl) en büyük `|takvim günü - eşit ay|` farkı `0,1401 °C` (2021). Aday `FRLAND` (2024): `|FRLAND - maskesiz|` maks aylık fark `0,0351 °C` (Kasım 2024). |
+| Ortak profil/A uygunluğu | `t2m-technical-2024` (`0.1.0`) teknik deneme profili, 2001–2024 288 aylık geçmiş ve 2 adımlı yıllık akış (`History → AnnualWeighting`) A ve B için macOS'ta doğrulandı (238 Python testi). Nihai bilimsel profil, maske ve yıllık hedef seçimi açık. |
+| Sonuç dosyaları | [Nokta çıktısı](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/b-point-2024/result.json), [Parçalı alan çıktısı](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/b-window-2024/result.json), [Yüzey fraksiyonları](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/b-surface-fractions/fractions.json), [Duyarlılık raporu](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/b-surface-sensitivity.json), [2001–2024 geçmişi](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/b-history-2001-2024/result.json), [Yıllık ağırlık denetimi](https://github.com/sq0eezy/expedition-73/blob/main/analysis/examples/b-annual-weighting-audit.json) |
+| Bulgular | Nokta, 55 hücreli parçalı alan, `M2C0NXASM` fraksiyon/alan sınırları, 2001–2024 (288 ay) serisi ve 24 yıllık ağırlık akışı macOS üzerinde doğrulandı. Bölgesel trend, p-değeri, nihai maske ve yıllık ağırlık kabulü yok. |
+| Sonraki adım | Teknik doğrulamalar (`H-M1-009..024`) tamamlandı; sırada kesin sınır/maske/yıllık özet uzlaşması ve 2001–2024 uzun dönem eğilim analizi (`R-B05`) var. |
+
+## 2026-10-28 · Koşullu alan sınırları, 2001–2024 (288 ay) geçmişi ve yıllık ağırlık akışı macOS doğrulaması
+
+M2 (`sq0eezy`) olarak `origin/main` (`271cd9e` / `6db86b2` ilk konsolidasyon paketi) `codex/m2-region-b` dalına alındı ve macOS (`Python 3.14.8`, `jsonschema 4.25.1`, `netCDF4 1.7.2`, `numpy 2.5.4`) üzerinde **238 birim testin tamamı** (0 atlanan) ile Bölge B'nin yeni modül/veri çıktıları çevrim dışı doğrulandı:
+- **Kırpılmış hücre alan sınırları (`audit-surface-support` & `check-source-area`):** Seçili `M2C0NXASM` granülünde `AREA` değişkeni bulunmadığı (`not_available_in_selected_granule`) teyit edildi. 53.169,124 km²'lik B penceresindeki 55 hücrenin 28'i sınır tarafından kırpılmıştır (kesişim alanının %29,69'u; 24 hücrede alt-hücre yerleşim belirsizliği). `FRLAND` koşullu alanı alt sınırda `51.586,416 km²` (%97,02), homojen dağıtımda `52.183,622 km²` (%98,15), üst sınırda `52.668,980 km²` (%99,06; yerleşim aralığı `1.082,564 km²`) olarak doğrulandı.
+- **2001–2024 çok yıllı geçmiş (`validate-window-history`):** `b-history-2023-2024` (24/24 ay) ve `b-history-2001-2024` (288/288 ay, 55 tekil hücre) ham parça yanıtlarından yeniden hesaplanarak doğrulandı (`history_replay_passed`).
+- **Yıllık ağırlık denetimi ve bağımlılık akışı (`validate-annual-weighting` & `run-annual-workflow`):** 2001–2024 dönemindeki 24 tam maskesiz yıl için `History → AnnualWeighting` iki adımlı akışı `completed` verdi. 2024 yılında eşit ay ortalaması `-8,726417 °C`, takvim günü ağırlıklı ortalama `-8,699213 °C` (`takvim - eşit = +0,027204 °C`), sağlayıcı yıllık hücre ortalaması `-8,699471 °C` (`sağlayıcı - takvim = -0,000259 °C`); 24 yıl genelinde en büyük `|takvim günü - eşit ay|` farkı `0,140113 °C` (2021) olarak teyit edildi.
+- **Web önizleme paketi (`scripts/workspace.py package` & `smoke_preview.py`):** 7 genel dosya (`manifest.json` `0.5.0`) derlenip yerel HTTP 200 smoke testiyle (`127.0.0.1:8873`) doğrulandı. Bu doğrulama teknik tekrar kanıtıdır; nihai maske, yıllık özet yöntemi ve `R-B05` eğilim/belirsizlik kararı açık kalır.
 
 ## 2026-10-19 · Bölge B yüzey fraksiyonları ve 5 düğümlü aday duyarlılık doğrulaması
 
